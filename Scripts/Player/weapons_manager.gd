@@ -4,6 +4,7 @@ extends Node3D
 
 @onready var animation_player = %AnimationPlayer
 @onready var fire_rate_timer = %"Fire Rate Timer"
+@onready var bullet_point = %"Bullet Point"
 
 var is_shoot_button_held := false
 
@@ -36,5 +37,6 @@ func swap_arm(_new_arm: ArmResource): # swaps out the old weapon for a new one
 
 func shoot():
 	fire_rate_timer.start()
+	
 	animation_player.stop()
 	animation_player.play(current_arm.shoot_animation)
