@@ -1,6 +1,8 @@
 extends CharacterBody3D
 
 @onready var camera = %Camera
+@onready var animation_player = %AnimationPlayer
+@onready var weapons_manager = %"Weapons Manager"
 
 var SPEED = 5.0
 var JUMP_VELOCITY = 4.5
