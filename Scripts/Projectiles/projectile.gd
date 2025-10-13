@@ -1,0 +1,21 @@
+extends RigidBody3D
+
+@onready var collision_shape = %CollisionShape
+@onready var mesh = %Mesh
+@onready var lifetime = %Lifetime
+
+var damage: float
+var velocity: float
+var range: float
+
+func _ready():
+	lifetime.wait_time = range / velocity
+	lifetime.start()
+
+func _on_body_entered(body):
+	if body.is_in_group("Enemy") and body.has_method("hit"):
+		body.hit(damage)
+	queue_free()
+
+func _on_timer_timeout():
+	queue_free()

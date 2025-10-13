@@ -1,8 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://ou4i562h0h6y"]
+[gd_scene load_steps=7 format=3 uid="uid://djses6pnooexe"]
 
-[ext_resource type="Script" uid="uid://wtoa66s2o53o" path="res://Scripts/Player/arm.gd" id="1_e5jve"]
-[ext_resource type="ArrayMesh" uid="uid://gnju7ar3qnmr" path="res://Assets/Arms/blasterA.tres" id="1_jnhpl"]
-[ext_resource type="PackedScene" uid="uid://coi77x4y3jcif" path="res://Scenes/Projectiles/projectile.tscn" id="2_oaorf"]
+[ext_resource type="Script" uid="uid://wtoa66s2o53o" path="res://Scripts/Player/arm.gd" id="1_ynr7b"]
+[ext_resource type="PackedScene" uid="uid://coi77x4y3jcif" path="res://Scenes/Projectiles/projectile.tscn" id="2_76a55"]
+[ext_resource type="ArrayMesh" uid="uid://cauka6icgnb57" path="res://Assets/Arms/blasterB.tres" id="3_ynr7b"]
 
 [sub_resource type="Animation" id="Animation_oaorf"]
 length = 0.001
@@ -65,17 +65,17 @@ _data = {
 &"Shoot": SubResource("Animation_e5jve")
 }
 
-[node name="Arm Template" type="Node3D"]
-script = ExtResource("1_e5jve")
-projectile = ExtResource("2_oaorf")
+[node name="PH Arm 2" type="Node3D"]
+script = ExtResource("1_ynr7b")
+projectile = ExtResource("2_76a55")
 damage = 5.0
-fire_rate = 5.0
+fire_rate = 3.0
 range = 100.0
-velocity = 100.0
+velocity = 200.0
 
 [node name="MeshInstance" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
-mesh = ExtResource("1_jnhpl")
+mesh = ExtResource("3_ynr7b")
 
 [node name="Fire Rate Timer" type="Timer" parent="."]
 unique_name_in_owner = true
@@ -89,4 +89,4 @@ libraries = {
 
 [node name="Bullet Point" type="Marker3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00013876, 0.112594, -0.428643)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00013876, 0.0489045, -0.235182)

@@ -5,6 +5,5 @@ class_name ArmResource extends Resource
 @export var damage: float # damage dealt by the projectile
 @export var fire_rate: float # in shots per second
 @export var range: float # the distance (in pixels) before the projectile disappears
-#@export_enum("Hit Scan", "Projectile", "Beam") var type
 @export var shoot_animation: String = "Shoot"
 @export var equip_animation: String = "Activate"

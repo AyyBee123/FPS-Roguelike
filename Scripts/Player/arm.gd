@@ -1,0 +1,78 @@
+extends Node3D
+
+@export var projectile: PackedScene # the projectile shot by the arm
+@export var damage: float # damage dealt by the projectile
+@export var fire_rate: float # in shots per second
+@export var range: float # the distance (in pixels) before the projectile disappears
+@export var velocity: float # velocity of the projectile shot by the arm
+@export var shoot_animation: String = "Shoot"
+@export var equip_animation: String = "Activate"
+
+@onready var fire_rate_timer = %"Fire Rate Timer"
+@onready var animation_player = %AnimationPlayer
+@onready var bullet_point = %"Bullet Point"
+
+const DEBUG_BULLET = preload("uid://btq2f4vqn8fhy")
+
+func _ready():
+	fire_rate_timer.wait_time = 1.0 / fire_rate
+
+func shoot():
+	if not fire_rate_timer.is_stopped():
+		return
+	
+	fire_rate_timer.start()
+	animation_player.stop()
+	animation_player.play("Shoot")
+	
+	var camera_collision = get_camera_collision()
+	
+	launch_projectile(camera_collision)
+
+func get_camera_collision() -> Vector3:
+	var camera = get_viewport().get_camera_3d()
+	var viewport = get_viewport().size
+	
+	var ray_origin = camera.project_ray_origin(viewport / 2)
+	var ray_end = ray_origin + camera.project_ray_normal(viewport / 2) * range
+	
+	var new_intersection = PhysicsRayQueryParameters3D.create(ray_origin, ray_end)
+	new_intersection.collision_mask = CollisionLayers.get_mask(["World", "Player"])
+	
+	var intersection = get_world_3d().direct_space_state.intersect_ray(new_intersection)
+	
+	if not intersection.is_empty():
+		return intersection.position
+	else:
+		return ray_end
+
+func launch_projectile(point: Vector3):
+	var direction = (point - bullet_point.get_global_transform().origin).normalized()
+	var proj = projectile.instantiate()
+	
+	proj.damage = damage
+	proj.velocity = velocity
+	proj.range = range
+	
+	get_tree().current_scene.add_child(proj)
+	
+	proj.global_transform.origin = bullet_point.global_transform.origin
+	proj.look_at(proj.global_transform.origin + direction, Vector3.UP)
+	proj.set_linear_velocity(direction * velocity)
+
+#func hit_scan_collision(collision_point):
+	#var bullet_direction = (collision_point - bullet_point.get_global_transform().origin).normalized()
+	#var new_int = PhysicsRayQueryParameters3D.create(bullet_point.get_global_transform().origin, \
+			#collision_point + bullet_direction * 2, CollisionLayers.get_mask(["Pickup"]))
+	#
+	#var bullet_collision = get_world_3d().direct_space_state.intersect_ray(new_int)
+	#
+	#if bullet_collision:
+		#var hit_indicator = DEBUG_BULLET.instantiate()
+		#var world = get_tree().current_scene
+		#world.add_child(hit_indicator)
+		#hit_indicator.global_translate(bullet_collision.position)
+		#
+		#var collider = bullet_collision.collider
+		#if collider.is_in_group("Enemy") and collider.has_method("hit"):
+			#collider.hit(damage)

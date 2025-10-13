@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://ba7erkb81ks3u"]
+
+[ext_resource type="Script" uid="uid://bkw7gdmdy7v3x" path="res://Scripts/Pickups/arm_pickup.gd" id="1_ybiw2"]
+
+[node name="Arm Pickup" type="RigidBody3D" groups=["Arm Pickup"]]
+collision_layer = 8
+gravity_scale = 0.0
+script = ExtResource("1_ybiw2")
+
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1.255, 0, 0, 0, 1.255, 0, 0, 0, 1.255, 0, 0, 0)
+
+[node name="MeshInstance" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
