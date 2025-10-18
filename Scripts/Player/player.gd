@@ -1,20 +1,15 @@
 extends CharacterBody3D
 
 @onready var camera = %Camera
+@onready var camera_controller_anchor = %"Camera Controller Anchor"
 @onready var animation_player = %AnimationPlayer
 @onready var weapons_manager = %"Weapons Manager"
 
 var SPEED = 5.0
 var JUMP_VELOCITY = 4.5
 
-var camera_rotation = Vector2(0, 0)
-var sensitivity = 0.001
-
 var pickup = null
 var nearby_pickups = []
-
-func _ready():
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _physics_process(delta):
 	# add gravity
@@ -42,30 +37,10 @@ func _physics_process(delta):
 		pickup = get_pickup_collision()
 
 func _input(event):
-	if event.is_action_pressed("ui_cancel"):
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	
-	if event is InputEventMouseMotion:
-		var mouse_event = event.relative * sensitivity
-		camera_look(mouse_event)
-	
 	if event.is_action_pressed("pickup") and pickup:
 		if pickup.is_in_group("Arm Pickup"):
 			weapons_manager.swap_arm(pickup.arm_instance, pickup.global_transform.origin)
 			pickup.queue_free()
-
-func camera_look(movement: Vector2):
-	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
-		return
-	
-	camera_rotation += movement
-	camera_rotation.y = clamp(camera_rotation.y, -1.5, 1.2)
-	
-	transform.basis = Basis() # reset rotation
-	camera.transform.basis = Basis() # reset camera rotation
-	
-	rotate_object_local(Vector3(0, 1, 0), -camera_rotation.x) # first rotate the player about the y-axis
-	camera.rotate_object_local(Vector3(1, 0, 0), -camera_rotation.y) # then rotate the camera about the x-axis
 
 func get_pickup_collision():
 	var camera = get_viewport().get_camera_3d()

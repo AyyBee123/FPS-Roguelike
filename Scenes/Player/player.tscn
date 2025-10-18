@@ -1,11 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://dhlu65iawdxvf"]
+[gd_scene load_steps=11 format=3 uid="uid://dhlu65iawdxvf"]
 
 [ext_resource type="Script" uid="uid://c2cudrvyd4egp" path="res://Scripts/Player/player.gd" id="1_uvnfx"]
+[ext_resource type="Script" uid="uid://ct6urpkc4lp1s" path="res://Scripts/Player/camera_controller.gd" id="2_dd0ac"]
 [ext_resource type="Script" uid="uid://c4i7uubwdhgtw" path="res://Scripts/Player/weapons_manager.gd" id="2_htcer"]
 [ext_resource type="PackedScene" uid="uid://ou4i562h0h6y" path="res://Scenes/Arms/ph_arm.tscn" id="3_xpcdj"]
 [ext_resource type="Texture2D" uid="uid://bkix0kk0n8lx5" path="res://Assets/Crosshairs/crosshair001.png" id="4_mtuoh"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tugb3"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_mtuoh"]
+size = Vector3(1, 2, 1)
 
 [sub_resource type="Animation" id="Animation_a3d8c"]
 resource_name = "Activate"
@@ -21,6 +23,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(0.509824, 1),
 "update": 0,
 "values": [Vector3(-0.785398, 0.785398, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Arm:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(2.5, 1),
+"update": 0,
+"values": [Vector3(0.37, -0.65, -0.6), Vector3(0.37, -0.3, -0.5)]
 }
 
 [sub_resource type="Animation" id="Animation_xpcdj"]
@@ -49,6 +63,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Arm:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.37, -0.3, -0.5)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mtuoh"]
 _data = {
@@ -65,11 +91,18 @@ collision_mask = 5
 script = ExtResource("1_uvnfx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_tugb3")
+shape = SubResource("BoxShape3D_mtuoh")
+
+[node name="Camera Controller Anchor" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="Camera" type="Camera3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+top_level = true
+current = true
+script = ExtResource("2_dd0ac")
 
 [node name="Weapons Manager" type="Node3D" parent="Camera"]
 unique_name_in_owner = true
@@ -99,6 +132,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="Crosshair" type="TextureRect" parent="CanvasLayer/HUD"]
 unique_name_in_owner = true
@@ -116,6 +150,7 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_mtuoh")
+metadata/_edit_use_anchors_ = true
 
 [node name="Pickup Detect" type="Area3D" parent="."]
 collision_layer = 0
