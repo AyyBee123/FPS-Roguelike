@@ -8,9 +8,9 @@ extends Node3D
 @export var shoot_animation: String = "Shoot"
 @export var equip_animation: String = "Activate"
 
-@onready var fire_rate_timer = %"Fire Rate Timer"
-@onready var animation_player = %AnimationPlayer
-@onready var bullet_point = %"Bullet Point"
+@onready var fire_rate_timer: Timer = %"Fire Rate Timer"
+@onready var animation_player: AnimationPlayer = %AnimationPlayer
+@onready var bullet_point: Marker3D = %"Bullet Point"
 
 const DEBUG_BULLET = preload("uid://btq2f4vqn8fhy")
 
@@ -23,7 +23,7 @@ func shoot():
 	
 	fire_rate_timer.start()
 	animation_player.stop()
-	animation_player.play("Shoot")
+	animation_player.play(shoot_animation)
 	
 	var camera_collision = get_camera_collision()
 	

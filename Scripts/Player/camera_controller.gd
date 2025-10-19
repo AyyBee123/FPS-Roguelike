@@ -12,9 +12,6 @@ func _ready():
 	player = get_parent()
 
 func _input(event):
-	if event.is_action_pressed("ui_cancel"):
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	
 	if event is InputEventMouseMotion:
 		mouse_input.x += -event.screen_relative.x * sensitivity
 		mouse_input.y += -event.screen_relative.y * sensitivity
@@ -23,7 +20,7 @@ func _process(delta):
 	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 		return
 	
-	camera_rotation.x = clampf(camera_rotation.x + mouse_input.y, -1.5, 1.35)
+	camera_rotation.x = clampf(camera_rotation.x + mouse_input.y, -5 * PI/12, PI/2)
 	camera_rotation.y += mouse_input.x
 	
 	# rotate the camera about the x-axis

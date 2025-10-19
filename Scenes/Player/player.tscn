@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://c2cudrvyd4egp" path="res://Scripts/Player/player.gd" id="1_uvnfx"]
 [ext_resource type="Script" uid="uid://ct6urpkc4lp1s" path="res://Scripts/Player/camera_controller.gd" id="2_dd0ac"]
 [ext_resource type="Script" uid="uid://c4i7uubwdhgtw" path="res://Scripts/Player/weapons_manager.gd" id="2_htcer"]
-[ext_resource type="PackedScene" uid="uid://ou4i562h0h6y" path="res://Scenes/Arms/ph_arm.tscn" id="3_xpcdj"]
+[ext_resource type="PackedScene" uid="uid://jwdiktlk8ob5" path="res://Scenes/Arms/stick.tscn" id="4_htcer"]
 [ext_resource type="Texture2D" uid="uid://bkix0kk0n8lx5" path="res://Assets/Crosshairs/crosshair001.png" id="4_mtuoh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mtuoh"]
@@ -121,7 +121,7 @@ libraries = {
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.37, -0.3, -0.5)
 
-[node name="Arm Template" parent="Camera/Weapons Manager/FPS Rig/Arm" instance=ExtResource("3_xpcdj")]
+[node name="Stick" parent="Camera/Weapons Manager/FPS Rig/Arm" instance=ExtResource("4_htcer")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
