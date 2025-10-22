@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 CollisionLayers="*res://Scripts/Globals/collision_layers.gd"
+Pools="*res://Scripts/Globals/pools.gd"
 
 [file_customization]
 
@@ -26,7 +27,8 @@ folder_colors={
 "res://Assets/": "teal",
 "res://Resources/": "green",
 "res://Scenes/": "pink",
-"res://Scripts/": "blue"
+"res://Scripts/": "blue",
+"res://Shaders/": "purple"
 }
 
 [input]
@@ -82,5 +84,21 @@ common/physics_interpolation=true
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"
+lights_and_shadows/directional_shadow/size=8192
+lights_and_shadows/directional_shadow/soft_shadow_filter_quality=0
+lights_and_shadows/positional_shadow/soft_shadow_filter_quality=0
+
+[shader_globals]
+
+diffuse_curve={
+"type": "sampler2D",
+"value": ""
+}
+specular_smoothness={
+"type": "float",
+"value": 0.05
+}
+fresnel_smoothness={
+"type": "float",
+"value": 0.05
+}

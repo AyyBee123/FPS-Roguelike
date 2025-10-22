@@ -4,6 +4,8 @@ extends CharacterBody3D
 @onready var camera_controller_anchor = %"Camera Controller Anchor"
 @onready var animation_player = %AnimationPlayer
 @onready var weapons_manager = %"Weapons Manager"
+@onready var passives = %Passives
+@onready var abilities = %Abilities
 
 var SPEED = 5.0
 var JUMP_VELOCITY = 4.5

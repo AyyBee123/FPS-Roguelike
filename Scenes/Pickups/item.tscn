@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://dyk4mpi4d6hrl"]
+
+[ext_resource type="Script" uid="uid://bu3xt72h8nf67" path="res://Scripts/Pickups/item.gd" id="1_dyk4n"]
+[ext_resource type="ArrayMesh" uid="uid://cg6ijbmnfeton" path="res://Assets/Items/Gravity Boots.tres" id="2_bq1bg"]
+[ext_resource type="Shader" uid="uid://cnrxbvec7j587" path="res://Shaders/src/cel-shader-base.gdshader" id="3_0c04t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nrqc8"]
+render_priority = 0
+shader = ExtResource("3_0c04t")
+shader_parameter/color = Color(0.0906884, 0.354446, 1, 1)
+shader_parameter/specular = Color(0.0430392, 0.0430392, 0.0430391, 0.5)
+shader_parameter/fresnel = Color(0.00820202, 0.00820202, 0.00820202, 0.3)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0c04t"]
+render_priority = 0
+shader = ExtResource("3_0c04t")
+shader_parameter/color = Color(0.187176, 0.187176, 0.187176, 1)
+shader_parameter/specular = Color(0, 0, 0, 0.5)
+shader_parameter/fresnel = Color(0, 0, 0, 0.3)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xv3jo"]
+render_priority = 0
+shader = ExtResource("3_0c04t")
+shader_parameter/color = Color(0.151276, 0.151276, 0.151276, 1)
+shader_parameter/specular = Color(0, 0, 0, 0.5)
+shader_parameter/fresnel = Color(0, 0, 0, 0.3)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mc8js"]
+render_priority = 0
+shader = ExtResource("3_0c04t")
+shader_parameter/color = Color(0.0962047, 0.0962048, 0.0962047, 1)
+shader_parameter/specular = Color(0, 0, 0, 0.5)
+shader_parameter/fresnel = Color(0.0142752, 0.0142752, 0.0142752, 0.3)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_0c04t"]
+radius = 0.75
+
+[node name="Item" type="RigidBody3D"]
+collision_layer = 8
+gravity_scale = 0.0
+script = ExtResource("1_dyk4n")
+
+[node name="MeshInstance" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_bq1bg")
+surface_material_override/0 = SubResource("ShaderMaterial_nrqc8")
+surface_material_override/1 = SubResource("ShaderMaterial_0c04t")
+surface_material_override/2 = SubResource("ShaderMaterial_xv3jo")
+surface_material_override/3 = SubResource("ShaderMaterial_mc8js")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_0c04t")

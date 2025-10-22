@@ -1,13 +1,23 @@
-[gd_scene load_steps=11 format=3 uid="uid://dhlu65iawdxvf"]
+[gd_scene load_steps=14 format=3 uid="uid://dhlu65iawdxvf"]
 
 [ext_resource type="Script" uid="uid://c2cudrvyd4egp" path="res://Scripts/Player/player.gd" id="1_uvnfx"]
 [ext_resource type="Script" uid="uid://ct6urpkc4lp1s" path="res://Scripts/Player/camera_controller.gd" id="2_dd0ac"]
 [ext_resource type="Script" uid="uid://c4i7uubwdhgtw" path="res://Scripts/Player/weapons_manager.gd" id="2_htcer"]
+[ext_resource type="Shader" uid="uid://co2274h65undd" path="res://Shaders/src/outline.gdshader" id="3_dd0ac"]
 [ext_resource type="PackedScene" uid="uid://jwdiktlk8ob5" path="res://Scenes/Arms/stick.tscn" id="4_htcer"]
 [ext_resource type="Texture2D" uid="uid://bkix0kk0n8lx5" path="res://Assets/Crosshairs/crosshair001.png" id="4_mtuoh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mtuoh"]
 size = Vector3(1, 2, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0u5uq"]
+render_priority = 0
+shader = ExtResource("3_dd0ac")
+shader_parameter/shadow_color = Color(0, 0, 0, 1)
+shader_parameter/shadow_thickness = 1.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_jlvik"]
+material = SubResource("ShaderMaterial_0u5uq")
 
 [sub_resource type="Animation" id="Animation_a3d8c"]
 resource_name = "Activate"
@@ -83,7 +93,7 @@ _data = {
 }
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_mtuoh"]
-radius = 3.0
+radius = 2.0
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 2
@@ -103,6 +113,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 top_level = true
 current = true
 script = ExtResource("2_dd0ac")
+
+[node name="Outline" type="MeshInstance3D" parent="Camera"]
+transform = Transform3D(0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.5, -2.18557e-08, 0, 0, -0.051)
+mesh = SubResource("PlaneMesh_jlvik")
 
 [node name="Weapons Manager" type="Node3D" parent="Camera"]
 unique_name_in_owner = true
@@ -158,6 +172,12 @@ collision_mask = 8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Pickup Detect"]
 shape = SubResource("SphereShape3D_mtuoh")
+
+[node name="Passives" type="Node" parent="."]
+unique_name_in_owner = true
+
+[node name="Abilities" type="Node" parent="."]
+unique_name_in_owner = true
 
 [connection signal="body_entered" from="Pickup Detect" to="." method="_on_pickup_detect_body_entered"]
 [connection signal="body_exited" from="Pickup Detect" to="." method="_on_pickup_detect_body_exited"]
