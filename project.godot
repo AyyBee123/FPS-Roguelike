@@ -19,7 +19,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 CollisionLayers="*res://Scripts/Globals/collision_layers.gd"
-Pools="*res://Scripts/Globals/pools.gd"
+ItemPool="*res://Scripts/Globals/item_pool.gd"
 
 [file_customization]
 

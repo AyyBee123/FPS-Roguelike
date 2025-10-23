@@ -16,3 +16,7 @@ func _ready():
 	
 	# assign it to the CollisionShape3D
 	collision_shape.shape = shape
+
+func pick_up(player):
+	player.weapons_manager.swap_arm(arm_instance, global_transform.origin)
+	queue_free()
