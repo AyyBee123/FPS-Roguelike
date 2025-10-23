@@ -154,10 +154,10 @@ _data = {
 
 [node name="Stick" type="Node3D"]
 script = ExtResource("1_je0rf")
-damage = 20.0
-fire_rate = 2.0
-range = 5.0
-velocity = 5.0
+base_damage = 20.0
+base_fire_rate = 2.0
+base_range = 5.0
+base_speed = 5.0
 shoot_animation = "Swing"
 
 [node name="MeshInstance" type="MeshInstance3D" parent="."]

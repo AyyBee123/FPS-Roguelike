@@ -5,11 +5,11 @@ extends RigidBody3D
 @onready var lifetime = %Lifetime
 
 var damage: float
-var velocity: float
+var speed: float
 var range: float
 
 func _ready():
-	lifetime.wait_time = range / velocity
+	lifetime.wait_time = range / speed
 	lifetime.start()
 
 func _on_body_entered(body):

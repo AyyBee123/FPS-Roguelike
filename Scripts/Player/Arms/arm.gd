@@ -1,16 +1,34 @@
 extends Node3D
 
 @export var projectile: PackedScene # the projectile shot by the arm
-@export var damage: float # damage dealt by the projectile
-@export var fire_rate: float # in shots per second
-@export var range: float # the distance (in pixels) before the projectile disappears
-@export var velocity: float # velocity of the projectile shot by the arm
+@export var base_damage: float # damage dealt by the projectile
+@export var base_fire_rate: float # in shots per second
+@export var base_range: float # the distance (in pixels) before the projectile disappears
+@export var base_speed: float # velocity of the projectile shot by the arm
 @export var shoot_animation: String = "Shoot"
 @export var equip_animation: String = "Activate"
 
 @onready var fire_rate_timer: Timer = %"Fire Rate Timer"
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 @onready var bullet_point: Marker3D = %"Bullet Point"
+
+var player: CharacterBody3D
+
+var damage: float:
+	get:
+		return base_damage if not player else player.stats.get_arm_stat("Damage", base_damage)
+var fire_rate: float:
+	get:
+		return base_damage if not player else player.stats.get_arm_stat("Damage", base_damage)
+var range: float:
+	get:
+		return base_damage if not player else player.stats.get_arm_stat("Damage", base_damage)
+var speed: float:
+	get:
+		return base_damage if not player else player.stats.get_arm_stat("Damage", base_damage)
+
+
+
 
 const DEBUG_BULLET = preload("uid://btq2f4vqn8fhy")
 
@@ -51,14 +69,14 @@ func launch_projectile(point: Vector3):
 	var proj = projectile.instantiate()
 	
 	proj.damage = damage
-	proj.velocity = velocity
+	proj.speed = speed
 	proj.range = range
 	
 	get_tree().current_scene.add_child(proj)
 	
 	proj.global_transform.origin = bullet_point.global_transform.origin
 	proj.look_at(proj.global_transform.origin + direction, Vector3.UP)
-	proj.set_linear_velocity(direction * velocity)
+	proj.set_linear_velocity(direction * speed)
 
 #func hit_scan_collision(collision_point):
 	#var bullet_direction = (collision_point - bullet_point.get_global_transform().origin).normalized()

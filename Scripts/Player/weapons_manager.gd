@@ -2,6 +2,7 @@ extends Node3D
 
 @onready var animation_player = %AnimationPlayer
 @onready var arm = %Arm
+@onready var player = get_parent().get_parent()
 
 const ARM_PICKUP = preload("uid://ba7erkb81ks3u")
 
@@ -28,6 +29,7 @@ func initialize():
 	enter()
 
 func enter(): # call when weapon has been equipped after swapping the previous weapon out
+	current_arm.player = player
 	animation_player.play("Activate")
 
 func swap_arm(_new_arm, pos): # swaps out the old weapon for a new one
