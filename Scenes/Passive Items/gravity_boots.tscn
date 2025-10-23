@@ -5,4 +5,5 @@
 
 [node name="Gravity Boots" type="Node"]
 script = ExtResource("1_ykqc8")
+rarity = 2
 mesh = ExtResource("2_o0ebn")
