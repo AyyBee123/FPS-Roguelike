@@ -1,11 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://dhlu65iawdxvf"]
+[gd_scene load_steps=11 format=3 uid="uid://dhlu65iawdxvf"]
 
 [ext_resource type="Script" uid="uid://c2cudrvyd4egp" path="res://Scripts/Player/player.gd" id="1_uvnfx"]
 [ext_resource type="Script" uid="uid://ct6urpkc4lp1s" path="res://Scripts/Player/camera_controller.gd" id="2_dd0ac"]
 [ext_resource type="Script" uid="uid://c4i7uubwdhgtw" path="res://Scripts/Player/weapons_manager.gd" id="2_htcer"]
 [ext_resource type="PackedScene" uid="uid://jwdiktlk8ob5" path="res://Scenes/Arms/stick.tscn" id="4_htcer"]
 [ext_resource type="Texture2D" uid="uid://bkix0kk0n8lx5" path="res://Assets/Crosshairs/crosshair001.png" id="4_mtuoh"]
-[ext_resource type="Script" uid="uid://d0a7frb8gvg68" path="res://Scripts/Player/stats.gd" id="6_dd0ac"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mtuoh"]
 size = Vector3(1, 2, 1)
@@ -159,10 +158,6 @@ collision_mask = 8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Pickup Detect"]
 shape = SubResource("SphereShape3D_mtuoh")
-
-[node name="Stats" type="Node" parent="."]
-unique_name_in_owner = true
-script = ExtResource("6_dd0ac")
 
 [node name="Passives" type="Node" parent="."]
 unique_name_in_owner = true

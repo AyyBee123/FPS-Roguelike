@@ -4,17 +4,30 @@ extends CharacterBody3D
 @onready var camera_controller_anchor = %"Camera Controller Anchor"
 @onready var animation_player = %AnimationPlayer
 @onready var weapons_manager = %"Weapons Manager"
-@onready var stats = %Stats
 @onready var passives = %Passives
 @onready var abilities = %Abilities
 
-var SPEED: float = 5.0
-var JUMP_HEIGHT: float = 4.5
-var FALL_SPEED: float = 1.0
-var NUMBER_OF_EXTRA_JUMPS: int = 0
+const Stats = preload("uid://d0a7frb8gvg68")
+var stats
+
+var SPEED: float:
+	get:
+		return stats.get_character_stat("Move_Speed")
+var JUMP_HEIGHT: float:
+	get:
+		return stats.get_character_stat("Jump_Height")
+var FALL_SPEED: float:
+	get:
+		return stats.get_character_stat("Fall_Speed")
+var NUMBER_OF_EXTRA_JUMPS: int:
+	get:
+		return stats.get_character_stat("Extra_Jumps")
 
 var pickup = null
 var nearby_pickups: Array = []
+
+func _ready():
+	stats = Stats.new()
 
 func _physics_process(delta):
 	# add gravity
