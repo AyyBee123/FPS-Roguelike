@@ -19,16 +19,13 @@ var damage: float:
 		return base_damage if not player else player.stats.get_arm_stat("Damage", base_damage)
 var fire_rate: float:
 	get:
-		return base_damage if not player else player.stats.get_arm_stat("Damage", base_damage)
+		return base_fire_rate if not player else player.stats.get_arm_stat("Fire_Rate", base_fire_rate)
 var range: float:
 	get:
-		return base_damage if not player else player.stats.get_arm_stat("Damage", base_damage)
+		return base_range if not player else player.stats.get_arm_stat("Range", base_range)
 var speed: float:
 	get:
-		return base_damage if not player else player.stats.get_arm_stat("Damage", base_damage)
-
-
-
+		return base_speed if not player else player.stats.get_arm_stat("Speed", base_speed)
 
 const DEBUG_BULLET = preload("uid://btq2f4vqn8fhy")
 
