@@ -1,6 +1,6 @@
 extends Node
 
-@export_enum("COMMON", "RARE", "LEGENDARY") var rarity: int = 0
+@export_enum("COMMON", "RARE", "LEGENDARY", "UNSET:-1") var rarity: int = -1
 @export var mesh: Mesh
 
 func on_pick_up(player):

@@ -1,0 +1,14 @@
+[
+	{
+		"path": "res://Scenes/Passive Items/gravity_boots.tscn",
+		"rarity": 2
+	},
+	{
+		"path": "res://Scenes/Passive Items/gravity_boots_c.tscn",
+		"rarity": 0
+	},
+	{
+		"path": "res://Scenes/Passive Items/gravity_boots_r.tscn",
+		"rarity": 1
+	}
+]

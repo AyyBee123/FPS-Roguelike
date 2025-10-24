@@ -9,9 +9,35 @@ var amplitude: float = 0.1
 var frequency: float = 2.0
 var item: Node
 
+var rarity_weights = ItemPool.rarity_weights
+
 func _ready():
 	randomize()
-	item = ItemPool.item_pool.pick_random().instantiate()
+	# Convert to cumulative drop chances
+	var total_weight := 0.0
+	for weight in rarity_weights.values():
+		total_weight += weight
+	
+	var weighted_amount = randf() * total_weight
+	
+	# Find which rarity it falls into
+	var cumulative: float = 0.0
+	var chosen_rarity: int = -1
+	for rarity in rarity_weights.keys():
+		cumulative += rarity_weights[rarity]
+		if weighted_amount <= cumulative:
+			chosen_rarity = rarity
+			break
+	
+	# Pick item from the correct pool
+	var pool_name := ""
+	match chosen_rarity:
+		0: pool_name = "common_pool"
+		1: pool_name = "rare_pool"
+		2: pool_name = "legendary_pool"
+	
+	item = ItemPool.get(pool_name).pick_random().instantiate()
+	
 	mesh_instance.mesh = item.mesh
 	passive.add_child(item)
 

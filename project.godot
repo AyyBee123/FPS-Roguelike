@@ -24,7 +24,8 @@ ItemPool="*res://Scripts/Globals/item_pool.gd"
 [file_customization]
 
 folder_colors={
-"res://Assets/": "teal",
+"res://Assets/": "yellow",
+"res://Data/": "teal",
 "res://Resources/": "green",
 "res://Scenes/": "pink",
 "res://Scripts/": "blue",

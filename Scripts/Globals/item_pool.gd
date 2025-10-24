@@ -1,9 +1,23 @@
 extends Node
 
-const SceneLoader = preload("res://Scripts/Utils/scene_loader.gd")
+var rarity_weights: Dictionary = { # 0 = COMMON, 1 = RARE, 2 = LEGENDARY
+	0: 78,
+	1: 20,
+	2: 2
+}
 
-var item_pool: Array[PackedScene] = []
+var common_pool: Array[PackedScene] = []
+var rare_pool: Array[PackedScene] = []
+var legendary_pool: Array[PackedScene] = []
+
+var json_file: String = "res://Data/item_pool.json"
 
 func _init() -> void:
-	item_pool = SceneLoader.load_scenes_from_folder("res://Scenes/Passive Items/")
-	print("Loaded %d item scenes" % item_pool.size())
+	# populate the item pools
+	populate_pool(common_pool, 0)
+	populate_pool(rare_pool, 1)
+	populate_pool(legendary_pool, 2)
+
+func populate_pool(pool, rarity):
+	var loader = PoolLoader.new()
+	loader.load_pool(json_file, pool, rarity)
