@@ -1,0 +1,14 @@
+[
+	{
+		"path": "res://Scenes/Arms/ph_arm.tscn",
+		"rarity": 0
+	},
+	{
+		"path": "res://Scenes/Arms/ph_arm2.tscn",
+		"rarity": 1
+	},
+	{
+		"path": "res://Scenes/Arms/stick.tscn",
+		"rarity": 2
+	}
+]

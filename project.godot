@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 
 CollisionLayers="*res://Scripts/Globals/collision_layers.gd"
 ItemPool="*res://Scripts/Globals/item_pool.gd"
+ArmPool="*res://Scripts/Globals/arm_pool.gd"
 
 [file_customization]
 

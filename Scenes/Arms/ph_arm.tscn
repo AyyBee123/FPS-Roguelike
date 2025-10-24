@@ -67,6 +67,7 @@ _data = {
 
 [node name="Arm Template" type="Node3D"]
 script = ExtResource("1_e5jve")
+rarity = 0
 projectile = ExtResource("2_oaorf")
 base_damage = 5.0
 base_fire_rate = 10.0

@@ -1,5 +1,7 @@
 extends Node3D
 
+@export_enum("COMMON", "RARE", "LEGENDARY", "UNSET:-1") var rarity: int = -1
+
 @export var projectile: PackedScene # the projectile shot by the arm
 @export var base_damage: float # damage dealt by the projectile
 @export var base_fire_rate: float # in shots per second
