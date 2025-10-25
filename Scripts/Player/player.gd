@@ -53,6 +53,8 @@ func _physics_process(delta):
 	
 	if nearby_pickups.size() > 0:
 		pickup = get_pickup_collision()
+	
+	get_tree().call_group("Enemy", "target_position", global_transform.origin)
 
 func _input(event):
 	if event.is_action_pressed("pickup") and pickup:

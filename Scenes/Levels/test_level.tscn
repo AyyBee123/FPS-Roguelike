@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://ml4al8d8uchl"]
+[gd_scene load_steps=15 format=3 uid="uid://ml4al8d8uchl"]
 
 [ext_resource type="PackedScene" uid="uid://dhlu65iawdxvf" path="res://Scenes/Player/player.tscn" id="1_7t06c"]
+[ext_resource type="Script" uid="uid://xvth4kwhnsit" path="res://Scripts/Levels/level.gd" id="1_npfmg"]
 [ext_resource type="PackedScene" uid="uid://cynxew1ppvmlf" path="res://Scenes/Enemies/enemy.tscn" id="2_b07c4"]
 [ext_resource type="PackedScene" uid="uid://ba7erkb81ks3u" path="res://Scenes/Pickups/arm_pickup.tscn" id="3_2ytpj"]
 [ext_resource type="PackedScene" uid="uid://dyk4mpi4d6hrl" path="res://Scenes/Pickups/item.tscn" id="4_db73o"]
+[ext_resource type="Script" uid="uid://ddlx4tkndd0xd" path="res://Scripts/Utils/enemy_manager.gd" id="6_k8g1k"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7t06c"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -17,40 +19,25 @@ background_mode = 2
 sky = SubResource("Sky_b07c4")
 tonemap_mode = 2
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_db73o"]
+vertices = PackedVector3Array(-2.5, 0.26931, -3.8060074, 0, 0.26931, -3.8060074, 0, 0.26931, -99.30601, -2.75, 0.26931, -2.5560074, -99.5, 0.26931, -99.30601, -99.5, 0.26931, -2.5560074, 2.5, 0.26931, -3.8060074, 2.75, 0.26931, -2.5560074, 99.5, 0.26931, -2.5560074, 99.5, 0.26931, -99.30601, -2.5, 0.26931, -1.5560074, -99.5, 0.26931, 99.44399, 0, 0.26931, 99.44399, 0, 0.26931, -1.5560074, 2.5, 0.26931, -1.5560074, 99.5, 0.26931, 99.44399)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(0, 3, 2), PackedInt32Array(2, 3, 5), PackedInt32Array(2, 5, 4), PackedInt32Array(6, 1, 2), PackedInt32Array(6, 2, 7), PackedInt32Array(7, 2, 8), PackedInt32Array(8, 2, 9), PackedInt32Array(3, 10, 5), PackedInt32Array(5, 10, 11), PackedInt32Array(11, 10, 12), PackedInt32Array(10, 13, 12), PackedInt32Array(7, 8, 14), PackedInt32Array(14, 8, 15), PackedInt32Array(14, 15, 12), PackedInt32Array(12, 13, 14)]
+
 [sub_resource type="BoxMesh" id="BoxMesh_b07c4"]
 size = Vector3(200, 1, 200)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2ytpj"]
 size = Vector3(200, 1, 200)
 
+[sub_resource type="BoxMesh" id="BoxMesh_db73o"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_npfmg"]
+
 [node name="Test Level" type="Node3D"]
+script = ExtResource("1_npfmg")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_2ytpj")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-mesh = SubResource("BoxMesh_b07c4")
-skeleton = NodePath("StaticBody3D/CollisionShape3D")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-shape = SubResource("BoxShape3D_2ytpj")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 9.01931, -100.556)
-mesh = SubResource("BoxMesh_b07c4")
-skeleton = NodePath("StaticBody3D/CollisionShape3D")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-shape = SubResource("BoxShape3D_2ytpj")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 30, 0)
@@ -59,14 +46,56 @@ shadow_bias = 1.0
 shadow_normal_bias = 10.0
 shadow_blur = 0.01
 
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_db73o")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+mesh = SubResource("BoxMesh_b07c4")
+skeleton = NodePath("StaticBody3D/CollisionShape3D")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_2ytpj")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 9.01931, -100.556)
+mesh = SubResource("BoxMesh_b07c4")
+skeleton = NodePath("StaticBody3D/CollisionShape3D")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_2ytpj")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="NavigationRegion3D"]
+transform = Transform3D(4.29, 0, 0, 0, 5.89, 0, 0, 0, 1, 0, 2.945, -2.6790018)
+mesh = SubResource("BoxMesh_db73o")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D3/StaticBody3D"]
+shape = SubResource("BoxShape3D_npfmg")
+
 [node name="Player" parent="." instance=ExtResource("1_7t06c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
+[node name="Player2" parent="." instance=ExtResource("1_7t06c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.797613, 2, 0)
+
 [node name="Enemy" parent="." instance=ExtResource("2_b07c4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.48012, 0.5, -4.93442)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.48012, 0.5, -11.100347)
 
 [node name="Arm Pickup" parent="." instance=ExtResource("3_2ytpj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.29752, 0.702153, -2.39187)
 
 [node name="Item2" parent="." instance=ExtResource("4_db73o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2298, 0.714263, -2.52714)
+
+[node name="Enemy Handler" type="Node" parent="."]
+script = ExtResource("6_k8g1k")
