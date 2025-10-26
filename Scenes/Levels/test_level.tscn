@@ -85,9 +85,6 @@ shape = SubResource("BoxShape3D_npfmg")
 [node name="Player" parent="." instance=ExtResource("1_7t06c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
-[node name="Player2" parent="." instance=ExtResource("1_7t06c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.797613, 2, 0)
-
 [node name="Enemy" parent="." instance=ExtResource("2_b07c4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.48012, 0.5, -11.100347)
 
