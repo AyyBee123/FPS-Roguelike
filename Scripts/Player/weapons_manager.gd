@@ -30,7 +30,7 @@ func enter(): # call when weapon has been equipped after swapping the previous w
 	current_arm.player = player
 	animation_player.play("Activate")
 
-func swap_arm(_new_arm, pos): # swaps out the old weapon for a new one
+func swap_arm(_new_arm): # swaps out the old weapon for a new one
 	for child in arm.get_children(): # in case there are somehow multiple
 		arm.remove_child(child)
 	current_arm.queue_free()

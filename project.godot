@@ -22,6 +22,10 @@ CollisionLayers="*res://Scripts/Globals/collision_layers.gd"
 ItemPool="*res://Scripts/Globals/item_pool.gd"
 ArmPool="*res://Scripts/Globals/arm_pool.gd"
 
+[debug]
+
+settings/stdout/print_fps=true
+
 [file_customization]
 
 folder_colors={
@@ -32,6 +36,10 @@ folder_colors={
 "res://Scripts/": "blue",
 "res://Shaders/": "purple"
 }
+
+[global_group]
+
+Enemy=""
 
 [input]
 

@@ -2,10 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://dhlu65iawdxvf" path="res://Scenes/Player/player.tscn" id="1_7t06c"]
 [ext_resource type="Script" uid="uid://xvth4kwhnsit" path="res://Scripts/Levels/level.gd" id="1_npfmg"]
-[ext_resource type="PackedScene" uid="uid://cynxew1ppvmlf" path="res://Scenes/Enemies/enemy.tscn" id="2_b07c4"]
 [ext_resource type="PackedScene" uid="uid://ba7erkb81ks3u" path="res://Scenes/Pickups/arm_pickup.tscn" id="3_2ytpj"]
 [ext_resource type="PackedScene" uid="uid://dyk4mpi4d6hrl" path="res://Scenes/Pickups/item.tscn" id="4_db73o"]
 [ext_resource type="Script" uid="uid://ddlx4tkndd0xd" path="res://Scripts/Utils/enemy_manager.gd" id="6_k8g1k"]
+[ext_resource type="PackedScene" uid="uid://bf7ljiiykmoi0" path="res://Scenes/Enemies/cactorse.tscn" id="6_x4x4f"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7t06c"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -82,11 +82,11 @@ mesh = SubResource("BoxMesh_db73o")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D3/StaticBody3D"]
 shape = SubResource("BoxShape3D_npfmg")
 
+[node name="Cactorse" parent="." instance=ExtResource("6_x4x4f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.089171, 0, -14.245544)
+
 [node name="Player" parent="." instance=ExtResource("1_7t06c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-
-[node name="Enemy" parent="." instance=ExtResource("2_b07c4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.48012, 0.5, -11.100347)
 
 [node name="Arm Pickup" parent="." instance=ExtResource("3_2ytpj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.29752, 0.702153, -2.39187)

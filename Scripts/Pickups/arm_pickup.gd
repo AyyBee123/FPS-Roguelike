@@ -43,5 +43,5 @@ func _ready():
 	collision_shape.shape = shape
 
 func pick_up(player):
-	player.weapons_manager.swap_arm(arm, global_transform.origin)
+	player.weapons_manager.swap_arm(arm)
 	queue_free()
