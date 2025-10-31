@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 @onready var nav_agent: NavigationAgent3D = %NavigationAgent3D
-@onready var mesh = %Armature
+@onready var armature = %Armature
 
 @export var health: float = 25
 @export var speed: float = 5
@@ -24,7 +24,7 @@ func move(delta):
 		var next_position: Vector3 = nav_agent.get_next_path_position()
 		velocity = current_position.direction_to(next_position) * speed
 	
-	mesh.rotation.y = lerp(mesh.rotation.y, atan2(velocity.x, velocity.z), delta * angular_acceleration)
+	armature.rotation.y = lerp_angle(armature.rotation.y, atan2(velocity.x, velocity.z), delta * angular_acceleration)
 	move_and_slide()
 
 func target_position(target):
