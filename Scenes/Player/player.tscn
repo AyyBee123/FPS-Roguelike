@@ -1,13 +1,34 @@
-[gd_scene load_steps=11 format=3 uid="uid://dhlu65iawdxvf"]
+[gd_scene load_steps=14 format=3 uid="uid://dhlu65iawdxvf"]
 
 [ext_resource type="Script" uid="uid://c2cudrvyd4egp" path="res://Scripts/Player/player.gd" id="1_uvnfx"]
 [ext_resource type="Script" uid="uid://ct6urpkc4lp1s" path="res://Scripts/Player/camera_controller.gd" id="2_dd0ac"]
 [ext_resource type="Script" uid="uid://c4i7uubwdhgtw" path="res://Scripts/Player/weapons_manager.gd" id="2_htcer"]
+[ext_resource type="Shader" uid="uid://c7cpnixlhnciv" path="res://Shaders/outline.tres" id="3_dd0ac"]
 [ext_resource type="PackedScene" uid="uid://jwdiktlk8ob5" path="res://Scenes/Arms/stick.tscn" id="4_htcer"]
 [ext_resource type="Texture2D" uid="uid://bkix0kk0n8lx5" path="res://Assets/Crosshairs/crosshair001.png" id="4_mtuoh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mtuoh"]
 size = Vector3(1, 2, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dd0ac"]
+render_priority = 0
+shader = ExtResource("3_dd0ac")
+shader_parameter/outlineColor = Color(0, 0, 0, 0.78)
+shader_parameter/depth_threshold = 0.025
+shader_parameter/normal_threshold = 0.5
+shader_parameter/normal_smoothing = 0.25
+shader_parameter/max_thickness = 1.250000059375
+shader_parameter/min_thickness = 0.5
+shader_parameter/max_distance = 75.0
+shader_parameter/min_distance = 2.0
+shader_parameter/grazing_fresnel_power = 5.0
+shader_parameter/grazing_angle_mask_power = 1.0
+shader_parameter/grazing_angle_modulation_factor = 50.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_0u5uq"]
+material = SubResource("ShaderMaterial_dd0ac")
+flip_faces = true
+size = Vector2(2, 2)
 
 [sub_resource type="Animation" id="Animation_a3d8c"]
 resource_name = "Activate"
@@ -103,6 +124,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 top_level = true
 current = true
 script = ExtResource("2_dd0ac")
+
+[node name="Outline" type="MeshInstance3D" parent="Camera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15)
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_0u5uq")
 
 [node name="Weapons Manager" type="Node3D" parent="Camera"]
 unique_name_in_owner = true

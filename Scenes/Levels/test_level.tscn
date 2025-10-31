@@ -7,16 +7,16 @@
 [ext_resource type="Script" uid="uid://ddlx4tkndd0xd" path="res://Scripts/Utils/enemy_manager.gd" id="6_k8g1k"]
 [ext_resource type="PackedScene" uid="uid://bf7ljiiykmoi0" path="res://Scenes/Enemies/cactorse.tscn" id="6_x4x4f"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7t06c"]
-sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_k8g1k"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 
-[sub_resource type="Sky" id="Sky_b07c4"]
-sky_material = SubResource("ProceduralSkyMaterial_7t06c")
+[sub_resource type="Sky" id="Sky_x4x4f"]
+sky_material = SubResource("ProceduralSkyMaterial_k8g1k")
 
-[sub_resource type="Environment" id="Environment_2ytpj"]
+[sub_resource type="Environment" id="Environment_l7ek2"]
 background_mode = 2
-sky = SubResource("Sky_b07c4")
+sky = SubResource("Sky_x4x4f")
 tonemap_mode = 2
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_db73o"]
@@ -37,7 +37,7 @@ size = Vector3(200, 1, 200)
 script = ExtResource("1_npfmg")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_2ytpj")
+environment = SubResource("Environment_l7ek2")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 30, 0)

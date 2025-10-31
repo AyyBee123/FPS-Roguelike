@@ -4,7 +4,7 @@ var number_of_enemies: int = 0
 var MAX_NUMBER_OF_ENEMIES: int = 20
 var MIN_AMOUNT_OF_ENEMIES: int = 10
 
-const ENEMY = preload("uid://cynxew1ppvmlf")
+const ENEMY = preload("uid://bf7ljiiykmoi0")
 
 var amount: int = 0
 
