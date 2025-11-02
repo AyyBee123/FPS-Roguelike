@@ -106,7 +106,7 @@ _data = {
 [sub_resource type="SphereShape3D" id="SphereShape3D_mtuoh"]
 radius = 2.0
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" groups=["Player"]]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_uvnfx")

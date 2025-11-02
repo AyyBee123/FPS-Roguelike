@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ml4al8d8uchl"]
+[gd_scene load_steps=16 format=3 uid="uid://ml4al8d8uchl"]
 
 [ext_resource type="PackedScene" uid="uid://dhlu65iawdxvf" path="res://Scenes/Player/player.tscn" id="1_7t06c"]
 [ext_resource type="Script" uid="uid://xvth4kwhnsit" path="res://Scripts/Levels/level.gd" id="1_npfmg"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dyk4mpi4d6hrl" path="res://Scenes/Pickups/item.tscn" id="4_db73o"]
 [ext_resource type="Script" uid="uid://ddlx4tkndd0xd" path="res://Scripts/Utils/enemy_manager.gd" id="6_k8g1k"]
 [ext_resource type="PackedScene" uid="uid://bf7ljiiykmoi0" path="res://Scenes/Enemies/cactorse.tscn" id="6_x4x4f"]
+[ext_resource type="PackedScene" uid="uid://yipp43yiqwke" path="res://Scenes/Enemies/stone_skull.tscn" id="7_x4x4f"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_k8g1k"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -96,3 +97,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2298, 0.714263, -2.52714)
 
 [node name="Enemy Handler" type="Node" parent="."]
 script = ExtResource("6_k8g1k")
+
+[node name="Stone Skull" parent="." instance=ExtResource("7_x4x4f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.371991, 0.8781153, -12.7223)
