@@ -4,7 +4,6 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1smmr"]
 resource_name = "Material.001"
-cull_mode = 2
 diffuse_mode = 3
 specular_mode = 1
 albedo_color = Color(0.18232393, 0.35293633, 0.10012163, 1)
@@ -656,7 +655,7 @@ _data = {
 
 [node name="Cactorse" type="CharacterBody3D" groups=["Enemy"]]
 collision_layer = 4
-collision_mask = 7
+collision_mask = 3
 script = ExtResource("1_q0do1")
 
 [node name="Armature" type="Node3D" parent="."]
@@ -908,8 +907,6 @@ shape = SubResource("SphereShape3D_q0do1")
 unique_name_in_owner = true
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 aabb = AABB(-1, -1, -1.4150292, 2, 2, 2.8300583)
-
-[connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_entered"]
-[connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]
