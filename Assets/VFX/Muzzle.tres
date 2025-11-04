@@ -1,0 +1,34 @@
+[gd_resource type="ArrayMesh" load_steps=3 format=4 uid="uid://ilughbwg8anx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oo6aj"]
+emission = Color(1, 1, 1, 1)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_v1jsb"]
+_surfaces = [{
+"aabb": AABB(-1, -1, 0, 2, 2, 2),
+"format": 34896613377,
+"index_count": 12,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAD/f///AAD///9/AAAAAP///3///wAAAAD/fwAAAAD/f/////8AAP9/AAAAAAAA/38AAP//AAD/f///AAAAAA==")
+}]
+blend_shape_mode = 0
+
+[resource]
+resource_name = "Muzzle_Plane"
+_surfaces = [{
+"aabb": AABB(-1, -1, 0, 2, 2, 2),
+"attribute_data": PackedByteArray("/////wAAAAD//wAAAAD///////8AAAAA//8AAAAA//8="),
+"format": 34896613399,
+"index_count": 12,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUA"),
+"material": SubResource("StandardMaterial3D_oo6aj"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAD/f///VNX///9/AABU1f///3///1TVAAD/fwAAVNX/f/////////9/AAAAAP///38AAP//////f///AAD//6qqqqqqqqqqqqqqqqqqqqr/v/9//7//f/+//3//v/9/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_v1jsb")
