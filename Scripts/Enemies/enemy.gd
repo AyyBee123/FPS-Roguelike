@@ -9,6 +9,7 @@ extends CharacterBody3D
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var angular_acceleration: float = 5
+var is_on_screen: bool = true
 
 @onready var player = get_tree().get_first_node_in_group("Player")
 
@@ -30,6 +31,8 @@ func hit(_damage):
 
 func _on_screen_entered():
 	animation_player.active = true
+	is_on_screen = true
 
 func _on_screen_exited():
 	animation_player.active = false
+	is_on_screen = false

@@ -3,8 +3,15 @@ extends "res://Scripts/Enemies/enemy.gd"
 @onready var skull = %Skull
 @onready var fire = %Fire
 @onready var shoot_time = %"Shoot Time"
+@onready var shoot_marker = %"Shoot Marker"
+
+@export var projectile_damage: float
+@export var projectile_speed: float
+@export var projectile_range: float
 
 const STONE_SKULL = preload("uid://crn3ys871kjtr")
+const MUZZLE_FLASH = preload("uid://dphgx1a3xboty")
+const STONE_SKULL_PROJECTILE = preload("uid://bvanm1m1uxxy7")
 
 var height: float = 6
 var player_pos: Vector3
@@ -39,11 +46,25 @@ func move(delta):
 	else:
 		can_shoot = true
 	
-	skull.look_at(player.global_transform.origin, Vector3.UP)
+	skull.look_at(player_pos, Vector3.UP)
 
 func shoot():
-	print("shoot")
+	if is_on_screen:
+		var muzzle = MUZZLE_FLASH.instantiate()
+		shoot_marker.add_child(muzzle)
+		muzzle.set_color("ffb31b")
+		var direction = player_pos - shoot_marker.global_position
+		fire_projectile(STONE_SKULL_PROJECTILE, shoot_marker.global_position, direction)
 	shoot_time.start()
+
+func fire_projectile(proj: PackedScene, pos: Vector3, direction: Vector3):
+	var p = proj.instantiate()
+	p.damage = projectile_damage
+	p.speed = projectile_speed
+	p.range = projectile_range
+	get_tree().current_scene.add_child(p)
+	p.global_position = pos
+	p.set_linear_velocity(direction * projectile_speed)
 
 func target_position(target):
 	player_pos = target

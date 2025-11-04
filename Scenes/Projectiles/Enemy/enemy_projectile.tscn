@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://m2cec8q3rcm0"]
+
+[ext_resource type="Script" uid="uid://csftkahl7xxi" path="res://Scripts/Projectiles/Enemy/enemy_projectile.gd" id="1_lus1b"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4dw4x"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_gvsvj"]
+
+[node name="Enemy Projectile" type="RigidBody3D"]
+script = ExtResource("1_lus1b")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+unique_name_in_owner = true
+shape = SubResource("SphereShape3D_4dw4x")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_gvsvj")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="Lifetime" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Lifetime" to="." method="_on_timer_timeout"]

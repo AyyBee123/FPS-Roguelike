@@ -77,6 +77,9 @@ func get_pickup_collision():
 	else:
 		return null
 
+func hit(damage):
+	print("Ow!")
+
 func _on_pickup_detect_body_entered(body):
 	nearby_pickups.append(body)
 

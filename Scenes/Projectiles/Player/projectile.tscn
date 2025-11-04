@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://coi77x4y3jcif"]
 
-[ext_resource type="Script" uid="uid://b5j3yyr7ouh40" path="res://Scripts/Projectiles/projectile.gd" id="1_2re41"]
+[ext_resource type="Script" uid="uid://b5j3yyr7ouh40" path="res://Scripts/Projectiles/Player/projectile.gd" id="1_r6cp1"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_1bece"]
 radius = 0.25
@@ -23,7 +23,7 @@ gravity_scale = 0.0
 continuous_cd = true
 contact_monitor = true
 max_contacts_reported = 10
-script = ExtResource("1_2re41")
+script = ExtResource("1_r6cp1")
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
 unique_name_in_owner = true
@@ -31,7 +31,6 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 shape = SubResource("SphereShape3D_1bece")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
-unique_name_in_owner = true
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 mesh = SubResource("SphereMesh_1bece")
 

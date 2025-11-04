@@ -1,7 +1,6 @@
 extends RigidBody3D
 
 @onready var collision_shape = %CollisionShape
-@onready var mesh = %Mesh
 @onready var lifetime = %Lifetime
 
 var damage: float
@@ -13,7 +12,7 @@ func _ready():
 	lifetime.start()
 
 func _on_body_entered(body):
-	if body.is_in_group("Enemy") and body.has_method("hit"):
+	if body.is_in_group("Player") and body.has_method("hit"):
 		body.hit(damage)
 	queue_free()
 
