@@ -4,7 +4,7 @@ extends Node
 
 @onready var player = get_tree().get_first_node_in_group("Player")
 
-var current_number_of_enemies: int = 0
+static var current_number_of_enemies: int = 0
 var NUMBER_OF_ENEMIES_TO_SPAWN: int = 1
 var MAX_NUMBER_OF_ENEMIES: int = 20
 var MIN_AMOUNT_OF_ENEMIES: int = 10
@@ -16,6 +16,7 @@ const ENEMY = preload("uid://bf7ljiiykmoi0")
 
 func _ready():
 	randomize()
+	SignalBus.enemy_defeated.connect(_on_enemy_defeat)
 	spawn_enemy(enemies[1])
 	spawn_enemy(enemies[0])
 	#var i = 0
@@ -36,4 +37,9 @@ func spawn_enemy(_enemy: PackedScene):
 	var spawn_point: Vector2 = Vector2(pos.x, pos.z) + \
 			(Vector2.ONE * randf_range(MIN_DISTANCE, MAX_DISTANCE)).rotated(randf_range(0, TAU))
 	enemy.position = Vector3(spawn_point.x, 30, spawn_point.y)
+	current_number_of_enemies += 1
 	get_tree().current_scene.add_child.call_deferred(enemy)
+
+func _on_enemy_defeat(_enemy):
+	current_number_of_enemies -= 1
+	current_number_of_enemies = max(0, current_number_of_enemies)

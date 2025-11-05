@@ -30,7 +30,11 @@ func hit(_damage):
 	health -= _damage
 	
 	if health <= 0:
-		queue_free()
+		die()
+
+func die():
+	SignalBus.enemy_defeated.emit(self)
+	queue_free()
 
 func _on_screen_entered():
 	animation_player.active = true

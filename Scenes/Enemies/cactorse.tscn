@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://bf7ljiiykmoi0"]
+[gd_scene load_steps=12 format=4 uid="uid://bf7ljiiykmoi0"]
 
 [ext_resource type="Script" uid="uid://dmf55xmm0lu8y" path="res://Scripts/Enemies/cactorse.gd" id="1_q0do1"]
 
@@ -653,7 +653,10 @@ _data = {
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q0do1"]
 radius = 0.4
-height = 1.6176758
+height = 1.6618652
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_q0do1"]
+height = 1.0372314
 
 [node name="Cactorse" type="CharacterBody3D" groups=["Enemy"]]
 collision_layer = 4
@@ -901,12 +904,12 @@ libraries = {
 autoplay = "walk"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.62663925, 0.25980055)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.62663925, 0.28189528)
 shape = SubResource("CapsuleShape3D_q0do1")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3594939, 0.8925649)
-shape = SubResource("CapsuleShape3D_q0do1")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5415617, 0.8925649)
+shape = SubResource("CylinderShape3D_q0do1")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 unique_name_in_owner = true

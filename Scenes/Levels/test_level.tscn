@@ -83,9 +83,6 @@ mesh = SubResource("BoxMesh_db73o")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D3/StaticBody3D"]
 shape = SubResource("BoxShape3D_npfmg")
 
-[node name="Cactorse" parent="." instance=ExtResource("6_x4x4f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.089171, 0, -14.245544)
-
 [node name="Player" parent="." instance=ExtResource("1_7t06c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
@@ -98,6 +95,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2298, 0.714263, -2.52714)
 [node name="Enemy Handler" type="Node" parent="."]
 script = ExtResource("6_k8g1k")
 enemies = Array[PackedScene]([ExtResource("6_x4x4f"), ExtResource("7_x4x4f")])
-
-[node name="Stone Skull" parent="." instance=ExtResource("7_x4x4f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.371991, 8.571393, -12.7223)
