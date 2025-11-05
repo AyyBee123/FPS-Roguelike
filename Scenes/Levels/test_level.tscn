@@ -97,6 +97,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2298, 0.714263, -2.52714)
 
 [node name="Enemy Handler" type="Node" parent="."]
 script = ExtResource("6_k8g1k")
+enemies = Array[PackedScene]([ExtResource("6_x4x4f"), ExtResource("7_x4x4f")])
 
 [node name="Stone Skull" parent="." instance=ExtResource("7_x4x4f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.371991, 8.571393, -12.7223)

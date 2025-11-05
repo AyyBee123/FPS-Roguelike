@@ -651,7 +651,9 @@ _data = {
 &"walk": SubResource("Animation_6unpl")
 }
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_q0do1"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q0do1"]
+radius = 0.4
+height = 1.6176758
 
 [node name="Cactorse" type="CharacterBody3D" groups=["Enemy"]]
 collision_layer = 4
@@ -662,7 +664,6 @@ script = ExtResource("1_q0do1")
 unique_name_in_owner = true
 
 [node name="Skeleton3D" type="Skeleton3D" parent="Armature"]
-unique_name_in_owner = true
 bones/0/name = "Bone"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, -1.0919567e-16, 1.3829773e-13, 1.3829774e-13, 0.0015791655, -0.9999987, -1.0919949e-16, 0.99999875, 0.0015791653, 0, 0.6, -0.4)
@@ -900,8 +901,12 @@ libraries = {
 autoplay = "walk"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("SphereShape3D_q0do1")
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.62663925, 0.25980055)
+shape = SubResource("CapsuleShape3D_q0do1")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3594939, 0.8925649)
+shape = SubResource("CapsuleShape3D_q0do1")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 unique_name_in_owner = true
@@ -910,3 +915,6 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 aabb = AABB(-1, -1, -1.4150292, 2, 2, 2.8300583)
+
+[node name="RayCast" type="RayCast3D" parent="."]
+unique_name_in_owner = true

@@ -13,13 +13,11 @@ const STONE_SKULL = preload("uid://crn3ys871kjtr")
 const MUZZLE_FLASH = preload("uid://dphgx1a3xboty")
 const STONE_SKULL_PROJECTILE = preload("uid://bvanm1m1uxxy7")
 
-var height: float = 6
 var player_pos: Vector3
 var can_shoot: bool = false
 
 func _ready():
 	super._ready()
-	position.y = height
 	for lib_name in animation_player.get_animation_library_list():
 		animation_player.remove_animation_library(lib_name)
 	
@@ -33,15 +31,15 @@ func _physics_process(delta):
 		shoot()
 
 func move(delta):
+	position.y = lerp_angle(position.y, raycast_offset, 0.2)
+	
 	if position.distance_to(player_pos) > 15:
 		position.x += (player_pos.x - position.x) * delta * speed
 		position.z += (player_pos.z - position.z) * delta * speed
-		position.y = lerp_angle(position.y, height, 0.2)
 		can_shoot = false
 	elif position.distance_to(player_pos) > 12:
 		position.x += (player_pos.x - position.x) * delta * speed * 0.1
 		position.z += (player_pos.z - position.z) * delta * speed * 0.1
-		position.y = lerp_angle(position.y, height, 0.2)
 		can_shoot = true
 	else:
 		can_shoot = true

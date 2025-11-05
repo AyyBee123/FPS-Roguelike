@@ -1,7 +1,6 @@
 extends "res://Scripts/Enemies/enemy.gd"
 
 @onready var armature: Node3D = %Armature
-@onready var skeleton_3d: Skeleton3D = %Skeleton3D
 
 const CACTORSE = preload("uid://duegs3ndgtxbj")
 
@@ -18,16 +17,17 @@ func _physics_process(delta):
 
 func move(delta):
 	if nav_agent.is_navigation_finished(): return
-
+	
 	var current_position: Vector3 = global_transform.origin
 	var next_position: Vector3 = nav_agent.get_next_path_position()
 	velocity.x = current_position.direction_to(next_position).x * speed
 	velocity.z = current_position.direction_to(next_position).z * speed
 	
-	if not is_on_floor():
+	var raycast_pos: float = ray_cast.get_collision_point().y + raycast_offset
+	if position.y > raycast_pos:
 		velocity.y -= gravity * delta
 	else:
-		velocity.y = 0
+		position.y = raycast_pos
 	
 	armature.rotation.y = lerp_angle(armature.rotation.y, atan2(velocity.x, velocity.z), delta * angular_acceleration)
 	move_and_slide()

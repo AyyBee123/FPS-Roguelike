@@ -1,26 +1,39 @@
 extends Node
 
-var number_of_enemies: int = 0
+@export var enemies: Array[PackedScene]
+
+@onready var player = get_tree().get_first_node_in_group("Player")
+
+var current_number_of_enemies: int = 0
+var NUMBER_OF_ENEMIES_TO_SPAWN: int = 1
 var MAX_NUMBER_OF_ENEMIES: int = 20
 var MIN_AMOUNT_OF_ENEMIES: int = 10
 
+const MIN_DISTANCE: float = 25
+const MAX_DISTANCE: float = 50
+
 const ENEMY = preload("uid://bf7ljiiykmoi0")
 
-var amount: int = 0
-
 func _ready():
-	pass
-	var i = 0
-	while i < TAU:
-		for j in range(12):
-			var enemy = ENEMY.instantiate()
-			get_tree().current_scene.add_child.call_deferred(enemy)
-			var pos = Vector2.from_angle(i) * (j + 1) * 4
-			await get_tree().physics_frame
-			enemy.global_transform.origin = Vector3(pos.x, 1, pos.y)
-			amount += 1
-		i += PI/6
-	print(amount)
+	randomize()
+	spawn_enemy(enemies[1])
+	spawn_enemy(enemies[0])
+	#var i = 0
+	#while i < TAU:
+		#for j in range(12):
+			#var enemy = ENEMY.instantiate()
+			#get_tree().current_scene.add_child.call_deferred(enemy)
+			#var pos = Vector2.from_angle(i) * (j + 1) * 4
+			#await get_tree().physics_frame
+			#enemy.global_transform.origin = Vector3(pos.x, 20, pos.y)
+			#current_number_of_enemies += 1
+		#i += PI/6
+	#print(current_number_of_enemies)
 
-func spawn_enemy():
-	pass
+func spawn_enemy(_enemy: PackedScene):
+	var enemy = _enemy.instantiate()
+	var pos: Vector3 = player.global_position
+	var spawn_point: Vector2 = Vector2(pos.x, pos.z) + \
+			(Vector2.ONE * randf_range(MIN_DISTANCE, MAX_DISTANCE)).rotated(randf_range(0, TAU))
+	enemy.position = Vector3(spawn_point.x, 30, spawn_point.y)
+	get_tree().current_scene.add_child.call_deferred(enemy)
