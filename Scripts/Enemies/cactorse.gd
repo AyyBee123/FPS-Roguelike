@@ -16,6 +16,8 @@ func _physics_process(delta):
 	move(delta)
 
 func move(delta):
+	rotation.x = 0
+	rotation.z = 0
 	if nav_agent.is_navigation_finished(): return
 	
 	var current_position: Vector3 = global_transform.origin
@@ -29,7 +31,7 @@ func move(delta):
 	else:
 		position.y = raycast_pos
 	
-	armature.rotation.y = lerp_angle(armature.rotation.y, atan2(velocity.x, velocity.z), delta * angular_acceleration)
+	rotation.y = lerp_angle(rotation.y, atan2(velocity.x, velocity.z), delta * angular_acceleration)
 	move_and_slide()
 
 func target_position(target):

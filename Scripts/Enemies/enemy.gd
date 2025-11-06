@@ -12,6 +12,7 @@ extends CharacterBody3D
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var angular_acceleration: float = 5
 var is_on_screen: bool = true
+var object: RID
 
 @onready var player = get_tree().get_first_node_in_group("Player")
 
@@ -21,7 +22,7 @@ func _ready():
 	on_screen_notifier.screen_exited.connect(_on_screen_exited)
 
 func _physics_process(delta):
-	rotation = Vector3.ZERO
+	pass
 
 func target_position(target):
 	pass

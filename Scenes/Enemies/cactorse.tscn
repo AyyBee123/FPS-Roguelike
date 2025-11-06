@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://bf7ljiiykmoi0"]
+[gd_scene load_steps=13 format=4 uid="uid://bf7ljiiykmoi0"]
 
 [ext_resource type="Script" uid="uid://dmf55xmm0lu8y" path="res://Scripts/Enemies/cactorse.gd" id="1_q0do1"]
 
@@ -908,8 +908,8 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0
 shape = SubResource("CapsuleShape3D_q0do1")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5415617, 0.8925649)
-shape = SubResource("CylinderShape3D_q0do1")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3914267, 0.9021133)
+shape = SubResource("CapsuleShape3D_jfm6g")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 unique_name_in_owner = true
@@ -921,3 +921,11 @@ aabb = AABB(-1, -1, -1.4150292, 2, 2, 2.8300583)
 
 [node name="RayCast" type="RayCast3D" parent="."]
 unique_name_in_owner = true
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_q0do1")
