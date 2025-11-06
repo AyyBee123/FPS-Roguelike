@@ -8,6 +8,8 @@ static var current_number_of_enemies: int = 0
 var NUMBER_OF_ENEMIES_TO_SPAWN: int = 1
 var MAX_NUMBER_OF_ENEMIES: int = 20
 var MIN_AMOUNT_OF_ENEMIES: int = 10
+var SPAWNING_INTERVAL: float = 3
+var t: float = 0
 
 const MIN_DISTANCE: float = 25
 const MAX_DISTANCE: float = 50
@@ -30,6 +32,15 @@ func _ready():
 			#current_number_of_enemies += 1
 		#i += PI/6
 	#print(current_number_of_enemies)
+
+func _physics_process(delta):
+	t += delta
+	if t >= SPAWNING_INTERVAL:
+		t = 0
+		# spawn enemies if the current amount on the map is less than the maximum
+		if current_number_of_enemies < MAX_NUMBER_OF_ENEMIES:
+			for i in range(NUMBER_OF_ENEMIES_TO_SPAWN):
+				spawn_enemy(enemies.pick_random()) # for now
 
 func spawn_enemy(_enemy: PackedScene):
 	var enemy = _enemy.instantiate()
