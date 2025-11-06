@@ -1,6 +1,6 @@
 extends Node
 
-@export var enemies: Array[PackedScene]
+@export var enemies: Array[EnemySpawn]
 
 @onready var player = get_tree().get_first_node_in_group("Player")
 
@@ -40,8 +40,8 @@ func _physics_process(delta):
 			for i in range(NUMBER_OF_ENEMIES_TO_SPAWN):
 				spawn_enemy(enemies.pick_random()) # for now
 
-func spawn_enemy(_enemy: PackedScene):
-	var enemy = _enemy.instantiate()
+func spawn_enemy(spawn: EnemySpawn):
+	var enemy = spawn.enemy.instantiate()
 	var pos: Vector3 = player.global_position
 	var spawn_point: Vector2 = Vector2(pos.x, pos.z) + \
 			(Vector2.ONE * randf_range(MIN_DISTANCE, MAX_DISTANCE)).rotated(randf_range(0, TAU))

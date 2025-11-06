@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://ml4al8d8uchl"]
+[gd_scene load_steps=19 format=3 uid="uid://ml4al8d8uchl"]
 
 [ext_resource type="PackedScene" uid="uid://dhlu65iawdxvf" path="res://Scenes/Player/player.tscn" id="1_7t06c"]
 [ext_resource type="Script" uid="uid://xvth4kwhnsit" path="res://Scripts/Levels/level.gd" id="1_npfmg"]
 [ext_resource type="PackedScene" uid="uid://ba7erkb81ks3u" path="res://Scenes/Pickups/arm_pickup.tscn" id="3_2ytpj"]
 [ext_resource type="PackedScene" uid="uid://dyk4mpi4d6hrl" path="res://Scenes/Pickups/item.tscn" id="4_db73o"]
 [ext_resource type="Script" uid="uid://ddlx4tkndd0xd" path="res://Scripts/Utils/enemy_manager.gd" id="6_k8g1k"]
+[ext_resource type="Script" uid="uid://e25j21vf5uye" path="res://Scripts/Utils/enemy_spawn_resource.gd" id="6_l7ek2"]
 [ext_resource type="PackedScene" uid="uid://bf7ljiiykmoi0" path="res://Scenes/Enemies/cactorse.tscn" id="6_x4x4f"]
 [ext_resource type="PackedScene" uid="uid://yipp43yiqwke" path="res://Scenes/Enemies/stone_skull.tscn" id="7_x4x4f"]
 
@@ -21,8 +22,9 @@ sky = SubResource("Sky_x4x4f")
 tonemap_mode = 2
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_db73o"]
-vertices = PackedVector3Array(-2.5, 0.26931, -3.8060074, 0, 0.26931, -3.8060074, 0, 0.26931, -99.30601, -2.75, 0.26931, -2.5560074, -99.5, 0.26931, -99.30601, -99.5, 0.26931, -2.5560074, 2.5, 0.26931, -3.8060074, 2.75, 0.26931, -2.5560074, 99.5, 0.26931, -2.5560074, 99.5, 0.26931, -99.30601, -2.5, 0.26931, -1.5560074, -99.5, 0.26931, 99.44399, 0, 0.26931, 99.44399, 0, 0.26931, -1.5560074, 2.5, 0.26931, -1.5560074, 99.5, 0.26931, 99.44399)
-polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(0, 3, 2), PackedInt32Array(2, 3, 5), PackedInt32Array(2, 5, 4), PackedInt32Array(6, 1, 2), PackedInt32Array(6, 2, 7), PackedInt32Array(7, 2, 8), PackedInt32Array(8, 2, 9), PackedInt32Array(3, 10, 5), PackedInt32Array(5, 10, 11), PackedInt32Array(11, 10, 12), PackedInt32Array(10, 13, 12), PackedInt32Array(7, 8, 14), PackedInt32Array(14, 8, 15), PackedInt32Array(14, 15, 12), PackedInt32Array(12, 13, 14)]
+vertices = PackedVector3Array(-2.5, 0.26931, -5.3060074, 0, 0.26931, -5.3060074, 0, 0.26931, -97.80601, -3.5, 0.26931, -4.8060074, -98, 0.26931, -2.5560074, -4.25, 0.26931, -2.5560074, -98, 0.26931, -97.80601, 2.5, 0.26931, -5.3060074, 3.5, 0.26931, -4.8060074, 4.25, 0.26931, -2.5560074, 98, 0.26931, -2.5560074, 98, 0.26931, -97.80601, -3.5, 0.26931, -0.5560074, -2.5, 0.26931, -0.056007385, -98, 0.26931, 97.94399, 0, 0.26931, 97.94399, 0, 0.26931, -0.056007385, 3.5, 0.26931, -0.5560074, 2.5, 0.26931, -0.056007385, 98, 0.26931, 97.94399)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 3), PackedInt32Array(3, 4, 6), PackedInt32Array(3, 6, 2), PackedInt32Array(7, 1, 2), PackedInt32Array(2, 8, 7), PackedInt32Array(9, 8, 10), PackedInt32Array(10, 8, 11), PackedInt32Array(11, 8, 2), PackedInt32Array(4, 5, 12), PackedInt32Array(12, 13, 4), PackedInt32Array(4, 13, 14), PackedInt32Array(14, 13, 15), PackedInt32Array(13, 16, 15), PackedInt32Array(17, 9, 10), PackedInt32Array(17, 10, 18), PackedInt32Array(18, 10, 19), PackedInt32Array(18, 19, 15), PackedInt32Array(15, 16, 18)]
+agent_radius = 2.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_b07c4"]
 size = Vector3(200, 1, 200)
@@ -33,6 +35,19 @@ size = Vector3(200, 1, 200)
 [sub_resource type="BoxMesh" id="BoxMesh_db73o"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_npfmg"]
+
+[sub_resource type="Resource" id="Resource_7rivk"]
+script = ExtResource("6_l7ek2")
+spawn_interval = 3.0
+enemy = ExtResource("6_x4x4f")
+metadata/_custom_type_script = "uid://e25j21vf5uye"
+
+[sub_resource type="Resource" id="Resource_hyk2w"]
+script = ExtResource("6_l7ek2")
+spawn_interval = 5.0
+enemy = ExtResource("7_x4x4f")
+amount_to_spawn = 2
+metadata/_custom_type_script = "uid://e25j21vf5uye"
 
 [node name="Test Level" type="Node3D"]
 script = ExtResource("1_npfmg")
@@ -94,4 +109,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2298, 0.714263, -2.52714)
 
 [node name="Enemy Handler" type="Node" parent="."]
 script = ExtResource("6_k8g1k")
-enemies = Array[PackedScene]([ExtResource("6_x4x4f"), ExtResource("7_x4x4f")])
+enemies = Array[ExtResource("6_l7ek2")]([SubResource("Resource_7rivk"), SubResource("Resource_hyk2w")])

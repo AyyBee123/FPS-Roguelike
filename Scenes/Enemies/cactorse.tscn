@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://bf7ljiiykmoi0"]
+[gd_scene load_steps=12 format=4 uid="uid://bf7ljiiykmoi0"]
 
 [ext_resource type="Script" uid="uid://dmf55xmm0lu8y" path="res://Scripts/Enemies/cactorse.gd" id="1_q0do1"]
 
@@ -655,8 +655,9 @@ _data = {
 radius = 0.4
 height = 1.6618652
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_q0do1"]
-height = 1.0372314
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jfm6g"]
+radius = 0.421875
+height = 1.5510254
 
 [node name="Cactorse" type="CharacterBody3D" groups=["Enemy"]]
 collision_layer = 4
@@ -921,11 +922,3 @@ aabb = AABB(-1, -1, -1.4150292, 2, 2, 2.8300583)
 
 [node name="RayCast" type="RayCast3D" parent="."]
 unique_name_in_owner = true
-
-[node name="Area3D" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-collision_layer = 4
-collision_mask = 4
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-shape = SubResource("SphereShape3D_q0do1")
