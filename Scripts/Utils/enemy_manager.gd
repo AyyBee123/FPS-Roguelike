@@ -40,15 +40,19 @@ func _physics_process(delta):
 			for i in range(NUMBER_OF_ENEMIES_TO_SPAWN):
 				spawn_enemy(enemies.pick_random()) # for now
 
-func spawn_enemy(spawn: EnemySpawn):
-	var enemy = spawn.enemy.instantiate()
+func spawn_enemy(spawn: EnemySpawn) -> void:
+	for i in range(spawn.amount_to_spawn):
+		var enemy = spawn.enemy.instantiate()
+		current_number_of_enemies += 1
+		enemy.position = get_random_position()
+		get_tree().current_scene.add_child.call_deferred(enemy)
+
+func get_random_position() -> Vector3:
 	var pos: Vector3 = player.global_position
 	var spawn_point: Vector2 = Vector2(pos.x, pos.z) + \
 			(Vector2.ONE * randf_range(MIN_DISTANCE, MAX_DISTANCE)).rotated(randf_range(0, TAU))
-	enemy.position = Vector3(spawn_point.x, 30, spawn_point.y)
-	current_number_of_enemies += 1
-	get_tree().current_scene.add_child.call_deferred(enemy)
+	return Vector3(spawn_point.x, 30, spawn_point.y)
 
-func _on_enemy_defeat(_enemy):
+func _on_enemy_defeat(_enemy) -> void:
 	current_number_of_enemies -= 1
 	current_number_of_enemies = max(0, current_number_of_enemies)
