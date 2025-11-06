@@ -19,8 +19,6 @@ const ENEMY = preload("uid://bf7ljiiykmoi0")
 func _ready():
 	randomize()
 	SignalBus.enemy_defeated.connect(_on_enemy_defeat)
-	spawn_enemy(enemies[1])
-	spawn_enemy(enemies[0])
 	#var i = 0
 	#while i < TAU:
 		#for j in range(12):
