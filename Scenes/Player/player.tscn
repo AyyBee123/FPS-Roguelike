@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dhlu65iawdxvf"]
+[gd_scene load_steps=17 format=3 uid="uid://dhlu65iawdxvf"]
 
 [ext_resource type="Script" uid="uid://c2cudrvyd4egp" path="res://Scripts/Player/player.gd" id="1_uvnfx"]
 [ext_resource type="Script" uid="uid://ct6urpkc4lp1s" path="res://Scripts/Player/camera_controller.gd" id="2_dd0ac"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bkix0kk0n8lx5" path="res://Assets/Crosshairs/crosshair001.png" id="4_mtuoh"]
 [ext_resource type="Script" uid="uid://dbkrmv1m167r3" path="res://Scripts/UI/timer.gd" id="7_0u5uq"]
 [ext_resource type="FontFile" uid="uid://bfhwilg3cupoh" path="res://Fonts/Name Font.ttf" id="7_jlvik"]
+[ext_resource type="Script" uid="uid://dxuyltrlql3nd" path="res://Scripts/Player/pickup_detect.gd" id="9_gk6dx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mtuoh"]
 size = Vector3(1, 2, 1)
@@ -202,6 +203,7 @@ script = ExtResource("7_0u5uq")
 [node name="Pickup Detect" type="Area3D" parent="."]
 collision_layer = 0
 collision_mask = 8
+script = ExtResource("9_gk6dx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Pickup Detect"]
 shape = SubResource("SphereShape3D_mtuoh")
@@ -212,5 +214,6 @@ unique_name_in_owner = true
 [node name="Abilities" type="Node" parent="."]
 unique_name_in_owner = true
 
+[connection signal="area_entered" from="Pickup Detect" to="Pickup Detect" method="_on_area_entered"]
 [connection signal="body_entered" from="Pickup Detect" to="." method="_on_pickup_detect_body_entered"]
 [connection signal="body_exited" from="Pickup Detect" to="." method="_on_pickup_detect_body_exited"]

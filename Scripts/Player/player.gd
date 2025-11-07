@@ -80,6 +80,9 @@ func get_pickup_collision():
 func hit(damage):
 	print("Ow!")
 
+func gain_xp(amount):
+	print(amount)
+
 func _on_pickup_detect_body_entered(body):
 	nearby_pickups.append(body)
 
