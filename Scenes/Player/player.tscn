@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dhlu65iawdxvf"]
+[gd_scene load_steps=16 format=3 uid="uid://dhlu65iawdxvf"]
 
 [ext_resource type="Script" uid="uid://c2cudrvyd4egp" path="res://Scripts/Player/player.gd" id="1_uvnfx"]
 [ext_resource type="Script" uid="uid://ct6urpkc4lp1s" path="res://Scripts/Player/camera_controller.gd" id="2_dd0ac"]
@@ -6,6 +6,8 @@
 [ext_resource type="Shader" uid="uid://c7cpnixlhnciv" path="res://Shaders/outline.tres" id="3_dd0ac"]
 [ext_resource type="PackedScene" uid="uid://jwdiktlk8ob5" path="res://Scenes/Arms/stick.tscn" id="4_htcer"]
 [ext_resource type="Texture2D" uid="uid://bkix0kk0n8lx5" path="res://Assets/Crosshairs/crosshair001.png" id="4_mtuoh"]
+[ext_resource type="Script" uid="uid://dbkrmv1m167r3" path="res://Scripts/UI/timer.gd" id="7_0u5uq"]
+[ext_resource type="FontFile" uid="uid://bfhwilg3cupoh" path="res://Fonts/Name Font.ttf" id="7_jlvik"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mtuoh"]
 size = Vector3(1, 2, 1)
@@ -177,6 +179,25 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_mtuoh")
 metadata/_edit_use_anchors_ = true
+
+[node name="Timer" type="Label" parent="CanvasLayer/HUD"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -44.0
+offset_right = 44.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("7_jlvik")
+theme_override_font_sizes/font_size = 32
+text = "20:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("7_0u5uq")
 
 [node name="Pickup Detect" type="Area3D" parent="."]
 collision_layer = 0

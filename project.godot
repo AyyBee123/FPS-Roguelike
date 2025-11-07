@@ -32,6 +32,7 @@ settings/stdout/print_fps=true
 folder_colors={
 "res://Assets/": "yellow",
 "res://Data/": "teal",
+"res://Fonts/": "gray",
 "res://Scenes/": "pink",
 "res://Scripts/": "blue",
 "res://Shaders/": "purple"
