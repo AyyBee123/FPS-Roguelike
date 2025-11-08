@@ -1,14 +1,17 @@
-[gd_scene load_steps=17 format=3 uid="uid://dhlu65iawdxvf"]
+[gd_scene load_steps=23 format=3 uid="uid://dhlu65iawdxvf"]
 
 [ext_resource type="Script" uid="uid://c2cudrvyd4egp" path="res://Scripts/Player/player.gd" id="1_uvnfx"]
 [ext_resource type="Script" uid="uid://ct6urpkc4lp1s" path="res://Scripts/Player/camera_controller.gd" id="2_dd0ac"]
 [ext_resource type="Script" uid="uid://c4i7uubwdhgtw" path="res://Scripts/Player/weapons_manager.gd" id="2_htcer"]
 [ext_resource type="Shader" uid="uid://c7cpnixlhnciv" path="res://Shaders/outline.tres" id="3_dd0ac"]
-[ext_resource type="PackedScene" uid="uid://jwdiktlk8ob5" path="res://Scenes/Arms/stick.tscn" id="4_htcer"]
 [ext_resource type="Texture2D" uid="uid://bkix0kk0n8lx5" path="res://Assets/Crosshairs/crosshair001.png" id="4_mtuoh"]
+[ext_resource type="PackedScene" uid="uid://ou4i562h0h6y" path="res://Scenes/Arms/ph_arm.tscn" id="5_jhyir"]
 [ext_resource type="Script" uid="uid://dbkrmv1m167r3" path="res://Scripts/UI/timer.gd" id="7_0u5uq"]
 [ext_resource type="FontFile" uid="uid://bfhwilg3cupoh" path="res://Fonts/Name Font.ttf" id="7_jlvik"]
 [ext_resource type="Script" uid="uid://dxuyltrlql3nd" path="res://Scripts/Player/pickup_detect.gd" id="9_gk6dx"]
+[ext_resource type="Texture2D" uid="uid://x6kbckfma58x" path="res://Assets/UI/XP Bar.png" id="9_jhyir"]
+[ext_resource type="Script" uid="uid://c4cp63v81m23v" path="res://Scripts/UI/xp_bar.gd" id="10_74mp2"]
+[ext_resource type="Script" uid="uid://byac7cqcf6if2" path="res://Scripts/UI/level.gd" id="11_oikmp"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mtuoh"]
 size = Vector3(1, 2, 1)
@@ -106,6 +109,26 @@ _data = {
 &"RESET": SubResource("Animation_xpcdj")
 }
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_74mp2"]
+texture = ExtResource("9_jhyir")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oikmp"]
+bg_color = Color(0, 0.6142773, 0.8591665, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.8, 0.8, 0.8, 0)
+
+[sub_resource type="Theme" id="Theme_06tpx"]
+ProgressBar/colors/font_color = Color(0.9490196, 0.9490196, 0.9490196, 0)
+ProgressBar/styles/background = SubResource("StyleBoxTexture_74mp2")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_oikmp")
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_mtuoh"]
 radius = 2.0
 
@@ -133,9 +156,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15)
 extra_cull_margin = 16384.0
 mesh = SubResource("QuadMesh_0u5uq")
 
-[node name="Weapons Manager" type="Node3D" parent="Camera"]
+[node name="Weapons Manager" type="Node3D" parent="Camera" node_paths=PackedStringArray("player")]
 unique_name_in_owner = true
 script = ExtResource("2_htcer")
+player = NodePath("../..")
 
 [node name="FPS Rig" type="Node3D" parent="Camera/Weapons Manager"]
 unique_name_in_owner = true
@@ -150,7 +174,7 @@ libraries = {
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.37, -0.3, -0.5)
 
-[node name="Stick" parent="Camera/Weapons Manager/FPS Rig/Arm" instance=ExtResource("4_htcer")]
+[node name="Arm Template" parent="Camera/Weapons Manager/FPS Rig/Arm" instance=ExtResource("5_jhyir")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -187,9 +211,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -44.0
-offset_right = 44.0
-offset_bottom = 40.0
+offset_left = -64.0
+offset_top = 32.0
+offset_right = 64.0
+offset_bottom = 72.0
 grow_horizontal = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 12
@@ -200,10 +225,45 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("7_0u5uq")
 
-[node name="Pickup Detect" type="Area3D" parent="."]
+[node name="XP Bar" type="ProgressBar" parent="CanvasLayer/HUD" node_paths=PackedStringArray("player")]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_bottom = 32.0
+grow_horizontal = 2
+theme = SubResource("Theme_06tpx")
+max_value = 1.0
+value = 1.0
+script = ExtResource("10_74mp2")
+player = NodePath("../../..")
+metadata/_edit_use_anchors_ = true
+
+[node name="Level" type="Label" parent="CanvasLayer/HUD/XP Bar" node_paths=PackedStringArray("player")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 432.0
+offset_right = 560.0
+offset_bottom = 30.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("7_jlvik")
+theme_override_font_sizes/font_size = 16
+text = "LVL 1"
+horizontal_alignment = 2
+vertical_alignment = 1
+script = ExtResource("11_oikmp")
+player = NodePath("../../../..")
+
+[node name="Pickup Detect" type="Area3D" parent="." node_paths=PackedStringArray("player")]
 collision_layer = 0
 collision_mask = 8
 script = ExtResource("9_gk6dx")
+player = NodePath("..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Pickup Detect"]
 shape = SubResource("SphereShape3D_mtuoh")

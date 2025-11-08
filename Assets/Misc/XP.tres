@@ -1,12 +1,4 @@
-[gd_resource type="ArrayMesh" load_steps=3 format=4 uid="uid://c50y3dmpk3k4e"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1843j"]
-resource_name = "Material.001"
-cull_mode = 2
-diffuse_mode = 3
-specular_mode = 1
-albedo_color = Color(0.1193291, 0.9064652, 0.1282132, 1)
-roughness = 0.5
+[gd_resource type="ArrayMesh" load_steps=2 format=4 uid="uid://c50y3dmpk3k4e"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_678t5"]
 _surfaces = [{
@@ -30,8 +22,6 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 24,
 "index_data": PackedByteArray("AAABAAIAAwAEAAUABgAHAAgACQAKAAsADAANAA4ADwAQABEAEgATABQAFQAWABcA"),
-"material": SubResource("StandardMaterial3D_1843j"),
-"name": "Material.001",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 24,

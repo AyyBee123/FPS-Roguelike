@@ -5,7 +5,6 @@ extends RigidBody3D
 
 var arm
 var arm_name: String
-
 var rarity_weights = ArmPool.rarity_weights
 
 func _ready():

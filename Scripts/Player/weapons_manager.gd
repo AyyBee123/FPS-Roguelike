@@ -2,7 +2,7 @@ extends Node3D
 
 @onready var animation_player = %AnimationPlayer
 @onready var arm = %Arm
-@onready var player = get_parent().get_parent()
+@export var player: CharacterBody3D
 
 var is_shoot_button_held := false
 var current_arm = null

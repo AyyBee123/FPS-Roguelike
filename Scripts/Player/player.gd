@@ -9,6 +9,11 @@ extends CharacterBody3D
 
 const Stats = preload("uid://d0a7frb8gvg68")
 var stats
+var current_jumps: int = 0
+
+var XP_NEEDED: int = 5
+var current_xp: int = 0
+var current_level: int = 1
 
 var SPEED: float:
 	get:
@@ -26,7 +31,7 @@ var NUMBER_OF_EXTRA_JUMPS: int:
 var pickup = null
 var nearby_pickups: Array = []
 
-func _ready():
+func _init():
 	stats = Stats.new()
 
 func _physics_process(delta):
@@ -81,7 +86,17 @@ func hit(damage):
 	print("Ow!")
 
 func gain_xp(amount):
-	print(amount)
+	current_xp += amount
+	if current_xp >= XP_NEEDED:
+		current_xp -= XP_NEEDED
+		if current_level == 1: # increases xp required to reach level 2 by 5 (from 5 XP to 10 XP)
+			XP_NEEDED += 5
+		else:
+			XP_NEEDED += 10
+		current_level += 1
+		# if the amount of xp still reaches or exceeds the xp needed, recall the function to level up again
+		if current_xp >= XP_NEEDED:
+			gain_xp(0)
 
 func _on_pickup_detect_body_entered(body):
 	nearby_pickups.append(body)

@@ -1,9 +1,9 @@
 extends Node
 
 var rarity_weights: Dictionary = { # 0 = COMMON, 1 = RARE, 2 = LEGENDARY
-	0: 78,
+	0: 79,
 	1: 20,
-	2: 2
+	2: 1
 }
 
 var common_pool: Array[PackedScene] = []

@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://ukgrpto2cajc"]
+[gd_scene load_steps=5 format=3 uid="uid://ukgrpto2cajc"]
 
 [ext_resource type="Script" uid="uid://bw7gqgbxvhnv6" path="res://Scripts/Misc/xp.gd" id="1_3n01l"]
 [ext_resource type="ArrayMesh" uid="uid://c50y3dmpk3k4e" path="res://Assets/Misc/XP.tres" id="2_pi3is"]
@@ -6,7 +6,12 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_x2qg5"]
 radius = 0.25
 
-[node name="Area3D" type="Area3D" groups=["XP"]]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3n01l"]
+diffuse_mode = 3
+specular_mode = 1
+roughness = 0.0
+
+[node name="XP" type="Area3D" groups=["XP"]]
 collision_layer = 8
 collision_mask = 2
 script = ExtResource("1_3n01l")
@@ -15,8 +20,13 @@ script = ExtResource("1_3n01l")
 shape = SubResource("SphereShape3D_x2qg5")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(0.333, 0, 0, 0, 0.333, 0, 0, 0, 0.333, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_3n01l")
 mesh = ExtResource("2_pi3is")
 skeleton = NodePath("../CollisionShape3D")
+
+[node name="RayCast" type="RayCast3D" parent="."]
+unique_name_in_owner = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -4,10 +4,12 @@ extends CharacterBody3D
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 @onready var on_screen_notifier: VisibleOnScreenNotifier3D = %VisibleOnScreenNotifier3D
 @onready var ray_cast: RayCast3D = %RayCast
+@onready var XP = get_tree().current_scene.XP
 
 @export var raycast_offset: float = 0
 @export var health: float = 25
 @export var speed: float = 5
+@export var xp_amount: int = 1
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var angular_acceleration: float = 5
@@ -35,7 +37,15 @@ func hit(_damage):
 
 func die():
 	SignalBus.enemy_defeated.emit(self)
+	drop_xp()
 	queue_free()
+
+func drop_xp():
+	var xp = XP.instantiate()
+	xp.xp_amount = xp_amount
+	xp.position = position
+	xp.position.y = 1000
+	get_tree().current_scene.add_child(xp)
 
 func _on_screen_entered():
 	animation_player.active = true

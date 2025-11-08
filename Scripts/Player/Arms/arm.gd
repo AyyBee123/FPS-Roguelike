@@ -14,7 +14,7 @@ extends Node3D
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 @onready var bullet_point: Marker3D = %"Bullet Point"
 
-var player: CharacterBody3D
+var player: CharacterBody3D # declared in the weapons manager script
 
 var damage: float:
 	get:

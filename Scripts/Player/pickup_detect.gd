@@ -1,5 +1,7 @@
 extends Area3D
 
+@export var player: CharacterBody3D
+
 func _on_area_entered(area):
 	if area.is_in_group("XP"):
-		area.player = get_parent()
+		area.player = player

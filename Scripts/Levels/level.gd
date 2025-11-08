@@ -1,5 +1,7 @@
 extends Node3D
 
+const XP = preload("uid://ukgrpto2cajc")
+
 var time_left: float = 1200.0 # time in seconds (20 minutes, in this case)
 
 func _physics_process(delta):
