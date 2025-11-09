@@ -56,11 +56,11 @@ func spawn_enemy(spawn: EnemySpawn) -> void:
 func get_random_position() -> Vector3:
 	var pos: Vector3 = player.global_position
 	var spawn_point: Vector2 = Vector2(pos.x, pos.z) + \
-			(Vector2.ONE * randf_range(MIN_DISTANCE, MAX_DISTANCE)).rotated(randf_range(0, TAU))
+			(Vector2.ONE.normalized() * randf_range(MIN_DISTANCE, MAX_DISTANCE)).rotated(randf_range(0, TAU))
 	return Vector3(spawn_point.x, 1000, spawn_point.y)
 
 func get_random_group_offset() -> Vector3:
-	var offset: Vector2 = (Vector2.ONE * randf_range(MIN_GROUP_DISTANCE, MAX_GROUP_DISTANCE)) \
+	var offset: Vector2 = (Vector2.ONE.normalized() * randf_range(MIN_GROUP_DISTANCE, MAX_GROUP_DISTANCE)) \
 			.rotated(randf_range(0, TAU))
 	return Vector3(offset.x, 0, offset.y)
 

@@ -178,6 +178,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.37, -0.3, -0.5)
 [node name="Arm Template" parent="Camera/Weapons Manager/FPS Rig/Arm" instance=ExtResource("5_jhyir")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
 
 [node name="HUD" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -257,6 +258,9 @@ vertical_alignment = 1
 script = ExtResource("11_oikmp")
 player = NodePath("../../../..")
 metadata/_edit_use_anchors_ = true
+
+[node name="Upgrade" type="Node" parent="CanvasLayer"]
+unique_name_in_owner = true
 
 [node name="Pickup Detect" type="Area3D" parent="." node_paths=PackedStringArray("player")]
 collision_layer = 0

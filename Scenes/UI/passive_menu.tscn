@@ -1,28 +1,30 @@
-[gd_scene load_steps=6 format=3 uid="uid://clamkav36kau4"]
+[gd_scene load_steps=5 format=3 uid="uid://clamkav36kau4"]
 
 [ext_resource type="Script" uid="uid://du4ekibi7bb2c" path="res://Scripts/UI/passive_menu.gd" id="1_hslo0"]
 [ext_resource type="Texture2D" uid="uid://b8r3j7kclf0v8" path="res://Assets/UI/Passive Background.png" id="1_w4v7t"]
-[ext_resource type="Script" uid="uid://be0dqd1pokceq" path="res://Scripts/UI/res_scale.gd" id="2_aokas"]
-[ext_resource type="Texture2D" uid="uid://c54dfiifowoeu" path="res://Assets/UI/Passive Selection.png" id="2_jmieh"]
+[ext_resource type="PackedScene" uid="uid://gm61roaknon" path="res://Scenes/UI/passive_upgrade.tscn" id="3_aokas"]
 [ext_resource type="FontFile" uid="uid://bfhwilg3cupoh" path="res://Fonts/Name Font.ttf" id="3_hslo0"]
 
 [node name="Passive Menu" type="Control"]
+process_mode = 3
+z_index = 5
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_hslo0")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-script = ExtResource("2_aokas")
-
-[node name="Scale" type="Node2D" parent="CanvasLayer"]
+[node name="Scale" type="Node2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(960, 540)
 
-[node name="Background" type="NinePatchRect" parent="CanvasLayer/Scale"]
+[node name="Transition" type="Node2D" parent="Scale"]
+unique_name_in_owner = true
+
+[node name="Background" type="NinePatchRect" parent="Scale/Transition"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -40,7 +42,7 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Scale/Background"]
+[node name="MarginContainer" type="MarginContainer" parent="Scale/Transition/Background"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -55,46 +57,25 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 96
+theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
-[node name="Upgrade List" type="VBoxContainer" parent="CanvasLayer/Scale/Background/MarginContainer"]
+[node name="Upgrade List" type="VBoxContainer" parent="Scale/Transition/Background/MarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/separation = 32
-alignment = 1
+theme_override_constants/separation = 24
 
-[node name="Upgrade" type="NinePatchRect" parent="CanvasLayer/Scale/Background/MarginContainer/Upgrade List"]
+[node name="Upgrade" parent="Scale/Transition/Background/MarginContainer/Upgrade List" instance=ExtResource("3_aokas")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture = ExtResource("2_jmieh")
-patch_margin_left = 8
-patch_margin_top = 8
-patch_margin_right = 8
-patch_margin_bottom = 8
 
-[node name="Upgrade2" type="NinePatchRect" parent="CanvasLayer/Scale/Background/MarginContainer/Upgrade List"]
+[node name="Upgrade2" parent="Scale/Transition/Background/MarginContainer/Upgrade List" instance=ExtResource("3_aokas")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture = ExtResource("2_jmieh")
-patch_margin_left = 8
-patch_margin_top = 8
-patch_margin_right = 8
-patch_margin_bottom = 8
 
-[node name="Upgrade3" type="NinePatchRect" parent="CanvasLayer/Scale/Background/MarginContainer/Upgrade List"]
+[node name="Upgrade3" parent="Scale/Transition/Background/MarginContainer/Upgrade List" instance=ExtResource("3_aokas")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture = ExtResource("2_jmieh")
-patch_margin_left = 8
-patch_margin_top = 8
-patch_margin_right = 8
-patch_margin_bottom = 8
 
-[node name="Level Up Text" type="Label" parent="CanvasLayer/Scale/Background"]
+[node name="Level Up Text" type="Label" parent="Scale/Transition/Background"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -104,7 +85,7 @@ offset_right = 201.0
 offset_bottom = 188.0
 grow_horizontal = 2
 size_flags_horizontal = 4
-theme_override_constants/outline_size = 24
+theme_override_constants/outline_size = 16
 theme_override_fonts/font = ExtResource("3_hslo0")
 theme_override_font_sizes/font_size = 64
 text = "Choose Upgrade"

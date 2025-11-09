@@ -6,6 +6,7 @@ extends CharacterBody3D
 @onready var weapons_manager = %"Weapons Manager"
 @onready var passives = %Passives
 @onready var abilities = %Abilities
+@onready var upgrade = %Upgrade
 
 const Stats = preload("uid://d0a7frb8gvg68")
 const PASSIVE_MENU = preload("uid://clamkav36kau4")
@@ -14,6 +15,7 @@ var stats: Stats
 var XP_NEEDED: float = 5
 var current_xp: float = 0
 var current_level: int = 1
+var upgrade_queue_count: int = 0
 
 var SPEED: float:
 	get:
@@ -69,6 +71,10 @@ func _physics_process(delta):
 		pickup = get_pickup_collision()
 	
 	get_tree().call_group("Enemy", "target_position", global_transform.origin)
+	
+	# check for level ups
+	if upgrade_queue_count > 0 and upgrade.get_child_count() == 0:
+		level_up()
 
 func _input(event):
 	if event.is_action_pressed("pickup") and pickup:
@@ -102,15 +108,20 @@ func gain_xp(amount: int):
 			XP_NEEDED += 5
 		else:
 			XP_NEEDED += 10 # increases xp required to reach the next level by 10
-		level_up()
+		upgrade_queue_count += 1
 		# if the amount of xp still reaches or exceeds the xp needed, recall the function to level up again
 		if current_xp >= XP_NEEDED:
 			gain_xp(0)
 
 func level_up():
+	upgrade_queue_count -= 1
 	var passive_menu = PASSIVE_MENU.instantiate()
-	
+	passive_menu.upgrade_selected.connect(get_upgrade)
+	upgrade.add_child(passive_menu)
 	current_level += 1
+
+func get_upgrade(_upgrade):
+	print(_upgrade)
 
 func _on_pickup_detect_body_entered(body):
 	nearby_pickups.append(body)

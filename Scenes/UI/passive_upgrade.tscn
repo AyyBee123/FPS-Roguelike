@@ -1,0 +1,102 @@
+[gd_scene load_steps=14 format=3 uid="uid://gm61roaknon"]
+
+[ext_resource type="Texture2D" uid="uid://c54dfiifowoeu" path="res://Assets/UI/Passive Selection.png" id="1_qlp28"]
+[ext_resource type="Texture2D" uid="uid://cey6mevdia2de" path="res://Assets/UI/Passive Selection Focus.png" id="2_a3lg8"]
+[ext_resource type="Texture2D" uid="uid://dmqf2v8c3hv3o" path="res://Assets/UI/Passive Border.png" id="2_hottw"]
+[ext_resource type="Texture2D" uid="uid://bp7o66vp6ymh6" path="res://Assets/UI/Passive Selection Hover.png" id="2_ptce0"]
+[ext_resource type="Texture2D" uid="uid://dlyd2dhcllwdh" path="res://Assets/UI/Passive Selection Press.png" id="3_a3lg8"]
+[ext_resource type="FontFile" uid="uid://bfhwilg3cupoh" path="res://Fonts/Name Font.ttf" id="3_havy7"]
+[ext_resource type="Script" uid="uid://dh4dngqpaeuab" path="res://Scripts/UI/upgrade_button.gd" id="5_a3lg8"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xxk11"]
+texture = ExtResource("1_qlp28")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g6tbq"]
+texture = ExtResource("2_a3lg8")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_asjw3"]
+texture = ExtResource("2_ptce0")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hottw"]
+texture = ExtResource("1_qlp28")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wagd0"]
+texture = ExtResource("3_a3lg8")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+
+[sub_resource type="Theme" id="Theme_havy7"]
+Button/styles/disabled = SubResource("StyleBoxTexture_xxk11")
+Button/styles/focus = SubResource("StyleBoxTexture_g6tbq")
+Button/styles/hover = SubResource("StyleBoxTexture_asjw3")
+Button/styles/normal = SubResource("StyleBoxTexture_hottw")
+Button/styles/pressed = SubResource("StyleBoxTexture_wagd0")
+
+[node name="Upgrade" type="Button"]
+custom_minimum_size = Vector2(688, 196)
+offset_right = 688.0
+offset_bottom = 196.0
+size_flags_horizontal = 3
+theme = SubResource("Theme_havy7")
+script = ExtResource("5_a3lg8")
+
+[node name="Border" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 40.0
+offset_right = 152.0
+offset_bottom = 168.0
+texture = ExtResource("2_hottw")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="Name" type="Label" parent="."]
+layout_mode = 0
+offset_left = 168.0
+offset_top = 16.0
+offset_right = 672.0
+offset_bottom = 56.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 12
+theme_override_constants/shadow_outline_size = 12
+theme_override_fonts/font = ExtResource("3_havy7")
+theme_override_font_sizes/font_size = 48
+text = "Name"
+
+[node name="Description" type="Label" parent="."]
+layout_mode = 0
+offset_left = 168.0
+offset_top = 88.0
+offset_right = 672.0
+offset_bottom = 176.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 8
+theme_override_constants/shadow_outline_size = 8
+theme_override_fonts/font = ExtResource("3_havy7")
+theme_override_font_sizes/font_size = 32
+text = "+0% Happiness
++100% Poop"
