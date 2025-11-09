@@ -16,9 +16,6 @@ func _input(event):
 		mouse_input.y += -event.screen_relative.y * sensitivity
 
 func _process(delta):
-	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
-		return
-	
 	camera_rotation.x = clampf(camera_rotation.x + mouse_input.y, -5 * PI/12, PI/2)
 	camera_rotation.y += mouse_input.x
 	

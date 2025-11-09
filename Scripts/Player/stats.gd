@@ -1,5 +1,8 @@
 extends Node
 
+## "base" -> the base stat
+## "+" -> the increase in the base stat (in decimal)
+## "x" -> the final multiplier of the base stat and the increase
 var stats: Dictionary = {
 	# character stats
 	"Max_Health": { "base": 100, "+": 0, "x": 1 },
@@ -9,6 +12,9 @@ var stats: Dictionary = {
 	"Fall_Speed": { "base": 1.0, "+": 0, "x": 1 },
 	"Pickup_Radius": { "base": 2.0, "+": 0, "x": 1 },
 	"Slide_Speed": { "base": 10.0, "+": 0, "x": 1 },
+	"XP_Gained": { "base": 1.0, "+": 0, "x": 1 },
+	"Luck": { "base": 1.0, "+": 0, "x": 1 },
+	
 	# arm stats
 	"Damage": { "base": 0.0, "+": 0, "x": 1 },
 	"Fire_Rate": { "base": 0.0, "+": 0, "x": 1 },

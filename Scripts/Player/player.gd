@@ -8,10 +8,11 @@ extends CharacterBody3D
 @onready var abilities = %Abilities
 
 const Stats = preload("uid://d0a7frb8gvg68")
-var stats
+const PASSIVE_MENU = preload("uid://clamkav36kau4")
 
-var XP_NEEDED: int = 5
-var current_xp: int = 0
+var stats: Stats
+var XP_NEEDED: float = 5
+var current_xp: float = 0
 var current_level: int = 1
 
 var SPEED: float:
@@ -26,6 +27,9 @@ var FALL_SPEED: float:
 var NUMBER_OF_EXTRA_JUMPS: int:
 	get:
 		return stats.get_character_stat("Extra_Jumps")
+var XP_MULTIPLIER: float:
+	get:
+		return stats.get_character_stat("XP_Gained")
 
 var current_jumps: int = 0 # the current amount of extra jumps that can be used
 var pickup = null
@@ -90,18 +94,23 @@ func get_pickup_collision():
 func hit(damage):
 	print("Ow!")
 
-func gain_xp(amount):
-	current_xp += amount
+func gain_xp(amount: int):
+	current_xp += amount * XP_MULTIPLIER
 	if current_xp >= XP_NEEDED:
 		current_xp -= XP_NEEDED
 		if current_level == 1: # increases xp required to reach level 2 by 5 (from 5 XP to 10 XP)
 			XP_NEEDED += 5
 		else:
-			XP_NEEDED += 10
-		current_level += 1
+			XP_NEEDED += 10 # increases xp required to reach the next level by 10
+		level_up()
 		# if the amount of xp still reaches or exceeds the xp needed, recall the function to level up again
 		if current_xp >= XP_NEEDED:
 			gain_xp(0)
+
+func level_up():
+	var passive_menu = PASSIVE_MENU.instantiate()
+	
+	current_level += 1
 
 func _on_pickup_detect_body_entered(body):
 	nearby_pickups.append(body)

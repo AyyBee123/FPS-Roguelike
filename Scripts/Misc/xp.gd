@@ -18,6 +18,7 @@ func _ready():
 			mesh.material_override.albedo_color = "aa222d"
 		_: # 5 or more
 			mesh.material_override.albedo_color = "5e2bba"
+	
 	position.y = ray_cast.get_collision_point().y + 1
 
 func _physics_process(delta):

@@ -112,5 +112,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2298, 0.714263, -2.52714)
 script = ExtResource("6_k8g1k")
 enemies = Array[ExtResource("6_l7ek2")]([SubResource("Resource_7rivk"), SubResource("Resource_hyk2w")])
 
-[node name="Area3D" parent="." instance=ExtResource("9_7rivk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.1184163, 0.88999003, -0.7817402)
+[node name="XP" parent="." instance=ExtResource("9_7rivk")]
+transform = Transform3D(0.99984646, -0.01752221, 0, 0.01752221, 0.99984646, 0, 0, 0, 1, 4.625416, 0.4254563, -0.96837187)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dhlu65iawdxvf"]
+[gd_scene load_steps=23 format=3 uid="uid://dhlu65iawdxvf"]
 
 [ext_resource type="Script" uid="uid://c2cudrvyd4egp" path="res://Scripts/Player/player.gd" id="1_uvnfx"]
 [ext_resource type="Script" uid="uid://ct6urpkc4lp1s" path="res://Scripts/Player/camera_controller.gd" id="2_dd0ac"]
@@ -6,7 +6,6 @@
 [ext_resource type="Shader" uid="uid://c7cpnixlhnciv" path="res://Shaders/outline.tres" id="3_dd0ac"]
 [ext_resource type="Texture2D" uid="uid://bkix0kk0n8lx5" path="res://Assets/Crosshairs/crosshair001.png" id="4_mtuoh"]
 [ext_resource type="PackedScene" uid="uid://ou4i562h0h6y" path="res://Scenes/Arms/ph_arm.tscn" id="5_jhyir"]
-[ext_resource type="Script" uid="uid://be0dqd1pokceq" path="res://Scripts/UI/res_scale.gd" id="6_06tpx"]
 [ext_resource type="Script" uid="uid://dbkrmv1m167r3" path="res://Scripts/UI/timer.gd" id="7_0u5uq"]
 [ext_resource type="FontFile" uid="uid://bfhwilg3cupoh" path="res://Fonts/Name Font.ttf" id="7_jlvik"]
 [ext_resource type="Script" uid="uid://dxuyltrlql3nd" path="res://Scripts/Player/pickup_detect.gd" id="9_gk6dx"]
@@ -179,11 +178,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.37, -0.3, -0.5)
 [node name="Arm Template" parent="Camera/Weapons Manager/FPS Rig/Arm" instance=ExtResource("5_jhyir")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-script = ExtResource("6_06tpx")
-
-[node name="Scale" type="Node2D" parent="CanvasLayer"]
-unique_name_in_owner = true
-position = Vector2(960, 540)
 
 [node name="HUD" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -216,9 +210,9 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -64.0
+offset_left = -960.0
 offset_top = 32.0
-offset_right = 64.0
+offset_right = 960.0
 offset_bottom = 72.0
 grow_horizontal = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -241,15 +235,14 @@ max_value = 1.0
 value = 1.0
 script = ExtResource("10_74mp2")
 player = NodePath("../../..")
-metadata/_edit_use_anchors_ = true
 
 [node name="Level" type="Label" parent="CanvasLayer/HUD/XP Bar" node_paths=PackedStringArray("player")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
+anchors_preset = -1
+anchor_left = 0.94166666
+anchor_right = 1.0041667
 offset_left = -144.0
 offset_right = -16.0
 offset_bottom = 30.0
