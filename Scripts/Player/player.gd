@@ -19,19 +19,22 @@ var upgrade_queue_count: int = 0
 
 var SPEED: float:
 	get:
-		return stats.get_character_stat("Move_Speed")
+		return stats.get_stat("Move_Speed")
 var JUMP_HEIGHT: float:
 	get:
-		return stats.get_character_stat("Jump_Height")
+		return stats.get_stat("Jump_Height")
 var FALL_SPEED: float:
 	get:
-		return stats.get_character_stat("Fall_Speed")
+		return stats.get_stat("Fall_Speed")
 var NUMBER_OF_EXTRA_JUMPS: int:
 	get:
-		return stats.get_character_stat("Extra_Jumps")
+		return stats.get_stat("Extra_Jumps")
 var XP_MULTIPLIER: float:
 	get:
-		return stats.get_character_stat("XP_Gained")
+		return stats.get_stat("XP_Gained")
+var LUCK_MULTIPLIER: float:
+	get:
+		return stats.get_stat("Luck")
 
 var current_jumps: int = 0 # the current amount of extra jumps that can be used
 var pickup = null

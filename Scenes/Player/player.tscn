@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dhlu65iawdxvf"]
+[gd_scene load_steps=24 format=3 uid="uid://dhlu65iawdxvf"]
 
 [ext_resource type="Script" uid="uid://c2cudrvyd4egp" path="res://Scripts/Player/player.gd" id="1_uvnfx"]
 [ext_resource type="Script" uid="uid://ct6urpkc4lp1s" path="res://Scripts/Player/camera_controller.gd" id="2_dd0ac"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://x6kbckfma58x" path="res://Assets/UI/XP Bar.png" id="9_jhyir"]
 [ext_resource type="Script" uid="uid://c4cp63v81m23v" path="res://Scripts/UI/xp_bar.gd" id="10_74mp2"]
 [ext_resource type="Script" uid="uid://byac7cqcf6if2" path="res://Scripts/UI/level.gd" id="11_oikmp"]
+[ext_resource type="Script" uid="uid://owhlfdboe0ob" path="res://Scripts/Utils/paused_check.gd" id="13_06tpx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mtuoh"]
 size = Vector3(1, 2, 1)
@@ -276,6 +277,10 @@ unique_name_in_owner = true
 
 [node name="Abilities" type="Node" parent="."]
 unique_name_in_owner = true
+
+[node name="Paused Check" type="Node" parent="."]
+process_mode = 3
+script = ExtResource("13_06tpx")
 
 [connection signal="area_entered" from="Pickup Detect" to="Pickup Detect" method="_on_area_entered"]
 [connection signal="body_entered" from="Pickup Detect" to="." method="_on_pickup_detect_body_entered"]

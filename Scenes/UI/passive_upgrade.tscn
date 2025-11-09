@@ -70,6 +70,20 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 
+[node name="TextureRect" type="TextureRect" parent="Border"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.062000003
+anchor_top = 0.062000003
+anchor_right = 0.93700004
+anchor_bottom = 0.93700004
+offset_left = 0.06399965
+offset_top = 0.06399965
+offset_right = 0.06399536
+offset_bottom = 0.06399536
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="Name" type="Label" parent="."]
 layout_mode = 0
 offset_left = 168.0

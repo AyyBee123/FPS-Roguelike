@@ -18,16 +18,16 @@ var player: CharacterBody3D # declared in the weapons manager script
 
 var damage: float:
 	get:
-		return base_damage if not player else player.stats.get_arm_stat("Damage", base_damage)
+		return get_stat(base_damage, "Damage")
 var fire_rate: float:
 	get:
-		return base_fire_rate if not player else player.stats.get_arm_stat("Fire_Rate", base_fire_rate)
+		return get_stat(base_fire_rate, "Fire_Rate")
 var range: float:
 	get:
-		return base_range if not player else player.stats.get_arm_stat("Range", base_range)
+		return get_stat(base_range, "Range")
 var speed: float:
 	get:
-		return base_speed if not player else player.stats.get_arm_stat("Speed", base_speed)
+		return get_stat(base_speed, "Speed")
 
 const DEBUG_BULLET = preload("uid://btq2f4vqn8fhy")
 
@@ -76,6 +76,9 @@ func launch_projectile(point: Vector3):
 	proj.global_transform.origin = bullet_point.global_transform.origin
 	proj.look_at(proj.global_transform.origin + direction, Vector3.UP)
 	proj.set_linear_velocity(direction * speed)
+
+func get_stat(stat: Variant, property: String) -> Variant:
+	return stat if not player else stat * player.stat.get_stat(property) + player.stat.get_flat_stat(property)
 
 #func hit_scan_collision(collision_point):
 	#var bullet_direction = (collision_point - bullet_point.get_global_transform().origin).normalized()

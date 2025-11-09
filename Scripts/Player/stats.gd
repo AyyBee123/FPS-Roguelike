@@ -16,22 +16,21 @@ var stats: Dictionary = {
 	"Luck": { "base": 1.0, "+": 0, "x": 1 },
 	
 	# arm stats
-	"Damage": { "base": 0.0, "+": 0, "x": 1 },
-	"Fire_Rate": { "base": 0.0, "+": 0, "x": 1 },
-	"Range": { "base": 0.0, "+": 0, "x": 1 },
-	"Speed": { "base": 0.0, "+": 0, "x": 1 },
-	"Splash_Radius": { "base": 0.0, "+": 0, "x": 1 },
-	"Size": { "base": 0.0, "+": 0, "x": 1 },
-	"Projectile_Count": { "base": 0, "+": 0, "x": 1 },
+	"Damage": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
+	"Fire_Rate": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
+	"Range": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
+	"Speed": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
+	"Splash_Radius": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
+	"Size": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
+	"Projectile_Count": { "base": 1, "+": 0, "x": 1, "flat": 0.0 },
 }
 
 ## gets the final character stat value after calculations
-func get_character_stat(stat_type: String) -> Variant:
+func get_stat(stat_type: String) -> Variant:
 	return (stats[stat_type]["base"] * (1 + stats[stat_type]["+"])) * stats[stat_type]["x"]
 
-## gets the final arm stat value after calculations
-func get_arm_stat(stat_type: String, base_amount: Variant):
-	return (base_amount * (1 + stats[stat_type]["+"])) * stats[stat_type]["x"]
+func get_flat_stat(stat_type: String) -> Variant:
+	return stats[stat_type]["flat"]
 
 ## adds a percent increase (e.g. +15% -> amount = 15)
 func add_percent_stat(stat_type: String, amount: float) -> void:

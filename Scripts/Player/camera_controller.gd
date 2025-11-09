@@ -7,9 +7,6 @@ var sensitivity = 0.001
 var mouse_input := Vector2(0, 0)
 var camera_rotation := Vector2(0, 0)
 
-func _ready():
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-
 func _input(event):
 	if event is InputEventMouseMotion:
 		mouse_input.x += -event.screen_relative.x * sensitivity

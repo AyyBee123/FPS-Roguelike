@@ -11,7 +11,6 @@ var tween: Tween
 
 func _ready():
 	get_tree().paused = true
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
 	get_viewport().size_changed.connect(_on_resize)
 	_on_resize()
@@ -31,7 +30,6 @@ func _ready():
 
 func select_upgrade(button):
 	get_tree().paused = false
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	upgrade_selected.emit(button)
 	queue_free()
 
