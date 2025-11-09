@@ -4,7 +4,7 @@ extends CanvasLayer
 var base_resolution = Vector2(1920, 1080)
 
 func _ready():
-	get_viewport().connect("size_changed", Callable(self, "_on_resize"))
+	get_viewport().size_changed.connect(_on_resize)
 	_on_resize()
 
 func _on_resize():
