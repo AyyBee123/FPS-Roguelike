@@ -78,7 +78,7 @@ func launch_projectile(point: Vector3):
 	proj.set_linear_velocity(direction * speed)
 
 func get_stat(stat: Variant, property: String) -> Variant:
-	return stat if not player else stat * player.stat.get_stat(property) + player.stat.get_flat_stat(property)
+	return stat if not player else stat * player.stats.get_stat(property) + player.stats.get_flat_stat(property)
 
 #func hit_scan_collision(collision_point):
 	#var bullet_direction = (collision_point - bullet_point.get_global_transform().origin).normalized()
