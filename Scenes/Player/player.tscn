@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dhlu65iawdxvf"]
+[gd_scene load_steps=24 format=3 uid="uid://dhlu65iawdxvf"]
 
 [ext_resource type="Script" uid="uid://c2cudrvyd4egp" path="res://Scripts/Player/player.gd" id="1_uvnfx"]
 [ext_resource type="Script" uid="uid://ct6urpkc4lp1s" path="res://Scripts/Player/camera_controller.gd" id="2_dd0ac"]
@@ -6,6 +6,7 @@
 [ext_resource type="Shader" uid="uid://c7cpnixlhnciv" path="res://Shaders/outline.tres" id="3_dd0ac"]
 [ext_resource type="Texture2D" uid="uid://bkix0kk0n8lx5" path="res://Assets/Crosshairs/crosshair001.png" id="4_mtuoh"]
 [ext_resource type="PackedScene" uid="uid://ou4i562h0h6y" path="res://Scenes/Arms/ph_arm.tscn" id="5_jhyir"]
+[ext_resource type="Script" uid="uid://be0dqd1pokceq" path="res://Scripts/UI/res_scale.gd" id="6_06tpx"]
 [ext_resource type="Script" uid="uid://dbkrmv1m167r3" path="res://Scripts/UI/timer.gd" id="7_0u5uq"]
 [ext_resource type="FontFile" uid="uid://bfhwilg3cupoh" path="res://Fonts/Name Font.ttf" id="7_jlvik"]
 [ext_resource type="Script" uid="uid://dxuyltrlql3nd" path="res://Scripts/Player/pickup_detect.gd" id="9_gk6dx"]
@@ -144,12 +145,13 @@ shape = SubResource("BoxShape3D_mtuoh")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
-[node name="Camera" type="Camera3D" parent="."]
+[node name="Camera" type="Camera3D" parent="." node_paths=PackedStringArray("player")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 top_level = true
 current = true
 script = ExtResource("2_dd0ac")
+player = NodePath("..")
 
 [node name="Outline" type="MeshInstance3D" parent="Camera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15)
@@ -177,6 +179,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.37, -0.3, -0.5)
 [node name="Arm Template" parent="Camera/Weapons Manager/FPS Rig/Arm" instance=ExtResource("5_jhyir")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("6_06tpx")
+
+[node name="Scale" type="Node2D" parent="CanvasLayer"]
+unique_name_in_owner = true
+position = Vector2(960, 540)
 
 [node name="HUD" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -185,7 +192,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-metadata/_edit_use_anchors_ = true
 
 [node name="Crosshair" type="TextureRect" parent="CanvasLayer/HUD"]
 unique_name_in_owner = true
@@ -196,14 +202,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_mtuoh")
-metadata/_edit_use_anchors_ = true
 
 [node name="Timer" type="Label" parent="CanvasLayer/HUD"]
 custom_minimum_size = Vector2(128, 0)
@@ -242,13 +247,13 @@ metadata/_edit_use_anchors_ = true
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 432.0
-offset_right = 560.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -144.0
+offset_right = -16.0
 offset_bottom = 30.0
-grow_horizontal = 2
+grow_horizontal = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("7_jlvik")
@@ -258,6 +263,7 @@ horizontal_alignment = 2
 vertical_alignment = 1
 script = ExtResource("11_oikmp")
 player = NodePath("../../../..")
+metadata/_edit_use_anchors_ = true
 
 [node name="Pickup Detect" type="Area3D" parent="." node_paths=PackedStringArray("player")]
 collision_layer = 0
