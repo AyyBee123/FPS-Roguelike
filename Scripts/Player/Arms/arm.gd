@@ -7,6 +7,9 @@ extends Node3D
 @export var base_fire_rate: float # in shots per second
 @export var base_range: float # the distance (in pixels) before the projectile disappears
 @export var base_speed: float # velocity of the projectile shot by the arm
+@export var base_splash_radius: float = 1.0 # the splash radius of splash effects from the arm
+@export var base_size: float = 1.0 # the size of the projectile shot from the arm
+@export var base_projectile_count: float = 1.0 # number of projectiles shot from the arm at once
 @export var shoot_animation: String = "Shoot"
 @export var equip_animation: String = "Activate"
 
@@ -28,6 +31,15 @@ var range: float:
 var speed: float:
 	get:
 		return get_stat(base_speed, "Speed")
+var splash_radius: float:
+	get:
+		return get_stat(base_splash_radius, "Splash_Radius")
+var size: float:
+	get:
+		return get_stat(base_size, "Size")
+var projectile_count: float:
+	get:
+		return get_stat(base_projectile_count, "Projectile_Count")
 
 const DEBUG_BULLET = preload("uid://btq2f4vqn8fhy")
 
