@@ -26,8 +26,8 @@ var FALL_SPEED: float:
 var NUMBER_OF_EXTRA_JUMPS: int:
 	get:
 		return stats.get_character_stat("Extra_Jumps")
-var current_jumps: int = 0
 
+var current_jumps: int = 0 # the current amount of extra jumps that can be used
 var pickup = null
 var nearby_pickups: Array = []
 
@@ -38,18 +38,18 @@ func _physics_process(delta):
 	# add gravity
 	if not is_on_floor():
 		velocity += get_gravity() * delta * FALL_SPEED
+	# recharge extra jumps
 	if is_on_floor():
 		current_jumps = NUMBER_OF_EXTRA_JUMPS
 	
-	# Handle jump.
+	# jumping
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_HEIGHT
 	if Input.is_action_just_pressed("jump") and not is_on_floor() and current_jumps > 0:
 		velocity.y = JUMP_HEIGHT
 		current_jumps -= 1
 	
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
+	# input direction and movement/deceleration
 	var input_dir = Input.get_vector("left", "right", "up", "down")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
