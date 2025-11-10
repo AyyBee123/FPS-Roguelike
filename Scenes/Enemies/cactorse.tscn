@@ -1,6 +1,13 @@
-[gd_scene load_steps=12 format=4 uid="uid://bf7ljiiykmoi0"]
+[gd_scene load_steps=14 format=4 uid="uid://bf7ljiiykmoi0"]
 
 [ext_resource type="Script" uid="uid://dmf55xmm0lu8y" path="res://Scripts/Enemies/cactorse.gd" id="1_q0do1"]
+[ext_resource type="Shader" uid="uid://d1oiih60d8at2" path="res://Shaders/enemy_damaged.gdshader" id="2_jfm6g"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hihjy"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_jfm6g")
+shader_parameter/fade = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1smmr"]
 resource_name = "Material.001"
@@ -659,10 +666,11 @@ height = 1.6618652
 radius = 0.421875
 height = 1.5510254
 
-[node name="Cactorse" type="CharacterBody3D" groups=["Enemy"]]
+[node name="Cactorse" type="CharacterBody3D" node_paths=PackedStringArray("mesh") groups=["Enemy"]]
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_q0do1")
+mesh = [NodePath("Armature/Skeleton3D/Body")]
 xp_amount = 2
 
 [node name="Armature" type="Node3D" parent="."]
@@ -895,6 +903,7 @@ bones/31/rotation = Quaternion(0.04287847, 0.70580554, -0.70580554, -0.04287847)
 bones/31/scale = Vector3(0.9999999, 1, 0.99999994)
 
 [node name="Body" type="MeshInstance3D" parent="Armature/Skeleton3D"]
+material_overlay = SubResource("ShaderMaterial_hihjy")
 mesh = SubResource("ArrayMesh_qman8")
 skin = SubResource("Skin_fkwd3")
 

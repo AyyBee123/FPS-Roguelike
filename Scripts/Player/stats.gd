@@ -5,15 +5,15 @@ extends Node
 ## "x" -> the final multiplier of the base stat and the increase
 var stats: Dictionary = {
 	# character stats
-	"Max_Health": { "base": 100, "+": 0, "x": 1 },
-	"Move_Speed": { "base": 8.0, "+": 0, "x": 1 },
-	"Jump_Height": { "base": 5.0, "+": 0, "x": 1 },
-	"Extra_Jumps": { "base": 0, "+": 0, "x": 1 },
-	"Fall_Speed": { "base": 1.0, "+": 0, "x": 1 },
-	"Pickup_Radius": { "base": 2.0, "+": 0, "x": 1 },
-	"Slide_Speed": { "base": 10.0, "+": 0, "x": 1 },
-	"XP_Gained": { "base": 1.0, "+": 0, "x": 1 },
-	"Luck": { "base": 1.0, "+": 0, "x": 1 },
+	"Max_Health": { "base": 100, "+": 0, "x": 1, "flat": 0.0 },
+	"Move_Speed": { "base": 8.0, "+": 0, "x": 1, "flat": 0.0 },
+	"Jump_Height": { "base": 5.0, "+": 0, "x": 1, "flat": 0.0 },
+	"Extra_Jumps": { "base": 0, "+": 0, "x": 1, "flat": 0 },
+	"Fall_Speed": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
+	"Pickup_Radius": { "base": 2.0, "+": 0, "x": 1, "flat": 0.0 },
+	"Slide_Speed": { "base": 10.0, "+": 0, "x": 1, "flat": 0.0 },
+	"XP_Gained": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
+	"Luck": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
 	
 	# arm stats
 	"Damage": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
@@ -27,10 +27,7 @@ var stats: Dictionary = {
 
 ## gets the final character stat value after calculations
 func get_stat(stat_type: String) -> Variant:
-	return (stats[stat_type]["base"] * (1 + stats[stat_type]["+"])) * stats[stat_type]["x"]
-
-func get_flat_stat(stat_type: String) -> Variant:
-	return stats[stat_type]["flat"]
+	return (stats[stat_type]["base"] * (1 + stats[stat_type]["+"])) * stats[stat_type]["x"] + stats[stat_type]["flat"]
 
 ## adds a percent increase (e.g. +15% -> amount = 15)
 func add_percent_stat(stat_type: String, amount: float) -> void:
@@ -42,4 +39,4 @@ func multiply_stat(stat_type: String, amount: Variant) -> void:
 
 ## adds a flat amount to the base (e.g. +2 -> amount = 2)
 func add_flat_amount(stat_type: String, amount: Variant) -> void:
-	stats[stat_type]["base"] += amount
+	stats[stat_type]["flat"] += amount

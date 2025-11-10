@@ -6,6 +6,7 @@ extends CharacterBody3D
 @onready var ray_cast: RayCast3D = %RayCast
 @onready var XP = get_tree().current_scene.XP
 
+@export var mesh: Array[MeshInstance3D]
 @export var raycast_offset: float = 0
 @export var health: float = 25
 @export var speed: float = 5
@@ -15,6 +16,7 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var angular_acceleration: float = 5
 var is_on_screen: bool = true
 var object: RID
+var tween: Tween
 
 @onready var player = get_tree().get_first_node_in_group("Player")
 
@@ -31,6 +33,17 @@ func target_position(target):
 
 func hit(_damage):
 	health -= _damage
+	
+	tween = get_tree().create_tween().set_parallel(true)
+	for m in mesh:
+		var mat: ShaderMaterial = m.material_overlay
+		if mat and mat is ShaderMaterial:
+			tween.tween_callback(func(): mat.set_shader_parameter("fade", 1.0))
+			tween.tween_interval(0.05)
+			tween.tween_method(func(v):
+				mat.set_shader_parameter("fade", v),
+				1.0, 0.0, 0.1
+			)
 	
 	if health <= 0:
 		die()
