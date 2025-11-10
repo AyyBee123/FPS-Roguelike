@@ -31,6 +31,8 @@ func _physics_process(delta):
 		shoot()
 
 func move(delta):
+	if not player_pos: return
+	
 	position.y = lerp_angle(position.y, raycast_offset, 0.2)
 	
 	if position.distance_to(player_pos) > 15:
