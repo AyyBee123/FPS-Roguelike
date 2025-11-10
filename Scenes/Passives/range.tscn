@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://blf4j31no8f3d"]
+
+[ext_resource type="Script" uid="uid://ch5j4quhwxnab" path="res://Scripts/Passives/passives.gd" id="1_67wgr"]
+[ext_resource type="Script" uid="uid://cch88af2msv8m" path="res://Scripts/Resources/stat_type.gd" id="2_xdqc8"]
+
+[sub_resource type="Resource" id="Resource_ppxdu"]
+script = ExtResource("2_xdqc8")
+stat = "Range"
+amount = 10.0
+type = "+"
+metadata/_custom_type_script = "uid://cch88af2msv8m"
+
+[sub_resource type="Resource" id="Resource_67wgr"]
+script = ExtResource("2_xdqc8")
+rarity = 1
+stat = "Range"
+amount = 20.0
+type = "+"
+metadata/_custom_type_script = "uid://cch88af2msv8m"
+
+[sub_resource type="Resource" id="Resource_xdqc8"]
+script = ExtResource("2_xdqc8")
+rarity = 2
+stat = "Range"
+amount = 30.0
+type = "+"
+metadata/_custom_type_script = "uid://cch88af2msv8m"
+
+[sub_resource type="Resource" id="Resource_tih8v"]
+script = ExtResource("2_xdqc8")
+rarity = 2
+stat = "Range"
+amount = 1.05
+type = "x"
+metadata/_custom_type_script = "uid://cch88af2msv8m"
+
+[sub_resource type="Resource" id="Resource_7n0om"]
+script = ExtResource("2_xdqc8")
+rarity = 3
+stat = "Range"
+amount = 8.0
+type = "+"
+metadata/_custom_type_script = "uid://cch88af2msv8m"
+
+[node name="Range" type="Node"]
+script = ExtResource("1_67wgr")
+stat_name = "Range"
+stats = Array[ExtResource("2_xdqc8")]([SubResource("Resource_ppxdu"), SubResource("Resource_67wgr"), SubResource("Resource_xdqc8"), SubResource("Resource_tih8v"), SubResource("Resource_7n0om")])
+metadata/_custom_type_script = "uid://ch5j4quhwxnab"

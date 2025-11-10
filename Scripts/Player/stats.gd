@@ -1,7 +1,7 @@
 extends Node
 
 ## "base" -> the base stat
-## "+" -> the increase in the base stat (in decimal)
+## "+" -> the increase in the base stat (in decimal, e.g. 0.1 for a 10% increase)
 ## "x" -> the final multiplier of the base stat and the increase
 var stats: Dictionary = {
 	# character stats
@@ -23,11 +23,13 @@ var stats: Dictionary = {
 	"Splash_Radius": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
 	"Size": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
 	"Projectile_Count": { "base": 1, "+": 0, "x": 1, "flat": 0.0 },
+	"Crit_Chance": { "base": 1, "+": 0, "x": 1, "flat": 0.0 },
+	"Crit_Damage": { "base": 1, "+": 0, "x": 1, "flat": 0.0 },
 }
 
 ## gets the final character stat value after calculations
 func get_stat(stat_type: String) -> Variant:
-	return (stats[stat_type]["base"] * (1 + stats[stat_type]["+"])) * stats[stat_type]["x"] + stats[stat_type]["flat"]
+	return ((stats[stat_type]["base"] * (1 + stats[stat_type]["+"])) + stats[stat_type]["flat"]) * stats[stat_type]["x"]
 
 ## adds a percent increase (e.g. +15% -> amount = 15)
 func add_percent_stat(stat_type: String, amount: float) -> void:
@@ -38,5 +40,5 @@ func multiply_stat(stat_type: String, amount: Variant) -> void:
 	stats[stat_type]["x"] *= amount
 
 ## adds a flat amount to the base (e.g. +2 -> amount = 2)
-func add_flat_amount(stat_type: String, amount: Variant) -> void:
+func add_flat_stat(stat_type: String, amount: Variant) -> void:
 	stats[stat_type]["flat"] += amount

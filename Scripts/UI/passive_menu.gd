@@ -29,8 +29,10 @@ func _ready():
 	tween.tween_property(transition, "scale", Vector2.ONE, 0.15)
 
 func select_upgrade(button):
+	if tween.is_running(): return
+	
 	get_tree().paused = false
-	upgrade_selected.emit(button)
+	upgrade_selected.emit(button.passives)
 	queue_free()
 
 func _on_resize():

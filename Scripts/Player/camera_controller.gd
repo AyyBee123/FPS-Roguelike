@@ -2,7 +2,7 @@ extends Camera3D
 
 @onready var camera_controller_anchor = %"Camera Controller Anchor"
 
-@export var player: CharacterBody3D
+@export var player: Player
 var sensitivity = 0.001
 var mouse_input := Vector2(0, 0)
 var camera_rotation := Vector2(0, 0)

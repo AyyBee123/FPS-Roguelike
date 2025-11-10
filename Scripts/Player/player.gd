@@ -1,4 +1,4 @@
-extends CharacterBody3D
+class_name Player extends CharacterBody3D
 
 @onready var camera = %Camera
 @onready var camera_controller_anchor = %"Camera Controller Anchor"
@@ -15,7 +15,7 @@ var stats: Stats
 var XP_NEEDED: float = 5
 var current_xp: float = 0
 var current_level: int = 1
-var upgrade_queue_count: int = 0
+var upgrade_queue_count: int = 0 # the amount of level up choices that are in queue
 
 var SPEED: float:
 	get:
@@ -36,7 +36,7 @@ var LUCK_MULTIPLIER: float:
 	get:
 		return stats.get_stat("Luck")
 
-var current_jumps: int = 0 # the current amount of extra jumps that can be used
+var current_jumps: int = 0 # the current number of extra jumps that can be used
 var pickup = null
 var nearby_pickups: Array = []
 
@@ -123,8 +123,10 @@ func level_up():
 	upgrade.add_child(passive_menu)
 	current_level += 1
 
-func get_upgrade(_upgrade):
-	print(_upgrade)
+func get_upgrade(upgrades: Array[Passive]):
+	for i in upgrades:
+		i.add_stats(self)
+		i.queue_free()
 
 func _on_pickup_detect_body_entered(body):
 	nearby_pickups.append(body)

@@ -22,6 +22,7 @@ CollisionLayers="*res://Scripts/Globals/collision_layers.gd"
 ItemPool="*res://Scripts/Globals/item_pool.gd"
 ArmPool="*res://Scripts/Globals/arm_pool.gd"
 SignalBus="*res://Scripts/Utils/signal_bus.gd"
+PassivePool="*res://Scripts/Globals/passive_pool.gd"
 
 [debug]
 

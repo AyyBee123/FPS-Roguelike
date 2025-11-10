@@ -1,6 +1,6 @@
 extends Node3D
 
-@export_enum("COMMON", "RARE", "LEGENDARY", "UNSET:-1") var rarity: int = -1
+@export_enum("COMMON", "UNCOMMON", "LEGENDARY", "UNSET:-1") var rarity: int = -1
 
 @export var projectile: PackedScene # the projectile shot by the arm
 @export var base_damage: float # damage dealt by the projectile
@@ -13,11 +13,10 @@ extends Node3D
 @export var shoot_animation: String = "Shoot"
 @export var equip_animation: String = "Activate"
 
-@onready var fire_rate_timer: Timer = %"Fire Rate Timer"
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 @onready var bullet_point: Marker3D = %"Bullet Point"
 
-var player: CharacterBody3D # declared in the weapons manager script
+var player: Player # declared in the weapons manager script
 
 var damage: float:
 	get:
@@ -41,16 +40,23 @@ var projectile_count: float:
 	get:
 		return get_stat(base_projectile_count, "Projectile_Count")
 
+var fire_rate_timer: float = 0.0
+var t: float = 0.0
+
 const DEBUG_BULLET = preload("uid://btq2f4vqn8fhy")
 
 func _ready():
-	fire_rate_timer.wait_time = 1.0 / fire_rate
+	fire_rate_timer = 1.0 / fire_rate
+
+func _physics_process(delta):
+	t += delta
 
 func shoot():
-	if not fire_rate_timer.is_stopped():
+	if t < fire_rate_timer:
 		return
 	
-	fire_rate_timer.start()
+	t = 0.0
+	fire_rate_timer = 1.0 / fire_rate
 	animation_player.stop()
 	animation_player.play(shoot_animation)
 	

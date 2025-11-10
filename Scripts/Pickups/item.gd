@@ -33,7 +33,7 @@ func _ready():
 	var pool_name := ""
 	match chosen_rarity:
 		0: pool_name = "common_pool"
-		1: pool_name = "rare_pool"
+		1: pool_name = "uncommon_pool"
 		2: pool_name = "legendary_pool"
 	
 	item = ItemPool.get(pool_name).pick_random().instantiate()
