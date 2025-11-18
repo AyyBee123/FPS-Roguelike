@@ -1,0 +1,20 @@
+[gd_resource type="ArrayMesh" load_steps=2 format=4 uid="uid://dvbmecao77t66"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bhobe"]
+
+[resource]
+resource_name = "Lightning_Plane"
+_surfaces = [{
+"aabb": AABB(-1.5672071, -5.340576e-05, -1.3561605, 3.246765, 16.000107, 2.3038373),
+"attribute_data": PackedByteArray("AABJEv//AAD//0kSAAAAAAAA/////7Xt/////wAAte0AALXt//9s2///te0AAGzbAABs2///I8n//2zbAAAjyQAAI8n//9q2//8jyQAA2rYAANq2//+RpP//2rYAAJGkAACRpP//SJL//5GkAABIkgAASJL///9///9IkgAA/38AAP9///+2bf///38AALZtAAC2bf//bVv//7ZtAABtWwAAbVv//yRJ//9tWwAAJEkAACRJ///bNv//JEkAANs2AADbNv//kiT//9s2AACSJAAAkiT//0kS//+SJAAASRI="),
+"format": 34896613399,
+"index_count": 84,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0AIAAhACIAIAAjACEAJAAlACYAJAAnACUAKAApACoAKAArACkALAAtAC4ALAAvAC0AMAAxADIAMAAzADEANAA1ADYANAA3ADUA"),
+"material": SubResource("StandardMaterial3D_bhobe"),
+"name": "Bolt",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 56,
+"vertex_data": PackedByteArray("LDy17QbXV5mYvv//PFRXmaDKte3JPFeZ3jD//ybZV5lATwAAsZYOgB+4SRKYlg6ANqIAALGWDoAjSUkScZYOgCNJSRJxlluAOtWSJGiVW4AfuEkSmJZbgK1HkiRolVuArUeSJGiVmoB49ts20pKagDrVkiRolZqAAlDbNh+UmoACUNs2H5S0gf//JEkEibSBePbbNtKStIF3TiRJDZa0gXdOJEkNlhqEHuxtW798GoT//yRJBIkahJU5bVsGoBqElTltWwagC4i5wLZtIXkLiB7sbVu/fAuIsRm2bUa3C4ixGbZtRreKjR2l/3+feImNucC2bSF5iY0AAP9/EduKjQAA/38R27KT9adIkrZosZMdpf9/n3iwk44ASJL8+bOTjgBIkvz5sZmtsZGkyU2wmfWnSJK2aK+Z/ByRpP//spn8HJGk//9/n1bC2rZfHn+frbGRpMlNf5/ASdq2at5/n8BJ2rZq3kqj6M4jyQAASqNWwtq2Xx5KozRcI8nyxUqjNFwjyfLFN6Lh0mzbIRQ3oujOI8kAADeio1Fs28TMN6KjUWzbxMyPnaDKte3JPI+d4dJs2yEUkJ0sPLXtBtePnbx+pgG+fqwBwX6wAbl+oQGU2WSmldlkpprZaqaO2WGmafqPhWT6j4VX+o+FbvqWhTfq+mkw6h5qDOo1aj/q0mnuwHI/ZMAFQO2/hEBZwQA/g6B9HrWfzh4mnwcfDKFHHleE3AMshOIDD4TnA3WE2AP+c10O0XPXDbBzdA0ddLoOT3J/EQRy6hDNcX4QfnLcEfF1rg2ydUsNhXUEDR129A1/ficCd34cAnB+EgKHfjICvYEvAbuBMQG5gTIBv4EtARV6aQgxeogIRHqdCAJ6VQiAebwIqHn0CMJ5GQlleZcI")
+}]
+blend_shape_mode = 0

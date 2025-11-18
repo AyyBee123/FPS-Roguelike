@@ -3,7 +3,13 @@ extends Node
 var passives: Array = [
 	preload("uid://ck8e0xlkfeop6"),
 	preload("uid://dw041uajaa1gg"),
-	
+	preload("uid://blf4j31no8f3d"),
+	preload("uid://dflfd00x2j2is"),
+	preload("uid://cc872qe0bk4b"),
+	preload("uid://dpjreq5jo01gb"),
+	preload("uid://b3u2c1s6odbpb"),
+	preload("uid://cm6salthujj5t"),
+	preload("uid://benqet3fkm7n6")
 ]
 
 func _ready():

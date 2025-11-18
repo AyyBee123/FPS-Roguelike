@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://benqet3fkm7n6"]
+
+[ext_resource type="Script" uid="uid://ch5j4quhwxnab" path="res://Scripts/Passives/passives.gd" id="1_2ehax"]
+[ext_resource type="Script" uid="uid://cch88af2msv8m" path="res://Scripts/Resources/stat_type.gd" id="2_q4mra"]
+
+[sub_resource type="Resource" id="Resource_ppxdu"]
+script = ExtResource("2_q4mra")
+stat = "XP_Gained"
+amount = 5.0
+type = "+"
+metadata/_custom_type_script = "uid://cch88af2msv8m"
+
+[sub_resource type="Resource" id="Resource_67wgr"]
+script = ExtResource("2_q4mra")
+rarity = 1
+stat = "XP_Gained"
+amount = 15.0
+type = "+"
+metadata/_custom_type_script = "uid://cch88af2msv8m"
+
+[sub_resource type="Resource" id="Resource_xdqc8"]
+script = ExtResource("2_q4mra")
+rarity = 2
+stat = "XP_Gained"
+amount = 25.0
+type = "+"
+metadata/_custom_type_script = "uid://cch88af2msv8m"
+
+[sub_resource type="Resource" id="Resource_7n0om"]
+script = ExtResource("2_q4mra")
+rarity = 3
+stat = "XP_Gained"
+amount = 10.0
+type = "+"
+metadata/_custom_type_script = "uid://cch88af2msv8m"
+
+[node name="XP Gained" type="Node"]
+script = ExtResource("1_2ehax")
+stat_name = "XP"
+stats = Array[ExtResource("2_q4mra")]([SubResource("Resource_ppxdu"), SubResource("Resource_67wgr"), SubResource("Resource_xdqc8"), SubResource("Resource_7n0om")])
+metadata/_custom_type_script = "uid://ch5j4quhwxnab"

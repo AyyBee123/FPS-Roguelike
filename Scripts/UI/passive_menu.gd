@@ -12,9 +12,11 @@ var tween: Tween
 func _ready():
 	get_tree().paused = true
 	
+	# set the menu size to match the window size
 	get_viewport().size_changed.connect(_on_resize)
 	_on_resize()
 	
+	# set the first button as the focused one (mainly for controller)
 	var first_button = %"Upgrade List".get_child(0)
 	first_button.initial_focus = true
 	first_button.grab_focus()

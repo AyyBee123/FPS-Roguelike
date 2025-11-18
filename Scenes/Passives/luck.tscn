@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://cm6salthujj5t"]
+
+[ext_resource type="Script" uid="uid://ch5j4quhwxnab" path="res://Scripts/Passives/passives.gd" id="1_x6qo6"]
+[ext_resource type="Script" uid="uid://cch88af2msv8m" path="res://Scripts/Resources/stat_type.gd" id="2_vljhp"]
+
+[sub_resource type="Resource" id="Resource_ppxdu"]
+script = ExtResource("2_vljhp")
+stat = "Luck"
+amount = 10.0
+type = "+"
+metadata/_custom_type_script = "uid://cch88af2msv8m"
+
+[sub_resource type="Resource" id="Resource_67wgr"]
+script = ExtResource("2_vljhp")
+rarity = 1
+stat = "Luck"
+amount = 25.0
+type = "+"
+metadata/_custom_type_script = "uid://cch88af2msv8m"
+
+[sub_resource type="Resource" id="Resource_xdqc8"]
+script = ExtResource("2_vljhp")
+rarity = 2
+stat = "Luck"
+amount = 45.0
+type = "+"
+metadata/_custom_type_script = "uid://cch88af2msv8m"
+
+[sub_resource type="Resource" id="Resource_7n0om"]
+script = ExtResource("2_vljhp")
+rarity = 3
+stat = "Luck"
+amount = 15.0
+type = "+"
+metadata/_custom_type_script = "uid://cch88af2msv8m"
+
+[node name="Luck" type="Node"]
+script = ExtResource("1_x6qo6")
+stat_name = "Luck"
+stats = Array[ExtResource("2_vljhp")]([SubResource("Resource_ppxdu"), SubResource("Resource_67wgr"), SubResource("Resource_xdqc8"), SubResource("Resource_7n0om")])
+metadata/_custom_type_script = "uid://ch5j4quhwxnab"
