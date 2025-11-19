@@ -1,4 +1,4 @@
-extends "res://Scripts/Enemies/enemy.gd"
+extends Enemy
 
 @onready var skull = %Skull
 @onready var fire = %Fire

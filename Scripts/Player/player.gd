@@ -101,7 +101,7 @@ func get_pickup_collision():
 		return null
 
 func hit(damage):
-	print("Ow!")
+	print("Took %s damage" % roundi(damage))
 
 func gain_xp(amount: int):
 	current_xp += amount * XP_MULTIPLIER
@@ -123,10 +123,13 @@ func level_up():
 	upgrade.add_child(passive_menu)
 	current_level += 1
 
-func get_upgrade(upgrades: Array[Passive]):
-	for i in upgrades:
-		i.add_stats(self)
-		i.queue_free()
+func get_upgrade(_upgrade):
+	if _upgrade is Array[Passive]:
+		for i in _upgrade:
+			i.add_stats(self)
+			i.queue_free()
+	elif _upgrade is Ability:
+		abilities.add_child(_upgrade)
 
 func _on_pickup_detect_body_entered(body):
 	nearby_pickups.append(body)

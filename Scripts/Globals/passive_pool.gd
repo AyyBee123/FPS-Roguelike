@@ -12,9 +12,6 @@ var passives: Array = [
 	preload("uid://benqet3fkm7n6")
 ]
 
-func _ready():
-	randomize()
-
 func get_stat(passive_to_not_pick: Passive = null):
 	var passive: Passive = passives.pick_random().instantiate()
 	if passive_to_not_pick:

@@ -12,8 +12,8 @@ func _ready():
 	lifetime.start()
 
 func _on_body_entered(body):
-	if body.is_in_group("Enemy") and body.has_method("hit"):
-		body.hit(damage)
+	if body is Enemy:
+		body.hit(damage, self)
 	queue_free()
 
 func _on_timer_timeout():

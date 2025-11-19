@@ -21,8 +21,8 @@ func _on_animation_player_animation_finished(anim_name):
 		animation_player.play("Idle")
 
 func _on_area_3d_body_entered(body):
-	if body.is_in_group("Enemy") and body.has_method("hit"):
-		body.hit(damage)
+	if body is Enemy:
+		body.hit(damage, self)
 
 func set_monitoring(value: bool):
 	hitbox.monitoring = value

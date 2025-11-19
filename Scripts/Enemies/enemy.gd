@@ -1,4 +1,6 @@
-extends CharacterBody3D
+class_name Enemy extends CharacterBody3D
+
+signal enemy_hit(source, enemy, damage_taken)
 
 @onready var nav_agent: NavigationAgent3D = %NavigationAgent3D
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
@@ -31,8 +33,9 @@ func _physics_process(delta):
 func target_position(target):
 	pass
 
-func hit(_damage):
+func hit(_damage: float, source: Variant):
 	health -= _damage
+	SignalBus.enemy_hit.emit(source, self, _damage)
 	
 	tween = get_tree().create_tween().set_parallel(true)
 	for m in mesh:

@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://b3u2c1s6odbpb"]
 
-[ext_resource type="Script" uid="uid://ch5j4quhwxnab" path="res://Scripts/Passives/passives.gd" id="1_d2cnk"]
+[ext_resource type="Script" uid="uid://ch5j4quhwxnab" path="res://Scripts/Passives/passive.gd" id="1_d2cnk"]
 [ext_resource type="Script" uid="uid://cch88af2msv8m" path="res://Scripts/Resources/stat_type.gd" id="2_fm3ep"]
 
 [sub_resource type="Resource" id="Resource_ppxdu"]

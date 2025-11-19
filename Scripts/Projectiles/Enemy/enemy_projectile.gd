@@ -12,7 +12,7 @@ func _ready():
 	lifetime.start()
 
 func _on_body_entered(body):
-	if body.is_in_group("Player") and body.has_method("hit"):
+	if body is Player:
 		body.hit(damage)
 	queue_free()
 

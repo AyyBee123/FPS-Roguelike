@@ -5,13 +5,21 @@ extends "res://Scripts/UI/button.gd"
 @onready var rarity: Label = %Rarity
 
 var passives: Array[Passive] = []
+var ability: Ability
 
 func _ready():
+	randomize()
+	description.text = ""
+	if randf() < 0.5:
+		select_passive()
+	else:
+		select_ability()
+
+func select_passive():
 	var passive: Passive = PassivePool.get_stat()
 	passives.append(passive)
 	add_child(passive)
 	passive_name.text = "%s Module" % passive.stat_name
-	description.text = ""
 	for stat in passive.stats_to_give:
 		var values: Array = [format_number(stat.amount), stat.stat.replace("_", " ")]
 		match stat.type:
@@ -48,6 +56,10 @@ func _ready():
 				"flat":
 					description.text += "+%s %s" % values
 			description.text += "\n"
+
+func select_ability():
+	ability = AbilityPool.get_ability()
+	passive_name.text = ability.ability_name
 
 func format_number(n: float) -> String:
 	if is_equal_approx(n, int(n)):

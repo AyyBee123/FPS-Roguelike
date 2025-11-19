@@ -34,7 +34,10 @@ func select_upgrade(button):
 	if tween.is_running(): return
 	
 	get_tree().paused = false
-	upgrade_selected.emit(button.passives)
+	if button.passives.size() > 0:
+		upgrade_selected.emit(button.passives)
+	else:
+		upgrade_selected.emit(button.ability)
 	queue_free()
 
 func _on_resize():

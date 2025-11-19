@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://ml4al8d8uchl"]
+[gd_scene load_steps=20 format=3 uid="uid://ml4al8d8uchl"]
 
 [ext_resource type="PackedScene" uid="uid://dhlu65iawdxvf" path="res://Scenes/Player/player.tscn" id="1_7t06c"]
 [ext_resource type="Script" uid="uid://xvth4kwhnsit" path="res://Scripts/Levels/level.gd" id="1_npfmg"]
@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://bf7ljiiykmoi0" path="res://Scenes/Enemies/cactorse.tscn" id="6_x4x4f"]
 [ext_resource type="PackedScene" uid="uid://yipp43yiqwke" path="res://Scenes/Enemies/stone_skull.tscn" id="7_x4x4f"]
 [ext_resource type="PackedScene" uid="uid://ukgrpto2cajc" path="res://Scenes/Misc/xp.tscn" id="9_7rivk"]
-[ext_resource type="PackedScene" uid="uid://ion0xy4nx46o" path="res://Scenes/VFX/lightning.tscn" id="10_hyk2w"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_k8g1k"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -22,6 +21,8 @@ sky_material = SubResource("ProceduralSkyMaterial_k8g1k")
 background_mode = 2
 sky = SubResource("Sky_x4x4f")
 tonemap_mode = 2
+glow_enabled = true
+glow_blend_mode = 0
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_db73o"]
 vertices = PackedVector3Array(-2.5, 0.26931, -5.3060074, 0, 0.26931, -5.3060074, 0, 0.26931, -97.80601, -3.5, 0.26931, -4.8060074, -98, 0.26931, -2.5560074, -4.25, 0.26931, -2.5560074, -98, 0.26931, -97.80601, 2.5, 0.26931, -5.3060074, 3.5, 0.26931, -4.8060074, 4.25, 0.26931, -2.5560074, 98, 0.26931, -2.5560074, 98, 0.26931, -97.80601, -3.5, 0.26931, -0.5560074, -2.5, 0.26931, -0.056007385, -98, 0.26931, 97.94399, 0, 0.26931, 97.94399, 0, 0.26931, -0.056007385, 3.5, 0.26931, -0.5560074, 2.5, 0.26931, -0.056007385, 98, 0.26931, 97.94399)
@@ -116,6 +117,3 @@ enemies = Array[ExtResource("6_l7ek2")]([SubResource("Resource_7rivk"), SubResou
 [node name="XP" parent="." instance=ExtResource("9_7rivk")]
 transform = Transform3D(0.99984646, -0.01752221, 0, 0.01752221, 0.99984646, 0, 0, 0, 1, 4.625416, 0.4254563, -0.96837187)
 xp_amount = 45
-
-[node name="Lightning" parent="." instance=ExtResource("10_hyk2w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.81279, 0, 2.7530441)

@@ -1,7 +1,7 @@
 class_name Passive extends Node
 
 @export var stat_name: String
-@export var stats: Array[StatType] 
+@export var stats: Array[StatType]
 
 var stats_to_give: Array[StatType]
 
