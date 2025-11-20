@@ -7,11 +7,12 @@ const DAMAGE_MULTIPLIER: float = 0.5
 var damage_increase: float = 0.0
 var radius_increase: float = 0.0
 
-func _on_hit(source: Variant, enemy: Enemy = null, damage: float = 0):
-	if not enemy or source.is_in_group("Lightning Strike"): return
+func _on_hit(source: Variant, player: Player, enemy: Enemy = null, damage: float = 0):
+	if not enemy or source.is_in_group("Lightning Strike") or player_owner != player: return
 	
 	var lightning = LIGHTNING.instantiate()
 	lightning.position = enemy.position
 	lightning.damage = damage * DAMAGE_MULTIPLIER * (1 + damage_increase)
 	lightning.scale = Vector3.ONE * (1 + radius_increase)
+	lightning.player = player
 	get_tree().current_scene.add_child(lightning)

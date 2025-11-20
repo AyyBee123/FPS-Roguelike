@@ -88,6 +88,7 @@ func launch_projectile(point: Vector3):
 	proj.damage = damage
 	proj.speed = speed
 	proj.range = range
+	proj.player = player
 	
 	get_tree().current_scene.add_child(proj)
 	

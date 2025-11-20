@@ -6,6 +6,8 @@ extends Node3D
 var damage: float
 var radius: float = 2.25
 
+var player: Player
+
 func _ready():
 	bolt.one_shot = true
 	blast.one_shot = true
@@ -18,4 +20,4 @@ func _on_blast_finished():
 
 func _on_area_3d_body_entered(body):
 	if body is Enemy:
-		body.hit(damage, self)
+		body.hit(damage, player, self)
