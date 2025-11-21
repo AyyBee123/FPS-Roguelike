@@ -21,4 +21,3 @@ func _on_blast_finished():
 func _on_area_3d_body_entered(body):
 	if body is Enemy:
 		body.hit(damage, player, self)
-		player._on_enemy_hit(body, self, damage)
