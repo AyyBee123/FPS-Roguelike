@@ -123,6 +123,7 @@ func level_up():
 	upgrade_queue_count -= 1
 	var passive_menu = PASSIVE_MENU.instantiate()
 	passive_menu.upgrade_selected.connect(get_upgrade)
+	passive_menu.player = self
 	upgrade.add_child(passive_menu)
 	current_level += 1
 
@@ -132,7 +133,11 @@ func get_upgrade(_upgrade):
 			i.add_stats(self)
 			i.queue_free()
 	elif _upgrade is Ability:
-		abilities.add_child(_upgrade)
+		if not _upgrade.ability_exists: # add a new instance of the ability if the player doesn't have it
+			abilities.add_child(_upgrade.duplicate())
+		else: # upgrade the ability if the player already has an instance in their "Abiliies" node
+			for i in _upgrade.upgrades:
+				pass
 
 func _on_pickup_detect_body_entered(body):
 	nearby_pickups.append(body)

@@ -8,6 +8,7 @@ signal upgrade_selected(upgrade)
 
 var base_resolution = Vector2(1920, 1080)
 var tween: Tween
+var player: Player
 
 func _ready():
 	get_tree().paused = true

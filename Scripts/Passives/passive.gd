@@ -22,14 +22,14 @@ func _ready():
 	get_rarity()
 
 func set_rarity():
-	# Convert to cumulative drop chances
+	# convert to cumulative drop chances
 	var total_weight := 0.0
 	for weight in rarity_weights.values():
 		total_weight += weight
 	
 	var weighted_amount = randf() * total_weight
 	
-	# Find which rarity it falls into
+	# find which rarity it falls into
 	var cumulative: float = 0.0
 	for r in rarity_weights.keys():
 		cumulative += rarity_weights[r]
