@@ -7,8 +7,8 @@ const DAMAGE_MULTIPLIER: float = 0.5
 var damage_increase: float = 0.0
 var radius_increase: float = 0.0
 
-func _on_hit(source: Variant, player: Player, enemy: Enemy = null, damage: float = 0):
-	if not enemy or source.is_in_group("Lightning Strike") or player_owner != player: return
+func _on_hit(enemy: Enemy, source: Variant, damage: float):
+	if not enemy or source.is_in_group("Lightning Strike"): return
 	
 	var lightning = LIGHTNING.instantiate()
 	lightning.position = enemy.position

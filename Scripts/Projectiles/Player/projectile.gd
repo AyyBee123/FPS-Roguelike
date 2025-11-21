@@ -16,6 +16,7 @@ func _ready():
 func _on_body_entered(body):
 	if body is Enemy:
 		body.hit(damage, player, self)
+		player._on_enemy_hit(body, self, damage)
 	queue_free()
 
 func _on_timer_timeout():

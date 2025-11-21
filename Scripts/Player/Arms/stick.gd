@@ -23,6 +23,7 @@ func _on_animation_player_animation_finished(anim_name):
 func _on_area_3d_body_entered(body):
 	if body is Enemy:
 		body.hit(damage, player, self)
+		player._on_enemy_hit(body, self, damage)
 
 func set_monitoring(value: bool):
 	hitbox.monitoring = value

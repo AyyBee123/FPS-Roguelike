@@ -35,7 +35,7 @@ func target_position(target):
 
 func hit(_damage: float, source_player: Player, source: Variant):
 	health -= _damage
-	SignalBus.enemy_hit.emit(source, source_player, self, _damage)
+	#SignalBus.enemy_hit.emit(source, source_player, self, _damage)
 	
 	tween = get_tree().create_tween().set_parallel(true)
 	for m in mesh:

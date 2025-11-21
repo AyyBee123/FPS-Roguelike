@@ -1,5 +1,8 @@
 class_name Player extends CharacterBody3D
 
+signal enemy_hit(enemy, source, damage)
+signal weapon_fired(damage)
+
 @onready var camera = %Camera
 @onready var camera_controller_anchor = %"Camera Controller Anchor"
 @onready var animation_player = %AnimationPlayer
@@ -136,3 +139,6 @@ func _on_pickup_detect_body_entered(body):
 
 func _on_pickup_detect_body_exited(body):
 	nearby_pickups.erase(body)
+
+func _on_enemy_hit(enemy: Enemy, source: Variant, damage: float):
+	enemy_hit.emit(enemy, source, damage)
