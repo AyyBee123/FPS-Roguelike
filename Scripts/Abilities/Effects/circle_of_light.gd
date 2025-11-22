@@ -1,13 +1,8 @@
 extends Ability
 
-var AURA
+const AURA = preload("uid://brrube6jjie8x")
 
 const DAMAGE_MULTIPLIER: float = 0.75
-
-func _ready():
-	if not ability_exists:
-		AURA = preload("uid://brrube6jjie8x")
-	super._ready()
 
 func _on_shoot(projectile: Variant, damage: float):
 	var aura = AURA.instantiate()
