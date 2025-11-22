@@ -1,8 +1,13 @@
 extends Ability
 
-const LIGHTNING = preload("uid://ion0xy4nx46o")
+var LIGHTNING
 
 const DAMAGE_MULTIPLIER: float = 0.5
+
+func _ready():
+	if not ability_exists:
+		LIGHTNING = preload("uid://ion0xy4nx46o")
+	super._ready()
 
 func _on_hit(enemy: Enemy, source: Variant, damage: float):
 	if not enemy or source.is_in_group("Lightning Strike"): return
