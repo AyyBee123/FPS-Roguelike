@@ -1,0 +1,71 @@
+[gd_scene load_steps=11 format=3 uid="uid://cdthgqjlxd3jl"]
+
+[ext_resource type="Script" uid="uid://oa2d13pl0nc8" path="res://Scripts/Abilities/Effects/circle_of_light.gd" id="1_srhmp"]
+[ext_resource type="Script" uid="uid://crdmjkiq4812g" path="res://Scripts/Resources/ability_upgrade_resource.gd" id="2_3yyif"]
+
+[sub_resource type="Resource" id="Resource_cbq7c"]
+script = ExtResource("2_3yyif")
+stat = "Damage"
+amount = 10.0
+type = "+"
+metadata/_custom_type_script = "uid://crdmjkiq4812g"
+
+[sub_resource type="Resource" id="Resource_g752j"]
+script = ExtResource("2_3yyif")
+stat = "Size"
+amount = 15.0
+type = "+"
+metadata/_custom_type_script = "uid://crdmjkiq4812g"
+
+[sub_resource type="Resource" id="Resource_hag4h"]
+script = ExtResource("2_3yyif")
+rarity = 1
+stat = "Damage"
+amount = 20.0
+type = "+"
+metadata/_custom_type_script = "uid://crdmjkiq4812g"
+
+[sub_resource type="Resource" id="Resource_3k0rq"]
+script = ExtResource("2_3yyif")
+rarity = 1
+stat = "Size"
+amount = 20.0
+type = "+"
+metadata/_custom_type_script = "uid://crdmjkiq4812g"
+
+[sub_resource type="Resource" id="Resource_kfsxn"]
+script = ExtResource("2_3yyif")
+rarity = 3
+stat = "Damage"
+amount = 35.0
+type = "+"
+metadata/_custom_type_script = "uid://crdmjkiq4812g"
+
+[sub_resource type="Resource" id="Resource_4cffg"]
+script = ExtResource("2_3yyif")
+rarity = 3
+stat = "Size"
+amount = 30.0
+type = "+"
+metadata/_custom_type_script = "uid://crdmjkiq4812g"
+
+[sub_resource type="Resource" id="Resource_ulsc1"]
+script = ExtResource("2_3yyif")
+rarity = 2
+stat = "Damage"
+amount = 60.0
+type = "+"
+metadata/_custom_type_script = "uid://crdmjkiq4812g"
+
+[sub_resource type="Resource" id="Resource_6cb8b"]
+script = ExtResource("2_3yyif")
+rarity = 2
+stat = "Size"
+amount = 50.0
+type = "+"
+metadata/_custom_type_script = "uid://crdmjkiq4812g"
+
+[node name="Circle of Light" type="Node"]
+script = ExtResource("1_srhmp")
+ability_name = "Circle of Light"
+ability_upgrades = Array[ExtResource("2_3yyif")]([SubResource("Resource_cbq7c"), SubResource("Resource_g752j"), SubResource("Resource_hag4h"), SubResource("Resource_3k0rq"), SubResource("Resource_kfsxn"), SubResource("Resource_4cffg"), SubResource("Resource_ulsc1"), SubResource("Resource_6cb8b")])

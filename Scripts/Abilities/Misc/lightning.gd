@@ -4,7 +4,6 @@ extends Node3D
 @onready var blast: GPUParticles3D = %Blast
 
 var damage: float
-var radius: float = 2.25
 
 var player: Player
 

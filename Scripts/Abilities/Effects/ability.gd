@@ -15,6 +15,7 @@ class_name Ability extends Node
 	"Projectile_Count": { "base": 1, "+": 0, "x": 1, "flat": 0.0 },
 	"Crit_Chance": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
 	"Crit_Damage": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
+	"Pierce": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
 }
 
 var common_upgrades: Array[AbilityUpgradeResource] = []
@@ -53,6 +54,7 @@ func _init():
 func _ready():
 	player = get_parent().player
 	player.enemy_hit.connect(_on_hit)
+	player.weapon_fired.connect(_on_shoot)
 	
 	# populate the upgrade arrays
 	for a in ability_upgrades:
@@ -148,5 +150,5 @@ func set_rarity():
 func _on_hit(enemy: Enemy, source: Variant, damage: float):
 	pass
 
-func _on_shoot(player: Player, arm: Arm, damage: float):
+func _on_shoot(projectile: Variant, damage: float):
 	pass
