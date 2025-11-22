@@ -1,7 +1,7 @@
 extends Node3D
 
-@onready var bolt = %Bolt
-@onready var blast = %Blast
+@onready var bolt: GPUParticles3D = %Bolt
+@onready var blast: GPUParticles3D = %Blast
 
 var damage: float
 var radius: float = 2.25
@@ -14,6 +14,9 @@ func _ready():
 	
 	bolt.restart()
 	blast.restart()
+	
+	blast.process_material.scale_min = scale.x
+	blast.process_material.scale_max = scale.x
 
 func _on_blast_finished():
 	queue_free()

@@ -4,6 +4,18 @@ class_name Ability extends Node
 @export var ability_name: String
 @export_multiline var description: String
 @export var ability_upgrades: Array[AbilityUpgradeResource]
+@export var stats: Dictionary = {
+	# ability stats
+	"Damage": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
+	"Fire_Rate": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
+	"Range": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
+	"Speed": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
+	"Splash_Radius": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
+	"Size": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
+	"Projectile_Count": { "base": 1, "+": 0, "x": 1, "flat": 0.0 },
+	"Crit_Chance": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
+	"Crit_Damage": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
+}
 
 var common_upgrades: Array[AbilityUpgradeResource] = []
 var uncommon_upgrades: Array[AbilityUpgradeResource] = []
@@ -58,25 +70,58 @@ func _ready():
 func get_rarity():
 	match rarity:
 		0:
-			add_stats(common_upgrades)
+			get_stats(common_upgrades)
 		1:
-			add_stats(uncommon_upgrades)
+			get_stats(uncommon_upgrades)
 		2:
-			add_stats(legendary_upgrades)
+			get_stats(legendary_upgrades)
 		3:
-			add_stats(rare_upgrades)
+			get_stats(rare_upgrades)
 
-func add_stats(stats: Array[AbilityUpgradeResource]):
+func get_stats(_stats: Array[AbilityUpgradeResource]):
 	var number_of_stats: int = 1
 	if randf() < chance_for_extra_stat[rarity]:
 		number_of_stats = 2
 	
-	for s in stats:
+	for s in _stats:
 		upgrades.append(s)
 	
 	for i in range(number_of_stats):
 		var stat_to_add: AbilityUpgradeResource = get_upgrade_stat()
 		upgrades_to_add.append(stat_to_add)
+
+func add_stats(upgrade_list):
+	for stat in upgrade_list:
+		match stat.type:
+			"+":
+				add_percent_stat(stat.stat, stat.amount)
+			"x":
+				multiply_stat(stat.stat, stat.amount)
+			"flat":
+				add_flat_stat(stat.stat, stat.amount)
+
+## adds a percent increase (e.g. +15% -> amount = 15)
+func add_percent_stat(stat_type: String, amount: float) -> void:
+	stats[stat_type]["+"] += amount / 100.0
+
+## adds a multiplier (e.g. x1.5 -> amount = 1.5)
+func multiply_stat(stat_type: String, amount: Variant) -> void:
+	stats[stat_type]["x"] *= amount
+
+## adds a flat amount to the base (e.g. +2 -> amount = 2)
+func add_flat_stat(stat_type: String, amount: Variant) -> void:
+	stats[stat_type]["flat"] += amount
+
+## gets the final stat value, after calculating player and ability stats
+func get_stat_value(stat_type: String, value: Variant = null):
+	if value == null:
+		value = stats[stat_type]["base"]
+	var base_value = ((value / (1 + player.stats.stats[stat_type]["+"])) + player.stats.stats[stat_type]["flat"]) \
+			/ player.stats.stats[stat_type]["x"]
+	var final_value = ((base_value * (1 + stats[stat_type]["+"] + player.stats.stats[stat_type]["+"])) \
+			+ stats[stat_type]["flat"] + player.stats.stats[stat_type]["flat"]) \
+			* stats[stat_type]["x"] * player.stats.stats[stat_type]["x"]
+	return final_value
 
 func get_upgrade_stat():
 	var upgrade = upgrades.pick_random()

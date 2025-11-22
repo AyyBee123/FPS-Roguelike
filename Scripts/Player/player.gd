@@ -136,8 +136,10 @@ func get_upgrade(_upgrade):
 		if not _upgrade.ability_exists: # add a new instance of the ability if the player doesn't have it
 			abilities.add_child(_upgrade.duplicate())
 		else: # upgrade the ability if the player already has an instance in their "Abiliies" node
-			for i in _upgrade.upgrades:
-				pass
+			for ability in abilities.get_children():
+				if _upgrade.ability_name == ability.ability_name:
+					ability.add_stats(_upgrade.upgrades_to_add) # add the stats to the existing ability
+					break
 
 func _on_pickup_detect_body_entered(body):
 	nearby_pickups.append(body)

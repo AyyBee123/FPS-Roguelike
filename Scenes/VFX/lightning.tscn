@@ -28,6 +28,7 @@ shader_parameter/material_texture = ExtResource("2_6o5yw")
 shader_parameter/gradiant = SubResource("GradientTexture1D_j0po6")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_6o5yw"]
+resource_local_to_scene = true
 resource_name = "Lightning_Plane"
 _surfaces = [{
 "aabb": AABB(-1.5672071, -5.340576e-05, -1.3561605, 3.246765, 16.000107, 2.3038373),
