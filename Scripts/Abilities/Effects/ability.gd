@@ -82,7 +82,7 @@ func get_rarity():
 
 func get_stats(_stats: Array[AbilityUpgradeResource]):
 	var number_of_stats: int = 1
-	if randf() < chance_for_extra_stat[rarity]:
+	if randf() < chance_for_extra_stat[rarity] and _stats.size() > 1:
 		number_of_stats = 2
 	
 	for s in _stats:

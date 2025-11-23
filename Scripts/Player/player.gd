@@ -10,6 +10,7 @@ signal weapon_fired(projectile, damage)
 @onready var passives = %Passives
 @onready var abilities = %Abilities
 @onready var upgrade = %Upgrade
+@onready var arm = %Arm
 
 const Stats = preload("uid://d0a7frb8gvg68")
 const PASSIVE_MENU = preload("uid://clamkav36kau4")
@@ -152,3 +153,6 @@ func _on_enemy_hit(enemy: Enemy, source: Variant, damage: float):
 
 func _on_arm_fired(projectile: Variant, damage: float):
 	weapon_fired.emit(projectile, damage)
+
+func get_arm():
+	return arm.get_child(0)

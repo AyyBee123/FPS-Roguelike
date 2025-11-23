@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dhlu65iawdxvf"]
+[gd_scene load_steps=26 format=3 uid="uid://dhlu65iawdxvf"]
 
 [ext_resource type="Script" uid="uid://c2cudrvyd4egp" path="res://Scripts/Player/player.gd" id="1_uvnfx"]
 [ext_resource type="Script" uid="uid://ct6urpkc4lp1s" path="res://Scripts/Player/camera_controller.gd" id="2_dd0ac"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://byac7cqcf6if2" path="res://Scripts/UI/level.gd" id="11_oikmp"]
 [ext_resource type="Script" uid="uid://owhlfdboe0ob" path="res://Scripts/Utils/paused_check.gd" id="13_06tpx"]
 [ext_resource type="Script" uid="uid://vu1hdaiedirk" path="res://Scripts/Player/abilities.gd" id="13_7g0yx"]
+[ext_resource type="PackedScene" uid="uid://c2rvfe1px7gvs" path="res://Scenes/Abilities/micro_missile.tscn" id="14_dey5f"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mtuoh"]
 size = Vector3(1, 2, 1)
@@ -280,6 +281,8 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 script = ExtResource("13_7g0yx")
 player = NodePath("..")
+
+[node name="Micro Missile" parent="Abilities" instance=ExtResource("14_dey5f")]
 
 [node name="Paused Check" type="Node" parent="."]
 process_mode = 3
