@@ -1,0 +1,55 @@
+[gd_scene load_steps=13 format=3 uid="uid://d2rqsv85ki5y3"]
+
+[ext_resource type="Shader" uid="uid://t5ew2scbt8pm" path="res://Shaders/blast.gdshader" id="1_2inrw"]
+[ext_resource type="Script" uid="uid://duex8wmloc2ii" path="res://Scripts/Misc/blast.gd" id="1_fjk8k"]
+[ext_resource type="Texture2D" uid="uid://bibignv4sioaq" path="res://Assets/Textures/Noise Texture 1.jpg" id="2_fjk8k"]
+
+[sub_resource type="Gradient" id="Gradient_s6mhv"]
+offsets = PackedFloat32Array(0.39130434, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_obo5l"]
+gradient = SubResource("Gradient_s6mhv")
+
+[sub_resource type="Curve" id="Curve_e86rj"]
+_data = [Vector2(0, 0.11235964), 0.0, 0.0, 0, 0, Vector2(0.60169494, 0.82022476), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_yvotw"]
+curve = SubResource("Curve_e86rj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_obo5l"]
+gravity = Vector3(0, 0, 0)
+scale_min = 1.25
+scale_max = 1.25
+scale_curve = SubResource("CurveTexture_yvotw")
+color_ramp = SubResource("GradientTexture1D_obo5l")
+
+[sub_resource type="Gradient" id="Gradient_w1f1s"]
+offsets = PackedFloat32Array(0.114583336, 0.6979167)
+colors = PackedColorArray(1, 0.47058824, 0.4, 1, 0.37879834, 0.09452235, 0.04664605, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_awj15"]
+gradient = SubResource("Gradient_w1f1s")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_obo5l"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_2inrw")
+shader_parameter/gradiant = SubResource("GradientTexture1D_awj15")
+shader_parameter/erosion = ExtResource("2_fjk8k")
+shader_parameter/erosion_max_offset = 0.1
+
+[sub_resource type="SphereMesh" id="SphereMesh_e86rj"]
+material = SubResource("ShaderMaterial_obo5l")
+
+[node name="Micro Missile Blast" type="Node3D"]
+script = ExtResource("1_fjk8k")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+unique_name_in_owner = true
+amount = 1
+lifetime = 0.25
+process_material = SubResource("ParticleProcessMaterial_obo5l")
+draw_pass_1 = SubResource("SphereMesh_e86rj")
+
+[connection signal="finished" from="GPUParticles3D" to="." method="_on_gpu_particles_3d_finished"]

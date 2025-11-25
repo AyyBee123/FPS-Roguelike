@@ -3,6 +3,8 @@ extends RigidBody3D
 @onready var gpu_trail_3d: GPUTrail3D = $GPUTrail3D
 @onready var trail_length: int = gpu_trail_3d.length
 
+const MICRO_MISSILE_BLAST = preload("uid://d2rqsv85ki5y3")
+
 const TIME_BEFORE_HOMING: float = 0.5
 const ROTATIONAL_OFFSET: Vector3 = Vector3.RIGHT * 0.001 # offset to prevent direct upward rotation (can cause issues)
 
@@ -35,6 +37,10 @@ func get_enemy():
 	return get_tree().get_nodes_in_group("Enemy").pick_random()
 
 func explode():
+	var blast = MICRO_MISSILE_BLAST.instantiate()
+	blast.position = position
+	blast.scale = scale
+	get_tree().current_scene.add_child(blast)
 	queue_free()
 
 func _on_body_entered(body):

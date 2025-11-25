@@ -1,19 +1,25 @@
-[gd_resource type="ArrayMesh" load_steps=6 format=4 uid="uid://b3knx0o237wi6"]
+[gd_resource type="ArrayMesh" load_steps=8 format=4 uid="uid://b3knx0o237wi6"]
 
 [ext_resource type="Shader" uid="uid://t5ew2scbt8pm" path="res://Shaders/blast.gdshader" id="1_n8oq4"]
 [ext_resource type="Texture2D" uid="uid://bibignv4sioaq" path="res://Assets/Textures/Noise Texture 1.jpg" id="2_ps8yq"]
 
+[sub_resource type="Gradient" id="Gradient_ps8yq"]
+offsets = PackedFloat32Array(0.3333333, 0.72619045)
+colors = PackedColorArray(0.86759305, 1.2071972, 2.6986847, 1, 0.4354635, 0.7355534, 2.0215447, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_g2m02"]
+gradient = SubResource("Gradient_ps8yq")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n8oq4"]
 render_priority = 0
 shader = ExtResource("1_n8oq4")
-shader_parameter/albedo = Color(0.7662183, 0.8898589, 0.9723664, 1)
+shader_parameter/gradiant = SubResource("GradientTexture1D_g2m02")
 shader_parameter/erosion = ExtResource("2_ps8yq")
 shader_parameter/erosion_max_offset = 0.1
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ps8yq"]
 render_priority = 0
 shader = ExtResource("1_n8oq4")
-shader_parameter/albedo = Color(0, 0, 0, 1)
 shader_parameter/erosion_max_offset = 0.1
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_ps8yq"]

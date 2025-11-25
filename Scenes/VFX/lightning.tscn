@@ -15,8 +15,8 @@ gravity = Vector3(0, 0, 0)
 color_ramp = SubResource("GradientTexture1D_ggp7a")
 
 [sub_resource type="Gradient" id="Gradient_j2l7i"]
-offsets = PackedFloat32Array(0.27083334, 0.7430556)
-colors = PackedColorArray(0.008978736, 0.29774436, 1.1818982, 1, 0.99999994, 1.353256, 2.6987157, 1)
+offsets = PackedFloat32Array(0, 0.60714287)
+colors = PackedColorArray(0.008978736, 0.29774436, 1.1818982, 1, 0.86759305, 1.2071972, 2.6986847, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_j0po6"]
 gradient = SubResource("Gradient_j2l7i")
