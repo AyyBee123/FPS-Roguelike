@@ -1,6 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://c8solqmwcm8ub"]
+[gd_scene load_steps=20 format=4 uid="uid://c8solqmwcm8ub"]
 
 [ext_resource type="Script" uid="uid://bsrj3o3y3grvn" path="res://Scripts/Abilities/Misc/micro_missile.gd" id="1_xx4nw"]
+[ext_resource type="Shader" uid="uid://cft0d7ua3qfiw" path="res://GPUTrail-main/shaders/trail.gdshader" id="2_meyjr"]
+[ext_resource type="Shader" uid="uid://uoyb502wd422" path="res://GPUTrail-main/shaders/trail_draw_pass.gdshader" id="3_c2i02"]
+[ext_resource type="Texture2D" uid="uid://crk6pkb7e5rwc" path="res://GPUTrail-main/defaults/texture.tres" id="4_c2i02"]
+[ext_resource type="Script" uid="uid://b27gxyjpmtppf" path="res://GPUTrail-main/GPUTrail3D.gd" id="4_gwmwv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_he62o"]
 resource_name = "Base"
@@ -136,6 +140,37 @@ shadow_mesh = SubResource("ArrayMesh_2afsr")
 [sub_resource type="SphereShape3D" id="SphereShape3D_c2kk3"]
 radius = 0.115
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gaarg"]
+shader = ExtResource("2_meyjr")
+
+[sub_resource type="Gradient" id="Gradient_p8td0"]
+colors = PackedColorArray(1, 0.46949375, 0.40143526, 1, 1, 0.47058824, 0.4, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_67282"]
+gradient = SubResource("Gradient_p8td0")
+
+[sub_resource type="Curve" id="Curve_ywotn"]
+bake_resolution = 16
+_data = [Vector2(0, 1), 0.0, -1.0004287, 0, 0, Vector2(1, 0), -1.0011239, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_vmedk"]
+curve = SubResource("Curve_ywotn")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yksis"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("3_c2i02")
+shader_parameter/tex = ExtResource("4_c2i02")
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/color_ramp = SubResource("GradientTexture1D_67282")
+shader_parameter/curve = SubResource("CurveTexture_vmedk")
+shader_parameter/emmission_transform = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shader_parameter/flags = 44
+
+[sub_resource type="QuadMesh" id="QuadMesh_4n5rq"]
+material = SubResource("ShaderMaterial_yksis")
+
 [node name="Micro Missile" type="RigidBody3D" groups=["Micro Missile"]]
 collision_layer = 0
 collision_mask = 5
@@ -154,13 +189,33 @@ mesh = SubResource("ArrayMesh_c2kk3")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_c2kk3")
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.12842032)
+[node name="GPUTrail3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(0.06, 0, 0, 0, 0.06, 0, 0, 0, 0.06, 0, 0, 0.1374523)
+amount = 36
+lifetime = 36.0
+explosiveness = 1.0
+fixed_fps = 144
+process_material = SubResource("ShaderMaterial_gaarg")
+draw_pass_1 = SubResource("QuadMesh_4n5rq")
+script = ExtResource("4_gwmwv")
+length = 36
+length_seconds = 0.25
+color_ramp = SubResource("GradientTexture1D_67282")
+curve = SubResource("CurveTexture_vmedk")
+billboard = true
+_defaults_have_been_set = true
+metadata/_custom_type_script = "uid://b27gxyjpmtppf"
 
 [node name="Lifetime" type="Timer" parent="."]
 wait_time = 6.0
 one_shot = true
 autostart = true
 
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Lifetime" to="." method="_on_lifetime_timeout"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]

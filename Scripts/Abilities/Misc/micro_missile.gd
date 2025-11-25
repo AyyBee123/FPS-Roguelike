@@ -1,5 +1,8 @@
 extends RigidBody3D
 
+@onready var gpu_trail_3d: GPUTrail3D = $GPUTrail3D
+@onready var trail_length: int = gpu_trail_3d.length
+
 const TIME_BEFORE_HOMING: float = 0.5
 const ROTATIONAL_OFFSET: Vector3 = Vector3.RIGHT * 0.001 # offset to prevent direct upward rotation (can cause issues)
 
@@ -41,3 +44,9 @@ func _on_body_entered(body):
 
 func _on_lifetime_timeout():
 	explode()
+
+func _on_visible_on_screen_notifier_3d_screen_entered():
+	gpu_trail_3d.length = trail_length
+
+func _on_visible_on_screen_notifier_3d_screen_exited():
+	gpu_trail_3d.emitting = 0
