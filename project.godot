@@ -24,6 +24,7 @@ ArmPool="*res://Scripts/Globals/arm_pool.gd"
 SignalBus="*res://Scripts/Utils/signal_bus.gd"
 PassivePool="*res://Scripts/Globals/passive_pool.gd"
 AbilityPool="*res://Scripts/Globals/ability_pool.gd"
+GeneralUtils="*res://Scripts/Utils/general_utils.gd"
 
 [debug]
 

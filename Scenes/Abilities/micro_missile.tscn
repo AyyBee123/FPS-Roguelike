@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://c2rvfe1px7gvs"]
+[gd_scene load_steps=8 format=3 uid="uid://c2rvfe1px7gvs"]
 
 [ext_resource type="Script" uid="uid://dr6dssv4au0sb" path="res://Scripts/Abilities/Effects/micro_missile.gd" id="1_oe7k8"]
+[ext_resource type="Texture2D" uid="uid://1ut3e7pl3o4p" path="res://Assets/Sprites/Micro Missiles.png" id="2_8so4p"]
 [ext_resource type="Script" uid="uid://crdmjkiq4812g" path="res://Scripts/Resources/ability_upgrade_resource.gd" id="2_crwa4"]
 
 [sub_resource type="Resource" id="Resource_2jf88"]
@@ -36,6 +37,7 @@ metadata/_custom_type_script = "uid://crdmjkiq4812g"
 
 [node name="Micro Missile" type="Node"]
 script = ExtResource("1_oe7k8")
+icon = ExtResource("2_8so4p")
 ability_name = "Micro Missiles"
 description = "Fires a homing micro missile when firing."
 ability_upgrades = Array[ExtResource("2_crwa4")]([SubResource("Resource_2jf88"), SubResource("Resource_crwa4"), SubResource("Resource_8so4p"), SubResource("Resource_aow75")])
