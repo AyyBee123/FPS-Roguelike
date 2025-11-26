@@ -17,6 +17,7 @@ class_name Ability extends Node
 	"Crit_Damage": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
 	"Pierce": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
 }
+var level: int = 1
 
 var common_upgrades: Array[AbilityUpgradeResource] = []
 var uncommon_upgrades: Array[AbilityUpgradeResource] = []

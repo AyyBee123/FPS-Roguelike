@@ -69,6 +69,10 @@ func select_passive():
 
 func select_ability():
 	ability = AbilityPool.get_ability()
+	if player.number_of_abilities >= 3:
+		while not player_abilities.has(ability.ability_name):
+			ability = AbilityPool.get_ability()
+	print(ability.ability_name)
 	add_child(ability)
 	for a in player_abilities:
 		if a == ability.ability_name: # set a flag if the player already has the ability

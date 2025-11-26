@@ -30,6 +30,7 @@ script = ExtResource("2_ckqsu")
 rarity = 1
 stat = "Size"
 amount = 20.0
+type = "+"
 metadata/_custom_type_script = "uid://crdmjkiq4812g"
 
 [sub_resource type="Resource" id="Resource_hseq8"]

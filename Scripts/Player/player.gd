@@ -11,9 +11,11 @@ signal weapon_fired(projectile, damage)
 @onready var abilities = %Abilities
 @onready var upgrade = %Upgrade
 @onready var arm = %Arm
+@onready var ability_slots = %"Ability Slots"
 
 const Stats = preload("uid://d0a7frb8gvg68")
 const PASSIVE_MENU = preload("uid://clamkav36kau4")
+const ABILITY_SLOT = preload("uid://y78kmes1pij6")
 
 var stats: Stats
 var XP_NEEDED: float = 5
@@ -43,9 +45,15 @@ var LUCK_MULTIPLIER: float:
 var current_jumps: int = 0 # the current number of extra jumps that can be used
 var pickup = null
 var nearby_pickups: Array = []
+var number_of_abilities: int:
+	get:
+		return abilities.get_child_count()
 
 func _init():
 	stats = Stats.new()
+
+func _ready():
+	update_ability_slots()
 
 func _physics_process(delta):
 	# add gravity
@@ -140,7 +148,18 @@ func get_upgrade(_upgrade):
 			for ability in abilities.get_children():
 				if _upgrade.ability_name == ability.ability_name:
 					ability.add_stats(_upgrade.upgrades_to_add) # add the stats to the existing ability
+					ability.level += 1 # level up ability after it recieves the upgrade
 					break
+		update_ability_slots()
+
+func update_ability_slots():
+	for slot in ability_slots.get_children():
+		slot.queue_free()
+	
+	for ability in abilities.get_children():
+		var slot = ABILITY_SLOT.instantiate()
+		slot.ability = ability
+		ability_slots.add_child(slot)
 
 func _on_pickup_detect_body_entered(body):
 	nearby_pickups.append(body)

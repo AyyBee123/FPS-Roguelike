@@ -116,4 +116,4 @@ enemies = Array[ExtResource("6_l7ek2")]([SubResource("Resource_7rivk"), SubResou
 
 [node name="XP" parent="." instance=ExtResource("9_7rivk")]
 transform = Transform3D(0.99984646, -0.01752221, 0, 0.01752221, 0.99984646, 0, 0, 0, 1, 4.625416, 0.4254563, -0.96837187)
-xp_amount = 45
+xp_amount = 1000
