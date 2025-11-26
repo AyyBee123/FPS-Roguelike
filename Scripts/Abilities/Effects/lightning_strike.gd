@@ -1,6 +1,6 @@
 extends Ability
 
-const LIGHTNING = preload("uid://ion0xy4nx46o")
+@export var LIGHTNING: PackedScene
 
 const DAMAGE_MULTIPLIER: float = 0.5
 

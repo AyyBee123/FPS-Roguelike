@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://cdthgqjlxd3jl"]
+[gd_scene load_steps=13 format=3 uid="uid://cdthgqjlxd3jl"]
 
 [ext_resource type="Script" uid="uid://oa2d13pl0nc8" path="res://Scripts/Abilities/Effects/circle_of_light.gd" id="1_srhmp"]
 [ext_resource type="Script" uid="uid://crdmjkiq4812g" path="res://Scripts/Resources/ability_upgrade_resource.gd" id="2_3yyif"]
 [ext_resource type="Texture2D" uid="uid://bx8cdbdlyy0i8" path="res://Assets/Sprites/Circle of Light.png" id="2_cbq7c"]
+[ext_resource type="PackedScene" uid="uid://brrube6jjie8x" path="res://Scenes/VFX/aura.tscn" id="2_g752j"]
 
 [sub_resource type="Resource" id="Resource_cbq7c"]
 script = ExtResource("2_3yyif")
@@ -68,6 +69,7 @@ metadata/_custom_type_script = "uid://crdmjkiq4812g"
 
 [node name="Circle of Light" type="Node"]
 script = ExtResource("1_srhmp")
+AURA = ExtResource("2_g752j")
 icon = ExtResource("2_cbq7c")
 ability_name = "Circle of Light"
 description = "Creates an aura around projectiles that damages enemies."

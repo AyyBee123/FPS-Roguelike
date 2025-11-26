@@ -1,6 +1,6 @@
 extends Ability
 
-const AURA = preload("uid://brrube6jjie8x")
+@export var AURA: PackedScene
 
 const DAMAGE_MULTIPLIER: float = 0.75
 

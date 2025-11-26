@@ -1,6 +1,6 @@
 extends Ability
 
-const MICRO_MISSILE = preload("uid://c8solqmwcm8ub")
+@export var MICRO_MISSILE: PackedScene
 
 const DAMAGE_MULTIPLIER: float = 0.5
 
