@@ -1,5 +1,6 @@
 class_name Passive extends Node
 
+@export var icon: Texture
 @export var stat_name: String
 @export var stats: Array[StatType]
 

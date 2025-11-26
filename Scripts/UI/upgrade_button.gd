@@ -5,6 +5,7 @@ extends "res://Scripts/UI/button.gd"
 @onready var passive_name: Label = %Name
 @onready var description: Label = %Description
 @onready var rarity: Label = %Rarity
+@onready var upgrade_icon = %Icon
 
 var passives: Array[Passive] = []
 var ability: Ability
@@ -34,7 +35,10 @@ func select_passive():
 	passives.append(passive)
 	add_child(passive)
 	menu.current_list.append(passive.stat_name)
+	
+	upgrade_icon.texture = passive.icon
 	passive_name.text = "%s Module" % passive.stat_name
+	
 	for stat in passive.stats_to_give:
 		var values: Array = [format_number(stat.amount), stat.stat.replace("_", " ")]
 		match stat.type:
@@ -45,6 +49,7 @@ func select_passive():
 			"flat":
 				description.text += "+%s %s" % values
 		description.text += "\n"
+	
 	match passive.rarity:
 		0:
 			rarity.text = "Common"
@@ -88,6 +93,8 @@ func select_ability():
 	for a in player_abilities:
 		if a == ability.ability_name: # set a flag if the player already has the ability
 			ability.ability_exists = true
+	
+	upgrade_icon.texture = ability.icon
 	passive_name.text = ability.ability_name
 	
 	if ability.ability_exists:
