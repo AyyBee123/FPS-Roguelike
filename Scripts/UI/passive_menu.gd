@@ -9,6 +9,7 @@ signal upgrade_selected(upgrade)
 var base_resolution = Vector2(1920, 1080)
 var tween: Tween
 var player: Player
+var current_list: Array = [] # the current list of passive and ability upgrades
 
 func _ready():
 	get_tree().paused = true

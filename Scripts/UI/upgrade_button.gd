@@ -27,8 +27,13 @@ func get_abilities():
 
 func select_passive():
 	var passive: Passive = PassivePool.get_stat()
+	
+	while menu.current_list.has(passive.stat_name):
+		passive = PassivePool.get_stat()
+	
 	passives.append(passive)
 	add_child(passive)
+	menu.current_list.append(passive.stat_name)
 	passive_name.text = "%s Module" % passive.stat_name
 	for stat in passive.stats_to_give:
 		var values: Array = [format_number(stat.amount), stat.stat.replace("_", " ")]
@@ -69,11 +74,17 @@ func select_passive():
 
 func select_ability():
 	ability = AbilityPool.get_ability()
+	
+	# if the player has 3 (or more) abilities, only show upgrades for the existing ones
 	if player.number_of_abilities >= 3:
-		while not player_abilities.has(ability.ability_name):
+		while not player_abilities.has(ability.ability_name) or menu.current_list.has(ability.ability_name):
 			ability = AbilityPool.get_ability()
-	print(ability.ability_name)
+	else:
+		while menu.current_list.has(ability.ability_name):
+			ability = AbilityPool.get_ability()
+	
 	add_child(ability)
+	menu.current_list.append(ability.ability_name)
 	for a in player_abilities:
 		if a == ability.ability_name: # set a flag if the player already has the ability
 			ability.ability_exists = true
