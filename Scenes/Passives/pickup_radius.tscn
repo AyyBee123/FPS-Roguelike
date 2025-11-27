@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://b3u2c1s6odbpb"]
+[gd_scene load_steps=8 format=3 uid="uid://b3u2c1s6odbpb"]
 
 [ext_resource type="Script" uid="uid://ch5j4quhwxnab" path="res://Scripts/Passives/passive.gd" id="1_d2cnk"]
+[ext_resource type="Texture2D" uid="uid://d1lj3votxpsf1" path="res://Assets/Sprites/Pickup Radius Passive.png" id="2_bp1di"]
 [ext_resource type="Script" uid="uid://cch88af2msv8m" path="res://Scripts/Resources/stat_type.gd" id="2_fm3ep"]
 
 [sub_resource type="Resource" id="Resource_ppxdu"]
@@ -36,6 +37,7 @@ metadata/_custom_type_script = "uid://cch88af2msv8m"
 
 [node name="Pickup Radius" type="Node"]
 script = ExtResource("1_d2cnk")
+icon = ExtResource("2_bp1di")
 stat_name = "Pickup"
 stats = Array[ExtResource("2_fm3ep")]([SubResource("Resource_ppxdu"), SubResource("Resource_67wgr"), SubResource("Resource_xdqc8"), SubResource("Resource_7n0om")])
 metadata/_custom_type_script = "uid://ch5j4quhwxnab"

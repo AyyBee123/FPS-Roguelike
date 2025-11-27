@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dw041uajaa1gg"]
+[gd_scene load_steps=9 format=3 uid="uid://dw041uajaa1gg"]
 
 [ext_resource type="Script" uid="uid://ch5j4quhwxnab" path="res://Scripts/Passives/passive.gd" id="1_o2jml"]
+[ext_resource type="Texture2D" uid="uid://col04cv6hct70" path="res://Assets/Sprites/Fire Rate Passive.png" id="2_bjgnm"]
 [ext_resource type="Script" uid="uid://cch88af2msv8m" path="res://Scripts/Resources/stat_type.gd" id="2_do25v"]
 
 [sub_resource type="Resource" id="Resource_ppxdu"]
@@ -44,6 +45,7 @@ metadata/_custom_type_script = "uid://cch88af2msv8m"
 
 [node name="Fire Rate" type="Node"]
 script = ExtResource("1_o2jml")
+icon = ExtResource("2_bjgnm")
 stat_name = "Fire Rate"
 stats = Array[ExtResource("2_do25v")]([SubResource("Resource_ppxdu"), SubResource("Resource_bjgnm"), SubResource("Resource_tl5ma"), SubResource("Resource_do25v"), SubResource("Resource_aon2g")])
 metadata/_custom_type_script = "uid://ch5j4quhwxnab"

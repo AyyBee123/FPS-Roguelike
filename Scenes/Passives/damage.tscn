@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://ck8e0xlkfeop6"]
+[gd_scene load_steps=9 format=3 uid="uid://ck8e0xlkfeop6"]
 
 [ext_resource type="Script" uid="uid://ch5j4quhwxnab" path="res://Scripts/Passives/passive.gd" id="1_2aaxo"]
+[ext_resource type="Texture2D" uid="uid://tij73uj8m6w4" path="res://Assets/Sprites/Damage Passive.png" id="2_dqi6l"]
 [ext_resource type="Script" uid="uid://cch88af2msv8m" path="res://Scripts/Resources/stat_type.gd" id="2_ppxdu"]
 
 [sub_resource type="Resource" id="Resource_ppxdu"]
@@ -44,6 +45,7 @@ metadata/_custom_type_script = "uid://cch88af2msv8m"
 
 [node name="Damage" type="Node"]
 script = ExtResource("1_2aaxo")
+icon = ExtResource("2_dqi6l")
 stat_name = "Impact"
 stats = Array[ExtResource("2_ppxdu")]([SubResource("Resource_ppxdu"), SubResource("Resource_hs0c2"), SubResource("Resource_qxeiy"), SubResource("Resource_toky2"), SubResource("Resource_kncgy")])
 metadata/_custom_type_script = "uid://ch5j4quhwxnab"
