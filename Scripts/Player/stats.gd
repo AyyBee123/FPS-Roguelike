@@ -21,7 +21,6 @@ var stats: Dictionary = {
 	"Range": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
 	"Speed": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
 	"Splash_Radius": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
-	"Size": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
 	"Projectile_Count": { "base": 1, "+": 0, "x": 1, "flat": 0 },
 	"Crit_Chance": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
 	"Crit_Damage": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },

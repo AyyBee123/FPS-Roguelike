@@ -9,7 +9,6 @@ func _on_shoot(projectile: Variant, damage: float):
 	
 	var missile = MICRO_MISSILE.instantiate()
 	missile.damage = get_stat_value("Damage", damage * DAMAGE_MULTIPLIER)
-	missile.scale = Vector3.ONE * get_stat_value("Size")
 	missile.speed = stats["Speed"]["base"]
 	missile.player = player
 	get_tree().current_scene.add_child(missile)
