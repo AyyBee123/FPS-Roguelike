@@ -46,7 +46,7 @@ base_fire_rate = 1.333
 base_range = 50.0
 base_speed = 400.0
 base_projectile_count = 6
-spread = 3.0
+spread = 4.0
 muzzle = ExtResource("2_6wvlo")
 
 [node name="MeshInstance" parent="." index="0"]
