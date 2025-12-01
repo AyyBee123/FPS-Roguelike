@@ -143,21 +143,21 @@ radius = 0.115
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gaarg"]
 shader = ExtResource("2_meyjr")
 
-[sub_resource type="Gradient" id="Gradient_p8td0"]
+[sub_resource type="Gradient" id="Gradient_c2i02"]
 colors = PackedColorArray(1, 0.46949375, 0.40143526, 1, 1, 0.47058824, 0.4, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_67282"]
-gradient = SubResource("Gradient_p8td0")
+gradient = SubResource("Gradient_c2i02")
 
-[sub_resource type="Curve" id="Curve_ywotn"]
+[sub_resource type="Curve" id="Curve_gwmwv"]
 bake_resolution = 16
 _data = [Vector2(0, 1), 0.0, -1.0004287, 0, 0, Vector2(1, 0), -1.0011239, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_vmedk"]
-curve = SubResource("Curve_ywotn")
+curve = SubResource("Curve_gwmwv")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_yksis"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p8td0"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("3_c2i02")
@@ -169,7 +169,7 @@ shader_parameter/emmission_transform = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 
 shader_parameter/flags = 44
 
 [sub_resource type="QuadMesh" id="QuadMesh_4n5rq"]
-material = SubResource("ShaderMaterial_yksis")
+material = SubResource("ShaderMaterial_p8td0")
 
 [node name="Micro Missile" type="RigidBody3D" groups=["Micro Missile"]]
 collision_layer = 0

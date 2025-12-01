@@ -70,6 +70,7 @@ particles_anim_loop = false
 [sub_resource type="QuadMesh" id="QuadMesh_hixqx"]
 
 [node name="Muzzle Flash" type="Node3D"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 script = ExtResource("1_fy2cs")
 
 [node name="MuzzlePlanes" type="GPUParticles3D" parent="."]
@@ -77,10 +78,11 @@ unique_name_in_owner = true
 material_override = SubResource("StandardMaterial3D_37gr2")
 emitting = false
 amount = 1
-lifetime = 0.09999999999999999
+lifetime = 0.1
 one_shot = true
 randomness = 1.0
 fixed_fps = 60
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_hixqx")
 draw_pass_1 = ExtResource("2_porkb")
 
@@ -89,10 +91,11 @@ unique_name_in_owner = true
 material_override = SubResource("StandardMaterial3D_y1uap")
 emitting = false
 amount = 1
-lifetime = 0.09999999999999999
+lifetime = 0.1
 one_shot = true
 randomness = 1.0
 fixed_fps = 60
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_hixqx")
 draw_pass_1 = ExtResource("4_vu74h")
 
@@ -101,10 +104,11 @@ unique_name_in_owner = true
 material_override = SubResource("StandardMaterial3D_fy2cs")
 emitting = false
 amount = 1
-lifetime = 0.09999999999999999
+lifetime = 0.1
 one_shot = true
 randomness = 1.0
 fixed_fps = 60
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_hixqx")
 draw_pass_1 = SubResource("QuadMesh_hixqx")
 

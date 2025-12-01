@@ -10,8 +10,10 @@ class_name Arm extends Node3D
 @export var base_splash_radius: float = 1.0 # the splash radius of splash effects from the arm
 @export var base_projectile_count: int = 1 # number of projectiles shot from the arm at once
 @export var base_pierce: int = 0 # number of enemies the projectile can pass through before being destroyed
+@export var spread: float = 0.0 # the random spread amount of the projectile(s) in degrees
 @export var shoot_animation: String = "Shoot"
 @export var equip_animation: String = "Activate"
+@export var muzzle: PackedScene
 
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 @onready var bullet_point: Marker3D = %"Bullet Point"
@@ -59,10 +61,13 @@ func shoot():
 	fire_rate_timer = 1.0 / fire_rate
 	animation_player.stop()
 	animation_player.play(shoot_animation)
+	if muzzle:
+		bullet_point.add_child(muzzle.instantiate())
 	
 	var camera_collision = get_camera_collision()
 	
-	launch_projectile(camera_collision)
+	for i in range(projectile_count):
+		launch_projectile(camera_collision)
 
 func get_camera_collision() -> Vector3:
 	var camera = get_viewport().get_camera_3d()
@@ -82,8 +87,22 @@ func get_camera_collision() -> Vector3:
 		return ray_end
 
 func launch_projectile(point: Vector3):
+	var spread_rad: float = deg_to_rad(spread)
 	var direction = (point - bullet_point.get_global_transform().origin).normalized()
 	var proj = projectile.instantiate()
+	
+	# get random angle in a uniform distribution
+	var cos_angle = lerp(cos(spread_rad), 1.0, randf())
+	var angle = acos(cos_angle)
+	
+	# get a random perpendicular axis
+	var perp = direction.cross(Vector3.UP)
+	if perp.length() < 0.001:
+		perp = direction.cross(Vector3.RIGHT)
+	perp = perp.normalized()
+	perp = perp.rotated(direction, randf() * TAU)
+	
+	direction = direction.rotated(perp, angle).normalized()
 	
 	proj.damage = damage
 	proj.speed = speed

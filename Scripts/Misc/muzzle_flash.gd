@@ -5,6 +5,8 @@ extends Node3D
 @onready var flash: GPUParticles3D = %Flash
 
 func _ready():
+	randomize()
+	rotate_z(randf_range(0, TAU))
 	muzzle_planes.emitting = true
 	muzzle_cone.emitting = true
 	flash.emitting = true
