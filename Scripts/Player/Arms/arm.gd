@@ -9,7 +9,6 @@ class_name Arm extends Node3D
 @export var base_speed: float # velocity of the projectile shot by the arm
 @export var base_splash_radius: float = 1.0 # the splash radius of splash effects from the arm
 @export var base_projectile_count: int = 1 # number of projectiles shot from the arm at once
-@export var base_pierce: int = 0 # number of enemies the projectile can pass through before being destroyed
 @export var spread: float = 0.0 # the random spread amount of the projectile(s) in degrees
 @export var shoot_animation: String = "Shoot"
 @export var equip_animation: String = "Activate"
@@ -38,9 +37,6 @@ var splash_radius: float:
 var projectile_count: int:
 	get:
 		return get_stat(base_projectile_count, "Projectile_Count")
-var pierce: int:
-	get:
-		return get_stat(base_pierce, "Pierce")
 
 var fire_rate_timer: float = 0.0
 var t: float = 0.0
@@ -99,10 +95,9 @@ func launch_projectile(point: Vector3):
 	var perp = direction.cross(Vector3.UP)
 	if perp.length() < 0.001:
 		perp = direction.cross(Vector3.RIGHT)
-	perp = perp.normalized()
-	perp = perp.rotated(direction, randf() * TAU)
+	perp = perp.rotated(direction, randf() * TAU).normalized()
 	
-	direction = direction.rotated(perp, angle).normalized()
+	direction = direction.rotated(perp, angle)
 	
 	proj.damage = damage
 	proj.speed = speed

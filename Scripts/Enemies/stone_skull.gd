@@ -10,7 +10,7 @@ extends Enemy
 @export var projectile_range: float
 
 const STONE_SKULL = preload("uid://crn3ys871kjtr")
-const MUZZLE_FLASH = preload("uid://dphgx1a3xboty")
+const MUZZLE_FLASH = preload("uid://bx1wgwev3fm10")
 const STONE_SKULL_PROJECTILE = preload("uid://bvanm1m1uxxy7")
 
 var player_pos: Vector3

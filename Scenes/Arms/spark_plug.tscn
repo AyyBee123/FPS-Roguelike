@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://coqndvgnv7fvf"]
+
+[ext_resource type="PackedScene" uid="uid://ou4i562h0h6y" path="res://Scenes/Arms/arm_template.tscn" id="1_ibbgq"]
+[ext_resource type="ArrayMesh" uid="uid://0iivrinxo8wy" path="res://Assets/Arms/Spark Plug.tres" id="2_8grd8"]
+
+[node name="Spark Plug" instance=ExtResource("1_ibbgq")]
+base_damage = 6.0
+base_fire_rate = 3.0
+base_range = 100.0
+
+[node name="MeshInstance" parent="." index="0"]
+mesh = ExtResource("2_8grd8")
+
+[node name="Bullet Point" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00013876, 0.0001347214, -0.45958585)

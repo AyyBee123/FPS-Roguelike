@@ -1,20 +1,18 @@
-[gd_scene load_steps=18 format=3 uid="uid://dphgx1a3xboty"]
+[gd_scene load_steps=15 format=3 uid="uid://bx1wgwev3fm10"]
 
-[ext_resource type="Texture2D" uid="uid://b4u67bpc6xv53" path="res://Assets/Textures/Muzzle.png" id="1_5ait0"]
-[ext_resource type="Script" uid="uid://dje4smojlqj3r" path="res://Scripts/Misc/muzzle_flash.gd" id="1_fy2cs"]
-[ext_resource type="ArrayMesh" uid="uid://ilughbwg8anx" path="res://Assets/VFX/Muzzle.tres" id="2_porkb"]
-[ext_resource type="Texture2D" uid="uid://dyj4i3hlby14b" path="res://Assets/Textures/Muzzle Cone.png" id="3_37gr2"]
-[ext_resource type="ArrayMesh" uid="uid://nup6lfpy4178" path="res://Assets/VFX/Muzzle Cone.tres" id="4_vu74h"]
-[ext_resource type="Texture2D" uid="uid://bjr6144wf2yev" path="res://Assets/Textures/Flash.png" id="5_vu74h"]
+[ext_resource type="Script" uid="uid://dje4smojlqj3r" path="res://Scripts/Misc/muzzle_flash.gd" id="1_s6f50"]
+[ext_resource type="Texture2D" uid="uid://dyj4i3hlby14b" path="res://Assets/Textures/Muzzle Cone.png" id="4_2iwtw"]
+[ext_resource type="ArrayMesh" uid="uid://nup6lfpy4178" path="res://Assets/VFX/Muzzle Cone.tres" id="5_ejc64"]
+[ext_resource type="Texture2D" uid="uid://bjr6144wf2yev" path="res://Assets/Textures/Flash.png" id="6_x11ej"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_37gr2"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y1uap"]
 transparency = 1
 blend_mode = 1
 cull_mode = 2
 shading_mode = 0
 vertex_color_use_as_albedo = true
 vertex_color_is_srgb = true
-albedo_texture = ExtResource("1_5ait0")
+albedo_texture = ExtResource("4_2iwtw")
 
 [sub_resource type="Curve" id="Curve_fy2cs"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -44,15 +42,6 @@ color = Color(0.9872002, 0.8100797, 0.5833688, 1)
 alpha_curve = SubResource("CurveTexture_hixqx")
 emission_curve = SubResource("CurveTexture_lqgie")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y1uap"]
-transparency = 1
-blend_mode = 1
-cull_mode = 2
-shading_mode = 0
-vertex_color_use_as_albedo = true
-vertex_color_is_srgb = true
-albedo_texture = ExtResource("3_37gr2")
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fy2cs"]
 transparency = 1
 blend_mode = 1
@@ -60,7 +49,7 @@ cull_mode = 2
 shading_mode = 0
 vertex_color_use_as_albedo = true
 vertex_color_is_srgb = true
-albedo_texture = ExtResource("5_vu74h")
+albedo_texture = ExtResource("6_x11ej")
 billboard_mode = 3
 billboard_keep_scale = true
 particles_anim_h_frames = 1
@@ -71,22 +60,11 @@ particles_anim_loop = false
 
 [node name="Muzzle Flash" type="Node3D"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
-script = ExtResource("1_fy2cs")
-
-[node name="MuzzlePlanes" type="GPUParticles3D" parent="."]
-unique_name_in_owner = true
-material_override = SubResource("StandardMaterial3D_37gr2")
-amount = 1
-lifetime = 0.1
-randomness = 1.0
-fixed_fps = 60
-local_coords = true
-process_material = SubResource("ParticleProcessMaterial_hixqx")
-draw_pass_1 = ExtResource("2_porkb")
+script = ExtResource("1_s6f50")
 
 [node name="MuzzleCone" type="GPUParticles3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_y1uap")
 amount = 1
 lifetime = 0.1
@@ -94,7 +72,7 @@ randomness = 1.0
 fixed_fps = 60
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_hixqx")
-draw_pass_1 = ExtResource("4_vu74h")
+draw_pass_1 = ExtResource("5_ejc64")
 
 [node name="Flash" type="GPUParticles3D" parent="."]
 unique_name_in_owner = true
@@ -106,5 +84,3 @@ fixed_fps = 60
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_hixqx")
 draw_pass_1 = SubResource("QuadMesh_hixqx")
-
-[connection signal="finished" from="MuzzlePlanes" to="." method="_on_muzzle_planes_finished"]
