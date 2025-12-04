@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://djses6pnooexe"]
 
 [ext_resource type="Script" uid="uid://wtoa66s2o53o" path="res://Scripts/Player/Arms/arm.gd" id="1_ynr7b"]
-[ext_resource type="PackedScene" uid="uid://coi77x4y3jcif" path="res://Scenes/Projectiles/Player/projectile.tscn" id="2_76a55"]
+[ext_resource type="PackedScene" uid="uid://coi77x4y3jcif" path="res://Scenes/Projectiles/Arm/projectile.tscn" id="2_76a55"]
 [ext_resource type="ArrayMesh" uid="uid://cauka6icgnb57" path="res://Assets/Arms/blasterB.tres" id="3_ynr7b"]
 
 [sub_resource type="Animation" id="Animation_oaorf"]

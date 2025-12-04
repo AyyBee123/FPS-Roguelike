@@ -13,6 +13,7 @@ class_name Arm extends Node3D
 @export var shoot_animation: String = "Shoot"
 @export var equip_animation: String = "Activate"
 @export var muzzle: PackedScene
+@export var muzzle_color: Color = Color("fccf95")
 
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 @onready var bullet_point: Marker3D = %"Bullet Point"
@@ -58,7 +59,9 @@ func shoot():
 	animation_player.stop()
 	animation_player.play(shoot_animation)
 	if muzzle:
-		bullet_point.add_child(muzzle.instantiate())
+		var m = muzzle.instantiate()
+		m.set_color(muzzle_color)
+		bullet_point.add_child(m)
 	
 	var camera_collision = get_camera_collision()
 	
