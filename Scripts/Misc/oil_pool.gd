@@ -14,6 +14,7 @@ var range: float
 var player: Player
 
 func _ready():
+	scale = Vector3.ONE * player.stats.get_stat("Splash_Radius")
 	oil_pool.scale = Vector3(0, 1, 0)
 	tween = get_tree().create_tween()
 	tween.tween_property(oil_pool, "scale:x", 1, 0.1)
