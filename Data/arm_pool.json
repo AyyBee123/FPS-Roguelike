@@ -1,10 +1,6 @@
 [
 	{
-		"path": "res://Scenes/Arms/arm_template.tscn",
-		"rarity": 0
-	},
-	{
-		"path": "res://Scenes/Arms/ph_arm2.tscn",
+		"path": "res://Scenes/Arms/oil_spill.tscn",
 		"rarity": 1
 	},
 	{
@@ -17,5 +13,9 @@
 	{
 		"path": "res://Scenes/Arms/stick.tscn",
 		"rarity": 2
+	},
+	{
+		"path": "res://Scenes/Arms/Template/arm_template.tscn",
+		"rarity": 0
 	}
 ]

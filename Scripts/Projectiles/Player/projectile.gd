@@ -1,7 +1,7 @@
 extends RigidBody3D
 
-@onready var collision_shape = %CollisionShape
-@onready var lifetime = %Lifetime
+@onready var collision_shape: CollisionShape3D = %CollisionShape
+@onready var lifetime: Timer = %Lifetime
 
 var damage: float
 var speed: float

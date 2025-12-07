@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://nocjsr8ynhmk"]
+
+[ext_resource type="Script" uid="uid://qap15jej2dv6" path="res://Scripts/Misc/oil_pool.gd" id="1_2oasf"]
+[ext_resource type="ArrayMesh" uid="uid://my16hc5p4y4f" path="res://Assets/Misc/Oil Pool.tres" id="1_7oh8l"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_2oasf"]
+height = 3.0
+radius = 4.5
+
+[node name="Oil Pool" type="Node3D"]
+script = ExtResource("1_2oasf")
+
+[node name="OilPool" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+mesh = ExtResource("1_7oh8l")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CylinderShape3D_2oasf")
+
+[node name="Tick Rate" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[node name="Lifetime" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
+[connection signal="timeout" from="Tick Rate" to="." method="_on_tick_rate_timeout"]
+[connection signal="timeout" from="Lifetime" to="." method="_on_lifetime_timeout"]

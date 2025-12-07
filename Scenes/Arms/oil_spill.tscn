@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dajqdf341ehwu"]
+[gd_scene load_steps=7 format=3 uid="uid://dajqdf341ehwu"]
 
-[ext_resource type="PackedScene" uid="uid://ou4i562h0h6y" path="res://Scenes/Arms/arm_template.tscn" id="1_2xsgs"]
+[ext_resource type="PackedScene" uid="uid://ou4i562h0h6y" path="res://Scenes/Arms/Template/arm_template.tscn" id="1_2xsgs"]
 [ext_resource type="ArrayMesh" uid="uid://cd1rpjphiexw4" path="res://Assets/Arms/Oil Spill/Body.tres" id="1_h7p05"]
 [ext_resource type="ArrayMesh" uid="uid://ccsxofr4mw787" path="res://Assets/Arms/Oil Spill/Oil.tres" id="2_2xsgs"]
+[ext_resource type="PackedScene" uid="uid://vnpmfor52wrk" path="res://Scenes/Projectiles/Arm/oil ball.tscn" id="2_p6h4n"]
 [ext_resource type="ArrayMesh" uid="uid://b2wywn6a2r83y" path="res://Assets/Arms/Oil Spill/Tube.tres" id="3_p6h4n"]
 
 [sub_resource type="Skin" id="Skin_p6h4n"]
@@ -48,9 +49,11 @@ bind/11/pose = Transform3D(-3.1527433, 1.6925225, 9.337856, 6.8337502, 7.2323627
 [node name="Oil Spill" instance=ExtResource("1_2xsgs")]
 transform = Transform3D(1.333, 0, 0, 0, 1.333, 0, 0, 0, 1.333, 0, 0, 0)
 rarity = 1
+projectile = ExtResource("2_p6h4n")
 base_damage = 3.0
 base_fire_rate = 1.333
-base_speed = 50.0
+base_range = 2000.0
+base_speed = 30.0
 
 [node name="MeshInstance" parent="." index="0"]
 mesh = ExtResource("1_h7p05")

@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://vnpmfor52wrk"]
+
+[ext_resource type="Script" uid="uid://cmmhcrcin5758" path="res://Scripts/Projectiles/Player/oil_ball.gd" id="1_h8s8y"]
+[ext_resource type="PackedScene" uid="uid://nocjsr8ynhmk" path="res://Scenes/Misc/oil_pool.tscn" id="2_0gga4"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1bece"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1bece"]
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.12591079, 0.12591085, 0.12591082, 1)
+roughness = 0.5
+
+[sub_resource type="SphereMesh" id="SphereMesh_1bece"]
+material = SubResource("StandardMaterial3D_1bece")
+radius = 1.0
+height = 2.0
+
+[node name="Oil Ball" type="RigidBody3D"]
+top_level = true
+collision_layer = 0
+collision_mask = 5
+mass = 0.1
+gravity_scale = 2.0
+continuous_cd = true
+contact_monitor = true
+max_contacts_reported = 10
+script = ExtResource("1_h8s8y")
+oil_pool = ExtResource("2_0gga4")
+
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+shape = SubResource("SphereShape3D_1bece")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+mesh = SubResource("SphereMesh_1bece")
+
+[node name="Lifetime" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

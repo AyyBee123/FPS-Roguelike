@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://beggit6q76e38"]
 
-[ext_resource type="PackedScene" uid="uid://ou4i562h0h6y" path="res://Scenes/Arms/arm_template.tscn" id="1_cqp5a"]
+[ext_resource type="PackedScene" uid="uid://ou4i562h0h6y" path="res://Scenes/Arms/Template/arm_template.tscn" id="1_cqp5a"]
 [ext_resource type="PackedScene" uid="uid://dphgx1a3xboty" path="res://Scenes/VFX/muzzle_flash.tscn" id="2_6wvlo"]
 [ext_resource type="ArrayMesh" uid="uid://dcyw30cif3rra" path="res://Assets/Arms/Shotarm.tres" id="2_qdvhp"]
 [ext_resource type="PackedScene" uid="uid://chf78mk787gvv" path="res://Scenes/Projectiles/Arm/pellet.tscn" id="2_qf0um"]

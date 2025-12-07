@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://coqndvgnv7fvf"]
 
-[ext_resource type="PackedScene" uid="uid://ou4i562h0h6y" path="res://Scenes/Arms/arm_template.tscn" id="1_ibbgq"]
+[ext_resource type="PackedScene" uid="uid://ou4i562h0h6y" path="res://Scenes/Arms/Template/arm_template.tscn" id="1_ibbgq"]
 [ext_resource type="ArrayMesh" uid="uid://0iivrinxo8wy" path="res://Assets/Arms/Spark Plug.tres" id="2_8grd8"]
 [ext_resource type="PackedScene" uid="uid://dphgx1a3xboty" path="res://Scenes/VFX/muzzle_flash.tscn" id="2_kulr0"]
 
