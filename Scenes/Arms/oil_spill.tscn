@@ -1,0 +1,156 @@
+[gd_scene load_steps=6 format=3 uid="uid://dajqdf341ehwu"]
+
+[ext_resource type="PackedScene" uid="uid://ou4i562h0h6y" path="res://Scenes/Arms/arm_template.tscn" id="1_2xsgs"]
+[ext_resource type="ArrayMesh" uid="uid://cd1rpjphiexw4" path="res://Assets/Arms/Oil Spill/Body.tres" id="1_h7p05"]
+[ext_resource type="ArrayMesh" uid="uid://ccsxofr4mw787" path="res://Assets/Arms/Oil Spill/Oil.tres" id="2_2xsgs"]
+[ext_resource type="ArrayMesh" uid="uid://b2wywn6a2r83y" path="res://Assets/Arms/Oil Spill/Tube.tres" id="3_p6h4n"]
+
+[sub_resource type="Skin" id="Skin_p6h4n"]
+resource_name = "Skin"
+bind_count = 12
+bind/0/name = &"Bone.010"
+bind/0/bone = -1
+bind/0/pose = Transform3D(-0.59476286, 3.1551764, 9.470538, 9.74344, 2.2464864, -0.1365312, -2.1706214, 9.219442, -3.2078407, -0.70121014, 0.6425459, 0.23351878)
+bind/1/name = &"Bone.011"
+bind/1/bone = -1
+bind/1/pose = Transform3D(-0.2010686, -0.2715541, -9.994288, -9.99224, 0.34404668, 0.1916796, 0.3386451, 9.990389, -0.27826115, -0.38801387, 0.056699995, 1.4338413)
+bind/2/name = &"Bone"
+bind/2/bone = -1
+bind/2/pose = Transform3D(-0.46210936, -9.947094, 0.9174749, -7.848565, 0.9297113, 6.1266303, -6.1795177, -0.4369693, -7.850006, -1.4064307, 0.28098676, -0.38758022)
+bind/3/name = &"Bone.001"
+bind/3/bone = -1
+bind/3/pose = Transform3D(-2.082072, -9.548977, 2.1170745, -6.6176267, 2.9691727, 6.8841095, -7.2022185, 0.03232025, -6.9373603, -1.356601, 0.44272804, -0.32131034)
+bind/4/name = &"Bone.002"
+bind/4/bone = -1
+bind/4/pose = Transform3D(-3.6857095, -8.27193, 4.2415423, -4.429607, 5.5742416, 7.0218477, -8.172764, 0.7092122, -5.7186456, -1.2236983, 0.6553635, -0.25450763)
+bind/5/name = &"Bone.003"
+bind/5/bone = -1
+bind/5/pose = Transform3D(-4.296537, -7.36551, 5.223886, -3.5186787, 6.6934237, 6.5434656, -8.316166, 0.97330624, -5.467541, -1.1441305, 0.63696647, -0.22954594)
+bind/6/name = &"Bone.004"
+bind/6/bone = -1
+bind/6/pose = Transform3D(-4.9958014, -6.184293, 6.0660057, -3.36342, 7.837857, 5.2206693, -7.9830637, 0.56788933, -5.995676, -1.0609161, 0.62457156, -0.24925765)
+bind/7/name = &"Bone.005"
+bind/7/bone = -1
+bind/7/pose = Transform3D(-4.962694, -6.29033, 5.983592, -2.9290483, 7.701235, 5.6667156, -8.172656, 1.0595942, -5.6643553, -1.0661027, 0.35456088, -0.22583497)
+bind/8/name = &"Bone.006"
+bind/8/bone = -1
+bind/8/pose = Transform3D(-5.1386976, -5.4747233, 6.6046295, -1.8386971, 8.222858, 5.3855186, -8.379315, 1.5530638, -5.2321134, -1.0456548, 0.24070555, -0.22278307)
+bind/9/name = &"Bone.007"
+bind/9/bone = -1
+bind/9/pose = Transform3D(-5.210563, -4.539649, 7.227831, 0.21741945, 8.394901, 5.4293985, -8.53245, 2.9861703, -4.2755146, -1.0393432, 0.12928629, -0.21633083)
+bind/10/name = &"Bone.008"
+bind/10/bone = -1
+bind/10/pose = Transform3D(-4.6488514, -1.2786465, 8.760889, 2.7454062, 9.199233, 2.7994385, -8.417295, 3.7066386, -3.925545, -0.989721, 0.32990137, -0.20679729)
+bind/11/name = &"Bone.009"
+bind/11/bone = -1
+bind/11/pose = Transform3D(-3.1527433, 1.6925225, 9.337856, 6.8337502, 7.2323627, 0.9963901, -6.584832, 6.695396, -3.4368033, -0.8693785, 0.54033667, -0.056682803)
+
+[node name="Oil Spill" instance=ExtResource("1_2xsgs")]
+transform = Transform3D(1.333, 0, 0, 0, 1.333, 0, 0, 0, 1.333, 0, 0, 0)
+rarity = 1
+base_damage = 3.0
+base_fire_rate = 1.333
+base_speed = 50.0
+
+[node name="MeshInstance" parent="." index="0"]
+mesh = ExtResource("1_h7p05")
+
+[node name="Armature" type="Node3D" parent="." index="1"]
+transform = Transform3D(-0.100000024, 0, -3.2584143e-08, 0, 0.100000024, 0, 3.2584143e-08, 0, -0.100000024, -0.009195503, -0.14420485, -0.03514993)
+
+[node name="Skeleton3D" type="Skeleton3D" parent="Armature" index="0"]
+bones/0/name = "Bone.010"
+bones/0/parent = -1
+bones/0/rest = Transform3D(0.059476554, -0.9743442, 0.21706209, 0.31551772, 0.2246486, 0.9219445, -0.9470539, 0.0136528015, 0.32078415, 0.5331145, 1.3036553, -1.09513)
+bones/0/enabled = true
+bones/0/position = Vector3(0.5331145, 1.3036553, -1.09513)
+bones/0/rotation = Quaternion(-0.35848427, 0.4594529, 0.5090823, 0.63342506)
+bones/0/scale = Vector3(1, 1, 1)
+bones/1/name = "Bone.011"
+bones/1/parent = -1
+bones/1/rest = Transform3D(0.020106435, 0.99922407, -0.03386441, -0.02715537, 0.034404635, 0.99903893, 0.999429, -0.019167423, 0.02782607, -0.08426189, -0.0029011965, 0.0016163288)
+bones/1/enabled = true
+bones/1/position = Vector3(-0.08426189, -0.0029011965, 0.0016163288)
+bones/1/rotation = Quaternion(-0.48935568, -0.49660653, -0.49328366, 0.5201772)
+bones/1/scale = Vector3(0.99999994, 0.9999999, 0.9999999)
+bones/2/name = "Bone"
+bones/2/parent = 1
+bones/2/rest = Transform3D(-0.0637542, -0.59905726, 0.7981642, 0.013710976, 0.79919016, 0.6009222, -0.9978715, 0.04925493, -0.042738058, 1.7462298e-08, 0.08432732, -6.0070306e-08)
+bones/2/enabled = true
+bones/2/position = Vector3(1.7462298e-08, 0.08432732, -6.0070306e-08)
+bones/2/rotation = Quaternion(-0.21201059, 0.6902323, 0.23549215, 0.6505186)
+bones/2/scale = Vector3(1, 1.0000002, 1)
+bones/3/name = "Bone.001"
+bones/3/parent = 2
+bones/3/rest = Transform3D(0.9788909, -0.20160575, -0.033581387, 0.20434032, 0.96875805, 0.14054488, 0.0041975817, -0.14444011, 0.98950475, -1.21071935e-08, 0.1744572, 1.4901161e-08)
+bones/3/enabled = true
+bones/3/position = Vector3(-1.21071935e-08, 0.1744572, 1.4901161e-08)
+bones/3/rotation = Quaternion(-0.071812615, -0.009519822, 0.1022933, 0.9921131)
+bones/3/scale = Vector3(1, 1, 1.0000001)
+bones/4/name = "Bone.002"
+bones/4/parent = 3
+bones/4/rest = Transform3D(0.95642066, -0.29139763, -0.018627696, 0.29029137, 0.9420361, 0.16822298, -0.031471808, -0.16629939, 0.98557293, -1.6763806e-08, 0.22339508, 2.561137e-08)
+bones/4/enabled = true
+bones/4/position = Vector3(-1.6763806e-08, 0.22339508, 2.561137e-08)
+bones/4/rotation = Quaternion(-0.084869936, 0.0032586115, 0.1475773, 0.9853971)
+bones/4/scale = Vector3(1, 1, 0.99999994)
+bones/5/name = "Bone.003"
+bones/5/parent = 4
+bones/5/rest = Transform3D(0.9892014, -0.14644295, -0.0059095942, 0.14656204, 0.98844385, 0.03870552, 0.00017315148, -0.039153676, 0.9992332, -1.5646219e-07, 0.20232868, 3.7252903e-09)
+bones/5/enabled = true
+bones/5/position = Vector3(-1.5646219e-07, 0.20232868, 3.7252903e-09)
+bones/5/rotation = Quaternion(-0.019521302, -0.0015251006, 0.07346389, 0.99710566)
+bones/5/scale = Vector3(0.99999994, 0.9999999, 1)
+bones/6/name = "Bone.004"
+bones/6/parent = 5
+bones/6/rest = Transform3D(0.98703295, -0.16006559, -0.012040027, 0.15877257, 0.9845818, -0.07341543, 0.023605675, 0.0705518, 0.9972289, -1.1920929e-07, 0.17216955, 0)
+bones/6/enabled = true
+bones/6/position = Vector3(-1.1920929e-07, 0.17216955, 0)
+bones/6/rotation = Quaternion(0.0361328, -0.008946335, 0.080021806, 0.99609786)
+bones/6/scale = Vector3(1, 0.99999994, 1.0000001)
+bones/7/name = "Bone.005"
+bones/7/parent = 6
+bones/7/rest = Transform3D(0.99990416, 0.013806033, -0.00083886646, -0.013727111, 0.99796826, 0.062213056, 0.0016960781, -0.062195588, 0.9980623, 1.4901161e-08, 0.27014643, 3.3527613e-08)
+bones/7/enabled = true
+bones/7/position = Vector3(1.4901161e-08, 0.27014643, 3.3527613e-08)
+bones/7/rotation = Quaternion(-0.031117983, -0.0006340585, -0.0068867872, 0.9994918)
+bones/7/scale = Vector3(0.99999976, 0.99999976, 0.99999976)
+bones/8/name = "Bone.006"
+bones/8/parent = 7
+bones/8/rest = Transform3D(0.99459064, -0.10374843, 0.005078604, 0.10315944, 0.99229985, 0.06855033, -0.012151484, -0.0676556, 0.9976349, -5.9604645e-08, 0.23884979, 0)
+bones/8/enabled = true
+bones/8/position = Vector3(-5.9604645e-08, 0.23884979, 0)
+bones/8/rotation = Quaternion(-0.03411754, 0.0043158783, 0.05182732, 0.9980638)
+bones/8/scale = Vector3(1, 1, 1.0000001)
+bones/9/name = "Bone.007"
+bones/9/parent = 8
+bones/9/rest = Transform3D(0.9936606, -0.11217841, -0.0074097086, 0.11177388, 0.97870433, 0.17217581, -0.012062497, -0.1719125, 0.9850384, -8.940697e-08, 0.26759082, -2.2351742e-08)
+bones/9/enabled = true
+bones/9/position = Vector3(-8.940697e-08, 0.26759082, -2.2351742e-08)
+bones/9/rotation = Quaternion(-0.08648381, 0.0011694409, 0.05628858, 0.99466115)
+bones/9/scale = Vector3(1.0000001, 1, 1)
+bones/10/name = "Bone.008"
+bones/10/parent = 9
+bones/10/rest = Transform3D(0.9335003, -0.3583255, -0.013411721, 0.35821503, 0.9302281, 0.07973418, -0.01609483, -0.07923616, 0.9967259, -2.9802322e-08, 0.19342455, 5.2154064e-08)
+bones/10/enabled = true
+bones/10/position = Vector3(-2.9802322e-08, 0.19342455, 5.2154064e-08)
+bones/10/rotation = Quaternion(-0.0404545, 0.00068279414, 0.18234405, 0.98240197)
+bones/10/scale = Vector3(0.9999999, 0.99999994, 1)
+bones/11/name = "Bone.009"
+bones/11/parent = 10
+bones/11/rest = Transform3D(0.94300455, -0.32287484, -0.080586076, 0.33055082, 0.8808292, 0.3389334, -0.038450494, -0.3462535, 0.9373527, 3.7252903e-09, 0.16054252, -4.4703484e-08)
+bones/11/enabled = true
+bones/11/position = Vector3(3.7252903e-09, 0.16054252, -4.4703484e-08)
+bones/11/rotation = Quaternion(-0.17665124, -0.010863169, 0.16846271, 0.96968895)
+bones/11/scale = Vector3(0.9999999, 0.9999999, 1)
+
+[node name="Oil" type="MeshInstance3D" parent="Armature/Skeleton3D" index="0"]
+mesh = ExtResource("2_2xsgs")
+skin = SubResource("Skin_p6h4n")
+
+[node name="Tube" type="MeshInstance3D" parent="Armature/Skeleton3D" index="1"]
+mesh = ExtResource("3_p6h4n")
+skin = SubResource("Skin_p6h4n")
+
+[node name="Bullet Point" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00013876, -0.00037185103, -0.69770116)
