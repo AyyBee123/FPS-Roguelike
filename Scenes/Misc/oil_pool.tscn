@@ -25,7 +25,7 @@ shape = SubResource("CylinderShape3D_2oasf")
 
 [node name="Tick Rate" type="Timer" parent="."]
 wait_time = 0.2
-autostart = true
+one_shot = true
 
 [node name="Lifetime" type="Timer" parent="."]
 wait_time = 4.0
@@ -34,5 +34,4 @@ autostart = true
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
-[connection signal="timeout" from="Tick Rate" to="." method="_on_tick_rate_timeout"]
 [connection signal="timeout" from="Lifetime" to="." method="_on_lifetime_timeout"]

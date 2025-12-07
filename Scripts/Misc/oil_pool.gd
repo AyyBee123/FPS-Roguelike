@@ -19,16 +19,18 @@ func _ready():
 	tween.tween_property(oil_pool, "scale:x", 1, 0.1)
 	tween.parallel().tween_property(oil_pool, "scale:z", 1, 0.1)
 
+func _physics_process(delta):
+	if tick_rate.is_stopped():
+		for enemy in enemies:
+			if enemy is Enemy:
+				enemy.hit(damage, player, self)
+		tick_rate.start()
+
 func _on_lifetime_timeout():
 	tween = get_tree().create_tween()
 	tween.tween_property(oil_pool, "scale:x", 0, 0.25)
 	tween.parallel().tween_property(oil_pool, "scale:z", 0, 0.25)
 	tween.tween_callback(queue_free)
-
-func _on_tick_rate_timeout():
-	for enemy in enemies:
-		if enemy is Enemy:
-			enemy.hit(damage, player, self)
 
 func _on_area_3d_body_entered(body):
 	if body is Enemy:
