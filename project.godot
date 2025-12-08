@@ -38,10 +38,6 @@ window/size/viewport_height=1080
 window/size/window_width_override=1152
 window/size/window_height_override=658
 
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/terrain_3d/plugin.cfg")
-
 [file_customization]
 
 folder_colors={
