@@ -8,5 +8,5 @@ func _on_body_entered(body):
 	pool.player = player
 	pool.position = position
 	get_tree().current_scene.add_child(pool)
-	player._on_arm_fired(pool, damage)
+	player._on_weapon_spawned(pool, damage)
 	super._on_body_entered(body)

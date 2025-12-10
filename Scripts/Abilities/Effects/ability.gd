@@ -55,6 +55,7 @@ func _ready():
 	player = get_parent().player
 	player.enemy_hit.connect(_on_hit)
 	player.weapon_fired.connect(_on_shoot)
+	player.weapon_spawned.connect(_on_spawn)
 	
 	# populate the upgrade arrays
 	for a in ability_upgrades:
@@ -151,4 +152,7 @@ func _on_hit(enemy: Enemy, source: Variant, damage: float):
 	pass
 
 func _on_shoot(projectile: Variant, damage: float):
+	pass
+
+func _on_spawn(projectile: Variant, damage: float):
 	pass

@@ -2,6 +2,7 @@ class_name Player extends CharacterBody3D
 
 signal enemy_hit(enemy, source, damage)
 signal weapon_fired(projectile, damage)
+signal weapon_spawned(projectile, damage)
 
 @onready var camera = %Camera
 @onready var camera_controller_anchor = %"Camera Controller Anchor"
@@ -172,6 +173,9 @@ func _on_enemy_hit(enemy: Enemy, source: Variant, damage: float):
 
 func _on_arm_fired(projectile: Variant, damage: float):
 	weapon_fired.emit(projectile, damage)
+
+func _on_weapon_spawned(projectile: Variant, damage: float):
+	weapon_spawned.emit(projectile, damage)
 
 func get_arm():
 	return arm.get_child(0)

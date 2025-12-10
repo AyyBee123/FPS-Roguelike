@@ -5,6 +5,12 @@ extends Ability
 const DAMAGE_MULTIPLIER: float = 0.25
 
 func _on_shoot(projectile: Variant, damage: float):
+	create_aura(projectile, damage)
+
+func _on_spawn(projectile: Variant, damage: float):
+	create_aura(projectile, damage)
+
+func create_aura(projectile: Variant, damage: float):
 	var aura = AURA.instantiate()
 	aura.damage = get_stat_value("Damage", damage * DAMAGE_MULTIPLIER)
 	aura.scale /= projectile.scale
