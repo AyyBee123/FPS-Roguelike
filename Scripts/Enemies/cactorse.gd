@@ -4,6 +4,8 @@ extends Enemy
 
 const CACTORSE = preload("uid://duegs3ndgtxbj")
 
+var normal: Vector3 = Vector3.UP
+
 func _ready():
 	super._ready()
 	for lib_name in animation_player.get_animation_library_list():
@@ -32,6 +34,7 @@ func move(delta):
 		position.y = raycast_pos
 	
 	rotation.y = lerp_angle(rotation.y, atan2(velocity.x, velocity.z), delta * angular_acceleration)
+	
 	move_and_slide()
 
 func target_position(target):
