@@ -23,7 +23,6 @@ radius = 0.75
 
 [node name="Stone Skull" type="CharacterBody3D" node_paths=PackedStringArray("mesh") groups=["Enemy"]]
 collision_layer = 4
-collision_mask = 17
 script = ExtResource("1_o0abg")
 projectile_damage = 2.0
 projectile_speed = 1.0

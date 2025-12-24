@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b134fhcabkhmq"]
+
+[ext_resource type="Script" uid="uid://36yldmie5y31" path="res://Scripts/Misc/tick_damage.gd" id="1_pump5"]
+
+[node name="Tick Damage" type="Node"]
+script = ExtResource("1_pump5")

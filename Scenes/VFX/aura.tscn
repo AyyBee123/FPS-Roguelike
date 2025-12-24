@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=4 uid="uid://brrube6jjie8x"]
+[gd_scene load_steps=7 format=4 uid="uid://brrube6jjie8x"]
 
 [ext_resource type="Script" uid="uid://ckswi6f6djqc4" path="res://Scripts/Abilities/Misc/aura.gd" id="1_5r5ar"]
+[ext_resource type="PackedScene" uid="uid://b134fhcabkhmq" path="res://Scenes/Misc/tick_damage.tscn" id="2_87ndd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o7fdg"]
 transparency = 1
@@ -48,6 +49,7 @@ radius = 2.1
 
 [node name="Aura" type="Node3D"]
 script = ExtResource("1_5r5ar")
+tick_node = ExtResource("2_87ndd")
 
 [node name="Ball" type="MeshInstance3D" parent="."]
 transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
