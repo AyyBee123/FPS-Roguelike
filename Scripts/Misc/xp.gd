@@ -19,6 +19,8 @@ func _ready():
 		_: # 5 or more
 			mesh.material_override.albedo_color = "5e2bba"
 	
+	ray_cast.global_transform = Transform3D(Basis(), ray_cast.global_position) # lock the ray cast's rotation
+	ray_cast.force_raycast_update() # detect the ground immediately
 	position.y = ray_cast.get_collision_point().y + 1
 
 func _physics_process(delta):

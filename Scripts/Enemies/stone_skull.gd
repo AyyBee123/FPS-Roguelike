@@ -33,7 +33,10 @@ func _physics_process(delta):
 func move(delta):
 	if not player_pos: return
 	
-	position.y = lerp_angle(position.y, raycast_offset, 0.2)
+	if player_pos.y > global_position.y:
+		position.y = lerp_angle(position.y, player_pos.y + raycast_offset, 0.02)
+	else:
+		position.y = lerp_angle(position.y, ray_cast.get_collision_point().y + raycast_offset, 0.05)
 	
 	if position.distance_to(player_pos) > 15:
 		position.x += (player_pos.x - position.x) * delta * speed
