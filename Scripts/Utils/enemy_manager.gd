@@ -56,13 +56,9 @@ func get_random_position() -> Vector3:
 	
 	# if the spawn point is set to be outside the boundaries of the map, change the spawn point to be within the map
 	if spawn_point.x > right_boundary or spawn_point.x < left_boundary:
-		print(spawn_point.x)
 		spawn_point.x = 2 * pos.x - spawn_point.x
-		print(spawn_point.x)
 	if spawn_point.y > front_boundary or spawn_point.y < back_boundary:
-		print(spawn_point.y)
 		spawn_point.y = 2 * pos.z - spawn_point.y
-		print(spawn_point.y)
 	
 	return Vector3(spawn_point.x, 1000, spawn_point.y)
 
