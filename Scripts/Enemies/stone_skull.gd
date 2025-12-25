@@ -9,7 +9,6 @@ extends Enemy
 @export var projectile_speed: float
 @export var projectile_range: float
 
-const STONE_SKULL = preload("uid://crn3ys871kjtr")
 const MUZZLE_FLASH = preload("uid://bx1wgwev3fm10")
 const STONE_SKULL_PROJECTILE = preload("uid://bvanm1m1uxxy7")
 
@@ -18,10 +17,6 @@ var can_shoot: bool = false
 
 func _ready():
 	super._ready()
-	for lib_name in animation_player.get_animation_library_list():
-		animation_player.remove_animation_library(lib_name)
-	
-	animation_player.add_animation_library("default", STONE_SKULL)
 
 func _physics_process(delta):
 	super._physics_process(delta)

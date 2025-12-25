@@ -181,8 +181,8 @@ bind/31/name = &"IKTargetBack.R"
 bind/31/bone = -1
 bind/31/pose = Transform3D(-0.9926458, 0.12105544, 0, 0, 0, -1, -0.12105544, -0.9926458, 0, -0.5442826, -0.25971243, -0.04846899)
 
-[sub_resource type="Animation" id="Animation_8d6cq"]
-resource_name = "default"
+[sub_resource type="Animation" id="Animation_jfm6g"]
+resource_name = "idle"
 length = 0.041666668
 tracks/0/type = "position_3d"
 tracks/0/imported = true
@@ -652,9 +652,9 @@ tracks/32/interp = 0
 tracks/32/loop_wrap = true
 tracks/32/keys = PackedFloat32Array(0, 1, -0.04287847, -0.70580554, 0.70580554, 0.04287847)
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_x7gak"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jfm6g"]
 _data = {
-&"default": SubResource("Animation_8d6cq"),
+&"idle": SubResource("Animation_jfm6g"),
 &"walk": SubResource("Animation_6unpl")
 }
 
@@ -910,9 +910,10 @@ skin = SubResource("Skin_fkwd3")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
-&"": SubResource("AnimationLibrary_x7gak")
+&"": SubResource("AnimationLibrary_jfm6g")
 }
 autoplay = "walk"
+playback_default_blend_time = 0.5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.62663925, 0.28189528)
