@@ -4,7 +4,14 @@ extends Node
 
 @onready var player = get_tree().get_first_node_in_group("Player")
 
+# get the boundaries' positions
+@onready var right_boundary = %"Right Wall".position.x
+@onready var left_boundary = %"Left Wall".position.x
+@onready var front_boundary = %"Front Wall".position.z
+@onready var back_boundary = %"Back Wall".position.z
+
 static var current_number_of_enemies: int = 0
+
 var NUMBER_OF_ENEMIES_TO_SPAWN: int = 1
 var MAX_NUMBER_OF_ENEMIES: int = 20
 var MIN_AMOUNT_OF_ENEMIES: int = 10
@@ -46,6 +53,17 @@ func get_random_position() -> Vector3:
 	var pos: Vector3 = player.global_position
 	var spawn_point: Vector2 = Vector2(pos.x, pos.z) + \
 			(Vector2.ONE.normalized() * randf_range(MIN_DISTANCE, MAX_DISTANCE)).rotated(randf_range(0, TAU))
+	
+	# if the spawn point is set to be outside the boundaries of the map, change the spawn point to be within the map
+	if spawn_point.x > right_boundary:
+		spawn_point.x = 2 * spawn_point.x - pos.x
+	if spawn_point.x < left_boundary:
+		spawn_point.x = 2 * pos.x - spawn_point.x
+	if spawn_point.y > front_boundary:
+		spawn_point.y = 2 * spawn_point.y - pos.z
+	if spawn_point.x < back_boundary:
+		spawn_point.x = 2 * pos.z - spawn_point.y
+	
 	return Vector3(spawn_point.x, 1000, spawn_point.y)
 
 func get_random_group_offset() -> Vector3:

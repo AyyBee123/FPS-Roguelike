@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="FPS Roguelike"
-run/main_scene="uid://ml4al8d8uchl"
+run/main_scene="uid://djbj7k76p2w00"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 run/max_fps=500
 config/icon="res://icon.svg"
