@@ -55,7 +55,6 @@ func hit(_damage: float, source_player: Player, source: Variant):
 		die()
 
 func die():
-	SignalBus.enemy_defeated.emit(self)
 	drop_xp()
 	queue_free()
 
@@ -73,3 +72,6 @@ func _on_screen_entered():
 func _on_screen_exited():
 	animation_player.active = false
 	is_on_screen = false
+
+func _exit_tree():
+	SignalBus.enemy_defeated.emit(self)
