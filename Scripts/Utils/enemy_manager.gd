@@ -24,17 +24,6 @@ const ENEMY = preload("uid://bf7ljiiykmoi0")
 func _ready():
 	randomize()
 	SignalBus.enemy_defeated.connect(_on_enemy_defeat)
-	#var i = 0
-	#while i < TAU:
-		#for j in range(12):
-			#var enemy = ENEMY.instantiate()
-			#get_tree().current_scene.add_child.call_deferred(enemy)
-			#var pos = Vector2.from_angle(i) * (j + 1) * 4
-			#await get_tree().physics_frame
-			#enemy.global_transform.origin = Vector3(pos.x, 20, pos.y)
-			#current_number_of_enemies += 1
-		#i += PI/6
-	#print(current_number_of_enemies)
 
 func _physics_process(delta):
 	t += delta
