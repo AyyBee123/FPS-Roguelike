@@ -668,7 +668,7 @@ height = 1.5510254
 
 [node name="Cactorse" type="CharacterBody3D" node_paths=PackedStringArray("mesh") groups=["Enemy"]]
 collision_layer = 4
-collision_mask = 19
+collision_mask = 3
 script = ExtResource("1_q0do1")
 mesh = [NodePath("Armature/Skeleton3D/Body")]
 xp_amount = 2

@@ -21,7 +21,7 @@ size = Vector3(1, 2, 1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dd0ac"]
 render_priority = 0
 shader = ExtResource("3_dd0ac")
-shader_parameter/outlineColor = Color(0, 0, 0, 0.78)
+shader_parameter/outlineColor = Color(0, 0, 0, 1)
 shader_parameter/depth_threshold = 0.025
 shader_parameter/normal_threshold = 0.5
 shader_parameter/normal_smoothing = 0.25
