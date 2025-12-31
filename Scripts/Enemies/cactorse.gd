@@ -3,6 +3,7 @@ extends Enemy
 @onready var armature: Node3D = %Armature
 
 var normal: Vector3 = Vector3.UP
+var desired: Vector3
 
 func _ready():
 	super._ready()
@@ -21,10 +22,12 @@ func move(delta):
 	if animation_player.current_animation != "walk":
 		animation_player.play("walk")
 	
-	var current_position: Vector3 = global_transform.origin
+	desired = Vector3.ZERO
+	var current_position: Vector3 = global_position
 	var next_position: Vector3 = nav_agent.get_next_path_position()
-	velocity.x = current_position.direction_to(next_position).x * speed
-	velocity.z = current_position.direction_to(next_position).z * speed
+	var direction = next_position - current_position
+	desired += direction.normalized() * speed
+	velocity = velocity.lerp(desired, delta)
 	
 	var raycast_pos: float = ray_cast.get_collision_point().y + raycast_offset
 	if position.y > raycast_pos:

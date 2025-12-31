@@ -45,6 +45,8 @@ func move(delta):
 		can_shoot = true
 	
 	skull.look_at(player_pos, Vector3.UP)
+	
+	move_and_slide()
 
 func shoot():
 	if is_on_screen:

@@ -13,6 +13,7 @@ signal enemy_hit(source, enemy, damage_taken)
 @export var health: float = 25
 @export var speed: float = 5
 @export var xp_amount: int = 1
+@export var weight: float = 1.0 # weight determines the anount the enemy gets pushed (lower weight gets pushed more)
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var angular_acceleration: float = 5
