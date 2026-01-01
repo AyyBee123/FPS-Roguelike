@@ -1,10 +1,71 @@
-[gd_scene load_steps=7 format=3 uid="uid://dajqdf341ehwu"]
+[gd_scene load_steps=10 format=3 uid="uid://dajqdf341ehwu"]
 
-[ext_resource type="PackedScene" uid="uid://ou4i562h0h6y" path="res://Scenes/Arms/Template/arm_template.tscn" id="1_2xsgs"]
 [ext_resource type="ArrayMesh" uid="uid://cd1rpjphiexw4" path="res://Assets/Arms/Oil Spill/Body.tres" id="1_h7p05"]
+[ext_resource type="Script" uid="uid://wtoa66s2o53o" path="res://Scripts/Player/Arms/arm.gd" id="1_p6h4n"]
 [ext_resource type="ArrayMesh" uid="uid://ccsxofr4mw787" path="res://Assets/Arms/Oil Spill/Oil.tres" id="2_2xsgs"]
 [ext_resource type="PackedScene" uid="uid://vnpmfor52wrk" path="res://Scenes/Projectiles/Arm/oil ball.tscn" id="2_p6h4n"]
 [ext_resource type="ArrayMesh" uid="uid://b2wywn6a2r83y" path="res://Assets/Arms/Oil Spill/Tube.tres" id="3_p6h4n"]
+
+[sub_resource type="Animation" id="Animation_oaorf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Armature/MeshInstance:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Armature/MeshInstance:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_e5jve"]
+resource_name = "Shoot"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Armature/MeshInstance:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.02, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.1, 0.3), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Armature/MeshInstance:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.523599, -0.0698132, 0.0698132), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c1rn0"]
+_data = {
+&"RESET": SubResource("Animation_oaorf"),
+&"Shoot": SubResource("Animation_e5jve")
+}
 
 [sub_resource type="Skin" id="Skin_p6h4n"]
 resource_name = "Skin"
@@ -46,8 +107,9 @@ bind/11/name = &"Bone.009"
 bind/11/bone = -1
 bind/11/pose = Transform3D(-3.1527433, 1.6925225, 9.337856, 6.8337502, 7.2323627, 0.9963901, -6.584832, 6.695396, -3.4368033, -0.8693785, 0.54033667, -0.056682803)
 
-[node name="Oil Spill" instance=ExtResource("1_2xsgs")]
+[node name="Oil Spill" type="Node3D"]
 transform = Transform3D(1.333, 0, 0, 0, 1.333, 0, 0, 0, 1.333, 0, 0, 0)
+script = ExtResource("1_p6h4n")
 rarity = 1
 projectile = ExtResource("2_p6h4n")
 base_damage = 3.0
@@ -55,13 +117,43 @@ base_fire_rate = 1.333
 base_range = 2000.0
 base_speed = 30.0
 
-[node name="MeshInstance" parent="." index="0"]
+[node name="Fire Rate Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_c1rn0")
+}
+
+[node name="Bullet Point" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00013876, -0.00037185103, -0.69770116)
+
+[node name="Armature" type="Node3D" parent="."]
+
+[node name="Oil" type="MeshInstance3D" parent="Armature"]
+transform = Transform3D(-0.10000002, 0, -3.2584143e-08, 0, 0.10000002, 0, 3.2584143e-08, 0, -0.10000002, -0.009195503, -0.14420485, -0.03514993)
+mesh = ExtResource("2_2xsgs")
+skin = SubResource("Skin_p6h4n")
+skeleton = NodePath("../../Arm/Skeleton3D")
+
+[node name="Tube" type="MeshInstance3D" parent="Armature"]
+transform = Transform3D(-0.10000002, 0, -3.2584143e-08, 0, 0.10000002, 0, 3.2584143e-08, 0, -0.10000002, -0.009195503, -0.14420485, -0.03514993)
+mesh = ExtResource("3_p6h4n")
+skin = SubResource("Skin_p6h4n")
+skeleton = NodePath("../../Arm/Skeleton3D")
+
+[node name="MeshInstance" type="MeshInstance3D" parent="Armature"]
+unique_name_in_owner = true
 mesh = ExtResource("1_h7p05")
+skeleton = NodePath("../..")
 
-[node name="Armature" type="Node3D" parent="." index="1"]
-transform = Transform3D(-0.100000024, 0, -3.2584143e-08, 0, 0.100000024, 0, 3.2584143e-08, 0, -0.100000024, -0.009195503, -0.14420485, -0.03514993)
+[node name="Arm" type="Node3D" parent="."]
+transform = Transform3D(-0.10000002, 0, -3.2584143e-08, 0, 0.10000002, 0, 3.2584143e-08, 0, -0.10000002, -0.009195503, -0.14420485, -0.03514993)
 
-[node name="Skeleton3D" type="Skeleton3D" parent="Armature" index="0"]
+[node name="Skeleton3D" type="Skeleton3D" parent="Arm"]
 bones/0/name = "Bone.010"
 bones/0/parent = -1
 bones/0/rest = Transform3D(0.059476554, -0.9743442, 0.21706209, 0.31551772, 0.2246486, 0.9219445, -0.9470539, 0.0136528015, 0.32078415, 0.5331145, 1.3036553, -1.09513)
@@ -146,14 +238,3 @@ bones/11/enabled = true
 bones/11/position = Vector3(3.7252903e-09, 0.16054252, -4.4703484e-08)
 bones/11/rotation = Quaternion(-0.17665124, -0.010863169, 0.16846271, 0.96968895)
 bones/11/scale = Vector3(0.9999999, 0.9999999, 1)
-
-[node name="Oil" type="MeshInstance3D" parent="Armature/Skeleton3D" index="0"]
-mesh = ExtResource("2_2xsgs")
-skin = SubResource("Skin_p6h4n")
-
-[node name="Tube" type="MeshInstance3D" parent="Armature/Skeleton3D" index="1"]
-mesh = ExtResource("3_p6h4n")
-skin = SubResource("Skin_p6h4n")
-
-[node name="Bullet Point" parent="." index="4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00013876, -0.00037185103, -0.69770116)

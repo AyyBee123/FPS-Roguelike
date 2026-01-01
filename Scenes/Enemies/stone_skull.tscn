@@ -454,6 +454,7 @@ projectile_speed = 1.0
 projectile_range = 2.0
 mesh = [NodePath("Skull"), NodePath("Fire")]
 raycast_offset = 6.0
+health = 20.0
 speed = 0.333
 
 [node name="Skull" type="MeshInstance3D" parent="."]

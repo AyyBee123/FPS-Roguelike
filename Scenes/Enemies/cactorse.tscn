@@ -674,6 +674,7 @@ collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_q0do1")
 mesh = [NodePath("Armature/Skeleton3D/Body")]
+health = 36.0
 xp_amount = 2
 weight = 3.0
 

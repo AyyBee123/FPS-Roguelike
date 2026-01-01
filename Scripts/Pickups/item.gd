@@ -4,9 +4,10 @@ extends Node3D
 @onready var mesh_instance = %MeshInstance
 @onready var default_pos = mesh_instance.get_position()
 
+const AMPLITUDE: float = 0.1
+const FREQUENCY: float = 2.0
+
 var time: float = 0.0
-var amplitude: float = 0.1
-var frequency: float = 2.0
 var item: Node
 
 var rarity_weights = ItemPool.rarity_weights
@@ -44,8 +45,8 @@ func _ready():
 func _physics_process(delta):
 	rotate_y(PI/2 * delta)
 	
-	time += delta * frequency
-	mesh_instance.set_position(default_pos + Vector3(0, sin(time) * amplitude, 0))
+	time += delta * FREQUENCY
+	mesh_instance.set_position(default_pos + Vector3(0, sin(time) * AMPLITUDE, 0))
 
 func pick_up(player):
 	item.on_pick_up(player)

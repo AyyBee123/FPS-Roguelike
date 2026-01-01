@@ -14,7 +14,7 @@ func _run() -> void:
 	_save_to_json(results)
 	print("✅ Arm pool saved to:", output_file)
 
-## Recursively process scenes
+## Process scenes
 func _process_folder(folder_path: String, results: Array) -> void:
 	var dir := DirAccess.open(folder_path)
 	if dir == null:
@@ -24,10 +24,7 @@ func _process_folder(folder_path: String, results: Array) -> void:
 	var file_name := dir.get_next()
 	while file_name != "":
 		var full_path := folder_path.path_join(file_name)
-		if dir.current_is_dir():
-			if not file_name.begins_with("."):
-				_process_folder(full_path, results)
-		elif file_name.ends_with(".tscn"):
+		if file_name.ends_with(".tscn"):
 			var data := _get_scene_data_safe(full_path)
 			if data.size() > 0:
 				results.append(data)

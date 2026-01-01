@@ -14,6 +14,9 @@ var range: float
 
 var player: Player
 
+var enemies: Array[Enemy]
+var tick_nodes: Array[Node]
+
 func _ready():
 	scale = Vector3.ONE * player.stats.get_stat("Splash_Radius")
 	oil_pool.scale = Vector3(0, 1, 0)
@@ -35,9 +38,15 @@ func _on_area_3d_body_entered(body):
 		tick.damage = damage
 		tick.tick_rate = tick_rate
 		body.add_child(tick)
+		enemies.append(body)
+		tick_nodes.append(tick)
 
 func _on_area_3d_body_exited(body):
 	if body is Enemy:
-		var tick = body.get_node_or_null("Tick Damage")
-		if tick:
-			body.remove_child(tick)
+		var index = enemies.find(body)
+		if index == -1: return
+		
+		var tick = tick_nodes.get(index)
+		tick_nodes.remove_at(index)
+		enemies.remove_at(index)
+		tick.queue_free()
