@@ -4,11 +4,13 @@ extends Enemy
 
 var normal: Vector3 = Vector3.UP
 var desired: Vector3
+var t: float = INF
 
 func _ready():
 	super._ready()
 
 func _physics_process(delta):
+	t += delta
 	super._physics_process(delta)
 	move(delta)
 
@@ -39,5 +41,10 @@ func move(delta):
 	
 	move_and_slide()
 
-func target_position(target):
-	nav_agent.target_position = target
+func target_position(target: Vector3):
+	var num = get_tree().current_scene.current_number_of_enemies
+	if num > 50 and t >= num / 50.0: # lower the navigation amount with large enemy quantity to improve performance
+		t = 0
+		nav_agent.target_position = target
+	elif num <= 50:
+		nav_agent.target_position = target

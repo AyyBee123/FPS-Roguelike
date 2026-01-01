@@ -40,6 +40,10 @@ func _physics_process(delta):
 		if current_number_of_enemies < MAX_NUMBER_OF_ENEMIES:
 			for i in range(NUMBER_OF_ENEMIES_TO_SPAWN):
 				spawn_enemy(enemies.pick_random()) # for now
+	
+	if get_tree().current_scene.current_number_of_enemies != current_number_of_enemies:
+		get_tree().current_scene.current_number_of_enemies = current_number_of_enemies
+		print(get_tree().current_scene.current_number_of_enemies)
 
 func spawn_enemy(spawn: EnemySpawn) -> void:
 	var random_position = get_random_position()

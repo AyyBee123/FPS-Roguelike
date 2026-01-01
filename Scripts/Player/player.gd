@@ -86,7 +86,7 @@ func _physics_process(delta):
 	if nearby_pickups.size() > 0:
 		pickup = get_pickup_collision()
 	
-	get_tree().call_group("Enemy", "target_position", global_transform.origin)
+	get_tree().call_group("Enemy", "target_position", global_position)
 	
 	# check for level ups
 	if upgrade_queue_count > 0 and upgrade.get_child_count() == 0:
