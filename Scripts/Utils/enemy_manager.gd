@@ -43,7 +43,6 @@ func _physics_process(delta):
 	
 	if get_tree().current_scene.current_number_of_enemies != current_number_of_enemies:
 		get_tree().current_scene.current_number_of_enemies = current_number_of_enemies
-		print(get_tree().current_scene.current_number_of_enemies)
 
 func spawn_enemy(spawn: EnemySpawn) -> void:
 	var random_position = get_random_position()
