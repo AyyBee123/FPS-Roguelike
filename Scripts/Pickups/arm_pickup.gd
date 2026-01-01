@@ -54,7 +54,7 @@ func _ready():
 	box.size = aabb.size
 	collision_shape.shape = box
 	
-	# center the arm position
+	# center the arm's position
 	visual_offset.position -= aabb.position + aabb.size / 2
 	default_pos = visual_offset.position
 
