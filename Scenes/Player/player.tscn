@@ -255,9 +255,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -960.0
-offset_top = 32.0
+offset_top = 8.0
 offset_right = 960.0
-offset_bottom = 72.0
+offset_bottom = 48.0
 grow_horizontal = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 12
@@ -268,59 +268,65 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("7_0u5uq")
 
-[node name="XP Bar" type="ProgressBar" parent="CanvasLayer/HUD" node_paths=PackedStringArray("player")]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-offset_bottom = 32.0
-grow_horizontal = 2
-theme = SubResource("Theme_06tpx")
-max_value = 1.0
-value = 1.0
-script = ExtResource("10_74mp2")
-player = NodePath("../../..")
-
-[node name="Level" type="Label" parent="CanvasLayer/HUD/XP Bar" node_paths=PackedStringArray("player")]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(128, 0)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.94166666
-anchor_right = 1.0041667
-offset_left = -144.0
-offset_right = -16.0
-offset_bottom = 30.0
-grow_horizontal = 0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("7_jlvik")
-theme_override_font_sizes/font_size = 16
-text = "LVL 1"
-horizontal_alignment = 2
-vertical_alignment = 1
-script = ExtResource("11_oikmp")
-player = NodePath("../../../..")
-metadata/_edit_use_anchors_ = true
-
-[node name="Ability Slots" type="HBoxContainer" parent="CanvasLayer/HUD"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 16.0
-offset_top = 104.0
-offset_right = 80.0
-offset_bottom = 168.0
-theme_override_constants/separation = 4
-
-[node name="Health Bar" type="TextureProgressBar" parent="CanvasLayer/HUD" node_paths=PackedStringArray("player")]
-unique_name_in_owner = true
+[node name="Control" type="Control" parent="CanvasLayer/HUD"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 32.0
-offset_top = -80.0
+offset_top = -120.0
 offset_right = 400.0
 offset_bottom = -32.0
+grow_vertical = 0
+pivot_offset = Vector2(0, 88)
+
+[node name="XP Bar" type="ProgressBar" parent="CanvasLayer/HUD/Control" node_paths=PackedStringArray("player")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -88.0
+offset_right = 368.0
+offset_bottom = -56.0
+grow_vertical = 0
+pivot_offset = Vector2(0, 32)
+theme = SubResource("Theme_06tpx")
+max_value = 1.0
+value = 1.0
+script = ExtResource("10_74mp2")
+player = NodePath("../../../..")
+
+[node name="Level" type="Label" parent="CanvasLayer/HUD/Control/XP Bar" node_paths=PackedStringArray("player")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.022000002
+anchor_right = 0.022000002
+offset_left = -0.09600067
+offset_right = 151.90399
+offset_bottom = 30.0
+grow_horizontal = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 4
+theme_override_fonts/font = ExtResource("7_jlvik")
+theme_override_font_sizes/font_size = 16
+text = "LVL  1"
+vertical_alignment = 1
+script = ExtResource("11_oikmp")
+player = NodePath("../../../../..")
+metadata/_edit_use_anchors_ = true
+
+[node name="Health Bar" type="TextureProgressBar" parent="CanvasLayer/HUD/Control" node_paths=PackedStringArray("player")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -48.0
+offset_right = 368.0
 grow_vertical = 0
 pivot_offset = Vector2(0, 48)
 max_value = 1.0
@@ -333,9 +339,9 @@ stretch_margin_bottom = 4
 texture_under = ExtResource("12_aqm4k")
 texture_progress = ExtResource("13_rcvs5")
 script = ExtResource("14_h8ma5")
-player = NodePath("../../..")
+player = NodePath("../../../..")
 
-[node name="Health Text" type="Label" parent="CanvasLayer/HUD/Health Bar"]
+[node name="Health Text" type="Label" parent="CanvasLayer/HUD/Control/Health Bar"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -355,6 +361,16 @@ theme_override_font_sizes/font_size = 24
 text = "100 / 100"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Ability Slots" type="HBoxContainer" parent="CanvasLayer/HUD/Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 8.0
+offset_top = -80.0
+offset_right = 72.0
+offset_bottom = -16.0
+pivot_offset = Vector2(0, 64)
+theme_override_constants/separation = 4
 
 [node name="Upgrade" type="Node" parent="CanvasLayer"]
 unique_name_in_owner = true
