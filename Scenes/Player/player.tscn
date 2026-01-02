@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://dhlu65iawdxvf"]
+[gd_scene load_steps=37 format=3 uid="uid://dhlu65iawdxvf"]
 
 [ext_resource type="Script" uid="uid://c2cudrvyd4egp" path="res://Scripts/Player/player.gd" id="1_uvnfx"]
 [ext_resource type="Script" uid="uid://ct6urpkc4lp1s" path="res://Scripts/Player/camera_controller.gd" id="2_dd0ac"]
@@ -10,7 +10,6 @@
 [ext_resource type="Script" uid="uid://dbkrmv1m167r3" path="res://Scripts/UI/timer.gd" id="7_0u5uq"]
 [ext_resource type="FontFile" uid="uid://bfhwilg3cupoh" path="res://Fonts/Name Font.ttf" id="7_jlvik"]
 [ext_resource type="Script" uid="uid://dxuyltrlql3nd" path="res://Scripts/Player/pickup_detect.gd" id="9_gk6dx"]
-[ext_resource type="Texture2D" uid="uid://x6kbckfma58x" path="res://Assets/UI/XP Bar.png" id="9_jhyir"]
 [ext_resource type="Script" uid="uid://c4cp63v81m23v" path="res://Scripts/UI/xp_bar.gd" id="10_74mp2"]
 [ext_resource type="Script" uid="uid://byac7cqcf6if2" path="res://Scripts/UI/level.gd" id="11_oikmp"]
 [ext_resource type="Texture2D" uid="uid://bvrlxjkxyuct7" path="res://Assets/UI/Health Bar.png" id="12_aqm4k"]
@@ -18,7 +17,6 @@
 [ext_resource type="Shader" uid="uid://rgkwx5g78yh4" path="res://Shaders/minimap_mask.gdshader" id="12_r5xpd"]
 [ext_resource type="Script" uid="uid://owhlfdboe0ob" path="res://Scripts/Utils/paused_check.gd" id="13_06tpx"]
 [ext_resource type="Script" uid="uid://vu1hdaiedirk" path="res://Scripts/Player/abilities.gd" id="13_7g0yx"]
-[ext_resource type="Texture2D" uid="uid://u4fv227ao0jp" path="res://Assets/UI/Filled Health Bar.png" id="13_rcvs5"]
 [ext_resource type="Script" uid="uid://d3g6lyxi3si3u" path="res://Scripts/UI/health_bar.gd" id="14_h8ma5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mtuoh"]
@@ -126,7 +124,7 @@ material = SubResource("StandardMaterial3D_dey5f")
 size = Vector3(4, 6, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_74mp2"]
-texture = ExtResource("9_jhyir")
+texture = ExtResource("12_aqm4k")
 texture_margin_left = 4.0
 texture_margin_top = 4.0
 texture_margin_right = 4.0
@@ -134,16 +132,35 @@ texture_margin_bottom = 4.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oikmp"]
 bg_color = Color(0, 0.6142773, 0.8591665, 1)
-border_width_left = 6
-border_width_top = 6
-border_width_right = 6
-border_width_bottom = 6
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
 border_color = Color(0.8, 0.8, 0.8, 0)
 
 [sub_resource type="Theme" id="Theme_06tpx"]
 ProgressBar/colors/font_color = Color(0.9490196, 0.9490196, 0.9490196, 0)
 ProgressBar/styles/background = SubResource("StyleBoxTexture_74mp2")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_oikmp")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hnuln"]
+texture = ExtResource("12_aqm4k")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aqm4k"]
+bg_color = Color(0.83137256, 0.023529412, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.8, 0.8, 0.8, 0)
+
+[sub_resource type="Theme" id="Theme_rcvs5"]
+ProgressBar/styles/background = SubResource("StyleBoxTexture_hnuln")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_aqm4k")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dey5f"]
 bg_color = Color(0, 0, 0, 0.5019608)
@@ -319,7 +336,7 @@ script = ExtResource("11_oikmp")
 player = NodePath("../../../../..")
 metadata/_edit_use_anchors_ = true
 
-[node name="Health Bar" type="TextureProgressBar" parent="CanvasLayer/HUD/Control" node_paths=PackedStringArray("player")]
+[node name="Health Bar" type="ProgressBar" parent="CanvasLayer/HUD/Control" node_paths=PackedStringArray("player")]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 2
@@ -329,15 +346,10 @@ offset_top = -48.0
 offset_right = 368.0
 grow_vertical = 0
 pivot_offset = Vector2(0, 48)
+theme = SubResource("Theme_rcvs5")
 max_value = 1.0
-step = 0.01
-nine_patch_stretch = true
-stretch_margin_left = 4
-stretch_margin_top = 4
-stretch_margin_right = 4
-stretch_margin_bottom = 4
-texture_under = ExtResource("12_aqm4k")
-texture_progress = ExtResource("13_rcvs5")
+value = 1.0
+show_percentage = false
 script = ExtResource("14_h8ma5")
 player = NodePath("../../../..")
 
@@ -413,7 +425,8 @@ collision_mask = 8
 script = ExtResource("9_gk6dx")
 player = NodePath("..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Pickup Detect"]
+[node name="Pickup Collision" type="CollisionShape3D" parent="Pickup Detect"]
+unique_name_in_owner = true
 shape = SubResource("SphereShape3D_mtuoh")
 
 [node name="Passives" type="Node" parent="."]

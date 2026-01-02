@@ -46,6 +46,9 @@ var XP_MULTIPLIER: float:
 var LUCK_MULTIPLIER: float:
 	get:
 		return stats.get_stat("Luck")
+var PICKUP_RADIUS: float:
+	get:
+		return stats.get_stat("Pickup_Radius")
 
 var current_health: float
 var current_jumps: int = 0 # the current number of extra jumps that can be used
@@ -98,6 +101,8 @@ func _physics_process(delta):
 	# check for level ups
 	if upgrade_queue_count > 0 and upgrade.get_child_count() == 0:
 		level_up()
+	
+	
 
 func _input(event):
 	if event.is_action_pressed("pickup") and pickup:
