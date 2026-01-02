@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://yipp43yiqwke"]
+[gd_scene load_steps=15 format=3 uid="uid://yipp43yiqwke"]
 
 [ext_resource type="Script" uid="uid://bj4il52perdx8" path="res://Scripts/Enemies/stone_skull.gd" id="1_o0abg"]
 [ext_resource type="ArrayMesh" uid="uid://hg5f70wfdwgi" path="res://Assets/Enemies/Stone Skull/stone_skull.tres" id="2_kyj4i"]
 [ext_resource type="ArrayMesh" uid="uid://b1o66dychn2x7" path="res://Assets/Enemies/Stone Skull/fire.tres" id="2_l80ut"]
 [ext_resource type="Shader" uid="uid://d1oiih60d8at2" path="res://Shaders/enemy_damaged.gdshader" id="2_ulhvv"]
 [ext_resource type="Script" uid="uid://sw5uyrto3ua5" path="res://Scripts/Misc/enemy_detection_area.gd" id="5_ulhvv"]
+[ext_resource type="Script" uid="uid://baxqpjp3mlstv" path="res://Scripts/UI/minimap_icon.gd" id="6_2rd6j"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2rd6j"]
 resource_local_to_scene = true
@@ -581,8 +582,10 @@ script = ExtResource("5_ulhvv")
 shape = SubResource("SphereShape3D_2rd6j")
 
 [node name="Minimap Icon" type="MeshInstance3D" parent="."]
+visible = false
 layers = 2
 mesh = SubResource("SphereMesh_2rd6j")
+script = ExtResource("6_2rd6j")
 
 [connection signal="body_entered" from="Enemy Detection Area" to="Enemy Detection Area" method="_on_body_entered"]
 [connection signal="body_exited" from="Enemy Detection Area" to="Enemy Detection Area" method="_on_body_exited"]

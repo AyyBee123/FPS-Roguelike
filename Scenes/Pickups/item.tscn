@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dyk4mpi4d6hrl"]
+[gd_scene load_steps=6 format=3 uid="uid://dyk4mpi4d6hrl"]
 
 [ext_resource type="Script" uid="uid://bu3xt72h8nf67" path="res://Scripts/Pickups/item.gd" id="1_dyk4n"]
+[ext_resource type="Script" uid="uid://baxqpjp3mlstv" path="res://Scripts/UI/minimap_icon.gd" id="2_bq1bg"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0c04t"]
 radius = 0.75
@@ -30,5 +31,7 @@ shape = SubResource("SphereShape3D_0c04t")
 unique_name_in_owner = true
 
 [node name="Minimap Icon" type="MeshInstance3D" parent="."]
+visible = false
 layers = 2
 mesh = SubResource("SphereMesh_bq1bg")
+script = ExtResource("2_bq1bg")

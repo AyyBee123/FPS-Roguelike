@@ -1,7 +1,8 @@
-[gd_scene load_steps=49 format=4 uid="uid://dajqdf341ehwu"]
+[gd_scene load_steps=50 format=4 uid="uid://dajqdf341ehwu"]
 
 [ext_resource type="Script" uid="uid://wtoa66s2o53o" path="res://Scripts/Player/Arms/arm.gd" id="1_p6h4n"]
 [ext_resource type="PackedScene" uid="uid://vnpmfor52wrk" path="res://Scenes/Projectiles/Arm/oil ball.tscn" id="2_p6h4n"]
+[ext_resource type="PackedScene" uid="uid://dphgx1a3xboty" path="res://Scenes/VFX/muzzle_flash.tscn" id="3_h7p05"]
 
 [sub_resource type="Animation" id="Animation_x7t37"]
 resource_name = "Idle"
@@ -1353,6 +1354,8 @@ base_damage = 3.0
 base_fire_rate = 1.333
 base_range = 2000.0
 base_speed = 30.0
+muzzle = ExtResource("3_h7p05")
+muzzle_color = Color(0.5990973, 0.5415269, 0.44946676, 1)
 
 [node name="Fire Rate Timer" type="Timer" parent="."]
 unique_name_in_owner = true
@@ -1367,6 +1370,7 @@ unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_71k6d")
 }
+speed_scale = 1.25
 
 [node name="Armature" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0.5986459)

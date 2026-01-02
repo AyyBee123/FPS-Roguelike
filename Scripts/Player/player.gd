@@ -60,6 +60,7 @@ func _init():
 
 func _ready():
 	current_health = MAX_HEALTH
+	stats.stat_changed.connect(get_health_difference)
 	update_ability_slots()
 
 func _physics_process(delta):
@@ -133,6 +134,10 @@ func hit(amount):
 
 func die():
 	pass
+
+func get_health_difference(stat, old_value, new_value):
+	if stat != "Max_Health": return
+	heal(new_value - old_value)
 
 func heal(amount):
 	current_health = clamp(0, current_health + amount, MAX_HEALTH)

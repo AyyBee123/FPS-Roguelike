@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://dhlu65iawdxvf"]
+[gd_scene load_steps=36 format=3 uid="uid://dhlu65iawdxvf"]
 
 [ext_resource type="Script" uid="uid://c2cudrvyd4egp" path="res://Scripts/Player/player.gd" id="1_uvnfx"]
 [ext_resource type="Script" uid="uid://ct6urpkc4lp1s" path="res://Scripts/Player/camera_controller.gd" id="2_dd0ac"]
@@ -6,16 +6,20 @@
 [ext_resource type="Shader" uid="uid://c7cpnixlhnciv" path="res://Shaders/outline.tres" id="3_dd0ac"]
 [ext_resource type="Texture2D" uid="uid://bkix0kk0n8lx5" path="res://Assets/Crosshairs/crosshair001.png" id="4_mtuoh"]
 [ext_resource type="PackedScene" uid="uid://dajqdf341ehwu" path="res://Scenes/Arms/oil_spill.tscn" id="5_7g0yx"]
+[ext_resource type="Script" uid="uid://baxqpjp3mlstv" path="res://Scripts/UI/minimap_icon.gd" id="6_rcvs5"]
 [ext_resource type="Script" uid="uid://dbkrmv1m167r3" path="res://Scripts/UI/timer.gd" id="7_0u5uq"]
 [ext_resource type="FontFile" uid="uid://bfhwilg3cupoh" path="res://Fonts/Name Font.ttf" id="7_jlvik"]
 [ext_resource type="Script" uid="uid://dxuyltrlql3nd" path="res://Scripts/Player/pickup_detect.gd" id="9_gk6dx"]
 [ext_resource type="Texture2D" uid="uid://x6kbckfma58x" path="res://Assets/UI/XP Bar.png" id="9_jhyir"]
 [ext_resource type="Script" uid="uid://c4cp63v81m23v" path="res://Scripts/UI/xp_bar.gd" id="10_74mp2"]
 [ext_resource type="Script" uid="uid://byac7cqcf6if2" path="res://Scripts/UI/level.gd" id="11_oikmp"]
+[ext_resource type="Texture2D" uid="uid://bvrlxjkxyuct7" path="res://Assets/UI/Health Bar.png" id="12_aqm4k"]
 [ext_resource type="Script" uid="uid://1re15fa86o4d" path="res://Scripts/UI/minimap_camera.gd" id="12_dey5f"]
 [ext_resource type="Shader" uid="uid://rgkwx5g78yh4" path="res://Shaders/minimap_mask.gdshader" id="12_r5xpd"]
 [ext_resource type="Script" uid="uid://owhlfdboe0ob" path="res://Scripts/Utils/paused_check.gd" id="13_06tpx"]
 [ext_resource type="Script" uid="uid://vu1hdaiedirk" path="res://Scripts/Player/abilities.gd" id="13_7g0yx"]
+[ext_resource type="Texture2D" uid="uid://u4fv227ao0jp" path="res://Assets/UI/Filled Health Bar.png" id="13_rcvs5"]
+[ext_resource type="Script" uid="uid://d3g6lyxi3si3u" path="res://Scripts/UI/health_bar.gd" id="14_h8ma5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mtuoh"]
 size = Vector3(1, 2, 1)
@@ -204,14 +208,16 @@ libraries = {
 
 [node name="Arm" type="Node3D" parent="Camera/Weapons Manager/FPS Rig"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.37, -0.3, -0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0.37, -0.3, -0.5)
 
 [node name="Oil Spill" parent="Camera/Weapons Manager/FPS Rig/Arm" instance=ExtResource("5_7g0yx")]
 
 [node name="Minimap Icon" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1, -8.742278e-08, 3.821371e-15, 0, -4.371139e-08, -1, 8.742278e-08, -1, 4.371139e-08, 0, 0, -0.2)
+visible = false
 layers = 2
 mesh = SubResource("PrismMesh_r5xpd")
+script = ExtResource("6_rcvs5")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
@@ -223,6 +229,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Crosshair" type="TextureRect" parent="CanvasLayer/HUD"]
 unique_name_in_owner = true
@@ -303,6 +310,51 @@ offset_top = 104.0
 offset_right = 80.0
 offset_bottom = 168.0
 theme_override_constants/separation = 4
+
+[node name="Health Bar" type="TextureProgressBar" parent="CanvasLayer/HUD" node_paths=PackedStringArray("player")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = -80.0
+offset_right = 400.0
+offset_bottom = -32.0
+grow_vertical = 0
+pivot_offset = Vector2(0, 48)
+max_value = 1.0
+step = 0.01
+nine_patch_stretch = true
+stretch_margin_left = 4
+stretch_margin_top = 4
+stretch_margin_right = 4
+stretch_margin_bottom = 4
+texture_under = ExtResource("12_aqm4k")
+texture_progress = ExtResource("13_rcvs5")
+script = ExtResource("14_h8ma5")
+player = NodePath("../../..")
+
+[node name="Health Text" type="Label" parent="CanvasLayer/HUD/Health Bar"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 4
+theme_override_fonts/font = ExtResource("7_jlvik")
+theme_override_font_sizes/font_size = 24
+text = "100 / 100"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Upgrade" type="Node" parent="CanvasLayer"]
 unique_name_in_owner = true

@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://ba7erkb81ks3u"]
+[gd_scene load_steps=5 format=3 uid="uid://ba7erkb81ks3u"]
 
 [ext_resource type="Script" uid="uid://bkw7gdmdy7v3x" path="res://Scripts/Pickups/arm_pickup.gd" id="1_ybiw2"]
+[ext_resource type="Script" uid="uid://baxqpjp3mlstv" path="res://Scripts/UI/minimap_icon.gd" id="2_ybiw2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_djrlg"]
 shading_mode = 0
@@ -23,5 +24,7 @@ transform = Transform3D(1.255, 0, 0, 0, 1.255, 0, 0, 0, 1.255, 0, 0, 0)
 unique_name_in_owner = true
 
 [node name="Minimap Icon" type="MeshInstance3D" parent="."]
+visible = false
 layers = 2
 mesh = SubResource("SphereMesh_ybiw2")
+script = ExtResource("2_ybiw2")

@@ -1,5 +1,7 @@
 extends Node
 
+signal stat_changed(stat, old_value, new_value)
+
 ## "base" -> the base stat
 ## "+" -> the increase in the base stat (in decimal, e.g. 0.1 for a 10% increase)
 ## "x" -> the final multiplier of the base stat and the increase
@@ -32,12 +34,18 @@ func get_stat(stat_type: String) -> Variant:
 
 ## adds a percent increase (e.g. +15% -> amount = 15)
 func add_percent_stat(stat_type: String, amount: float) -> void:
+	var old_value = get_stat(stat_type)
 	stats[stat_type]["+"] += amount / 100.0
+	stat_changed.emit(stat_type, old_value, get_stat(stat_type))
 
 ## adds a multiplier (e.g. x1.5 -> amount = 1.5)
 func multiply_stat(stat_type: String, amount: Variant) -> void:
+	var old_value = get_stat(stat_type)
 	stats[stat_type]["x"] *= amount
+	stat_changed.emit(stat_type, old_value, get_stat(stat_type))
 
 ## adds a flat amount to the base (e.g. +2 -> amount = 2)
 func add_flat_stat(stat_type: String, amount: Variant) -> void:
+	var old_value = get_stat(stat_type)
 	stats[stat_type]["flat"] += amount
+	stat_changed.emit(stat_type, old_value, get_stat(stat_type))

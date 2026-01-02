@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://ukgrpto2cajc"]
+[gd_scene load_steps=8 format=3 uid="uid://ukgrpto2cajc"]
 
 [ext_resource type="Script" uid="uid://bw7gqgbxvhnv6" path="res://Scripts/Misc/xp.gd" id="1_3n01l"]
 [ext_resource type="ArrayMesh" uid="uid://c50y3dmpk3k4e" path="res://Assets/Misc/XP.tres" id="2_pi3is"]
+[ext_resource type="Script" uid="uid://baxqpjp3mlstv" path="res://Scripts/UI/minimap_icon.gd" id="3_pi3is"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_x2qg5"]
 radius = 0.25
@@ -41,7 +42,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1000, 0)
 target_position = Vector3(0, -6000, 0)
 
 [node name="Minimap Icon" type="MeshInstance3D" parent="."]
+visible = false
 layers = 2
 mesh = SubResource("SphereMesh_x2qg5")
+script = ExtResource("3_pi3is")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
