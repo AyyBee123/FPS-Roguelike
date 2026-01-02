@@ -101,8 +101,6 @@ func _physics_process(delta):
 	# check for level ups
 	if upgrade_queue_count > 0 and upgrade.get_child_count() == 0:
 		level_up()
-	
-	
 
 func _input(event):
 	if event.is_action_pressed("pickup") and pickup:
