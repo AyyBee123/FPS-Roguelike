@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://c4i7uubwdhgtw" path="res://Scripts/Player/weapons_manager.gd" id="2_htcer"]
 [ext_resource type="Shader" uid="uid://c7cpnixlhnciv" path="res://Shaders/outline.tres" id="3_dd0ac"]
 [ext_resource type="Texture2D" uid="uid://bkix0kk0n8lx5" path="res://Assets/Crosshairs/crosshair001.png" id="4_mtuoh"]
-[ext_resource type="PackedScene" uid="uid://beggit6q76e38" path="res://Scenes/Arms/double_finger.tscn" id="5_7g0yx"]
+[ext_resource type="PackedScene" uid="uid://dajqdf341ehwu" path="res://Scenes/Arms/oil_spill.tscn" id="5_7g0yx"]
 [ext_resource type="Script" uid="uid://dbkrmv1m167r3" path="res://Scripts/UI/timer.gd" id="7_0u5uq"]
 [ext_resource type="FontFile" uid="uid://bfhwilg3cupoh" path="res://Fonts/Name Font.ttf" id="7_jlvik"]
 [ext_resource type="Script" uid="uid://dxuyltrlql3nd" path="res://Scripts/Player/pickup_detect.gd" id="9_gk6dx"]
@@ -177,7 +177,7 @@ libraries = {
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.37, -0.3, -0.5)
 
-[node name="Double Finger" parent="Camera/Weapons Manager/FPS Rig/Arm" instance=ExtResource("5_7g0yx")]
+[node name="Oil Spill" parent="Camera/Weapons Manager/FPS Rig/Arm" instance=ExtResource("5_7g0yx")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
