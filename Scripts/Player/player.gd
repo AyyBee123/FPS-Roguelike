@@ -120,11 +120,13 @@ func get_pickup_collision():
 		return null
 
 func hit(amount):
-	if not i_frames.is_stopped(): return
-	i_frames.start()
+	if not i_frames.is_stopped():
+		return
+	
+	if amount > 0.0:
+		i_frames.start()
 	
 	current_health = clamp(0, current_health - amount, MAX_HEALTH)
-	print(current_health)
 	
 	if current_health <= 0:
 		die()
