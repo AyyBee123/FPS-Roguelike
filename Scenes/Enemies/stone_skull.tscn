@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://yipp43yiqwke"]
+[gd_scene load_steps=14 format=3 uid="uid://yipp43yiqwke"]
 
 [ext_resource type="Script" uid="uid://bj4il52perdx8" path="res://Scripts/Enemies/stone_skull.gd" id="1_o0abg"]
 [ext_resource type="ArrayMesh" uid="uid://hg5f70wfdwgi" path="res://Assets/Enemies/Stone Skull/stone_skull.tres" id="2_kyj4i"]
@@ -446,6 +446,14 @@ radius = 0.75
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2rd6j"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ulhvv"]
+shading_mode = 0
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_2rd6j"]
+material = SubResource("StandardMaterial3D_ulhvv")
+radius = 1.5
+
 [node name="Stone Skull" type="CharacterBody3D" node_paths=PackedStringArray("mesh") groups=["Enemy"]]
 collision_layer = 4
 script = ExtResource("1_o0abg")
@@ -571,6 +579,10 @@ script = ExtResource("5_ulhvv")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy Detection Area"]
 shape = SubResource("SphereShape3D_2rd6j")
+
+[node name="Minimap Icon" type="MeshInstance3D" parent="."]
+layers = 2
+mesh = SubResource("SphereMesh_2rd6j")
 
 [connection signal="body_entered" from="Enemy Detection Area" to="Enemy Detection Area" method="_on_body_entered"]
 [connection signal="body_exited" from="Enemy Detection Area" to="Enemy Detection Area" method="_on_body_exited"]

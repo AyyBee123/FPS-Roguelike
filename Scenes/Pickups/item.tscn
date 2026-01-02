@@ -1,9 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://dyk4mpi4d6hrl"]
+[gd_scene load_steps=5 format=3 uid="uid://dyk4mpi4d6hrl"]
 
 [ext_resource type="Script" uid="uid://bu3xt72h8nf67" path="res://Scripts/Pickups/item.gd" id="1_dyk4n"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0c04t"]
 radius = 0.75
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dyk4n"]
+shading_mode = 0
+albedo_color = Color(0.94119036, 0.70253235, 0.030922275, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_bq1bg"]
+material = SubResource("StandardMaterial3D_dyk4n")
+radius = 1.2
 
 [node name="Item" type="RigidBody3D"]
 collision_layer = 8
@@ -20,3 +28,7 @@ shape = SubResource("SphereShape3D_0c04t")
 
 [node name="Passive" type="Node" parent="."]
 unique_name_in_owner = true
+
+[node name="Minimap Icon" type="MeshInstance3D" parent="."]
+layers = 2
+mesh = SubResource("SphereMesh_bq1bg")

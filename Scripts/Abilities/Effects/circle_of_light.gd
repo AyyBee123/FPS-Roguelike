@@ -12,8 +12,10 @@ func _on_spawn(projectile: Variant, damage: float):
 
 func create_aura(projectile: Variant, damage: float):
 	var aura = AURA.instantiate()
+	aura.visible = false
 	aura.damage = get_stat_value("Damage", damage * DAMAGE_MULTIPLIER)
 	aura.scale /= projectile.scale
 	aura.scale = Vector3.ONE * get_stat_value("Splash_Radius")
 	aura.player = player
 	projectile.add_child(aura)
+	aura.visible = true

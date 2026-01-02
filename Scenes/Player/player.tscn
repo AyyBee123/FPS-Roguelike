@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dhlu65iawdxvf"]
+[gd_scene load_steps=29 format=3 uid="uid://dhlu65iawdxvf"]
 
 [ext_resource type="Script" uid="uid://c2cudrvyd4egp" path="res://Scripts/Player/player.gd" id="1_uvnfx"]
 [ext_resource type="Script" uid="uid://ct6urpkc4lp1s" path="res://Scripts/Player/camera_controller.gd" id="2_dd0ac"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://x6kbckfma58x" path="res://Assets/UI/XP Bar.png" id="9_jhyir"]
 [ext_resource type="Script" uid="uid://c4cp63v81m23v" path="res://Scripts/UI/xp_bar.gd" id="10_74mp2"]
 [ext_resource type="Script" uid="uid://byac7cqcf6if2" path="res://Scripts/UI/level.gd" id="11_oikmp"]
+[ext_resource type="Script" uid="uid://1re15fa86o4d" path="res://Scripts/UI/minimap_camera.gd" id="12_dey5f"]
 [ext_resource type="Script" uid="uid://owhlfdboe0ob" path="res://Scripts/Utils/paused_check.gd" id="13_06tpx"]
 [ext_resource type="Script" uid="uid://vu1hdaiedirk" path="res://Scripts/Player/abilities.gd" id="13_7g0yx"]
 
@@ -111,6 +112,14 @@ _data = {
 &"RESET": SubResource("Animation_xpcdj")
 }
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dey5f"]
+shading_mode = 0
+albedo_color = Color(0, 1, 0.27450982, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_r5xpd"]
+material = SubResource("StandardMaterial3D_dey5f")
+size = Vector3(4, 6, 1)
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_74mp2"]
 texture = ExtResource("9_jhyir")
 texture_margin_left = 4.0
@@ -131,6 +140,18 @@ ProgressBar/colors/font_color = Color(0.9490196, 0.9490196, 0.9490196, 0)
 ProgressBar/styles/background = SubResource("StyleBoxTexture_74mp2")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_oikmp")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dey5f"]
+bg_color = Color(0, 0, 0, 0.5019608)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 64
+corner_radius_top_right = 64
+corner_radius_bottom_right = 64
+corner_radius_bottom_left = 64
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_mtuoh"]
 radius = 2.0
 
@@ -150,6 +171,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 top_level = true
+cull_mask = 1048573
 current = true
 script = ExtResource("2_dd0ac")
 player = NodePath("..")
@@ -178,6 +200,11 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.37, -0.3, -0.5)
 
 [node name="Oil Spill" parent="Camera/Weapons Manager/FPS Rig/Arm" instance=ExtResource("5_7g0yx")]
+
+[node name="Minimap Icon" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, -8.742278e-08, 3.821371e-15, 0, -4.371139e-08, -1, 8.742278e-08, -1, 4.371139e-08, 0, 0, -0.2)
+layers = 2
+mesh = SubResource("PrismMesh_r5xpd")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
@@ -272,6 +299,32 @@ theme_override_constants/separation = 4
 
 [node name="Upgrade" type="Node" parent="CanvasLayer"]
 unique_name_in_owner = true
+
+[node name="Minimap" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -144.0
+offset_top = 40.0
+offset_right = -16.0
+offset_bottom = 168.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_dey5f")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer/Minimap"]
+layout_mode = 2
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/Minimap/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(128, 128)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="CanvasLayer/Minimap/SubViewportContainer/SubViewport" node_paths=PackedStringArray("player")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 50, 0)
+cull_mask = 1048574
+script = ExtResource("12_dey5f")
+player = NodePath("../../../../..")
 
 [node name="Pickup Detect" type="Area3D" parent="." node_paths=PackedStringArray("player")]
 collision_layer = 0

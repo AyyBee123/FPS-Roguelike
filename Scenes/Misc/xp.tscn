@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://ukgrpto2cajc"]
+[gd_scene load_steps=7 format=3 uid="uid://ukgrpto2cajc"]
 
 [ext_resource type="Script" uid="uid://bw7gqgbxvhnv6" path="res://Scripts/Misc/xp.gd" id="1_3n01l"]
 [ext_resource type="ArrayMesh" uid="uid://c50y3dmpk3k4e" path="res://Assets/Misc/XP.tres" id="2_pi3is"]
@@ -11,6 +11,14 @@ resource_local_to_scene = true
 diffuse_mode = 3
 specular_mode = 1
 roughness = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pi3is"]
+shading_mode = 0
+albedo_color = Color(0, 0.6666667, 0.8666667, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_x2qg5"]
+material = SubResource("StandardMaterial3D_pi3is")
+radius = 1.0
 
 [node name="XP" type="Area3D" groups=["XP"]]
 collision_layer = 8
@@ -31,5 +39,9 @@ skeleton = NodePath("../CollisionShape3D")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1000, 0)
 target_position = Vector3(0, -6000, 0)
+
+[node name="Minimap Icon" type="MeshInstance3D" parent="."]
+layers = 2
+mesh = SubResource("SphereMesh_x2qg5")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
