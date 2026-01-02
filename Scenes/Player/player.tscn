@@ -316,6 +316,7 @@ offset_top = 40.0
 offset_right = -16.0
 offset_bottom = 168.0
 grow_horizontal = 0
+pivot_offset = Vector2(128, 0)
 theme_override_styles/panel = SubResource("StyleBoxFlat_dey5f")
 
 [node name="Mask" type="TextureRect" parent="CanvasLayer/Minimap"]
