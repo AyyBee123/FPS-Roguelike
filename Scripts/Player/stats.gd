@@ -5,7 +5,7 @@ extends Node
 ## "x" -> the final multiplier of the base stat and the increase
 var stats: Dictionary = {
 	# character stats
-	"Max_Health": { "base": 100, "+": 0, "x": 1, "flat": 0.0 },
+	"Max_Health": { "base": 100.0, "+": 0, "x": 1, "flat": 0.0 },
 	"Move_Speed": { "base": 8.0, "+": 0, "x": 1, "flat": 0.0 },
 	"Jump_Height": { "base": 5.0, "+": 0, "x": 1, "flat": 0.0 },
 	"Extra_Jumps": { "base": 0, "+": 0, "x": 1, "flat": 0 },

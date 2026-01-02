@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dhlu65iawdxvf"]
+[gd_scene load_steps=32 format=3 uid="uid://dhlu65iawdxvf"]
 
 [ext_resource type="Script" uid="uid://c2cudrvyd4egp" path="res://Scripts/Player/player.gd" id="1_uvnfx"]
 [ext_resource type="Script" uid="uid://ct6urpkc4lp1s" path="res://Scripts/Player/camera_controller.gd" id="2_dd0ac"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://c4cp63v81m23v" path="res://Scripts/UI/xp_bar.gd" id="10_74mp2"]
 [ext_resource type="Script" uid="uid://byac7cqcf6if2" path="res://Scripts/UI/level.gd" id="11_oikmp"]
 [ext_resource type="Script" uid="uid://1re15fa86o4d" path="res://Scripts/UI/minimap_camera.gd" id="12_dey5f"]
+[ext_resource type="Shader" uid="uid://rgkwx5g78yh4" path="res://Shaders/minimap_mask.gdshader" id="12_r5xpd"]
 [ext_resource type="Script" uid="uid://owhlfdboe0ob" path="res://Scripts/Utils/paused_check.gd" id="13_06tpx"]
 [ext_resource type="Script" uid="uid://vu1hdaiedirk" path="res://Scripts/Player/abilities.gd" id="13_7g0yx"]
 
@@ -151,6 +152,12 @@ corner_radius_top_left = 64
 corner_radius_top_right = 64
 corner_radius_bottom_right = 64
 corner_radius_bottom_left = 64
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ks1b7"]
+shader = ExtResource("12_r5xpd")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_r5xpd"]
+viewport_path = NodePath("CanvasLayer/Minimap/Mask/SubViewport")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_mtuoh"]
 radius = 2.0
@@ -311,16 +318,21 @@ offset_bottom = 168.0
 grow_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_dey5f")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer/Minimap"]
+[node name="Mask" type="TextureRect" parent="CanvasLayer/Minimap"]
+material = SubResource("ShaderMaterial_ks1b7")
 layout_mode = 2
+mouse_filter = 2
+texture = SubResource("ViewportTexture_r5xpd")
+expand_mode = 1
 
-[node name="SubViewport" type="SubViewport" parent="CanvasLayer/Minimap/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/Minimap/Mask"]
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(128, 128)
+render_target_clear_mode = 1
 render_target_update_mode = 4
 
-[node name="Camera3D" type="Camera3D" parent="CanvasLayer/Minimap/SubViewportContainer/SubViewport" node_paths=PackedStringArray("player")]
+[node name="Camera3D" type="Camera3D" parent="CanvasLayer/Minimap/Mask/SubViewport" node_paths=PackedStringArray("player")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 50, 0)
 cull_mask = 1048574
 script = ExtResource("12_dey5f")
@@ -346,6 +358,10 @@ player = NodePath("..")
 [node name="Paused Check" type="Node" parent="."]
 process_mode = 3
 script = ExtResource("13_06tpx")
+
+[node name="IFrames" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
 
 [connection signal="area_entered" from="Pickup Detect" to="Pickup Detect" method="_on_area_entered"]
 [connection signal="body_entered" from="Pickup Detect" to="." method="_on_pickup_detect_body_entered"]

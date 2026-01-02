@@ -13,6 +13,7 @@ signal weapon_spawned(projectile, damage)
 @onready var upgrade = %Upgrade
 @onready var arm = %Arm
 @onready var ability_slots = %"Ability Slots"
+@onready var i_frames = $IFrames
 
 const Stats = preload("uid://d0a7frb8gvg68")
 const PASSIVE_MENU = preload("uid://clamkav36kau4")
@@ -24,6 +25,9 @@ var current_xp: float = 0
 var current_level: int = 1
 var upgrade_queue_count: int = 0 # the amount of level up choices that are in queue
 
+var MAX_HEALTH: float:
+	get:
+		return stats.get_stat("Max_Health")
 var SPEED: float:
 	get:
 		return stats.get_stat("Move_Speed")
@@ -43,6 +47,7 @@ var LUCK_MULTIPLIER: float:
 	get:
 		return stats.get_stat("Luck")
 
+var current_health: float
 var current_jumps: int = 0 # the current number of extra jumps that can be used
 var pickup = null
 var nearby_pickups: Array = []
@@ -54,6 +59,7 @@ func _init():
 	stats = Stats.new()
 
 func _ready():
+	current_health = MAX_HEALTH
 	update_ability_slots()
 
 func _physics_process(delta):
@@ -113,8 +119,21 @@ func get_pickup_collision():
 	else:
 		return null
 
-func hit(damage):
-	print("Took %s damage" % roundi(damage))
+func hit(amount):
+	if not i_frames.is_stopped(): return
+	i_frames.start()
+	
+	current_health = clamp(0, current_health - amount, MAX_HEALTH)
+	print(current_health)
+	
+	if current_health <= 0:
+		die()
+
+func die():
+	pass
+
+func heal(amount):
+	current_health = clamp(0, current_health + amount, MAX_HEALTH)
 
 func gain_xp(amount: int):
 	current_xp += amount * XP_MULTIPLIER

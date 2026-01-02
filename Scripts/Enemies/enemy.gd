@@ -13,6 +13,7 @@ signal enemy_hit(source, enemy, damage_taken)
 @export var health: float = 25
 @export var speed: float = 5
 @export var xp_amount: int = 1
+@export var contact_damage: float = 0.0 # amount of damage dealt to a player if in contact with them
 @export var weight: float = 1.0 # weight determines the anount the enemy gets pushed (lower weight gets pushed more)
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -20,6 +21,7 @@ var angular_acceleration: float = 5
 var is_on_screen: bool = true
 var object: RID
 var tween: Tween
+var players_in_contact: Array[Player]
 
 @onready var player = get_tree().get_first_node_in_group("Player")
 
@@ -32,7 +34,14 @@ func _ready():
 	on_screen_notifier.screen_exited.connect(_on_screen_exited)
 
 func _physics_process(delta):
-	pass
+	# detect collisions with players
+	if contact_damage > 0.0:
+		for i in get_slide_collision_count():
+			var collision = get_slide_collision(i)
+			var body = collision.get_collider()
+			
+			if body is Player:
+				body.hit(contact_damage)
 
 func target_position(target):
 	pass
