@@ -208,7 +208,7 @@ libraries = {
 
 [node name="Arm" type="Node3D" parent="Camera/Weapons Manager/FPS Rig"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0.37, -0.3, -0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0.37, -0.3, -0.5)
 
 [node name="Oil Spill" parent="Camera/Weapons Manager/FPS Rig/Arm" instance=ExtResource("5_7g0yx")]
 
@@ -380,9 +380,9 @@ anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -144.0
-offset_top = 40.0
+offset_top = 16.0
 offset_right = -16.0
-offset_bottom = 168.0
+offset_bottom = 144.0
 grow_horizontal = 0
 pivot_offset = Vector2(128, 0)
 theme_override_styles/panel = SubResource("StyleBoxFlat_dey5f")
