@@ -449,7 +449,7 @@ script = ExtResource("13_06tpx")
 wait_time = 0.5
 one_shot = true
 
-[node name="Decal" type="Decal" parent="."]
+[node name="Shadow" type="Decal" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
 size = Vector3(1.5, 5, 1.5)
 texture_albedo = ExtResource("19_aqm4k")

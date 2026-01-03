@@ -37,7 +37,7 @@ layers = 2
 mesh = SubResource("SphereMesh_bq1bg")
 script = ExtResource("2_bq1bg")
 
-[node name="Decal" type="Decal" parent="."]
+[node name="Shadow" type="Decal" parent="."]
 size = Vector3(1, 5, 1)
 texture_albedo = ExtResource("3_0c04t")
 cull_mask = 4

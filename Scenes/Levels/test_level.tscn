@@ -66,7 +66,6 @@ environment = SubResource("Environment_l7ek2")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 30, 0)
-shadow_enabled = true
 shadow_bias = 1.0
 shadow_normal_bias = 10.0
 shadow_blur = 0.01
@@ -93,6 +92,7 @@ navigation_mesh = SubResource("NavigationMesh_db73o")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+layers = 4
 mesh = SubResource("BoxMesh_b07c4")
 skeleton = NodePath("StaticBody3D/CollisionShape3D")
 
@@ -105,6 +105,7 @@ shape = SubResource("BoxShape3D_2ytpj")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 9.01931, -100.556)
+layers = 4
 mesh = SubResource("BoxMesh_b07c4")
 skeleton = NodePath("StaticBody3D/CollisionShape3D")
 
@@ -117,6 +118,7 @@ shape = SubResource("BoxShape3D_2ytpj")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="NavigationRegion3D"]
 transform = Transform3D(4.29, 0, 0, 0, 5.89, 0, 0, 0, 1, 0, 2.945, -2.6790018)
+layers = 4
 mesh = SubResource("BoxMesh_db73o")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D3"]
