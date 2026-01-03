@@ -5,6 +5,7 @@ signal upgrade_selected(upgrade)
 @onready var scalable_ui = %Scale
 @onready var transition = %Transition
 @onready var upgrade_list = %"Upgrade List"
+@onready var buffer = $Buffer
 
 var base_resolution = Vector2(1920, 1080)
 var tween: Tween
@@ -33,7 +34,7 @@ func _ready():
 	tween.tween_property(transition, "scale", Vector2.ONE, 0.15)
 
 func select_upgrade(button):
-	if tween.is_running(): return
+	if tween.is_running() or not buffer.is_stopped(): return
 	
 	get_tree().paused = false
 	if button.passives.size() > 0:

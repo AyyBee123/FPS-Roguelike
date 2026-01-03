@@ -195,39 +195,42 @@ shape = SubResource("BoxShape3D_mtuoh")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
-[node name="Camera" type="Camera3D" parent="." node_paths=PackedStringArray("player")]
+[node name="Recoil" type="Node3D" parent="."]
+
+[node name="Camera" type="Camera3D" parent="Recoil" node_paths=PackedStringArray("player")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 top_level = true
 cull_mask = 1048573
 current = true
+fov = 100.0
 script = ExtResource("2_dd0ac")
-player = NodePath("..")
+player = NodePath("../..")
 
-[node name="Outline" type="MeshInstance3D" parent="Camera"]
+[node name="Outline" type="MeshInstance3D" parent="Recoil/Camera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15)
 extra_cull_margin = 16384.0
 mesh = SubResource("QuadMesh_0u5uq")
 
-[node name="Weapons Manager" type="Node3D" parent="Camera" node_paths=PackedStringArray("player")]
+[node name="Weapons Manager" type="Node3D" parent="Recoil/Camera" node_paths=PackedStringArray("player")]
 unique_name_in_owner = true
 script = ExtResource("2_htcer")
-player = NodePath("../..")
+player = NodePath("../../..")
 
-[node name="FPS Rig" type="Node3D" parent="Camera/Weapons Manager"]
+[node name="FPS Rig" type="Node3D" parent="Recoil/Camera/Weapons Manager"]
 unique_name_in_owner = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera/Weapons Manager/FPS Rig"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Recoil/Camera/Weapons Manager/FPS Rig"]
 unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_mtuoh")
 }
 
-[node name="Arm" type="Node3D" parent="Camera/Weapons Manager/FPS Rig"]
+[node name="Arm" type="Node3D" parent="Recoil/Camera/Weapons Manager/FPS Rig"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0.37, -0.3, -0.5)
 
-[node name="Oil Spill" parent="Camera/Weapons Manager/FPS Rig/Arm" instance=ExtResource("5_7g0yx")]
+[node name="Oil Spill" parent="Recoil/Camera/Weapons Manager/FPS Rig/Arm" instance=ExtResource("5_7g0yx")]
 
 [node name="Minimap Icon" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1, -8.742278e-08, 3.821371e-15, 0, -4.371139e-08, -1, 8.742278e-08, -1, 4.371139e-08, 0, 0, -0.2)
@@ -319,7 +322,7 @@ custom_minimum_size = Vector2(128, 0)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.022000002
-anchor_right = 0.022000002
+anchor_right = 0.56547827
 offset_left = -0.09600067
 offset_right = 151.90399
 offset_bottom = 30.0
@@ -330,7 +333,7 @@ theme_override_constants/shadow_offset_y = 1
 theme_override_constants/shadow_outline_size = 4
 theme_override_fonts/font = ExtResource("7_jlvik")
 theme_override_font_sizes/font_size = 16
-text = "LVL  1"
+text = "LEVEL  1"
 vertical_alignment = 1
 script = ExtResource("11_oikmp")
 player = NodePath("../../../../..")

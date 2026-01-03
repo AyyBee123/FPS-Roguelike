@@ -94,3 +94,8 @@ theme_override_font_sizes/font_size = 64
 text = "Choose Upgrade"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Buffer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+autostart = true
