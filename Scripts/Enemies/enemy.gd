@@ -15,6 +15,7 @@ signal enemy_hit(source, enemy, damage_taken)
 @export var xp_amount: int = 1
 @export var contact_damage: float = 0.0 # amount of damage dealt to a player if in contact with them
 @export var weight: float = 1.0 # weight determines the anount the enemy gets pushed (lower weight gets pushed more)
+@export var damage_number: PackedScene
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var angular_acceleration: float = 5
@@ -48,6 +49,7 @@ func target_position(target):
 
 func hit(_damage: float, source_player: Player, source: Variant):
 	health -= _damage
+	SignalBus.enemy_damaged.emit(self, _damage)
 	player._on_enemy_hit(self, source, _damage)
 	
 	tween = get_tree().create_tween().set_parallel(true)
@@ -60,6 +62,12 @@ func hit(_damage: float, source_player: Player, source: Variant):
 				mat.set_shader_parameter("fade", v),
 				1.0, 0.0, 0.1
 			)
+	
+	var dmg_num = damage_number.instantiate()
+	dmg_num.damage = _damage
+	dmg_num.camera = source_player.camera
+	dmg_num.position = position + Vector3(0, 2, 0)
+	get_tree().current_scene.add_child(dmg_num)
 	
 	if health <= 0:
 		die()

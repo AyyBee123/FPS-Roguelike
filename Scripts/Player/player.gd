@@ -4,6 +4,7 @@ signal enemy_hit(enemy, source, damage)
 signal weapon_fired(projectile, damage) # called for each projectile of the weapon
 signal weapon_shot(weapon) # called for each instance of the weapon (for adding recoil)
 signal weapon_spawned(projectile, damage)
+signal on_landing(impact_speed)
 
 @onready var camera = %Camera
 @onready var animation_player = %AnimationPlayer
@@ -24,6 +25,9 @@ var XP_NEEDED: float = 5
 var current_xp: float = 0
 var current_level: int = 1
 var upgrade_queue_count: int = 0 # the amount of level up choices that are in queue
+
+var was_on_floor: bool = false
+var speed_before_landing: float = 0.0
 
 var MAX_HEALTH: float:
 	get:
@@ -70,6 +74,10 @@ func _physics_process(delta):
 	# add gravity
 	if not is_on_floor():
 		velocity += get_gravity() * delta * FALL_SPEED
+	
+	# get previous velocity
+	var previous_velocity = velocity
+	
 	# recharge extra jumps
 	if is_on_floor():
 		current_jumps = NUMBER_OF_EXTRA_JUMPS
@@ -92,6 +100,12 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 	
 	move_and_slide()
+	
+	# check for landing
+	if not was_on_floor and is_on_floor():
+		speed_before_landing = previous_velocity.y
+		on_landing.emit(speed_before_landing)
+	was_on_floor = is_on_floor()
 	
 	if nearby_pickups.size() > 0:
 		pickup = get_pickup_collision()

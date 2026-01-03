@@ -12,7 +12,7 @@ func shoot():
 	t = 0.0
 	fire_rate_timer = 1.0 / fire_rate
 	animation_player.stop()
-	animation_player.speed_scale = clamp(0.1, fire_rate / 2.0, 8)
+	animation_player.speed_scale = clamp(fire_rate / 2.0, 0.1, 8)
 	animation_player.play(shoot_animation)
 
 func _on_animation_player_animation_finished(anim_name):

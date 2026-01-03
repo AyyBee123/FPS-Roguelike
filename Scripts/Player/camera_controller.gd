@@ -1,17 +1,28 @@
 extends Node3D
 
 @export var player: Player
+@export var rig: Node3D
 
 var current_rotation: Vector3
 var target_rotation: Vector3
+var rig_origin: Vector3
 
-@export var mouse_sensitivity: float = 0.001
+@export var sensitivity: float = 0.001
 @export var pitch_limit_degrees: float = 80.0
+
+var weapon_sway: float = 0.0025
+var weapon_sway_speed: float = 10.0
+var bob_amount: float = 0.025
+var bob_freq: float = 0.015
+var rig_max_rotation: float = 0.25
+var rig_max_position: float = 0.2
 
 var arm: Arm
 
 func _ready():
 	player.weapon_shot.connect(add_recoil)
+	player.on_landing.connect(land)
+	rig_origin = rig.position
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 # Current rotation state
@@ -23,11 +34,11 @@ var recoil_current := Vector2.ZERO
 var recoil_target := Vector2.ZERO
 
 # Stores mouse delta each frame
-var mouse_input := Vector2.ZERO
+var input := Vector2.ZERO
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
-		mouse_input += event.relative
+		input += event.relative
 
 # add recoil (called when shooting)
 func add_recoil(_arm) -> void:
@@ -37,10 +48,15 @@ func add_recoil(_arm) -> void:
 
 func _process(delta: float) -> void:
 	# mouse look
-	yaw -= mouse_input.x * mouse_sensitivity
-	pitch -= mouse_input.y * mouse_sensitivity * 1.25
+	yaw -= input.x * sensitivity
+	pitch -= input.y * sensitivity * 1.25
 	pitch = clamp(pitch, -deg_to_rad(pitch_limit_degrees), deg_to_rad(pitch_limit_degrees))
-	mouse_input = Vector2.ZERO
+	
+	# rotate the arm based on camera/player rotation
+	if rig:
+		rig.rotation.y = lerp(rig.rotation.y, input.x * weapon_sway, weapon_sway_speed * delta)
+		rig.rotation.x = lerp(rig.rotation.x, input.y * weapon_sway, weapon_sway_speed * delta)
+		rig.rotation = rig.rotation.clamp(-Vector3.ONE * rig_max_rotation, Vector3.ONE * rig_max_rotation)
 	
 	# recoil
 	if arm:
@@ -56,3 +72,29 @@ func _process(delta: float) -> void:
 	
 	# vertical rotation (pitch + recoil) to pivot
 	rotation.x = clamp(-deg_to_rad(pitch_limit_degrees), pitch + recoil_current.x, deg_to_rad(pitch_limit_degrees))
+	
+	bob(player.velocity.length(), delta)
+	
+	input = Vector2.ZERO
+
+func bob(vel: float, delta):
+	if rig:
+		if vel > 0:
+			if player.is_on_floor():
+				rig.position.y = lerp(rig.position.y, rig_origin.y + sin(Time.get_ticks_msec() * bob_freq * player.SPEED / 8) * bob_amount, 10 * delta)
+				rig.position.x = lerp(rig.position.x, rig_origin.x + sin(Time.get_ticks_msec() * bob_freq * 0.5 * player.SPEED / 8) * bob_amount, 10 * delta)
+			else:
+				rig.rotation.x = lerp(rig.rotation.x, -player.velocity.y * 0.1, 10 * delta)
+				if player.velocity.y > 0:
+					rig.position.y = lerp(rig.position.y, rig_origin.y - player.velocity.y * 0.025, 10 * delta)
+				else:
+					rig.position.y = lerp(rig.position.y, rig_origin.y - player.velocity.y * 0.005, 2.5 * delta)
+		else:
+			rig.position.y = lerp(rig.position.y, rig_origin.y + sin(Time.get_ticks_msec() * bob_freq * 0.1 * player.SPEED / 8) * bob_amount, 10 * delta)
+			rig.position.x = lerp(rig.position.x, rig_origin.x, 10 * delta)
+		
+		rig.position = rig.position.clamp(-Vector3.ONE * rig_max_position, Vector3.ONE * rig_max_position)
+
+func land(impact_speed: float):
+	rig.position.y = lerp(rig.position.y, impact_speed * 0.05, get_physics_process_delta_time())
+	rig.rotation.x = lerp(rig.rotation.x, impact_speed * 0.05, get_physics_process_delta_time())

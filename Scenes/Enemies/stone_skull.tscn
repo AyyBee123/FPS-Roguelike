@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://yipp43yiqwke"]
+[gd_scene load_steps=17 format=3 uid="uid://yipp43yiqwke"]
 
 [ext_resource type="Script" uid="uid://bj4il52perdx8" path="res://Scripts/Enemies/stone_skull.gd" id="1_o0abg"]
+[ext_resource type="PackedScene" uid="uid://dm6474uy3ucte" path="res://Scenes/Misc/damage_number.tscn" id="2_3kxp1"]
 [ext_resource type="ArrayMesh" uid="uid://hg5f70wfdwgi" path="res://Assets/Enemies/Stone Skull/stone_skull.tres" id="2_kyj4i"]
 [ext_resource type="ArrayMesh" uid="uid://b1o66dychn2x7" path="res://Assets/Enemies/Stone Skull/fire.tres" id="2_l80ut"]
 [ext_resource type="Shader" uid="uid://d1oiih60d8at2" path="res://Shaders/enemy_damaged.gdshader" id="2_ulhvv"]
@@ -466,6 +467,7 @@ mesh = [NodePath("Skull"), NodePath("Fire")]
 raycast_offset = 6.0
 health = 20.0
 speed = 0.333
+damage_number = ExtResource("2_3kxp1")
 
 [node name="Skull" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true

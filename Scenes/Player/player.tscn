@@ -192,9 +192,10 @@ script = ExtResource("1_uvnfx")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_mtuoh")
 
-[node name="Camera Controller" type="Node3D" parent="." node_paths=PackedStringArray("player")]
+[node name="Camera Controller" type="Node3D" parent="." node_paths=PackedStringArray("player", "rig")]
 script = ExtResource("2_rcvs5")
 player = NodePath("..")
+rig = NodePath("Camera/Weapons Manager/FPS Rig")
 
 [node name="Camera" type="Camera3D" parent="Camera Controller"]
 unique_name_in_owner = true
