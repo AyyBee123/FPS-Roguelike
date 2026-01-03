@@ -97,8 +97,7 @@ func die():
 func drop_xp():
 	var xp = XP.instantiate()
 	xp.xp_amount = xp_amount
-	xp.position = position
-	xp.position.y = 1
+	xp.position = position + Vector3(0, 1, 0)
 	get_tree().current_scene.add_child(xp)
 
 func _on_screen_entered():

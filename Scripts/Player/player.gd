@@ -149,7 +149,7 @@ func hit(amount):
 		die()
 
 func die():
-	pass
+	print("L")
 
 func get_health_difference(stat, old_value, new_value):
 	if stat != "Max_Health": return
