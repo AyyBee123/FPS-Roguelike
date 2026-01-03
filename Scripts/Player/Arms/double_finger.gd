@@ -5,8 +5,7 @@ extends Arm
 func shoot():
 	super.shoot()
 	
-	if t < fire_rate_timer:
-		return
+	if t < fire_rate_timer: return
 	
 	if muzzle:
 		var m = muzzle.instantiate()

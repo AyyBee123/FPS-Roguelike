@@ -2,6 +2,7 @@ class_name Arm extends Node3D
 
 @export_enum("COMMON", "UNCOMMON", "LEGENDARY", "UNSET:-1") var rarity: int = -1
 
+@export_category("Base Stats")
 @export var projectile: PackedScene # the projectile shot by the arm
 @export var base_damage: float # damage dealt by the projectile
 @export var base_fire_rate: float # in shots per second
@@ -9,7 +10,14 @@ class_name Arm extends Node3D
 @export var base_speed: float # velocity of the projectile shot by the arm
 @export var base_splash_radius: float = 1.0 # the splash radius of splash effects from the arm
 @export var base_projectile_count: int = 1 # number of projectiles shot from the arm at once
+
+@export_category("Accuracy & Recoil")
 @export var spread: float = 0.0 # the random spread amount of the projectile(s) in degrees
+@export var recoil: Vector2 # amount of recoil created the arm rotates by when shot
+@export var recoil_speed: float # speed in which the camera rotates
+@export var snap: float # the speed in which the camera snaps back to its original rotation
+
+@export_category("Miscellaneous")
 @export var shoot_animation: String = "Shoot"
 @export var equip_animation: String = "Activate"
 @export var muzzle: PackedScene
@@ -51,8 +59,7 @@ func _physics_process(delta):
 	t += delta
 
 func shoot():
-	if t < fire_rate_timer:
-		return
+	if t < fire_rate_timer: return
 	
 	t = 0.0
 	fire_rate_timer = 1.0 / fire_rate
@@ -64,6 +71,8 @@ func shoot():
 		bullet_point.add_child(m)
 	
 	var camera_collision = get_camera_collision()
+	
+	player.weapon_shot.emit(self)
 	
 	for i in range(projectile_count):
 		launch_projectile(camera_collision)

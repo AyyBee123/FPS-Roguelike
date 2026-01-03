@@ -1,8 +1,8 @@
 [gd_scene load_steps=38 format=3 uid="uid://dhlu65iawdxvf"]
 
 [ext_resource type="Script" uid="uid://c2cudrvyd4egp" path="res://Scripts/Player/player.gd" id="1_uvnfx"]
-[ext_resource type="Script" uid="uid://ct6urpkc4lp1s" path="res://Scripts/Player/camera_controller.gd" id="2_dd0ac"]
 [ext_resource type="Script" uid="uid://c4i7uubwdhgtw" path="res://Scripts/Player/weapons_manager.gd" id="2_htcer"]
+[ext_resource type="Script" uid="uid://dpoyvn3l6r8uv" path="res://Scripts/Player/camera_controller.gd" id="2_rcvs5"]
 [ext_resource type="Shader" uid="uid://c7cpnixlhnciv" path="res://Shaders/outline.tres" id="3_dd0ac"]
 [ext_resource type="Texture2D" uid="uid://bkix0kk0n8lx5" path="res://Assets/Crosshairs/crosshair001.png" id="4_mtuoh"]
 [ext_resource type="PackedScene" uid="uid://dajqdf341ehwu" path="res://Scenes/Arms/oil_spill.tscn" id="5_7g0yx"]
@@ -192,46 +192,41 @@ script = ExtResource("1_uvnfx")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_mtuoh")
 
-[node name="Camera Controller Anchor" type="Marker3D" parent="."]
+[node name="Camera Controller" type="Node3D" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("2_rcvs5")
+player = NodePath("..")
+
+[node name="Camera" type="Camera3D" parent="Camera Controller"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-
-[node name="Recoil" type="Node3D" parent="."]
-
-[node name="Camera" type="Camera3D" parent="Recoil" node_paths=PackedStringArray("player")]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-top_level = true
 cull_mask = 5
 current = true
 fov = 100.0
-script = ExtResource("2_dd0ac")
-player = NodePath("../..")
 
-[node name="Outline" type="MeshInstance3D" parent="Recoil/Camera"]
+[node name="Outline" type="MeshInstance3D" parent="Camera Controller/Camera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15)
 extra_cull_margin = 16384.0
 mesh = SubResource("QuadMesh_0u5uq")
 
-[node name="Weapons Manager" type="Node3D" parent="Recoil/Camera" node_paths=PackedStringArray("player")]
+[node name="Weapons Manager" type="Node3D" parent="Camera Controller/Camera" node_paths=PackedStringArray("player")]
 unique_name_in_owner = true
 script = ExtResource("2_htcer")
 player = NodePath("../../..")
 
-[node name="FPS Rig" type="Node3D" parent="Recoil/Camera/Weapons Manager"]
+[node name="FPS Rig" type="Node3D" parent="Camera Controller/Camera/Weapons Manager"]
 unique_name_in_owner = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Recoil/Camera/Weapons Manager/FPS Rig"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera Controller/Camera/Weapons Manager/FPS Rig"]
 unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_mtuoh")
 }
 
-[node name="Arm" type="Node3D" parent="Recoil/Camera/Weapons Manager/FPS Rig"]
+[node name="Arm" type="Node3D" parent="Camera Controller/Camera/Weapons Manager/FPS Rig"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0.37, -0.3, -0.5)
 
-[node name="Oil Spill" parent="Recoil/Camera/Weapons Manager/FPS Rig/Arm" instance=ExtResource("5_7g0yx")]
+[node name="Oil Spill" parent="Camera Controller/Camera/Weapons Manager/FPS Rig/Arm" instance=ExtResource("5_7g0yx")]
 
 [node name="Minimap Icon" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1, -8.742278e-08, 3.821371e-15, 0, -4.371139e-08, -1, 8.742278e-08, -1, 4.371139e-08, 0, 0, -0.2)

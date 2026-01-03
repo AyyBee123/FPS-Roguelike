@@ -1271,6 +1271,9 @@ base_damage = 12.0
 base_fire_rate = 2.0
 base_range = 50.0
 base_speed = 200.0
+recoil = Vector2(0.25, 0.025)
+recoil_speed = 8.0
+snap = 8.0
 muzzle = ExtResource("2_kulr0")
 muzzle_color = Color(0, 0.7058824, 0.7058824, 1)
 

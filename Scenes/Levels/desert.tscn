@@ -1808,7 +1808,7 @@ size = Vector3(1, 400.09637, 200)
 [sub_resource type="BoxShape3D" id="BoxShape3D_1mh2y"]
 size = Vector3(200, 1, 200)
 
-[node name="Desert Level" type="Node3D"]
+[node name="Desert" type="Node3D"]
 script = ExtResource("1_r3g2l")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

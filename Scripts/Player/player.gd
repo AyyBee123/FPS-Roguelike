@@ -1,11 +1,11 @@
 class_name Player extends CharacterBody3D
 
 signal enemy_hit(enemy, source, damage)
-signal weapon_fired(projectile, damage)
+signal weapon_fired(projectile, damage) # called for each projectile of the weapon
+signal weapon_shot(weapon) # called for each instance of the weapon (for adding recoil)
 signal weapon_spawned(projectile, damage)
 
 @onready var camera = %Camera
-@onready var camera_controller_anchor = %"Camera Controller Anchor"
 @onready var animation_player = %AnimationPlayer
 @onready var weapons_manager = %"Weapons Manager"
 @onready var passives = %Passives
@@ -107,7 +107,6 @@ func _input(event):
 		pickup.pick_up(self)
 
 func get_pickup_collision():
-	var camera = get_viewport().get_camera_3d()
 	var viewport = get_viewport().size
 	
 	var ray_origin = camera.project_ray_origin(viewport / 2)
