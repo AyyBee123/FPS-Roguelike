@@ -16,6 +16,8 @@ func _ready():
 	
 	label.render_priority = render_count
 	label.outline_render_priority = outline_count
+	
+	if damage > 0 and damage < 1: damage = 1 # round up to 1 if the value is between 0 and 1
 	label.text = str(int(damage))
 
 func _on_animation_player_animation_finished(anim_name):
