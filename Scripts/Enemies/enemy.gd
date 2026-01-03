@@ -24,6 +24,13 @@ var object: RID
 var tween: Tween
 var players_in_contact: Array[Player]
 
+const DAMAGE_BUFFER: float = 0.06
+var buffer_time: float = 0.0
+var accumulated_damage: float = 0.0
+var dmg_num: Node3D
+
+var is_dead: bool = false # prevents the enemy from triggering on death effects more than once
+
 @onready var player = get_tree().get_first_node_in_group("Player")
 
 func _ready():
@@ -53,6 +60,7 @@ func hit(_damage: float, source_player: Player, source: Variant):
 	player._on_enemy_hit(self, source, _damage)
 	
 	tween = get_tree().create_tween().set_parallel(true)
+	# brief flash to indicate that the enemy was hit
 	for m in mesh:
 		var mat: ShaderMaterial = m.material_overlay
 		if mat and mat is ShaderMaterial:
@@ -63,16 +71,26 @@ func hit(_damage: float, source_player: Player, source: Variant):
 				1.0, 0.0, 0.1
 			)
 	
-	var dmg_num = damage_number.instantiate()
-	dmg_num.damage = _damage
-	dmg_num.camera = source_player.camera
-	dmg_num.position = position + Vector3(0, 2, 0)
-	get_tree().current_scene.add_child(dmg_num)
+	var t: float = Time.get_ticks_msec() / 1000.0
+	
+	if dmg_num and t - buffer_time <= DAMAGE_BUFFER: # stack multiple instances of damage occuring at the same time
+		dmg_num.add_damage(_damage)
+	else:
+		dmg_num = damage_number.instantiate()
+		dmg_num.damage = _damage
+		dmg_num.camera = source_player.camera
+		dmg_num.position = position + Vector3(0, 2, 0)
+		get_tree().current_scene.add_child(dmg_num)
+	
+	buffer_time = t
 	
 	if health <= 0:
 		die()
 
 func die():
+	if is_dead: return
+	is_dead = true
+	
 	drop_xp()
 	queue_free()
 
@@ -80,7 +98,7 @@ func drop_xp():
 	var xp = XP.instantiate()
 	xp.xp_amount = xp_amount
 	xp.position = position
-	xp.position.y = 1000
+	xp.position.y = 1
 	get_tree().current_scene.add_child(xp)
 
 func _on_screen_entered():
