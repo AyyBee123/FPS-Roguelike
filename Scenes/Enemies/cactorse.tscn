@@ -1,9 +1,10 @@
-[gd_scene load_steps=19 format=4 uid="uid://bf7ljiiykmoi0"]
+[gd_scene load_steps=20 format=4 uid="uid://bf7ljiiykmoi0"]
 
 [ext_resource type="Script" uid="uid://dmf55xmm0lu8y" path="res://Scripts/Enemies/cactorse.gd" id="1_q0do1"]
 [ext_resource type="Shader" uid="uid://d1oiih60d8at2" path="res://Shaders/enemy_damaged.gdshader" id="2_jfm6g"]
 [ext_resource type="Script" uid="uid://sw5uyrto3ua5" path="res://Scripts/Misc/enemy_detection_area.gd" id="3_hihjy"]
 [ext_resource type="Script" uid="uid://baxqpjp3mlstv" path="res://Scripts/UI/minimap_icon.gd" id="4_urplu"]
+[ext_resource type="Texture2D" uid="uid://d0ov1ksvt5flx" path="res://Assets/Textures/Blob Shadow.png" id="5_daic8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hihjy"]
 resource_local_to_scene = true
@@ -965,6 +966,11 @@ visible = false
 layers = 2
 mesh = SubResource("SphereMesh_hihjy")
 script = ExtResource("4_urplu")
+
+[node name="Decal" type="Decal" parent="."]
+size = Vector3(2, 5, 2)
+texture_albedo = ExtResource("5_daic8")
+cull_mask = 4
 
 [connection signal="body_entered" from="Enemy Detection Area" to="Enemy Detection Area" method="_on_body_entered"]
 [connection signal="body_exited" from="Enemy Detection Area" to="Enemy Detection Area" method="_on_body_exited"]

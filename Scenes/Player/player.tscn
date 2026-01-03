@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dhlu65iawdxvf"]
+[gd_scene load_steps=38 format=3 uid="uid://dhlu65iawdxvf"]
 
 [ext_resource type="Script" uid="uid://c2cudrvyd4egp" path="res://Scripts/Player/player.gd" id="1_uvnfx"]
 [ext_resource type="Script" uid="uid://ct6urpkc4lp1s" path="res://Scripts/Player/camera_controller.gd" id="2_dd0ac"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" uid="uid://owhlfdboe0ob" path="res://Scripts/Utils/paused_check.gd" id="13_06tpx"]
 [ext_resource type="Script" uid="uid://vu1hdaiedirk" path="res://Scripts/Player/abilities.gd" id="13_7g0yx"]
 [ext_resource type="Script" uid="uid://d3g6lyxi3si3u" path="res://Scripts/UI/health_bar.gd" id="14_h8ma5"]
+[ext_resource type="Texture2D" uid="uid://d0ov1ksvt5flx" path="res://Assets/Textures/Blob Shadow.png" id="19_aqm4k"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mtuoh"]
 size = Vector3(1, 2, 1)
@@ -201,7 +202,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 top_level = true
-cull_mask = 1048573
+cull_mask = 5
 current = true
 fov = 100.0
 script = ExtResource("2_dd0ac")
@@ -418,7 +419,7 @@ render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="CanvasLayer/Minimap/Mask/SubViewport" node_paths=PackedStringArray("player")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 50, 0)
-cull_mask = 1048574
+cull_mask = 2
 script = ExtResource("12_dey5f")
 player = NodePath("../../../../..")
 
@@ -447,6 +448,12 @@ script = ExtResource("13_06tpx")
 [node name="IFrames" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="Decal" type="Decal" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+size = Vector3(1.5, 5, 1.5)
+texture_albedo = ExtResource("19_aqm4k")
+cull_mask = 4
 
 [connection signal="area_entered" from="Pickup Detect" to="Pickup Detect" method="_on_area_entered"]
 [connection signal="body_entered" from="Pickup Detect" to="." method="_on_pickup_detect_body_entered"]

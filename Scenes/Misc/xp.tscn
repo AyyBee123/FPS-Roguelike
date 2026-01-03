@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://ukgrpto2cajc"]
+[gd_scene load_steps=9 format=3 uid="uid://ukgrpto2cajc"]
 
 [ext_resource type="Script" uid="uid://bw7gqgbxvhnv6" path="res://Scripts/Misc/xp.gd" id="1_3n01l"]
 [ext_resource type="ArrayMesh" uid="uid://c50y3dmpk3k4e" path="res://Assets/Misc/XP.tres" id="2_pi3is"]
 [ext_resource type="Script" uid="uid://baxqpjp3mlstv" path="res://Scripts/UI/minimap_icon.gd" id="3_pi3is"]
+[ext_resource type="Texture2D" uid="uid://d0ov1ksvt5flx" path="res://Assets/Textures/Blob Shadow.png" id="4_x2qg5"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_x2qg5"]
 radius = 0.25
@@ -46,5 +47,10 @@ visible = false
 layers = 2
 mesh = SubResource("SphereMesh_x2qg5")
 script = ExtResource("3_pi3is")
+
+[node name="Decal" type="Decal" parent="."]
+size = Vector3(0.5, 5, 0.5)
+texture_albedo = ExtResource("4_x2qg5")
+cull_mask = 4
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

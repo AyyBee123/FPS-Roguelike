@@ -23,7 +23,9 @@ ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 sky_material = SubResource("ProceduralSkyMaterial_k8g1k")
 
 [sub_resource type="Environment" id="Environment_l7ek2"]
-background_mode = 2
+background_mode = 1
+background_color = Color(0.98424226, 0.8031503, 0.5940413, 1)
+background_energy_multiplier = 0.75
 sky = SubResource("Sky_fj2ht")
 tonemap_mode = 2
 glow_enabled = true
@@ -1813,11 +1815,9 @@ script = ExtResource("1_r3g2l")
 environment = SubResource("Environment_l7ek2")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 30, 0)
-shadow_enabled = true
-shadow_bias = 1.0
+transform = Transform3D(1, 0, 0, 0, -0.5224987, 0.85264003, 0, -0.85264003, -0.5224987, 0, 346.12, 0)
 shadow_normal_bias = 10.0
-shadow_blur = 0.01
+directional_shadow_mode = 0
 
 [node name="Player" parent="." instance=ExtResource("6_i3lab")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9999008, 0)
@@ -1840,6 +1840,7 @@ xp_amount = 1000
 navigation_mesh = SubResource("NavigationMesh_xbbd1")
 
 [node name="Sand" type="MeshInstance3D" parent="NavigationRegion3D"]
+layers = 4
 mesh = SubResource("ArrayMesh_nahum")
 skeleton = NodePath("")
 
@@ -1849,6 +1850,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_rjuvo")
 
 [node name="Bridge" type="MeshInstance3D" parent="NavigationRegion3D"]
+layers = 4
 mesh = SubResource("ArrayMesh_27nhx")
 skeleton = NodePath("")
 
@@ -1858,6 +1860,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_s57bu")
 
 [node name="Bridge_001" type="MeshInstance3D" parent="NavigationRegion3D"]
+layers = 4
 mesh = SubResource("ArrayMesh_bmbr7")
 skeleton = NodePath("")
 
@@ -1867,6 +1870,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_2n5c8")
 
 [node name="Rock" type="MeshInstance3D" parent="NavigationRegion3D"]
+layers = 4
 mesh = SubResource("ArrayMesh_yofbw")
 skeleton = NodePath("")
 
@@ -1876,6 +1880,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_05n70")
 
 [node name="Rock_001" type="MeshInstance3D" parent="NavigationRegion3D"]
+layers = 4
 mesh = SubResource("ArrayMesh_g2kfn")
 skeleton = NodePath("")
 
@@ -1885,6 +1890,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_3ybtt")
 
 [node name="Rock_002" type="MeshInstance3D" parent="NavigationRegion3D"]
+layers = 4
 mesh = SubResource("ArrayMesh_riekr")
 skeleton = NodePath("")
 
@@ -1894,6 +1900,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_4y751")
 
 [node name="Rock_003" type="MeshInstance3D" parent="NavigationRegion3D"]
+layers = 4
 mesh = SubResource("ArrayMesh_pwg82")
 skeleton = NodePath("")
 
@@ -1903,6 +1910,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_ikoey")
 
 [node name="Rock_004" type="MeshInstance3D" parent="NavigationRegion3D"]
+layers = 4
 mesh = SubResource("ArrayMesh_kikov")
 skeleton = NodePath("")
 
@@ -1912,6 +1920,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_khuq2")
 
 [node name="Rock_005" type="MeshInstance3D" parent="NavigationRegion3D"]
+layers = 4
 mesh = SubResource("ArrayMesh_u4oqm")
 skeleton = NodePath("")
 
@@ -1921,6 +1930,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_8fmdt")
 
 [node name="Rock_006" type="MeshInstance3D" parent="NavigationRegion3D"]
+layers = 4
 mesh = SubResource("ArrayMesh_2xihq")
 skeleton = NodePath("")
 
@@ -1930,6 +1940,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_rncwl")
 
 [node name="Rock_007" type="MeshInstance3D" parent="NavigationRegion3D"]
+layers = 4
 mesh = SubResource("ArrayMesh_4x2i6")
 skeleton = NodePath("")
 
@@ -1939,6 +1950,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_nq5yp")
 
 [node name="Rock_008" type="MeshInstance3D" parent="NavigationRegion3D"]
+layers = 4
 mesh = SubResource("ArrayMesh_hfpyl")
 skeleton = NodePath("")
 
@@ -1948,6 +1960,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_7kt6t")
 
 [node name="Rock_009" type="MeshInstance3D" parent="NavigationRegion3D"]
+layers = 4
 mesh = SubResource("ArrayMesh_lkucp")
 skeleton = NodePath("")
 
@@ -1957,6 +1970,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_x6bgc")
 
 [node name="Rock_010" type="MeshInstance3D" parent="NavigationRegion3D"]
+layers = 4
 mesh = SubResource("ArrayMesh_j8kk2")
 skeleton = NodePath("")
 
@@ -1966,6 +1980,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_iv326")
 
 [node name="Rock_011" type="MeshInstance3D" parent="NavigationRegion3D"]
+layers = 4
 mesh = SubResource("ArrayMesh_8hwnp")
 skeleton = NodePath("")
 
@@ -1975,6 +1990,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_hlqod")
 
 [node name="Rock_012" type="MeshInstance3D" parent="NavigationRegion3D"]
+layers = 4
 mesh = SubResource("ArrayMesh_qhln0")
 skeleton = NodePath("")
 
@@ -1984,6 +2000,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_4cvfj")
 
 [node name="Rock_013" type="MeshInstance3D" parent="NavigationRegion3D"]
+layers = 4
 mesh = SubResource("ArrayMesh_6q576")
 skeleton = NodePath("")
 
@@ -1993,6 +2010,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_oi3wu")
 
 [node name="Rock_014" type="MeshInstance3D" parent="NavigationRegion3D"]
+layers = 4
 mesh = SubResource("ArrayMesh_6ukiu")
 skeleton = NodePath("")
 
@@ -2002,6 +2020,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_kvquv")
 
 [node name="Rock_015" type="MeshInstance3D" parent="NavigationRegion3D"]
+layers = 4
 mesh = SubResource("ArrayMesh_f5a51")
 skeleton = NodePath("")
 
@@ -2011,6 +2030,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_it0oi")
 
 [node name="Rock_016" type="MeshInstance3D" parent="NavigationRegion3D"]
+layers = 4
 mesh = SubResource("ArrayMesh_k71lq")
 skeleton = NodePath("")
 
@@ -2020,6 +2040,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_cyvg7")
 
 [node name="Rock_017" type="MeshInstance3D" parent="NavigationRegion3D"]
+layers = 4
 mesh = SubResource("ArrayMesh_g6f36")
 skeleton = NodePath("")
 
@@ -2029,6 +2050,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_q7dyj")
 
 [node name="Rock_018" type="MeshInstance3D" parent="NavigationRegion3D"]
+layers = 4
 mesh = SubResource("ArrayMesh_k0uox")
 skeleton = NodePath("")
 
@@ -2038,6 +2060,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_854c3")
 
 [node name="Rock_019" type="MeshInstance3D" parent="NavigationRegion3D"]
+layers = 4
 mesh = SubResource("ArrayMesh_xc4pr")
 skeleton = NodePath("")
 
@@ -2047,6 +2070,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_8lk7k")
 
 [node name="Rock_020" type="MeshInstance3D" parent="NavigationRegion3D"]
+layers = 4
 mesh = SubResource("ArrayMesh_1xtyl")
 skeleton = NodePath("")
 
@@ -2056,6 +2080,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_fa2qu")
 
 [node name="Rock_021" type="MeshInstance3D" parent="NavigationRegion3D"]
+layers = 4
 mesh = SubResource("ArrayMesh_aaerv")
 skeleton = NodePath("")
 
@@ -2065,6 +2090,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_51mn3")
 
 [node name="Rock_022" type="MeshInstance3D" parent="NavigationRegion3D"]
+layers = 4
 mesh = SubResource("ArrayMesh_01hn2")
 skeleton = NodePath("")
 
@@ -2074,6 +2100,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_yha1p")
 
 [node name="Rock_023" type="MeshInstance3D" parent="NavigationRegion3D"]
+layers = 4
 mesh = SubResource("ArrayMesh_jcv4h")
 skeleton = NodePath("")
 
@@ -2083,6 +2110,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_au3i0")
 
 [node name="Rock_024" type="MeshInstance3D" parent="NavigationRegion3D"]
+layers = 4
 mesh = SubResource("ArrayMesh_qvfw3")
 skeleton = NodePath("")
 
@@ -2092,6 +2120,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_72brp")
 
 [node name="Rock_025" type="MeshInstance3D" parent="NavigationRegion3D"]
+layers = 4
 mesh = SubResource("ArrayMesh_7lrj4")
 skeleton = NodePath("")
 
@@ -2101,6 +2130,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_qnhu0")
 
 [node name="Rock_026" type="MeshInstance3D" parent="NavigationRegion3D"]
+layers = 4
 mesh = SubResource("ArrayMesh_h78qt")
 skeleton = NodePath("")
 
@@ -2110,6 +2140,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_dtlbb")
 
 [node name="Rock_027" type="MeshInstance3D" parent="NavigationRegion3D"]
+layers = 4
 mesh = SubResource("ArrayMesh_bg8lb")
 skeleton = NodePath("")
 
@@ -2119,6 +2150,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_byhqy")
 
 [node name="Rock_028" type="MeshInstance3D" parent="NavigationRegion3D"]
+layers = 4
 mesh = SubResource("ArrayMesh_xkrb4")
 skeleton = NodePath("")
 
@@ -2128,6 +2160,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_fg1pk")
 
 [node name="Rock_029" type="MeshInstance3D" parent="NavigationRegion3D"]
+layers = 4
 mesh = SubResource("ArrayMesh_xqjry")
 skeleton = NodePath("")
 
@@ -2137,6 +2170,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_gjg8w")
 
 [node name="Rock_030" type="MeshInstance3D" parent="NavigationRegion3D"]
+layers = 4
 mesh = SubResource("ArrayMesh_gweed")
 skeleton = NodePath("")
 
@@ -2146,6 +2180,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_2qe30")
 
 [node name="Cactus_001" type="MeshInstance3D" parent="NavigationRegion3D"]
+layers = 4
 mesh = SubResource("ArrayMesh_ib7n0")
 skeleton = NodePath("")
 
@@ -2155,6 +2190,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_vs8u2")
 
 [node name="Cactus_003" type="MeshInstance3D" parent="NavigationRegion3D"]
+layers = 4
 mesh = SubResource("ArrayMesh_j2fgf")
 skeleton = NodePath("")
 
@@ -2164,6 +2200,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_gnde6")
 
 [node name="Cactus_004" type="MeshInstance3D" parent="NavigationRegion3D"]
+layers = 4
 mesh = SubResource("ArrayMesh_uwrpf")
 skeleton = NodePath("")
 
@@ -2173,6 +2210,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_xmx65")
 
 [node name="Cactus_005" type="MeshInstance3D" parent="NavigationRegion3D"]
+layers = 4
 mesh = SubResource("ArrayMesh_3n5p4")
 skeleton = NodePath("")
 
@@ -2182,6 +2220,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_43vyj")
 
 [node name="Cactus_006" type="MeshInstance3D" parent="NavigationRegion3D"]
+layers = 4
 mesh = SubResource("ArrayMesh_v12dk")
 skeleton = NodePath("")
 
@@ -2191,6 +2230,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_77sel")
 
 [node name="Cactus_008" type="MeshInstance3D" parent="NavigationRegion3D"]
+layers = 4
 mesh = SubResource("ArrayMesh_i5df0")
 skeleton = NodePath("")
 
@@ -2200,6 +2240,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_31olb")
 
 [node name="Cactus_009" type="MeshInstance3D" parent="NavigationRegion3D"]
+layers = 4
 mesh = SubResource("ArrayMesh_q4stx")
 skeleton = NodePath("")
 
@@ -2211,6 +2252,7 @@ shape = SubResource("ConcavePolygonShape3D_xq7m1")
 [node name="Desert" type="Node3D" parent="."]
 
 [node name="Boundary" type="MeshInstance3D" parent="Desert"]
+layers = 4
 mesh = SubResource("ArrayMesh_binfu")
 skeleton = NodePath("")
 
