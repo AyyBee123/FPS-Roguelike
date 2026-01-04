@@ -72,7 +72,7 @@ func shoot():
 	
 	var camera_collision = get_camera_collision()
 	
-	player.weapon_shot.emit(self)
+	player._on_arm_shot(self)
 	
 	for i in range(projectile_count):
 		launch_projectile(camera_collision)
