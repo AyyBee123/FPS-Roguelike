@@ -96,6 +96,8 @@ func bob(vel: float, delta):
 			rig.position.y = lerp(rig.position.y, rig_origin.y + sin(Time.get_ticks_msec() * bob_freq * 0.1 * player.SPEED / 8) * bob_amount, 10 * delta)
 			rig.position.x = lerp(rig.position.x, rig_origin.x, 10 * delta)
 		
+		rig.position.z = lerp(rig.position.z, rig_origin.z, 10 * delta)
+		
 		rig.position = rig.position.clamp(-Vector3.ONE * rig_max_position, Vector3.ONE * rig_max_position)
 
 func land(impact_speed: float):

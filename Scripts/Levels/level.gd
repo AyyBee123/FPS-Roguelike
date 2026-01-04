@@ -1,4 +1,6 @@
-extends Node3D
+class_name Level extends Node3D
+
+@onready var nav_region = %NavigationRegion3D
 
 const XP = preload("uid://ukgrpto2cajc")
 
@@ -10,5 +12,21 @@ func _physics_process(delta):
 	if time_left <= 0: # do stuff when countdown time reaches zero
 		pass
 
-func get_time_left():
+func get_time_left() -> float:
 	return time_left
+
+func find_spawn_point(player_pos: Vector3, min_distance: float, max_distance: float) -> Vector3:
+	for i in 50:
+		var pos: Vector3 = NavigationServer3D.map_get_random_point(nav_region.get_navigation_map(), 1, false)
+		
+		if pos == Vector3.ZERO:
+			continue
+		
+		var plane_distance: float = Vector2(pos.x, pos.z).distance_to(Vector2(player_pos.x, player_pos.z))
+		
+		if plane_distance < min_distance or plane_distance > max_distance:
+			continue
+		
+		return pos + Vector3(0, 1000, 0) # to prevent enemies from spawning under the map
+	
+	return Vector3.ZERO

@@ -3,12 +3,7 @@ extends Node
 @export var enemies: Array[EnemySpawn]
 
 @onready var player = get_tree().get_first_node_in_group("Player")
-
-# get the boundaries' positions
-@onready var right_boundary = %"Right Wall".position.x
-@onready var left_boundary = %"Left Wall".position.x
-@onready var front_boundary = %"Front Wall".position.z
-@onready var back_boundary = %"Back Wall".position.z
+@onready var level = get_parent() as Level
 
 static var current_number_of_enemies: int = 0
 
@@ -16,7 +11,7 @@ var NUMBER_OF_ENEMIES_TO_SPAWN: int = 1
 var MAX_NUMBER_OF_ENEMIES: int = 20
 var MIN_AMOUNT_OF_ENEMIES: int = 10
 var SPAWNING_INTERVAL: float = 3
-var t: float = 0
+var t: float = 0 
 
 # distance range the enemy can spawn away from the player
 const MIN_DISTANCE: float = 25
@@ -29,7 +24,6 @@ const MAX_GROUP_DISTANCE: float = 12
 const ENEMY = preload("uid://bf7ljiiykmoi0")
 
 func _ready():
-	randomize()
 	SignalBus.enemy_defeated.connect(_on_enemy_defeat)
 
 func _physics_process(delta):
@@ -41,29 +35,16 @@ func _physics_process(delta):
 			for i in range(NUMBER_OF_ENEMIES_TO_SPAWN):
 				spawn_enemy(enemies.pick_random()) # for now
 	
-	if get_tree().current_scene.current_number_of_enemies != current_number_of_enemies:
-		get_tree().current_scene.current_number_of_enemies = current_number_of_enemies
+	if level.current_number_of_enemies != current_number_of_enemies:
+		level.current_number_of_enemies = current_number_of_enemies
 
 func spawn_enemy(spawn: EnemySpawn) -> void:
-	var random_position = get_random_position()
 	for i in range(spawn.amount_to_spawn):
 		var enemy = spawn.enemy.instantiate()
 		current_number_of_enemies += 1
-		enemy.position = random_position + get_random_group_offset()
-		get_tree().current_scene.add_child.call_deferred(enemy)
-
-func get_random_position() -> Vector3:
-	var pos: Vector3 = player.global_position
-	var spawn_point: Vector2 = Vector2(pos.x, pos.z) + \
-			(Vector2.ONE.normalized() * randf_range(MIN_DISTANCE, MAX_DISTANCE)).rotated(randf_range(0, TAU))
-	
-	# if the spawn point is set to be outside the boundaries of the map, change the spawn point to be within the map
-	if spawn_point.x > right_boundary or spawn_point.x < left_boundary:
-		spawn_point.x = 2 * pos.x - spawn_point.x
-	if spawn_point.y > front_boundary or spawn_point.y < back_boundary:
-		spawn_point.y = 2 * pos.z - spawn_point.y
-	
-	return Vector3(spawn_point.x, 1000, spawn_point.y)
+		enemy.position = level.find_spawn_point(player.global_position, MIN_DISTANCE, MAX_DISTANCE) \
+				+ get_random_group_offset()
+		level.add_child.call_deferred(enemy)
 
 func get_random_group_offset() -> Vector3:
 	var offset: Vector2 = (Vector2.ONE.normalized() * randf_range(MIN_GROUP_DISTANCE, MAX_GROUP_DISTANCE)) \
