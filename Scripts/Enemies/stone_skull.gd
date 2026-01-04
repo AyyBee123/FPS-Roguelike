@@ -53,7 +53,7 @@ func shoot():
 		var muzzle = MUZZLE_FLASH.instantiate()
 		shoot_marker.add_child(muzzle)
 		muzzle.set_color("ffb31b")
-		var direction = player_pos - shoot_marker.global_position
+		var direction = (player_pos - shoot_marker.global_position).normalized()
 		fire_projectile(STONE_SKULL_PROJECTILE, shoot_marker.global_position, direction)
 	shoot_time.start()
 
@@ -64,7 +64,7 @@ func fire_projectile(proj: PackedScene, pos: Vector3, direction: Vector3):
 	p.range = projectile_range
 	get_tree().current_scene.add_child(p)
 	p.global_position = pos
-	p.set_linear_velocity(direction.normalized() * projectile_speed)
+	p.set_linear_velocity(direction * projectile_speed)
 
 func target_position(target):
 	player_pos = target
