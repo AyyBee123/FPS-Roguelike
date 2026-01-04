@@ -6,6 +6,7 @@ extends Node3D
 var current_rotation: Vector3
 var target_rotation: Vector3
 var rig_origin: Vector3
+var tween: Tween
 
 @export var sensitivity: float = 0.001
 @export var pitch_limit_degrees: float = 80.0
@@ -96,5 +97,9 @@ func bob(vel: float, delta):
 		rig.position = rig.position.clamp(-Vector3.ONE * rig_max_position, Vector3.ONE * rig_max_position)
 
 func land(impact_speed: float):
-	rig.position.y = lerp(rig.position.y, impact_speed * 0.05, get_physics_process_delta_time())
-	rig.rotation.x = lerp(rig.rotation.x, impact_speed * 0.05, get_physics_process_delta_time())
+	var impact_strength = 0.025
+	var impact_duration = 0.1
+	
+	tween = get_tree().create_tween()
+	tween.tween_property(rig, "position:y", impact_speed * impact_strength, impact_duration).as_relative()
+	tween.parallel().tween_property(rig, "rotation:x", impact_speed * impact_strength, impact_duration).as_relative()
