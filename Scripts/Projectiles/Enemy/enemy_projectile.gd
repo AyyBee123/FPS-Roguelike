@@ -13,7 +13,7 @@ func _ready():
 
 func _on_body_entered(body):
 	if body is Player:
-		body.hit(damage)
+		body.hit(damage, global_position)
 	queue_free()
 
 func _on_timer_timeout():

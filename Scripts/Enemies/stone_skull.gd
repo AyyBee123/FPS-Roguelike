@@ -64,7 +64,7 @@ func fire_projectile(proj: PackedScene, pos: Vector3, direction: Vector3):
 	p.range = projectile_range
 	get_tree().current_scene.add_child(p)
 	p.global_position = pos
-	p.set_linear_velocity(direction * projectile_speed)
+	p.set_linear_velocity(direction.normalized() * projectile_speed)
 
 func target_position(target):
 	player_pos = target

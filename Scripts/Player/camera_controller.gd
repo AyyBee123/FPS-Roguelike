@@ -6,7 +6,8 @@ extends Node3D
 var current_rotation: Vector3
 var target_rotation: Vector3
 var rig_origin: Vector3
-var tween: Tween
+var land_tween: Tween
+var hit_tween: Tween
 
 @export var sensitivity: float = 0.001
 @export var pitch_limit_degrees: float = 80.0
@@ -23,6 +24,7 @@ var arm: Arm
 func _ready():
 	player.weapon_shot.connect(add_recoil)
 	player.on_landing.connect(land)
+	player.hit_taken.connect(hit)
 	rig_origin = rig.position
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
@@ -100,6 +102,14 @@ func land(impact_speed: float):
 	var impact_strength = 0.025
 	var impact_duration = 0.1
 	
-	tween = get_tree().create_tween()
-	tween.tween_property(rig, "position:y", impact_speed * impact_strength, impact_duration).as_relative()
-	tween.parallel().tween_property(rig, "rotation:x", impact_speed * impact_strength, impact_duration).as_relative()
+	land_tween = get_tree().create_tween()
+	land_tween.tween_property(rig, "position:y", impact_speed * impact_strength, impact_duration).as_relative()
+	land_tween.parallel().tween_property(rig, "rotation:x", impact_speed * impact_strength, impact_duration).as_relative()
+
+func hit(pos):
+	var hit_strength = 0.333
+	var hit_duration = 0.05
+	
+	hit_tween = get_tree().create_tween()
+	hit_tween.tween_property(rig, "position:x", -pos.normalized().x * hit_strength, hit_duration).as_relative()
+	hit_tween.parallel().tween_property(rig, "position:y", pos.normalized().y * hit_strength, hit_duration).as_relative()

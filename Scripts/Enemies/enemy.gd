@@ -49,7 +49,7 @@ func _physics_process(delta):
 			var body = collision.get_collider()
 			
 			if body is Player:
-				body.hit(contact_damage)
+				body.hit(contact_damage, global_position)
 
 func target_position(target):
 	pass

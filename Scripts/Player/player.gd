@@ -5,10 +5,12 @@ signal weapon_fired(projectile, damage) # called for each projectile of the weap
 signal weapon_shot(weapon) # called for each instance of the weapon (for adding recoil)
 signal weapon_spawned(projectile, damage) # called mainly for weapon after-effects (e.g. oil pool)
 signal on_landing(impact_speed) # called when the player lands on the ground from the air
+signal hit_taken(pos) # called when the player takes a hit
 
 @onready var camera = %Camera
 @onready var animation_player = %AnimationPlayer
 @onready var weapons_manager = %"Weapons Manager"
+@onready var crosshair = %Crosshair
 @onready var passives = %Passives
 @onready var abilities = %Abilities
 @onready var upgrade = %Upgrade
@@ -19,6 +21,7 @@ signal on_landing(impact_speed) # called when the player lands on the ground fro
 const Stats = preload("uid://d0a7frb8gvg68")
 const PASSIVE_MENU = preload("uid://clamkav36kau4")
 const ABILITY_SLOT = preload("uid://y78kmes1pij6")
+const DAMAGE_INDICATOR = preload("uid://cmwgutqrbavj5")
 
 var stats: Stats
 var XP_NEEDED: float = 5
@@ -136,7 +139,7 @@ func get_pickup_collision():
 	else:
 		return null
 
-func hit(amount):
+func hit(amount, pos):
 	if not i_frames.is_stopped():
 		return
 	
@@ -144,6 +147,14 @@ func hit(amount):
 		i_frames.start()
 	
 	current_health = clamp(0, current_health - amount, MAX_HEALTH)
+	
+	var dir = (pos - global_position).normalized()
+	var forward = camera.global_transform.basis.z
+	var right = camera.global_transform.basis.x
+	
+	var x = dir.dot(right)
+	var y = dir.dot(forward)
+	hit_taken.emit(Vector2(x, y))
 	
 	if current_health <= 0:
 		die()
