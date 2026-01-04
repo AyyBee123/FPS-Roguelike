@@ -9,7 +9,7 @@ extends Control
 func _ready():
 	player.hit_taken.connect(_on_taking_damage)
 
-func _on_taking_damage(pos):
+func _on_taking_damage(pos: Vector2):
 	var mk = marker.instantiate()
-	mk.rotation = pos.angle()
+	mk.rotation = atan2(pos.y, pos.x)
 	damage_indicators.add_child(mk)

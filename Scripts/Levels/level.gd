@@ -27,6 +27,6 @@ func find_spawn_point(player_pos: Vector3, min_distance: float, max_distance: fl
 		if plane_distance < min_distance or plane_distance > max_distance:
 			continue
 		
-		return pos + Vector3(0, 1000, 0) # to prevent enemies from spawning under the map
+		return pos + Vector3(0, 1000, 0) # add to the y-axis to prevent enemies from spawning under the map
 	
 	return Vector3.ZERO

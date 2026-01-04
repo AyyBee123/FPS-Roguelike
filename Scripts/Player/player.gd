@@ -32,6 +32,8 @@ var upgrade_queue_count: int = 0 # the amount of level up choices that are in qu
 var was_on_floor: bool = false
 var speed_before_landing: float = 0.0
 
+var is_dead: bool = false
+
 var MAX_HEALTH: float:
 	get:
 		return stats.get_stat("Max_Health")
@@ -160,6 +162,9 @@ func hit(amount, pos):
 		die()
 
 func die():
+	if is_dead: return
+	is_dead = true
+	
 	print("L")
 
 func get_health_difference(stat, old_value, new_value):
