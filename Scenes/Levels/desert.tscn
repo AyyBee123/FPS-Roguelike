@@ -1,4 +1,4 @@
-[gd_scene load_steps=149 format=4 uid="uid://djbj7k76p2w00"]
+[gd_scene load_steps=150 format=4 uid="uid://djbj7k76p2w00"]
 
 [ext_resource type="Script" uid="uid://xvth4kwhnsit" path="res://Scripts/Levels/level.gd" id="1_r3g2l"]
 [ext_resource type="Material" uid="uid://c0hkmvqbxcskk" path="res://Assets/Materials/Sand.tres" id="2_h5w7c"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://yipp43yiqwke" path="res://Scenes/Enemies/stone_skull.tscn" id="5_xbbd1"]
 [ext_resource type="Material" uid="uid://bfedk66ygq5at" path="res://Assets/Materials/Cactus Spike.tres" id="6_glso8"]
 [ext_resource type="PackedScene" uid="uid://dhlu65iawdxvf" path="res://Scenes/Player/player.tscn" id="6_i3lab"]
+[ext_resource type="Script" uid="uid://px8ih8py0glr" path="res://Scripts/Utils/chest_manager.gd" id="9_1mh2y"]
 [ext_resource type="PackedScene" uid="uid://ukgrpto2cajc" path="res://Scenes/Misc/xp.tscn" id="9_i3lab"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_k8g1k"]
@@ -1810,6 +1811,7 @@ size = Vector3(200, 1, 200)
 
 [node name="Desert" type="Node3D"]
 script = ExtResource("1_r3g2l")
+NUMBER_OF_CHESTS = 40
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_l7ek2")
@@ -1831,6 +1833,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2298, 0.714263, -2.52714)
 [node name="Enemy Handler" type="Node" parent="."]
 script = ExtResource("2_r3g2l")
 enemies = Array[ExtResource("3_4dovk")]([SubResource("Resource_7rivk"), SubResource("Resource_hyk2w")])
+
+[node name="Chest Manager" type="Node" parent="."]
+script = ExtResource("9_1mh2y")
+
+[node name="Timer" type="Timer" parent="Chest Manager"]
+wait_time = 2.5
+one_shot = true
+autostart = true
 
 [node name="XP" parent="." instance=ExtResource("9_i3lab")]
 transform = Transform3D(0.99984646, -0.01752221, 0, 0.01752221, 0.99984646, 0, 0, 0, 1, 4.625416, 0.4254563, -0.96837187)
@@ -2341,3 +2351,5 @@ collision_mask = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Bounding Box/Roof"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 400, 0)
 shape = SubResource("BoxShape3D_1mh2y")
+
+[connection signal="timeout" from="Chest Manager/Timer" to="Chest Manager" method="_on_timer_timeout"]

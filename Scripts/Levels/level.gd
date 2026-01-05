@@ -1,6 +1,8 @@
 class_name Level extends Node3D
 
-@onready var nav_region = %NavigationRegion3D
+@onready var nav_region: NavigationRegion3D = %NavigationRegion3D
+
+@export var NUMBER_OF_CHESTS: int = 25
 
 const XP = preload("uid://ukgrpto2cajc")
 
@@ -30,3 +32,7 @@ func find_spawn_point(player_pos: Vector3, min_distance: float, max_distance: fl
 		return pos + Vector3(0, 1000, 0) # add to the y-axis to prevent enemies from spawning under the map
 	
 	return Vector3.ZERO
+
+func find_chest_spawn() -> Vector3:
+	var pos: Vector3 = NavigationServer3D.map_get_random_point(nav_region.get_navigation_map(), 1, false)
+	return pos + Vector3(0, 1000, 0) # add to the y-axis to prevent enemies from spawning under the map
