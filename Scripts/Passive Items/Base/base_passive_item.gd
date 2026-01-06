@@ -18,9 +18,11 @@ class_name Item extends Node
 }
 
 var player: Player
+var stacks: int = 0
 
 func on_pick_up(_player: Player):
 	player = _player
+	stacks += 1
 	
 	if player.get_node_or_null("%Passives/" + name): # stack the item if it already exists
 		on_stack()

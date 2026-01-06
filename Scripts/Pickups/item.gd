@@ -10,11 +10,15 @@ const FREQUENCY: float = 2.0
 var item: Item
 var time: float = 0.0
 
+var item_name: String
+
 var rarity_weights = ItemPool.rarity_weights
 
 func _ready():
-	if item == null:
+	randomize()
+	if not item:
 		item = ItemPool.roll()
+	item_name = item.name
 	sprite_3d.texture = item.texture
 	passive.add_child(item)
 

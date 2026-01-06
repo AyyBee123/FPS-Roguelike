@@ -7,6 +7,7 @@ signal weapon_shot(weapon) # called for each instance of the weapon (for adding 
 signal weapon_spawned(projectile, damage) # called mainly for weapon after-effects (e.g. oil pool)
 signal on_landing(impact_speed) # called when the player lands on the ground from the air
 signal hit_taken(pos) # called when the player takes a hit
+signal item_hovered(item) # called when an item is looked at with the crosshair and is within pickup range
 
 @onready var camera = %Camera
 @onready var animation_player = %AnimationPlayer
@@ -18,6 +19,7 @@ signal hit_taken(pos) # called when the player takes a hit
 @onready var arm = %Arm
 @onready var ability_slots = %"Ability Slots"
 @onready var i_frames = %IFrames
+@onready var pick_up_label = %"Pick Up Label"
 
 const Stats = preload("uid://d0a7frb8gvg68")
 const PASSIVE_MENU = preload("uid://clamkav36kau4")
@@ -64,6 +66,7 @@ var current_health: float
 var current_jumps: int = 0 # the current number of extra jumps that can be used
 var pickup = null
 var nearby_pickups: Array = []
+var hovered_item = null
 var number_of_abilities: int:
 	get:
 		return abilities.get_child_count()
@@ -115,6 +118,9 @@ func _physics_process(delta):
 	
 	if nearby_pickups.size() > 0:
 		pickup = get_pickup_collision()
+	if pickup != hovered_item or (not pickup and pick_up_label.text != ""):
+		hovered_item = pickup
+		item_hovered.emit(pickup)
 	
 	get_tree().call_group("Enemy", "target_position", global_position)
 	

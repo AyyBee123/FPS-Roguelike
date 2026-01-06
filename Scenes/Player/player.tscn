@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://dhlu65iawdxvf"]
+[gd_scene load_steps=41 format=3 uid="uid://dhlu65iawdxvf"]
 
 [ext_resource type="Script" uid="uid://c2cudrvyd4egp" path="res://Scripts/Player/player.gd" id="1_uvnfx"]
 [ext_resource type="Script" uid="uid://c4i7uubwdhgtw" path="res://Scripts/Player/weapons_manager.gd" id="2_htcer"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://owhlfdboe0ob" path="res://Scripts/Utils/paused_check.gd" id="13_06tpx"]
 [ext_resource type="Script" uid="uid://vu1hdaiedirk" path="res://Scripts/Player/abilities.gd" id="13_7g0yx"]
 [ext_resource type="Script" uid="uid://d3g6lyxi3si3u" path="res://Scripts/UI/health_bar.gd" id="14_h8ma5"]
+[ext_resource type="Script" uid="uid://cjly24nu3klwb" path="res://Scripts/UI/pick_up_label.gd" id="16_eksi1"]
 [ext_resource type="Texture2D" uid="uid://d0ov1ksvt5flx" path="res://Assets/Textures/Blob Shadow.png" id="19_aqm4k"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mtuoh"]
@@ -400,16 +401,26 @@ offset_bottom = -16.0
 pivot_offset = Vector2(0, 64)
 theme_override_constants/separation = 4
 
-[node name="Pick Up Label" type="Label" parent="CanvasLayer/HUD"]
+[node name="Pick Up Label" type="Label" parent="CanvasLayer/HUD" node_paths=PackedStringArray("player")]
+unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
+anchors_preset = -1
+anchor_top = 0.62200004
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = 140.0
-offset_bottom = 163.0
+anchor_bottom = 0.65900004
+offset_top = -0.2600708
+offset_bottom = -0.22003174
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(960, 20)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("7_jlvik")
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("16_eksi1")
+player = NodePath("../../..")
 
 [node name="Upgrade" type="Node" parent="CanvasLayer"]
 unique_name_in_owner = true

@@ -1,4 +1,4 @@
-extends RigidBody3D
+class_name ArmPickup extends RigidBody3D
 
 @onready var collision_shape = %CollisionShape
 @onready var visual_offset = %"Visual Offset"
@@ -15,32 +15,8 @@ var time: float = 0.0
 var default_pos: Vector3
 
 func _ready():
-	randomize()
-	# Convert to cumulative drop chances
-	var total_weight := 0.0
-	for weight in rarity_weights.values():
-		total_weight += weight
-	
-	var weighted_amount = randf() * total_weight
-	
-	# Find which rarity it falls into
-	var cumulative: float = 0.0
-	var chosen_rarity: int = -1
-	for rarity in rarity_weights.keys():
-		cumulative += rarity_weights[rarity]
-		if weighted_amount <= cumulative:
-			chosen_rarity = rarity
-			break
-	
-	# pick item from the correct pool
-	var pool_name := ""
-	match chosen_rarity:
-		0: pool_name = "common_pool"
-		1: pool_name = "uncommon_pool"
-		2: pool_name = "legendary_pool"
-	
 	if not arm:
-		arm = ArmPool.get(pool_name).pick_random().instantiate()
+		arm = ArmPool.roll()
 	arm_name = arm.name
 	if arm.get_node_or_null("Armature"):
 		armature = arm.get_node("Armature").duplicate()
