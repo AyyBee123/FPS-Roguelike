@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://tij73uj8m6w4"
-path="res://.godot/imported/Damage Passive.png-857d696bbb06e83a9bebe884c36413a4.ctex"
+uid="uid://1ut3e7pl3o4p"
+path="res://.godot/imported/Micro Missiles.png-25b775b45921e373a626c29b8919289a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Damage Passive.png"
-dest_files=["res://.godot/imported/Damage Passive.png-857d696bbb06e83a9bebe884c36413a4.ctex"]
+source_file="res://Assets/Sprites/Abilities/Micro Missiles.png"
+dest_files=["res://.godot/imported/Micro Missiles.png-25b775b45921e373a626c29b8919289a.ctex"]
 
 [params]
 

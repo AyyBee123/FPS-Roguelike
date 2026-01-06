@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bx8cdbdlyy0i8"
-path="res://.godot/imported/Circle of Light.png-5a04ccdc85f3f72b648aaa0ff5291b0b.ctex"
+uid="uid://col04cv6hct70"
+path="res://.godot/imported/Fire Rate Passive.png-c6363acc41cc904af43d559f6f4ab0c7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Circle of Light.png"
-dest_files=["res://.godot/imported/Circle of Light.png-5a04ccdc85f3f72b648aaa0ff5291b0b.ctex"]
+source_file="res://Assets/Sprites/Abilities/Fire Rate Passive.png"
+dest_files=["res://.godot/imported/Fire Rate Passive.png-c6363acc41cc904af43d559f6f4ab0c7.ctex"]
 
 [params]
 

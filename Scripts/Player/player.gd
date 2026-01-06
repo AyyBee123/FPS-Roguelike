@@ -1,8 +1,9 @@
 class_name Player extends CharacterBody3D
 
 signal enemy_hit(enemy, source, damage) # called when the player hits an enemy with a weapon or ability
+signal enemy_killed(enemy, source, damage) # called when the player kills an enemy with a weapon or ability
 signal weapon_fired(projectile, damage) # called for each projectile of the weapon
-signal weapon_shot(weapon) # called for each instance of the weapon (for adding recoil)
+signal weapon_shot(weapon) # called for each instance of the weapon (for adding recoil mainly)
 signal weapon_spawned(projectile, damage) # called mainly for weapon after-effects (e.g. oil pool)
 signal on_landing(impact_speed) # called when the player lands on the ground from the air
 signal hit_taken(pos) # called when the player takes a hit
@@ -16,7 +17,7 @@ signal hit_taken(pos) # called when the player takes a hit
 @onready var upgrade = %Upgrade
 @onready var arm = %Arm
 @onready var ability_slots = %"Ability Slots"
-@onready var i_frames = $IFrames
+@onready var i_frames = %IFrames
 
 const Stats = preload("uid://d0a7frb8gvg68")
 const PASSIVE_MENU = preload("uid://clamkav36kau4")
@@ -123,7 +124,10 @@ func _physics_process(delta):
 
 func _input(event):
 	if event.is_action_pressed("pickup") and pickup:
-		pickup.pick_up(self)
+		if pickup is Chest:
+			pickup.open(self)
+		else:
+			pickup.pick_up(self)
 
 func get_pickup_collision():
 	var viewport = get_viewport().size
@@ -132,7 +136,7 @@ func get_pickup_collision():
 	var ray_end = ray_origin + camera.project_ray_normal(viewport / 2) * 3.0
 	
 	var query = PhysicsRayQueryParameters3D.create(ray_origin, ray_end)
-	query.collision_mask = CollisionLayers.get_mask(["Pickup"])
+	query.collision_mask = CollisionLayers.get_layer(["Pickup"])
 	
 	var result = get_world_3d().direct_space_state.intersect_ray(query)
 	
@@ -228,6 +232,9 @@ func _on_pickup_detect_body_exited(body):
 
 func _on_enemy_hit(enemy: Enemy, source: Variant, damage: float):
 	enemy_hit.emit(enemy, source, damage)
+
+func _on_enemy_killed(enemy: Enemy, source: Variant, damage: float):
+	enemy_killed.emit(enemy, source, damage)
 
 func _on_arm_fired(projectile: Variant, damage: float):
 	weapon_fired.emit(projectile, damage)

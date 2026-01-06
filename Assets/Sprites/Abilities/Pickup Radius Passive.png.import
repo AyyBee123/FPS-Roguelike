@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dckx5u64j0js7"
-path="res://.godot/imported/Luck Passive.png-41dff85dd740f131e6480214f704858c.ctex"
+uid="uid://d1lj3votxpsf1"
+path="res://.godot/imported/Pickup Radius Passive.png-0a46c9b74043fab81a3f0679f865ee22.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Luck Passive.png"
-dest_files=["res://.godot/imported/Luck Passive.png-41dff85dd740f131e6480214f704858c.ctex"]
+source_file="res://Assets/Sprites/Abilities/Pickup Radius Passive.png"
+dest_files=["res://.godot/imported/Pickup Radius Passive.png-0a46c9b74043fab81a3f0679f865ee22.ctex"]
 
 [params]
 

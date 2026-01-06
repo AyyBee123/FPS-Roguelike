@@ -85,7 +85,7 @@ func get_camera_collision() -> Vector3:
 	var ray_end = ray_origin + camera.project_ray_normal(viewport / 2) * range
 	
 	var new_intersection = PhysicsRayQueryParameters3D.create(ray_origin, ray_end)
-	new_intersection.collision_mask = CollisionLayers.get_mask(["World", "Player"])
+	new_intersection.collision_mask = CollisionLayers.get_layer(["World", "Player"])
 	
 	var intersection = get_world_3d().direct_space_state.intersect_ray(new_intersection)
 	
@@ -129,7 +129,7 @@ func get_stat(stat: Variant, property: String) -> Variant:
 #func hit_scan_collision(collision_point):
 	#var bullet_direction = (collision_point - bullet_point.get_global_transform().origin).normalized()
 	#var new_int = PhysicsRayQueryParameters3D.create(bullet_point.get_global_transform().origin, \
-			#collision_point + bullet_direction * 2, CollisionLayers.get_mask(["Pickup"]))
+			#collision_point + bullet_direction * 2, CollisionLayers.get_layer(["Pickup"]))
 	#
 	#var bullet_collision = get_world_3d().direct_space_state.intersect_ray(new_int)
 	#

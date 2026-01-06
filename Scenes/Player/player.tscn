@@ -435,14 +435,28 @@ cull_mask = 2
 script = ExtResource("12_dey5f")
 player = NodePath("../../../../..")
 
-[node name="Pickup Detect" type="Area3D" parent="." node_paths=PackedStringArray("player")]
+[node name="Pickup Detect" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="Pickup Collision" type="CollisionShape3D" parent="Pickup Detect"]
+shape = SubResource("SphereShape3D_mtuoh")
+
+[node name="XP Detect" type="Area3D" parent="." node_paths=PackedStringArray("player")]
 collision_layer = 0
 collision_mask = 8
 script = ExtResource("9_gk6dx")
 player = NodePath("..")
 
-[node name="Pickup Collision" type="CollisionShape3D" parent="Pickup Detect"]
+[node name="XP Collision" type="CollisionShape3D" parent="XP Detect"]
 unique_name_in_owner = true
+shape = SubResource("SphereShape3D_mtuoh")
+
+[node name="Chest Detect" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="Chest Collision" type="CollisionShape3D" parent="Chest Detect"]
 shape = SubResource("SphereShape3D_mtuoh")
 
 [node name="Passives" type="Node" parent="."]
@@ -458,6 +472,7 @@ process_mode = 3
 script = ExtResource("13_06tpx")
 
 [node name="IFrames" type="Timer" parent="."]
+unique_name_in_owner = true
 wait_time = 0.5
 one_shot = true
 
@@ -467,6 +482,6 @@ size = Vector3(1.5, 3, 1.5)
 texture_albedo = ExtResource("19_aqm4k")
 cull_mask = 4
 
-[connection signal="area_entered" from="Pickup Detect" to="Pickup Detect" method="_on_area_entered"]
 [connection signal="body_entered" from="Pickup Detect" to="." method="_on_pickup_detect_body_entered"]
 [connection signal="body_exited" from="Pickup Detect" to="." method="_on_pickup_detect_body_exited"]
+[connection signal="area_entered" from="XP Detect" to="XP Detect" method="_on_area_entered"]

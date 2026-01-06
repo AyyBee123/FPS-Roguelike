@@ -14,7 +14,7 @@ func _ready():
 		if name != "":
 			layer_bits[name] = 1 << (i - 1)
 
-func get_mask(names: Array) -> int:
+func get_layer(names: Array) -> int:
 	var mask := 0
 	for n in names:
 		if layer_bits.has(n):

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1ut3e7pl3o4p"
-path="res://.godot/imported/Micro Missiles.png-c9255d7d66ea97350f98f775fd3e3ebd.ctex"
+uid="uid://djwp7ja6tmcxw"
+path="res://.godot/imported/Move Speed Passive.png-943cb7022fa763add3742f97391c73c4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Micro Missiles.png"
-dest_files=["res://.godot/imported/Micro Missiles.png-c9255d7d66ea97350f98f775fd3e3ebd.ctex"]
+source_file="res://Assets/Sprites/Abilities/Move Speed Passive.png"
+dest_files=["res://.godot/imported/Move Speed Passive.png-943cb7022fa763add3742f97391c73c4.ctex"]
 
 [params]
 

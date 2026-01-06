@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b7hjlksaoj15a"
-path="res://.godot/imported/Splash Passive.png-6fd699cf307d4b5f07207c11de70d019.ctex"
+uid="uid://bx8cdbdlyy0i8"
+path="res://.godot/imported/Circle of Light.png-820a5b143b3b4c064654e029335831f9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Splash Passive.png"
-dest_files=["res://.godot/imported/Splash Passive.png-6fd699cf307d4b5f07207c11de70d019.ctex"]
+source_file="res://Assets/Sprites/Abilities/Circle of Light.png"
+dest_files=["res://.godot/imported/Circle of Light.png-820a5b143b3b4c064654e029335831f9.ctex"]
 
 [params]
 

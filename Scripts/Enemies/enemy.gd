@@ -56,8 +56,7 @@ func target_position(target):
 
 func hit(_damage: float, source_player: Player, source: Variant):
 	health -= _damage
-	SignalBus.enemy_damaged.emit(self, _damage)
-	player._on_enemy_hit(self, source, _damage)
+	source_player._on_enemy_hit(self, source, _damage)
 	
 	tween = get_tree().create_tween().set_parallel(true)
 	# brief flash to indicate that the enemy was hit
@@ -85,12 +84,13 @@ func hit(_damage: float, source_player: Player, source: Variant):
 	buffer_time = t
 	
 	if health <= 0:
-		die()
+		die(_damage, source_player, source)
 
-func die():
+func die(_damage: float, source_player: Player, source: Variant):
 	if is_dead: return
 	is_dead = true
 	
+	source_player._on_enemy_killed(self, source, _damage)
 	drop_xp()
 	queue_free()
 

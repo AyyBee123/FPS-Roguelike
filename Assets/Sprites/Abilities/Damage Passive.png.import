@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://de6qq3d722ofq"
-path="res://.godot/imported/Range Passive.png-4c705a11298f40b696c5a5e8e2a934e6.ctex"
+uid="uid://tij73uj8m6w4"
+path="res://.godot/imported/Damage Passive.png-b211138bd1512d4db7f28a04a88fcd25.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Range Passive.png"
-dest_files=["res://.godot/imported/Range Passive.png-4c705a11298f40b696c5a5e8e2a934e6.ctex"]
+source_file="res://Assets/Sprites/Abilities/Damage Passive.png"
+dest_files=["res://.godot/imported/Damage Passive.png-b211138bd1512d4db7f28a04a88fcd25.ctex"]
 
 [params]
 

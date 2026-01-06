@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqo18g5ncyluk"
-path="res://.godot/imported/Lightning Strike.png-bebb601e562bb56c2a2fbadc3602bed7.ctex"
+uid="uid://dlxwus3s18vqh"
+path="res://.godot/imported/XP Passive.png-e408aa23c04ba998d3afcb9e46dccdc5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Lightning Strike.png"
-dest_files=["res://.godot/imported/Lightning Strike.png-bebb601e562bb56c2a2fbadc3602bed7.ctex"]
+source_file="res://Assets/Sprites/Abilities/XP Passive.png"
+dest_files=["res://.godot/imported/XP Passive.png-e408aa23c04ba998d3afcb9e46dccdc5.ctex"]
 
 [params]
 

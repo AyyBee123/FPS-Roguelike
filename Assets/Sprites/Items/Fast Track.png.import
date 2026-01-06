@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djwp7ja6tmcxw"
-path="res://.godot/imported/Move Speed Passive.png-c16376b10a01a0fc05756fe9cff453c3.ctex"
+uid="uid://cjgtvgrax80q3"
+path="res://.godot/imported/Fast Track.png-4b24ec60611a53bd882c9470aecbc192.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Move Speed Passive.png"
-dest_files=["res://.godot/imported/Move Speed Passive.png-c16376b10a01a0fc05756fe9cff453c3.ctex"]
+source_file="res://Assets/Sprites/Items/Fast Track.png"
+dest_files=["res://.godot/imported/Fast Track.png-4b24ec60611a53bd882c9470aecbc192.ctex"]
 
 [params]
 

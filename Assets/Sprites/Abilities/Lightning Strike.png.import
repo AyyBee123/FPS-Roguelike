@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmc4n30ni3mbw"
-path="res://.godot/imported/Health Passive.png-9f072226370cc72f3978d7c1aec7cd51.ctex"
+uid="uid://cqo18g5ncyluk"
+path="res://.godot/imported/Lightning Strike.png-3e7b882dbd865adac6610c986568992e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Health Passive.png"
-dest_files=["res://.godot/imported/Health Passive.png-9f072226370cc72f3978d7c1aec7cd51.ctex"]
+source_file="res://Assets/Sprites/Abilities/Lightning Strike.png"
+dest_files=["res://.godot/imported/Lightning Strike.png-3e7b882dbd865adac6610c986568992e.ctex"]
 
 [params]
 

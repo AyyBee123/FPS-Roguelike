@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://col04cv6hct70"
-path="res://.godot/imported/Fire Rate Passive.png-3e79cc0c20a400327f0e95f4952da156.ctex"
+uid="uid://dckx5u64j0js7"
+path="res://.godot/imported/Luck Passive.png-c42dcc266f6460880047dfd40253089c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Fire Rate Passive.png"
-dest_files=["res://.godot/imported/Fire Rate Passive.png-3e79cc0c20a400327f0e95f4952da156.ctex"]
+source_file="res://Assets/Sprites/Abilities/Luck Passive.png"
+dest_files=["res://.godot/imported/Luck Passive.png-c42dcc266f6460880047dfd40253089c.ctex"]
 
 [params]
 

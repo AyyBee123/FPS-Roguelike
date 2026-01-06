@@ -1,4 +1,4 @@
-extends "res://Scripts/Passive Items/Base/base_passive_item.gd"
+extends Item
 
 func on_pick_up(player):
 	player.stats.add_flat_stat("Extra_Jumps", 5)
