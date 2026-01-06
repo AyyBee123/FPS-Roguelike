@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://pdemyoahc4ux"]
+
+[ext_resource type="Script" uid="uid://d4mwqc6y2buxh" path="res://Scripts/Passive Items/fast_track.gd" id="1_4xr0q"]
+[ext_resource type="Texture2D" uid="uid://cjgtvgrax80q3" path="res://Assets/Sprites/Items/Fast Track.png" id="2_m2sua"]
+
+[node name="Fast Track" type="Node"]
+script = ExtResource("1_4xr0q")
+rarity = 1
+texture = ExtResource("2_m2sua")
+description = "Increased Fire Rate, Movement Speed, and Projectile Speed."

@@ -1,6 +1,9 @@
-[gd_scene load_steps=21 format=4 uid="uid://cml3a2ykki6lr"]
+[gd_scene load_steps=22 format=4 uid="uid://cml3a2ykki6lr"]
 
 [ext_resource type="Script" uid="uid://b1eovhvpbkj2e" path="res://Scripts/Misc/chest.gd" id="1_d31rh"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_d31rh"]
+radius = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jpgow"]
 resource_name = "Chest"
@@ -499,21 +502,49 @@ tracks/2/keys = {
 "values": [Vector3(0, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_ij3ts"]
+resource_name = "Open"
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("Armature/Skeleton3D:Bone.001")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.7071068, -1.1520233e-07, -1.1520233e-07, 0.7071068)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("Armature/Skeleton3D:Bone.002")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("Armature/Skeleton3D:Bone.003")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0, 1.1920929e-07, 0, 1)
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vg6jy"]
 _data = {
+&"Close": SubResource("Animation_ij3ts"),
 &"Open": SubResource("Animation_i1vq5"),
 &"RESET": SubResource("Animation_opbus"),
 &"Spawn": SubResource("Animation_d31rh")
 }
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_d31rh"]
-radius = 1.0
 
 [node name="Chest" type="RigidBody3D"]
 collision_layer = 8
 collision_mask = 0
 gravity_scale = 0.0
 script = ExtResource("1_d31rh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("SphereShape3D_d31rh")
 
 [node name="Armature" type="Node3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.3195262, 0)
@@ -592,13 +623,17 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1000, 0)
 target_position = Vector3(0, -6000, 0)
 
+[node name="Item Marker" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_vg6jy")
 }
-autoplay = "Spawn"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("SphereShape3D_d31rh")
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]

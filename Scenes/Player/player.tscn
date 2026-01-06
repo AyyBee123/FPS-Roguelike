@@ -452,13 +452,6 @@ player = NodePath("..")
 unique_name_in_owner = true
 shape = SubResource("SphereShape3D_mtuoh")
 
-[node name="Chest Detect" type="Area3D" parent="."]
-collision_layer = 0
-collision_mask = 8
-
-[node name="Chest Collision" type="CollisionShape3D" parent="Chest Detect"]
-shape = SubResource("SphereShape3D_mtuoh")
-
 [node name="Passives" type="Node" parent="."]
 unique_name_in_owner = true
 

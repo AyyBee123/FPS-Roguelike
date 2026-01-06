@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://c2o7h4efocscc"]
 
 [ext_resource type="Script" uid="uid://rsf22r0ascvn" path="res://Scripts/Abilities/Effects/lightning_strike.gd" id="1_0h5so"]
-[ext_resource type="Texture2D" uid="uid://cqo18g5ncyluk" path="res://Assets/Sprites/Lightning Strike.png" id="2_63a1l"]
+[ext_resource type="Texture2D" uid="uid://cqo18g5ncyluk" path="res://Assets/Sprites/Abilities/Lightning Strike.png" id="2_63a1l"]
 [ext_resource type="Script" uid="uid://crdmjkiq4812g" path="res://Scripts/Resources/ability_upgrade_resource.gd" id="2_ckqsu"]
 [ext_resource type="PackedScene" uid="uid://ion0xy4nx46o" path="res://Scenes/VFX/lightning.tscn" id="2_ui8eq"]
 

@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwnmehkjsekxx"]
+
+[ext_resource type="Script" uid="uid://bjqgmy511ex76" path="res://Scripts/Passive Items/Effects/blast.gd" id="1_mch0n"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_jdps1"]
+radius = 3.0
+
+[node name="Blast" type="Node3D"]
+script = ExtResource("1_mch0n")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+unique_name_in_owner = true
+shape = SubResource("SphereShape3D_jdps1")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

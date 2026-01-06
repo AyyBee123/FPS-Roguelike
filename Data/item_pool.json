@@ -1,14 +1,14 @@
 [
 	{
+		"path": "res://Scenes/Passive Items/fast_track.tscn",
+		"rarity": 1
+	},
+	{
 		"path": "res://Scenes/Passive Items/gravity_boots.tscn",
 		"rarity": 2
 	},
 	{
-		"path": "res://Scenes/Passive Items/gravity_boots_c.tscn",
+		"path": "res://Scenes/Passive Items/unstable_molecule.tscn",
 		"rarity": 0
-	},
-	{
-		"path": "res://Scenes/Passive Items/gravity_boots_r.tscn",
-		"rarity": 1
 	}
 ]

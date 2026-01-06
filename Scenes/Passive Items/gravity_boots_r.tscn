@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://b323qqqrqel5x"]
-
-[ext_resource type="Script" uid="uid://c2rcw0wqpxrl1" path="res://Scripts/Passive Items/gravity_boots.gd" id="1_f1m0a"]
-[ext_resource type="ArrayMesh" uid="uid://cauka6icgnb57" path="res://Assets/Arms/blasterB.tres" id="2_f1m0a"]
-
-[node name="Gravity Boots" type="Node"]
-script = ExtResource("1_f1m0a")
-rarity = 1
-mesh = ExtResource("2_f1m0a")

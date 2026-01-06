@@ -44,6 +44,12 @@ func multiply_stat(stat_type: String, amount: Variant) -> void:
 	stats[stat_type]["x"] *= amount
 	stat_changed.emit(stat_type, old_value, get_stat(stat_type))
 
+## adds on to the multiplier (e.g. x1.5 -> amount = 1.5)
+func add_multiplier_stat(stat_type: String, amount: Variant) -> void:
+	var old_value = get_stat(stat_type)
+	stats[stat_type]["x"] += amount
+	stat_changed.emit(stat_type, old_value, get_stat(stat_type))
+
 ## adds a flat amount to the base (e.g. +2 -> amount = 2)
 func add_flat_stat(stat_type: String, amount: Variant) -> void:
 	var old_value = get_stat(stat_type)

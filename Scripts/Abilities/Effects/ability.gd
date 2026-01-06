@@ -6,16 +6,17 @@ class_name Ability extends Node
 @export var ability_upgrades: Array[AbilityUpgradeResource]
 @export var stats: Dictionary = {
 	# ability stats
-	"Damage": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
-	"Fire_Rate": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
-	"Range": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
-	"Speed": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
-	"Splash_Radius": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
-	"Projectile_Count": { "base": 1, "+": 0, "x": 1, "flat": 0.0 },
-	"Crit_Chance": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
-	"Crit_Damage": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
-	"Pierce": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
+	"Damage": { "base": 1.0, "+": 0.0, "x": 1.0, "flat": 0.0 },
+	"Fire_Rate": { "base": 1.0, "+": 0.0, "x": 1.0, "flat": 0.0 },
+	"Range": { "base": 1.0, "+": 0.0, "x": 1.0, "flat": 0.0 },
+	"Speed": { "base": 1.0, "+": 0.0, "x": 1.0, "flat": 0.0 },
+	"Splash_Radius": { "base": 1.0, "+": 0.0, "x": 1.0, "flat": 0.0 },
+	"Projectile_Count": { "base": 1, "+": 0.0, "x": 1.0, "flat": 0 },
+	"Crit_Chance": { "base": 1.0, "+": 0.0, "x": 1.0, "flat": 0.0 },
+	"Crit_Damage": { "base": 1.0, "+": 0.0, "x": 1.0, "flat": 0.0 },
+	"Pierce": { "base": 1.0, "+": 0.0, "x": 1.0, "flat": 0.0 },
 }
+
 var level: int = 1
 
 var common_upgrades: Array[AbilityUpgradeResource] = []
@@ -110,6 +111,10 @@ func add_percent_stat(stat_type: String, amount: float) -> void:
 ## adds a multiplier (e.g. x1.5 -> amount = 1.5)
 func multiply_stat(stat_type: String, amount: Variant) -> void:
 	stats[stat_type]["x"] *= amount
+
+## adds on to the multiplier (e.g. x1.5 -> amount = 1.5)
+func add_multiplier_stat(stat_type: String, amount: Variant) -> void:
+	stats[stat_type]["x"] += amount
 
 ## adds a flat amount to the base (e.g. +2 -> amount = 2)
 func add_flat_stat(stat_type: String, amount: Variant) -> void:
