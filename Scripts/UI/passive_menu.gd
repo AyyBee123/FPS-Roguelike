@@ -5,7 +5,7 @@ signal upgrade_selected(upgrade)
 @onready var scalable_ui = %Scale
 @onready var transition = %Transition
 @onready var upgrade_list = %"Upgrade List"
-@onready var buffer = $Buffer
+@onready var buffer = %Buffer
 
 var tween: Tween
 var player: Player
