@@ -18,14 +18,16 @@ class_name Item extends Node
 }
 
 var player: Player
-var stacks: int = 0
+var stacks: int = 1
+var existing_item: Item
 
 func on_pick_up(_player: Player):
 	player = _player
-	stacks += 1
 	
 	if player.get_node_or_null("%Passives/" + name): # stack the item if it already exists
-		on_stack()
+		existing_item = player.get_node("%Passives/" + name)
+		existing_item.stacks += 1
+		existing_item.on_stack()
 		queue_free()
 		return
 	

@@ -1834,7 +1834,7 @@ enemies = Array[ExtResource("3_4dovk")]([SubResource("Resource_7rivk"), SubResou
 script = ExtResource("9_1mh2y")
 
 [node name="Timer" type="Timer" parent="Chest Manager"]
-wait_time = 2.5
+wait_time = 2.0
 one_shot = true
 autostart = true
 

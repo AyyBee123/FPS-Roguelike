@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://dh2er4iqpdaa2"]
+
+[ext_resource type="Script" uid="uid://bos6rmqoaveyx" path="res://Scripts/UI/item_container.gd" id="1_mfwep"]
+[ext_resource type="Texture2D" uid="uid://detom1name3ow" path="res://Assets/Sprites/Items/Unstable Molecule.png" id="2_aoxde"]
+[ext_resource type="FontFile" uid="uid://bfhwilg3cupoh" path="res://Fonts/Name Font.ttf" id="3_owbkb"]
+
+[node name="Item Container" type="CenterContainer"]
+custom_minimum_size = Vector2(72, 72)
+script = ExtResource("1_mfwep")
+
+[node name="Icon" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("2_aoxde")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 2
+
+[node name="Stacks" type="Label" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 36.0
+offset_bottom = 36.0
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_owbkb")
+theme_override_font_sizes/font_size = 16
+text = "x2"
+horizontal_alignment = 2

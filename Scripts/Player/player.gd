@@ -8,6 +8,7 @@ signal weapon_spawned(projectile, damage) # called mainly for weapon after-effec
 signal on_landing(impact_speed) # called when the player lands on the ground from the air
 signal hit_taken(pos) # called when the player takes a hit
 signal item_hovered(item) # called when an item is looked at with the crosshair and is within pickup range
+signal item_picked(item) # called when an item is picked up
 
 @onready var camera = %Camera
 @onready var animation_player = %AnimationPlayer
@@ -134,6 +135,7 @@ func _input(event):
 			pickup.open(self)
 		else:
 			pickup.pick_up(self)
+			item_picked.emit(pickup)
 
 func get_pickup_collision():
 	var viewport = get_viewport().size

@@ -1,11 +1,11 @@
-[gd_scene load_steps=41 format=3 uid="uid://dhlu65iawdxvf"]
+[gd_scene load_steps=43 format=3 uid="uid://dhlu65iawdxvf"]
 
 [ext_resource type="Script" uid="uid://c2cudrvyd4egp" path="res://Scripts/Player/player.gd" id="1_uvnfx"]
 [ext_resource type="Script" uid="uid://c4i7uubwdhgtw" path="res://Scripts/Player/weapons_manager.gd" id="2_htcer"]
 [ext_resource type="Script" uid="uid://dpoyvn3l6r8uv" path="res://Scripts/Player/camera_controller.gd" id="2_rcvs5"]
 [ext_resource type="Shader" uid="uid://c7cpnixlhnciv" path="res://Shaders/outline.tres" id="3_dd0ac"]
 [ext_resource type="Texture2D" uid="uid://bkix0kk0n8lx5" path="res://Assets/Crosshairs/crosshair001.png" id="4_mtuoh"]
-[ext_resource type="PackedScene" uid="uid://beggit6q76e38" path="res://Scenes/Arms/double_finger.tscn" id="5_h8ma5"]
+[ext_resource type="PackedScene" uid="uid://dajqdf341ehwu" path="res://Scenes/Arms/oil_spill.tscn" id="5_eksi1"]
 [ext_resource type="Script" uid="uid://baxqpjp3mlstv" path="res://Scripts/UI/minimap_icon.gd" id="6_rcvs5"]
 [ext_resource type="Script" uid="uid://dbkrmv1m167r3" path="res://Scripts/UI/timer.gd" id="7_0u5uq"]
 [ext_resource type="FontFile" uid="uid://bfhwilg3cupoh" path="res://Fonts/Name Font.ttf" id="7_jlvik"]
@@ -21,6 +21,8 @@
 [ext_resource type="Script" uid="uid://vu1hdaiedirk" path="res://Scripts/Player/abilities.gd" id="13_7g0yx"]
 [ext_resource type="Script" uid="uid://d3g6lyxi3si3u" path="res://Scripts/UI/health_bar.gd" id="14_h8ma5"]
 [ext_resource type="Script" uid="uid://cjly24nu3klwb" path="res://Scripts/UI/pick_up_label.gd" id="16_eksi1"]
+[ext_resource type="Script" uid="uid://cgnrhxmu6r3so" path="res://Scripts/UI/items.gd" id="17_qr1w5"]
+[ext_resource type="Texture2D" uid="uid://cmy3pqe04w5m3" path="res://Assets/UI/Items Border.png" id="17_rqdc0"]
 [ext_resource type="Texture2D" uid="uid://d0ov1ksvt5flx" path="res://Assets/Textures/Blob Shadow.png" id="19_aqm4k"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mtuoh"]
@@ -230,7 +232,7 @@ libraries = {
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0.37, -0.3, -0.5)
 
-[node name="Double Finger" parent="Camera Controller/Camera/Weapons Manager/FPS Rig/Arm" instance=ExtResource("5_h8ma5")]
+[node name="Oil Spill" parent="Camera Controller/Camera/Weapons Manager/FPS Rig/Arm" instance=ExtResource("5_eksi1")]
 
 [node name="Minimap Icon" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1, -8.742278e-08, 3.821371e-15, 0, -4.371139e-08, -1, 8.742278e-08, -1, 4.371139e-08, 0, 0, -0.2)
@@ -421,6 +423,53 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("16_eksi1")
 player = NodePath("../../..")
+
+[node name="Items" type="ColorRect" parent="CanvasLayer/HUD" node_paths=PackedStringArray("player")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.22100002
+anchor_top = 0.88900006
+anchor_right = 0.77900004
+anchor_bottom = 0.97
+offset_left = -0.32003784
+offset_top = -0.12005615
+offset_right = 0.3199463
+offset_bottom = 0.4000244
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(536, 88)
+color = Color(1, 1, 1, 0.03137255)
+script = ExtResource("17_qr1w5")
+player = NodePath("../../..")
+
+[node name="Border" type="NinePatchRect" parent="CanvasLayer/HUD/Items"]
+modulate = Color(1, 1, 1, 0.2509804)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("17_rqdc0")
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="Item Container" type="GridContainer" parent="CanvasLayer/HUD/Items"]
+unique_name_in_owner = true
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 18
 
 [node name="Upgrade" type="Node" parent="CanvasLayer"]
 unique_name_in_owner = true
