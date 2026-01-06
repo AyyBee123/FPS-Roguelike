@@ -22,6 +22,7 @@ var angular_acceleration: float = 5
 var is_on_screen: bool = true
 var object: RID
 var tween: Tween
+var spawn_tween: Tween
 var players_in_contact: Array[Player]
 
 const DAMAGE_BUFFER: float = 0.06
@@ -40,6 +41,11 @@ func _ready():
 	
 	on_screen_notifier.screen_entered.connect(_on_screen_entered)
 	on_screen_notifier.screen_exited.connect(_on_screen_exited)
+	
+	scale = Vector3.ZERO
+	spawn_tween = get_tree().create_tween()
+	spawn_tween.tween_property(self, "scale", Vector3.ONE, 0.25).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	
 
 func _physics_process(delta):
 	# detect collisions with players
