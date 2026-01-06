@@ -10,11 +10,12 @@ func _ready():
 
 func update_items(pickup):
 	await get_tree().physics_frame # buffer to allow stacking items time to queue
+	await get_tree().physics_frame
+	await get_tree().physics_frame
 	
 	for i in item_container.get_children():
 		item_container.remove_child(i)
 		i.queue_free()
-	print(item_container.get_children())
 	
 	for item in player.passives.get_children():
 		var cont = ITEM_CONTAINER.instantiate()

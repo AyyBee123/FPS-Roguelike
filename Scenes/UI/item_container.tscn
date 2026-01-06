@@ -5,7 +5,19 @@
 [ext_resource type="FontFile" uid="uid://bfhwilg3cupoh" path="res://Fonts/Name Font.ttf" id="3_owbkb"]
 
 [node name="Item Container" type="CenterContainer"]
-custom_minimum_size = Vector2(72, 72)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
 script = ExtResource("1_mfwep")
 
 [node name="Icon" type="TextureRect" parent="."]
@@ -19,11 +31,11 @@ layout_mode = 2
 [node name="Stacks" type="Label" parent="Control"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 16.0
-offset_top = 16.0
-offset_right = 36.0
-offset_bottom = 36.0
-theme_override_constants/outline_size = 4
+offset_left = 10.0
+offset_top = 11.0
+offset_right = 30.0
+offset_bottom = 31.0
+theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("3_owbkb")
 theme_override_font_sizes/font_size = 16
 text = "x2"

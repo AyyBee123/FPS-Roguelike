@@ -79,7 +79,7 @@ func shoot():
 
 func get_camera_collision() -> Vector3:
 	var camera = get_viewport().get_camera_3d()
-	var viewport = get_viewport().size
+	var viewport = get_viewport().get_visible_rect().size
 	
 	var ray_origin = camera.project_ray_origin(viewport / 2)
 	var ray_end = ray_origin + camera.project_ray_normal(viewport / 2) * range

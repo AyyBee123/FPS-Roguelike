@@ -5,7 +5,6 @@ extends Control
 
 @onready var damage_indicators: Control = %"Damage Indicators"
 
-
 func _ready():
 	player.hit_taken.connect(_on_taking_damage)
 

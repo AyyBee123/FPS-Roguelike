@@ -138,7 +138,7 @@ func _input(event):
 			item_picked.emit(pickup)
 
 func get_pickup_collision():
-	var viewport = get_viewport().size
+	var viewport = get_viewport().get_visible_rect().size
 	
 	var ray_origin = camera.project_ray_origin(viewport / 2)
 	var ray_end = ray_origin + camera.project_ray_normal(viewport / 2) * 3.0
