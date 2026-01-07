@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://dhlu65iawdxvf"]
+[gd_scene load_steps=48 format=3 uid="uid://dhlu65iawdxvf"]
 
 [ext_resource type="Script" uid="uid://c2cudrvyd4egp" path="res://Scripts/Player/player.gd" id="1_uvnfx"]
 [ext_resource type="Script" uid="uid://c4i7uubwdhgtw" path="res://Scripts/Player/weapons_manager.gd" id="2_htcer"]
@@ -27,6 +27,8 @@
 [ext_resource type="Script" uid="uid://dxumsdla3i8vf" path="res://Scripts/UI/items_container.gd" id="19_ythyg"]
 [ext_resource type="AudioStream" uid="uid://bx08sy2wixqjv" path="res://Audio/SFX/XP.mp3" id="26_ythyg"]
 [ext_resource type="Script" uid="uid://cc1romsfhth3n" path="res://Scripts/Utils/audio_player_deconflicter.gd" id="27_bmb2s"]
+[ext_resource type="AudioStream" uid="uid://cj7ctf82ibui7" path="res://Audio/SFX/Hit.mp3" id="28_2ahak"]
+[ext_resource type="Script" uid="uid://b8nkqqq3wwo7l" path="res://Scripts/Misc/hit_audio.gd" id="29_2ahak"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mtuoh"]
 size = Vector3(1, 2, 1)
@@ -548,9 +550,16 @@ unique_name_in_owner = true
 process_mode = 3
 stream = ExtResource("26_ythyg")
 volume_db = -8.0
-max_db = 0.0
 bus = &"SFX"
 script = ExtResource("27_bmb2s")
+
+[node name="Hit" type="AudioStreamPlayer" parent="." node_paths=PackedStringArray("player")]
+stream = ExtResource("28_2ahak")
+volume_db = -4.0
+pitch_scale = 0.75
+bus = &"SFX"
+script = ExtResource("29_2ahak")
+player = NodePath("..")
 
 [connection signal="body_entered" from="Pickup Detect" to="." method="_on_pickup_detect_body_entered"]
 [connection signal="body_exited" from="Pickup Detect" to="." method="_on_pickup_detect_body_exited"]
