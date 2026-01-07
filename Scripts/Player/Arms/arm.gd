@@ -59,7 +59,7 @@ func _ready():
 func _physics_process(delta):
 	t += delta
 	
-	# adjust audio positions to the player's position
+	# adjust audio player positions to the player's position
 	if player:
 		for a in get_children():
 			if a is AudioStreamPlayer3D:
