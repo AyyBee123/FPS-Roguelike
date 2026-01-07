@@ -58,6 +58,12 @@ func _ready():
 
 func _physics_process(delta):
 	t += delta
+	
+	# adjust audio positions to the player's position
+	if player:
+		for a in get_children():
+			if a is AudioStreamPlayer3D:
+				a.global_position = player.global_position
 
 func shoot():
 	if t < fire_rate_timer: return
