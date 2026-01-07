@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://dpoyvn3l6r8uv" path="res://Scripts/Player/camera_controller.gd" id="2_rcvs5"]
 [ext_resource type="Shader" uid="uid://c7cpnixlhnciv" path="res://Shaders/outline.tres" id="3_dd0ac"]
 [ext_resource type="Texture2D" uid="uid://bkix0kk0n8lx5" path="res://Assets/Crosshairs/crosshair001.png" id="4_mtuoh"]
-[ext_resource type="PackedScene" uid="uid://dajqdf341ehwu" path="res://Scenes/Arms/oil_spill.tscn" id="5_eksi1"]
+[ext_resource type="PackedScene" uid="uid://beggit6q76e38" path="res://Scenes/Arms/double_finger.tscn" id="5_qr1w5"]
 [ext_resource type="Script" uid="uid://baxqpjp3mlstv" path="res://Scripts/UI/minimap_icon.gd" id="6_rcvs5"]
 [ext_resource type="Script" uid="uid://dbkrmv1m167r3" path="res://Scripts/UI/timer.gd" id="7_0u5uq"]
 [ext_resource type="FontFile" uid="uid://bfhwilg3cupoh" path="res://Fonts/Name Font.ttf" id="7_jlvik"]
@@ -233,7 +233,7 @@ libraries = {
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0.37, -0.3, -0.5)
 
-[node name="Oil Spill" parent="Camera Controller/Camera/Weapons Manager/FPS Rig/Arm" instance=ExtResource("5_eksi1")]
+[node name="Double Finger" parent="Camera Controller/Camera/Weapons Manager/FPS Rig/Arm" instance=ExtResource("5_qr1w5")]
 
 [node name="Minimap Icon" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1, -8.742278e-08, 3.821371e-15, 0, -4.371139e-08, -1, 8.742278e-08, -1, 4.371139e-08, 0, 0, -0.2)
