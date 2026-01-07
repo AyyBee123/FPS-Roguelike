@@ -19,6 +19,7 @@ const ROLLING_INTERVAL: float = 0.05
 const ROLLING_TIME: float = 1.0
 var elapsed_time: float = 0.0
 var t: float = 0.0
+var tween: Tween
 
 var can_pickup: bool = false:
 	set(value):
@@ -81,8 +82,12 @@ func rapid_roll(delta):
 		can_pickup = true
 
 func play_tween():
-	var tween: Tween = get_tree().create_tween()
+	tween = get_tree().create_tween()
 	tween.tween_property(sprite_3d, "scale", default_scale * 1.5, 0.05)
 	tween.parallel().tween_property(sprite_3d, "position:y", 0.06 * ROLLING_TIME, 0.05)
 	tween.tween_property(sprite_3d, "scale", default_scale, 0.1)
 	tween.tween_callback(func(): rolling_done = true)
+
+func _exit_tree():
+	if tween.is_running():
+		tween.kill()

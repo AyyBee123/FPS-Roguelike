@@ -10,6 +10,7 @@ func _ready():
 		prefix = "layer_names/2d_physics"
 	
 	for i in range(1, 33):
+		@warning_ignore("shadowed_variable_base_class")
 		var name = ProjectSettings.get_setting("%s/layer_%d" % [prefix, i])
 		if name != "":
 			layer_bits[name] = 1 << (i - 1)

@@ -24,7 +24,7 @@
 [ext_resource type="Script" uid="uid://cgnrhxmu6r3so" path="res://Scripts/UI/items.gd" id="17_qr1w5"]
 [ext_resource type="Texture2D" uid="uid://cmy3pqe04w5m3" path="res://Assets/UI/Items Border.png" id="17_rqdc0"]
 [ext_resource type="Texture2D" uid="uid://d0ov1ksvt5flx" path="res://Assets/Textures/Blob Shadow.png" id="19_aqm4k"]
-[ext_resource type="PackedScene" uid="uid://dh2er4iqpdaa2" path="res://Scenes/UI/item_container.tscn" id="19_qr1w5"]
+[ext_resource type="Script" uid="uid://dxumsdla3i8vf" path="res://Scripts/UI/items_container.gd" id="19_ythyg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mtuoh"]
 size = Vector3(1, 2, 1)
@@ -292,14 +292,13 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -960.0
-offset_top = 8.0
 offset_right = 960.0
-offset_bottom = 48.0
+offset_bottom = 64.0
 grow_horizontal = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 12
+theme_override_constants/outline_size = 20
 theme_override_fonts/font = ExtResource("7_jlvik")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 48
 text = "20:00"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -449,70 +448,20 @@ patch_margin_top = 4
 patch_margin_right = 4
 patch_margin_bottom = 4
 
-[node name="Item Container" type="GridContainer" parent="CanvasLayer/HUD/Bottom UI Container/Items"]
+[node name="Items Container" type="GridContainer" parent="CanvasLayer/HUD/Bottom UI Container/Items"]
 unique_name_in_owner = true
-clip_contents = true
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.004
 anchor_top = 0.045
 anchor_right = 0.99600005
 anchor_bottom = 0.95500004
-offset_left = -0.22399998
-offset_top = 0.03999996
-offset_right = 0.22399902
-offset_bottom = -0.040000916
-grow_horizontal = 2
-grow_vertical = 2
-columns = 16
-
-[node name="Item Container" parent="CanvasLayer/HUD/Bottom UI Container/Items/Item Container" instance=ExtResource("19_qr1w5")]
-layout_mode = 2
-
-[node name="Item Container16" parent="CanvasLayer/HUD/Bottom UI Container/Items/Item Container" instance=ExtResource("19_qr1w5")]
-layout_mode = 2
-
-[node name="Item Container3" parent="CanvasLayer/HUD/Bottom UI Container/Items/Item Container" instance=ExtResource("19_qr1w5")]
-layout_mode = 2
-
-[node name="Item Container4" parent="CanvasLayer/HUD/Bottom UI Container/Items/Item Container" instance=ExtResource("19_qr1w5")]
-layout_mode = 2
-
-[node name="Item Container5" parent="CanvasLayer/HUD/Bottom UI Container/Items/Item Container" instance=ExtResource("19_qr1w5")]
-layout_mode = 2
-
-[node name="Item Container6" parent="CanvasLayer/HUD/Bottom UI Container/Items/Item Container" instance=ExtResource("19_qr1w5")]
-layout_mode = 2
-
-[node name="Item Container7" parent="CanvasLayer/HUD/Bottom UI Container/Items/Item Container" instance=ExtResource("19_qr1w5")]
-layout_mode = 2
-
-[node name="Item Container8" parent="CanvasLayer/HUD/Bottom UI Container/Items/Item Container" instance=ExtResource("19_qr1w5")]
-layout_mode = 2
-
-[node name="Item Container9" parent="CanvasLayer/HUD/Bottom UI Container/Items/Item Container" instance=ExtResource("19_qr1w5")]
-layout_mode = 2
-
-[node name="Item Container10" parent="CanvasLayer/HUD/Bottom UI Container/Items/Item Container" instance=ExtResource("19_qr1w5")]
-layout_mode = 2
-
-[node name="Item Container11" parent="CanvasLayer/HUD/Bottom UI Container/Items/Item Container" instance=ExtResource("19_qr1w5")]
-layout_mode = 2
-
-[node name="Item Container12" parent="CanvasLayer/HUD/Bottom UI Container/Items/Item Container" instance=ExtResource("19_qr1w5")]
-layout_mode = 2
-
-[node name="Item Container13" parent="CanvasLayer/HUD/Bottom UI Container/Items/Item Container" instance=ExtResource("19_qr1w5")]
-layout_mode = 2
-
-[node name="Item Container14" parent="CanvasLayer/HUD/Bottom UI Container/Items/Item Container" instance=ExtResource("19_qr1w5")]
-layout_mode = 2
-
-[node name="Item Container15" parent="CanvasLayer/HUD/Bottom UI Container/Items/Item Container" instance=ExtResource("19_qr1w5")]
-layout_mode = 2
-
-[node name="Item Container2" parent="CanvasLayer/HUD/Bottom UI Container/Items/Item Container" instance=ExtResource("19_qr1w5")]
-layout_mode = 2
+offset_left = 2.175994
+offset_top = 4.04
+offset_right = -2.1760254
+offset_bottom = -4.040001
+columns = 21
+script = ExtResource("19_ythyg")
 
 [node name="Upgrade" type="Node" parent="CanvasLayer"]
 unique_name_in_owner = true
