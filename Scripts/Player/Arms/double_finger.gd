@@ -25,3 +25,7 @@ func shoot():
 	
 	for i in range(projectile_count):
 		launch_projectile(camera_collision)
+	
+	for audio in firing_audio:
+		if audio:
+			audio.play_deconflicted()

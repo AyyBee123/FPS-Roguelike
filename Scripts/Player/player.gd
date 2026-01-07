@@ -21,6 +21,7 @@ signal item_picked(item) # called when an item is picked up
 @onready var ability_slots = %"Ability Slots"
 @onready var i_frames = %IFrames
 @onready var pick_up_label = %"Pick Up Label"
+@onready var xp_audio = %Xp
 
 const Stats = preload("uid://d0a7frb8gvg68")
 const PASSIVE_MENU = preload("uid://clamkav36kau4")
@@ -187,6 +188,7 @@ func heal(amount):
 	current_health = clamp(0, current_health + amount, MAX_HEALTH)
 
 func gain_xp(amount: int):
+	xp_audio.play_deconflicted()
 	current_xp += amount * XP_MULTIPLIER
 	if current_xp >= XP_NEEDED:
 		current_xp -= XP_NEEDED

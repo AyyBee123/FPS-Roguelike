@@ -26,6 +26,7 @@ AbilityPool="*res://Scripts/Globals/ability_pool.gd"
 GeneralUtils="*res://Scripts/Utils/general_utils.gd"
 Globals="*res://Scenes/Globals/globals.tscn"
 PassivePool="*res://Scripts/Globals/passive_pool.gd"
+SfxDeconflicter="*res://Scripts/Utils/sfx_deconflicter.gd"
 
 [debug]
 
@@ -43,6 +44,7 @@ window/stretch/mode="canvas_items"
 
 folder_colors={
 "res://Assets/": "yellow",
+"res://Audio/": "red",
 "res://Data/": "teal",
 "res://Fonts/": "gray",
 "res://Resources/": "green",

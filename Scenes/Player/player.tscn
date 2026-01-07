@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://dhlu65iawdxvf"]
+[gd_scene load_steps=46 format=3 uid="uid://dhlu65iawdxvf"]
 
 [ext_resource type="Script" uid="uid://c2cudrvyd4egp" path="res://Scripts/Player/player.gd" id="1_uvnfx"]
 [ext_resource type="Script" uid="uid://c4i7uubwdhgtw" path="res://Scripts/Player/weapons_manager.gd" id="2_htcer"]
@@ -25,6 +25,8 @@
 [ext_resource type="Texture2D" uid="uid://cmy3pqe04w5m3" path="res://Assets/UI/Items Border.png" id="17_rqdc0"]
 [ext_resource type="Texture2D" uid="uid://d0ov1ksvt5flx" path="res://Assets/Textures/Blob Shadow.png" id="19_aqm4k"]
 [ext_resource type="Script" uid="uid://dxumsdla3i8vf" path="res://Scripts/UI/items_container.gd" id="19_ythyg"]
+[ext_resource type="AudioStream" uid="uid://bx08sy2wixqjv" path="res://Audio/SFX/XP.mp3" id="26_ythyg"]
+[ext_resource type="Script" uid="uid://cc1romsfhth3n" path="res://Scripts/Utils/audio_player_deconflicter.gd" id="27_bmb2s"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mtuoh"]
 size = Vector3(1, 2, 1)
@@ -359,18 +361,20 @@ pivot_offset = Vector2(0, 64)
 theme_override_constants/separation = 12
 
 [node name="XP Bar" type="ProgressBar" parent="CanvasLayer/HUD/Bottom UI Container/Control" node_paths=PackedStringArray("player")]
+process_mode = 3
 layout_mode = 0
 offset_right = 368.0
 offset_bottom = 32.0
 pivot_offset = Vector2(0, 32)
 theme = SubResource("Theme_06tpx")
 max_value = 1.0
-value = 1.0
+step = 0.001
 script = ExtResource("10_74mp2")
 player = NodePath("../../../../..")
 
 [node name="Level" type="Label" parent="CanvasLayer/HUD/Bottom UI Container/Control/XP Bar" node_paths=PackedStringArray("player")]
 unique_name_in_owner = true
+process_mode = 3
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 1
 anchors_preset = -1
@@ -401,6 +405,7 @@ offset_bottom = 88.0
 pivot_offset = Vector2(0, 48)
 theme = SubResource("Theme_rcvs5")
 max_value = 1.0
+step = 0.001
 value = 1.0
 show_percentage = false
 script = ExtResource("14_h8ma5")
@@ -537,6 +542,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
 size = Vector3(1.5, 3, 1.5)
 texture_albedo = ExtResource("19_aqm4k")
 cull_mask = 4
+
+[node name="Xp" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+stream = ExtResource("26_ythyg")
+volume_db = -8.0
+bus = &"SFX"
+script = ExtResource("27_bmb2s")
 
 [connection signal="body_entered" from="Pickup Detect" to="." method="_on_pickup_detect_body_entered"]
 [connection signal="body_exited" from="Pickup Detect" to="." method="_on_pickup_detect_body_exited"]

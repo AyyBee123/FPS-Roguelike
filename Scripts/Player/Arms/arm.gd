@@ -22,6 +22,7 @@ class_name Arm extends Node3D
 @export var equip_animation: String = "Activate"
 @export var muzzle: PackedScene
 @export var muzzle_color: Color = Color("fccf95")
+@export var firing_audio: Array[DeconflictedAudioPlayer]
 
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 @onready var bullet_point: Marker3D = %"Bullet Point"
@@ -76,6 +77,9 @@ func shoot():
 	
 	for i in range(projectile_count):
 		launch_projectile(camera_collision)
+	
+	for audio in firing_audio:
+		audio.play_deconflicted()
 
 func get_camera_collision() -> Vector3:
 	var camera = get_viewport().get_camera_3d()

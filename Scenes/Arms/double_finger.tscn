@@ -1,8 +1,10 @@
-[gd_scene load_steps=15 format=4 uid="uid://beggit6q76e38"]
+[gd_scene load_steps=17 format=4 uid="uid://beggit6q76e38"]
 
 [ext_resource type="Script" uid="uid://cty3bfs7vrcht" path="res://Scripts/Player/Arms/double_finger.gd" id="1_wj3ft"]
 [ext_resource type="PackedScene" uid="uid://chf78mk787gvv" path="res://Scenes/Projectiles/Arm/pellet.tscn" id="2_mmtga"]
 [ext_resource type="PackedScene" uid="uid://dphgx1a3xboty" path="res://Scenes/VFX/muzzle_flash.tscn" id="3_w50id"]
+[ext_resource type="AudioStream" uid="uid://gggmlimas633" path="res://Audio/SFX/Shotgun.mp3" id="4_mmtga"]
+[ext_resource type="Script" uid="uid://cc1romsfhth3n" path="res://Scripts/Utils/audio_player_deconflicter.gd" id="5_w50id"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qe81n"]
 resource_name = "Metal"
@@ -272,7 +274,7 @@ _data = {
 &"Shoot": SubResource("Animation_p6avp")
 }
 
-[node name="Double Finger" type="Node3D"]
+[node name="Double Finger" type="Node3D" node_paths=PackedStringArray("firing_audio")]
 script = ExtResource("1_wj3ft")
 rarity = 1
 projectile = ExtResource("2_mmtga")
@@ -286,6 +288,7 @@ recoil = Vector2(1.5, 0.25)
 recoil_speed = 12.0
 snap = 4.0
 muzzle = ExtResource("3_w50id")
+firing_audio = [NodePath("Shotgun")]
 
 [node name="Fire Rate Timer" type="Timer" parent="."]
 unique_name_in_owner = true
@@ -355,3 +358,9 @@ unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_xsib4")
 }
+
+[node name="Shotgun" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_mmtga")
+volume_db = -4.0
+bus = &"SFX"
+script = ExtResource("5_w50id")
