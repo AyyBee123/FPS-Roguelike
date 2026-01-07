@@ -549,14 +549,15 @@ cull_mask = 4
 unique_name_in_owner = true
 process_mode = 3
 stream = ExtResource("26_ythyg")
-volume_db = -8.0
+volume_db = -12.0
+max_db = 0.0
 bus = &"SFX"
 script = ExtResource("27_bmb2s")
 
 [node name="Hit" type="AudioStreamPlayer" parent="." node_paths=PackedStringArray("player")]
 stream = ExtResource("28_2ahak")
 volume_db = -4.0
-pitch_scale = 0.75
+pitch_scale = 0.95
 bus = &"SFX"
 script = ExtResource("29_2ahak")
 player = NodePath("..")

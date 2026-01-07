@@ -361,5 +361,6 @@ libraries = {
 
 [node name="Shotgun" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("4_mmtga")
+max_db = 0.0
 bus = &"SFX"
 script = ExtResource("5_w50id")
