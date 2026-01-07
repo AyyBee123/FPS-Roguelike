@@ -9,11 +9,6 @@ func _ready():
 	player.item_picked.connect(update_items)
 
 func update_items(_pickup):
-	# buffer to allow stacking items time to queue
-	await get_tree().physics_frame
-	await get_tree().physics_frame
-	await get_tree().physics_frame
-	
 	for i in items_container.get_children():
 		items_container.remove_child(i)
 		i.queue_free()

@@ -3,7 +3,7 @@ extends Item
 func on_pick_up(_player: Player):
 	super.on_pick_up(_player)
 	
-	if player.get_node_or_null("%Passives/" + name): # stack the item if it already exists
+	if existing_item: # stack the item if it already exists
 		return
 	
 	_player.stats.add_flat_stat("Extra_Jumps", 5)

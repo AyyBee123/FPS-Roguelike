@@ -50,8 +50,6 @@ func _physics_process(delta):
 
 func pick_up(player):
 	item.on_pick_up(player)
-	passive.remove_child(item)
-	player.passives.add_child(item)
 	queue_free()
 
 func display_item(_item):

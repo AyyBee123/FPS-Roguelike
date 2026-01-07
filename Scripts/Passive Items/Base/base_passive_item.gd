@@ -30,6 +30,9 @@ func on_pick_up(_player: Player):
 		existing_item.on_stack()
 		queue_free()
 		return
+	else:
+		get_parent().remove_child(self)
+		player.passives.add_child(self)
 	
 	player.enemy_killed.connect(on_enemy_killed)
 	player.enemy_hit.connect(on_enemy_hit)
