@@ -8,6 +8,10 @@
 		"rarity": 2
 	},
 	{
+		"path": "res://Scenes/Passive Items/hologram.tscn",
+		"rarity": 2
+	},
+	{
 		"path": "res://Scenes/Passive Items/unstable_molecule.tscn",
 		"rarity": 0
 	}

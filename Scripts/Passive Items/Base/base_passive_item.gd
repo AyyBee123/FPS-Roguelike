@@ -21,6 +21,11 @@ var player: Player
 var stacks: int = 1
 var existing_item: Item
 
+func _ready():
+	if get_parent().get_parent() is Player:
+		player = get_parent().get_parent()
+		setup_signals(player)
+
 func on_pick_up(_player: Player):
 	player = _player
 	
@@ -34,11 +39,18 @@ func on_pick_up(_player: Player):
 		get_parent().remove_child(self)
 		player.passives.add_child(self)
 	
-	player.enemy_killed.connect(on_enemy_killed)
-	player.enemy_hit.connect(on_enemy_hit)
-	player.weapon_fired.connect(on_weapon_fired)
-	player.weapon_shot.connect(on_weapon_shot)
-	player.weapon_spawned.connect(on_weapon_spawned)
+	setup_signals(player)
+
+func on_stack():
+	pass
+
+func setup_signals(_player):
+	_player.enemy_killed.connect(on_enemy_killed)
+	_player.enemy_hit.connect(on_enemy_hit)
+	_player.weapon_fired.connect(on_weapon_fired)
+	_player.weapon_shot.connect(on_weapon_shot)
+	_player.weapon_spawned.connect(on_weapon_spawned)
+	_player.item_picked.connect(on_item_picked)
 
 ## gets the final stat value, after calculating player and ability stats
 func get_stat_value(stat_type: String, value: Variant = null):
@@ -67,9 +79,6 @@ func add_multiplier_stat(stat_type: String, amount: Variant) -> void:
 func add_flat_stat(stat_type: String, amount: Variant) -> void:
 	stats[stat_type]["flat"] += amount
 
-func on_stack():
-	pass
-
 func on_enemy_killed(_enemy: Enemy, _source: Variant, _damage: float):
 	pass
 
@@ -83,4 +92,7 @@ func on_weapon_shot(_arm: Arm):
 	pass
 
 func on_weapon_spawned(_projectile: Variant, _damage: float):
+	pass
+
+func on_item_picked(_pickup):
 	pass
