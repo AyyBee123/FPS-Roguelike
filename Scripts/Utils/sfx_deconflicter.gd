@@ -25,7 +25,8 @@ func play(player: Node, from_position: float = 0.0) -> void:
 		return
 	
 	if not player is AudioStreamPlayer \
-			and not player is AudioStreamPlayer2D:
+			and not player is AudioStreamPlayer2D \
+			and not player is AudioStreamPlayer3D:
 		push_warning("Unrecognized AudioStreamPlayer: %s (%s)" % [player.get_path(), player.get_class()])
 		return
 	
@@ -51,7 +52,8 @@ func should_play(player: Node, suppress_sfx_msec: int = DEFAULT_SUPPRESS_SFX_MSE
 		return false
 	
 	if not player is AudioStreamPlayer \
-			and not player is AudioStreamPlayer2D:
+			and not player is AudioStreamPlayer2D \
+			and not player is AudioStreamPlayer3D:
 		push_warning("Unrecognized AudioStreamPlayer: %s (%s)" % [player.get_path(), player.get_class()])
 		return false
 	

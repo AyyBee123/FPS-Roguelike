@@ -79,7 +79,8 @@ func shoot():
 		launch_projectile(camera_collision)
 	
 	for audio in firing_audio:
-		audio.play_deconflicted()
+		if audio:
+			audio.play_deconflicted()
 
 func get_camera_collision() -> Vector3:
 	var camera = get_viewport().get_camera_3d()

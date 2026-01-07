@@ -359,8 +359,8 @@ libraries = {
 &"": SubResource("AnimationLibrary_xsib4")
 }
 
-[node name="Shotgun" type="AudioStreamPlayer" parent="."]
+[node name="Shotgun" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("4_mmtga")
-volume_db = -4.0
+max_db = 0.0
 bus = &"SFX"
 script = ExtResource("5_w50id")

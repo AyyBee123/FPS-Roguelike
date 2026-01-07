@@ -5,6 +5,7 @@ extends Node3D
 
 @onready var oil_pool: MeshInstance3D = $OilPool
 @onready var area: Area3D = $Area3D
+@onready var splat = %Splat
 
 var tween: Tween
 
@@ -18,6 +19,7 @@ var enemies: Array[Enemy]
 var tick_nodes: Array[Node]
 
 func _ready():
+	splat.play_deconflicted()
 	scale = Vector3.ONE * player.stats.get_stat("Splash_Radius")
 	oil_pool.scale = Vector3(0, 1, 0)
 	tween = get_tree().create_tween()

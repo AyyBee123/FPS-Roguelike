@@ -1,8 +1,10 @@
-[gd_scene load_steps=50 format=4 uid="uid://dajqdf341ehwu"]
+[gd_scene load_steps=52 format=4 uid="uid://dajqdf341ehwu"]
 
 [ext_resource type="Script" uid="uid://wtoa66s2o53o" path="res://Scripts/Player/Arms/arm.gd" id="1_p6h4n"]
 [ext_resource type="PackedScene" uid="uid://vnpmfor52wrk" path="res://Scenes/Projectiles/Arm/oil ball.tscn" id="2_p6h4n"]
 [ext_resource type="PackedScene" uid="uid://dphgx1a3xboty" path="res://Scenes/VFX/muzzle_flash.tscn" id="3_h7p05"]
+[ext_resource type="AudioStream" uid="uid://uhj8troyiq3e" path="res://Audio/SFX/Blob Launch.mp3" id="4_p6h4n"]
+[ext_resource type="Script" uid="uid://cc1romsfhth3n" path="res://Scripts/Utils/audio_player_deconflicter.gd" id="5_0kh4s"]
 
 [sub_resource type="Animation" id="Animation_x7t37"]
 resource_name = "Idle"
@@ -1345,7 +1347,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_okiqf")
 
-[node name="Oil Spill" type="Node3D"]
+[node name="Oil Spill" type="Node3D" node_paths=PackedStringArray("firing_audio")]
 transform = Transform3D(1.333, 0, 0, 0, 1.333, 0, 0, 0, 1.333, 0, 0, 0)
 script = ExtResource("1_p6h4n")
 rarity = 1
@@ -1359,6 +1361,7 @@ recoil_speed = 8.0
 snap = 6.0
 muzzle = ExtResource("3_h7p05")
 muzzle_color = Color(0.5990973, 0.5415269, 0.44946676, 1)
+firing_audio = [NodePath("BlobLaunch")]
 
 [node name="Fire Rate Timer" type="Timer" parent="."]
 unique_name_in_owner = true
@@ -1373,6 +1376,12 @@ unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_71k6d")
 }
+
+[node name="BlobLaunch" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_p6h4n")
+max_db = -2.0
+bus = &"SFX"
+script = ExtResource("5_0kh4s")
 
 [node name="Armature" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0.5986459)

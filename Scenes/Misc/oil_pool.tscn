@@ -1,12 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://nocjsr8ynhmk"]
+[gd_scene load_steps=7 format=3 uid="uid://nocjsr8ynhmk"]
 
 [ext_resource type="Script" uid="uid://qap15jej2dv6" path="res://Scripts/Misc/oil_pool.gd" id="1_2oasf"]
 [ext_resource type="ArrayMesh" uid="uid://my16hc5p4y4f" path="res://Assets/Misc/Oil Pool.tres" id="1_7oh8l"]
 [ext_resource type="PackedScene" uid="uid://b134fhcabkhmq" path="res://Scenes/Misc/tick_damage.tscn" id="2_dmt1y"]
+[ext_resource type="AudioStream" uid="uid://d3l6wn8dvlk18" path="res://Audio/SFX/Splat.mp3" id="4_snjs3"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_2oasf"]
 height = 3.0
 radius = 4.5
+
+[sub_resource type="GDScript" id="GDScript_snjs3"]
+script/source = "class_name DeconflictedAudioPlayer3D extends AudioStreamPlayer3D
+## AudioStreamPlayer which ensures multiple copies of the same sound don't play simultaneously.
+
+func play_deconflicted(from_position = 0.0) -> void:
+	if SfxDeconflicter.should_play(self):
+		self.play(from_position)
+"
 
 [node name="Oil Pool" type="Node3D"]
 script = ExtResource("1_2oasf")
@@ -29,6 +39,14 @@ shape = SubResource("CylinderShape3D_2oasf")
 wait_time = 4.0
 one_shot = true
 autostart = true
+
+[node name="Splat" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_snjs3")
+attenuation_model = 1
+unit_size = 20.0
+bus = &"SFX"
+script = SubResource("GDScript_snjs3")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

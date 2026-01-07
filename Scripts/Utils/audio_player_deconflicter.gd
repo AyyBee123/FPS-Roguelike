@@ -1,4 +1,4 @@
-class_name DeconflictedAudioPlayer extends AudioStreamPlayer
+class_name DeconflictedAudioPlayer extends AudioStreamPlayer3D
 ## AudioStreamPlayer which ensures multiple copies of the same sound don't play simultaneously.
 
 func play_deconflicted(from_position = 0.0) -> void:

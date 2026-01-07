@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://uhj8troyiq3e"
+path="res://.godot/imported/Blob Launch.mp3-6d0c2e404491233db1f4c9a8453e6bc1.mp3str"
+
+[deps]
+
+source_file="res://Audio/SFX/Blob Launch.mp3"
+dest_files=["res://.godot/imported/Blob Launch.mp3-6d0c2e404491233db1f4c9a8453e6bc1.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
