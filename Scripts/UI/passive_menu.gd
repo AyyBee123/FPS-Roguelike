@@ -28,6 +28,7 @@ func _ready():
 	transition.scale = Vector2.ZERO
 	tween = get_tree().create_tween()
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+	tween.tween_interval(0.05)
 	tween.tween_property(transition, "scale", Vector2.ONE, 0.15)
 
 func select_upgrade(button):

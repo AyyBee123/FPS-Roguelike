@@ -1,6 +1,8 @@
-[gd_scene load_steps=23 format=4 uid="uid://cml3a2ykki6lr"]
+[gd_scene load_steps=25 format=4 uid="uid://cml3a2ykki6lr"]
 
 [ext_resource type="Script" uid="uid://b1eovhvpbkj2e" path="res://Scripts/Misc/chest.gd" id="1_d31rh"]
+[ext_resource type="AudioStream" uid="uid://57opfffxwb4c" path="res://Audio/SFX/Chest Open.mp3" id="2_ij3ts"]
+[ext_resource type="Script" uid="uid://cc1romsfhth3n" path="res://Scripts/Utils/audio_player_deconflicter.gd" id="3_mypyu"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_d31rh"]
 radius = 1.0
@@ -384,6 +386,31 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_m0cjs")
 
+[sub_resource type="Animation" id="Animation_ij3ts"]
+resource_name = "Open"
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("Armature/Skeleton3D:Bone.001")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.7071068, -1.1520233e-07, -1.1520233e-07, 0.7071068)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("Armature/Skeleton3D:Bone.002")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("Armature/Skeleton3D:Bone.003")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0, 1.1920929e-07, 0, 1)
+
 [sub_resource type="Animation" id="Animation_i1vq5"]
 resource_name = "Open"
 length = 0.46666667
@@ -421,46 +448,6 @@ tracks/3/keys = {
 "args": [],
 "method": &"roll_item"
 }]
-}
-
-[sub_resource type="Animation" id="Animation_d31rh"]
-resource_name = "Spawn"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Armature:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.16666667, 0.3, 0.43333334),
-"transitions": PackedFloat32Array(2, 2, 0.25, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(1, 1, 1), Vector3(1, 0.25, 1), Vector3(0.5, 0.5, 0.5)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Armature:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.33333334, 0.43333334),
-"transitions": PackedFloat32Array(1, 2, 0.25, 0.25, 1),
-"update": 0,
-"values": [Vector3(0, 0.32, 0), Vector3(0, 0.32, 0), Vector3(0, 1.5, 0), Vector3(0, 0.32, 0), Vector3(0, 0.32, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Armature:rotation:x")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.13333334, 0.23333333, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 0.5, 0.5, 1),
-"update": 0,
-"values": [0.0, 0.0, -0.349, 0.175, 0.0]
 }
 
 [sub_resource type="Animation" id="Animation_opbus"]
@@ -502,30 +489,45 @@ tracks/2/keys = {
 "values": [0.0]
 }
 
-[sub_resource type="Animation" id="Animation_ij3ts"]
-resource_name = "Open"
-length = 0.001
-tracks/0/type = "rotation_3d"
-tracks/0/imported = true
+[sub_resource type="Animation" id="Animation_d31rh"]
+resource_name = "Spawn"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Armature/Skeleton3D:Bone.001")
+tracks/0/path = NodePath("Armature:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0.7071068, -1.1520233e-07, -1.1520233e-07, 0.7071068)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.3, 0.43333334),
+"transitions": PackedFloat32Array(2, 2, 0.25, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1, 1, 1), Vector3(1, 0.25, 1), Vector3(0.5, 0.5, 0.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Armature/Skeleton3D:Bone.002")
+tracks/1/path = NodePath("Armature:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
-tracks/2/type = "rotation_3d"
-tracks/2/imported = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.33333334, 0.43333334),
+"transitions": PackedFloat32Array(1, 2, 0.25, 0.25, 1),
+"update": 0,
+"values": [Vector3(0, 0.32, 0), Vector3(0, 0.32, 0), Vector3(0, 1.5, 0), Vector3(0, 0.32, 0), Vector3(0, 0.32, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Armature/Skeleton3D:Bone.003")
+tracks/2/path = NodePath("Armature:rotation:x")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0, 1, 0, 1.1920929e-07, 0, 1)
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.23333333, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 0.5, 0.5, 1),
+"update": 0,
+"values": [0.0, 0.0, -0.349, 0.175, 0.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vg6jy"]
 _data = {
@@ -647,6 +649,14 @@ libraries = {
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="ChestOpen" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("2_ij3ts")
+max_db = 0.0
+pitch_scale = 1.15
+bus = &"SFX"
+script = ExtResource("3_mypyu")
 
 [node name="Chest Check" type="Area3D" parent="."]
 unique_name_in_owner = true

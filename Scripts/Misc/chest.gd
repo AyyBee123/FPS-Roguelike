@@ -7,6 +7,7 @@ class_name Chest extends Node3D
 @onready var collision_shape = %CollisionShape3D
 @onready var armature = %Armature
 @onready var chest_check = %"Chest Check"
+@onready var chest_open = %ChestOpen
 
 @export var ITEM = preload("uid://dyk4mpi4d6hrl")
 
@@ -41,6 +42,8 @@ func _ready():
 func open(player: Player):
 	if is_open: return
 	is_open = true
+	
+	chest_open.play_deconflicted()
 	
 	animation_player.play("Open")
 
