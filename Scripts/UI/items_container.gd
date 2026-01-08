@@ -1,5 +1,7 @@
 extends GridContainer
 
+@export var player: Player
+
 var pos: Vector2 = Vector2(8, 8)
 var current_size: Vector2 = Vector2(1440, 72)
 var current_scale: Vector2 = Vector2.ONE

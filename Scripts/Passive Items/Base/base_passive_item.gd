@@ -18,13 +18,15 @@ class_name Item extends Node
 }
 
 var player: Player
-var stacks: int = 1
+@export var stacks: int = 1
 var existing_item: Item
 
 func _ready():
 	if get_parent().get_parent() is Player:
 		player = get_parent().get_parent()
 		setup_signals(player)
+		for i in range(stacks - 1):
+			on_stack()
 
 func on_pick_up(_player: Player):
 	player = _player
@@ -33,18 +35,21 @@ func on_pick_up(_player: Player):
 		existing_item = player.get_node("%Passives/" + name)
 		existing_item.stacks += 1
 		existing_item.on_stack()
+		player.item_picked.emit(self)
 		queue_free()
 		return
 	else:
-		get_parent().remove_child(self)
+		if get_parent():
+			get_parent().remove_child(self)
 		player.passives.add_child(self)
 	
+	player.item_picked.emit(self)
 	setup_signals(player)
 
 func on_stack():
 	pass
 
-func setup_signals(_player):
+func setup_signals(_player: Player):
 	_player.enemy_killed.connect(on_enemy_killed)
 	_player.enemy_hit.connect(on_enemy_hit)
 	_player.weapon_fired.connect(on_weapon_fired)
@@ -94,5 +99,5 @@ func on_weapon_shot(_arm: Arm):
 func on_weapon_spawned(_projectile: Variant, _damage: float):
 	pass
 
-func on_item_picked(_pickup):
+func on_item_picked(_item: Item):
 	pass
