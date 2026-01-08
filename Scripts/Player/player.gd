@@ -8,7 +8,7 @@ signal weapon_spawned(projectile, damage) # called mainly for weapon after-effec
 signal on_landing(impact_speed) # called when the player lands on the ground from the air
 signal hit_taken(pos) # called when the player takes a hit
 signal item_hovered(item) # called when an item is looked at with the crosshair and is within pickup range
-signal item_picked(item) # called when an item is picked up
+signal item_picked(item) # called when an item is picked up (called from the item script)
 signal arm_picked(_arm)
 
 @onready var camera = %Camera
