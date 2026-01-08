@@ -14,6 +14,8 @@ var current_list: Array = [] # the current list of passive and ability upgrades
 func _ready():
 	get_tree().paused = true
 	
+	Globals.sfx.level_up.play_deconflicted()
+	
 	# set the first button as the focused one (mainly for controller)
 	var first_button = %"Upgrade List".get_child(0)
 	first_button.initial_focus = true
@@ -30,6 +32,8 @@ func _ready():
 
 func select_upgrade(button):
 	if tween.is_running() or not buffer.is_stopped(): return
+	
+	Globals.sfx.confirm.play_deconflicted()
 	
 	get_tree().paused = false
 	if button.passives.size() > 0:

@@ -1,6 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://dawub1m51r7yv"]
+[gd_scene load_steps=6 format=3 uid="uid://dawub1m51r7yv"]
 
 [ext_resource type="Script" uid="uid://dphv7q8o5jtql" path="res://Scripts/Globals/globals.gd" id="1_5gr7o"]
+[ext_resource type="Script" uid="uid://bf2xjgawxjxsc" path="res://Scripts/Globals/global_sfx.gd" id="2_ijaj4"]
+[ext_resource type="AudioStream" uid="uid://bgaecf6nbc3b2" path="res://Audio/SFX/Confirm.mp3" id="2_w66jp"]
+[ext_resource type="Script" uid="uid://487ugtjj4i02" path="res://Scripts/Utils/audio_player_deconflicter_not_3d.gd" id="3_ijaj4"]
+[ext_resource type="AudioStream" uid="uid://bwgt480rbjjqq" path="res://Audio/SFX/Level Up.mp3" id="5_of0jm"]
 
 [node name="Globals" type="Node"]
+process_mode = 3
 script = ExtResource("1_5gr7o")
+
+[node name="SFX" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_ijaj4")
+
+[node name="Confirm" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("2_w66jp")
+volume_db = -2.0
+pitch_scale = 1.2
+script = ExtResource("3_ijaj4")
+
+[node name="LevelUp" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("5_of0jm")
+volume_db = -4.0
+script = ExtResource("3_ijaj4")
