@@ -18,9 +18,11 @@ script = ExtResource("2_ijaj4")
 stream = ExtResource("2_w66jp")
 volume_db = -2.0
 pitch_scale = 1.2
+bus = &"SFX"
 script = ExtResource("3_ijaj4")
 
 [node name="LevelUp" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("5_of0jm")
 volume_db = -4.0
+bus = &"SFX"
 script = ExtResource("3_ijaj4")
