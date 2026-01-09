@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://dhlu65iawdxvf"]
+[gd_scene load_steps=52 format=3 uid="uid://dhlu65iawdxvf"]
 
 [ext_resource type="Script" uid="uid://c2cudrvyd4egp" path="res://Scripts/Player/player.gd" id="1_uvnfx"]
 [ext_resource type="Script" uid="uid://c4i7uubwdhgtw" path="res://Scripts/Player/weapons_manager.gd" id="2_htcer"]
@@ -28,7 +28,11 @@
 [ext_resource type="AudioStream" uid="uid://bx08sy2wixqjv" path="res://Audio/SFX/XP.mp3" id="26_ythyg"]
 [ext_resource type="Script" uid="uid://cc1romsfhth3n" path="res://Scripts/Utils/audio_player_deconflicter.gd" id="27_bmb2s"]
 [ext_resource type="AudioStream" uid="uid://cj7ctf82ibui7" path="res://Audio/SFX/Hit.mp3" id="28_2ahak"]
+[ext_resource type="AudioStream" uid="uid://k6deuqev1ba0" path="res://Audio/SFX/Damage Taken.mp3" id="28_rukb4"]
 [ext_resource type="Script" uid="uid://b8nkqqq3wwo7l" path="res://Scripts/Misc/hit_audio.gd" id="29_2ahak"]
+[ext_resource type="AudioStream" uid="uid://dymjngbslujpe" path="res://Audio/SFX/Jump.mp3" id="29_fcwna"]
+[ext_resource type="AudioStream" uid="uid://ckpyrftwekeyr" path="res://Audio/SFX/Land.mp3" id="30_1agin"]
+[ext_resource type="AudioStream" uid="uid://0ye4jgvtnnsw" path="res://Audio/SFX/Pick Up.mp3" id="31_1agin"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mtuoh"]
 size = Vector3(1, 2, 1)
@@ -552,6 +556,34 @@ process_mode = 3
 stream = ExtResource("26_ythyg")
 volume_db = -12.0
 max_db = 0.0
+bus = &"SFX"
+script = ExtResource("27_bmb2s")
+
+[node name="DamageTaken" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("28_rukb4")
+max_db = 0.0
+bus = &"SFX"
+script = ExtResource("27_bmb2s")
+
+[node name="Jump" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("29_fcwna")
+max_db = 2.0
+pitch_scale = 0.5
+bus = &"SFX"
+script = ExtResource("27_bmb2s")
+
+[node name="Land" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("30_1agin")
+pitch_scale = 2.0
+bus = &"SFX"
+script = ExtResource("27_bmb2s")
+
+[node name="Pick Up" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("31_1agin")
 bus = &"SFX"
 script = ExtResource("27_bmb2s")
 

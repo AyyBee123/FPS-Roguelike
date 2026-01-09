@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://if8oqbpldenj"]
 
 [ext_resource type="AudioStream" uid="uid://b4gd4njecbma5" path="res://Audio/SFX/Common Item.mp3" id="1_jp4f5"]
-[ext_resource type="Script" uid="uid://bgdlu5pho5136" path="res://Scripts/Misc/item_sound.gd" id="1_t0y06"]
+[ext_resource type="Script" uid="uid://bgdlu5pho5136" path="res://Scripts/Misc/soundboard.gd" id="1_t0y06"]
 [ext_resource type="Script" uid="uid://cc1romsfhth3n" path="res://Scripts/Utils/audio_player_deconflicter.gd" id="3_bd28k"]
 [ext_resource type="AudioStream" uid="uid://5t1jshxw3tse" path="res://Audio/SFX/Uncommon Item.mp3" id="4_bd28k"]
 [ext_resource type="AudioStream" uid="uid://bjjycpwud8qf8" path="res://Audio/SFX/Legendary Item.mp3" id="5_2cip1"]

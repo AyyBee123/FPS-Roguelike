@@ -23,6 +23,10 @@ signal arm_picked(_arm)
 @onready var i_frames = %IFrames
 @onready var pick_up_label = %"Pick Up Label"
 @onready var xp_audio = %Xp
+@onready var damage_taken_audio = %DamageTaken
+@onready var jump = %Jump
+@onready var land = %Land
+@onready var pick_up = %"Pick Up"
 
 const Stats = preload("uid://d0a7frb8gvg68")
 const PASSIVE_MENU = preload("uid://clamkav36kau4")
@@ -97,9 +101,11 @@ func _physics_process(delta):
 	# jumping
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_HEIGHT
+		jump.play_deconflicted()
 	if Input.is_action_just_pressed("jump") and not is_on_floor() and current_jumps > 0:
 		velocity.y = JUMP_HEIGHT
 		current_jumps -= 1
+		jump.play_deconflicted()
 	
 	# input direction and movement/deceleration
 	var input_dir = Input.get_vector("left", "right", "up", "down")
@@ -115,6 +121,7 @@ func _physics_process(delta):
 	
 	# check for landing
 	if not was_on_floor and is_on_floor():
+		land.play_deconflicted()
 		speed_before_landing = previous_velocity.y
 		on_landing.emit(speed_before_landing)
 	was_on_floor = is_on_floor()
@@ -136,6 +143,7 @@ func _input(event):
 		if pickup is Chest:
 			pickup.open(self)
 		else:
+			pick_up.play_deconflicted()
 			pickup.pick_up(self)
 
 func get_pickup_collision():
@@ -157,6 +165,8 @@ func get_pickup_collision():
 func hit(amount, pos):
 	if not i_frames.is_stopped():
 		return
+	
+	damage_taken_audio.play_deconflicted()
 	
 	if amount > 0.0:
 		i_frames.start()

@@ -1,5 +1,7 @@
 extends Node3D
 
+@export var soundboard: PackedScene
+
 @onready var collision_shape = %CollisionShape3D
 @onready var blast = %Blast
 
@@ -8,6 +10,11 @@ var damage: float
 var radius: float
 
 func _ready():
+	var sb = soundboard.instantiate()
+	get_tree().current_scene.add_child(sb)
+	sb.global_position = global_position
+	sb.blast.play_deconflicted()
+	
 	blast.one_shot = true
 	blast.restart()
 	

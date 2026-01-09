@@ -1,15 +1,19 @@
 extends Node3D
 
+@export var soundboard: PackedScene
+
 @onready var bolt: GPUParticles3D = %Bolt
 @onready var blast: GPUParticles3D = %Blast
-@onready var lightning = %Lightning
 
 var damage: float
 
 var player: Player
 
 func _ready():
-	lightning.play_deconflicted()
+	var sb = soundboard.instantiate()
+	get_tree().current_scene.add_child(sb)
+	sb.global_position = global_position
+	sb.lightning.play_deconflicted()
 	
 	bolt.one_shot = true
 	blast.one_shot = true
