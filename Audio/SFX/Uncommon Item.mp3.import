@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://5t1jshxw3tse"
+path="res://.godot/imported/Uncommon Item.mp3-ed4bb192710095c3cd4343c3f5f2cc74.mp3str"
+
+[deps]
+
+source_file="res://Audio/SFX/Uncommon Item.mp3"
+dest_files=["res://.godot/imported/Uncommon Item.mp3-ed4bb192710095c3cd4343c3f5f2cc74.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

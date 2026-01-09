@@ -1,10 +1,13 @@
 class_name ItemPickup extends Node3D
 
+@export var sound_node: PackedScene
+
 @onready var passive = %Passive
 @onready var sprite_3d: Sprite3D = %Sprite3D
 @onready var default_pos = sprite_3d.get_position()
 @onready var default_scale = sprite_3d.get_scale()
 @onready var collision_shape = %CollisionShape
+@onready var rolling_jingle = %RollingJingle
 
 const AMPLITUDE: float = 0.1
 const FREQUENCY: float = 2.0
@@ -32,6 +35,7 @@ var rarity_weights = ItemPool.rarity_weights
 
 func _ready():
 	randomize()
+	rolling_jingle.play_deconflicted()
 	sprite_3d.scale = default_scale * 0.5
 	collision_shape.disabled = true
 	if not item:
@@ -76,8 +80,16 @@ func rapid_roll(delta):
 	
 	if elapsed_time >= ROLLING_TIME:
 		display_item(item)
-		play_tween()
+		rolling_jingle.stop()
 		can_pickup = true
+		play_item_sound()
+		play_tween()
+
+func play_item_sound():
+	var sound = sound_node.instantiate()
+	sound.rarity = item.rarity
+	get_tree().current_scene.add_child(sound)
+	sound.global_position = global_position
 
 func play_tween():
 	tween = get_tree().create_tween()
