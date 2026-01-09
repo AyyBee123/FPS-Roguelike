@@ -2,12 +2,15 @@ extends Node3D
 
 @onready var bolt: GPUParticles3D = %Bolt
 @onready var blast: GPUParticles3D = %Blast
+@onready var lightning = %Lightning
 
 var damage: float
 
 var player: Player
 
 func _ready():
+	lightning.play_deconflicted()
+	
 	bolt.one_shot = true
 	blast.one_shot = true
 	

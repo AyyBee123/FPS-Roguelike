@@ -1,9 +1,11 @@
-[gd_scene load_steps=18 format=4 uid="uid://ion0xy4nx46o"]
+[gd_scene load_steps=20 format=4 uid="uid://ion0xy4nx46o"]
 
 [ext_resource type="Script" uid="uid://b2w3cvrrhheiv" path="res://Scripts/Abilities/Misc/lightning.gd" id="1_6o5yw"]
 [ext_resource type="Shader" uid="uid://buk1o840fv5sg" path="res://Shaders/lightning.gdshader" id="1_qa3j7"]
 [ext_resource type="Texture2D" uid="uid://be3ihcugy37vd" path="res://Assets/Textures/Lightning Bolt.png" id="2_6o5yw"]
 [ext_resource type="ArrayMesh" uid="uid://b3knx0o237wi6" path="res://Assets/VFX/Blast.tres" id="2_ggp7a"]
+[ext_resource type="AudioStream" uid="uid://cfeofl6bw3ren" path="res://Audio/SFX/Lightning.mp3" id="5_j0po6"]
+[ext_resource type="Script" uid="uid://cc1romsfhth3n" path="res://Scripts/Utils/audio_player_deconflicter.gd" id="6_qs0gl"]
 
 [sub_resource type="Gradient" id="Gradient_dxbur"]
 
@@ -91,6 +93,15 @@ monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_6o5yw")
+
+[node name="Lightning" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_j0po6")
+unit_size = 30.0
+max_db = 0.0
+pitch_scale = 1.25
+bus = &"SFX"
+script = ExtResource("6_qs0gl")
 
 [connection signal="finished" from="Blast" to="." method="_on_blast_finished"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
