@@ -1,6 +1,7 @@
 extends Node
 
 var passives: Array = [
+	preload("uid://csswgmjisoqiv"),
 	preload("uid://ck8e0xlkfeop6"),
 	preload("uid://dw041uajaa1gg"),
 	preload("uid://blf4j31no8f3d"),
