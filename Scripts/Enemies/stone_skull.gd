@@ -4,6 +4,7 @@ extends Enemy
 @onready var fire = %Fire
 @onready var shoot_time = %"Shoot Time"
 @onready var shoot_marker = %"Shoot Marker"
+@onready var shoot_SFX = %Shoot
 
 @export var projectile_damage: float
 @export var projectile_speed: float
@@ -55,6 +56,7 @@ func shoot():
 		muzzle.set_color("ffb31b")
 		var direction = (player_pos - shoot_marker.global_position).normalized()
 		fire_projectile(STONE_SKULL_PROJECTILE, shoot_marker.global_position, direction)
+		shoot_SFX.play_deconflicted()
 	shoot_time.start()
 
 func fire_projectile(proj: PackedScene, pos: Vector3, direction: Vector3):

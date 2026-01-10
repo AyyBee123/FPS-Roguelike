@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://yipp43yiqwke"]
+[gd_scene load_steps=19 format=3 uid="uid://yipp43yiqwke"]
 
 [ext_resource type="Script" uid="uid://bj4il52perdx8" path="res://Scripts/Enemies/stone_skull.gd" id="1_o0abg"]
 [ext_resource type="PackedScene" uid="uid://dm6474uy3ucte" path="res://Scenes/Misc/damage_number.tscn" id="2_3kxp1"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" uid="uid://sw5uyrto3ua5" path="res://Scripts/Misc/enemy_detection_area.gd" id="5_ulhvv"]
 [ext_resource type="Script" uid="uid://baxqpjp3mlstv" path="res://Scripts/UI/minimap_icon.gd" id="6_2rd6j"]
 [ext_resource type="Texture2D" uid="uid://d0ov1ksvt5flx" path="res://Assets/Textures/Blob Shadow.png" id="7_at0v4"]
+[ext_resource type="AudioStream" uid="uid://d3l6wn8dvlk18" path="res://Audio/SFX/Splat.mp3" id="9_pqm40"]
+[ext_resource type="Script" uid="uid://cc1romsfhth3n" path="res://Scripts/Utils/audio_player_deconflicter.gd" id="10_gx5od"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2rd6j"]
 resource_local_to_scene = true
@@ -595,6 +597,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
 size = Vector3(1.5, 3, 1.5)
 texture_albedo = ExtResource("7_at0v4")
 cull_mask = 4
+
+[node name="Shoot" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("9_pqm40")
+pitch_scale = 2.0
+bus = &"SFX"
+script = ExtResource("10_gx5od")
 
 [connection signal="body_entered" from="Enemy Detection Area" to="Enemy Detection Area" method="_on_body_entered"]
 [connection signal="body_exited" from="Enemy Detection Area" to="Enemy Detection Area" method="_on_body_exited"]
