@@ -1,4 +1,4 @@
-[gd_scene load_steps=149 format=4 uid="uid://djbj7k76p2w00"]
+[gd_scene load_steps=150 format=4 uid="uid://djbj7k76p2w00"]
 
 [ext_resource type="Script" uid="uid://xvth4kwhnsit" path="res://Scripts/Levels/level.gd" id="1_r3g2l"]
 [ext_resource type="Material" uid="uid://c0hkmvqbxcskk" path="res://Assets/Materials/Sand.tres" id="2_h5w7c"]
@@ -30,6 +30,18 @@ sky = SubResource("Sky_fj2ht")
 tonemap_mode = 2
 glow_enabled = true
 glow_intensity = 0.5
+
+[sub_resource type="Shader" id="Shader_h5w7c"]
+resource_local_to_scene = true
+code = "shader_type spatial;
+
+uniform float strength = 0.1;
+
+void fragment() {
+	ALBEDO = vec3(0.88, 1.0, 0.0);
+	ALPHA = strength;
+}
+"
 
 [sub_resource type="Resource" id="Resource_7rivk"]
 script = ExtResource("3_4dovk")
@@ -1825,6 +1837,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9999008, 0)
 
 [node name="Arm Pickup" parent="." instance=ExtResource("3_ecsxk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.29752, 0.702153, -2.39187)
+shader = SubResource("Shader_h5w7c")
+
+[node name="Arm Pickup2" parent="." instance=ExtResource("3_ecsxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.29752, 0.702153, 1.2982168)
+shader = SubResource("Shader_h5w7c")
 
 [node name="Enemy Handler" type="Node" parent="."]
 script = ExtResource("2_r3g2l")

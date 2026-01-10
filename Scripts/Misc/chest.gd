@@ -10,6 +10,7 @@ class_name Chest extends Node3D
 @onready var chest_open = %ChestOpen
 
 @export var ITEM = preload("uid://dyk4mpi4d6hrl")
+@export var meshes: Array[MeshInstance3D]
 
 var can_open: bool = false
 var is_open: bool = false:
@@ -20,6 +21,8 @@ var is_open: bool = false:
 var item: ItemPickup
 
 func _ready():
+	unhighlight()
+	
 	armature.scale = Vector3.ZERO
 	animation_player.play("RESET")
 	animation_player.play("Close")
@@ -61,6 +64,18 @@ func check_for_chest():
 			continue
 		else:
 			break
+
+func highlight():
+	for m in meshes:
+		var mat: ShaderMaterial = m.material_overlay
+		if mat and mat is ShaderMaterial:
+			mat.set_shader_parameter("strength", 0.05)
+
+func unhighlight():
+	for m in meshes:
+		var mat: ShaderMaterial = m.material_overlay
+		if mat and mat is ShaderMaterial:
+			mat.set_shader_parameter("strength", 0.0)
 
 func _on_visible_on_screen_notifier_3d_screen_exited():
 	if is_open and not item:

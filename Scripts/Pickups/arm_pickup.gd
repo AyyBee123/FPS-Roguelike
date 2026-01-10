@@ -1,5 +1,7 @@
 class_name ArmPickup extends RigidBody3D
 
+@export var shader: Shader
+
 @onready var collision_shape = %CollisionShape
 @onready var visual_offset = %"Visual Offset"
 
@@ -13,6 +15,7 @@ var offset: Vector3 = Vector3.ZERO
 var armature: Node3D
 var time: float = 0.0
 var default_pos: Vector3
+var mesh_list: Array[MeshInstance3D]
 
 func _ready():
 	if not arm:
@@ -33,6 +36,8 @@ func _ready():
 	# center the arm's position
 	visual_offset.position -= aabb.position + aabb.size / 2
 	default_pos = visual_offset.position
+	
+	unhighlight()
 
 func _physics_process(delta):
 	time += delta * FREQUENCY
@@ -62,6 +67,24 @@ func get_all_mesh_instances(node: Node) -> Array:
 	var meshes = []
 	for child in node.get_children():
 		if child is MeshInstance3D:
+			if child.name == "Minimap Icon":
+				continue
+			mesh_list.append(child)
 			meshes.append(child)
+			var overlay: ShaderMaterial = ShaderMaterial.new()
+			overlay.shader = shader
+			child.material_overlay = overlay
 		meshes += get_all_mesh_instances(child) # recursion for nested children
 	return meshes
+
+func highlight():
+	for m in mesh_list:
+		var mat: ShaderMaterial = m.material_overlay
+		if mat and mat is ShaderMaterial:
+			mat.set_shader_parameter("strength", 1.0)
+
+func unhighlight():
+	for m in mesh_list:
+		var mat: ShaderMaterial = m.material_overlay
+		if mat and mat is ShaderMaterial:
+			mat.set_shader_parameter("strength", 0.0)

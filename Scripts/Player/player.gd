@@ -129,6 +129,10 @@ func _physics_process(delta):
 	if nearby_pickups.size() > 0:
 		pickup = get_pickup_collision()
 	if pickup != hovered_item or (not pickup and pick_up_label.text != ""):
+		if pickup and pickup.has_method("highlight"):
+			pickup.highlight()
+		if hovered_item and hovered_item.has_method("unhighlight") and not pickup:
+			hovered_item.unhighlight()
 		hovered_item = pickup
 		item_hovered.emit(pickup)
 	
@@ -150,7 +154,7 @@ func get_pickup_collision():
 	var viewport = get_viewport().get_visible_rect().size
 	
 	var ray_origin = camera.project_ray_origin(viewport / 2)
-	var ray_end = ray_origin + camera.project_ray_normal(viewport / 2) * 3.0
+	var ray_end = ray_origin + camera.project_ray_normal(viewport / 2) * 4.0 # pickup range
 	
 	var query = PhysicsRayQueryParameters3D.create(ray_origin, ray_end)
 	query.collision_mask = CollisionLayers.get_layer(["Pickup"])

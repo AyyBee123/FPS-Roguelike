@@ -19,10 +19,11 @@ var time: float = 0.0
 var item_name: String
 
 const ROLLING_INTERVAL: float = 0.05
-const ROLLING_TIME: float = 1.0
+const ROLLING_TIME: float = 0.94
 var elapsed_time: float = 0.0
 var t: float = 0.0
 var tween: Tween
+var shader: ShaderMaterial
 
 var can_pickup: bool = false:
 	set(value):
@@ -35,13 +36,20 @@ var rarity_weights = ItemPool.rarity_weights
 
 func _ready():
 	randomize()
+	
 	rolling_jingle.play_deconflicted()
+	
 	sprite_3d.scale = default_scale * 0.5
 	collision_shape.disabled = true
+	
 	if not item:
 		item = ItemPool.roll()
 	item_name = item.name
 	passive.add_child(item)
+	
+	if sprite_3d.material_overlay:
+		shader = sprite_3d.material_overlay
+		unhighlight()
 
 func _physics_process(delta):
 	if rolling_done:
@@ -80,6 +88,8 @@ func rapid_roll(delta):
 	
 	if elapsed_time >= ROLLING_TIME:
 		display_item(item)
+		shader.set_shader_parameter("sprite", sprite_3d.texture)
+		unhighlight()
 		rolling_jingle.stop()
 		can_pickup = true
 		play_item_sound()
@@ -90,6 +100,12 @@ func play_item_sound():
 	sound.rarity = item.rarity
 	get_tree().current_scene.add_child(sound)
 	sound.global_position = global_position
+
+func highlight():
+	shader.set_shader_parameter("tint_color", Color(1, 1, 0, 16.0 / 255))
+
+func unhighlight():
+	shader.set_shader_parameter("tint_color", Color(1, 1, 0, 0))
 
 func play_tween():
 	tween = get_tree().create_tween()
