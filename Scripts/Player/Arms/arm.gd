@@ -65,10 +65,11 @@ func _physics_process(delta):
 			if a is AudioStreamPlayer3D:
 				a.global_position = player.global_position
 
-func shoot():
-	if t < fire_rate_timer: return
+func shoot(ignore_fire_rate: bool = false, outside_source: Variant = self):
+	if t < fire_rate_timer and not ignore_fire_rate: return
 	
-	t = 0.0
+	if not ignore_fire_rate:
+		t = 0.0
 	fire_rate_timer = 1.0 / fire_rate
 	animation_player.stop()
 	animation_player.play(shoot_animation)
@@ -79,7 +80,7 @@ func shoot():
 	
 	var camera_collision = get_camera_collision()
 	
-	player._on_arm_shot(self)
+	player._on_arm_shot(self, outside_source)
 	
 	for i in range(projectile_count):
 		launch_projectile(camera_collision)

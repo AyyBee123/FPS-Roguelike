@@ -44,7 +44,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		input += event.relative
 
 # add recoil (called when shooting)
-func add_recoil(_arm) -> void:
+func add_recoil(_arm, _source) -> void:
 	arm = _arm
 	recoil_target.x += _arm.recoil.x
 	recoil_target.y += _arm.recoil.y * randf_range(-1, 1)

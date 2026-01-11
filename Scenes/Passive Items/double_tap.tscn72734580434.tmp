@@ -1,0 +1,74 @@
+[gd_scene load_steps=3 format=3 uid="uid://c50dgm7dsy6kp"]
+
+[ext_resource type="Script" uid="uid://ceugwxfr4n1sw" path="res://Scripts/Passive Items/double_tap.gd" id="1_k6hb4"]
+[ext_resource type="Texture2D" uid="uid://ceebqqlt7r6ix" path="res://Assets/Sprites/Items/Double Tap.png" id="2_eskhf"]
+
+[node name="Double Tap" type="Node"]
+script = ExtResource("1_k6hb4")
+rarity = 0
+texture = ExtResource("2_eskhf")
+description = "Chance to shoot twice."
+detailed_description = null
+stats = {
+"Crit_Chance": {
+"+": 0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1
+},
+"Crit_Damage": {
+"+": 0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1
+},
+"Damage": {
+"+": 0,
+"base": 25.0,
+"flat": 0.0,
+"x": 1
+},
+"Fire_Rate": {
+"+": 0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1
+},
+"Pierce": {
+"+": 0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1
+},
+"Projectile_Count": {
+"+": 0,
+"base": 1,
+"flat": 0.0,
+"x": 1
+},
+"Range": {
+"+": 0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1
+},
+"Speed": {
+"+": 0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1
+},
+"Splash_Radius": {
+"+": 0.0,
+"base": 3.0,
+"flat": 0.0,
+"x": 1.0
+}
+}
+stacks = null
+
+[node name="Fire Rate" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[connection signal="timeout" from="Fire Rate" to="." method="_on_fire_rate_timeout"]

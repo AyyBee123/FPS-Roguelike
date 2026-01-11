@@ -5,11 +5,13 @@ extends "res://Scripts/Player/Arms/arm.gd"
 func launch_projectile(point: Vector3):
 	pass
 
-func shoot():
-	if t < fire_rate_timer or animation_player.current_animation == "Swing":
+func shoot(ignore_fire_rate: bool = false, outside_source = null):
+	if (t < fire_rate_timer or animation_player.current_animation == "Swing") and not ignore_fire_rate:
 		return
 	
-	t = 0.0
+	if not ignore_fire_rate:
+		t = 0.0
+	
 	fire_rate_timer = 1.0 / fire_rate
 	animation_player.stop()
 	animation_player.speed_scale = clamp(fire_rate / 2.0, 0.1, 8)
