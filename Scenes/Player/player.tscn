@@ -27,12 +27,12 @@
 [ext_resource type="Script" uid="uid://dxumsdla3i8vf" path="res://Scripts/UI/items_container.gd" id="19_ythyg"]
 [ext_resource type="AudioStream" uid="uid://bx08sy2wixqjv" path="res://Audio/SFX/XP.mp3" id="26_ythyg"]
 [ext_resource type="Script" uid="uid://cc1romsfhth3n" path="res://Scripts/Utils/audio_player_deconflicter.gd" id="27_bmb2s"]
-[ext_resource type="AudioStream" uid="uid://cj7ctf82ibui7" path="res://Audio/SFX/Hit.mp3" id="28_2ahak"]
 [ext_resource type="AudioStream" uid="uid://k6deuqev1ba0" path="res://Audio/SFX/Damage Taken.mp3" id="28_rukb4"]
 [ext_resource type="Script" uid="uid://b8nkqqq3wwo7l" path="res://Scripts/Misc/hit_audio.gd" id="29_2ahak"]
 [ext_resource type="AudioStream" uid="uid://dymjngbslujpe" path="res://Audio/SFX/Jump.mp3" id="29_fcwna"]
 [ext_resource type="AudioStream" uid="uid://ckpyrftwekeyr" path="res://Audio/SFX/Land.mp3" id="30_1agin"]
 [ext_resource type="AudioStream" uid="uid://0ye4jgvtnnsw" path="res://Audio/SFX/Pick Up.mp3" id="31_1agin"]
+[ext_resource type="AudioStream" uid="uid://d3l6wn8dvlk18" path="res://Audio/SFX/Splat.mp3" id="32_1agin"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mtuoh"]
 size = Vector3(1, 2, 1)
@@ -562,7 +562,7 @@ script = ExtResource("27_bmb2s")
 [node name="DamageTaken" type="AudioStreamPlayer3D" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("28_rukb4")
-max_db = 0.0
+max_db = 2.0
 bus = &"SFX"
 script = ExtResource("27_bmb2s")
 
@@ -587,10 +587,13 @@ stream = ExtResource("31_1agin")
 bus = &"SFX"
 script = ExtResource("27_bmb2s")
 
-[node name="Hit" type="AudioStreamPlayer" parent="." node_paths=PackedStringArray("player")]
-stream = ExtResource("28_2ahak")
-volume_db = -4.0
-pitch_scale = 0.95
+[node name="Hit" type="AudioStreamPlayer3D" parent="." node_paths=PackedStringArray("player")]
+stream = ExtResource("32_1agin")
+attenuation_model = 3
+volume_db = -2.0
+unit_size = 100.0
+max_db = 0.0
+pitch_scale = 2.5
 bus = &"SFX"
 script = ExtResource("29_2ahak")
 player = NodePath("..")

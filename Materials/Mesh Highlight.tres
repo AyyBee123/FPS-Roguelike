@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c0irpddjdacnu"]
+
+[ext_resource type="Shader" uid="uid://dbbojm5oryrbu" path="res://Shaders/mesh_highlight.gdshader" id="1_u6p8b"]
+
+[resource]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_u6p8b")
+shader_parameter/strength = 0.0

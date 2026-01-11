@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://jwdiktlk8ob5"]
+[gd_scene load_steps=9 format=3 uid="uid://jwdiktlk8ob5"]
 
 [ext_resource type="Script" uid="uid://ba8atqwl28d1b" path="res://Scripts/Player/Arms/stick.gd" id="1_je0rf"]
+[ext_resource type="Material" uid="uid://c0irpddjdacnu" path="res://Materials/Mesh Highlight.tres" id="2_je0rf"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_diqe7"]
 size = Vector3(0.1, 1, 0.1)
@@ -166,6 +167,7 @@ shoot_animation = "Swing"
 [node name="MeshInstance" type="MeshInstance3D" parent="Armature"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.990268, -0.13917275, 0, 0.13917275, 0.990268, 0, 0, 0)
+material_overlay = ExtResource("2_je0rf")
 mesh = SubResource("BoxMesh_diqe7")
 skeleton = NodePath("../..")
 

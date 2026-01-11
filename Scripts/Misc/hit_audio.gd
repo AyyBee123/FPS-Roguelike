@@ -1,4 +1,4 @@
-extends DeconflictedAudioPlayerNot3D
+extends DeconflictedAudioPlayer
 
 @export var player: Player
 

@@ -126,8 +126,7 @@ func _physics_process(delta):
 		on_landing.emit(speed_before_landing)
 	was_on_floor = is_on_floor()
 	
-	if nearby_pickups.size() > 0:
-		pickup = get_pickup_collision()
+	pickup = get_pickup_collision()
 	if pickup != hovered_item or (not pickup and pick_up_label.text != ""):
 		if pickup and pickup.has_method("highlight"):
 			pickup.highlight()
@@ -144,7 +143,7 @@ func _physics_process(delta):
 
 func _input(event):
 	if event.is_action_pressed("pickup") and pickup:
-		if pickup is Chest:
+		if pickup is Chest or pickup is ArmoryBox:
 			pickup.open(self)
 		else:
 			pick_up.play_deconflicted()

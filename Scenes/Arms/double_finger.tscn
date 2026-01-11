@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=4 uid="uid://beggit6q76e38"]
+[gd_scene load_steps=18 format=4 uid="uid://beggit6q76e38"]
 
 [ext_resource type="Script" uid="uid://cty3bfs7vrcht" path="res://Scripts/Player/Arms/double_finger.gd" id="1_wj3ft"]
 [ext_resource type="PackedScene" uid="uid://chf78mk787gvv" path="res://Scenes/Projectiles/Arm/pellet.tscn" id="2_mmtga"]
 [ext_resource type="PackedScene" uid="uid://dphgx1a3xboty" path="res://Scenes/VFX/muzzle_flash.tscn" id="3_w50id"]
+[ext_resource type="Material" uid="uid://c0irpddjdacnu" path="res://Materials/Mesh Highlight.tres" id="4_4hy80"]
 [ext_resource type="AudioStream" uid="uid://gggmlimas633" path="res://Audio/SFX/Shotgun.mp3" id="4_mmtga"]
 [ext_resource type="Script" uid="uid://cc1romsfhth3n" path="res://Scripts/Utils/audio_player_deconflicter.gd" id="5_w50id"]
 
@@ -346,10 +347,12 @@ bone_idx = 0
 
 [node name="Body" type="MeshInstance3D" parent="Armature/Skeleton3D/Bone"]
 transform = Transform3D(1, 0, 0, 0, -3.5762787e-07, -0.99999994, 0, 0.99999994, -3.5762787e-07, 0, 0, 0)
+material_overlay = ExtResource("4_4hy80")
 mesh = SubResource("ArrayMesh_wj3ft")
 skeleton = NodePath("")
 
 [node name="Thumb" type="MeshInstance3D" parent="Armature/Skeleton3D"]
+material_overlay = ExtResource("4_4hy80")
 mesh = SubResource("ArrayMesh_mmtga")
 skin = SubResource("Skin_w50id")
 

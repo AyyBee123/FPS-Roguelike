@@ -1,7 +1,8 @@
-[gd_scene load_steps=28 format=4 uid="uid://cml3a2ykki6lr"]
+[gd_scene load_steps=29 format=4 uid="uid://cml3a2ykki6lr"]
 
 [ext_resource type="Script" uid="uid://b1eovhvpbkj2e" path="res://Scripts/Misc/chest.gd" id="1_d31rh"]
 [ext_resource type="AudioStream" uid="uid://57opfffxwb4c" path="res://Audio/SFX/Chest Open.mp3" id="2_ij3ts"]
+[ext_resource type="PackedScene" uid="uid://dyk4mpi4d6hrl" path="res://Scenes/Pickups/item.tscn" id="2_m815o"]
 [ext_resource type="Shader" uid="uid://dbbojm5oryrbu" path="res://Shaders/mesh_highlight.gdshader" id="2_mypyu"]
 [ext_resource type="Script" uid="uid://cc1romsfhth3n" path="res://Scripts/Utils/audio_player_deconflicter.gd" id="3_mypyu"]
 
@@ -558,6 +559,7 @@ collision_layer = 8
 collision_mask = 0
 gravity_scale = 0.0
 script = ExtResource("1_d31rh")
+ITEM = ExtResource("2_m815o")
 meshes = [NodePath("Armature/Skeleton3D/Bone_001/Lid"), NodePath("Armature/Skeleton3D/Bone_002/Slot"), NodePath("Armature/Skeleton3D/Bone_003/Lock"), NodePath("Armature/Skeleton3D/Bone/Base")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

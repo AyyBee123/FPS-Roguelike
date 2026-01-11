@@ -9,7 +9,7 @@ class_name Chest extends Node3D
 @onready var chest_check = %"Chest Check"
 @onready var chest_open = %ChestOpen
 
-@export var ITEM = preload("uid://dyk4mpi4d6hrl")
+@export var ITEM: PackedScene
 @export var meshes: Array[MeshInstance3D]
 
 var can_open: bool = false
@@ -19,6 +19,7 @@ var is_open: bool = false:
 		collision_shape.disabled = value
 
 var item: ItemPickup
+var item_spawned: bool = false
 
 func _ready():
 	unhighlight()
@@ -56,6 +57,7 @@ func roll_item(): # called from the animation player
 	item.item = rolled_item
 	get_tree().current_scene.add_child(item)
 	item.global_position = item_marker.global_position
+	item_spawned = true
 
 func check_for_chest():
 	for i in 30:
@@ -78,7 +80,7 @@ func unhighlight():
 			mat.set_shader_parameter("strength", 0.0)
 
 func _on_visible_on_screen_notifier_3d_screen_exited():
-	if is_open and not item:
+	if item_spawned and not item:
 		queue_free()
 
 func _on_animation_player_animation_finished(anim_name):

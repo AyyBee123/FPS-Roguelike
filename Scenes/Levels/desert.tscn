@@ -1,11 +1,10 @@
-[gd_scene load_steps=150 format=4 uid="uid://djbj7k76p2w00"]
+[gd_scene load_steps=148 format=4 uid="uid://djbj7k76p2w00"]
 
 [ext_resource type="Script" uid="uid://xvth4kwhnsit" path="res://Scripts/Levels/level.gd" id="1_r3g2l"]
 [ext_resource type="Material" uid="uid://c0hkmvqbxcskk" path="res://Assets/Materials/Sand.tres" id="2_h5w7c"]
 [ext_resource type="Script" uid="uid://ddlx4tkndd0xd" path="res://Scripts/Utils/enemy_manager.gd" id="2_r3g2l"]
 [ext_resource type="Material" uid="uid://ru73rnqvacvk" path="res://Assets/Materials/Bridge.tres" id="3_1mh2y"]
 [ext_resource type="Script" uid="uid://e25j21vf5uye" path="res://Scripts/Utils/enemy_spawn_resource.gd" id="3_4dovk"]
-[ext_resource type="PackedScene" uid="uid://ba7erkb81ks3u" path="res://Scenes/Pickups/arm_pickup.tscn" id="3_ecsxk"]
 [ext_resource type="PackedScene" uid="uid://bf7ljiiykmoi0" path="res://Scenes/Enemies/cactorse.tscn" id="4_ecsxk"]
 [ext_resource type="Material" uid="uid://c1ymygygbbru6" path="res://Assets/Materials/Rock.tres" id="4_t1ox7"]
 [ext_resource type="Material" uid="uid://bo0tuam46lo1v" path="res://Assets/Materials/Cactus.tres" id="5_np4fc"]
@@ -13,7 +12,7 @@
 [ext_resource type="Material" uid="uid://bfedk66ygq5at" path="res://Assets/Materials/Cactus Spike.tres" id="6_glso8"]
 [ext_resource type="PackedScene" uid="uid://dhlu65iawdxvf" path="res://Scenes/Player/player.tscn" id="6_i3lab"]
 [ext_resource type="Script" uid="uid://px8ih8py0glr" path="res://Scripts/Utils/chest_manager.gd" id="9_1mh2y"]
-[ext_resource type="PackedScene" uid="uid://ukgrpto2cajc" path="res://Scenes/Misc/xp.tscn" id="9_i3lab"]
+[ext_resource type="PackedScene" uid="uid://ctxgapymf2x0l" path="res://Scenes/Misc/armory_box.tscn" id="15_1mh2y"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_k8g1k"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -30,18 +29,6 @@ sky = SubResource("Sky_fj2ht")
 tonemap_mode = 2
 glow_enabled = true
 glow_intensity = 0.5
-
-[sub_resource type="Shader" id="Shader_h5w7c"]
-resource_local_to_scene = true
-code = "shader_type spatial;
-
-uniform float strength = 0.1;
-
-void fragment() {
-	ALBEDO = vec3(0.88, 1.0, 0.0);
-	ALPHA = strength;
-}
-"
 
 [sub_resource type="Resource" id="Resource_7rivk"]
 script = ExtResource("3_4dovk")
@@ -1835,14 +1822,6 @@ directional_shadow_mode = 0
 [node name="Player" parent="." instance=ExtResource("6_i3lab")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9999008, 0)
 
-[node name="Arm Pickup" parent="." instance=ExtResource("3_ecsxk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.29752, 0.702153, -2.39187)
-shader = SubResource("Shader_h5w7c")
-
-[node name="Arm Pickup2" parent="." instance=ExtResource("3_ecsxk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.29752, 0.702153, 1.2982168)
-shader = SubResource("Shader_h5w7c")
-
 [node name="Enemy Handler" type="Node" parent="."]
 script = ExtResource("2_r3g2l")
 enemies = Array[ExtResource("3_4dovk")]([SubResource("Resource_7rivk"), SubResource("Resource_hyk2w")])
@@ -1854,10 +1833,6 @@ script = ExtResource("9_1mh2y")
 wait_time = 2.0
 one_shot = true
 autostart = true
-
-[node name="XP" parent="." instance=ExtResource("9_i3lab")]
-transform = Transform3D(0.99984646, -0.01752221, 0, 0.01752221, 0.99984646, 0, 0, 0, 1, 4.625416, 0.4254563, -0.96837187)
-xp_amount = 1000
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 unique_name_in_owner = true
@@ -2364,5 +2339,8 @@ collision_mask = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Bounding Box/Roof"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 400, 0)
 shape = SubResource("BoxShape3D_1mh2y")
+
+[node name="Armory Box" parent="." instance=ExtResource("15_1mh2y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.168109, -9.918213e-05, 7.2356415)
 
 [connection signal="timeout" from="Chest Manager/Timer" to="Chest Manager" method="_on_timer_timeout"]
