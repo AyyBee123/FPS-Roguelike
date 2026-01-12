@@ -12,4 +12,4 @@ func on_enemy_killed(_enemy: Enemy, _source: Variant, _damage: float):
 
 func on_stack():
 	add_percent_stat("Damage", 20)
-	add_flat_stat("Splash_Radius", 1)
+	add_flat_stat("Splash_Radius", 2)
