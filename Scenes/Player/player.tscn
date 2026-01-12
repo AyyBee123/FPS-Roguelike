@@ -196,7 +196,7 @@ shader = ExtResource("12_r5xpd")
 viewport_path = NodePath("CanvasLayer/Minimap/Mask/SubViewport")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_mtuoh"]
-radius = 2.0
+radius = 2.25
 
 [node name="Player" type="CharacterBody3D" groups=["Player"]]
 collision_layer = 2
@@ -510,13 +510,6 @@ cull_mask = 2
 script = ExtResource("12_dey5f")
 player = NodePath("../../../../..")
 
-[node name="Pickup Detect" type="Area3D" parent="."]
-collision_layer = 0
-collision_mask = 8
-
-[node name="Pickup Collision" type="CollisionShape3D" parent="Pickup Detect"]
-shape = SubResource("SphereShape3D_mtuoh")
-
 [node name="XP Detect" type="Area3D" parent="." node_paths=PackedStringArray("player")]
 collision_layer = 0
 collision_mask = 8
@@ -598,6 +591,4 @@ bus = &"SFX"
 script = ExtResource("29_2ahak")
 player = NodePath("..")
 
-[connection signal="body_entered" from="Pickup Detect" to="." method="_on_pickup_detect_body_entered"]
-[connection signal="body_exited" from="Pickup Detect" to="." method="_on_pickup_detect_body_exited"]
 [connection signal="area_entered" from="XP Detect" to="XP Detect" method="_on_area_entered"]

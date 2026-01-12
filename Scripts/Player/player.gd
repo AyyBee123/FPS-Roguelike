@@ -9,7 +9,7 @@ signal on_landing(impact_speed) # called when the player lands on the ground fro
 signal hit_taken(pos) # called when the player takes a hit
 signal item_hovered(item) # called when an item is looked at with the crosshair and is within pickup range
 signal item_picked(item) # called when an item is picked up (called from the item script)
-signal arm_picked(_arm)
+signal arm_picked(_arm) # called when an arm is picked up
 
 @onready var camera = %Camera
 @onready var animation_player = %AnimationPlayer
@@ -72,7 +72,6 @@ var PICKUP_RADIUS: float:
 var current_health: float
 var current_jumps: int = 0 # the current number of extra jumps that can be used
 var pickup = null
-var nearby_pickups: Array = []
 var hovered_item = null
 var number_of_abilities: int:
 	get:
@@ -246,12 +245,6 @@ func update_ability_slots():
 		var slot = ABILITY_SLOT.instantiate()
 		slot.ability = ability
 		ability_slots.add_child(slot)
-
-func _on_pickup_detect_body_entered(body):
-	nearby_pickups.append(body)
-
-func _on_pickup_detect_body_exited(body):
-	nearby_pickups.erase(body)
 
 func _on_enemy_hit(enemy: Enemy, source: Variant, damage: float):
 	enemy_hit.emit(enemy, source, damage)
