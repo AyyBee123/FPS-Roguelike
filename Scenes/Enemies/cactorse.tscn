@@ -38,7 +38,7 @@ specular_mode = 1
 albedo_color = Color(0.1622795, 0.028542751, 0, 1)
 roughness = 0.5
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_qman8"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_xbcap"]
 resource_name = "Cactorse_Cylinder"
 _surfaces = [{
 "aabb": AABB(-0.92116445, 0.0038870748, -0.66304773, 1.8347611, 2.1830838, 2.0328345),
@@ -922,7 +922,7 @@ bones/31/scale = Vector3(0.9999999, 1, 0.99999994)
 
 [node name="Body" type="MeshInstance3D" parent="Armature/Skeleton3D"]
 material_overlay = SubResource("ShaderMaterial_hihjy")
-mesh = SubResource("ArrayMesh_qman8")
+mesh = SubResource("ArrayMesh_xbcap")
 skin = SubResource("Skin_fkwd3")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

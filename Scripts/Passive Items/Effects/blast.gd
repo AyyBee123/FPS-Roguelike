@@ -18,8 +18,8 @@ func _ready():
 	blast.one_shot = true
 	blast.restart()
 	
-	blast.process_material.scale_min = radius / 2
-	blast.process_material.scale_max = radius / 2
+	blast.process_material.scale_min = radius/2
+	blast.process_material.scale_max = radius/2
 	
 	collision_shape.shape.radius = radius
 	await get_tree().create_timer(0.25).timeout

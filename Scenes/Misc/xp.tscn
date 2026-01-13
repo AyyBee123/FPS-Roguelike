@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://ukgrpto2cajc"]
+[gd_scene load_steps=10 format=4 uid="uid://ukgrpto2cajc"]
 
 [ext_resource type="Script" uid="uid://bw7gqgbxvhnv6" path="res://Scripts/Misc/xp.gd" id="1_3n01l"]
-[ext_resource type="ArrayMesh" uid="uid://c50y3dmpk3k4e" path="res://Assets/Misc/XP.tres" id="2_pi3is"]
 [ext_resource type="Script" uid="uid://baxqpjp3mlstv" path="res://Scripts/UI/minimap_icon.gd" id="3_pi3is"]
 [ext_resource type="Texture2D" uid="uid://d0ov1ksvt5flx" path="res://Assets/Textures/Blob Shadow.png" id="4_x2qg5"]
 
@@ -13,6 +12,36 @@ resource_local_to_scene = true
 diffuse_mode = 3
 specular_mode = 1
 roughness = 0.0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_678t5"]
+_surfaces = [{
+"aabb": AABB(-0.4779402, -0.88999003, -0.4779402, 0.9558804, 1.7799801, 0.9558804),
+"format": 34896613377,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAQADAAIABAAAAAIAAwAEAAIABQABAAAABQADAAEABQAAAAQABQAEAAMA"),
+"name": "Material.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 6,
+"vertex_data": PackedByteArray("AAD/f///AAAAAP9/AAAAAP9/////fwAA////fwAAAAD///9///8AAP9/AAD/fwAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_pi3is"]
+resource_name = "XP_Cube_001"
+_surfaces = [{
+"aabb": AABB(-0.4779402, -0.88999003, -0.4779402, 0.9558804, 1.7799801, 0.9558804),
+"attribute_data": PackedByteArray("/3////9//7//n/+//3//v/9//3//n/9//3//f/9//z//n/8//3//P/9/AAD/nwAA/1//P/9/AAD/f/8//1//f/9//z//f/9//1//v/9//3//f/+//1////9//7//f///"),
+"format": 34896613399,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAwAEAAUABgAHAAgACQAKAAsADAANAA4ADwAQABEAEgATABQAFQAWABcA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AAD/f////MMAAP9/AAD8w/9/////f/zDAAD/fwAAVfX///9/AABV9f9/////f1X1////fwAAidb///9///+J1v9/////f4nW////f///vrEAAP9///++sf9/////f76x/38AAP9/vrEAAP9///++sf///3///76x/38AAP9//MP///9////8w////38AAPzD/38AAP9/VfX///9/AABV9QAA/38AAFX1/38AAP9/idYAAP9/AACJ1gAA/3///4nW7MxByuzMQcrszEHK/6rpw/+q6cP/qunDLD0jFCw9IxQsPSMUeOzWHnjs1h547NYehhMo4YYTKOGGEyjhEjO9NRIzvTUSM701/1QVPP9UFTz/VBU80sLb69LC2+vSwtvr")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_678t5")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pi3is"]
 shading_mode = 0
@@ -34,7 +63,7 @@ shape = SubResource("SphereShape3D_x2qg5")
 unique_name_in_owner = true
 transform = Transform3D(0.333, 0, 0, 0, 0.333, 0, 0, 0, 0.333, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_3n01l")
-mesh = ExtResource("2_pi3is")
+mesh = SubResource("ArrayMesh_pi3is")
 skeleton = NodePath("../CollisionShape3D")
 
 [node name="RayCast" type="RayCast3D" parent="."]
