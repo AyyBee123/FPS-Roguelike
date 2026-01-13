@@ -1,5 +1,9 @@
 [
 	{
+		"path": "res://Scenes/Passive Items/ba.tscn",
+		"rarity": 1
+	},
+	{
 		"path": "res://Scenes/Passive Items/double_tap.tscn",
 		"rarity": 0
 	},

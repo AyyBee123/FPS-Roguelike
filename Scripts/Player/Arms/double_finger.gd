@@ -23,7 +23,7 @@ func shoot(ignore_fire_rate: bool = false, outside_source: Variant = null):
 	
 	var camera_collision = get_camera_collision()
 	
-	player._on_arm_shot(self, player)
+	player._on_arm_shot(self, outside_source)
 	
 	for i in range(projectile_count):
 		launch_projectile(camera_collision)
