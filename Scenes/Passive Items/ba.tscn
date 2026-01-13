@@ -1,0 +1,67 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsvld484tgr0k"]
+
+[ext_resource type="Script" uid="uid://bksc5spaum5k6" path="res://Scripts/Passive Items/ba.gd" id="1_q7mb2"]
+[ext_resource type="Texture2D" uid="uid://dghxiy0ov2pgq" path="res://Assets/Sprites/Items/B.A..png" id="2_q7mb2"]
+
+[node name="BA" type="Node"]
+script = ExtResource("1_q7mb2")
+item_name = "B.A."
+rarity = 1
+texture = ExtResource("2_q7mb2")
+description = "Hitting an enemy drops a Big Artillary."
+stats = {
+"Crit_Chance": {
+"+": 0.0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1.0
+},
+"Crit_Damage": {
+"+": 0.0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1.0
+},
+"Damage": {
+"+": 0.0,
+"base": 200.0,
+"flat": 0.0,
+"x": 1.0
+},
+"Fire_Rate": {
+"+": 0.0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1.0
+},
+"Pierce": {
+"+": 0.0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1.0
+},
+"Projectile_Count": {
+"+": 0.0,
+"base": 1,
+"flat": 0,
+"x": 1.0
+},
+"Range": {
+"+": 0.0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1.0
+},
+"Speed": {
+"+": 0.0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1.0
+},
+"Splash_Radius": {
+"+": 0.0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1.0
+}
+}

@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkcd5uhmif5lr"]
+
+[ext_resource type="Texture2D" uid="uid://c2mla0bv3v53o" path="res://Assets/Textures/Orbit Strike Mark.png" id="1_i6rn0"]
+[ext_resource type="Script" uid="uid://cjhwe7tou2dnj" path="res://Scripts/Passive Items/Effects/orbit_bomb_marker.gd" id="1_owx6x"]
+
+[node name="Orbit Bomb Marker" type="Node3D"]
+script = ExtResource("1_owx6x")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1000, 0)
+target_position = Vector3(0, -5000, 0)
+
+[node name="Decal" type="Decal" parent="."]
+unique_name_in_owner = true
+layers = 5
+size = Vector3(8, 2, 8)
+texture_albedo = ExtResource("1_i6rn0")
+modulate = Color(0.8627451, 0, 0, 1)
+cull_mask = 4

@@ -5,6 +5,7 @@
 
 [node name="Gravity Boots" type="Node"]
 script = ExtResource("1_ykqc8")
+item_name = "Gravity Boots"
 rarity = 2
 texture = ExtResource("2_o0ebn")
 description = "+5 Extra Jumps. Reduces Gravity."

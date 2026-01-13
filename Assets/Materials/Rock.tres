@@ -1,8 +1,0 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://c1ymygygbbru6"]
-
-[resource]
-resource_name = "Rock"
-cull_mode = 2
-diffuse_mode = 3
-specular_mode = 1
-albedo_color = Color(0.8165843, 0.5420028, 0.4112148, 1)

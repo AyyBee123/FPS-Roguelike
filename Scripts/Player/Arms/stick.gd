@@ -1,4 +1,4 @@
-extends "res://Scripts/Player/Arms/arm.gd"
+extends Arm
 
 @onready var hitbox: Area3D = %Hitbox
 

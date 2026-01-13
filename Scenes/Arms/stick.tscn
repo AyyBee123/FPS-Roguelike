@@ -155,6 +155,7 @@ _data = {
 
 [node name="Stick" type="Node3D"]
 script = ExtResource("1_je0rf")
+arm_name = "Stick"
 rarity = 2
 base_damage = 20.0
 base_fire_rate = 2.0

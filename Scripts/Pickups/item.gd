@@ -44,7 +44,7 @@ func _ready():
 	
 	if not item:
 		item = ItemPool.roll()
-	item_name = item.name
+	item_name = item.item_name
 	passive.add_child(item)
 	
 	if sprite_3d.material_overlay:
@@ -82,7 +82,7 @@ func rapid_roll(delta):
 		if not visual_item:
 			visual_item = ItemPool.roll()
 		var i: Item = visual_item
-		while i.name == visual_item.name:
+		while i.item_name == visual_item.item_name:
 			i = ItemPool.roll()
 		display_item(i)
 	

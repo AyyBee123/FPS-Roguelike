@@ -5,6 +5,7 @@
 
 [node name="Hologram" type="Node" groups=["Hologram"]]
 script = ExtResource("1_xc3mw")
+item_name = "Hologram"
 rarity = 2
 texture = ExtResource("2_xibyf")
 description = "Picking up an item adds another stack."

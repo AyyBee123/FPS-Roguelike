@@ -5,10 +5,10 @@
 
 [node name="Double Tap" type="Node"]
 script = ExtResource("1_k6hb4")
+item_name = "Double Tap"
 rarity = 0
 texture = ExtResource("2_eskhf")
 description = "Chance to shoot twice."
-detailed_description = null
 stats = {
 "Crit_Chance": {
 "+": 0,

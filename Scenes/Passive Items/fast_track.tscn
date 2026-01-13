@@ -5,6 +5,7 @@
 
 [node name="Fast Track" type="Node"]
 script = ExtResource("1_4xr0q")
+item_name = "Fast Track"
 rarity = 1
 texture = ExtResource("2_m2sua")
 description = "Increased Fire Rate, Movement Speed, and Projectile Speed."

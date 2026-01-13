@@ -1,5 +1,6 @@
 class_name Item extends Node
 
+@export var item_name: String
 @export_enum("COMMON", "UNCOMMON", "LEGENDARY", "UNSET:-1") var rarity: int = -1
 @export var texture: Texture
 @export_multiline var description: String
@@ -17,8 +18,8 @@ class_name Item extends Node
 	"Pierce": { "base": 1.0, "+": 0.0, "x": 1.0, "flat": 0.0 },
 }
 
-var player: Player
 @export var stacks: int = 1
+var player: Player
 var existing_item: Item
 
 func _ready():

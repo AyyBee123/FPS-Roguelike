@@ -24,7 +24,7 @@ var tween: Tween
 func _ready():
 	if not arm:
 		arm = ArmPool.roll()
-	arm_name = arm.name
+	arm_name = arm.arm_name
 	if arm.get_node_or_null("Armature"):
 		armature = arm.get_node("Armature").duplicate()
 		armature.position.z = 0

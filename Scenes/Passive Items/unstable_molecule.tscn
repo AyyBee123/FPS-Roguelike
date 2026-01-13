@@ -7,6 +7,7 @@
 [node name="Unstable Molecule" type="Node"]
 script = ExtResource("1_k2q5q")
 BLAST = ExtResource("2_dqffg")
+item_name = "Unstable Molecule"
 rarity = 0
 texture = ExtResource("2_4s2px")
 description = "Enemies Explode on Death."
