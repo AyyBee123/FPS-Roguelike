@@ -16,6 +16,6 @@ func update_items(_pickup):
 	
 	for item in player.get_node("%Passives").get_children():
 		var cont = ITEM_CONTAINER.instantiate()
-		cont.texture = item.texture
+		cont.texture = item.icon
 		cont.number_of_stacks = item.stacks
 		items_container.add_child(cont)

@@ -1,8 +1,10 @@
 class_name Item extends Node
 
+signal send_buff(buff)
+
 @export var item_name: String
 @export_enum("COMMON", "UNCOMMON", "LEGENDARY", "UNSET:-1") var rarity: int = -1
-@export var texture: Texture
+@export var icon: Texture
 @export_multiline var description: String
 @export_multiline var detailed_description: String
 @export var stats: Dictionary = {

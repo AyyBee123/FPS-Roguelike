@@ -1,5 +1,7 @@
 class_name Ability extends Node
 
+signal send_buff(buff)
+
 @export var icon: Texture
 @export var ability_name: String
 @export_multiline var description: String

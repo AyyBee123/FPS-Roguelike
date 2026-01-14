@@ -7,7 +7,7 @@
 script = ExtResource("1_k6hb4")
 item_name = "Double Tap"
 rarity = 0
-texture = ExtResource("2_eskhf")
+icon = ExtResource("2_eskhf")
 description = "Chance to shoot twice."
 stats = {
 "Crit_Chance": {

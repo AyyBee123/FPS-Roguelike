@@ -66,7 +66,7 @@ func pick_up(player):
 
 func display_item(_item):
 	visual_item = _item
-	sprite_3d.texture = _item.texture
+	sprite_3d.texture = _item.icon
 
 func rapid_roll(delta):
 	if can_pickup:

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dp5g68meq0yei"]
+
+[ext_resource type="PackedScene" uid="uid://b6tonypct8rh5" path="res://Scenes/UI/buff.tscn" id="1_ncs0j"]
+[ext_resource type="Script" uid="uid://xly08oww67q8" path="res://Scripts/UI/Buffs/ba_cooldown.gd" id="2_eff2s"]
+
+[node name="BA Cooldown" instance=ExtResource("1_ncs0j")]
+script = ExtResource("2_eff2s")
+
+[node name="Background" parent="." index="0"]
+color = Color(0, 0, 0, 0.0627451)
+
+[node name="Number" parent="Background/Icon" index="0"]
+anchor_right = 0.96900004
+offset_right = -0.016002655

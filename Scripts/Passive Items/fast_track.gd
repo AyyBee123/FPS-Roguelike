@@ -1,7 +1,5 @@
 extends Item
 
-
-
 func on_pick_up(_player):
 	super.on_pick_up(_player)
 	

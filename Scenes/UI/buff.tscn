@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6tonypct8rh5"]
+
+[ext_resource type="Script" uid="uid://dtggfabca5jc4" path="res://Scripts/UI/buff.gd" id="1_7x8m3"]
+[ext_resource type="Texture2D" uid="uid://dghxiy0ov2pgq" path="res://Assets/Sprites/Items/B.A..png" id="1_gtqok"]
+[ext_resource type="FontFile" uid="uid://bfhwilg3cupoh" path="res://Fonts/Name Font.ttf" id="1_n3lkp"]
+
+[node name="Buff" type="Control"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7x8m3")
+
+[node name="Background" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+color = Color(1, 1, 1, 0.0627451)
+
+[node name="Icon" type="TextureRect" parent="Background"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_gtqok")
+
+[node name="Number" type="Label" parent="Background/Icon"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 0.96900004
+anchor_bottom = 1.0
+offset_right = -0.016002655
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("1_n3lkp")
+theme_override_font_sizes/font_size = 24
+text = "10"
+horizontal_alignment = 2
+vertical_alignment = 2

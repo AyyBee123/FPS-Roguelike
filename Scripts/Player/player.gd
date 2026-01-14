@@ -27,6 +27,7 @@ signal arm_picked(_arm) # called when an arm is picked up
 @onready var jump = %Jump
 @onready var land = %Land
 @onready var pick_up = %"Pick Up"
+@onready var buffs = %Buffs
 
 const Stats = preload("uid://d0a7frb8gvg68")
 const PASSIVE_MENU = preload("uid://clamkav36kau4")

@@ -1,15 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://dsvld484tgr0k"]
+[gd_scene load_steps=5 format=3 uid="uid://dsvld484tgr0k"]
 
 [ext_resource type="Script" uid="uid://bksc5spaum5k6" path="res://Scripts/Passive Items/ba.gd" id="1_q7mb2"]
 [ext_resource type="PackedScene" uid="uid://bkcd5uhmif5lr" path="res://Scenes/VFX/orbit_bomb_marker.tscn" id="2_4r3yj"]
 [ext_resource type="Texture2D" uid="uid://dghxiy0ov2pgq" path="res://Assets/Sprites/Items/B.A..png" id="2_q7mb2"]
+[ext_resource type="PackedScene" uid="uid://dp5g68meq0yei" path="res://Scenes/UI/Buffs/ba_cooldown.tscn" id="3_b2n4p"]
 
 [node name="BA" type="Node"]
 script = ExtResource("1_q7mb2")
 ORBITAL_STRIKE = ExtResource("2_4r3yj")
+BUFF = ExtResource("3_b2n4p")
 item_name = "B.A."
 rarity = 1
-texture = ExtResource("2_q7mb2")
+icon = ExtResource("2_q7mb2")
 description = "Hitting an enemy drops a Big Artillary."
 stats = {
 "Crit_Chance": {
