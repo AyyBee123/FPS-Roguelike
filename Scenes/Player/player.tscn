@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://dhlu65iawdxvf"]
+[gd_scene load_steps=52 format=3 uid="uid://dhlu65iawdxvf"]
 
 [ext_resource type="Script" uid="uid://c2cudrvyd4egp" path="res://Scripts/Player/player.gd" id="1_uvnfx"]
 [ext_resource type="Script" uid="uid://c4i7uubwdhgtw" path="res://Scripts/Player/weapons_manager.gd" id="2_htcer"]
@@ -25,7 +25,6 @@
 [ext_resource type="Texture2D" uid="uid://cmy3pqe04w5m3" path="res://Assets/UI/Items Border.png" id="17_rqdc0"]
 [ext_resource type="Texture2D" uid="uid://d0ov1ksvt5flx" path="res://Assets/Textures/Blob Shadow.png" id="19_aqm4k"]
 [ext_resource type="Script" uid="uid://dxumsdla3i8vf" path="res://Scripts/UI/items_container.gd" id="19_ythyg"]
-[ext_resource type="PackedScene" uid="uid://dsvld484tgr0k" path="res://Scenes/Passive Items/ba.tscn" id="23_2jnj1"]
 [ext_resource type="AudioStream" uid="uid://bx08sy2wixqjv" path="res://Audio/SFX/XP.mp3" id="26_ythyg"]
 [ext_resource type="Script" uid="uid://cc1romsfhth3n" path="res://Scripts/Utils/audio_player_deconflicter.gd" id="27_bmb2s"]
 [ext_resource type="AudioStream" uid="uid://k6deuqev1ba0" path="res://Audio/SFX/Damage Taken.mp3" id="28_rukb4"]
@@ -543,8 +542,6 @@ shape = SubResource("SphereShape3D_mtuoh")
 
 [node name="Passives" type="Node" parent="."]
 unique_name_in_owner = true
-
-[node name="BA" parent="Passives" instance=ExtResource("23_2jnj1")]
 
 [node name="Abilities" type="Node" parent="." node_paths=PackedStringArray("player")]
 unique_name_in_owner = true
