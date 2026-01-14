@@ -79,4 +79,5 @@ skeleton = NodePath("")
 unique_name_in_owner = true
 stream = ExtResource("6_i3bi1")
 unit_size = 50.0
+max_db = 0.0
 script = ExtResource("7_iacoj")
