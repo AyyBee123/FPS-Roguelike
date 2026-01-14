@@ -2,6 +2,7 @@ class_name Arm extends Node3D
 
 @export var arm_name: String
 @export_enum("COMMON", "UNCOMMON", "LEGENDARY", "UNSET:-1") var rarity: int = -1
+@export var unlocked_by_default: bool = true
 
 @export_category("Base Stats")
 @export var projectile: PackedScene # the projectile shot by the arm

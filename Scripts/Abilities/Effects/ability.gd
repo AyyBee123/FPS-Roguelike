@@ -4,6 +4,7 @@ signal send_buff(buff)
 
 @export var icon: Texture
 @export var ability_name: String
+@export var unlocked_by_default: bool = true
 @export_multiline var description: String
 @export var ability_upgrades: Array[AbilityUpgradeResource]
 @export var stats: Dictionary = {

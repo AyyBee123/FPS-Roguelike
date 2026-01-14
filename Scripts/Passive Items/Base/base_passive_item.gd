@@ -5,6 +5,7 @@ signal send_buff(buff)
 @export var item_name: String
 @export_enum("COMMON", "UNCOMMON", "LEGENDARY", "UNSET:-1") var rarity: int = -1
 @export var icon: Texture
+@export var unlocked_by_default: bool = true
 @export_multiline var description: String
 @export_multiline var detailed_description: String
 @export var stats: Dictionary = {
