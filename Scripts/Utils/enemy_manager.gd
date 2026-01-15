@@ -10,12 +10,12 @@ static var current_number_of_enemies: int = 0
 var NUMBER_OF_ENEMIES_TO_SPAWN: int = 1
 var MAX_NUMBER_OF_ENEMIES: int = 20
 var MIN_AMOUNT_OF_ENEMIES: int = 10
-var SPAWNING_INTERVAL: float = 3
+var SPAWNING_INTERVAL: float = 2
 var t: float = 0 
 
 # distance range the enemy can spawn away from the player
-const MIN_DISTANCE: float = 25
-const MAX_DISTANCE: float = 50
+const MIN_DISTANCE: float = 40
+const MAX_DISTANCE: float = 100
 
 # distance range that groups of enemies can spawn from each other
 const MIN_GROUP_DISTANCE: float = 6
