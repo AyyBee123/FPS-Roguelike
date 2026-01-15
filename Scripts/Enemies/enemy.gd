@@ -13,6 +13,7 @@ signal enemy_hit(source, enemy, damage_taken)
 @export var health: float = 25
 @export var speed: float = 5
 @export var xp_amount: int = 1
+@export var coin_amount: int = 1
 @export var contact_damage: float = 0.0 # amount of damage dealt to a player if in contact with them
 @export var weight: float = 1.0 # weight determines the anount the enemy gets pushed (lower weight gets pushed more)
 @export var damage_number: PackedScene
@@ -98,6 +99,7 @@ func die(_damage: float, source_player: Player, source: Variant):
 	
 	source_player._on_enemy_killed(self, source, _damage)
 	drop_xp()
+	give_coins(source_player)
 	queue_free()
 
 func drop_xp():
@@ -105,6 +107,9 @@ func drop_xp():
 	xp.xp_amount = xp_amount
 	xp.position = position + Vector3(0, 1, 0)
 	get_tree().current_scene.add_child(xp)
+
+func give_coins(player: Player):
+	player.update_coins(coin_amount)
 
 func _on_screen_entered():
 	animation_player.active = true

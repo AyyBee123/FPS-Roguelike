@@ -11,6 +11,10 @@ signal item_hovered(item) # called when an item is looked at with the crosshair 
 signal item_picked(item) # called when an item is picked up (called from the item script)
 signal arm_picked(_arm) # called when an arm is picked up
 
+signal kill_count_changed(amount)
+signal coin_count_changed(amount)
+signal meta_coin_count_changed(amount)
+
 @onready var camera = %Camera
 @onready var animation_player = %AnimationPlayer
 @onready var weapons_manager = %"Weapons Manager"
@@ -44,6 +48,19 @@ var was_on_floor: bool = false
 var speed_before_landing: float = 0.0
 
 var is_dead: bool = false
+
+var kill_count: int = 0:
+	set(value):
+		kill_count = value
+		kill_count_changed.emit(value)
+var coin_count: int = 0:
+	set(value):
+		coin_count = value
+		coin_count_changed.emit(value)
+var meta_coin_count: int = 0:
+	set(value):
+		meta_coin_count = value
+		meta_coin_count_changed.emit(value)
 
 var MAX_HEALTH: float:
 	get:
@@ -84,6 +101,7 @@ func _init():
 func _ready():
 	current_health = MAX_HEALTH
 	stats.stat_changed.connect(get_health_difference)
+	enemy_killed.connect(func(_enemy, _source, _damage): kill_count += 1)
 	update_ability_slots()
 
 func _physics_process(delta):
@@ -246,6 +264,12 @@ func update_ability_slots():
 		var slot = ABILITY_SLOT.instantiate()
 		slot.ability = ability
 		ability_slots.add_child(slot)
+
+func update_coins(amount: int):
+	coin_count += amount
+
+func update_meta_coins(amount: int):
+	meta_coin_count += amount
 
 func _on_enemy_hit(enemy: Enemy, source: Variant, damage: float):
 	enemy_hit.emit(enemy, source, damage)

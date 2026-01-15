@@ -4,7 +4,7 @@ extends HBoxContainer
 @onready var label = $Label
 
 func _ready():
-	player.kill_count_changed.connect(update_kill_count)
+	player.coin_count_changed.connect(update_coin_count)
 
-func update_kill_count(amount: int):
+func update_coin_count(amount: int):
 	label.text = str(amount)

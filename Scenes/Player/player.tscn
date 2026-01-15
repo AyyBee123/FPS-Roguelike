@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://dhlu65iawdxvf"]
+[gd_scene load_steps=56 format=3 uid="uid://dhlu65iawdxvf"]
 
 [ext_resource type="Script" uid="uid://c2cudrvyd4egp" path="res://Scripts/Player/player.gd" id="1_uvnfx"]
 [ext_resource type="Script" uid="uid://c4i7uubwdhgtw" path="res://Scripts/Player/weapons_manager.gd" id="2_htcer"]
@@ -28,6 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://ckep0h8e5dhm2" path="res://Assets/UI/Kill.png" id="20_2jnj1"]
 [ext_resource type="Script" uid="uid://dn2npuymrf2i" path="res://Scripts/UI/kill_count.gd" id="20_mwii3"]
 [ext_resource type="Texture2D" uid="uid://c22kyilgkifmv" path="res://Assets/UI/Coin.png" id="21_enij7"]
+[ext_resource type="Script" uid="uid://bvhiw7bd6wi5f" path="res://Scripts/UI/coin_count.gd" id="22_2aanf"]
 [ext_resource type="AudioStream" uid="uid://bx08sy2wixqjv" path="res://Audio/SFX/XP.mp3" id="26_ythyg"]
 [ext_resource type="Script" uid="uid://cc1romsfhth3n" path="res://Scripts/Utils/audio_player_deconflicter.gd" id="27_bmb2s"]
 [ext_resource type="AudioStream" uid="uid://k6deuqev1ba0" path="res://Audio/SFX/Damage Taken.mp3" id="28_rukb4"]
@@ -527,9 +528,11 @@ theme_override_font_sizes/font_size = 48
 text = "0"
 vertical_alignment = 1
 
-[node name="Coin Count" type="HBoxContainer" parent="CanvasLayer/HUD/Coin & Kill Count"]
+[node name="Coin Count" type="HBoxContainer" parent="CanvasLayer/HUD/Coin & Kill Count" node_paths=PackedStringArray("player")]
 layout_mode = 2
 size_flags_horizontal = 3
+script = ExtResource("22_2aanf")
+player = NodePath("../../../..")
 
 [node name="Icon" type="TextureRect" parent="CanvasLayer/HUD/Coin & Kill Count/Coin Count"]
 layout_mode = 2
