@@ -1,50 +1,44 @@
 extends Enemy
 
 @onready var armature: Node3D = %Armature
+@onready var move_timer = %"Move Timer"
+@onready var object_avoidance = %"Object Avoidance"
 
 var normal: Vector3 = Vector3.UP
 var desired: Vector3
-var t: float = INF
+var gravity = 9.8
 
 func _ready():
 	super._ready()
+	move_timer.start(randf_range(0.03, 0.06))
 
 func _physics_process(delta):
-	t += delta
 	super._physics_process(delta)
-	move(delta)
 
 func move(delta):
 	rotation.x = 0
 	rotation.z = 0
-	if nav_agent.is_navigation_finished():
-		animation_player.play("idle")
-		return
+	
+	var dir: Vector3 = player.global_position - global_position
+	var dist_sq: float = dir.length_squared()
+	var vel: Vector3 = Vector3.ZERO
+	
+	if dist_sq > 0.001:
+		vel = dir * speed / sqrt(dist_sq)
 	
 	if animation_player.current_animation != "walk":
 		animation_player.play("walk")
 	
 	desired = Vector3.ZERO
-	var current_position: Vector3 = global_position
-	var next_position: Vector3 = nav_agent.get_next_path_position()
-	var direction = next_position - current_position
-	desired += direction.normalized() * speed
-	velocity = velocity.lerp(desired, delta)
 	
-	var raycast_pos: float = ray_cast.get_collision_point().y + raycast_offset
-	if position.y > raycast_pos:
-		velocity.y -= gravity * delta
-	else:
-		position.y = raycast_pos
+	rotation.y = lerp_angle(rotation.y, atan2(vel.x, vel.z), delta * angular_acceleration)
 	
-	rotation.y = lerp_angle(rotation.y, atan2(velocity.x, velocity.z), delta * angular_acceleration)
+	var raycast_y: float = ray_cast.get_collision_point().y + raycast_offset
 	
-	move_and_slide()
+	position.x += vel.x * delta
+	position.z += vel.z * delta
+	position.y = lerp(position.y, raycast_y, delta * gravity)
 
-func target_position(target: Vector3):
-	var num = get_tree().current_scene.current_number_of_enemies
-	if num > 50 and t >= num / 50.0: # lower the navigation amount with large enemy quantity to improve performance
-		t = 0
-		nav_agent.target_position = target
-	elif num <= 50:
-		nav_agent.target_position = target
+func _on_move_timer_timeout():
+	move_timer.start(0.06)
+	move(get_physics_process_delta_time())

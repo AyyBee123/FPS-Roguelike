@@ -1,8 +1,10 @@
-[gd_scene load_steps=23 format=4 uid="uid://yipp43yiqwke"]
+[gd_scene load_steps=25 format=4 uid="uid://yipp43yiqwke"]
 
 [ext_resource type="Script" uid="uid://bj4il52perdx8" path="res://Scripts/Enemies/stone_skull.gd" id="1_o0abg"]
 [ext_resource type="PackedScene" uid="uid://dm6474uy3ucte" path="res://Scenes/Misc/damage_number.tscn" id="2_3kxp1"]
+[ext_resource type="PackedScene" uid="uid://bx1wgwev3fm10" path="res://Scenes/VFX/stone_skull_muzzle.tscn" id="2_pqm40"]
 [ext_resource type="Shader" uid="uid://d1oiih60d8at2" path="res://Shaders/enemy_damaged.gdshader" id="2_ulhvv"]
+[ext_resource type="PackedScene" uid="uid://bvanm1m1uxxy7" path="res://Scenes/Projectiles/Enemy/stone_skull_projectile.tscn" id="3_gx5od"]
 [ext_resource type="Script" uid="uid://sw5uyrto3ua5" path="res://Scripts/Misc/enemy_detection_area.gd" id="5_ulhvv"]
 [ext_resource type="Script" uid="uid://baxqpjp3mlstv" path="res://Scripts/UI/minimap_icon.gd" id="6_2rd6j"]
 [ext_resource type="Texture2D" uid="uid://d0ov1ksvt5flx" path="res://Assets/Textures/Blob Shadow.png" id="7_at0v4"]
@@ -565,10 +567,12 @@ script = ExtResource("1_o0abg")
 projectile_damage = 2.0
 projectile_speed = 10.0
 projectile_range = 20.0
+MUZZLE_FLASH = ExtResource("2_pqm40")
+STONE_SKULL_PROJECTILE = ExtResource("3_gx5od")
 mesh = [NodePath("Skull"), NodePath("Fire")]
 raycast_offset = 6.0
 health = 20.0
-speed = 0.333
+speed = 1.0
 damage_number = ExtResource("2_3kxp1")
 
 [node name="Skull" type="MeshInstance3D" parent="."]
@@ -658,9 +662,6 @@ autoplay = "fire"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_lt0pw")
 
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-unique_name_in_owner = true
-
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
@@ -707,5 +708,9 @@ pitch_scale = 2.5
 bus = &"SFX"
 script = ExtResource("10_gx5od")
 
+[node name="Move Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+
 [connection signal="body_entered" from="Enemy Detection Area" to="Enemy Detection Area" method="_on_body_entered"]
 [connection signal="body_exited" from="Enemy Detection Area" to="Enemy Detection Area" method="_on_body_exited"]
+[connection signal="timeout" from="Move Timer" to="." method="_on_move_timer_timeout"]

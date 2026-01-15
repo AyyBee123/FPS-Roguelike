@@ -82,7 +82,7 @@ func _process(delta: float) -> void:
 
 func bob(vel: float, delta):
 	if rig:
-		if vel > 0:
+		if vel > 0.01:
 			if player.is_on_floor():
 				rig.position.y = lerp(rig.position.y, rig_origin.y + sin(Time.get_ticks_msec() * bob_freq * player.SPEED / 8) * bob_amount, 10 * delta)
 				rig.position.x = lerp(rig.position.x, rig_origin.x + sin(Time.get_ticks_msec() * bob_freq * 0.5 * player.SPEED / 8) * bob_amount, 10 * delta)

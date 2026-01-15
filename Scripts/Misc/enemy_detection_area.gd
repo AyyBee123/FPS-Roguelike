@@ -21,12 +21,12 @@ func _physics_process(delta):
 		var weight_ratio: float = e.weight / enemy.weight
 		
 		if distance < MIN_DISTANCE:
-			enemy.velocity += direction.normalized() * (SEPARATION_FORCE / distance) * delta * weight_ratio
+			enemy.global_position += direction.normalized() * (SEPARATION_FORCE / distance) * delta * weight_ratio
 
-func _on_body_entered(body):
-	if body == enemy:
+func _on_body_entered(area):
+	if area == enemy:
 		return
-	nearby_enemies.append(body)
+	nearby_enemies.append(area)
 
-func _on_body_exited(body):
-	nearby_enemies.erase(body)
+func _on_body_exited(area):
+	nearby_enemies.erase(area)

@@ -40,8 +40,8 @@ func _physics_process(delta):
 
 func spawn_enemy(spawn: EnemySpawn) -> void:
 	for i in range(spawn.amount_to_spawn):
-		var enemy = spawn.enemy.instantiate()
 		current_number_of_enemies += 1
+		var enemy = spawn.enemy.instantiate()
 		enemy.position = level.find_spawn_point(player.global_position, MIN_DISTANCE, MAX_DISTANCE) \
 				+ get_random_group_offset()
 		level.add_child.call_deferred(enemy)

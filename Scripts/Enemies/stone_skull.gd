@@ -5,29 +5,30 @@ extends Enemy
 @onready var shoot_time = %"Shoot Time"
 @onready var shoot_marker = %"Shoot Marker"
 @onready var shoot_SFX = %Shoot
+@onready var move_timer = %"Move Timer"
 
 @export var projectile_damage: float
 @export var projectile_speed: float
 @export var projectile_range: float
 
-const MUZZLE_FLASH = preload("uid://bx1wgwev3fm10")
-const STONE_SKULL_PROJECTILE = preload("uid://bvanm1m1uxxy7")
+@export var MUZZLE_FLASH: PackedScene
+@export var STONE_SKULL_PROJECTILE: PackedScene
 
 var player_pos: Vector3
 var can_shoot: bool = false
 
 func _ready():
 	super._ready()
+	move_timer.start(randf_range(0.03, 0.06))
 
 func _physics_process(delta):
 	super._physics_process(delta)
-	move(delta)
 	
 	if can_shoot and shoot_time.is_stopped():
 		shoot()
 
 func move(delta):
-	if not player_pos: return
+	player_pos = player.global_position
 	
 	if player_pos.y > global_position.y:
 		position.y = lerp_angle(position.y, player_pos.y + raycast_offset, 0.02)
@@ -46,8 +47,6 @@ func move(delta):
 		can_shoot = true
 	
 	skull.look_at(player_pos, Vector3.UP)
-	
-	move_and_slide()
 
 func shoot():
 	if is_on_screen:
@@ -68,5 +67,6 @@ func fire_projectile(proj: PackedScene, pos: Vector3, direction: Vector3):
 	p.global_position = pos
 	p.set_linear_velocity(direction * projectile_speed)
 
-func target_position(target):
-	player_pos = target
+func _on_move_timer_timeout():
+	move_timer.start(0.06)
+	move(get_physics_process_delta_time())

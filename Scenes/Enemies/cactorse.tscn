@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://bf7ljiiykmoi0"]
+[gd_scene load_steps=22 format=4 uid="uid://bf7ljiiykmoi0"]
 
 [ext_resource type="Script" uid="uid://dmf55xmm0lu8y" path="res://Scripts/Enemies/cactorse.gd" id="1_q0do1"]
 [ext_resource type="Shader" uid="uid://d1oiih60d8at2" path="res://Shaders/enemy_damaged.gdshader" id="2_jfm6g"]
@@ -670,7 +670,11 @@ height = 1.6618652
 radius = 0.421875
 height = 1.5510254
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_xbcap"]
+radius = 1.0
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_jfm6g"]
+radius = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ulhvv"]
 shading_mode = 0
@@ -682,10 +686,11 @@ radius = 1.5
 
 [node name="Cactorse" type="CharacterBody3D" node_paths=PackedStringArray("mesh") groups=["Enemy"]]
 collision_layer = 4
-collision_mask = 3
+collision_mask = 2
 script = ExtResource("1_q0do1")
 mesh = [NodePath("Armature/Skeleton3D/Body")]
 health = 36.0
+speed = 10.0
 xp_amount = 2
 contact_damage = 2.0
 weight = 3.0
@@ -940,9 +945,6 @@ shape = SubResource("CapsuleShape3D_q0do1")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3914267, 0.9021133)
 shape = SubResource("CapsuleShape3D_jfm6g")
 
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-unique_name_in_owner = true
-
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -950,7 +952,17 @@ aabb = AABB(-1, -1, -1.4150292, 2, 2, 2.8300583)
 
 [node name="RayCast" type="RayCast3D" parent="."]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 target_position = Vector3(0, -5000, 0)
+
+[node name="Object Avoidance" type="Area3D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Object Avoidance"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.333)
+shape = SubResource("SphereShape3D_xbcap")
 
 [node name="Enemy Detection Area" type="Area3D" parent="."]
 unique_name_in_owner = true
@@ -973,5 +985,9 @@ script = ExtResource("4_urplu")
 texture_albedo = ExtResource("5_daic8")
 cull_mask = 4
 
-[connection signal="body_entered" from="Enemy Detection Area" to="Enemy Detection Area" method="_on_body_entered"]
-[connection signal="body_exited" from="Enemy Detection Area" to="Enemy Detection Area" method="_on_body_exited"]
+[node name="Move Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[connection signal="area_entered" from="Enemy Detection Area" to="Enemy Detection Area" method="_on_area_entered"]
+[connection signal="area_exited" from="Enemy Detection Area" to="Enemy Detection Area" method="_on_area_exited"]
+[connection signal="timeout" from="Move Timer" to="." method="_on_move_timer_timeout"]

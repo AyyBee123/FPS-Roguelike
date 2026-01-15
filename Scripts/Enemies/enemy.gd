@@ -2,7 +2,6 @@ class_name Enemy extends CharacterBody3D
 
 signal enemy_hit(source, enemy, damage_taken)
 
-@onready var nav_agent: NavigationAgent3D = %NavigationAgent3D
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 @onready var on_screen_notifier: VisibleOnScreenNotifier3D = %VisibleOnScreenNotifier3D
 @onready var ray_cast: RayCast3D = %RayCast
@@ -18,7 +17,6 @@ signal enemy_hit(source, enemy, damage_taken)
 @export var weight: float = 1.0 # weight determines the anount the enemy gets pushed (lower weight gets pushed more)
 @export var damage_number: PackedScene
 
-var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var angular_acceleration: float = 5
 var is_on_screen: bool = true
 var object: RID
@@ -46,7 +44,6 @@ func _ready():
 	scale = Vector3.ZERO
 	spawn_tween = get_tree().create_tween()
 	spawn_tween.tween_property(self, "scale", Vector3.ONE, 0.25).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-	
 
 func _physics_process(delta):
 	# detect collisions with players
@@ -57,6 +54,8 @@ func _physics_process(delta):
 			
 			if body is Player:
 				body.hit(contact_damage, global_position)
+	
+	move_and_slide()
 
 func target_position(target):
 	pass
@@ -108,8 +107,16 @@ func drop_xp():
 	xp.position = position + Vector3(0, 1, 0)
 	get_tree().current_scene.add_child(xp)
 
-func give_coins(player: Player):
-	player.update_coins(coin_amount)
+func give_coins(_player: Player):
+	_player.update_coins(coin_amount)
+
+func _on_body_entered(body):
+	if body is Player:
+		players_in_contact.append(body)
+
+func _on_body_exited(body):
+	if body is Player:
+		players_in_contact.erase(body)
 
 func _on_screen_entered():
 	animation_player.active = true

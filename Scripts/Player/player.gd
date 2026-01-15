@@ -46,6 +46,7 @@ var upgrade_queue_count: int = 0 # the amount of level up choices that are in qu
 
 var was_on_floor: bool = false
 var speed_before_landing: float = 0.0
+var friction: float = 50.0
 
 var is_dead: bool = false
 
@@ -118,22 +119,22 @@ func _physics_process(delta):
 	
 	# jumping
 	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_HEIGHT
+		velocity.y += JUMP_HEIGHT
 		jump.play_deconflicted()
 	if Input.is_action_just_pressed("jump") and not is_on_floor() and current_jumps > 0:
-		velocity.y = JUMP_HEIGHT
+		velocity.y += JUMP_HEIGHT
 		current_jumps -= 1
 		jump.play_deconflicted()
 	
 	# input direction and movement/deceleration
-	var input_dir = Input.get_vector("left", "right", "up", "down")
-	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	var input_dir: Vector2 = Input.get_vector("left", "right", "up", "down")
+	var direction: Vector3 = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		velocity.x = velocity.lerp(direction * SPEED, delta * friction).x
+		velocity.z = velocity.lerp(direction * SPEED, delta * friction).z
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		velocity.x = velocity.lerp(Vector3.ZERO, delta * friction).x
+		velocity.z = velocity.lerp(Vector3.ZERO, delta * friction).z
 	
 	move_and_slide()
 	
@@ -152,8 +153,6 @@ func _physics_process(delta):
 			hovered_item.unhighlight()
 		hovered_item = pickup
 		item_hovered.emit(pickup)
-	
-	get_tree().call_group("Enemy", "target_position", global_position)
 	
 	# check for level ups
 	if upgrade_queue_count > 0 and upgrade.get_child_count() == 0:

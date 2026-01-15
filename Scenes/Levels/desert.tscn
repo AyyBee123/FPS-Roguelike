@@ -2178,7 +2178,7 @@ autostart = true
 unique_name_in_owner = true
 navigation_mesh = SubResource("NavigationMesh_xbbd1")
 
-[node name="Sand" type="MeshInstance3D" parent="NavigationRegion3D"]
+[node name="Sand" type="MeshInstance3D" parent="NavigationRegion3D" groups=["Ground"]]
 layers = 4
 mesh = SubResource("ArrayMesh_nahum")
 skeleton = NodePath("")
