@@ -31,6 +31,7 @@ func _ready():
 		setup_signals(player)
 		for i in range(stacks - 1):
 			on_stack()
+	set_detailed_desription()
 
 func on_pick_up(_player: Player):
 	player = _player
@@ -60,6 +61,9 @@ func setup_signals(_player: Player):
 	_player.weapon_shot.connect(on_weapon_shot)
 	_player.weapon_spawned.connect(on_weapon_spawned)
 	_player.item_picked.connect(on_item_picked)
+
+func set_detailed_desription():
+	pass
 
 ## gets the final stat value, after calculating player and ability stats
 func get_stat_value(stat_type: String, value: Variant = null):

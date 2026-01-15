@@ -1,6 +1,7 @@
 extends Item
 
 var number_of_stacks: int = 1
+var number_of_stacks_increase: int = 1
 
 func on_item_picked(item: Item):
 	if item.is_in_group("Hologram") or not item: return
@@ -10,4 +11,10 @@ func on_item_picked(item: Item):
 		dupe.on_pick_up(player)
 
 func on_stack():
-	number_of_stacks += 1
+	number_of_stacks += number_of_stacks_increase
+
+func set_detailed_desription():
+	detailed_description %= [
+		number_of_stacks,
+		number_of_stacks_increase,
+	]

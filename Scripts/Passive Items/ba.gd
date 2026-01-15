@@ -8,6 +8,9 @@ var t: float = INF
 
 var buff: Buff
 
+var damage_increase: float = 50
+var radius_increase: float = 5
+
 func _physics_process(delta):
 	if t < cooldown:
 		t += delta
@@ -31,5 +34,13 @@ func on_enemy_hit(_enemy: Enemy, _source: Variant, _damage: float):
 			player.buffs.add_child(buff)
 
 func on_stack():
-	add_percent_stat("Damage", 50)
-	add_percent_stat("Splash_Radius", 30)
+	add_flat_stat("Damage", damage_increase)
+	add_flat_stat("Splash_Radius", radius_increase)
+
+func set_detailed_desription():
+	detailed_description %= [
+		stats["Damage"]["base"],
+		damage_increase,
+		stats["Splash_Radius"]["base"],
+		radius_increase
+	]

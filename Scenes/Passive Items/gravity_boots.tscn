@@ -9,3 +9,4 @@ item_name = "Gravity Boots"
 rarity = 2
 icon = ExtResource("2_o0ebn")
 description = "+5 Extra Jumps. Reduces Gravity."
+detailed_description = "+%d (+%d/stack) Extra jumps. Reduces gravity to %sx."

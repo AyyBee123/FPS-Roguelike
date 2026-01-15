@@ -1,4 +1,4 @@
-[gd_scene load_steps=192 format=4 uid="uid://djbj7k76p2w00"]
+[gd_scene load_steps=191 format=4 uid="uid://djbj7k76p2w00"]
 
 [ext_resource type="Script" uid="uid://xvth4kwhnsit" path="res://Scripts/Levels/level.gd" id="1_r3g2l"]
 [ext_resource type="Script" uid="uid://ddlx4tkndd0xd" path="res://Scripts/Utils/enemy_manager.gd" id="2_r3g2l"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://yipp43yiqwke" path="res://Scenes/Enemies/stone_skull.tscn" id="5_xbbd1"]
 [ext_resource type="PackedScene" uid="uid://dhlu65iawdxvf" path="res://Scenes/Player/player.tscn" id="6_i3lab"]
 [ext_resource type="Script" uid="uid://px8ih8py0glr" path="res://Scripts/Utils/chest_manager.gd" id="9_1mh2y"]
-[ext_resource type="PackedScene" uid="uid://ctxgapymf2x0l" path="res://Scenes/Misc/armory_box.tscn" id="15_1mh2y"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_k8g1k"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -2680,8 +2679,5 @@ collision_mask = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Bounding Box/Roof"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 400, 0)
 shape = SubResource("BoxShape3D_1mh2y")
-
-[node name="Armory Box" parent="." instance=ExtResource("15_1mh2y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.168109, -9.918213e-05, 7.2356415)
 
 [connection signal="timeout" from="Chest Manager/Timer" to="Chest Manager" method="_on_timer_timeout"]

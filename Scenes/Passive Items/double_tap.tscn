@@ -9,6 +9,7 @@ item_name = "Double Tap"
 rarity = 0
 icon = ExtResource("2_eskhf")
 description = "Chance to shoot twice."
+detailed_description = "%d%% (+%d%%/stack) chance to shoot twice."
 stats = {
 "Crit_Chance": {
 "+": 0,
@@ -65,7 +66,6 @@ stats = {
 "x": 1.0
 }
 }
-stacks = null
 
 [node name="Fire Rate" type="Timer" parent="."]
 unique_name_in_owner = true

@@ -9,3 +9,4 @@ item_name = "Fast Track"
 rarity = 1
 icon = ExtResource("2_m2sua")
 description = "Increased Fire Rate, Movement Speed, and Projectile Speed."
+detailed_description = "%d%% (+%d%%/stack) fire rate, +%d%% (+%d%%/stack) movement speed, and +%d%% (+%d%%/stack) projectile speed."

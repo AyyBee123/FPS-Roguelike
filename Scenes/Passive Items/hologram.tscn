@@ -9,3 +9,4 @@ item_name = "Hologram"
 rarity = 2
 icon = ExtResource("2_xibyf")
 description = "Picking up an item adds another stack."
+detailed_description = "Picking up an item adds %d (+%d/stack) extra stack."

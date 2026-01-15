@@ -2,6 +2,9 @@ extends Item
 
 @export var BLAST: PackedScene
 
+var damage_increase: float = 5
+var radius_increase: float = 1
+
 func on_enemy_killed(_enemy: Enemy, _source: Variant, _damage: float):
 	var blast = BLAST.instantiate()
 	blast.player = player
@@ -11,5 +14,13 @@ func on_enemy_killed(_enemy: Enemy, _source: Variant, _damage: float):
 	blast.global_position = _enemy.global_position
 
 func on_stack():
-	add_percent_stat("Damage", 20)
-	add_percent_stat("Splash_Radius", 25)
+	add_flat_stat("Damage", damage_increase)
+	add_flat_stat("Splash_Radius", radius_increase)
+
+func set_detailed_desription():
+	detailed_description %= [
+		stats["Damage"]["base"],
+		damage_increase,
+		stats["Splash_Radius"]["base"],
+		radius_increase
+	]

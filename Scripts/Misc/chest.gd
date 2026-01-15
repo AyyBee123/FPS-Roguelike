@@ -61,9 +61,9 @@ func roll_item(): # called from the animation player
 
 func check_for_chest():
 	for i in 30:
-		if chest_ray_cast.get_collider():
+		if chest_ray_cast.get_collider() and chest_ray_cast.get_collider() != chest_check:
 			position = get_tree().current_scene.find_chest_spawn()
-			continue
+			chest_ray_cast.force_raycast_update()
 		else:
 			break
 

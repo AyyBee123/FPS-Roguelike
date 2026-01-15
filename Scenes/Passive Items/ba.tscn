@@ -13,6 +13,7 @@ item_name = "B.A."
 rarity = 1
 icon = ExtResource("2_q7mb2")
 description = "Hitting an enemy drops a Big Artillary."
+detailed_description = "Hitting an enemy drops a Big Artillary that deals %d (+%d/stack) damage in a %dm (+%dm/stack) radius."
 stats = {
 "Crit_Chance": {
 "+": 0.0,

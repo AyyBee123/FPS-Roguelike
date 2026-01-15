@@ -10,7 +10,8 @@ BLAST = ExtResource("2_dqffg")
 item_name = "Unstable Molecule"
 rarity = 0
 icon = ExtResource("2_4s2px")
-description = "Enemies Explode on Death."
+description = "Enemies explode on death."
+detailed_description = "Enemies explode on death, dealing %d (+%d/stack) damage in a %dm (+%dm/stack) radius."
 stats = {
 "Crit_Chance": {
 "+": 0,
