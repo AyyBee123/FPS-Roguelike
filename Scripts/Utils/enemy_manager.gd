@@ -32,7 +32,7 @@ func _physics_process(delta):
 		t = 0
 		# spawn enemies if the current amount on the map is less than the maximum
 		if current_number_of_enemies < MAX_NUMBER_OF_ENEMIES:
-			for i in range(NUMBER_OF_ENEMIES_TO_SPAWN):
+			for i in range(max(NUMBER_OF_ENEMIES_TO_SPAWN, MIN_AMOUNT_OF_ENEMIES - current_number_of_enemies)):
 				spawn_enemy(enemies.pick_random()) # for now
 	
 	if level.current_number_of_enemies != current_number_of_enemies:
