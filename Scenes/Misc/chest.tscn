@@ -1,10 +1,11 @@
-[gd_scene load_steps=29 format=4 uid="uid://cml3a2ykki6lr"]
+[gd_scene load_steps=30 format=4 uid="uid://cml3a2ykki6lr"]
 
 [ext_resource type="Script" uid="uid://b1eovhvpbkj2e" path="res://Scripts/Misc/chest.gd" id="1_d31rh"]
 [ext_resource type="AudioStream" uid="uid://57opfffxwb4c" path="res://Audio/SFX/Chest Open.mp3" id="2_ij3ts"]
 [ext_resource type="PackedScene" uid="uid://dyk4mpi4d6hrl" path="res://Scenes/Pickups/item.tscn" id="2_m815o"]
 [ext_resource type="Shader" uid="uid://dbbojm5oryrbu" path="res://Shaders/mesh_highlight.gdshader" id="2_mypyu"]
 [ext_resource type="Script" uid="uid://cc1romsfhth3n" path="res://Scripts/Utils/audio_player_deconflicter.gd" id="3_mypyu"]
+[ext_resource type="FontFile" uid="uid://bfhwilg3cupoh" path="res://Fonts/Name Font.ttf" id="6_0ab2v"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_d31rh"]
 radius = 1.0
@@ -687,6 +688,19 @@ monitoring = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Chest Check"]
 shape = SubResource("SphereShape3D_opbus")
+
+[node name="Cost Label" type="Label3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.647768, 0)
+billboard = 1
+double_sided = false
+texture_filter = 2
+render_priority = 2
+modulate = Color(1, 0.8588129, 0.20158663, 1)
+text = "30¢"
+font = ExtResource("6_0ab2v")
+font_size = 128
+outline_size = 32
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]

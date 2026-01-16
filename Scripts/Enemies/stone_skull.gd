@@ -40,8 +40,8 @@ func move(delta):
 		position.z += (player_pos.z - position.z) * delta * speed
 		can_shoot = false
 	elif position.distance_to(player_pos) > 12:
-		position.x += (player_pos.x - position.x) * delta * speed * 0.1
-		position.z += (player_pos.z - position.z) * delta * speed * 0.1
+		position.x += (player_pos.x - position.x) * delta * speed * 0.2
+		position.z += (player_pos.z - position.z) * delta * speed * 0.2
 		can_shoot = true
 	else:
 		can_shoot = true

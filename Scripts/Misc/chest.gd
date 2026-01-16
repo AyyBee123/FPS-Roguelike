@@ -8,6 +8,7 @@ class_name Chest extends Node3D
 @onready var armature = %Armature
 @onready var chest_check = %"Chest Check"
 @onready var chest_open = %ChestOpen
+@onready var cost_label = %"Cost Label"
 
 @export var ITEM: PackedScene
 @export var meshes: Array[MeshInstance3D]
@@ -20,8 +21,12 @@ var is_open: bool = false:
 
 var item: ItemPickup
 var item_spawned: bool = false
+var cost: int = 0
 
 func _ready():
+	get_tree().current_scene.cost_increased.connect(cost_changed)
+	cost_changed()
+	
 	unhighlight()
 	
 	armature.scale = Vector3.ZERO
@@ -49,7 +54,11 @@ func open(player: Player):
 	
 	chest_open.play_deconflicted()
 	
+	cost_label.visible = false
 	animation_player.play("Open")
+	
+	# increase the cost of all chests and armory boxes
+	get_tree().current_scene.increase_costs()
 
 func roll_item(): # called from the animation player
 	var rolled_item: Item = ItemPool.roll()
@@ -66,6 +75,10 @@ func check_for_chest():
 			chest_ray_cast.force_raycast_update()
 		else:
 			break
+
+func cost_changed():
+	cost = get_tree().current_scene.chest_cost
+	cost_label.text = "%d¢" % cost
 
 func highlight():
 	for m in meshes:

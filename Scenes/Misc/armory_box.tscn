@@ -1,10 +1,11 @@
-[gd_scene load_steps=27 format=4 uid="uid://ctxgapymf2x0l"]
+[gd_scene load_steps=28 format=4 uid="uid://ctxgapymf2x0l"]
 
 [ext_resource type="Script" uid="uid://gbtpfbjp2hyg" path="res://Scripts/Misc/armory_box.gd" id="1_0ohk6"]
 [ext_resource type="Material" uid="uid://c0irpddjdacnu" path="res://Materials/Mesh Highlight.tres" id="2_bbm0p"]
 [ext_resource type="PackedScene" uid="uid://ba7erkb81ks3u" path="res://Scenes/Pickups/arm_pickup.tscn" id="2_dtwhr"]
 [ext_resource type="AudioStream" uid="uid://57opfffxwb4c" path="res://Audio/SFX/Chest Open.mp3" id="4_nfomn"]
 [ext_resource type="Script" uid="uid://cc1romsfhth3n" path="res://Scripts/Utils/audio_player_deconflicter.gd" id="5_bxktg"]
+[ext_resource type="FontFile" uid="uid://bfhwilg3cupoh" path="res://Fonts/Name Font.ttf" id="6_bxktg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0ohk6"]
 size = Vector3(1.66, 0.48, 0.46)
@@ -498,7 +499,7 @@ shape = SubResource("BoxShape3D_0ohk6")
 
 [node name="Armature" type="Node3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.32, 0)
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0)
 
 [node name="Skeleton3D" type="Skeleton3D" parent="Armature"]
 bones/0/name = "Bone"
@@ -624,5 +625,18 @@ stream = ExtResource("4_nfomn")
 max_db = 0.0
 pitch_scale = 2.0
 script = ExtResource("5_bxktg")
+
+[node name="Cost Label" type="Label3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4540098, 0)
+billboard = 1
+double_sided = false
+texture_filter = 2
+render_priority = 2
+modulate = Color(1, 0.8588129, 0.20158663, 1)
+text = "30¢"
+font = ExtResource("6_bxktg")
+font_size = 128
+outline_size = 32
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]

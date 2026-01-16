@@ -41,21 +41,18 @@ func _ready():
 	on_screen_notifier.screen_entered.connect(_on_screen_entered)
 	on_screen_notifier.screen_exited.connect(_on_screen_exited)
 	
-	scale = Vector3.ZERO
+	scale = Vector3.ONE * 0.05
 	spawn_tween = get_tree().create_tween()
 	spawn_tween.tween_property(self, "scale", Vector3.ONE, 0.25).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 
 func _physics_process(delta):
 	# detect collisions with players
-	if contact_damage > 0.0:
-		for i in range(get_slide_collision_count()):
-			var collision = get_slide_collision(i)
-			var body = collision.get_collider()
-			
-			if body is Player:
-				body.hit(contact_damage, global_position)
-	
-	move_and_slide()
+	var collision = move_and_collide(Vector3.ZERO)
+	if collision and contact_damage > 0.0:
+		var body = collision.get_collider()
+		
+		if body is Player:
+			body.hit(contact_damage, global_position)
 
 func target_position(target):
 	pass

@@ -161,7 +161,9 @@ func _physics_process(delta):
 func _input(event):
 	if event.is_action_pressed("pickup") and pickup:
 		if pickup is Chest or pickup is ArmoryBox:
-			pickup.open(self)
+			if coin_count >= pickup.cost:
+				update_coins(-pickup.cost)
+				pickup.open(self)
 		else:
 			pick_up.play_deconflicted()
 			pickup.pick_up(self)
