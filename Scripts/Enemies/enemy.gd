@@ -25,6 +25,7 @@ var spawn_tween: Tween
 var players_in_contact: Array[Player]
 
 const DAMAGE_BUFFER: float = 0.06
+const TICK_RATE: float = 0.06
 var buffer_time: float = 0.0
 var accumulated_damage: float = 0.0
 var dmg_num: Node3D

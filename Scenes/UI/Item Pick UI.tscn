@@ -1,0 +1,62 @@
+[gd_scene load_steps=5 format=3 uid="uid://dyikjq0bby1a7"]
+
+[ext_resource type="Texture2D" uid="uid://dghxiy0ov2pgq" path="res://Assets/Sprites/Items/B.A..png" id="1_3wrot"]
+[ext_resource type="Script" uid="uid://bikmxf5753b2j" path="res://Scripts/UI/item_pick_ui.gd" id="1_m67rw"]
+[ext_resource type="FontFile" uid="uid://bfhwilg3cupoh" path="res://Fonts/Name Font.ttf" id="3_rtxat"]
+[ext_resource type="FontFile" uid="uid://dbs7fkri81s88" path="res://Fonts/Description Font.ttf" id="4_tsnex"]
+
+[node name="Item Pick UI" type="ColorRect"]
+anchors_preset = -1
+offset_right = 640.0
+offset_bottom = 128.0
+pivot_offset = Vector2(320, 64)
+color = Color(1, 1, 1, 0.0627451)
+script = ExtResource("1_m67rw")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 2
+
+[node name="Icon" type="TextureRect" parent="HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = ExtResource("1_3wrot")
+
+[node name="VBoxContainer" type="GridContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Name" type="Label" parent="HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_rtxat")
+theme_override_font_sizes/font_size = 32
+text = "B.A."
+
+[node name="Description" type="Label" parent="HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("4_tsnex")
+theme_override_font_sizes/font_size = 32
+text = "Big Boom! Big Boom! Big Boom! Big Boom! Big Boom! Big Boom! Big Boom! Big Boom! Big Boom! Big Boom! Big Boom! Big Boom! Big Boom!"
+autowrap_mode = 3
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

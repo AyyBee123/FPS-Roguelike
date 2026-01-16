@@ -19,7 +19,7 @@ var can_shoot: bool = false
 
 func _ready():
 	super._ready()
-	move_timer.start(randf_range(0.03, 0.06))
+	move_timer.start(randf_range(TICK_RATE/2, TICK_RATE))
 
 func _physics_process(delta):
 	super._physics_process(delta)
@@ -65,8 +65,8 @@ func fire_projectile(proj: PackedScene, pos: Vector3, direction: Vector3):
 	p.range = projectile_range
 	get_tree().current_scene.add_child(p)
 	p.global_position = pos
-	p.set_linear_velocity(direction * projectile_speed)
+	p.direction = direction
 
 func _on_move_timer_timeout():
-	move_timer.start(0.06)
+	move_timer.start(TICK_RATE)
 	move(get_physics_process_delta_time())

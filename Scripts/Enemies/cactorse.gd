@@ -10,7 +10,7 @@ var gravity = 9.8
 
 func _ready():
 	super._ready()
-	move_timer.start(randf_range(0.03, 0.06))
+	move_timer.start(randf_range(TICK_RATE/2, TICK_RATE))
 
 func _physics_process(delta):
 	super._physics_process(delta)
@@ -40,5 +40,5 @@ func move(delta):
 	position.y = lerp(position.y, raycast_y, delta * gravity)
 
 func _on_move_timer_timeout():
-	move_timer.start(0.06)
+	move_timer.start(TICK_RATE)
 	move(get_physics_process_delta_time())

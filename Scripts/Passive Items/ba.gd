@@ -9,7 +9,7 @@ var t: float = INF
 var buff: Buff
 
 var damage_increase: float = 50
-var radius_increase: float = 5
+var radius_increase: float = 4
 
 func _physics_process(delta):
 	if t < cooldown:
@@ -27,11 +27,11 @@ func on_enemy_hit(_enemy: Enemy, _source: Variant, _damage: float):
 		strike.player = player
 		get_tree().current_scene.add_child(strike)
 		
-		if not buff:
-			buff = BUFF.instantiate()
-			buff.source = self
-			buff.cooldown = cooldown
-			player.buffs.add_child(buff)
+	if t < cooldown and not buff:
+		buff = BUFF.instantiate()
+		buff.source = self
+		buff.cooldown = cooldown
+		player.buffs.add_child(buff)
 
 func on_stack():
 	add_flat_stat("Damage", damage_increase)

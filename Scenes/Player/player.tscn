@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://dhlu65iawdxvf"]
+[gd_scene load_steps=57 format=3 uid="uid://dhlu65iawdxvf"]
 
 [ext_resource type="Script" uid="uid://c2cudrvyd4egp" path="res://Scripts/Player/player.gd" id="1_uvnfx"]
 [ext_resource type="Script" uid="uid://c4i7uubwdhgtw" path="res://Scripts/Player/weapons_manager.gd" id="2_htcer"]
@@ -29,6 +29,7 @@
 [ext_resource type="Script" uid="uid://dn2npuymrf2i" path="res://Scripts/UI/kill_count.gd" id="20_mwii3"]
 [ext_resource type="Texture2D" uid="uid://c22kyilgkifmv" path="res://Assets/UI/Coin.png" id="21_enij7"]
 [ext_resource type="Script" uid="uid://bvhiw7bd6wi5f" path="res://Scripts/UI/coin_count.gd" id="22_2aanf"]
+[ext_resource type="PackedScene" uid="uid://dyikjq0bby1a7" path="res://Scenes/UI/Item Pick UI.tscn" id="24_m6ahd"]
 [ext_resource type="AudioStream" uid="uid://bx08sy2wixqjv" path="res://Audio/SFX/XP.mp3" id="26_ythyg"]
 [ext_resource type="Script" uid="uid://cc1romsfhth3n" path="res://Scripts/Utils/audio_player_deconflicter.gd" id="27_bmb2s"]
 [ext_resource type="AudioStream" uid="uid://k6deuqev1ba0" path="res://Audio/SFX/Damage Taken.mp3" id="28_rukb4"]
@@ -268,6 +269,7 @@ mouse_filter = 2
 script = ExtResource("7_rcvs5")
 player = NodePath("../..")
 marker = ExtResource("8_h8ma5")
+item_ui = ExtResource("24_m6ahd")
 
 [node name="Damage Indicators" type="Control" parent="CanvasLayer/HUD"]
 unique_name_in_owner = true
@@ -304,8 +306,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -960.0
+offset_top = 8.0
 offset_right = 960.0
-offset_bottom = 64.0
+offset_bottom = 72.0
 grow_horizontal = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 20
@@ -342,17 +345,16 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.22500001
-anchor_top = 0.81500006
-anchor_right = 0.98300004
-anchor_bottom = 0.874
-offset_left = -3.0517578e-05
-offset_top = -0.20007324
-offset_right = 0.6398926
-offset_bottom = 0.079956055
+anchor_left = 0.004
+anchor_top = 0.074
+anchor_right = 0.86700004
+anchor_bottom = 0.133
+offset_left = 0.3199997
+offset_top = 0.08000183
+offset_right = -0.6401367
+offset_bottom = 0.3600006
 grow_horizontal = 0
 grow_vertical = 0
-pivot_offset = Vector2(1456, 64)
 theme_override_constants/separation = 8
 
 [node name="Bottom UI Container" type="HBoxContainer" parent="CanvasLayer/HUD"]
@@ -504,8 +506,9 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.43300003
 anchor_bottom = 0.059000004
+offset_top = 8.0
 offset_right = 0.6399536
-offset_bottom = 0.27999496
+offset_bottom = 8.279995
 theme_override_constants/separation = 0
 
 [node name="Kill Count" type="HBoxContainer" parent="CanvasLayer/HUD/Coin & Kill Count" node_paths=PackedStringArray("player")]

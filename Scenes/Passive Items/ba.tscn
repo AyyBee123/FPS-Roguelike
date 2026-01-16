@@ -65,7 +65,7 @@ stats = {
 },
 "Splash_Radius": {
 "+": 0.0,
-"base": 15.0,
+"base": 12.0,
 "flat": 0.0,
 "x": 1.0
 }

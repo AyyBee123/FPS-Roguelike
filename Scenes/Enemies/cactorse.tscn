@@ -674,7 +674,7 @@ height = 1.5510254
 radius = 1.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_jfm6g"]
-radius = 1.0
+radius = 2.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ulhvv"]
 shading_mode = 0
@@ -988,6 +988,4 @@ cull_mask = 4
 [node name="Move Timer" type="Timer" parent="."]
 unique_name_in_owner = true
 
-[connection signal="area_entered" from="Enemy Detection Area" to="Enemy Detection Area" method="_on_area_entered"]
-[connection signal="area_exited" from="Enemy Detection Area" to="Enemy Detection Area" method="_on_area_exited"]
 [connection signal="timeout" from="Move Timer" to="." method="_on_move_timer_timeout"]
