@@ -552,7 +552,7 @@ _data = {
 radius = 0.75
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2rd6j"]
-radius = 1.0
+radius = 2.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ulhvv"]
 shading_mode = 0
@@ -566,8 +566,8 @@ radius = 1.5
 collision_layer = 4
 script = ExtResource("1_o0abg")
 projectile_damage = 2.0
-projectile_speed = 30.0
-projectile_range = 50.0
+projectile_speed = 50.0
+projectile_range = 70.0
 MUZZLE_FLASH = ExtResource("2_pqm40")
 STONE_SKULL_PROJECTILE = ExtResource("3_gx5od")
 mesh = [NodePath("Skull"), NodePath("Fire")]

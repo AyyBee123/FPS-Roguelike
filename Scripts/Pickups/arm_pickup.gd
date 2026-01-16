@@ -7,7 +7,6 @@ class_name ArmPickup extends RigidBody3D
 @onready var jingle = %Jingle
 @onready var default_scale = get_scale()
 
-
 const AMPLITUDE: float = 0.05
 const FREQUENCY: float = 1.0
 
@@ -20,6 +19,7 @@ var time: float = 0.0
 var default_pos: Vector3
 var mesh_list: Array[MeshInstance3D]
 var tween: Tween
+var picked_up: bool = false
 
 func _ready():
 	if not arm:
@@ -50,8 +50,9 @@ func _physics_process(delta):
 	visual_offset.set_position(default_pos + Vector3(0, sin(time) * AMPLITUDE, 0))
 
 func pick_up(player):
-	unhighlight()
+	picked_up = true
 	player.weapons_manager.swap_arm(arm)
+	unhighlight()
 	queue_free()
 
 func get_visual_aabb(root: Node3D) -> AABB:
@@ -92,6 +93,8 @@ func play_tween():
 	tween.tween_property(self, "scale", default_scale, 0.1)
 
 func highlight():
+	if picked_up: return
+	
 	for m in mesh_list:
 		var mat: ShaderMaterial = m.material_overlay
 		if mat and mat is ShaderMaterial:

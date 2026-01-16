@@ -2149,6 +2149,7 @@ size = Vector3(200, 1, 200)
 [node name="Desert" type="Node3D"]
 script = ExtResource("1_r3g2l")
 NUMBER_OF_CHESTS = 40
+box_cost = 0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_l7ek2")

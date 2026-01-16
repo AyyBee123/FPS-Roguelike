@@ -146,13 +146,16 @@ func _physics_process(delta):
 	was_on_floor = is_on_floor()
 	
 	pickup = get_pickup_collision()
-	if pickup != hovered_item or (not pickup and pick_up_label.text != ""):
-		if pickup and pickup.has_method("highlight"):
+	if pickup and pickup.has_method("highlight"):
+		if pickup is Chest or pickup is ArmoryBox:
+			if coin_count >= pickup.cost:
+				pickup.highlight()
+		else:
 			pickup.highlight()
-		if hovered_item and hovered_item.has_method("unhighlight") and not pickup:
-			hovered_item.unhighlight()
-		hovered_item = pickup
-		item_hovered.emit(pickup)
+	if hovered_item and hovered_item.has_method("unhighlight") and not pickup:
+		hovered_item.unhighlight()
+	hovered_item = pickup
+	item_hovered.emit(pickup)
 	
 	# check for level ups
 	if upgrade_queue_count > 0 and upgrade.get_child_count() == 0:

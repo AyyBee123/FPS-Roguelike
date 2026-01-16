@@ -49,4 +49,13 @@ func roll() -> Arm:
 		1: pool_name = "uncommon_pool"
 		2: pool_name = "legendary_pool"
 	
-	return get(pool_name).pick_random().instantiate()
+	if get(pool_name).is_empty():
+		populate_pool(get(pool_name), chosen_rarity)
+	
+	var packed: PackedScene = get(pool_name).pick_random()
+	var selected = packed.instantiate()
+	get(pool_name).erase(packed)
+	
+	print(get(pool_name))
+	
+	return selected

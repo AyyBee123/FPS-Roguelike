@@ -278,7 +278,7 @@ _data = {
 [node name="Double Finger" type="Node3D" node_paths=PackedStringArray("firing_audio")]
 script = ExtResource("1_wj3ft")
 arm_name = "Double Finger"
-rarity = 1
+rarity = 0
 projectile = ExtResource("2_mmtga")
 base_damage = 5.0
 base_fire_rate = 1.333
