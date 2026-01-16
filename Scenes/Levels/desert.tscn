@@ -34,7 +34,6 @@ metadata/_custom_type_script = "uid://e25j21vf5uye"
 script = ExtResource("3_4dovk")
 spawn_interval = 5.0
 enemy = ExtResource("5_xbbd1")
-amount_to_spawn = 2
 metadata/_custom_type_script = "uid://e25j21vf5uye"
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_xbbd1"]

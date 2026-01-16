@@ -3,7 +3,7 @@ extends Node
 @export var enemies: Array[EnemySpawn]
 
 @onready var player = get_tree().get_first_node_in_group("Player")
-@onready var level = get_parent() as Level
+@onready var level: Level = get_parent()
 
 static var current_number_of_enemies: int = 0
 
@@ -16,10 +16,6 @@ var t: float = 0
 # distance range the enemy can spawn away from the player
 const MIN_DISTANCE: float = 40
 const MAX_DISTANCE: float = 100
-
-# distance range that groups of enemies can spawn from each other
-const MIN_GROUP_DISTANCE: float = 6
-const MAX_GROUP_DISTANCE: float = 12
 
 const ENEMY = preload("uid://bf7ljiiykmoi0")
 
@@ -39,17 +35,10 @@ func _physics_process(delta):
 		level.current_number_of_enemies = current_number_of_enemies
 
 func spawn_enemy(spawn: EnemySpawn) -> void:
-	for i in range(spawn.amount_to_spawn):
-		current_number_of_enemies += 1
-		var enemy = spawn.enemy.instantiate()
-		enemy.position = level.find_spawn_point(player.global_position, MIN_DISTANCE, MAX_DISTANCE) \
-				+ get_random_group_offset()
-		level.add_child.call_deferred(enemy)
-
-func get_random_group_offset() -> Vector3:
-	var offset: Vector2 = (Vector2.ONE.normalized() * randf_range(MIN_GROUP_DISTANCE, MAX_GROUP_DISTANCE)) \
-			.rotated(randf_range(0, TAU))
-	return Vector3(offset.x, 0, offset.y)
+	current_number_of_enemies += 1
+	var enemy = spawn.enemy.instantiate()
+	enemy.position = level.find_spawn_point(player.global_position, MIN_DISTANCE, MAX_DISTANCE)
+	level.add_child.call_deferred(enemy)
 
 func _on_enemy_defeat(_enemy) -> void:
 	current_number_of_enemies -= 1
