@@ -9,7 +9,7 @@ static var current_number_of_enemies: int = 0
 
 var NUMBER_OF_ENEMIES_TO_SPAWN: int = 1
 var MAX_NUMBER_OF_ENEMIES: int = 20
-var MIN_AMOUNT_OF_ENEMIES: int = 100
+var MIN_AMOUNT_OF_ENEMIES: int = 10
 var SPAWNING_INTERVAL: float = 2
 var t: float = 0 
 
