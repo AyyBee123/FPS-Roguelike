@@ -1,4 +1,4 @@
-class_name ItemInfoResource extends Node
+class_name ItemInfoResource extends Resource
 
 @export var item_name: String
 @export var icon: Texture
