@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=4 uid="uid://coqndvgnv7fvf"]
+[gd_scene load_steps=80 format=4 uid="uid://coqndvgnv7fvf"]
 
 [ext_resource type="Script" uid="uid://wtoa66s2o53o" path="res://Scripts/Player/Arms/arm.gd" id="1_8grd8"]
 [ext_resource type="PackedScene" uid="uid://dphgx1a3xboty" path="res://Scenes/VFX/muzzle_flash.tscn" id="2_kulr0"]
@@ -273,34 +273,42 @@ _data = {
 &"Shoot": SubResource("Animation_tl47c")
 }
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8gcwu"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_owdwb"]
 resource_name = "Copper"
 cull_mode = 2
 diffuse_mode = 3
 specular_mode = 1
 albedo_color = Color(0.5442483, 0.30264077, 0.24969979, 1)
 roughness = 0.08
+z_clip_scale = 0.8
+fov_override = 100.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_re754"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_algec"]
 resource_name = "Skin"
 cull_mode = 2
 diffuse_mode = 3
 specular_mode = 1
 albedo_color = Color(0.74041086, 0.6410096, 0.3427776, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mman0"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ph5k"]
 resource_name = "Iron"
 cull_mode = 2
 diffuse_mode = 3
 specular_mode = 1
 albedo_color = Color(0.5282357, 0.5248708, 0.5316006, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pi1iv"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mlliw"]
 resource_name = "Metal"
 cull_mode = 2
 diffuse_mode = 3
 specular_mode = 1
 albedo_color = Color(0.23415366, 0.21424446, 0.15451261, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_c5722"]
 _surfaces = [{
@@ -354,7 +362,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 756,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADwAQABEAEgATABQAEgAVABMAFgAXABgAFgAZABcAGgAbABwAGgAdABsAHgAfACAAIQAiACMAIQAkACIAJQAmACcAJQAoACYAKQAqACsAKQAsACoALQAuAC8ALQAwAC4AMQAyADMAMQA0ADIANQA2ADcANQA4ADYAOQA6ADsAPAA9AD4APAA/AD0AQABBAEIAQABDAEEARABFAEYARABHAEUASABJAEoASABLAEkATABNAE4ATABPAE0AUABRAFIAUwBUAFUAVgBXAFgAVgBZAFcAWgBbAFwAWgBdAFsAXgBfAGAAXgBhAF8AYgBjAGQAYgBlAGMAZgBnAGgAaQBqAGsAbABtAG4AbABvAG0AcABxAHIAcABzAHEAdAB1AHYAdAB3AHUAeAB5AHoAeAB7AHkAfAB9AH4AfwCAAIEAggCDAIQAggCFAIMAhgCHAIgAhgCJAIcAigCLAIwAigCNAIsAjgCPAJAAjgCRAI8AkgCTAJQAkgCVAJMAlgCXAJgAmQCaAJsAmQCcAJoAnQCeAJ8AnQCgAJ4AoQCiAKMAoQCkAKIApQCmAKcApQCoAKYAqQCqAKsAqQCsAKoArQCuAK8ArQCwAK4AsQCyALMAtAC1ALYAtAC3ALUAuAC5ALoAuAC7ALkAvAC9AL4AvAC/AL0AwADBAMIAwADDAMEAxADFAMYAxwDIAMkAygDLAMwAygDNAMsAzgDPANAAzgDRAM8A0gDTANQA0gDVANMA1gDXANgA1gDZANcA2gDbANwA2gDdANsA3gDfAOAA4QDiAOMA5ADlAOYA5ADnAOUA6ADpAOoA6ADrAOkA7ADtAO4A7ADvAO0A8ADxAPIA8ADzAPEA9AD1APYA9AD3APUA+AD5APoA+AD7APkA/AD9AP4A/AD/AP0AAAEBAQIBAAEDAQEBBAEFAQYBBAEHAQUBCAEJAQoBCAELAQkBDAENAQ4BDAEPAQ0BEAERARIBEAETAREBFAEVARYBFAEXARUBGAEZARoBGAEbARkBHAEdAR4BHAEfAR0BIAEhASIBIAEjASEBJAElASYBJAEnASUBKAEpASoBKAErASkBLAEtAS4BLAEvAS0BMAExATIBMAEzATEBNAE1ATYBNAE3ATUBOAE5AToBOAE7ATkBPAE9AT4BPAE/AT0BQAFBAUIBQAFDAUEBRAFFAUYBRAFHAUUBSAFJAUoBSAFLAUkBTAFNAU4BTAFPAU0BUAFRAVIBUAFTAVEBVAFVAVYBVAFXAVUBWAFZAVoBWAFbAVkBXAFdAV4BXAFfAV0BYAFhAWIBYAFjAWEBZAFlAWYBZAFnAWUBaAFpAWoBaAFrAWkBbAFtAW4BbAFvAW0BcAFxAXIBcAFzAXEBdAF1AXYBdAF3AXUBeAF5AXoBeAF7AXkBfAF9AX4BfAF/AX0BgAGBAYIBgAGDAYEBhAGFAYYBhAGHAYUBiAGJAYoBiAGLAYkBjAGNAY4BjAGPAY0BkAGRAZIBkAGTAZEBlAGVAZYBlAGXAZUBmAGZAZoBmAGbAZkBnAGdAZ4BnAGfAZ0BoAGhAaIBoAGjAaEBpAGlAaYBpAGnAaUBqAGpAaoBqAGrAakBrAGtAa4BrAGvAa0BsAGxAbIBsAGzAbEBtAG1AbYBtAG3AbUBuAG5AboBuAG7AbkBvAG9Ab4BvAG/Ab0BwAHBAcIBwAHDAcEBxAHFAcYBxAHHAcUByAHJAcoByAHLAckBzAHNAc4BzAHPAc0B0AHRAdIB0AHTAdEB1AHVAdYB1AHXAdUB2AHZAdoB2AHbAdkB3AHdAd4B3AHfAd0B4AHhAeIB4AHjAeEB5AHlAeYB5AHnAeUB6AHpAeoB6AHrAekB7AHtAe4B7AHvAe0B8AHxAfIB8AHzAfEB8QHzAfQB8wHwAfUB9QHwAfYB8wH1AfcB+AH5AfoB+AH7AfkB+QH7AfwB+wH4Af0B/QH4Af4B+wH9Af8B"),
-"material": SubResource("StandardMaterial3D_8gcwu"),
+"material": SubResource("StandardMaterial3D_owdwb"),
 "name": "Copper",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -366,7 +374,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 144,
 "index_data": PackedByteArray("AAABAAIAAAADAAEAAAAEAAMAAwAEAAUABgAHAAgABgAJAAcACgALAAwACgANAAsADgAPABAADgARAA8AEgATABQAEgAVABMAFgAXABgAGAAXABkAFgAaABcAGAAZABsAHAAaABYAGwAZAB0AHAAeABoAGwAdAB8AIAAeABwAHwAdACEAIAAiAB4AHwAhACMAJAAiACAAIwAhACUAJAAlACIAIwAlACQAJgAnACgAJgApACcAKQAmACoAKQAqACsALAAtAC4ALAAvAC0ALgAtADAAMQAvACwALgAwADIAMQAzAC8AMAA0ADIANQAzADEAMAA2ADQANQAxADcANAA2ADgAOQA1ADcANAA4ADoAOQA7ADUAOgA4ADsAOgA7ADkA"),
-"material": SubResource("StandardMaterial3D_re754"),
+"material": SubResource("StandardMaterial3D_algec"),
 "name": "Skin",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -378,7 +386,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 48,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0A"),
-"material": SubResource("StandardMaterial3D_mman0"),
+"material": SubResource("StandardMaterial3D_3ph5k"),
 "name": "Iron",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -390,7 +398,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 48,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0A"),
-"material": SubResource("StandardMaterial3D_pi1iv"),
+"material": SubResource("StandardMaterial3D_mlliw"),
 "name": "Metal",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -399,6 +407,34 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_c5722")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nfunc"]
+resource_name = "Copper"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.5442483, 0.30264077, 0.24969979, 1)
+roughness = 0.08
+z_clip_scale = 0.8
+fov_override = 100.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q4get"]
+resource_name = "Skin"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.74041086, 0.6410096, 0.3427776, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tu4yu"]
+resource_name = "Metal"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.23415366, 0.21424446, 0.15451261, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_xpdkq"]
 _surfaces = [{
@@ -442,7 +478,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 384,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0AIAAhACIAIAAjACEAJAAlACYAJAAnACUAKAApACoAKAArACkALAAtAC4ALAAvAC0AMAAxADIAMAAzADEANAA1ADYANAA3ADUAOAA5ADoAOAA7ADkAPAA9AD4APAA/AD0AQABBAEIAQABDAEEARABFAEYARABHAEUASABJAEoASABLAEkATABNAE4ATABPAE0AUABRAFIAUABTAFEAVABVAFYAVABXAFUAWABZAFoAWABbAFkAXABdAF4AXABfAF0AYABhAGIAYABjAGEAZABlAGYAZABnAGUAaABpAGoAaABrAGkAbABtAG4AbABvAG0AcABxAHIAcABzAHEAdAB1AHYAdAB3AHUAeAB5AHoAeAB7AHkAfAB9AH4AfAB/AH0AgACBAIIAgACDAIEAhACFAIYAhACHAIUAiACJAIoAiACLAIkAjACNAI4AjACPAI0AkACRAJIAkACTAJEAlACVAJYAlACXAJUAmACZAJoAmACbAJkAnACdAJ4AnACfAJ0AoAChAKIAoACjAKEApAClAKYApACnAKUAqACpAKoAqACrAKkArACtAK4ArACvAK0AsACxALIAsACzALEAtAC1ALYAtAC3ALUAuAC5ALoAuAC7ALkAvAC9AL4AvAC/AL0AwADBAMIAwADDAMEAxADFAMYAxADHAMUAyADJAMoAyADLAMkAzADNAM4AzADPAM0A0ADRANIA0ADTANEA1ADVANYA1ADXANUA2ADZANoA2ADbANkA3ADdAN4A3ADfAN0A4ADhAOIA4ADjAOEA5ADlAOYA5ADnAOUA6ADpAOoA6ADrAOkA7ADtAO4A7ADvAO0A8ADxAPIA8ADzAPEA9AD1APYA9AD3APUA+AD5APoA+AD7APkA/AD9AP4A/AD/AP0A"),
-"material": SubResource("StandardMaterial3D_8gcwu"),
+"material": SubResource("StandardMaterial3D_nfunc"),
 "name": "Copper",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -454,7 +490,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 120,
 "index_data": PackedByteArray("AAABAAIAAAADAAEAAQADAAQABQAGAAcABQAIAAYACQAKAAsACQAMAAoADQAOAA8ADQAQAA4AEQASABMAEQAUABIAFQAWABcAFgAVABgAGAAVABkAFgAYABoAGwAcAB0AHQAcAB4AGwAfABwAHQAeACAAIQAfABsAIAAeACIAIQAjAB8AIAAiACQAJQAjACEAJAAiACYAJQAnACMAJAAmACgAKQAnACUAKAAmACoAKQAqACcAKAAqACkAKwAsAC0AKwAuACwALAAuAC8ALgArADAAMAArADEALgAwADIAMwA0ADUANAAzADYANgAzADcA"),
-"material": SubResource("StandardMaterial3D_re754"),
+"material": SubResource("StandardMaterial3D_q4get"),
 "name": "Skin",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -466,7 +502,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 48,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0A"),
-"material": SubResource("StandardMaterial3D_pi1iv"),
+"material": SubResource("StandardMaterial3D_tu4yu"),
 "name": "Metal",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -475,6 +511,34 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_xpdkq")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vtwuk"]
+resource_name = "Copper"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.5442483, 0.30264077, 0.24969979, 1)
+roughness = 0.08
+z_clip_scale = 0.8
+fov_override = 100.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hbrhm"]
+resource_name = "Skin"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.74041086, 0.6410096, 0.3427776, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d44sj"]
+resource_name = "Metal"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.23415366, 0.21424446, 0.15451261, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_7mkl0"]
 _surfaces = [{
@@ -518,7 +582,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 384,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0AIAAhACIAIAAjACEAJAAlACYAJAAnACUAKAApACoAKAArACkALAAtAC4ALAAvAC0AMAAxADIAMAAzADEANAA1ADYANAA3ADUAOAA5ADoAOAA7ADkAPAA9AD4APAA/AD0AQABBAEIAQABDAEEARABFAEYARABHAEUASABJAEoASABLAEkATABNAE4ATABPAE0AUABRAFIAUABTAFEAVABVAFYAVABXAFUAWABZAFoAWABbAFkAXABdAF4AXABfAF0AYABhAGIAYABjAGEAZABlAGYAZABnAGUAaABpAGoAaABrAGkAbABtAG4AbABvAG0AcABxAHIAcABzAHEAdAB1AHYAdAB3AHUAeAB5AHoAeAB7AHkAfAB9AH4AfAB/AH0AgACBAIIAgACDAIEAhACFAIYAhACHAIUAiACJAIoAiACLAIkAjACNAI4AjACPAI0AkACRAJIAkACTAJEAlACVAJYAlACXAJUAmACZAJoAmACbAJkAnACdAJ4AnACfAJ0AoAChAKIAoACjAKEApAClAKYApACnAKUAqACpAKoAqACrAKkArACtAK4ArACvAK0AsACxALIAsACzALEAtAC1ALYAtAC3ALUAuAC5ALoAuAC7ALkAvAC9AL4AvAC/AL0AwADBAMIAwADDAMEAxADFAMYAxADHAMUAyADJAMoAyADLAMkAzADNAM4AzADPAM0A0ADRANIA0ADTANEA1ADVANYA1ADXANUA2ADZANoA2ADbANkA3ADdAN4A3ADfAN0A4ADhAOIA4ADjAOEA5ADlAOYA5ADnAOUA6ADpAOoA6ADrAOkA7ADtAO4A7ADvAO0A8ADxAPIA8ADzAPEA9AD1APYA9AD3APUA+AD5APoA+AD7APkA/AD9AP4A/AD/AP0A"),
-"material": SubResource("StandardMaterial3D_8gcwu"),
+"material": SubResource("StandardMaterial3D_vtwuk"),
 "name": "Copper",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -530,7 +594,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 120,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACQAIAAsACwAIAAwADQAOAA8ADQAQAA4AEQASABMAEQAUABIAFQAWABcAFgAVABgAGAAVABkAFgAYABoAGwAcAB0AHQAcAB4AGwAfABwAHQAeACAAIAAeACEAIAAhACIAIwAfABsAIwAkAB8AJQAkACMAJQAmACQAJwAmACUAJwAoACYAKQAqACsAKQAsACoAKwAqAC0AKwAtAC4ALwAwADEALwAyADAAMAAyADMAMgAvADQANAAvADUAMgA0ADYANwA4ADkANwA6ADgAOAA6ADsA"),
-"material": SubResource("StandardMaterial3D_re754"),
+"material": SubResource("StandardMaterial3D_hbrhm"),
 "name": "Skin",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -542,7 +606,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 48,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0A"),
-"material": SubResource("StandardMaterial3D_pi1iv"),
+"material": SubResource("StandardMaterial3D_d44sj"),
 "name": "Metal",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -551,6 +615,24 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_7mkl0")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u0wac"]
+resource_name = "Skin"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.74041086, 0.6410096, 0.3427776, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hwodf"]
+resource_name = "Metal"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.23415366, 0.21424446, 0.15451261, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_00mc3"]
 _surfaces = [{
@@ -584,7 +666,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 192,
 "index_data": PackedByteArray("AAABAAIAAAADAAEAAQADAAQABQAGAAcABQAIAAYACQAKAAsACQAMAAoADQAOAA8ADQAQAA4AEQASABMAEQAUABIAFQAWABcAFgAVABgAGAAVABkAFgAYABoAGwAcAB0AHQAcAB4AGwAfABwAHQAeACAAIQAfABsAIAAeACIAIQAjAB8AIAAiACQAJQAjACEAJAAiACYAJQAnACMAJAAmACgAKQAnACUAKAAmACoAKQAqACcAKAAqACkAKwAsAC0AKwAuACwALAAuAC8ALgArADAAMAArADEALgAwADIAMwA0ADUANAAzADYANgAzADcAOAA5ADoAOAA7ADkAPAA9AD4APAA/AD0AQABBAEIAQABDAEEARABFAEYARABHAEUASABJAEoASABLAEkATABNAE4ATABPAE0AUABRAFIAUABTAFEAVABVAFYAVABXAFUAWABZAFoAWABbAFkAXABdAF4AXABfAF0AYABhAGIAYABjAGEAZABlAGYAZABnAGUA"),
-"material": SubResource("StandardMaterial3D_re754"),
+"material": SubResource("StandardMaterial3D_u0wac"),
 "name": "Skin",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -596,7 +678,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 48,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0A"),
-"material": SubResource("StandardMaterial3D_pi1iv"),
+"material": SubResource("StandardMaterial3D_hwodf"),
 "name": "Metal",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -605,6 +687,24 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_00mc3")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lagme"]
+resource_name = "Skin"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.74041086, 0.6410096, 0.3427776, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wu00t"]
+resource_name = "Metal"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.23415366, 0.21424446, 0.15451261, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_36eia"]
 _surfaces = [{
@@ -638,7 +738,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 120,
 "index_data": PackedByteArray("AAABAAIAAAADAAEAAQADAAQABQAGAAcABQAIAAYACQAKAAsACQAMAAoADQAOAA8ADQAQAA4AEQASABMAEQAUABIAFQAWABcAFgAVABgAGAAVABkAFgAYABoAGwAcAB0AGwAeABwAHQAcAB8AHQAfACAAIAAfACEAIAAhACIAIwAkACUAIwAmACQAJwAoACkAJwAqACgAKQAoACsAKQArACwALAArAC0ALAAtAC4ALwAwADEALwAyADAAMwA0ADUAMwA2ADQANAA2ADcANgAzADgAOAAzADkANgA4ADoAOwA8AD0APAA7AD4APgA7AD8A"),
-"material": SubResource("StandardMaterial3D_re754"),
+"material": SubResource("StandardMaterial3D_lagme"),
 "name": "Skin",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -650,7 +750,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 48,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0A"),
-"material": SubResource("StandardMaterial3D_pi1iv"),
+"material": SubResource("StandardMaterial3D_wu00t"),
 "name": "Metal",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -659,6 +759,24 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_36eia")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jdqhv"]
+resource_name = "Skin"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.74041086, 0.6410096, 0.3427776, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fpvbt"]
+resource_name = "Metal"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.23415366, 0.21424446, 0.15451261, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_vwu5a"]
 _surfaces = [{
@@ -692,7 +810,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 120,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACQAIAAsACwAIAAwADQAOAA8ADQAQAA4AEQASABMAEQAUABIAFQAWABcAFgAVABgAGAAVABkAFgAYABoAGwAcAB0AHQAcAB4AGwAfABwAHQAeACAAIQAfABsAIAAeACIAIQAjAB8AIAAiACQAJQAjACEAJAAiACYAJQAnACMAJAAmACgAKQAnACUAKAAmACoAKQAqACcAKAAqACkAKwAsAC0AKwAuACwALAAuAC8ALgArADAAMAArADEALgAwADIAMwA0ADUAMwA2ADQANAA2ADcA"),
-"material": SubResource("StandardMaterial3D_re754"),
+"material": SubResource("StandardMaterial3D_jdqhv"),
 "name": "Skin",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -704,7 +822,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 48,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0A"),
-"material": SubResource("StandardMaterial3D_pi1iv"),
+"material": SubResource("StandardMaterial3D_fpvbt"),
 "name": "Metal",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -713,6 +831,24 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_vwu5a")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p2tor"]
+resource_name = "Skin"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.74041086, 0.6410096, 0.3427776, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cwpep"]
+resource_name = "Metal"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.23415366, 0.21424446, 0.15451261, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_e20fm"]
 _surfaces = [{
@@ -746,7 +882,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 192,
 "index_data": PackedByteArray("AAABAAIAAAADAAEAAQADAAQABQAGAAcABQAIAAYACQAKAAsACQAMAAoADQAOAA8ADQAQAA4AEQASABMAEQAUABIAFQAWABcAFgAVABgAGAAVABkAFgAYABoAGwAcAB0AHQAcAB4AGwAfABwAHQAeACAAIQAfABsAIAAeACIAIQAjAB8AIAAiACQAJQAjACEAJAAiACYAJQAnACMAJAAmACgAKQAnACUAKAAmACoAKQAqACcAKAAqACkAKwAsAC0AKwAuACwALAAuAC8ALgArADAAMAArADEALgAwADIAMwA0ADUANAAzADYANgAzADcAOAA5ADoAOAA7ADkAPAA9AD4APAA/AD0AQABBAEIAQABDAEEARABFAEYARABHAEUASABJAEoASABLAEkATABNAE4ATABPAE0AUABRAFIAUABTAFEAVABVAFYAVABXAFUAWABZAFoAWABbAFkAXABdAF4AXABfAF0AYABhAGIAYABjAGEAZABlAGYAZABnAGUA"),
-"material": SubResource("StandardMaterial3D_re754"),
+"material": SubResource("StandardMaterial3D_p2tor"),
 "name": "Skin",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -758,7 +894,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 48,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0A"),
-"material": SubResource("StandardMaterial3D_pi1iv"),
+"material": SubResource("StandardMaterial3D_cwpep"),
 "name": "Metal",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -767,6 +903,24 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_e20fm")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dhbd7"]
+resource_name = "Skin"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.74041086, 0.6410096, 0.3427776, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c4tku"]
+resource_name = "Metal"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.23415366, 0.21424446, 0.15451261, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_qyttj"]
 _surfaces = [{
@@ -800,7 +954,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 120,
 "index_data": PackedByteArray("AAABAAIAAAADAAEAAQADAAQABQAGAAcABQAIAAYACQAKAAsACQAMAAoADQAOAA8ADQAQAA4AEQASABMAEQAUABIAFQAWABcAFgAVABgAGAAVABkAFgAYABoAGwAcAB0AGwAeABwAHQAcAB8AHQAfACAAIAAfACEAIAAhACIAIgAhACMAIgAjACQAJAAjACUAJAAlACYAJgAlACcAJgAnACgAKAAnACkAKAApACoAKwAsAC0AKwAuACwALwAwADEALwAyADAAMAAyADMAMgAvADQANAAvADUAMgA0ADYANwA4ADkAOAA3ADoAOgA3ADsA"),
-"material": SubResource("StandardMaterial3D_re754"),
+"material": SubResource("StandardMaterial3D_dhbd7"),
 "name": "Skin",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -812,7 +966,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 48,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0A"),
-"material": SubResource("StandardMaterial3D_pi1iv"),
+"material": SubResource("StandardMaterial3D_c4tku"),
 "name": "Metal",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -821,6 +975,24 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_qyttj")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ayrb8"]
+resource_name = "Skin"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.74041086, 0.6410096, 0.3427776, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m4lfb"]
+resource_name = "Metal"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.23415366, 0.21424446, 0.15451261, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_30s03"]
 _surfaces = [{
@@ -854,7 +1026,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 120,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACQAIAAsACwAIAAwADQAOAA8ADQAQAA4AEQASABMAEQAUABIAFQAWABcAFgAVABgAGAAVABkAFgAYABoAGwAcAB0AHQAcAB4AGwAfABwAHQAeACAAIQAfABsAIAAeACIAIQAjAB8AIAAiACQAJQAjACEAJAAiACYAJQAnACMAJAAmACgAKQAnACUAKAAmACoAKQAqACcAKAAqACkAKwAsAC0AKwAuACwALAAuAC8ALgArADAAMAArADEALgAwADIAMwA0ADUAMwA2ADQANAA2ADcA"),
-"material": SubResource("StandardMaterial3D_re754"),
+"material": SubResource("StandardMaterial3D_ayrb8"),
 "name": "Skin",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -866,7 +1038,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 48,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0A"),
-"material": SubResource("StandardMaterial3D_pi1iv"),
+"material": SubResource("StandardMaterial3D_m4lfb"),
 "name": "Metal",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -875,6 +1047,24 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_30s03")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1l375"]
+resource_name = "Skin"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.74041086, 0.6410096, 0.3427776, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cpejg"]
+resource_name = "Metal"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.23415366, 0.21424446, 0.15451261, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_yqfpy"]
 _surfaces = [{
@@ -908,7 +1098,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 192,
 "index_data": PackedByteArray("AAABAAIAAAADAAEAAQADAAQABQAGAAcABQAIAAYACQAKAAsACQAMAAoADQAOAA8ADQAQAA4AEQASABMAEQAUABIAFQAWABcAFgAVABgAGAAVABkAFgAYABoAGwAcAB0AHQAcAB4AGwAfABwAHQAeACAAIQAfABsAIAAeACIAIQAjAB8AIAAiACQAJQAjACEAJAAiACYAJQAnACMAJAAmACgAKQAnACUAKAAmACoAKQAqACcAKAAqACkAKwAsAC0AKwAuACwALAAuAC8ALgArADAAMAArADEALgAwADIAMwA0ADUANAAzADYANgAzADcAOAA5ADoAOAA7ADkAPAA9AD4APAA/AD0AQABBAEIAQABDAEEARABFAEYARABHAEUASABJAEoASABLAEkATABNAE4ATABPAE0AUABRAFIAUABTAFEAVABVAFYAVABXAFUAWABZAFoAWABbAFkAXABdAF4AXABfAF0AYABhAGIAYABjAGEAZABlAGYAZABnAGUA"),
-"material": SubResource("StandardMaterial3D_re754"),
+"material": SubResource("StandardMaterial3D_1l375"),
 "name": "Skin",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -920,7 +1110,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 48,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0A"),
-"material": SubResource("StandardMaterial3D_pi1iv"),
+"material": SubResource("StandardMaterial3D_cpejg"),
 "name": "Metal",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -929,6 +1119,24 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_yqfpy")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_03lch"]
+resource_name = "Skin"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.74041086, 0.6410096, 0.3427776, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uc8qe"]
+resource_name = "Metal"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.23415366, 0.21424446, 0.15451261, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_t30ml"]
 _surfaces = [{
@@ -962,7 +1170,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 120,
 "index_data": PackedByteArray("AAABAAIAAAADAAEAAQADAAQABQAGAAcABQAIAAYACQAKAAsACQAMAAoADQAOAA8ADQAQAA4AEQASABMAEQAUABIAFQAWABcAFgAVABgAGAAVABkAFgAYABoAGwAcAB0AHQAcAB4AGwAfABwAHQAeACAAIQAfABsAIAAeACIAIQAjAB8AIAAiACQAJQAjACEAJAAiACYAJQAnACMAJAAmACgAKQAnACUAKAAmACoAKQAqACcAKAAqACkAKwAsAC0AKwAuACwALAAuAC8ALgArADAAMAArADEALgAwADIAMwA0ADUANAAzADYANgAzADcA"),
-"material": SubResource("StandardMaterial3D_re754"),
+"material": SubResource("StandardMaterial3D_03lch"),
 "name": "Skin",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -974,7 +1182,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 48,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0A"),
-"material": SubResource("StandardMaterial3D_pi1iv"),
+"material": SubResource("StandardMaterial3D_uc8qe"),
 "name": "Metal",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -983,6 +1191,24 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_t30ml")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_niejs"]
+resource_name = "Skin"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.74041086, 0.6410096, 0.3427776, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y56ef"]
+resource_name = "Metal"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.23415366, 0.21424446, 0.15451261, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_6b3dq"]
 _surfaces = [{
@@ -1016,7 +1242,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 120,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACQAIAAsACwAIAAwADQAOAA8ADQAQAA4AEQASABMAEQAUABIAFQAWABcAFgAVABgAGAAVABkAFgAYABoAGwAcAB0AHQAcAB4AGwAfABwAHQAeACAAIQAfABsAIAAeACIAIQAjAB8AIAAiACQAJQAjACEAJAAiACYAJQAnACMAJAAmACgAKQAnACUAKAAmACoAKQAqACcAKAAqACkAKwAsAC0AKwAuACwALAAuAC8ALgArADAAMAArADEALgAwADIAMwA0ADUAMwA2ADQANAA2ADcA"),
-"material": SubResource("StandardMaterial3D_re754"),
+"material": SubResource("StandardMaterial3D_niejs"),
 "name": "Skin",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -1028,7 +1254,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 48,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0A"),
-"material": SubResource("StandardMaterial3D_pi1iv"),
+"material": SubResource("StandardMaterial3D_y56ef"),
 "name": "Metal",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -1037,6 +1263,24 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_6b3dq")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2tlo8"]
+resource_name = "Skin"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.74041086, 0.6410096, 0.3427776, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ysfn"]
+resource_name = "Metal"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.23415366, 0.21424446, 0.15451261, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_uxkw4"]
 _surfaces = [{
@@ -1070,7 +1314,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 192,
 "index_data": PackedByteArray("AAABAAIAAAADAAEAAQADAAQABQAGAAcABQAIAAYACQAKAAsACQAMAAoADQAOAA8ADQAQAA4AEQASABMAEQAUABIAFQAWABcAFgAVABgAGAAVABkAFgAYABoAGwAcAB0AHQAcAB4AGwAfABwAHQAeACAAIQAfABsAIAAeACIAIQAjAB8AIAAiACQAJQAjACEAJAAiACYAJQAnACMAJAAmACgAKQAnACUAKAAmACoAKQAqACcAKAAqACkAKwAsAC0AKwAuACwALAAuAC8ALgArADAAMAArADEALgAwADIAMwA0ADUANAAzADYANgAzADcAOAA5ADoAOAA7ADkAPAA9AD4APAA/AD0AQABBAEIAQABDAEEARABFAEYARABHAEUASABJAEoASABLAEkATABNAE4ATABPAE0AUABRAFIAUABTAFEAVABVAFYAVABXAFUAWABZAFoAWABbAFkAXABdAF4AXABfAF0AYABhAGIAYABjAGEAZABlAGYAZABnAGUA"),
-"material": SubResource("StandardMaterial3D_re754"),
+"material": SubResource("StandardMaterial3D_2tlo8"),
 "name": "Skin",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -1082,7 +1326,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 48,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0A"),
-"material": SubResource("StandardMaterial3D_pi1iv"),
+"material": SubResource("StandardMaterial3D_5ysfn"),
 "name": "Metal",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -1091,6 +1335,24 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_uxkw4")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fmeqq"]
+resource_name = "Skin"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.74041086, 0.6410096, 0.3427776, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_05e74"]
+resource_name = "Metal"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.23415366, 0.21424446, 0.15451261, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_ts3qe"]
 _surfaces = [{
@@ -1124,7 +1386,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 120,
 "index_data": PackedByteArray("AAABAAIAAAADAAEAAQADAAQABQAGAAcABQAIAAYACQAKAAsACQAMAAoADQAOAA8ADQAQAA4AEQASABMAEQAUABIAFQAWABcAFgAVABgAGAAVABkAFgAYABoAGwAcAB0AGwAeABwAHQAcAB8AHQAfACAAIQAiACMAIQAkACIAJQAmACcAJQAoACYAJwAmACkAJwApACoAKgApACsAKgArACwALAArAC0ALAAtAC4ALwAwADEALwAyADAAMwA0ADUAMwA2ADQANAA2ADcANgAzADgAOAAzADkANgA4ADoAOwA8AD0APAA7AD4APgA7AD8A"),
-"material": SubResource("StandardMaterial3D_re754"),
+"material": SubResource("StandardMaterial3D_fmeqq"),
 "name": "Skin",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -1136,7 +1398,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 48,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0A"),
-"material": SubResource("StandardMaterial3D_pi1iv"),
+"material": SubResource("StandardMaterial3D_05e74"),
 "name": "Metal",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -1145,6 +1407,15 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ts3qe")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7j80a"]
+resource_name = "Skin"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.74041086, 0.6410096, 0.3427776, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_6a2di"]
 _surfaces = [{
@@ -1170,7 +1441,7 @@ _surfaces = [{
 "index_count": 96,
 "index_data": PackedByteArray("JAABAAIAJAAlAAEAJgAFAAYAJgAnAAUAKAAJAAoAKAApAAkAKgAOAAwAKgArAA4ALAARABIALAAtABEAFAAVABYAFQAUABcAFwAUABgAFQAXABkALgAbAC8ALgAaABsAHgAfACAAHwAeACEAIQAeACIAHwAhACMAHQAwABwAHQAxADAAEAAyADMAEAATADIADwA0ADUADwANADQACAA2ADcACAALADYABAA4ADkABAAHADgAAAA6ADsAAAADADoA"),
 "lods": [0.017130116, PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADwANAAwAEAARABIAEAATABEAFAAVABYAFQAUABcAFwAUABgAFQAXABkAGgAbABwAHQAaABwAHgAfACAAHwAeACEAIQAeACIAHwAhACMA")],
-"material": SubResource("StandardMaterial3D_re754"),
+"material": SubResource("StandardMaterial3D_7j80a"),
 "name": "Skin",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -1179,6 +1450,24 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_6a2di")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y5qrv"]
+resource_name = "Skin"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.74041086, 0.6410096, 0.3427776, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pjcp4"]
+resource_name = "Metal"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.23415366, 0.21424446, 0.15451261, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_ocm4d"]
 _surfaces = [{
@@ -1212,7 +1501,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 150,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAHAAQACAAJAAcACgAJAAgACgALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAATABAAFAAVABMAFgAVABQAFgAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0AIAAhACIAIAAjACEAJAAlACYAJAAnACUAKAApACoAKAArACkALAAtAC4ALAAvAC0AMAAxADIAMAAzADEANAA1ADYANAA3ADUAOAA5ADoAOAA7ADkAPAA9AD4APAA/AD0AQABBAEIAQABDAEEARABFAEYARABHAEUASABJAEoASABLAEkATABNAE4ATABPAE0AUABRAFIAUABTAFEAUQBTAFQAUwBQAFUAVQBQAFYAUwBVAFcA"),
-"material": SubResource("StandardMaterial3D_re754"),
+"material": SubResource("StandardMaterial3D_y5qrv"),
 "name": "Skin",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -1224,7 +1513,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 48,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0A"),
-"material": SubResource("StandardMaterial3D_pi1iv"),
+"material": SubResource("StandardMaterial3D_pjcp4"),
 "name": "Metal",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -1233,6 +1522,15 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ocm4d")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v2oaa"]
+resource_name = "Skin"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.74041086, 0.6410096, 0.3427776, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_c1bxx"]
 _surfaces = [{
@@ -1256,7 +1554,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 162,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAGQAbABwAGwAYAB0AHQAYAB4AGwAdAB8AIAAhACIAIAAjACEAJAAlACYAJAAnACUAKAApACoAKAArACkALAAtAC4ALAAvAC0AMAAxADIAMAAzADEANAA1ADYANAA3ADUAOAA5ADoAOAA7ADkAPAA9AD4APAA/AD0AQABBAEIAQABDAEEARABFAEYARABHAEUASABJAEoASgBJAEsASABMAEkASgBLAE0ATgBMAEgATQBLAE8ATgBQAEwATQBPAFEAUgBQAE4AUQBPAFMAUgBUAFAAUQBTAFUAVgBUAFIAVQBTAFcAVgBXAFQAVQBXAFYA"),
-"material": SubResource("StandardMaterial3D_re754"),
+"material": SubResource("StandardMaterial3D_v2oaa"),
 "name": "Skin",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),

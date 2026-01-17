@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=4 uid="uid://dajqdf341ehwu"]
+[gd_scene load_steps=82 format=4 uid="uid://dajqdf341ehwu"]
 
 [ext_resource type="Script" uid="uid://wtoa66s2o53o" path="res://Scripts/Player/Arms/arm.gd" id="1_p6h4n"]
 [ext_resource type="PackedScene" uid="uid://vnpmfor52wrk" path="res://Scenes/Projectiles/Arm/oil ball.tscn" id="2_p6h4n"]
@@ -315,20 +315,24 @@ _data = {
 &"Shoot": SubResource("Animation_8nnm8")
 }
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8k2p6"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0kh4s"]
 resource_name = "Pipe"
 cull_mode = 2
 diffuse_mode = 3
 specular_mode = 1
 albedo_color = Color(0.43670166, 0.43670166, 0.43670166, 1)
 roughness = 0.5
+z_clip_scale = 0.8
+fov_override = 100.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_32n1p"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aosw2"]
 resource_name = "Oil"
 cull_mode = 2
 diffuse_mode = 3
 specular_mode = 1
 albedo_color = Color(0, 0, 0, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_o0jts"]
 _surfaces = [{
@@ -362,7 +366,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 192,
 "index_data": PackedByteArray("AAABAAIAAAADAAEAAQADAAQABQAGAAcABQAIAAYACQAKAAsACQAMAAoADQAOAA8ADQAQAA4AEQASABMAEQAUABIAFQAWABcAFgAVABgAGAAVABkAFgAYABoAGwAcAB0AHQAcAB4AGwAfABwAHQAeACAAIQAfABsAIAAeACIAIQAjAB8AIAAiACQAJQAjACEAJAAiACYAJQAnACMAJAAmACgAKQAnACUAKAAmACoAKQAqACcAKAAqACkAKwAsAC0AKwAuACwALAAuAC8ALgArADAAMAArADEALgAwADIAMwA0ADUANAAzADYANgAzADcAOAA5ADoAOAA7ADkAPAA9AD4APAA/AD0AQABBAEIAQABDAEEARABFAEYARABHAEUASABJAEoASABLAEkATABNAE4ATABPAE0AUABRAFIAUABTAFEAVABVAFYAVABXAFUAWABZAFoAWABbAFkAXABdAF4AXABfAF0AYABhAGIAYABjAGEAZABlAGYAZABnAGUA"),
-"material": SubResource("StandardMaterial3D_8k2p6"),
+"material": SubResource("StandardMaterial3D_0kh4s"),
 "name": "Pipe",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -374,7 +378,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 48,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0A"),
-"material": SubResource("StandardMaterial3D_32n1p"),
+"material": SubResource("StandardMaterial3D_aosw2"),
 "name": "Oil",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -383,6 +387,25 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_o0jts")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vtcev"]
+resource_name = "Pipe"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.43670166, 0.43670166, 0.43670166, 1)
+roughness = 0.5
+z_clip_scale = 0.8
+fov_override = 100.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j277n"]
+resource_name = "Oil"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0, 0, 0, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_vw6ec"]
 _surfaces = [{
@@ -416,7 +439,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 120,
 "index_data": PackedByteArray("AAABAAIAAAADAAEAAQADAAQABQAGAAcABQAIAAYACQAKAAsACQAMAAoADQAOAA8ADQAQAA4AEQASABMAEQAUABIAFQAWABcAFgAVABgAGAAVABkAFgAYABoAGwAcAB0AHQAcAB4AGwAfABwAHQAeACAAIQAfABsAIAAeACIAIQAjAB8AIAAiACQAJQAjACEAJAAiACYAJQAnACMAJAAmACgAKQAnACUAKAAmACoAKQAqACcAKAAqACkAKwAsAC0AKwAuACwALAAuAC8ALgArADAAMAArADEALgAwADIAMwA0ADUANAAzADYANgAzADcA"),
-"material": SubResource("StandardMaterial3D_8k2p6"),
+"material": SubResource("StandardMaterial3D_vtcev"),
 "name": "Pipe",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -428,7 +451,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 48,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0A"),
-"material": SubResource("StandardMaterial3D_32n1p"),
+"material": SubResource("StandardMaterial3D_j277n"),
 "name": "Oil",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -437,6 +460,25 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_vw6ec")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fgy3q"]
+resource_name = "Pipe"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.43670166, 0.43670166, 0.43670166, 1)
+roughness = 0.5
+z_clip_scale = 0.8
+fov_override = 100.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b2rt8"]
+resource_name = "Oil"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0, 0, 0, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_f7ged"]
 _surfaces = [{
@@ -470,7 +512,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 120,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACQAIAAsACwAIAAwADQAOAA8ADQAQAA4AEQASABMAEQAUABIAFQAWABcAFgAVABgAGAAVABkAFgAYABoAGwAcAB0AHQAcAB4AGwAfABwAHQAeACAAIQAfABsAIAAeACIAIQAjAB8AIAAiACQAJQAjACEAJAAiACYAJQAnACMAJAAmACgAKQAnACUAKAAmACoAKQAqACcAKAAqACkAKwAsAC0AKwAuACwALAAuAC8ALgArADAAMAArADEALgAwADIAMwA0ADUAMwA2ADQANAA2ADcA"),
-"material": SubResource("StandardMaterial3D_8k2p6"),
+"material": SubResource("StandardMaterial3D_fgy3q"),
 "name": "Pipe",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -482,7 +524,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 48,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0A"),
-"material": SubResource("StandardMaterial3D_32n1p"),
+"material": SubResource("StandardMaterial3D_b2rt8"),
 "name": "Oil",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -491,6 +533,25 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_f7ged")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_16fpw"]
+resource_name = "Pipe"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.43670166, 0.43670166, 0.43670166, 1)
+roughness = 0.5
+z_clip_scale = 0.8
+fov_override = 100.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8adj3"]
+resource_name = "Oil"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0, 0, 0, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_2upc7"]
 _surfaces = [{
@@ -524,7 +585,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 192,
 "index_data": PackedByteArray("AAABAAIAAAADAAEAAQADAAQABQAGAAcABQAIAAYACQAKAAsACQAMAAoADQAOAA8ADQAQAA4AEQASABMAEQAUABIAFQAWABcAFgAVABgAGAAVABkAFgAYABoAGwAcAB0AHQAcAB4AGwAfABwAHQAeACAAIQAfABsAIAAeACIAIQAjAB8AIAAiACQAJQAjACEAJAAiACYAJQAnACMAJAAmACgAKQAnACUAKAAmACoAKQAqACcAKAAqACkAKwAsAC0AKwAuACwALAAuAC8ALgArADAAMAArADEALgAwADIAMwA0ADUANAAzADYANgAzADcAOAA5ADoAOAA7ADkAPAA9AD4APAA/AD0AQABBAEIAQABDAEEARABFAEYARABHAEUASABJAEoASABLAEkATABNAE4ATABPAE0AUABRAFIAUABTAFEAVABVAFYAVABXAFUAWABZAFoAWABbAFkAXABdAF4AXABfAF0AYABhAGIAYABjAGEAZABlAGYAZABnAGUA"),
-"material": SubResource("StandardMaterial3D_8k2p6"),
+"material": SubResource("StandardMaterial3D_16fpw"),
 "name": "Pipe",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -536,7 +597,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 48,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0A"),
-"material": SubResource("StandardMaterial3D_32n1p"),
+"material": SubResource("StandardMaterial3D_8adj3"),
 "name": "Oil",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -545,6 +606,25 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_2upc7")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hu3hr"]
+resource_name = "Pipe"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.43670166, 0.43670166, 0.43670166, 1)
+roughness = 0.5
+z_clip_scale = 0.8
+fov_override = 100.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mhkxs"]
+resource_name = "Oil"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0, 0, 0, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_5fsee"]
 _surfaces = [{
@@ -578,7 +658,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 120,
 "index_data": PackedByteArray("AAABAAIAAAADAAEAAQADAAQABQAGAAcABQAIAAYACQAKAAsACQAMAAoADQAOAA8ADQAQAA4AEQASABMAEQAUABIAFQAWABcAFgAVABgAGAAVABkAFgAYABoAGwAcAB0AHQAcAB4AGwAfABwAHQAeACAAIQAfABsAIAAeACIAIQAjAB8AIAAiACQAJQAjACEAJAAiACYAJQAnACMAJAAmACgAKQAnACUAKAAmACoAKQAqACcAKAAqACkAKwAsAC0AKwAuACwALAAuAC8ALgArADAAMAArADEALgAwADIAMwA0ADUANAAzADYANgAzADcA"),
-"material": SubResource("StandardMaterial3D_8k2p6"),
+"material": SubResource("StandardMaterial3D_hu3hr"),
 "name": "Pipe",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -590,7 +670,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 48,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0A"),
-"material": SubResource("StandardMaterial3D_32n1p"),
+"material": SubResource("StandardMaterial3D_mhkxs"),
 "name": "Oil",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -599,6 +679,25 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_5fsee")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nyv5e"]
+resource_name = "Pipe"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.43670166, 0.43670166, 0.43670166, 1)
+roughness = 0.5
+z_clip_scale = 0.8
+fov_override = 100.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dtm8i"]
+resource_name = "Oil"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0, 0, 0, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_wtk5v"]
 _surfaces = [{
@@ -632,7 +731,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 120,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACQAIAAsACwAIAAwADQAOAA8ADQAQAA4AEQASABMAEQAUABIAFQAWABcAFgAVABgAGAAVABkAFgAYABoAGwAcAB0AHQAcAB4AGwAfABwAHQAeACAAIQAfABsAIAAeACIAIQAjAB8AIAAiACQAJQAjACEAJAAiACYAJQAnACMAJAAmACgAKQAnACUAKAAmACoAKQAqACcAKAAqACkAKwAsAC0AKwAuACwALAAuAC8ALgArADAAMAArADEALgAwADIAMwA0ADUAMwA2ADQANAA2ADcA"),
-"material": SubResource("StandardMaterial3D_8k2p6"),
+"material": SubResource("StandardMaterial3D_nyv5e"),
 "name": "Pipe",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -644,7 +743,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 48,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0A"),
-"material": SubResource("StandardMaterial3D_32n1p"),
+"material": SubResource("StandardMaterial3D_dtm8i"),
 "name": "Oil",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -653,6 +752,25 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_wtk5v")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_087p2"]
+resource_name = "Pipe"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.43670166, 0.43670166, 0.43670166, 1)
+roughness = 0.5
+z_clip_scale = 0.8
+fov_override = 100.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6wflf"]
+resource_name = "Oil"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0, 0, 0, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_mq8tj"]
 _surfaces = [{
@@ -686,7 +804,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 192,
 "index_data": PackedByteArray("AAABAAIAAAADAAEAAQADAAQABQAGAAcABQAIAAYACQAKAAsACQAMAAoADQAOAA8ADQAQAA4AEQASABMAEQAUABIAFQAWABcAFgAVABgAGAAVABkAFgAYABoAGwAcAB0AHQAcAB4AGwAfABwAHQAeACAAIQAfABsAIAAeACIAIQAjAB8AIAAiACQAJQAjACEAJAAiACYAJQAnACMAJAAmACgAKQAnACUAKAAmACoAKQAqACcAKAAqACkAKwAsAC0AKwAuACwALAAuAC8ALgArADAAMAArADEALgAwADIAMwA0ADUANAAzADYANgAzADcAOAA5ADoAOAA7ADkAPAA9AD4APAA/AD0AQABBAEIAQABDAEEARABFAEYARABHAEUASABJAEoASABLAEkATABNAE4ATABPAE0AUABRAFIAUABTAFEAVABVAFYAVABXAFUAWABZAFoAWABbAFkAXABdAF4AXABfAF0AYABhAGIAYABjAGEAZABlAGYAZABnAGUA"),
-"material": SubResource("StandardMaterial3D_8k2p6"),
+"material": SubResource("StandardMaterial3D_087p2"),
 "name": "Pipe",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -698,7 +816,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 48,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0A"),
-"material": SubResource("StandardMaterial3D_32n1p"),
+"material": SubResource("StandardMaterial3D_6wflf"),
 "name": "Oil",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -707,6 +825,25 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_mq8tj")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k515l"]
+resource_name = "Pipe"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.43670166, 0.43670166, 0.43670166, 1)
+roughness = 0.5
+z_clip_scale = 0.8
+fov_override = 100.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oxcif"]
+resource_name = "Oil"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0, 0, 0, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_2kbym"]
 _surfaces = [{
@@ -740,7 +877,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 120,
 "index_data": PackedByteArray("AAABAAIAAAADAAEAAQADAAQABQAGAAcABQAIAAYACQAKAAsACQAMAAoADQAOAA8ADQAQAA4AEQASABMAEQAUABIAFQAWABcAFgAVABgAGAAVABkAFgAYABoAGwAcAB0AHQAcAB4AGwAfABwAHQAeACAAIQAfABsAIAAeACIAIQAjAB8AIAAiACQAJQAjACEAJAAiACYAJQAnACMAJAAmACgAKQAnACUAKAAmACoAKQAqACcAKAAqACkAKwAsAC0AKwAuACwALAAuAC8ALgArADAAMAArADEALgAwADIAMwA0ADUANAAzADYANgAzADcA"),
-"material": SubResource("StandardMaterial3D_8k2p6"),
+"material": SubResource("StandardMaterial3D_k515l"),
 "name": "Pipe",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -752,7 +889,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 48,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0A"),
-"material": SubResource("StandardMaterial3D_32n1p"),
+"material": SubResource("StandardMaterial3D_oxcif"),
 "name": "Oil",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -761,6 +898,25 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_2kbym")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ua3mq"]
+resource_name = "Pipe"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.43670166, 0.43670166, 0.43670166, 1)
+roughness = 0.5
+z_clip_scale = 0.8
+fov_override = 100.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0d6j4"]
+resource_name = "Oil"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0, 0, 0, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_rhund"]
 _surfaces = [{
@@ -794,7 +950,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 120,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACQAIAAsACwAIAAwADQAOAA8ADQAQAA4AEQASABMAEQAUABIAFQAWABcAFgAVABgAGAAVABkAFgAYABoAGwAcAB0AHQAcAB4AGwAfABwAHQAeACAAIQAfABsAIAAeACIAIQAjAB8AIAAiACQAJQAjACEAJAAiACYAJQAnACMAJAAmACgAKQAnACUAKAAmACoAKQAqACcAKAAqACkAKwAsAC0AKwAuACwALAAuAC8ALgArADAAMAArADEALgAwADIAMwA0ADUAMwA2ADQANAA2ADcA"),
-"material": SubResource("StandardMaterial3D_8k2p6"),
+"material": SubResource("StandardMaterial3D_ua3mq"),
 "name": "Pipe",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -806,7 +962,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 48,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0A"),
-"material": SubResource("StandardMaterial3D_32n1p"),
+"material": SubResource("StandardMaterial3D_0d6j4"),
 "name": "Oil",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -815,6 +971,25 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_rhund")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6m32w"]
+resource_name = "Pipe"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.43670166, 0.43670166, 0.43670166, 1)
+roughness = 0.5
+z_clip_scale = 0.8
+fov_override = 100.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cl0s8"]
+resource_name = "Oil"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0, 0, 0, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_ntf8d"]
 _surfaces = [{
@@ -848,7 +1023,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 192,
 "index_data": PackedByteArray("AAABAAIAAAADAAEAAQADAAQABQAGAAcABQAIAAYACQAKAAsACQAMAAoADQAOAA8ADQAQAA4AEQASABMAEQAUABIAFQAWABcAFgAVABgAGAAVABkAFgAYABoAGwAcAB0AHQAcAB4AGwAfABwAHQAeACAAIQAfABsAIAAeACIAIQAjAB8AIAAiACQAJQAjACEAJAAiACYAJQAnACMAJAAmACgAKQAnACUAKAAmACoAKQAqACcAKAAqACkAKwAsAC0AKwAuACwALAAuAC8ALgArADAAMAArADEALgAwADIAMwA0ADUANAAzADYANgAzADcAOAA5ADoAOAA7ADkAPAA9AD4APAA/AD0AQABBAEIAQABDAEEARABFAEYARABHAEUASABJAEoASABLAEkATABNAE4ATABPAE0AUABRAFIAUABTAFEAVABVAFYAVABXAFUAWABZAFoAWABbAFkAXABdAF4AXABfAF0AYABhAGIAYABjAGEAZABlAGYAZABnAGUA"),
-"material": SubResource("StandardMaterial3D_8k2p6"),
+"material": SubResource("StandardMaterial3D_6m32w"),
 "name": "Pipe",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -860,7 +1035,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 48,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0A"),
-"material": SubResource("StandardMaterial3D_32n1p"),
+"material": SubResource("StandardMaterial3D_cl0s8"),
 "name": "Oil",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -869,6 +1044,25 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ntf8d")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wo7gw"]
+resource_name = "Pipe"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.43670166, 0.43670166, 0.43670166, 1)
+roughness = 0.5
+z_clip_scale = 0.8
+fov_override = 100.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q3rsi"]
+resource_name = "Oil"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0, 0, 0, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_xr422"]
 _surfaces = [{
@@ -902,7 +1096,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 120,
 "index_data": PackedByteArray("AAABAAIAAAADAAEAAQADAAQABQAGAAcABQAIAAYACQAKAAsACQAMAAoADQAOAA8ADQAQAA4AEQASABMAEQAUABIAFQAWABcAFgAVABgAGAAVABkAFgAYABoAGwAcAB0AHQAcAB4AGwAfABwAHQAeACAAIQAfABsAIAAeACIAIQAjAB8AIAAiACQAJQAjACEAJAAiACYAJQAnACMAJAAmACgAKQAnACUAKAAmACoAKQAqACcAKAAqACkAKwAsAC0AKwAuACwALAAuAC8ALgArADAAMAArADEALgAwADIAMwA0ADUANAAzADYANgAzADcA"),
-"material": SubResource("StandardMaterial3D_8k2p6"),
+"material": SubResource("StandardMaterial3D_wo7gw"),
 "name": "Pipe",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -914,7 +1108,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 48,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0A"),
-"material": SubResource("StandardMaterial3D_32n1p"),
+"material": SubResource("StandardMaterial3D_q3rsi"),
 "name": "Oil",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -923,6 +1117,25 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_xr422")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xsqd2"]
+resource_name = "Pipe"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.43670166, 0.43670166, 0.43670166, 1)
+roughness = 0.5
+z_clip_scale = 0.8
+fov_override = 100.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bgba5"]
+resource_name = "Oil"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0, 0, 0, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_usy03"]
 _surfaces = [{
@@ -956,7 +1169,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 120,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACQAIAAsACwAIAAwADQAOAA8ADQAQAA4AEQASABMAEQAUABIAFQAWABcAFgAVABgAGAAVABkAFgAYABoAGwAcAB0AHQAcAB4AGwAfABwAHQAeACAAIQAfABsAIAAeACIAIQAjAB8AIAAiACQAJQAjACEAJAAiACYAJQAnACMAJAAmACgAKQAnACUAKAAmACoAKQAqACcAKAAqACkAKwAsAC0AKwAuACwALAAuAC8ALgArADAAMAArADEALgAwADIAMwA0ADUAMwA2ADQANAA2ADcA"),
-"material": SubResource("StandardMaterial3D_8k2p6"),
+"material": SubResource("StandardMaterial3D_xsqd2"),
 "name": "Pipe",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -968,7 +1181,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 48,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0A"),
-"material": SubResource("StandardMaterial3D_32n1p"),
+"material": SubResource("StandardMaterial3D_bgba5"),
 "name": "Oil",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -977,6 +1190,25 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_usy03")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m31nc"]
+resource_name = "Pipe"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.43670166, 0.43670166, 0.43670166, 1)
+roughness = 0.5
+z_clip_scale = 0.8
+fov_override = 100.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6h2ar"]
+resource_name = "Oil"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0, 0, 0, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_pesi5"]
 _surfaces = [{
@@ -1010,7 +1242,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 192,
 "index_data": PackedByteArray("AAABAAIAAAADAAEAAQADAAQABQAGAAcABQAIAAYACQAKAAsACQAMAAoADQAOAA8ADQAQAA4AEQASABMAEQAUABIAFQAWABcAFgAVABgAGAAVABkAFgAYABoAGwAcAB0AHQAcAB4AGwAfABwAHQAeACAAIQAfABsAIAAeACIAIQAjAB8AIAAiACQAJQAjACEAJAAiACYAJQAnACMAJAAmACgAKQAnACUAKAAmACoAKQAqACcAKAAqACkAKwAsAC0AKwAuACwALAAuAC8ALgArADAAMAArADEALgAwADIAMwA0ADUANAAzADYANgAzADcAOAA5ADoAOAA7ADkAPAA9AD4APAA/AD0AQABBAEIAQABDAEEARABFAEYARABHAEUASABJAEoASABLAEkATABNAE4ATABPAE0AUABRAFIAUABTAFEAVABVAFYAVABXAFUAWABZAFoAWABbAFkAXABdAF4AXABfAF0AYABhAGIAYABjAGEAZABlAGYAZABnAGUA"),
-"material": SubResource("StandardMaterial3D_8k2p6"),
+"material": SubResource("StandardMaterial3D_m31nc"),
 "name": "Pipe",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -1022,7 +1254,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 48,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0A"),
-"material": SubResource("StandardMaterial3D_32n1p"),
+"material": SubResource("StandardMaterial3D_6h2ar"),
 "name": "Oil",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -1031,6 +1263,25 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_pesi5")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ggigj"]
+resource_name = "Pipe"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.43670166, 0.43670166, 0.43670166, 1)
+roughness = 0.5
+z_clip_scale = 0.8
+fov_override = 100.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ur3jq"]
+resource_name = "Oil"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0, 0, 0, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_hnv6t"]
 _surfaces = [{
@@ -1064,7 +1315,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 120,
 "index_data": PackedByteArray("AAABAAIAAAADAAEAAQADAAQABQAGAAcABQAIAAYACQAKAAsACQAMAAoADQAOAA8ADQAQAA4AEQASABMAEQAUABIAFQAWABcAFgAVABgAGAAVABkAFgAYABoAGwAcAB0AHQAcAB4AGwAfABwAHQAeACAAIQAfABsAIAAeACIAIQAjAB8AIAAiACQAJQAjACEAJAAiACYAJQAnACMAJAAmACgAKQAnACUAKAAmACoAKQAqACcAKAAqACkAKwAsAC0AKwAuACwALAAuAC8ALgArADAAMAArADEALgAwADIAMwA0ADUANAAzADYANgAzADcA"),
-"material": SubResource("StandardMaterial3D_8k2p6"),
+"material": SubResource("StandardMaterial3D_ggigj"),
 "name": "Pipe",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -1076,7 +1327,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 48,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0A"),
-"material": SubResource("StandardMaterial3D_32n1p"),
+"material": SubResource("StandardMaterial3D_ur3jq"),
 "name": "Oil",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -1085,6 +1336,16 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_hnv6t")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_of2qm"]
+resource_name = "Pipe"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.43670166, 0.43670166, 0.43670166, 1)
+roughness = 0.5
+z_clip_scale = 0.8
+fov_override = 100.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_p1plf"]
 _surfaces = [{
@@ -1110,7 +1371,7 @@ _surfaces = [{
 "index_count": 96,
 "index_data": PackedByteArray("JAABAAIAJAAlAAEAJgAFAAYAJgAnAAUAKAAJAAoAKAApAAkAKgAOAAwAKgArAA4ALAARABIALAAtABEAFAAVABYAFQAUABcAFwAUABgAFQAXABkALgAbAC8ALgAaABsAHgAfACAAHwAeACEAIQAeACIAHwAhACMAHQAwABwAHQAxADAAEAAyADMAEAATADIADwA0ADUADwANADQACAA2ADcACAALADYABAA4ADkABAAHADgAAAA6ADsAAAADADoA"),
 "lods": [0.02861448, PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADwANAAwAEAARABIAEAATABEAFAAVABYAFQAUABcAFwAUABgAFQAXABkAGgAbABwAHQAaABwAHgAfACAAHwAeACEAIQAeACIAHwAhACMA")],
-"material": SubResource("StandardMaterial3D_8k2p6"),
+"material": SubResource("StandardMaterial3D_of2qm"),
 "name": "Pipe",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -1120,33 +1381,51 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_p1plf")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wt3lk"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mfe0i"]
+resource_name = "Pipe"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.43670166, 0.43670166, 0.43670166, 1)
+roughness = 0.5
+z_clip_scale = 0.8
+fov_override = 100.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iolou"]
 resource_name = "Hole"
 cull_mode = 2
 shading_mode = 0
 albedo_color = Color(0, 0, 0, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f8dbi"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vckts"]
 resource_name = "Barrel"
 cull_mode = 2
 diffuse_mode = 3
 specular_mode = 1
 albedo_color = Color(0.5506274, 0.5186039, 0.42245218, 1)
 roughness = 0.25
+z_clip_scale = 0.8
+fov_override = 100.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x66xj"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_60cf1"]
 resource_name = "Wrap"
 cull_mode = 2
 diffuse_mode = 3
 specular_mode = 1
 albedo_color = Color(0.49366036, 0.27954888, 0.20095757, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lkefs"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mcxjs"]
 resource_name = "Plastic"
 cull_mode = 2
 diffuse_mode = 3
 specular_mode = 1
 albedo_color = Color(0.27214846, 0.27214846, 0.27214846, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_itl0b"]
 _surfaces = [{
@@ -1212,7 +1491,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 1644,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUABQAHAAgACQAEAAoACwAEAAkABwAEAAsACwAJAAwABwALAA0ADQALAA4ABwANAA8AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0AIAAhACIAIAAjACEAJAAlACYAJAAnACUAKAApACoAKAArACkALAAtAC4ALAAvAC0AMAAxADIAMAAzADEANAA1ADYANAA3ADUAOAA5ADoAOAA7ADkAOQA7ADwAPQA4AD4APwA4AD0AOwA4AD8APwA9AEAAOwA/AEEAQQA/AEIAOwBBAEMARABFAEYARABHAEUASABJAEoASABLAEkASQBLAEwATQBIAE4ATwBIAE0ASwBIAE8ATwBNAFAASwBPAFEAUQBPAFIASwBRAFMAVABVAFYAVABXAFUAWABZAFoAWABbAFkAXABdAF4AXABfAF0AYABhAGIAYABjAGEAZABlAGYAZABnAGUAaABpAGoAaABrAGkAbABtAG4AbABvAG0AcABxAHIAcABzAHEAdAB1AHYAdAB3AHUAeAB5AHoAeAB7AHkAfAB9AH4AfAB/AH0AgACBAIIAgACDAIEAhACFAIYAhACHAIUAiACJAIoAiACLAIkAjACNAI4AjACPAI0AkACRAJIAkACTAJEAlACVAJYAlACXAJUAmACZAJoAmACbAJkAnACdAJ4AnACfAJ0AoAChAKIAoACjAKEApAClAKYApACnAKUAqACpAKoAqACrAKkArACtAK4ArgCtAK8ArACwAK0AsQCwAKwAsQCyALAAswCxAKwAswCsALQAtACsAK4AtACuALUArgCvALYAtQCuALYAtgCvALcAtQC2ALgAtgC3ALkAuAC2ALkAuQC3ALoAuAC5ALsAuQC6ALwAuwC5ALwAvAC6AL0AuwC8AL4AvAC9AL8AvgC8AL8AvwC9AMAAvgC/AMEAvwDAAMIAwQC/AMIAwQDCAMMAwgDAAMQAxQDDAMIAwgDEAMYAxQDCAMYAxgDEAMcAyADFAMYAxgDHAMkAyADGAMkAyQDHAMoAywDIAMkAyQDKAMwAywDJAMwAzADKAM0AzADOAMsAzADNAM8AzADPAM4AzwDNANAAzwDQANEAzgDPANEAzgDRANIA0wDUANUA0wDWANQA1wDYANkA1wDaANgA2wDcAN0A2wDeANwA3wDgAOEA3wDiAOAA4wDkAOUA4wDmAOQA5wDoAOkA5wDqAOgA6wDsAO0A6wDuAOwA7wDwAPEA7wDyAPAA8wD0APUA8wD2APQA9wD4APkA9wD6APgA+wD8AP0A+wD+APwA/wAAAQEB/wACAQABAwEEAQUBAwEGAQQBBwEIAQkBBwEKAQgBCwEMAQ0BCwEOAQwBDgEPAQwBDgEQAQ8BEQESARMBEQEUARIBFAEVARIBFAEWARUBFwEYARkBFwEaARgBGwEcAR0BGwEeARwBHwEgASEBHwEiASABIwEkASUBIwEmASQBJwEoASkBJwEqASgBKwEsAS0BKwEuASwBLwEwATEBLwEyATABMwE0ATUBMwE2ATQBNgE3ATQBNgE4ATcBOQE6ATsBOQE8AToBPQE+AT8BPQFAAT4BQAFBAT4BQAFCAUEBQwFEAUUBQwFGAUQBQwFHAUYBSAFFAUQBSAFEAUkBSAFKAUUBSAFJAUsBTAFHAUMBSAFLAU0BTgFNAUsBTgFPAU0BTwFOAVABTQFPAVEBUgFRAU8BUgFTAVEBUgFIAVMBVAFIAVIBSAFUAUoBVQFKAVQBVQFMAUoBVgFMAVUBTAFWAUcBVgFVAVcBWAFWAVcBRwFWAVkBWgFHAVkBWAFbAVYBWgFcAUcBWgFdAVwBWwFdAVoBWwFYAV0BXQFYAV4BXwFgAWEBXwFiAWABXwFjAWIBZAFhAWABZQFjAV8BZQFmAWMBYwFmAWcBZgFlAWgBZgFoAWkBaAFqAWkBYQFrAWgBaAFrAWoBawFhAWQBawFkAWwBagFrAW0BagFtAW4BbQFvAW4BbAFkAXABbwFtAXABbwFwAXEBbAFwAXIBcAFtAXIBcwF0AXUBdQF0AXYBcwF3AXQBdQF2AXgBeQF3AXMBeAF2AXoBeQF7AXcBeAF6AXwBfQF7AXkBfAF6AX4BfQF/AXsBfAF+AYABgQF/AX0BgAF+AYIBgQGDAX8BgAGCAYQBhQGDAYEBhAGCAYYBhQGHAYMBhAGGAYgBiQGHAYUBiAGGAYoBiQGKAYcBiAGKAYkBiwGMAY0BiwGOAYwBjwGQAZEBjwGSAZABkwGUAZUBkwGWAZQBlwGYAZkBlwGaAZgBmwGcAZ0BmwGeAZwBnwGgAaEBnwGiAaABowGkAaUBowGmAaQBpwGoAakBpwGqAagBqwGsAa0BqwGuAawBrwGwAbEBrwGyAbABswG0AbUBswG2AbQBtwG4AbkBtwG6AbgBuwG8Ab0BuwG+AbwBvwHAAcEBvwHCAcABwwHEAcUBwwHGAcQBxwHIAckBxwHKAcgBywHMAc0BywHOAcwBzwHQAdEB0QHQAdIBzwHTAdAB0QHSAdQB1QHTAc8B1AHSAdYB1QHXAdMB1AHWAdgB2QHXAdUB2AHWAdoB2QHbAdcB2AHaAdwB3QHbAdkB3AHaAd4B3QHfAdsB3AHeAeAB4AHeAeEB4AHhAeIB4wHfAd0B4wHkAd8B5QHkAeMB5QHmAeQB5wHoAekB5wHqAegB6wHsAe0B6wHuAewB7wHwAfEB7wHyAfAB8wH0AfUB8wH2AfQB9wH4AfkB9wH6AfgB+wH8Af0B+wH+AfwB/wEAAgEC/wECAgACAwIEAgUCAwIGAgQCBwIIAgkCBwIKAggCCwIMAg0CCwIOAgwCDwIQAhECDwISAhACEwIUAhUCEwIWAhQCFwIYAhkCFwIaAhgCGwIcAh0CGwIeAhwCHwIgAiECHwIiAiACIwIkAiUCIwImAiQCJwIoAikCJwIqAigCKwIsAi0CKwIuAiwCLwIwAjECLwIyAjACMwI0AjUCMwI2AjQCNwI4AjkCNwI6AjgCOwI8Aj0COwI+AjwCPwJAAkECPwJCAkACQwJEAkUCQwJGAkQCRwJIAkkCRwJKAkgCSwJMAk0CSwJOAkwCTwJQAlECTwJSAlACUwJUAlUCUwJWAlQCVwJYAlkCVwJaAlgCWwJcAl0CWwJeAlwCXwJgAmECXwJiAmACYwJkAmUCYwJmAmQCZwJoAmkCZwJqAmgCawJsAm0CawJuAmwCbwJwAnECbwJyAnACcwJ0AnUCcwJ2AnQCdwJ4AnkCdwJ6AngCewJ8An0CewJ+AnwCfwKAAoECfwKCAoACgwKEAoUCgwKGAoQChwKIAokChwKKAogCiwKMAo0CiwKOAowCjwKQApECjwKSApACkwKUApUCkwKWApQClwKYApkCmQKYApoClwKbApgCmQKaApwCnQKbApcCnAKaAp4CnQKfApsCnAKeAqACoQKfAp0CoAKeAqICoQKjAp8CoAKiAqQCpQKjAqECpAKiAqYCpQKnAqMCpAKmAqgCqQKnAqUCqAKmAqoCqQKrAqcCqAKqAqwCrQKrAqkCrAKqAq4CrQKuAqsCrAKuAq0CrwKwArECrwKyArACswKvArECsgK0ArACswKxArUCsgK2ArQCtwKzArUCtgK4ArQCtwK1ArkCtgK6ArgCuwK3ArkCugK8ArgCuwK5Ar0CugK+ArwCvwK7Ar0CvgLAArwCvwK9AsECvgLCAsACwwK/AsECwgLEAsACwwLBAsUCwgLGAsQCxgLDAsUCxgLFAsQCxwLIAskCxwLKAsgCywLMAs0CywLOAswCzwLQAtECzwLSAtAC0wLUAtUC0wLWAtQC1wLYAtkC1wLaAtgC2wLcAt0C2wLeAtwC3wLgAuEC3wLiAuAC4wLkAuUC4wLmAuQC5wLoAukC5wLqAugC6wLsAu0C6wLuAuwC7wLwAvEC7wLyAvAC8wL0AvUC8wL2AvQC9wL4AvkC9wL6AvgC+wL8Av0C+wL+AvwC/wIAAwED/wICAwADAwMEAwUDAwMGAwQDBwMIAwkDBwMKAwgDCwMMAw0DCwMOAwwDDwMQAxEDDwMSAxADEwMUAxUDEwMWAxQDFwMYAxkDFwMaAxgDGwMcAx0DGwMeAxwDHwMgAyEDHwMiAyADIwMkAyUDIwMmAyQDJwMoAykDJwMqAygDKwMsAy0DKwMuAywDLwMwAzEDLwMyAzADMwM0AzUDMwM2AzQDNwM4AzkDNwM6AzgDOwM8Az0DOwM+AzwDPwNAA0EDPwNCA0ADQwNEA0UDQwNGA0QDRwNIA0kDRwNKA0gDSwNMA00DSwNOA0wDTwNQA1EDTwNSA1ADUwNUA1UDUwNWA1QD"),
-"material": SubResource("StandardMaterial3D_8k2p6"),
+"material": SubResource("StandardMaterial3D_mfe0i"),
 "name": "Pipe",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -1224,7 +1503,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 36,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUABQAHAAgACQAEAAoACwAEAAkABwAEAAsACwAJAAwABwALAA0ADQALAA4ABwANAA8A"),
-"material": SubResource("StandardMaterial3D_wt3lk"),
+"material": SubResource("StandardMaterial3D_iolou"),
 "name": "Hole",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -1237,7 +1516,7 @@ _surfaces = [{
 "index_count": 1740,
 "index_data": PackedByteArray("kQL9AP4AkQKSAv0AkwL5APoAkwKUAvkAlQL1APYAlQKWAvUAlwLxAPIAlwKYAvEAmQLtAO4AmQKaAu0AmwLpAOoAmwKcAukAnQLlAOYAnQKeAuUAnwLhAOIAnwKgAuEAoQLdAN4AoQKiAt0AowLZANoAowKkAtkApQLVANYApQKmAtUApwIBAKgCpwIDAAEAqQIjACQAqQIlACMAqgIuAC8AqgIwAC4ATABNAE4ATABPAE0AKwAsAKsCKwAtACwArAIzAK0CrAI0ADMArgI8AD0ArgI+ADwArwJJAEoArwJLAEkAUABRAFIAUABTAFEAsAKOAo8CsAKxAo4CRgBHALICRgBIAEcACQAKALMCCQALAAoAtAICALUCtAIAAAIAtgK3AhkAtgIaALcCuAK5AhwAuAIeALkCKQC6AioAKQC7AroCJgAnALwCJgC9AicAvgIoAL8CvgIyACgAwALBAjYAwAI5AMECwgLDAjoAwgI7AMMCQQDEAkIAQQDFAsQCPwBAAMYCPwDHAkAADAANAMgCDADJAg0ABgAHAMoCBgDLAgcAzAIFAM0CzAIEAAUAzgLPAtACzgIWAM8C0QLSAtMC0QIbANIC1ALVAtYC1ALXAtUC2AIdANkC2ALaAh0A2wIfANwC2wIxAB8A3QLeAt8C3QI1AN4C4ALhAuIC4AI4AOEC4wLkAuUC4wLmAuQC5wIQAOgC5wLpAhAA6gIOAOsC6gLsAg4A7QIIAO4C7QLvAggA8AJVAPEC8AJUAFUA8gLRAPMC8gLTANEAQwBEAPQCQwBFAEQA9QJZAPYC9QJYAFkA9wJeAPgC9wJdAF4A+QJhAPoC+QJgAGEA+wJmAPwC+wJlAGYA/QJpAP4C/QJoAGkA/wJuAAAD/wJtAG4AAQNxAAIDAQNwAHEAAwN2AAQDAwN1AHYABQN5AAYDBQN7AHkABwN9AH4ABwMIA30ACQOWAJcACQOYAJYACgOaAJsACgOcAJoAxADFAMYAxADHAMUAogCjAKQAogALA6MADAOmAKcADAMNA6YADgOyALMADgO0ALIADwPBAMIADwPDAMEAyADJAMoAyADLAMkAEAPOABEDEAPNAM4AtwC4ALkAtwASA7gAhACFAIYAhAATA4UAFAN/AHwAFAMVA38AFgMXA5AAFgOIABcDGAMZA5QAGAOSABkDnQAaAxsDnQCeABoDoACfABwDoAAdA58AHgOhAKUAHgMfA6EAIAMhA6wAIAMiAyEDIwMkA7EAIwOvACQDvAAlAyYDvAC9ACUDvgC/AMAAvgAnA78AtQC2ACgDtQApA7YAKgOCACsDKgMsA4IALQMuA4AALQMvAy4DMAMxA4cAMAMyAzEDMwM0A5EAMwM1AzQDNgM3AzgDNgM5AzcDOgOTADsDOgM8A5MAPQOZAD4DPQM/A5kAQANBA6gAQANCA0EDQwNEA64AQwNFA0QDRgNHA0gDRgNJA0cDugC7AEoDugBLA7sATAOJAE0DTANOA4kATwOBAFADTwNRA4EAeABSA3oAeABTA1IDdABUA3cAdABVA1QDcwBWA3IAcwBXA1YDbABYA28AbABZA1gDawBaA2oAawBbA1oDZABcA2cAZABdA1wDYwBeA2IAYwBfA14DXABgA18AXABhA2ADWwBiA1oAWwBjA2IDZAOwAGUDZANmA7AA0ABnA9IA0ABoA2cDVwBpA1YAVwBqA2kD1ABrA2wD1ADXAGsD2ABtA24D2ADbAG0D3ABvA3AD3ADfAG8D4ABxA3ID4ADjAHED5ABzA3QD5ADnAHMD6AB1A3YD6ADrAHUD7AB3A3gD7ADvAHcD8AB5A3oD8ADzAHkD9AB7A3wD9AD3AHsDzAB9A88AzAB+A30D+AB/A4AD+AD7AH8D/ACBA4ID/AD/AIEDAAEBAYMDAAEDAQEBBwEIAQkBBwEKAQgBCwEMAYQDCwEOAQwBEgETARQBEgEVARMBFgEXARgBFgEZARcBhQMbARwBhQMdARsBIQEiASMBIQEkASIBJQEmAScBJQEoASYBKQEqAYYDKQEsASoBMAExATIBMAEzATEBNAE1AYcDNAE3ATUBOwE8AT0BOwE+ATwBiAM2ATgBiQM2AYgDNgGJAzkBNgE5AToBigMrAS4BiwMrAYoDKwGLAy0BKwEtAS8BjAM/AUIBjQM/AYwDPwGNA0ABPwFAAUEBjgMeASABjwMeAY4DHgGPAx8BHgEfARoBkAMNARABkQMNAZADDQGRAw8BDQEPAREBkgMCAQQBkwMCAZIDAgGTAwUBAgEFAQYBQwFEAUUBQwFGAUQBRwFGAUMBRwFIAUYBSQFKAUsBSQFMAUoBTQFOAU8BTQFQAU4BUQFQAU0BUQFSAVABUwFUAVUBUwFWAVQBVwFYAVkBVwFaAVgBWwFcAV0BWwFeAVwBXwFeAVsBXwFgAV4BYQFiAWMBYQFkAWIBZQFmAWcBZQFoAWYBaQFoAWUBaQFqAWgBawFsAW0BawFuAWwBbwFuAWsBbwFwAW4BcQFyAXMBcQF0AXIBdQF2AXcBdQF4AXYBeQF4AXUBeQF6AXgBewF8AX0BewF+AXwBfwGAAYEBgQGAAYIBfwGDAYABgQGCAYQBhQGDAX8BhAGCAYYBhQGHAYMBhAGGAYgBiQGHAYUBiAGGAYoBiQGLAYcBiAGKAYwBjQGLAYkBjAGKAY4BjQGPAYsBjAGOAZABkQGPAY0BkAGOAZIBkQGTAY8BkAGSAZQBlQGTAZEBlAGSAZYBlQGWAZMBlAGWAZUBlwGYAZkBmAGXAZQDmAGUA5oBmwGcAZ0BmwGeAZwBnwGgAaEBoAGfAZUDoAGVA6IBowGkAaUBowGmAaQBpwGoAakBpwGqAagBlgOrAa4BqwGWA6wBqwGsAa0BrwGwAbEBrwGyAbABswG0AbUBtAGzAZcDtAGXA7YBtwG4AbkBtwG6AbgBuwG8Ab0BvAG7AZgDvAGYA74BvwHAAcEBvwHCAcABwwHEAcUBxAHDAcYBxAHGAZkDxwHIAckBxwHKAcgBywHMAc0BywHOAcwBzwHQAdEBzwHSAdAB0wHUAdUB0wHWAdQB1wHYAdkB1wHaAdgB2wHcAd0B2wHeAdwBmgObA/YBmgOcA5sD4QGdA+AB3wGeA58D3wGgA54DoQPiAaIDoQOjA+IB5gHkAaQDpQOmA6cDpQOoA6YD5QHjAakD5QGqA+MBqwPoAawDrQOuA+kBrQOvA64DsAOxA+oBsAPnAbEDsgPuAewBswO0A+0BswO1A7QDtgPrAbcDtgO4A+sBuQPvAboDuwPwAbwDuwO9A/ABvgO/A/EBvgPyAb8D9AHAA8ED8wHCA/UB8wHDA8ID9wH4AfkB9wH6AfgB+wH8Af0B+wH+AfwB/wEAAgEC/wECAgACAwIEAgUCAwIGAgQCBwIIAgkCBwIKAggCCwIMAg0CCwIOAgwCxAMQAhECxAMSAhACxQMTAhYCxgMTAsUDEwLGA8cDEwLHAw8CFAIYAhkCGAIUAsgDyAMUAhUCGALIAxcCyQMaAh0CygMaAskDGwLKA8kDGgLKA8sDGgLLA8wDygPMA8sDGwLMA8oDzAMbAhwCHgIfAiACIQIfAh4CHwIhAs0DHwLNAyICzgMkAs8DJALOAyMCIwLOA9ADJAIjAiUCJgInAigCJgLRAycCKgLRAyYCKgIpAtEDKwIsAi0CKwIuAiwCLwIwAjECLwIyAjACMwI0AjUCMwI2AjQCNwI4AjkCNwI6AjgCOwI8Aj0COwI+AjwCPwI+AjsCPwJAAj4C0gNDAkEC0gNCAkMCRAJCAtIDRAJFAkICRgJHAkgCRgJJAkcCSgJLAkwCSgJNAksCTgJPAlACTgJRAk8CUgJTAlQCVAJTAlUCUgJWAlMCVAJVAlcCWAJWAlICVwJVAlkCWAJaAlYCWwJaAlgCWwJcAloCVwJZAl0CXQJZAl4CXQJeAl8CXwJeAmACXwJgAmECYgLTA2QCYgJlAtMD0wNmAmQC0wNjAmYCYwJnAmYC1ANpAmoCaQLUA2gCaQJoAmsCbALVA9YDbAJtAtUD1wNvAtgDcQLZA3ACcQJuAtkDcgJzAnQC2gN1AnYC2gPbA3UC3AN4AnkCeQJ4AnoC3AN7AngCewLcA3cCewJ3AnwC3QN9At4DfQLdA98DfQLfA38CfgLgA4ACgALgA+EDgQKCAoMCgQKEAoICgwKCAoUCgwKFAoYChwKIAokChwKKAogCiQKIAosCiQKLAowCgwDiA4oAigDiA+MDgwDkA+IDigDjA40AiwDkA4MAjQDjA+UDiwDmA+QDjQDlA44AjADmA4sAjgDlA+cDjADoA+YDjgDnA48ArQDoA4wAjwDnA+kDrQDqA+gDjwDpA5UAqwDqA60AlQDpA+sDqwDsA+oDlQDrA6kAqgDsA6sAqQDrA+0DqgDtA+wDqQDtA6oAjQLuA+8DjQKQAu4DEgDwAxEAEQDwA/EDEgDyA/ADEQDxAw8AFADyAxIADwDxA/MDFAD0A/IDDwDzAxMAFwD0AxQAEwDzA/UDFwD2A/QDEwD1AxUAGAD2AxcAFQD1A/cDGAD4A/YDFQD3AzcAIAD4AxgANwD3A/kDIAD6A/gDNwD5AyIAIQD6AyAAIgD5A/sDIQD7A/oDIgD7AyEA"),
 "lods": [0.016543679, PackedByteArray("AAABAAIAAAADAAEABAAAAAIABAACAAUABgACAAcABgAHAAgACQAKAAcACQALAAoADAAHAA0ADAANAA4ADwAIAA4ABQAIAA8ADwAOABAAEQAFAA8AEgAFABEADwAQABMAFAAFABIAEwAQABUAFAAWAAUAFgAEAAUAFwAWABQAGAAWABcAFgAAABkAFgAaAAAAGAAbABYAGwAaABwAGAAdABsAGwAeABoAHwAdABgAIAAfABgAIQAfACAAIgAfACEAGgAjACQAGgAlACMAJgAnAB0AJgAoACcAKQAnAB4AKQAeACoAKwAsACcAKwAtACwAHgAuAC8AHgAwAC4AMQAoAB8AMQAyACgAMgAzACgAMgA0ADMANQAxAB8ANQAyADYAIgA1AB8ANwA1ACIAFQA1ADcAFQAQADUAEAA4ADUANQA5ADIAOAA5ADoAOAA7ADkAOQA8AD0AOQA+ADwAPwBAABAAPwANAEAAQQBAADsAQQA7AEIAQwBEAEAAQwBFAEQARgBHAA0ARgBIAEcAOwBJAEoAOwBLAEkATABNAE4ATABPAE0AUABRAFIAUABTAFEAVABVAFYAVwBUAFYAWABZAFoAWwBYAFoAXABdAF4AXABeAF8AYABhAGIAYwBgAGIAZABlAGYAZABmAGcAaABpAGoAawBoAGoAbABtAG4AbABuAG8AcABxAHIAcwBwAHIAdAB1AHYAdAB2AHcAeAB5AHoAeAB7AHkAfAB9AH4AfAB/AH0AgAB/AHwAgACBAH8AgQCCAH8AgwCBAIAAhACCAIUAhACFAIYAhwCDAIAAhwCIAHwAgwCJAIEAigCDAIcAiwCJAIMAjACJAIsAigCHAI0AjQCHAI4AjgCHAI8AhwB8AJAAjwCHAJEAkQCSAJAAjwCRAJMAkQCQAJQAlQCPAJMAkACWAJcAkACYAJYAlQCTAJkAlACaAJsAlACcAJoAnQCeAJQAnQCUAJ8AoACTAJ8AoACfAKEAogCfAKMAogCjAKQApQCZAKEAlQCZAKUApQChAKYApQCmAKcAqACVAKUAqQCVAKgAqQCoAKoAqgCoAKsAqAClAKwAqwCoAK0ArQCoAK4ArgCvAKwArQCuALAAiQCtALAArQCJAIwArgCsALEArACyALMArAC0ALIAtQCJALYAtQC2AIIAtwC2ALgAtwC4ALkAugC7ALYAugCwALsAvACxALsAvAC9ALEAvgC7AL8AvgC/AMAAsQDBAMIAsQDDAMEAxADFAMYAxADHAMUAyADJAMoAyADLAMkAzADNAM4AzADOAM8A0ADRANIA0ADTANEA1ADVANYA1ADXANUA2ADZANoA2ADbANkA3ADdAN4A3ADfAN0A4ADhAOIA4ADjAOEA5ADlAOYA5ADnAOUA6ADpAOoA6ADrAOkA7ADtAO4A7ADvAO0A8ADxAPIA8ADzAPEA9AD1APYA9AD3APUA+AD5APoA+AD7APkA/AD9AP4A/AD/AP0AAAEBAQIBAAEDAQEBAgEEAQUBAgEFAQYBBwEIAQkBBwEKAQgBCwEMAQ0BCwEOAQwBDwENARABDQEPAREBEgETARQBEgEVARMBFgEXARgBFgEZARcBGgEbARwBGgEdARsBHgEfARoBHwEeASABIQEiASMBIQEkASIBJQEmAScBJQEoASYBKQEqASsBKQEsASoBLQErAS4BKwEtAS8BMAExATIBMAEzATEBNAE1ATYBNAE3ATUBNgE4ATkBNgE5AToBOwE8AT0BOwE+ATwBPwFAAUEBQAE/AUIBQwFEAUUBQwFGAUQBRwFGAUMBRwFIAUYBSQFKAUsBSQFMAUoBTQFOAU8BTQFQAU4BUQFQAU0BUQFSAVABUwFUAVUBUwFWAVQBVwFYAVkBVwFaAVgBWwFcAV0BWwFeAVwBXwFeAVsBXwFgAV4BYQFiAWMBYQFkAWIBZQFmAWcBZQFoAWYBaQFoAWUBaQFqAWgBawFsAW0BawFuAWwBbwFuAWsBbwFwAW4BcQFyAXMBcQF0AXIBdQF2AXcBdQF4AXYBeQF4AXUBeQF6AXgBewF8AX0BewF+AXwBfwGAAYEBgQGAAYIBfwGDAYABgQGCAYQBhQGDAX8BhAGCAYYBhQGHAYMBhAGGAYgBiQGHAYUBiAGGAYoBiQGLAYcBiAGKAYwBjQGLAYkBjAGKAY4BjQGPAYsBjAGOAZABkQGPAY0BkAGOAZIBkQGTAY8BkAGSAZQBlQGTAZEBlAGSAZYBlQGWAZMBlAGWAZUBlwGYAZkBmAGXAZoBmwGcAZ0BmwGeAZwBnwGgAaEBoAGfAaIBowGkAaUBowGmAaQBpwGoAakBpwGqAagBqwGsAa0BqwGuAawBrwGwAbEBrwGyAbABswG0AbUBtAGzAbYBtwG4AbkBtwG6AbgBuwG8Ab0BvAG7Ab4BvwHAAcEBvwHCAcABwwHEAcUBxAHDAcYBxwHIAckBxwHKAcgBywHMAc0BywHOAcwBzwHQAdEBzwHSAdAB0wHUAdUB0wHWAdQB1wHYAdkB1wHaAdgB2wHcAd0B2wHeAdwB3wHgAeEB3wHiAeAB4wHkAeUB4wHmAeQB5wHoAekB6AHnAeoB6wHsAe0B6wHuAewB7wHwAfEB8gHvAfEB8wH0AfUB8wH2AfQB9wH4AfkB9wH6AfgB+wH8Af0B+wH+AfwB/wEAAgEC/wECAgACAwIEAgUCAwIGAgQCBwIIAgkCBwIKAggCCwIMAg0CCwIOAgwCDwIQAhECDwISAhACEwIUAg8CEwIVAhQCFQITAhYCFwIUAhUCGAIUAhcCFAIYAhkCGgIbAhwCGwIaAh0CHgIfAiACIQIfAh4CHwIhAiICIwIiAiECJAIiAiMCJAIjAiUCJgInAigCJgIpAicCKgIpAiYCKwIsAi0CKwIuAiwCLwIwAjECLwIyAjACMwI0AjUCMwI2AjQCNwI4AjkCNwI6AjgCOwI8Aj0COwI+AjwCPwI+AjsCPwJAAj4CQQJCAkMCRAJCAkECRAJFAkICRgJHAkgCRgJJAkcCSgJLAkwCSgJNAksCTgJPAlACTgJRAk8CUgJTAlQCVAJTAlUCUgJWAlMCVAJVAlcCWAJWAlICVwJVAlkCWAJaAlYCWwJaAlgCWwJcAloCVwJZAl0CXQJZAl4CXQJeAl8CXwJeAmACXwJgAmECYgJjAmQCYgJlAmMCYwJmAmQCYwJnAmYCaAJpAmoCaQJoAmsCbAJtAmoCbgJvAnACcQJuAnACcgJzAnQCcwJyAnUCcwJ1AnYCdwJ4AnkCeQJ4AnoCdwJ7AngCewJ3AnwCfQJ+An8CfQKAAn4CgQKCAoMCgQKEAoICgwKCAoUCgwKFAoYChwKIAokChwKKAogCiQKIAosCiQKLAowCjQKOAo8CjQKQAo4C")],
-"material": SubResource("StandardMaterial3D_f8dbi"),
+"material": SubResource("StandardMaterial3D_vckts"),
 "name": "Barrel",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -1250,7 +1529,7 @@ _surfaces = [{
 "index_count": 696,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABwAAAQYABwABAQABAgEFAAMBAgEEAAUABAEFAQYBBAEHAQUBCAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAIAQkBGAAbAAgBCgEZABoACgELARkADAENAQ4BDAEPAQ0BHAAdAB4AHAAfAB0AIAAhACIAIAAjACEAJAAlACYAJAAnACUAKAApACoAKwAqACkAKAAsACkAKwApAC0AEAEsACgAEQErAC0AEAESASwAEQEtABMBFAESARABFQERARMBFAEWARIBFQETARcBMAAWARQBLwAVARcBMAAuABYBLwAXATEAMgAuADAAMwAvADEAMgA0AC4AMwAxADUANgA0ADIANwAzADUANgA4ADQANwA1ADkAOgA4ADYAOgA3ADkAOgA7ADgAOgA5ADsAPAA9AD4APgA9ABgBPABAAD0APgAYARkBPABCAEAAGQEYARoBPABEAEIAGQEaARsBRAAcAUIAGwEaAT8ARAAdARwBGwE/AEEAHQEeARwBQQA/AEMAHQEfAR4BQQBDAEUAHwFIAB4BRQBDAEcAHwFGAEgARQBHAEkARgBKAEgASQBHAEsARgBMAEoASQBLAE0ATABOAEoATwBNAEsATABPAE4ATwBLAE4AUABRAFIAUABTAFEAVABVAFYAVABXAFUAWABZAFoAWABbAFkAXAAgASEBXABdACABIgFfAF4AIgEjAV8AJAElASYBJAEnASUBYABhAGIAYABjAGEAZABlAGYAZABnAGUAaABpAGoAaABrAGkAbABtAG4AbABvAG0AcAAoAXIAcAApASgBKgFxACsBKgFzAHEALAEtAS4BLAEvAS0BdAB1AHYAdAB3AHUAeAB5AHoAeAB7AHkAfAB9AH4AfAB/AH0AgACBAIIAgACDAIEAhAAwATEBhACFADABMgGHAIYAMgEzAYcANAE1ATYBNAE3ATUBiACJAIoAiACLAIkAjACNAI4AjACPAI0AkACRAJIAkACTAJEAlACVAJYAlACXAJUAmAA4AZoAmAA5ATgBOgGZADsBOgGbAJkAPAE9AT4BPAE/AT0BnACdAJ4AnACfAJ0AoAChAKIAoACjAKEApAClAKYApACnAKUAqACpAKoAqACrAKkAQAGoAKoArQCpAKsAQAGqAEEBrQCvAKkAQgFAAUEBQwGvAK0AQgFBAUQBQwFFAa8ArABCAUQBRgFFAUMBrABEAa4ARgFHAUUBsACsAK4AswBHAUYBsACuALIAswCxAEcBtACwALIAtQCxALMAtACyALYAtQC3ALEAuAC0ALYAuQC3ALUAuAC2ALoAuQC7ALcAuAC6ALsAuAC7ALkAvAC9AL4AvAC+AL8AvADAAL0AvAC/AMEAwABIAb0AwQC/AEkBwABKAUgBwQBJAUsBSgFMAUgBSwFJAU0BSgFOAUwBSwFNAU8BTgHEAEwBTwFNAcMATgHCAMQATwHDAMUAwgDGAMQAxQDDAMcAwgDIAMYAxQDHAMkAyADKAMYAyQDHAMsAyADMAMoAyQDLAM0AzADOAMoAzQDLAM4AzADPAM4AzQDOAM8A0ADRANIA0ADTANEA1ADVANYA1ADXANUA2ADZANoA2ADbANkA3wBQAd4A3wBRAVABUgHdAFMBUgHcAN0AVAFVAVYBVAFXAVUB4ADhAOIA4ADjAOEA5ADlAOYA5ADnAOUA6ADpAOoA6ADrAOkA7ADtAO4A7ADvAO0A8ABYAVkB8ADzAFgBWgHxAPIAWgFbAfEAXAFdAV4BXAFfAV0B9AD1APYA9AD3APUA+AD5APoA+AD7APkA/AD9AP4A/AD/AP0A"),
 "lods": [0.020447405, PackedByteArray("AAABAAIAAAADAAEABAAFAAYABwAEAAYACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0AIAAhACIAIAAjACEAJAAlACYAJAAnACUAKAApACoAKwAqACkAKAAsACkAKwApAC0AKAAuACwALwArAC0AMAAuACgALwAtADEAMgAuADAAMwAvADEAMgA0AC4AMwAxADUANgA0ADIANwAzADUANgA4ADQANwA1ADkAOgA4ADYAOgA3ADkAOgA7ADgAOgA5ADsAPAA9AD4APgA9AD8APABAAD0APgA/AEEAPABCAEAAQQA/AEMAPABEAEIAQQBDAEUARABGAEIARQBDAEcARgBIAEIARQBHAEkARgBKAEgASQBHAEsARgBMAEoASQBLAE0ATABOAEoATwBNAEsATABPAE4ATwBLAE4AUABRAFIAUABTAFEAVABVAFYAVABXAFUAWABZAFoAWABbAFkAXABdAF4AXgBdAF8AYABhAGIAYABjAGEAZABlAGYAZABnAGUAaABpAGoAaABrAGkAbABtAG4AbABvAG0AcABxAHIAcABzAHEAdAB1AHYAdAB3AHUAeAB5AHoAeAB7AHkAfAB9AH4AfAB/AH0AgACBAIIAgACDAIEAhACFAIYAhgCFAIcAiACJAIoAiACLAIkAjACNAI4AjACPAI0AkACRAJIAkACTAJEAlACVAJYAlACXAJUAmACZAJoAmACbAJkAnACdAJ4AnACfAJ0AoAChAKIAoACjAKEApAClAKYApACnAKUAqACpAKoAqACrAKkArACoAKoArQCpAKsArACqAK4ArQCvAKkAsACsAK4ArQCxAK8AsACuALIAswCxAK0AtACwALIAtQCxALMAtACyALYAtQC3ALEAuAC0ALYAuQC3ALUAuAC2ALoAuQC7ALcAuAC6ALsAuAC7ALkAvAC9AL4AvAC+AL8AvADAAL0AvAC/AMEAwADCAL0AwQC/AMMAwgDEAL0AwQDDAMUAwgDGAMQAxQDDAMcAwgDIAMYAxQDHAMkAyADKAMYAyQDHAMsAyADMAMoAyQDLAM0AzADOAMoAzQDLAM4AzADPAM4AzQDOAM8A0ADRANIA0ADTANEA1ADVANYA1ADXANUA2ADZANoA2ADbANkA3ADdAN4A3wDcAN4A4ADhAOIA4ADjAOEA5ADlAOYA5ADnAOUA6ADpAOoA6ADrAOkA7ADtAO4A7ADvAO0A8ADxAPIA8ADzAPEA9AD1APYA9AD3APUA+AD5APoA+AD7APkA/AD9AP4A/AD/AP0A")],
-"material": SubResource("StandardMaterial3D_x66xj"),
+"material": SubResource("StandardMaterial3D_60cf1"),
 "name": "Wrap",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -1262,7 +1541,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 1464,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0AIAAhACIAIAAjACEAJAAlACYAJAAnACUAKAApACoAKAArACkALAAtAC4ALAAvAC0AMAAxADIAMAAzADEANAA1ADYANAA3ADUAOAA5ADoAOAA7ADkAPAA9AD4APAA/AD0AQABBAEIAQABDAEEARABFAEYARABHAEUASABJAEoASABLAEkATABNAE4ATABPAE0AUABRAFIAUABTAFEAVABVAFYAVABXAFUAWABZAFoAWABbAFkAXABdAF4AXgBdAF8AXABgAF0AXgBfAGEAYgBgAFwAYQBfAGMAYgBkAGAAYQBjAGUAZgBkAGIAZQBjAGcAZgBoAGQAZQBnAGkAagBoAGYAaQBnAGsAagBsAGgAaQBrAG0AbgBsAGoAbQBrAG8AbgBwAGwAbQBvAHEAcgBwAG4AcQBvAHMAcgBzAHAAcQBzAHIAdAB1AHYAdAB3AHUAeAB5AHoAegB5AHsAeAB8AHkAegB7AH0AfgB8AHgAfQB7AH8AfgCAAHwAfQB/AIEAggCAAH4AgQB/AIMAggCEAIAAgQCDAIUAhgCEAIIAhQCDAIcAhgCIAIQAhQCHAIkAigCIAIYAiQCHAIsAigCMAIgAiQCLAI0AjgCMAIoAjQCLAI8AjgCPAIwAjQCPAI4AkACRAJIAkACTAJEAlACVAJYAlACXAJUAmACZAJoAmACbAJkAnACdAJ4AnACfAJ0AoAChAKIAoACjAKEApAClAKYApACnAKUAqACpAKoAqACrAKkArACtAK4ArACvAK0AsACxALIAsACzALEAtAC1ALYAtAC3ALUAuAC5ALoAuAC7ALkAvAC9AL4AvAC/AL0AwADBAMIAwADDAMEAwQDDAMQAxQDAAMYAxwDAAMUAwwDAAMcAxwDFAMgAwwDHAMkAyQDHAMoAwwDJAMsAzADNAM4AzADPAM0A0ADRANIA0ADTANEA1ADVANYA1ADXANUA2ADZANoA2ADbANkA3ADdAN4A3ADfAN0A4ADhAOIA4ADjAOEA5ADlAOYA5ADnAOUA6ADpAOoA6ADrAOkA7ADtAO4A7ADvAO0A8ADxAPIA8ADzAPEA9AD1APYA9AD3APUA+AD5APoA+AD7APkA/AD9AP4A/AD/AP0AAAEBAQIBAAEDAQEBBAEFAQYBBAEHAQUBCAEJAQoBCAELAQkBDAENAQ4BDAEPAQ0BEAERARIBEAETAREBFAEVARYBFAEXARUBGAEZARoBGAEbARkBHAEdAR4BHAEfAR0BIAEhASIBIAEjASEBJAElASYBJAEnASUBKAEpASoBKAErASkBLAEtAS4BLAEvAS0BMAExATIBMAEzATEBNAE1ATYBNAE3ATUBOAE5AToBOAE7ATkBPAE9AT4BPAE/AT0BQAFBAUIBQAFDAUEBRAFFAUYBRAFHAUUBSAFJAUoBSAFLAUkBTAFNAU4BTAFPAU0BUAFRAVIBUAFTAVEBVAFVAVYBVgFVAVcBVAFYAVUBVgFXAVkBWgFYAVQBWQFXAVsBWgFcAVgBWQFbAV0BXgFcAVoBXQFbAV8BXgFgAVwBXQFfAWEBYgFgAV4BYQFfAWMBYgFkAWABYQFjAWUBZgFkAWIBZQFjAWcBZgFoAWQBZQFnAWkBagFoAWYBaQFnAWsBagFrAWgBaQFrAWoBbAFtAW4BbgFtAW8BbAFwAW0BbgFvAXEBcgFwAWwBcQFvAXMBcgF0AXABcQFzAXUBdgF0AXIBdQFzAXcBdgF4AXQBdQF3AXkBegF4AXYBeQF3AXsBegF8AXgBeQF7AX0BfgF8AXoBfQF7AX8BfgGAAXwBfQF/AYEBggGAAX4BgQF/AYMBggGDAYABgQGDAYIBhAGFAYYBhAGHAYUBiAGJAYoBiAGLAYkBjAGNAY4BjAGPAY0BkAGRAZIBkAGTAZEBlAGVAZYBlAGXAZUBmAGZAZoBmAGbAZkBnAGdAZ4BnAGfAZ0BoAGhAaIBoAGjAaEBpAGlAaYBpAGnAaUBqAGpAaoBqAGrAakBrAGtAa4BrAGvAa0BsAGxAbIBsAGzAbEBtAG1AbYBtAG3AbUBuAG5AboBuAG7AbkBvAG9Ab4BvAG/Ab0BwAHBAcIBwAHDAcEBxAHFAcYBxAHHAcUByAHJAcoByAHLAckBzAHNAc4BzAHPAc0B0AHRAdIB0AHTAdEB1AHVAdYB1AHXAdUB2AHZAdoB2AHbAdkB3AHdAd4B3AHfAd0B4AHhAeIB4AHjAeEB5AHlAeYB5AHnAeUB6AHpAeoB6QHoAesB6QHrAewB7QHuAe8B7QHwAe4B8QHyAfMB8QH0AfIB9QH2AfcB9gH1AfgB9gH4AfkB+gH7AfwB+wH6Af0B+wH9Af4B/wEAAgEC/wECAgACAwIEAgUCAwIGAgQCBwIIAgkCBwIKAggCCwIMAg0CDAILAg4CDAIOAg8CEAIRAhICEAITAhECEgIUAhACEgIVAhQCFgIXAhgCFgIZAhcCFwIaAhsCFwIbAhwCHQIeAhcCHQIfAh4CIAIhAh0CIAIiAiECIwIkAiUCIwImAiQCJQInAiMCJQIoAicCKQIqAisCKwIqAiwCKQItAioCKwIsAi4CLwItAikCLgIsAjACLwIxAi0CLgIwAjICMwIxAi8CMgIwAjQCMwI1AjECMgI0AjYCNwI1AjMCNgI0AjgCNwI4AjUCNgI4AjcCOQI6AjsCOQI8AjoCPQI+Aj8CPQJAAj4CQQJCAkMCQQJEAkICRQJGAkcCRQJIAkYCSQJKAksCSQJMAkoCTQJOAk8CTQJQAk4CUQJSAlMCUQJUAlICVQJWAlcCVQJYAlYCWQJaAlsCWwJaAlwCWQJdAloCWwJcAl4CXwJdAlkCXgJcAmACXwJhAl0CXgJgAmICYwJhAl8CYgJgAmQCYwJlAmECYgJkAmYCZwJlAmMCZgJkAmgCZwJoAmUCZgJoAmcCaQJqAmsCaQJsAmoCagJtAmsCagJuAm0CbwJpAmsCbQJvAmsCbwJwAmkCbQJxAm8CcgJzAnQCcgJ1AnMCdgJ3AngCdgJ5AncCegJ7AnwCegJ9AnsCfgJ/AoACfgKBAn8CggKDAoQCggKFAoMChgKHAogChgKJAocCigKLAowCigKNAosCjgKPApACjgKRAo8CkgKTApQCkgKVApMClgKXApgClgKZApcCmgKbApwCmgKdApsCngKfAqACngKhAp8CogKjAqQCogKlAqMCpgKnAqgCpgKpAqcCqgKrAqwCqgKtAqsCrgKvArACrgKxAq8CsgKzArQCsgK1ArMCtgK3ArgCtgK5ArcCugK7ArwCugK9ArsCvgK/AsACvgLBAr8CwgLDAsQCxALDAsUCwgLGAsMCxALFAscCyALGAsICxwLFAskCyALKAsYCxwLJAssCzALKAsgCywLJAs0CzALOAsoCywLNAs8C0ALOAswCzwLNAtEC0ALSAs4CzwLRAtMC1ALSAtAC0wLRAtUC1ALWAtIC0wLVAtcC2ALWAtQC1wLVAtkC2ALZAtYC1wLZAtgC2gLbAtwC2gLdAtsC2wLdAt4C3wLaAuAC4QLaAt8C3QLaAuEC4QLfAuIC3QLhAuMC4wLhAuQC3QLjAuUC5gLnAugC5gLpAucC6gLrAuwC6gLtAusC7gLvAvAC7gLxAu8C8gLzAvQC8gL1AvMC9gL3AvgC9gL5AvcC+gL7AvwC+gL9AvsC/gL/AgAD/gIBA/8CAgMDAwQDAgMFAwMDBgMHAwgDBgMJAwcDCgMLAwwDCgMNAwsDDgMPAxADDgMRAw8DEgMTAxQDEgMVAxMD"),
-"material": SubResource("StandardMaterial3D_lkefs"),
+"material": SubResource("StandardMaterial3D_mcxjs"),
 "name": "Plastic",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -1271,6 +1550,15 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_itl0b")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_68l36"]
+resource_name = "Oil"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0, 0, 0, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_iglam"]
 _surfaces = [{
@@ -1296,7 +1584,7 @@ _surfaces = [{
 "index_count": 546,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADgAPABAADgARAA8AEgATABQAEgAVABMAFgAXABgAFgAZABcAGgAbABwAGgAdABsAIAAhACIAIAAjACEAJAAlACYAJAAnACUAgAC4AIIAgAC5ALgAKAC6ACoAKAC7ALoAOAA5ADoAOAA7ADkAQwC8AEUAQwC9ALwAUwBUAFUAUwBWAFQAXgBfAGAAXgBhAF8AYgBjAGQAYgBlAGMAvgAMAL8AvgANAAwAwADBAMIAwADDAMEAxABmAMUAxABnAGYAcgBzAHQAcgB1AHMAxgDHAMgAxgBYAMcAyQDKAMsAyQDMAMoAKwDNACkAKwDOAM0AzwA8ANAAzwA9ADwARgDRAEQARgDSANEA0wDUAIEA0wDVANQA1gAtACwA1gAuAC0A1wDYANkA1wA+ANgASADaAEcASADbANoA3ADdAN4A3ADfAN0A4ABoAOEA4ABpAGgA4gDjAOQA4gDlAOMA5gDnAOgA5gDpAOcASQDqAOsASQDsAOoA7QDuAO8A7QDwAO4A8QB2APIA8QB3AHYA8wD0APUA8wD2APQA9wD4APkA9wD6APgA+wD8AP0A+wD+APwA/wA/AAAB/wBAAD8AAQECAQMBAQEEAQIBBQEfAAYBBQEeAB8ABwEIAQkBBwEKAQgBawALAWoAawAMAQsBDQEOAQ8BDQEQAQ4BEQESARMBEQEUARIBFQEWARcBFQEYARYBGQEaAS8AGQEbARoBHAEdAR4BHAEfAR0BIAF6ACEBIAF7AHoAIgExACMBIgEwADEAJAFBACUBJAFCAEEAJgFKACcBJgFLAEoAKAGEACkBKAGDAIQAKgFsACsBKgFtAGwALAF5AC0BLAF4AHkALgFXAC8BLgFZAFcAMAExATIBMAEzATEBNAE1ATYBNAE3ATUBhwA4AYkAhwA5ATgBOgE7ATwBOgE9ATsBjQCOAI8AjQA+AY4APwFAAUEBPwFNAEABQgFDAUQBQgFFAUMBRgFHAUgBRgFJAUcBlACVAJYAlACXAJUASgFLAUwBSgFNAUsBTgFPAVABTgFRAU8BUgFTAVQBUgFVAVMBVgEyAFcBVgEzADIAWAFZAVoBWAFbAVkBXAFMAF0BXAFOAEwAXgGFAF8BXgGGAIUANgA1ADcANgA0ADUAbwBwAG4AbwBxAHAAfQB+AHwAfQB/AH4AWwBcAFoAWwBdAFwAigCLAIgAigCMAIsAYAFhAWIBYAFjAWEBkACSAJEAkACTAJIAZAFlAWYBZAFnAWUBmACZAJoAmACbAJkAUQBPAFAAUQBSAE8AnACdAJ4AnACfAJ0AoAChAKIAoACjAKEApAClAKYApACnAKUAqACpAKoAqACrAKkArACtAK4ArACvAK0AsACxALIAsACzALEAsQCzALQAswCwALUAtQCwALYAswC1ALcA"),
 "lods": [0.016113589, PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkACAAMAAsACAANAAwADgAPABAADgARAA8AEgATABQAEgAVABMAFgAXABgAFgAZABcAGgAbABwAGgAdABsAHQAeABsAHgAfABsAIAAhACIAIAAjACEAJAAlACYAJAAnACUAKAApACoAKAArACkAKwAsACkAKwAtACwAKwAuAC0ALgAvAC0ALgAwAC8AMAAxAC8AMAAyADEAMAAzADIAMwA0ADIAMwA1ADQANgA0ADUANgA1ADcAOAA5ADoAOAA7ADkAOwA8ADkAOwA9ADwAPQA+ADwAPgA/ADwAPgBAAD8AQABBAD8AQABCAEEAQwBEAEUAQwBGAEQARgBHAEQARgBIAEcASABJAEcASQBKAEcASQBLAEoASwBMAEoASwBNAEwATQBOAEwATgBPAEwATgBQAE8AUQBPAFAAUQBSAE8AUwBUAFUAUwBWAFQAVgBXAFQAVgBYAFcAWABZAFcAWQBaAFcAWQBbAFoAWwBcAFoAWwBdAFwAXgBfAGAAXgBhAF8AYgBjAGQAYgBlAGMAZQBmAGMAZQBnAGYAZwBoAGYAZwBpAGgAaQBqAGgAaQBrAGoAawBsAGoAawBtAGwAbQBuAGwAbQBvAG4AbwBwAG4AbwBxAHAAcgBzAHQAcgB1AHMAdQB2AHMAdQB3AHYAdwB4AHYAeAB5AHYAeAB6AHkAeAB7AHoAewB8AHoAewB9AHwAfQB+AHwAfQB/AH4AgACBAIIAgACDAIEAgwCEAIEAgwCFAIQAgwCGAIUAhwCIAIkAhwCKAIgAigCLAIgAigCMAIsAjQCOAI8AjQCQAI4AkACRAI4AkACSAJEAkACTAJIAlACVAJYAlACXAJUAmACZAJoAmACbAJkAnACdAJ4AnACfAJ0AoAChAKIAoACjAKEApAClAKYApACnAKUAqACpAKoAqACrAKkArACtAK4ArACvAK0AsACxALIAsACzALEAsQCzALQAswCwALUAtQCwALYAswC1ALcA")],
-"material": SubResource("StandardMaterial3D_32n1p"),
+"material": SubResource("StandardMaterial3D_68l36"),
 "name": "Oil",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -1306,13 +1594,15 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_iglam")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i363c"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hxv35"]
 resource_name = "Tube"
 transparency = 1
 diffuse_mode = 3
 specular_mode = 1
 albedo_color = Color(0.68235296, 0.72156864, 0.7411765, 0.13333334)
 roughness = 0.0
+z_clip_scale = 0.8
+fov_override = 100.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_okiqf"]
 _surfaces = [{
@@ -1338,7 +1628,7 @@ _surfaces = [{
 "index_count": 1140,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADgAPABAADgARAA8AEgATABQAEgAVABMAFgAXABgAFgAZABcAGgAcAHYBGgAbABwAIQAiACMAIQAkACIAJQAmACcAJQAoACYAdAB3AXgBdAB3AHcBKQB5AXoBKQAsAHkBNwA4ADkANwA6ADgAQQB7AXwBQQBCAHsBagB9AX4BagBtAH0BTgBPAFAATgBRAE8AUgBTAFQAUgBVAFMAfwEMAA0AfwGAAQwAgQEeAIIBgQGDAR4AhAFWAIUBhAGGAVYAXwBgAGEAXwBiAGAAhwFrAGwAhwGIAWsAiQGKAR0AiQGLAYoBKwCMAY0BKwAqAIwBjgE7ADwAjgGPATsAQwCQAZEBQwCSAZABdgCTAZQBdgB1AJMBlQEtAC4AlQGWAS0AlwE9AJgBlwGZAT0ARQCaAUYARQBEAJoBmwGcAZ0BmwGeAZwBnwGgAVcAnwGhAaABogGjAaQBogGlAaMBpgGnAagBpgGpAacBqgGrAawBqgFHAKsBrQGuAa8BrQGwAa4BZACxAbIBZABjALEBswG0AbUBswG2AbQBtwG4AbkBtwG6AbgBuwG8Ab0BuwG+AbwBvwHAAT4AvwHBAcABwgHDAcQBwgHFAcMBxgEgAB8AxgHHASAAyAHJAcoByAHLAckBzAHNAc4BzAFYAM0BzwHQAdEBzwHSAdABbwDTAdQBbwDVAdMB1gHXAdgB1gHZAdcB2gHbAdwB2gHdAdsB3gHfAeAB3gHhAd8B4gHjAeQB4gHlAeMB5gEvADAA5gHnAS8A6AE/AEAA6AHpAT8A6gFIAEkA6gHrAUgA7AF4AHkA7AHtAXgA7gFaAFkA7gHvAVoA8AFlAGYA8AHxAWUA8gFuAHAA8gHzAW4A9AH1AfYB9AH3AfUB+AFxAPkB+AH6AXEAfAD7AX4AfAB/APsB/AH9Af4B/AH/Af0BhgAAAgEChgCJAAACAgIDAgQCAgIFAgMCBgIHAggCBgIJAgcCCgILAgwCCgINAgsCggCDAIQAggCFAIMADgIPAhACDgIRAg8CEgITAhQCEgIVAhMCFgIXAhgCFgIZAhcCGgIxADIAGgIbAjEAHAIdAh4CHAIfAh0CIAIhAiICIAIjAiECJAJ6AHsAJAIlAnoANQA0ADMANQA2ADQAWwBdAF4AWwBcAF0AaABnAGkAaAAmAmcAJwJzAHIAJwIoAnMAKQKBAIAAKQJ9AIEAKgIrAiwCKgItAisCiACKAIsAiACHAIoALgJKAEsALgIvAkoAjACNAI4AjACPAI0ATAAwAk0ATAAxAjACkACRAJIAkACTAJEAlACVAJYAlACXAJUAmACZAJoAmACbAJkAnACdAJ4AnACfAJ0AoAChAKIAoACjAKEApAClAKYApACnAKUApQCnAKgApwCkAKkAqQCkAKoApwCpAKsArACtAK4ArACvAK0AsACxALIAsACzALEAtAC1ALYAtAC3ALUAugC7ALwAugC9ALsAvgC/AMAAvgDBAL8AwgDDAMQAwgDFAMMAxgDHAMgAxgDJAMcAzADNAM4AzADPAM0A0ADRANIA0ADTANEALAEyAi4BLAEzAjIC1AA0AtYA1AA1AjQC5ADlAOYA5ADnAOUA7wA2AvEA7wA3AjYC/wAAAQEB/wACAQABCgELAQwBCgENAQsBDgEPARABDgERAQ8BOAK4ADkCOAK5ALgAOgI7AjwCOgI9AjsCPgISAT8CPgITARIBHgEfASABHgEhAR8BQAJBAkICQAIEAUECQwJEAkUCQwJGAkQC1wBHAtUA1wBIAkcCSQLoAEoCSQLpAOgA8gBLAvAA8gBMAksCTQJOAi0BTQJPAk4CUALZANgAUALaANkAUQJSAlMCUQLqAFIC9ABUAvMA9ABVAlQCVgJXAlgCVgJZAlcCWgIUAVsCWgIVARQBXAJdAl4CXAJfAl0CYAJhAmICYAJjAmEC9QBkAmUC9QBmAmQCZwJoAmkCZwJqAmgCawIiAWwCawIjASIBbQJuAm8CbQJwAm4CcQJyAnMCcQJ0AnICdQJ2AncCdQJ4AnYCeQLrAHoCeQLsAOsAewJ8An0CewJ+AnwCfwLLAIACfwLKAMsAgQKCAoMCgQKEAoICFwGFAhYBFwGGAoUChwKIAokChwKKAogCiwKMAo0CiwKOAowCjwKQApECjwKSApACkwKUAtsAkwKVApQClgKXApgClgKZApcCmgImAZsCmgInASYBnALdAJ0CnALcAN0AngLtAJ8CngLuAO0AoAL2AKECoAL3APYAogIwAaMCogIvATABpAIYAaUCpAIZARgBpgIlAacCpgIkASUBqAIDAakCqAIFAQMBqgKrAqwCqgKtAqsCrgKvArACrgKxAq8CMwGyAjUBMwGzArICtAK1ArYCtAK3ArUCOQE6ATsBOQG4AjoBuQK6ArsCuQL5ALoCvAK9Ar4CvAK/Ar0CwALBAsICwALDAsECQAFBAUIBQAFDAUEBxALFAsYCxALHAsUCyALJAsoCyALLAskCzALNAs4CzALPAs0C0ALeANEC0ALfAN4A0gLTAtQC0gLVAtMC1gL4ANcC1gL6APgA2AIxAdkC2AIyATEB4gDhAOMA4gDgAOEAGwEcARoBGwEdARwBKQEqASgBKQErASoBBwEIAQYBBwEJAQgBNgE3ATQBNgE4ATcB2gLbAtwC2gLdAtsCPAE+AT0BPAE/AT4B3gLfAuAC3gLhAt8CRAFFAUYBRAFHAUUB/QD7APwA/QD+APsASAFJAUoBSAFLAUkBTAFNAU4BTAFPAU0BUAFRAVIBUAFTAVEBVAFVAVYBVAFXAVUBWAFZAVoBWAFbAVkBXAFdAV4BXAFfAV0BXQFfAWABXwFcAWEBYQFcAWIBXwFhAWMBZAFlAWYBZAFnAWUBZwFoAWUBZwFpAWgBaQFqAWgBaQFrAWoBawFsAWoBawFtAWwBbQFuAWwBbQFvAW4BbwFwAW4BbwFxAXABcQFyAXABcQFzAXIBcwF0AXIBcwF1AXQB"),
 "lods": [0.01611362, PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkACAAKAAwACAAMAA0ADgAPABAADgARAA8AEgATABQAEgAVABMAFgAXABgAFgAZABcAGgAbABwAGgAcAB0AHQAcAB4AHQAeAB8AHwAeACAAIQAiACMAIQAkACIAJQAmACcAJQAoACYAKQAqACsAKQAsACoAKwAqAC0AKwAtAC4ALgAtAC8ALgAvADAAMAAvADEAMAAxADIAMgAxADMAMgAzADQANQA0ADMANQA2ADQANwA4ADkANwA6ADgAOQA4ADsAOQA7ADwAPAA7AD0APAA9AD4APgA9AD8APgA/AEAAQQBCAEMAQwBCAEQAQwBEAEUARQBEAEYARgBEAEcARgBHAEgARgBIAEkASQBIAEoASQBKAEsATABLAEoATABKAE0ATgBPAFAATgBRAE8AUgBTAFQAUgBVAFMAVABTAFYAVABWAFcAVwBWAFgAVwBYAFkAWQBYAFoAWQBaAFsAWwBaAFwAWwBcAF0AWwBdAF4AXwBgAGEAXwBiAGAAYQBgAGMAYQBjAGQAZABjAGUAZABlAGYAZgBlAGcAZgBnAGgAaABnAGkAagBrAGwAagBtAGsAbABrAG4AbABuAG8AbwBuAHAAcABuAHEAcABxAHIAcgBxAHMAdAB1AHYAdAB3AHUAdgB1AHgAdgB4AHkAeQB4AHoAeQB6AHsAfAB9AH4AfAB/AH0AfgB9AIAAgAB9AIEAggCDAIQAggCFAIMAhgCHAIgAhgCJAIcAiACHAIoAiACKAIsAjACNAI4AjACPAI0AkACRAJIAkACTAJEAlACVAJYAlACXAJUAmACZAJoAmACbAJkAnACdAJ4AnACfAJ0AoAChAKIAoACjAKEApAClAKYApACnAKUApQCnAKgApwCkAKkAqQCkAKoApwCpAKsArACtAK4ArACvAK0AsACxALIAsACzALEAtAC1ALYAtAC3ALUAtAC4ALcAtAC5ALgAugC7ALwAugC9ALsAvgC/AMAAvgDBAL8AwgDDAMQAwgDFAMMAxgDHAMgAxgDJAMcAyQDKAMcAygDLAMcAzADNAM4AzADPAM0A0ADRANIA0ADTANEA1ADVANYA1ADXANUA1wDYANUA1wDZANgA1wDaANkA2gDbANkA2gDcANsA3ADdANsA3ADeAN0A3ADfAN4A3wDgAN4A3wDhAOAA4gDgAOEA4gDhAOMA5ADlAOYA5ADnAOUA5wDoAOUA5wDpAOgA6QDqAOgA6gDrAOgA6gDsAOsA7ADtAOsA7ADuAO0A7wDwAPEA7wDyAPAA8gDzAPAA8gD0APMA9AD1APMA9QD2APMA9QD3APYA9wD4APYA9wD5APgA+QD6APgA+gD7APgA+gD8APsA/QD7APwA/QD+APsA/wAAAQEB/wACAQABAgEDAQABAgEEAQMBBAEFAQMBBQEGAQMBBQEHAQYBBwEIAQYBBwEJAQgBCgELAQwBCgENAQsBDgEPARABDgERAQ8BEQESAQ8BEQETARIBEwEUARIBEwEVARQBFQEWARQBFQEXARYBFwEYARYBFwEZARgBGQEaARgBGQEbARoBGwEcARoBGwEdARwBHgEfASABHgEhAR8BIQEiAR8BIQEjASIBIwEkASIBJAElASIBJAEmASUBJAEnASYBJwEoASYBJwEpASgBKQEqASgBKQErASoBLAEtAS4BLAEvAS0BLwEwAS0BLwExATABLwEyATEBMwE0ATUBMwE2ATQBNgE3ATQBNgE4ATcBOQE6ATsBOQE8AToBPAE9AToBPAE+AT0BPAE/AT4BQAFBAUIBQAFDAUEBRAFFAUYBRAFHAUUBSAFJAUoBSAFLAUkBTAFNAU4BTAFPAU0BUAFRAVIBUAFTAVEBVAFVAVYBVAFXAVUBWAFZAVoBWAFbAVkBXAFdAV4BXAFfAV0BXQFfAWABXwFcAWEBYQFcAWIBXwFhAWMBZAFlAWYBZAFnAWUBZwFoAWUBZwFpAWgBaQFqAWgBaQFrAWoBawFsAWoBawFtAWwBbQFuAWwBbQFvAW4BbwFwAW4BbwFxAXABcQFyAXABcQFzAXIBcwF0AXIBcwF1AXQB")],
-"material": SubResource("StandardMaterial3D_i363c"),
+"material": SubResource("StandardMaterial3D_hxv35"),
 "name": "Tube",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -1353,20 +1643,14 @@ transform = Transform3D(1.333, 0, 0, 0, 1.333, 0, 0, 0, 1.333, 0, 0, 0)
 script = ExtResource("1_p6h4n")
 arm_name = "Oil Spill"
 rarity = 1
-unlocked_by_default = null
 projectile = ExtResource("2_p6h4n")
 base_damage = 3.0
 base_fire_rate = 1.333
 base_range = 2000.0
 base_speed = 30.0
-base_splash_radius = null
-base_projectile_count = null
-spread = null
 recoil = Vector2(0.5, 0.2)
 recoil_speed = 8.0
 snap = 6.0
-shoot_animation = null
-equip_animation = null
 muzzle = ExtResource("3_h7p05")
 muzzle_color = Color(0.5990973, 0.5415269, 0.44946676, 1)
 firing_audio = [NodePath("BlobLaunch")]

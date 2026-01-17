@@ -56,6 +56,4 @@ func roll() -> Arm:
 	var selected = packed.instantiate()
 	get(pool_name).erase(packed)
 	
-	print(get(pool_name))
-	
 	return selected

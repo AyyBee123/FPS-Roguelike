@@ -628,7 +628,7 @@ script = ExtResource("13_06tpx")
 
 [node name="IFrames" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 0.5
+wait_time = 0.2
 one_shot = true
 
 [node name="Shadow" type="Decal" parent="."]
