@@ -57,6 +57,7 @@ const DEBUG_BULLET = preload("uid://btq2f4vqn8fhy")
 
 func _ready():
 	fire_rate_timer = 1.0 / fire_rate
+	set_materials()
 
 func _physics_process(delta):
 	t += delta
@@ -139,6 +140,18 @@ func launch_projectile(point: Vector3):
 
 func get_stat(stat: Variant, property: String) -> Variant:
 	return stat if not player else stat * player.stats.get_stat(property)
+
+func set_materials() -> void:
+	var mesh_instances: Array = find_children("", "MeshInstance3D", true)
+	
+	for mesh_node: MeshInstance3D in mesh_instances:
+		for i in range(mesh_node.mesh.get_surface_count()):
+			var mat = mesh_node.mesh.surface_get_material(i)
+			if mat is StandardMaterial3D:
+				mat.use_z_clip_scale = true
+				mat.z_clip_scale = 0.8
+				mat.use_fov_override = true
+				mat.fov_override = 100
 
 #func hit_scan_collision(collision_point):
 	#var bullet_direction = (collision_point - bullet_point.get_global_transform().origin).normalized()
