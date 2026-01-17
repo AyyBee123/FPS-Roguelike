@@ -131,6 +131,8 @@ func launch_projectile(point: Vector3):
 	proj.range = range
 	proj.player = player
 	
+	Utils.copy_groups(self, proj)
+	
 	get_tree().current_scene.add_child(proj)
 	player._on_arm_fired(proj, damage)
 	
@@ -152,8 +154,6 @@ func set_material_override():
 			var material := mesh_node.mesh.surface_get_material(i)
 			
 			if material is StandardMaterial3D:
-				mesh_node.mesh.surface_set_material(i, material)
-				
 				material.use_z_clip_scale = true
 				material.z_clip_scale = 0.8
 				material.use_fov_override = true

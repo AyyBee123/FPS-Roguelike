@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://i6ujlfa4dmcl"]
+
+[resource]
+render_priority = 1
+transparency = 1
+cull_mode = 2
+depth_draw_mode = 1
+shading_mode = 0
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(1, 1, 1, 0.1254902)
+use_z_clip_scale = true
+z_clip_scale = 0.8
+use_fov_override = true
+fov_override = 100.0

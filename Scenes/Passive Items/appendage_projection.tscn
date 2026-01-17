@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://crnx73g4cc4jh"]
+
+[ext_resource type="Script" uid="uid://b3aku5a2w8qc3" path="res://Scripts/Passive Items/Base/base_passive_item.gd" id="1_yny7c"]
+[ext_resource type="Texture2D" uid="uid://b7hjlksaoj15a" path="res://Assets/Sprites/Abilities/Splash Passive.png" id="2_3tdt4"]
+
+[node name="Appendage Projection" type="Node"]
+script = ExtResource("1_yny7c")
+item_name = "A"
+rarity = 0
+icon = ExtResource("2_3tdt4")

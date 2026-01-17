@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://4g4sp84tgd3i"]
+
+[ext_resource type="Script" uid="uid://cu8g6njurw54" path="res://Scripts/Passive Items/Effects/appendage_projection_weapon.gd" id="1_56j4t"]
+[ext_resource type="PackedScene" uid="uid://dajqdf341ehwu" path="res://Scenes/Arms/oil_spill.tscn" id="2_56j4t"]
+
+[node name="Appendage Projection" type="Node3D"]
+script = ExtResource("1_56j4t")
+
+[node name="Arm Node" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7089479, 0.17834991, -0.5)
+
+[node name="Oil Spill" parent="Arm Node" instance=ExtResource("2_56j4t")]

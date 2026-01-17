@@ -18,6 +18,7 @@ signal meta_coin_count_changed(amount)
 @onready var camera = %Camera
 @onready var animation_player = %AnimationPlayer
 @onready var weapons_manager = %"Weapons Manager"
+@onready var camera_controller = %"Camera Controller"
 @onready var crosshair = %Crosshair
 @onready var passives = %Passives
 @onready var abilities = %Abilities
