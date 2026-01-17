@@ -54,11 +54,11 @@ var kill_count: int = 0:
 	set(value):
 		kill_count = value
 		kill_count_changed.emit(value)
-var coin_count: int = 0:
+var coin_count: float = 0.0:
 	set(value):
 		coin_count = value
 		coin_count_changed.emit(value)
-var meta_coin_count: int = 0:
+var meta_coin_count: float = 0.0:
 	set(value):
 		meta_coin_count = value
 		meta_coin_count_changed.emit(value)

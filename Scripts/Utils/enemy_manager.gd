@@ -14,7 +14,7 @@ var SPAWNING_INTERVAL: float = 2
 var t: float = 0 
 
 # distance range the enemy can spawn away from the player
-const MIN_DISTANCE: float = 40
+const MIN_DISTANCE: float = 20
 const MAX_DISTANCE: float = 100
 
 const ENEMY = preload("uid://bf7ljiiykmoi0")
