@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bcd46pr7fhmjh"
-path="res://.godot/imported/Projection Skull.glb-1f7afc3bd3c189bfc61a9d7601353761.scn"
+uid="uid://ct0qliwydxbpe"
+path="res://.godot/imported/Zippy.glb-d41b0c8953786639cb45bdec9e55e069.scn"
 
 [deps]
 
-source_file="res://Assets/VFX/Projection Skull.glb"
-dest_files=["res://.godot/imported/Projection Skull.glb-1f7afc3bd3c189bfc61a9d7601353761.scn"]
+source_file="res://Assets/Arms/Zippy.glb"
+dest_files=["res://.godot/imported/Zippy.glb-d41b0c8953786639cb45bdec9e55e069.scn"]
 
 [params]
 

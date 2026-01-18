@@ -6,6 +6,7 @@ extends RigidBody3D
 var damage: float
 var speed: float
 var range: float
+var radius: float
 
 var player: Player
 

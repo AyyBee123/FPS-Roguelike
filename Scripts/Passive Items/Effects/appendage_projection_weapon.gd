@@ -43,7 +43,7 @@ func _physics_process(delta):
 		queue_free()
 	
 	arm.base_damage = base_damage * ability.get_base_stat_value("Damage")
-	arm.base_fire_rate = base_fire_rate * ability.get_base_stat_value("Fire_Rate")
+	arm.base_fire_rate = base_fire_rate * ability.get_base_stat_value("Fire_Rate") + base_fire_rate / 8
 	arm.base_range = base_range * ability.get_base_stat_value("Range")
 	arm.base_speed = base_speed * ability.get_base_stat_value("Speed")
 
@@ -57,14 +57,9 @@ func set_base_stats():
 	base_speed = arm.base_speed
 
 func shoot(_arm: Arm, _source: Variant):
-	if not tween or not tween.is_running():
-		tween = get_tree().create_tween()
-		tween.tween_interval(1.0 / (arm.fire_rate * 8))
-		tween.parallel().tween_property(arm_node, "position:y", pos.y, 1.0 / (arm.fire_rate * 8))
-		tween.tween_callback(func():
-			if arm and not _source.is_in_group("Appendage Projection"):
-				arm.shoot(false, self)
-		)
+	await get_tree().create_timer(1.0 / (arm.fire_rate * 8)).timeout
+	if arm and not _source.is_in_group("Appendage Projection"):
+		arm.shoot(false, self)
 
 func set_material_override():
 	var mesh_instances: Array = arm.find_children("", "MeshInstance3D", true)
