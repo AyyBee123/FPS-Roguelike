@@ -3,7 +3,7 @@ class_name PoolLoader
 
 var weights: Array = []
 
-func load_pool(path: String, pool: Array[PackedScene], rarity: int) -> void:
+func load_pool(path: String, pool: Array[PackedScene], rarity: int = -1) -> void:
 	if not FileAccess.file_exists(path):
 		push_error("❌ File not found at: " + path)
 		return
@@ -27,7 +27,8 @@ func load_pool(path: String, pool: Array[PackedScene], rarity: int) -> void:
 
 	pool.clear()
 	for data in parsed:
-		if data.has("rarity") and int(data["rarity"]) == rarity:
+		if rarity != -1:
+			if data.has("rarity") and int(data["rarity"]) == rarity:
+				pool.append(load(data["path"]))
+		else:
 			pool.append(load(data["path"]))
-
-	#print("✅ Loaded ", pool.size(), " items from JSON.")

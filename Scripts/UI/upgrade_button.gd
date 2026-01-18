@@ -93,6 +93,7 @@ func select_ability():
 	for a in player_abilities:
 		if a == ability.ability_name: # set a flag if the player already has the ability
 			ability.ability_exists = true
+			break
 	
 	upgrade_icon.texture = ability.icon
 	passive_name.text = ability.ability_name

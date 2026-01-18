@@ -1,0 +1,32 @@
+[
+	{
+		"path": "res://Scenes/Passives/blast_radius.tscn"
+	},
+	{
+		"path": "res://Scenes/Passives/damage.tscn"
+	},
+	{
+		"path": "res://Scenes/Passives/fire_rate.tscn"
+	},
+	{
+		"path": "res://Scenes/Passives/luck.tscn"
+	},
+	{
+		"path": "res://Scenes/Passives/max_health.tscn"
+	},
+	{
+		"path": "res://Scenes/Passives/move_speed.tscn"
+	},
+	{
+		"path": "res://Scenes/Passives/pickup_radius.tscn"
+	},
+	{
+		"path": "res://Scenes/Passives/range.tscn"
+	},
+	{
+		"path": "res://Scenes/Passives/speed.tscn"
+	},
+	{
+		"path": "res://Scenes/Passives/xp_gained.tscn"
+	}
+]

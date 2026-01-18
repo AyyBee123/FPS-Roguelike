@@ -1,0 +1,139 @@
+[gd_scene load_steps=21 format=3 uid="uid://crnx73g4cc4jh"]
+
+[ext_resource type="Script" uid="uid://dkmdv02ycbtcu" path="res://Scripts/Passive Items/appendage_projection.gd" id="1_pcany"]
+[ext_resource type="PackedScene" uid="uid://4g4sp84tgd3i" path="res://Scenes/VFX/appendage_projection.tscn" id="2_pxp5o"]
+[ext_resource type="Texture2D" uid="uid://doik5gfmdthgs" path="res://Assets/Sprites/Abilities/Appendage Projection.png" id="3_jw31w"]
+[ext_resource type="Script" uid="uid://crdmjkiq4812g" path="res://Scripts/Resources/ability_upgrade_resource.gd" id="3_pxp5o"]
+
+[sub_resource type="Resource" id="Resource_vn344"]
+script = ExtResource("3_pxp5o")
+stat = "Damage"
+amount = 20.0
+type = "+"
+metadata/_custom_type_script = "uid://crdmjkiq4812g"
+
+[sub_resource type="Resource" id="Resource_kerm7"]
+script = ExtResource("3_pxp5o")
+rarity = 1
+stat = "Damage"
+amount = 35.0
+type = "+"
+metadata/_custom_type_script = "uid://crdmjkiq4812g"
+
+[sub_resource type="Resource" id="Resource_avnyv"]
+script = ExtResource("3_pxp5o")
+rarity = 3
+stat = "Damage"
+amount = 50.0
+type = "+"
+metadata/_custom_type_script = "uid://crdmjkiq4812g"
+
+[sub_resource type="Resource" id="Resource_l8ju7"]
+script = ExtResource("3_pxp5o")
+rarity = 2
+stat = "Damage"
+amount = 75.0
+type = "+"
+metadata/_custom_type_script = "uid://crdmjkiq4812g"
+
+[sub_resource type="Resource" id="Resource_pcany"]
+script = ExtResource("3_pxp5o")
+stat = "Fire_Rate"
+amount = 10.0
+type = "+"
+metadata/_custom_type_script = "uid://crdmjkiq4812g"
+
+[sub_resource type="Resource" id="Resource_pxp5o"]
+script = ExtResource("3_pxp5o")
+rarity = 1
+stat = "Fire_Rate"
+amount = 20.0
+type = "+"
+metadata/_custom_type_script = "uid://crdmjkiq4812g"
+
+[sub_resource type="Resource" id="Resource_jc7ow"]
+script = ExtResource("3_pxp5o")
+rarity = 3
+stat = "Fire_Rate"
+amount = 30.0
+type = "+"
+metadata/_custom_type_script = "uid://crdmjkiq4812g"
+
+[sub_resource type="Resource" id="Resource_y06qt"]
+script = ExtResource("3_pxp5o")
+rarity = 2
+stat = "Fire_Rate"
+amount = 40.0
+type = "+"
+metadata/_custom_type_script = "uid://crdmjkiq4812g"
+
+[sub_resource type="Resource" id="Resource_jw31w"]
+script = ExtResource("3_pxp5o")
+stat = "Range"
+amount = 15.0
+type = "+"
+metadata/_custom_type_script = "uid://crdmjkiq4812g"
+
+[sub_resource type="Resource" id="Resource_o681e"]
+script = ExtResource("3_pxp5o")
+rarity = 1
+stat = "Range"
+amount = 25.0
+type = "+"
+metadata/_custom_type_script = "uid://crdmjkiq4812g"
+
+[sub_resource type="Resource" id="Resource_qwlk7"]
+script = ExtResource("3_pxp5o")
+rarity = 3
+stat = "Range"
+amount = 35.0
+type = "+"
+metadata/_custom_type_script = "uid://crdmjkiq4812g"
+
+[sub_resource type="Resource" id="Resource_ncwsp"]
+script = ExtResource("3_pxp5o")
+rarity = 2
+stat = "Range"
+amount = 50.0
+type = "+"
+metadata/_custom_type_script = "uid://crdmjkiq4812g"
+
+[sub_resource type="Resource" id="Resource_anvmm"]
+script = ExtResource("3_pxp5o")
+stat = "Speed"
+amount = 10.0
+type = "+"
+metadata/_custom_type_script = "uid://crdmjkiq4812g"
+
+[sub_resource type="Resource" id="Resource_vom1c"]
+script = ExtResource("3_pxp5o")
+rarity = 1
+stat = "Speed"
+amount = 20.0
+type = "+"
+metadata/_custom_type_script = "uid://crdmjkiq4812g"
+
+[sub_resource type="Resource" id="Resource_vx8hj"]
+script = ExtResource("3_pxp5o")
+rarity = 3
+stat = "Speed"
+amount = 35.0
+type = "+"
+metadata/_custom_type_script = "uid://crdmjkiq4812g"
+
+[sub_resource type="Resource" id="Resource_7lay8"]
+script = ExtResource("3_pxp5o")
+rarity = 2
+stat = "Speed"
+amount = 50.0
+type = "+"
+metadata/_custom_type_script = "uid://crdmjkiq4812g"
+
+[node name="Appendage Projection" type="Node"]
+script = ExtResource("1_pcany")
+projection = ExtResource("2_pxp5o")
+icon = ExtResource("3_jw31w")
+ability_name = "Appendage Projection"
+unlocked_by_default = false
+description = "Creates a copy of your currently equipped weapon. The weapon cannot be changed afterwards."
+ability_upgrades = Array[ExtResource("3_pxp5o")]([SubResource("Resource_vn344"), SubResource("Resource_kerm7"), SubResource("Resource_avnyv"), SubResource("Resource_l8ju7"), SubResource("Resource_pcany"), SubResource("Resource_pxp5o"), SubResource("Resource_jc7ow"), SubResource("Resource_y06qt"), SubResource("Resource_jw31w"), SubResource("Resource_o681e"), SubResource("Resource_qwlk7"), SubResource("Resource_ncwsp"), SubResource("Resource_anvmm"), SubResource("Resource_vom1c"), SubResource("Resource_vx8hj"), SubResource("Resource_7lay8")])

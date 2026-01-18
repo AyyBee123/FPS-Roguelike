@@ -66,9 +66,3 @@ stats = {
 "x": 1.0
 }
 }
-
-[node name="Fire Rate" type="Timer" parent="."]
-unique_name_in_owner = true
-one_shot = true
-
-[connection signal="timeout" from="Fire Rate" to="." method="_on_fire_rate_timeout"]

@@ -101,6 +101,7 @@ func get_camera_collision() -> Vector3:
 	
 	var new_intersection = PhysicsRayQueryParameters3D.create(ray_origin, ray_end)
 	new_intersection.collision_mask = CollisionLayers.get_layer(["World", "Player"])
+	new_intersection.exclude = [player] # ignore the player
 	
 	var intersection = get_world_3d().direct_space_state.intersect_ray(new_intersection)
 	

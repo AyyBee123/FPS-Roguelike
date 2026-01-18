@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b7hjlksaoj15a"
-path="res://.godot/imported/Splash Passive.png-3e2b0601d1b8cc5ca34751a679960e68.ctex"
+uid="uid://d1lj3votxpsf1"
+path="res://.godot/imported/Pickup Radius Passive.png-69c9387f2db1874d26f76ace5598f0ef.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Abilities/Splash Passive.png"
-dest_files=["res://.godot/imported/Splash Passive.png-3e2b0601d1b8cc5ca34751a679960e68.ctex"]
+source_file="res://Assets/Sprites/Passives/Pickup Radius Passive.png"
+dest_files=["res://.godot/imported/Pickup Radius Passive.png-69c9387f2db1874d26f76ace5598f0ef.ctex"]
 
 [params]
 

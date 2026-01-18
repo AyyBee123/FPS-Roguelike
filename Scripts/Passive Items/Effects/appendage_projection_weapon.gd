@@ -1,39 +1,70 @@
 extends Node3D
 
-@export var player: Player
+var player: Player
 
 @onready var arm_node = %"Arm Node"
 
 const APPENDAGE_PROJECTION = preload("uid://i6ujlfa4dmcl")
 
-const FREQUENCY: float = 0.001
-const AMPLITUDE: float = 0.025
+const FREQUENCY: float = 0.002
+const AMPLITUDE: float = 0.05
 
 var arm: Arm
 var tween: Tween
 var pos: Vector3
+var ability: Ability
+
+var base_damage: float # damage dealt by the projectile
+var base_fire_rate: float # in shots per second
+var base_range: float # the distance (in pixels) before the projectile disappears
+var base_speed: float # velocity of the projectile shot by the arm
 
 func _ready():
-	arm = arm_node.get_child(0)
+	await get_tree().physics_frame
+	var arm_scene = player.weapons_manager.current_arm.duplicate()
+	if arm_scene.get_parent():
+		arm_scene.get_parent().remove_child(arm_scene)
+	%"Arm Node".add_child(arm_scene)
+	
+	arm = arm_scene
 	set_material_override()
 	arm.recoil = Vector2.ZERO
 	arm.player = player
+	set_base_stats()
 	arm.add_to_group("Appendage Projection")
 	for audio: DeconflictedAudioPlayer in arm.find_children("", "DeconflictedAudioPlayer", true):
 		audio.volume_db = -28
 		audio.max_db = 0
-	player.enemy_hit.connect(shoot)
+	player.weapon_shot.connect(shoot)
 	pos = arm_node.position
+
+func _physics_process(delta):
+	if not ability:
+		queue_free()
+	
+	arm.base_damage = base_damage * ability.get_base_stat_value("Damage")
+	arm.base_fire_rate = base_fire_rate * ability.get_base_stat_value("Fire_Rate")
+	arm.base_range = base_range * ability.get_base_stat_value("Range")
+	arm.base_speed = base_speed * ability.get_base_stat_value("Speed")
 
 func _process(delta):
 	arm_node.position.y = lerp(arm_node.position.y, sin(Time.get_ticks_msec() * FREQUENCY) * AMPLITUDE + pos.y, 5 * delta)
 
-func shoot(_enemy: Enemy, _source: Variant, _damage: float):
-	if arm and not _source.is_in_group("Appendage Projection"):
-		arm.shoot(false, self)
-	
-	tween = get_tree().create_tween()
-	tween.tween_property(arm_node, "position:y", pos.y, 0.2)
+func set_base_stats():
+	base_damage = arm.base_damage
+	base_fire_rate = arm.base_fire_rate
+	base_range = arm.base_range
+	base_speed = arm.base_speed
+
+func shoot(_arm: Arm, _source: Variant):
+	if not tween or not tween.is_running():
+		tween = get_tree().create_tween()
+		tween.tween_interval(1.0 / (arm.fire_rate * 8))
+		tween.parallel().tween_property(arm_node, "position:y", pos.y, 1.0 / (arm.fire_rate * 8))
+		tween.tween_callback(func():
+			if arm and not _source.is_in_group("Appendage Projection"):
+				arm.shoot(false, self)
+		)
 
 func set_material_override():
 	var mesh_instances: Array = arm.find_children("", "MeshInstance3D", true)

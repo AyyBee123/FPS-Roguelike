@@ -212,6 +212,7 @@ script = ExtResource("1_uvnfx")
 shape = SubResource("BoxShape3D_mtuoh")
 
 [node name="Camera Controller" type="Node3D" parent="." node_paths=PackedStringArray("player", "rig")]
+unique_name_in_owner = true
 script = ExtResource("2_rcvs5")
 player = NodePath("..")
 rig = NodePath("Camera/Weapons Manager/FPS Rig")

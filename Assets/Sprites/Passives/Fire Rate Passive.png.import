@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://col04cv6hct70"
-path="res://.godot/imported/Fire Rate Passive.png-c6363acc41cc904af43d559f6f4ab0c7.ctex"
+path="res://.godot/imported/Fire Rate Passive.png-c30ad86e4ffb68f38cd54538a4205103.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Abilities/Fire Rate Passive.png"
-dest_files=["res://.godot/imported/Fire Rate Passive.png-c6363acc41cc904af43d559f6f4ab0c7.ctex"]
+source_file="res://Assets/Sprites/Passives/Fire Rate Passive.png"
+dest_files=["res://.godot/imported/Fire Rate Passive.png-c30ad86e4ffb68f38cd54538a4205103.ctex"]
 
 [params]
 

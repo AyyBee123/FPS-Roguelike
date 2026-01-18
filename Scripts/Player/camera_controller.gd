@@ -10,7 +10,7 @@ var land_tween: Tween
 var hit_tween: Tween
 
 @export var sensitivity: float = 0.001
-@export var pitch_limit_degrees: float = 80.0
+@export var pitch_limit_degrees: float = 85.0
 
 var weapon_sway: float = 0.0025
 var weapon_sway_speed: float = 10.0

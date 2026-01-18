@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dckx5u64j0js7"
-path="res://.godot/imported/Luck Passive.png-c42dcc266f6460880047dfd40253089c.ctex"
+uid="uid://cmc4n30ni3mbw"
+path="res://.godot/imported/Health Passive.png-3bd5fdeb676fcd2bd45aed3717ac86db.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Abilities/Luck Passive.png"
-dest_files=["res://.godot/imported/Luck Passive.png-c42dcc266f6460880047dfd40253089c.ctex"]
+source_file="res://Assets/Sprites/Passives/Health Passive.png"
+dest_files=["res://.godot/imported/Health Passive.png-3bd5fdeb676fcd2bd45aed3717ac86db.ctex"]
 
 [params]
 

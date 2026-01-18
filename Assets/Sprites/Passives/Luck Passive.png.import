@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djwp7ja6tmcxw"
-path="res://.godot/imported/Move Speed Passive.png-943cb7022fa763add3742f97391c73c4.ctex"
+uid="uid://dckx5u64j0js7"
+path="res://.godot/imported/Luck Passive.png-c10a7540142b3b258bafcbab24433e4d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Abilities/Move Speed Passive.png"
-dest_files=["res://.godot/imported/Move Speed Passive.png-943cb7022fa763add3742f97391c73c4.ctex"]
+source_file="res://Assets/Sprites/Passives/Luck Passive.png"
+dest_files=["res://.godot/imported/Luck Passive.png-c10a7540142b3b258bafcbab24433e4d.ctex"]
 
 [params]
 

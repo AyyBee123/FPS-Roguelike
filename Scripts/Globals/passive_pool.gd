@@ -1,17 +1,15 @@
 extends Node
 
-var passives: Array = [
-	preload("uid://csswgmjisoqiv"),
-	preload("uid://ck8e0xlkfeop6"),
-	preload("uid://dw041uajaa1gg"),
-	preload("uid://blf4j31no8f3d"),
-	preload("uid://dflfd00x2j2is"),
-	preload("uid://cc872qe0bk4b"),
-	preload("uid://dpjreq5jo01gb"),
-	preload("uid://b3u2c1s6odbpb"),
-	preload("uid://cm6salthujj5t"),
-	preload("uid://benqet3fkm7n6")
-]
+var passives: Array[PackedScene]
+
+var json_file: String = "res://Data/passive_pool.json"
+
+func _init():
+	populate_pool()
+
+func populate_pool():
+	var loader = PoolLoader.new()
+	loader.load_pool(json_file, passives)
 
 func get_stat(passive_to_not_pick: Passive = null):
 	var passive: Passive = passives.pick_random().instantiate()
