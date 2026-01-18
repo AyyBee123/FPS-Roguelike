@@ -135,5 +135,5 @@ projection = ExtResource("2_pxp5o")
 icon = ExtResource("3_jw31w")
 ability_name = "Appendage Projection"
 unlocked_by_default = false
-description = "Creates a copy of your currently equipped weapon. The weapon cannot be changed afterwards."
+description = "Creates a copy of your currently equipped weapon. The weapon cannot be changed."
 ability_upgrades = Array[ExtResource("3_pxp5o")]([SubResource("Resource_vn344"), SubResource("Resource_kerm7"), SubResource("Resource_avnyv"), SubResource("Resource_l8ju7"), SubResource("Resource_pcany"), SubResource("Resource_pxp5o"), SubResource("Resource_jc7ow"), SubResource("Resource_y06qt"), SubResource("Resource_jw31w"), SubResource("Resource_o681e"), SubResource("Resource_qwlk7"), SubResource("Resource_ncwsp"), SubResource("Resource_anvmm"), SubResource("Resource_vom1c"), SubResource("Resource_vx8hj"), SubResource("Resource_7lay8")])

@@ -402,7 +402,7 @@ resource_name = "Red"
 cull_mode = 2
 diffuse_mode = 3
 specular_mode = 1
-albedo_color = Color(0.9063355, 0.2385392, 0.20566, 1)
+albedo_color = Color(0.7676643, 0.1422652, 0.13915947, 1)
 roughness = 0.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_1qt3c"]
@@ -444,7 +444,7 @@ resource_name = "Blue"
 cull_mode = 2
 diffuse_mode = 3
 specular_mode = 1
-albedo_color = Color(0.3301831, 0.38081682, 0.9063355, 1)
+albedo_color = Color(0.2118665, 0.4239845, 0.870651, 1)
 roughness = 0.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_rpjwy"]

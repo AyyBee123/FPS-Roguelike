@@ -6,6 +6,8 @@ extends "res://Scripts/UI/button.gd"
 @onready var description: Label = %Description
 @onready var rarity: Label = %Rarity
 @onready var upgrade_icon = %Icon
+@onready var icon_rarity = %"Icon Rarity"
+@onready var background_rarity = %"Background Rarity"
 
 var passives: Array[Passive] = []
 var ability: Ability
@@ -21,6 +23,8 @@ func _ready():
 	else:
 		get_abilities()
 		select_ability()
+	mouse_entered.connect(func(): if not has_focus(): grab_focus())
+	_on_focus_exited()
 
 func get_abilities():
 	for a in player.abilities.get_children():
@@ -50,15 +54,23 @@ func select_passive():
 				description.text += "+%s %s" % values
 		description.text += "\n"
 	
+	var rarity_color: String
 	match passive.rarity:
 		0:
 			rarity.text = "Common"
+			rarity_color = "cccccc"
 		1:
 			rarity.text = "Uncommon"
+			rarity_color = "42d042"
 		2:
 			rarity.text = "Legendary"
+			rarity_color = "e68b19"
 		3:
 			rarity.text = "Rare"
+			rarity_color = "4dbaff"
+	icon_rarity.color = rarity_color
+	rarity.modulate = rarity_color
+	background_rarity.color = rarity_color
 	
 	if passive.rarity == 3:
 		var second_passive: Passive = PassivePool.get_stat(passive)
@@ -99,15 +111,24 @@ func select_ability():
 	passive_name.text = ability.ability_name
 	
 	if ability.ability_exists:
+		var rarity_color: String
 		match ability.rarity:
 			0:
 				rarity.text = "Common"
+				rarity_color = "cccccc"
 			1:
 				rarity.text = "Uncommon"
+				rarity_color = "42d042"
 			2:
 				rarity.text = "Legendary"
+				rarity_color = "e68b19"
 			3:
 				rarity.text = "Rare"
+				rarity_color = "4dbaff"
+		
+		icon_rarity.color = rarity_color
+		rarity.modulate = rarity_color
+		background_rarity.color = rarity_color
 		
 		for stat in ability.upgrades_to_add:
 			var values: Array = [format_number(stat.amount), stat.stat.replace("_", " ")]
@@ -127,3 +148,13 @@ func format_number(n: float) -> String:
 	if is_equal_approx(n, int(n)):
 		return str(int(n))
 	return str(n)
+
+
+func _on_focus_entered():
+	background_rarity.modulate = Color.WHITE * 0.65
+
+func _on_focus_exited():
+	background_rarity.modulate = Color.WHITE * 0.75
+
+func _on_button_down():
+	background_rarity.modulate = Color.WHITE * 0.5

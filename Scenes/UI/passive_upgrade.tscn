@@ -58,6 +58,26 @@ size_flags_horizontal = 3
 theme = SubResource("Theme_havy7")
 script = ExtResource("5_a3lg8")
 
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Background Rarity" type="ColorRect" parent="MarginContainer"]
+unique_name_in_owner = true
+modulate = Color(0.74558026, 0.7455802, 0.7455802, 1)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
 [node name="Border" type="NinePatchRect" parent="."]
 layout_mode = 0
 offset_left = 24.0
@@ -69,6 +89,25 @@ patch_margin_left = 8
 patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="Border"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Icon Rarity" type="ColorRect" parent="Border/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
 
 [node name="Icon" type="TextureRect" parent="Border"]
 unique_name_in_owner = true
@@ -138,3 +177,7 @@ theme_override_fonts/font = ExtResource("3_havy7")
 theme_override_font_sizes/font_size = 24
 text = "Banana"
 horizontal_alignment = 1
+
+[connection signal="button_down" from="." to="." method="_on_button_down"]
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]
