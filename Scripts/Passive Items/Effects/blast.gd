@@ -1,14 +1,15 @@
 extends Node3D
 
+@export var particles: Array[GPUParticles3D]
 @export var soundboard: PackedScene
 
-@onready var collision_shape = %CollisionShape3D
-@onready var blast: GPUParticles3D = %Blast
+@onready var collision_shape: CollisionShape3D = %CollisionShape3D
 
 var player: Player
 var damage: float
 var radius: float
-var gradiant: GradientTexture1D
+var color: Color = Color.SANDY_BROWN
+var max_lifetime: float
 
 func _ready():
 	var sb = soundboard.instantiate()
@@ -16,19 +17,26 @@ func _ready():
 	sb.global_position = global_position
 	sb.blast.play_deconflicted()
 	
-	if gradiant:
-		blast.draw_pass_1.surface_get_material(0).set_shader_parameter("gradiant", gradiant)
-	
-	blast.one_shot = true
-	blast.restart()
-	
-	blast.process_material.scale_min = radius / 2
-	blast.process_material.scale_max = radius / 2
-	
 	collision_shape.shape.radius = radius
-	await get_tree().create_timer(0.25).timeout
+	
+	for particle in particles:
+		particle.restart()
+		if particle.material_override is StandardMaterial3D:
+			particle.material_override.albedo_color = color
+		elif particle.material_override is ShaderMaterial:
+			particle.material_override.set_shader_parameter("albedo", color)
+		if radius < 1:
+			particle.process_material.scale_max *= radius
+		else:
+			particle.process_material.scale_min *= radius
+		max_lifetime = max(particle.lifetime, max_lifetime)
+	
+	await get_tree().create_timer(max_lifetime).timeout
 	queue_free()
 
 func _on_area_3d_body_entered(body):
 	if body is Enemy:
 		body.hit(damage, player, self)
+
+func _on_blast_finished():
+	collision_shape.disabled = true

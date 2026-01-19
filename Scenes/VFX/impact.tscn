@@ -1,59 +1,16 @@
-[gd_scene load_steps=36 format=3 uid="uid://mhyvno5adlsw"]
+[gd_scene load_steps=27 format=3 uid="uid://mhyvno5adlsw"]
 
-[ext_resource type="Texture2D" uid="uid://ky2oxf1m71w6" path="res://Assets/Textures/Flash 2.png" id="1_c7m83"]
 [ext_resource type="Script" uid="uid://xnp2yx37srf2" path="res://Scripts/Misc/impact.gd" id="1_p5bny"]
-[ext_resource type="Texture2D" uid="uid://bk338t77y04or" path="res://Assets/Textures/Flare.png" id="2_p5bny"]
+[ext_resource type="Texture2D" uid="uid://cb3or5alqggfj" path="res://Assets/Textures/Flare 2.png" id="3_p5bny"]
 [ext_resource type="Texture2D" uid="uid://brosq6js4gt3q" path="res://Assets/Textures/Impact Wave.png" id="3_w4l6d"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kcfvq"]
-transparency = 1
-cull_mode = 2
-shading_mode = 0
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("1_c7m83")
-billboard_mode = 3
-billboard_keep_scale = true
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="Curve" id="Curve_2phh5"]
-_data = [Vector2(0, 1), 0.0, -0.79775274, 0, 1, Vector2(1, 0.20224726), -0.79775274, 0.0, 1, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_yf5n1"]
-curve = SubResource("Curve_2phh5")
-
-[sub_resource type="Curve" id="Curve_6j8ik"]
-_data = [Vector2(0, 1), 0.0, -0.49438193, 0, 1, Vector2(1, 0.50561804), -0.49438193, 0.0, 1, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_47ym8"]
-curve = SubResource("Curve_6j8ik")
-
-[sub_resource type="Curve" id="Curve_ospb8"]
-_data = [Vector2(0, 1), 0.0, -1.0, 0, 1, Vector2(1, 0), -1.0, 0.0, 1, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_cioeb"]
-curve = SubResource("Curve_ospb8")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wy0fe"]
-gravity = Vector3(0, 0, 0)
-scale_min = 4.0
-scale_max = 4.0
-scale_curve = SubResource("CurveTexture_cioeb")
-alpha_curve = SubResource("CurveTexture_yf5n1")
-emission_curve = SubResource("CurveTexture_47ym8")
-
-[sub_resource type="QuadMesh" id="QuadMesh_dc6rb"]
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2x3ni"]
+render_priority = 3
 transparency = 1
 cull_mode = 2
 shading_mode = 0
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("2_p5bny")
+albedo_texture = ExtResource("3_p5bny")
 billboard_mode = 3
 billboard_keep_scale = true
 particles_anim_h_frames = 1
@@ -75,13 +32,17 @@ point_count = 2
 curve = SubResource("Curve_j7fn2")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_32tsf"]
-angle_min = 1.0728835e-05
-angle_max = 360.00003
+resource_local_to_scene = true
 gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 0.5
 scale_curve = SubResource("CurveTexture_4kwce")
 emission_curve = SubResource("CurveTexture_c6k5g")
 
+[sub_resource type="QuadMesh" id="QuadMesh_dc6rb"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fy0kl"]
+render_priority = 3
 transparency = 1
 cull_mode = 2
 shading_mode = 0
@@ -108,6 +69,9 @@ point_count = 2
 curve = SubResource("Curve_rf0m5")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tp0la"]
+resource_local_to_scene = true
+angle_min = 1.0728835e-05
+angle_max = 360.00003
 gravity = Vector3(0, 0, 0)
 scale_min = 1.5
 scale_max = 1.5
@@ -115,11 +79,12 @@ scale_curve = SubResource("CurveTexture_3urun")
 alpha_curve = SubResource("CurveTexture_uefcp")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c7m83"]
+render_priority = 3
 transparency = 1
 cull_mode = 2
 shading_mode = 0
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("1_c7m83")
+albedo_texture = ExtResource("3_p5bny")
 billboard_keep_scale = true
 
 [sub_resource type="Curve" id="Curve_p5bny"]
@@ -137,12 +102,12 @@ point_count = 2
 curve = SubResource("Curve_kcfvq")
 
 [sub_resource type="Curve" id="Curve_yf5n1"]
-_data = [Vector2(0, 0.6966293), 0.0, 0.0, 0, 0, Vector2(1, 0.20224726), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.50561804), 0.0, 0.0, 0, 0, Vector2(1, 0.10112369), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_47ym8"]
 _limits = [0.0, 10.0, 0.0, 1.0]
-_data = [Vector2(0, 7.3033714), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 7.0786524), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_cioeb"]
@@ -155,30 +120,21 @@ curve_y = SubResource("Curve_47ym8")
 curve_z = SubResource("Curve_cioeb")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dc6rb"]
+resource_local_to_scene = true
 particle_flag_align_y = true
 spread = 180.0
 initial_velocity_min = 1.0
 initial_velocity_max = 5.0
 gravity = Vector3(0, 0, 0)
-scale_min = 0.099999994
-scale_max = 0.19999999
+scale_min = 0.049999997
+scale_max = 0.099999994
 scale_curve = SubResource("CurveXYZTexture_wy0fe")
 alpha_curve = SubResource("CurveTexture_w4l6d")
 emission_curve = SubResource("CurveTexture_2phh5")
 
 [node name="Impact" type="Node3D" node_paths=PackedStringArray("particles")]
 script = ExtResource("1_p5bny")
-particles = [NodePath("Flash"), NodePath("Flare"), NodePath("Shockwave"), NodePath("Sparks")]
-
-[node name="Flash" type="GPUParticles3D" parent="."]
-material_override = SubResource("StandardMaterial3D_kcfvq")
-emitting = false
-amount = 1
-lifetime = 0.09999999999999999
-one_shot = true
-fixed_fps = 0
-process_material = SubResource("ParticleProcessMaterial_wy0fe")
-draw_pass_1 = SubResource("QuadMesh_dc6rb")
+particles = [NodePath("Flare"), NodePath("Shockwave"), NodePath("Sparks")]
 
 [node name="Flare" type="GPUParticles3D" parent="."]
 material_override = SubResource("StandardMaterial3D_2x3ni")

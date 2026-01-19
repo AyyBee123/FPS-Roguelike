@@ -33,7 +33,7 @@ func _ready():
 	var mat: StandardMaterial3D = beam.mesh.surface_get_material(0)
 	var original_alpha = mat.albedo_color.a
 	
-	beam.scale.z = 0
+	beam.scale.y = 0
 	beam.position.y = -1
 	mat.albedo_color.a = 0
 	
@@ -41,7 +41,7 @@ func _ready():
 	
 	tween = get_tree().create_tween()
 	tween.tween_property(mat, "albedo_color:a", original_alpha, l).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-	tween.parallel().tween_property(beam, "scale:z", size.z, l).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	tween.parallel().tween_property(beam, "scale:y", size.y, l).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	tween.parallel().tween_property(beam, "position:y", pos.y, l).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	tween.tween_interval(l * 0.1)
 	tween.tween_callback(explode)

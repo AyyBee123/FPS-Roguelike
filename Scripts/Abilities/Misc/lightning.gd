@@ -1,13 +1,14 @@
 extends Node3D
 
 @export var soundboard: PackedScene
+@export var particles: Array[GPUParticles3D]
 
-@onready var bolt: GPUParticles3D = %Bolt
-@onready var blast: GPUParticles3D = %Blast
+@onready var blast = %Blast
 
 var damage: float
 
 var player: Player
+var max_lifetime: float
 
 func _ready():
 	var sb = soundboard.instantiate()
@@ -15,16 +16,15 @@ func _ready():
 	sb.global_position = global_position
 	sb.lightning.play_deconflicted()
 	
-	bolt.one_shot = true
-	blast.one_shot = true
+	for particle in particles:
+		particle.restart()
+		max_lifetime = max(particle.lifetime, max_lifetime)
+	if scale.x < 1:
+		blast.process_material.scale_max *= scale.x
+	else:
+		blast.process_material.scale_min *= scale.x
 	
-	bolt.restart()
-	blast.restart()
-	
-	blast.process_material.scale_min = scale.x
-	blast.process_material.scale_max = scale.x
-
-func _on_blast_finished():
+	await get_tree().create_timer(max_lifetime).timeout
 	queue_free()
 
 func _on_area_3d_body_entered(body):

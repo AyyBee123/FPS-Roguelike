@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://bkcd5uhmif5lr"]
+[gd_scene load_steps=10 format=3 uid="uid://bkcd5uhmif5lr"]
 
 [ext_resource type="Texture2D" uid="uid://c2mla0bv3v53o" path="res://Assets/Textures/Orbit Strike Mark.png" id="1_i6rn0"]
 [ext_resource type="Script" uid="uid://cjhwe7tou2dnj" path="res://Scripts/Passive Items/Effects/orbit_bomb_marker.gd" id="1_owx6x"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ldqg0gv05xgc" path="res://Scenes/VFX/ba.tscn" id="3_gu1q4"]
 [ext_resource type="Texture2D" uid="uid://e4rk3joxdx6g" path="res://Assets/Textures/Damage Marker.png" id="3_n7sns"]
 [ext_resource type="AudioStream" uid="uid://clymp7qdcxp0l" path="res://Audio/SFX/Falling Sheep.mp3" id="6_i3bi1"]
+[ext_resource type="ArrayMesh" uid="uid://ciwcovp5ji7op" path="res://Assets/VFX/open_cylinder.tres" id="6_iacoj"]
 [ext_resource type="Script" uid="uid://cc1romsfhth3n" path="res://Scripts/Utils/audio_player_deconflicter.gd" id="7_iacoj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n7sns"]
@@ -17,36 +18,6 @@ disable_fog = true
 disable_specular_occlusion = true
 albedo_color = Color(0.8627451, 0, 0, 0.2509804)
 albedo_texture = ExtResource("3_n7sns")
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_dnoef"]
-_surfaces = [{
-"aabb": AABB(-0.31830987, -1.2732396, -1, 0.63661975, 2.546479, 2),
-"format": 34896613377,
-"index_count": 96,
-"index_data": PackedByteArray("AAABAAIAAAADAAEABAADAAAABAAFAAMABgAFAAQABgAHAAUACAAHAAYACAAJAAcACgAJAAgACgALAAkADAALAAoADAANAAsADgANAAwADgAPAA0AEAAPAA4AEAARAA8AEgARABAAEgATABEAFAATABIAFAAVABMAFgAVABQAFgAXABUAGAAXABYAGAAZABcAGgAZABgAGgAbABkAHAAbABoAHAAdABsAHgAdABwAHgAfAB0AIAAfAB4AIAAhAB8A"),
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 34,
-"vertex_data": PackedByteArray("+7C+Cf//AAD/fwAAAAAAAP9/AAD//wAA+7C+CQAAAACB2n0l//8AAIHafSUAAAAAQPYDT///AABA9gNPAAAAAP///3///wAA////fwAAAABA9vuw//8AAED2+7AAAAAAgdqB2v//AACB2oHaAAAAAPuwQPb//wAA+7BA9gAAAAD/f/////8AAP9///8AAAAAA09A9v//AAADT0D2AAAAAH0lgdr//wAAfSWB2gAAAAC+Cfuw//8AAL4J+7AAAAAAAAD/f///AAAAAP9/AAAAAL4JA0///wAAvgkDTwAAAAB9JX0l//8AAH0lfSUAAAAAA0++Cf//AAADT74JAAAAAP9/AAD//wAA/38AAAAAAAA=")
-}]
-blend_shape_mode = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_6x0ua"]
-resource_name = "Untitled_Plane"
-_surfaces = [{
-"aabb": AABB(-0.31830987, -1.2732396, -1, 0.63661975, 2.546479, 2),
-"attribute_data": PackedByteArray("/+//////AAD//////+8AAAAA////DwAA/w///wAAAAD/D////x8AAP8f////DwAA/x////8vAAD/L////x8AAP8v////PwAA/z////8vAAD/P////08AAP9P////PwAA/0////9fAAD/X////08AAP9f////bwAA/2////9fAAD/b////38AAP9/////bwAA/3////+PAAD/j////38AAP+P////nwAA/5////+PAAD/n////68AAP+v////nwAA/6////+/AAD/v////68AAP+/////zwAA/8////+/AAD/z////98AAP/f////zwAA/9/////vAAD/7////98AAA=="),
-"format": 34896613399,
-"index_count": 96,
-"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0AIAAhACIAIAAjACEAJAAlACYAJAAnACUAKAApACoAKAArACkALAAtAC4ALAAvAC0AMAAxADIAMAAzADEANAA1ADYANAA3ADUAOAA5ADoAOAA7ADkAPAA9AD4APAA/AD0A"),
-"material": SubResource("StandardMaterial3D_n7sns"),
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 64,
-"vertex_data": PackedByteArray("+7C+Cf//0ez/fwAAAADR7P9/AAD//9Hs+7C+CQAA0ez/fwAA///R7ANPvgkAANHsA0++Cf//0ez/fwAAAADR7ANPvgn//zLefSV9JQAAMt59JX0l//8y3gNPvgkAADLefSV9Jf//U9m+CQNPAABT2b4JA0///1PZfSV9JQAAU9m+CQNP//+C1gAA/38AAILWAAD/f///gta+CQNPAACC1gAA/3///yvUvgn7sAAAK9S+Cfuw//8r1AAA/38AACvUvgn7sP//jNF9JYHaAACM0X0lgdr//4zRvgn7sAAAjNF9JYHa//95zQNPQPYAAHnNA09A9v//ec19JYHaAAB5zQNPQPb//2/E/3///wAAb8T/f/////9vxANPQPYAAG/E/3//////b8T7sED2AABvxPuwQPb//2/E/3///wAAb8T7sED2//95zYHagdoAAHnNgdqB2v//ec37sED2AAB5zYHagdr//4zRQPb7sAAAjNFA9vuw//+M0YHagdoAAIzRQPb7sP//K9T///9/AAAr1P///3///yvUQPb7sAAAK9T///9///+C1kD2A08AAILWQPYDT///gtb///9/AACC1kD2A0///1PZgdp9JQAAU9mB2n0l//9T2UD2A08AAFPZgdp9Jf//Mt77sL4JAAAy3vuwvgn//zLegdp9JQAAMt4Hk4NJB5ODSQeTg0kHk4NJg8n37IPJ9+yDyffsg8n37HnQCd950AnfedAJ33nQCd8I0+zZCNPs2QjT7NkI0+zZoNS71qDUu9ag1LvWoNS71gvW59ML1ufTC9bn0wvW59PB13nQwdd50MHXedDB13nQztpgys7aYMrO2mDKztpgyqzlo7Ss5aO0rOWjtKzlo7Ray61lWsutZVrLrWVay61lnrXPWp61z1qetc9anrXPWoSvwleEr8JXhK/CV4SvwlcXrAtWF6wLVhesC1YXrAtWQqmhVEKpoVRCqaFUQqmhVBKmCVMSpglTEqYJUxKmCVP0oHpQ9KB6UPSgelD0oHpQ")
-}]
-blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_dnoef")
 
 [node name="Orbit Bomb Marker" type="Node3D"]
 script = ExtResource("1_owx6x")
@@ -71,8 +42,9 @@ cull_mask = 4
 
 [node name="Beam" type="MeshInstance3D" parent="Marker"]
 unique_name_in_owner = true
-transform = Transform3D(9, 0, 0, 0, -9.8350625e-08, -3, 0, 2.25, -1.3113416e-07, 0, 2, 0)
-mesh = SubResource("ArrayMesh_6x0ua")
+transform = Transform3D(2.25, 0, 0, 0, 2, 0, 0, 0, 2.25, 0, -1, 0)
+material_override = SubResource("StandardMaterial3D_n7sns")
+mesh = ExtResource("6_iacoj")
 skeleton = NodePath("")
 
 [node name="Sheep Falling" type="AudioStreamPlayer3D" parent="."]

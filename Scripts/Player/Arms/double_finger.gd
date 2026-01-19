@@ -3,7 +3,7 @@ extends Arm
 @onready var muzzle_point = %"Muzzle Point"
 @onready var muzzle_point_2 = %"Muzzle Point2"
 
-func shoot(ignore_fire_rate: bool = false, outside_source: Variant = null):
+func shoot(ignore_fire_rate: bool = false, outside_source: Variant = self):
 	if t < fire_rate_timer and not ignore_fire_rate: return
 	
 	if not ignore_fire_rate:

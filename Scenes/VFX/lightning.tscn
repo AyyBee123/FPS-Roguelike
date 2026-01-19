@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://ion0xy4nx46o"]
+[gd_scene load_steps=24 format=4 uid="uid://ion0xy4nx46o"]
 
 [ext_resource type="Script" uid="uid://b2w3cvrrhheiv" path="res://Scripts/Abilities/Misc/lightning.gd" id="1_6o5yw"]
 [ext_resource type="Shader" uid="uid://buk1o840fv5sg" path="res://Shaders/lightning.gdshader" id="1_qa3j7"]
@@ -46,15 +46,36 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="Gradient" id="Gradient_ggp7a"]
-offsets = PackedFloat32Array(0.29347825, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j2l7i"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.7294295, 0.850788, 0.9699716, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_6o5yw"]
-gradient = SubResource("Gradient_ggp7a")
+[sub_resource type="Curve" id="Curve_j0po6"]
+_data = [Vector2(0, 0.6966293), 0.0, 0.0, 0, 0, Vector2(0.2542373, 0.516854), -1.4678972, -1.4678972, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_qs0gl"]
+curve = SubResource("Curve_j0po6")
+
+[sub_resource type="Gradient" id="Gradient_jj0cp"]
+colors = PackedColorArray(1, 1, 1, 1, 0.6862745, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_b54ph"]
+gradient = SubResource("Gradient_jj0cp")
+
+[sub_resource type="Curve" id="Curve_sx8lc"]
+_data = [Vector2(0, 1), 0.0, -1.0, 0, 1, Vector2(1, 0), -1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_og5d2"]
+curve = SubResource("Curve_sx8lc")
 
 [sub_resource type="Curve" id="Curve_ggp7a"]
-_data = [Vector2(0, 0.10112369), 0.0, 0.0, 0, 0, Vector2(0.5, 0.8089888), 0.4308988, 0.4308988, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 3
+_data = [Vector2(0, 0.49438208), 0.0, 0.0, 0, 0, Vector2(0.15254237, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 0.3370787), -1.4731587, -1.4731587, 0, 0, Vector2(1, 0.123595595), -0.45998615, 0.0, 0, 0]
+point_count = 4
 
 [sub_resource type="CurveTexture" id="CurveTexture_j2l7i"]
 curve = SubResource("Curve_ggp7a")
@@ -62,27 +83,35 @@ curve = SubResource("Curve_ggp7a")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6o5yw"]
 gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_j2l7i")
-color_ramp = SubResource("GradientTexture1D_6o5yw")
+color_ramp = SubResource("GradientTexture1D_b54ph")
+alpha_curve = SubResource("CurveTexture_qs0gl")
+emission_curve = SubResource("CurveTexture_og5d2")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6o5yw"]
 radius = 2.25
 
-[node name="Lightning" type="Node3D" groups=["Lightning Strike"]]
+[node name="Lightning" type="Node3D" node_paths=PackedStringArray("particles") groups=["Lightning Strike"]]
 script = ExtResource("1_6o5yw")
 soundboard = ExtResource("2_j2l7i")
+particles = [NodePath("Bolt"), NodePath("Blast")]
 
 [node name="Bolt" type="GPUParticles3D" parent="."]
-unique_name_in_owner = true
+emitting = false
 amount = 1
 lifetime = 0.25
+one_shot = true
+fixed_fps = 0
 process_material = SubResource("ParticleProcessMaterial_qa3j7")
 draw_pass_1 = SubResource("ArrayMesh_6o5yw")
 
 [node name="Blast" type="GPUParticles3D" parent="."]
 unique_name_in_owner = true
+material_override = SubResource("StandardMaterial3D_j2l7i")
+emitting = false
 amount = 1
 lifetime = 0.25
-fixed_fps = 60
+one_shot = true
+fixed_fps = 0
 process_material = SubResource("ParticleProcessMaterial_6o5yw")
 draw_pass_1 = ExtResource("2_ggp7a")
 
@@ -94,5 +123,4 @@ monitorable = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_6o5yw")
 
-[connection signal="finished" from="Blast" to="." method="_on_blast_finished"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
