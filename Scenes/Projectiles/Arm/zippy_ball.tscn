@@ -65,6 +65,7 @@ contact_monitor = true
 max_contacts_reported = 10
 script = ExtResource("1_hhbuh")
 BLAST = ExtResource("2_hhbuh")
+spawn_impact = false
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
 unique_name_in_owner = true
@@ -82,4 +83,3 @@ mesh = SubResource("ArrayMesh_hhbuh")
 skeleton = NodePath("")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="timeout" from="Lifetime" to="." method="_on_timer_timeout"]

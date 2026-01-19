@@ -22,6 +22,8 @@ continuous_cd = true
 contact_monitor = true
 max_contacts_reported = 10
 script = ExtResource("1_r6cp1")
+impact_color = Color(0, 1, 1, 1)
+impact_size = 0.75
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
 unique_name_in_owner = true
@@ -37,4 +39,3 @@ unique_name_in_owner = true
 one_shot = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="timeout" from="Lifetime" to="." method="_on_timer_timeout"]

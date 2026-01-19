@@ -59,6 +59,8 @@ continuous_cd = true
 contact_monitor = true
 max_contacts_reported = 10
 script = ExtResource("1_3ivay")
+impact_color = Color(0.94509804, 0.5294118, 0.105882354, 1)
+impact_size = 0.2
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
 unique_name_in_owner = true
@@ -90,4 +92,3 @@ _defaults_have_been_set = true
 metadata/_custom_type_script = "uid://b27gxyjpmtppf"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="timeout" from="Lifetime" to="." method="_on_timer_timeout"]

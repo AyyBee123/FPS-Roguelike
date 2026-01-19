@@ -5,20 +5,20 @@ extends "res://Scripts/Projectiles/Player/projectile.gd"
 @onready var ball = %Ball
 
 var material: StandardMaterial3D
-var blast_color: GradientTexture1D
+var blast_color: Color
 var bounces: int = 5
 
 func _ready():
+	super._ready()
+	lifetime.start(10)
 	ball.material_override = material
-	blast_color = GradientTexture1D.new()
-	blast_color.gradient = Gradient.new()
-	blast_color.gradient.set_color(0, material.albedo_color)
-	blast_color.gradient.set_color(1, material.albedo_color)
-	blast_color.resource_local_to_scene = true
+	blast_color = material.albedo_color
+	bounces = int(range)
 
 func _on_body_entered(body):
-	bounces -= 1.0
+	bounces -= 1
 	explode()
+	lifetime.start()
 	if body is Enemy:
 		body.hit(damage, player, self)
 	if bounces <= 0:
@@ -29,6 +29,6 @@ func explode():
 	blast.damage = damage
 	blast.radius = radius
 	blast.player = player
-	blast.gradiant = blast_color
+	blast.color = blast_color
 	blast.position = position
 	get_tree().current_scene.add_child(blast)
