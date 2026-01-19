@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://dhlu65iawdxvf"]
+[gd_scene load_steps=57 format=3 uid="uid://dhlu65iawdxvf"]
 
 [ext_resource type="Script" uid="uid://c2cudrvyd4egp" path="res://Scripts/Player/player.gd" id="1_uvnfx"]
 [ext_resource type="Script" uid="uid://c4i7uubwdhgtw" path="res://Scripts/Player/weapons_manager.gd" id="2_htcer"]
@@ -35,7 +35,6 @@
 [ext_resource type="AudioStream" uid="uid://k6deuqev1ba0" path="res://Audio/SFX/Damage Taken.mp3" id="28_rukb4"]
 [ext_resource type="Script" uid="uid://b8nkqqq3wwo7l" path="res://Scripts/Misc/hit_audio.gd" id="29_2ahak"]
 [ext_resource type="AudioStream" uid="uid://dymjngbslujpe" path="res://Audio/SFX/Jump.mp3" id="29_fcwna"]
-[ext_resource type="PackedScene" uid="uid://c2o7h4efocscc" path="res://Scenes/Abilities/lightning_strike.tscn" id="29_ogmfp"]
 [ext_resource type="AudioStream" uid="uid://ckpyrftwekeyr" path="res://Audio/SFX/Land.mp3" id="30_1agin"]
 [ext_resource type="AudioStream" uid="uid://0ye4jgvtnnsw" path="res://Audio/SFX/Pick Up.mp3" id="31_1agin"]
 [ext_resource type="AudioStream" uid="uid://d3l6wn8dvlk18" path="res://Audio/SFX/Splat.mp3" id="32_1agin"]
@@ -623,8 +622,6 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 script = ExtResource("13_7g0yx")
 player = NodePath("..")
-
-[node name="Lightning Strike" parent="Abilities" instance=ExtResource("29_ogmfp")]
 
 [node name="Paused Check" type="Node" parent="."]
 process_mode = 3
