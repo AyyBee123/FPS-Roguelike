@@ -28,6 +28,7 @@ _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.6966293), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_lqgie"]
+resource_local_to_scene = true
 curve = SubResource("Curve_pubr5")
 
 [sub_resource type="Curve" id="Curve_vu74h"]
@@ -38,13 +39,17 @@ point_count = 2
 curve = SubResource("Curve_vu74h")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hixqx"]
+resource_local_to_scene = true
 gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 0.5
 scale_curve = SubResource("CurveTexture_fy2cs")
 color = Color(0.9872002, 0.8100797, 0.5833688, 1)
 alpha_curve = SubResource("CurveTexture_hixqx")
 emission_curve = SubResource("CurveTexture_lqgie")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y1uap"]
+resource_local_to_scene = true
 transparency = 1
 blend_mode = 1
 cull_mode = 2
@@ -75,6 +80,7 @@ point_count = 2
 curve = SubResource("Curve_vt6k6")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2ee4i"]
+resource_local_to_scene = true
 particle_flag_rotate_y = true
 particle_flag_disable_z = true
 angle_min = 1.0728835e-05
@@ -86,6 +92,7 @@ alpha_curve = SubResource("CurveTexture_pubr5")
 emission_curve = SubResource("CurveTexture_y1uap")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fy2cs"]
+resource_local_to_scene = true
 transparency = 1
 blend_mode = 1
 cull_mode = 2
@@ -146,4 +153,4 @@ process_material = SubResource("ParticleProcessMaterial_hixqx")
 draw_pass_1 = SubResource("QuadMesh_hixqx")
 
 [connection signal="finished" from="MuzzlePlanes" to="." method="_on_muzzle_planes_finished"]
-[connection signal="finished" from="@GPUParticles3D@1027859" to="." method="_on_muzzle_planes_finished"]
+[connection signal="finished" from="@GPUParticles3D@87912" to="." method="_on_muzzle_planes_finished"]

@@ -24,6 +24,7 @@ class_name Arm extends Node3D
 @export var equip_animation: String = "Activate"
 @export var muzzle: PackedScene
 @export var muzzle_color: Color = Color("fccf95")
+@export_range(0, 3) var muzzle_size: float = 1.0
 @export var firing_audio: Array[DeconflictedAudioPlayer]
 
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
@@ -79,6 +80,7 @@ func shoot(ignore_fire_rate: bool = false, outside_source: Variant = self):
 	if muzzle:
 		var m = muzzle.instantiate()
 		m.set_color(muzzle_color)
+		m.size = muzzle_size
 		bullet_point.add_child(m)
 	
 	var camera_collision = get_camera_collision()

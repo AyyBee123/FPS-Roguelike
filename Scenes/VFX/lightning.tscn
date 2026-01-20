@@ -12,6 +12,7 @@
 gradient = SubResource("Gradient_dxbur")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qa3j7"]
+resource_local_to_scene = true
 gravity = Vector3(0, 0, 0)
 color_ramp = SubResource("GradientTexture1D_ggp7a")
 
@@ -23,6 +24,7 @@ colors = PackedColorArray(0.011459172, 0.29875392, 1.1805553, 1, 0.86759305, 1.2
 gradient = SubResource("Gradient_j2l7i")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qa3j7"]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1_qa3j7")
 shader_parameter/material_texture = ExtResource("2_6o5yw")
@@ -71,6 +73,7 @@ _data = [Vector2(0, 1), 0.0, -1.0, 0, 1, Vector2(1, 0), -1.0, 0.0, 1, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_og5d2"]
+resource_local_to_scene = true
 curve = SubResource("Curve_sx8lc")
 
 [sub_resource type="Curve" id="Curve_ggp7a"]
@@ -81,6 +84,7 @@ point_count = 4
 curve = SubResource("Curve_ggp7a")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6o5yw"]
+resource_local_to_scene = true
 gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_j2l7i")
 color_ramp = SubResource("GradientTexture1D_b54ph")

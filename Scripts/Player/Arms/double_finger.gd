@@ -15,10 +15,12 @@ func shoot(ignore_fire_rate: bool = false, outside_source: Variant = self):
 	if muzzle:
 		var m = muzzle.instantiate()
 		m.set_color(muzzle_color)
+		m.size = muzzle_size
 		muzzle_point.add_child(m)
 		
 		var m2 = muzzle.instantiate()
 		m2.set_color(muzzle_color)
+		m2.size = muzzle_size
 		muzzle_point_2.add_child(m2)
 	
 	var camera_collision = get_camera_collision()

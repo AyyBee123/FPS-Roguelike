@@ -30,7 +30,7 @@ func _ready():
 	
 	var size = beam.scale
 	var pos = beam.position
-	var mat: StandardMaterial3D = beam.mesh.surface_get_material(0)
+	var mat: StandardMaterial3D = beam.material_override
 	var original_alpha = mat.albedo_color.a
 	
 	beam.scale.y = 0
