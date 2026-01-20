@@ -19,10 +19,7 @@ func _ready():
 	for particle in particles:
 		particle.restart()
 		max_lifetime = max(particle.lifetime, max_lifetime)
-	if scale.x < 1:
-		blast.process_material.scale_max *= scale.x
-	else:
-		blast.process_material.scale_min *= scale.x
+		blast.scale = scale
 	
 	await get_tree().create_timer(max_lifetime).timeout
 	queue_free()

@@ -13,10 +13,7 @@ func _ready():
 			particle.material_override.albedo_color = color
 		elif particle.material_override is ShaderMaterial:
 			particle.material_override.set_shader_parameter("albedo", color)
-		if size < 1:
-			particle.process_material.scale_max *= size
-		else:
-			particle.process_material.scale_min *= size
+		particle.scale = Vector3.ONE * size
 		max_lifetime = max(particle.lifetime, max_lifetime)
 	
 	await get_tree().create_timer(max_lifetime).timeout
