@@ -1,6 +1,4 @@
-[gd_resource type="ArrayMesh" load_steps=3 format=4 uid="uid://ciwcovp5ji7op"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8q0jn"]
+[gd_resource type="ArrayMesh" load_steps=2 format=4 uid="uid://ciwcovp5ji7op"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_dnoef"]
 _surfaces = [{
@@ -23,7 +21,6 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 96,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAADAAAABAAFAAMABgAFAAQABgAHAAUACAAHAAYACAAJAAcACgAJAAgACgALAAkADAALAAoADAANAAsADgANAAwADgAPAA0AEAAPAA4AEAARAA8AEgARABAAEgATABEAFAATABIAFAAVABMAFgAVABQAFgAXABUAGAAXABYAGAAZABcAGgAZABgAGgAbABkAHAAbABoAHAAdABsAHgAdABwAHgAfAB0AIAAfAB4AIAAhAB8A"),
-"material": SubResource("StandardMaterial3D_8q0jn"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 34,

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cn17hne20fd4g"
-path.s3tc="res://.godot/imported/Shockwave 2.png-92b30b2fa991c8bee64f1c8920746348.s3tc.ctex"
+uid="uid://dad610v7vit1"
+path.s3tc="res://.godot/imported/Muzzle Flash.png-6f9543a0f9e2e28caf8a330c70238efe.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Textures/Shockwave 2.png"
-dest_files=["res://.godot/imported/Shockwave 2.png-92b30b2fa991c8bee64f1c8920746348.s3tc.ctex"]
+source_file="res://Assets/Textures/Muzzle Flash.png"
+dest_files=["res://.godot/imported/Muzzle Flash.png-6f9543a0f9e2e28caf8a330c70238efe.s3tc.ctex"]
 
 [params]
 

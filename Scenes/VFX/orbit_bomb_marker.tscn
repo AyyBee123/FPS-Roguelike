@@ -18,6 +18,7 @@ disable_fog = true
 disable_specular_occlusion = true
 albedo_color = Color(0.8627451, 0, 0, 0.2509804)
 albedo_texture = ExtResource("3_n7sns")
+texture_filter = 0
 
 [node name="Orbit Bomb Marker" type="Node3D"]
 script = ExtResource("1_owx6x")

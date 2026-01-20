@@ -5,7 +5,6 @@ func _ready():
 	rotate_z(randf_range(0, TAU))
 	for particle in get_children():
 		if particle is GPUParticles3D:
-			particle.one_shot = true
 			particle.restart()
 
 func set_color(color: Color):

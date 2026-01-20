@@ -1,11 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://dphgx1a3xboty"]
+[gd_scene load_steps=25 format=3 uid="uid://dphgx1a3xboty"]
 
-[ext_resource type="Texture2D" uid="uid://b4u67bpc6xv53" path="res://Assets/Textures/Muzzle.png" id="1_5ait0"]
 [ext_resource type="Script" uid="uid://dje4smojlqj3r" path="res://Scripts/Misc/muzzle_flash.gd" id="1_fy2cs"]
+[ext_resource type="Texture2D" uid="uid://dad610v7vit1" path="res://Assets/Textures/Muzzle Flash.png" id="2_fy2cs"]
 [ext_resource type="ArrayMesh" uid="uid://ilughbwg8anx" path="res://Assets/VFX/Muzzle.tres" id="2_porkb"]
 [ext_resource type="Texture2D" uid="uid://dyj4i3hlby14b" path="res://Assets/Textures/Muzzle Cone.png" id="3_37gr2"]
 [ext_resource type="ArrayMesh" uid="uid://nup6lfpy4178" path="res://Assets/VFX/Muzzle Cone.tres" id="4_vu74h"]
-[ext_resource type="Texture2D" uid="uid://bjr6144wf2yev" path="res://Assets/Textures/Flash.png" id="5_vu74h"]
+[ext_resource type="Texture2D" uid="uid://ky2oxf1m71w6" path="res://Assets/Textures/Flash 2.png" id="6_fy2cs"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_37gr2"]
 transparency = 1
@@ -14,7 +14,7 @@ cull_mode = 2
 shading_mode = 0
 vertex_color_use_as_albedo = true
 vertex_color_is_srgb = true
-albedo_texture = ExtResource("1_5ait0")
+albedo_texture = ExtResource("2_fy2cs")
 
 [sub_resource type="Curve" id="Curve_fy2cs"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -53,6 +53,38 @@ vertex_color_use_as_albedo = true
 vertex_color_is_srgb = true
 albedo_texture = ExtResource("3_37gr2")
 
+[sub_resource type="Curve" id="Curve_hixqx"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_pubr5"]
+curve = SubResource("Curve_hixqx")
+
+[sub_resource type="Curve" id="Curve_lqgie"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.6966293), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_y1uap"]
+curve = SubResource("Curve_lqgie")
+
+[sub_resource type="Curve" id="Curve_vt6k6"]
+_data = [Vector2(0, 0), 0.0, 2.9530134, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_mvaup"]
+curve = SubResource("Curve_vt6k6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2ee4i"]
+particle_flag_rotate_y = true
+particle_flag_disable_z = true
+angle_min = 1.0728835e-05
+angle_max = 360.00003
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_mvaup")
+color = Color(0.9872002, 0.8100797, 0.5833688, 1)
+alpha_curve = SubResource("CurveTexture_pubr5")
+emission_curve = SubResource("CurveTexture_y1uap")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fy2cs"]
 transparency = 1
 blend_mode = 1
@@ -60,7 +92,7 @@ cull_mode = 2
 shading_mode = 0
 vertex_color_use_as_albedo = true
 vertex_color_is_srgb = true
-albedo_texture = ExtResource("5_vu74h")
+albedo_texture = ExtResource("6_fy2cs")
 billboard_mode = 3
 billboard_keep_scale = true
 particles_anim_h_frames = 1
@@ -76,8 +108,10 @@ script = ExtResource("1_fy2cs")
 [node name="MuzzlePlanes" type="GPUParticles3D" parent="."]
 unique_name_in_owner = true
 material_override = SubResource("StandardMaterial3D_37gr2")
+emitting = false
 amount = 1
 lifetime = 0.1
+one_shot = true
 randomness = 1.0
 fixed_fps = 60
 local_coords = true
@@ -88,19 +122,23 @@ draw_pass_1 = ExtResource("2_porkb")
 unique_name_in_owner = true
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_y1uap")
+emitting = false
 amount = 1
 lifetime = 0.1
+one_shot = true
 randomness = 1.0
 fixed_fps = 60
 local_coords = true
-process_material = SubResource("ParticleProcessMaterial_hixqx")
+process_material = SubResource("ParticleProcessMaterial_2ee4i")
 draw_pass_1 = ExtResource("4_vu74h")
 
 [node name="Flash" type="GPUParticles3D" parent="."]
 unique_name_in_owner = true
 material_override = SubResource("StandardMaterial3D_fy2cs")
+emitting = false
 amount = 1
 lifetime = 0.1
+one_shot = true
 randomness = 1.0
 fixed_fps = 60
 local_coords = true
@@ -108,3 +146,4 @@ process_material = SubResource("ParticleProcessMaterial_hixqx")
 draw_pass_1 = SubResource("QuadMesh_hixqx")
 
 [connection signal="finished" from="MuzzlePlanes" to="." method="_on_muzzle_planes_finished"]
+[connection signal="finished" from="@GPUParticles3D@1027859" to="." method="_on_muzzle_planes_finished"]
