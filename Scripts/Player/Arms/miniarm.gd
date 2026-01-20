@@ -3,7 +3,7 @@ extends Arm
 @onready var barrel = %Barrel
 @onready var cylinder_001 = $Armature/Base/Cylinder_001
 
-const SPOOL_TIME: float = 2.0
+const SPOOL_TIME: float = 1.5
 const STEP = TAU / 5
 
 var fire_rate_multiplier: float = 0.25
@@ -24,7 +24,6 @@ func _physics_process(delta):
 		barrel.rotation.z = min(current_rotation, barrel.rotation.z + (current_rotation - barrel.rotation.z) * delta / fire_rate_multiplier)
 	
 	fire_rate_multiplier = lerp(0.2, 1.0, ease_out_quad(spool))
-	
 
 func ease_out_quad(t: float):
 	return 1.0 - (1.0 - t) * (1.0 - t)
