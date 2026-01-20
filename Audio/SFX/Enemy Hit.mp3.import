@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://id1yt3y16cbi"
+path="res://.godot/imported/Enemy Hit.mp3-8c95ee95cc98c0371138d7307630beac.mp3str"
+
+[deps]
+
+source_file="res://Audio/SFX/Enemy Hit.mp3"
+dest_files=["res://.godot/imported/Enemy Hit.mp3-8c95ee95cc98c0371138d7307630beac.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
