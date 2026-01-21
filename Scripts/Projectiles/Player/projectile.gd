@@ -31,6 +31,7 @@ func create_impact():
 	var impact = IMPACT.instantiate()
 	impact.position = position
 	impact.color = impact_color
+	impact.scale = Vector3.ONE * impact_size
 	get_tree().current_scene.add_child(impact)
 
 func _on_timer_timeout():

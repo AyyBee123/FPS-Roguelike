@@ -1651,8 +1651,6 @@ base_speed = 30.0
 recoil = Vector2(0.5, 0.2)
 recoil_speed = 8.0
 snap = 6.0
-muzzle = ExtResource("3_h7p05")
-muzzle_color = Color(0.5990973, 0.5415269, 0.44946676, 1)
 firing_audio = [NodePath("BlobLaunch")]
 
 [node name="Fire Rate Timer" type="Timer" parent="."]
@@ -1663,6 +1661,9 @@ one_shot = true
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00013876, -0.00037185103, -0.42957902)
 
+[node name="Muzzle Flash" parent="Bullet Point" instance=ExtResource("3_h7p05")]
+color = Color(0.72241306, 0.60629344, 0.4956212, 1)
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
@@ -1671,6 +1672,7 @@ libraries = {
 
 [node name="BlobLaunch" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("4_p6h4n")
+panning_strength = 0.0
 bus = &"SFX"
 script = ExtResource("5_0kh4s")
 

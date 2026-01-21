@@ -133,6 +133,7 @@ amount = 1
 lifetime = 0.15000000000000002
 one_shot = true
 fixed_fps = 0
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_32tsf")
 draw_pass_1 = SubResource("QuadMesh_dc6rb")
 
@@ -143,6 +144,7 @@ amount = 1
 lifetime = 0.1
 one_shot = true
 fixed_fps = 0
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_tp0la")
 draw_pass_1 = SubResource("QuadMesh_dc6rb")
 
@@ -153,5 +155,6 @@ lifetime = 0.15000000000000002
 one_shot = true
 explosiveness = 1.0
 fixed_fps = 0
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_dc6rb")
 draw_pass_1 = SubResource("QuadMesh_dc6rb")

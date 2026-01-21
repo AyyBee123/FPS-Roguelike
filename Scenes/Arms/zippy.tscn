@@ -698,6 +698,7 @@ unique_name_in_owner = true
 stream = ExtResource("3_nny3l")
 max_db = 2.0
 pitch_scale = 1.75
+panning_strength = 0.0
 bus = &"SFX"
 script = ExtResource("5_a8ioa")
 

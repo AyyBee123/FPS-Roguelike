@@ -17,7 +17,6 @@ signal send_buff(buff)
 	"Projectile_Count": { "base": 1, "+": 0.0, "x": 1.0, "flat": 0 },
 	"Crit_Chance": { "base": 1.0, "+": 0.0, "x": 1.0, "flat": 0.0 },
 	"Crit_Damage": { "base": 1.0, "+": 0.0, "x": 1.0, "flat": 0.0 },
-	"Pierce": { "base": 1.0, "+": 0.0, "x": 1.0, "flat": 0.0 },
 }
 
 var level: int = 1
@@ -125,13 +124,14 @@ func add_flat_stat(stat_type: String, amount: Variant) -> void:
 
 ## gets the final stat value, after calculating player and ability stats
 func get_stat_value(stat_type: String, value: Variant = null):
-	if value == null:
+	if value == null: # base stat of the ability
 		value = stats[stat_type]["base"]
-	var base_value = ((value / (1 + player.stats.stats[stat_type]["+"])) + player.stats.stats[stat_type]["flat"]) \
-			/ player.stats.stats[stat_type]["x"]
-	var final_value = ((base_value * (1 + stats[stat_type]["+"] + player.stats.stats[stat_type]["+"])) \
+	else: # scaling stat (e.g. the player's dealt damage)
+		value = ((value / (1 + player.stats.stats[stat_type]["+"])) + player.stats.stats[stat_type]["flat"]) \
+				/ player.stats.stats[stat_type]["x"]
+	var final_value = ((value * (1 + stats[stat_type]["+"] + player.stats.stats[stat_type]["+"])) \
 			+ stats[stat_type]["flat"] + player.stats.stats[stat_type]["flat"]) \
-			* stats[stat_type]["x"] * player.stats.stats[stat_type]["x"]
+			* (stats[stat_type]["x"] + player.stats.stats[stat_type]["x"] - 1)
 	return final_value
 
 func get_upgrade_stat():

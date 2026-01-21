@@ -17,7 +17,7 @@ func _ready():
 	sb.global_position = global_position
 	sb.blast.play_deconflicted()
 	
-	collision_shape.shape.radius = radius
+	scale = Vector3.ONE * radius
 	
 	for particle in particles:
 		particle.restart()
@@ -25,7 +25,6 @@ func _ready():
 			particle.material_override.albedo_color = color
 		elif particle.material_override is ShaderMaterial:
 			particle.material_override.set_shader_parameter("albedo", color)
-		particle.scale = Vector3.ONE * radius
 		max_lifetime = max(particle.lifetime, max_lifetime)
 	
 	await get_tree().create_timer(max_lifetime).timeout

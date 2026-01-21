@@ -11,7 +11,7 @@ script = ExtResource("1_ct0jj")
 [node name="Blast" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("2_ct0jj")
 attenuation_model = 1
-unit_size = 30.0
+unit_size = 50.0
 max_db = 2.0
 bus = &"SFX"
 script = ExtResource("3_x04wh")

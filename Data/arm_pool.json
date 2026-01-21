@@ -4,6 +4,10 @@
 		"rarity": 0
 	},
 	{
+		"path": "res://Scenes/Arms/miniarm.tscn",
+		"rarity": 2
+	},
+	{
 		"path": "res://Scenes/Arms/oil_spill.tscn",
 		"rarity": 1
 	},
@@ -14,5 +18,9 @@
 	{
 		"path": "res://Scenes/Arms/stick.tscn",
 		"rarity": 2
+	},
+	{
+		"path": "res://Scenes/Arms/zippy.tscn",
+		"rarity": 1
 	}
 ]

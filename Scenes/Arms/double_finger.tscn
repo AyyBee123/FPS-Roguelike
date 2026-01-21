@@ -320,7 +320,6 @@ spread = 4.0
 recoil = Vector2(1.5, 0.25)
 recoil_speed = 12.0
 snap = 4.0
-muzzle = ExtResource("3_w50id")
 firing_audio = [NodePath("Shotgun")]
 
 [node name="Fire Rate Timer" type="Timer" parent="."]
@@ -335,9 +334,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00013876, 0.05958993, -0.40
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.057062075, 0.059484378, -0.4040711)
 
+[node name="Muzzle Flash" parent="Muzzle Point" instance=ExtResource("3_w50id")]
+
 [node name="Muzzle Point2" type="Marker3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05710888, 0.059484378, -0.4074403)
+
+[node name="Muzzle Flash" parent="Muzzle Point2" instance=ExtResource("3_w50id")]
+size = 0.75
 
 [node name="Armature" type="Node3D" parent="."]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0.5545221)
@@ -397,5 +401,6 @@ libraries = {
 [node name="Shotgun" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("4_mmtga")
 max_db = 0.0
+panning_strength = 0.0
 bus = &"SFX"
 script = ExtResource("5_w50id")

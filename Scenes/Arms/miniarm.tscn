@@ -8,24 +8,6 @@
 [ext_resource type="AudioStream" uid="uid://d3l6wn8dvlk18" path="res://Audio/SFX/Splat.mp3" id="6_rivr2"]
 [ext_resource type="Material" uid="uid://c0irpddjdacnu" path="res://Materials/Mesh Highlight.tres" id="7_3gevr"]
 
-[sub_resource type="Animation" id="Animation_3wwhn"]
-resource_name = "Shoot"
-length = 0.2
-tracks/0/type = "position_3d"
-tracks/0/imported = true
-tracks/0/enabled = true
-tracks/0/path = NodePath("Base")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.033333335, 1, 0, 0, 0.01473611, 0.06666667, 1, 0, 0, 0.05683928, 0.1, 1, 0, 0.010001773, 0.05683928, 0.13333334, 1, 0, 0.0044452325, 0.025261901, 0.16666667, 1, 0, 0.001111309, 0.0063154735, 0.2, 1, 0, 0, 0)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = true
-tracks/1/enabled = true
-tracks/1/path = NodePath("Base")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.033333335, 1, -0.002269648, 0, 0, 0.99999744, 0.06666667, 1, -0.0087542515, 0, 0, 0.99996173, 0.1, 1, 0.017944647, 0, 0, 0.999839, 0.13333334, 1, 0.007975745, 0, 0, 0.9999682, 0.16666667, 1, 0.0019939565, 0, 0, 0.99999803, 0.2, 1, 0, 0, 0, 1)
-
 [sub_resource type="Animation" id="Animation_e5r8b"]
 resource_name = "Shoot"
 length = 0.2
@@ -43,6 +25,24 @@ tracks/1/path = NodePath("Base")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_3wwhn"]
+resource_name = "Shoot"
+length = 0.2
+tracks/0/type = "position_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("Base")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.033333335, 1, 0, 0, 0.01473611, 0.06666667, 1, 0, 0, 0.05683928, 0.1, 1, 0, 0.010001773, 0.05683928, 0.13333334, 1, 0, 0.0044452325, 0.025261901, 0.16666667, 1, 0, 0.001111309, 0.0063154735, 0.2, 1, 0, 0, 0)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("Base")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.033333335, 1, -0.002269648, 0, 0, 0.99999744, 0.06666667, 1, -0.0087542515, 0, 0, 0.99996173, 0.1, 1, 0.017944647, 0, 0, 0.999839, 0.13333334, 1, 0.007975745, 0, 0, 0.9999682, 0.16666667, 1, 0.0019939565, 0, 0, 0.99999803, 0.2, 1, 0, 0, 0, 1)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ut11v"]
 _data = {
@@ -665,22 +665,20 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_med5v")
 
-[node name="Miniarm" type="Node3D" node_paths=PackedStringArray("firing_audio")]
+[node name="Miniarm" type="Node3D" node_paths=PackedStringArray("cylinders", "firing_audio")]
 script = ExtResource("1_qw5w3")
+cylinders = [NodePath("Armature/Base/Cylinder_001"), NodePath("Armature/Base/Cylinder_002"), NodePath("Armature/Base/Cylinder_003"), NodePath("Armature/Base/Cylinder_004"), NodePath("Armature/Base/Cylinder_005")]
 arm_name = "Miniarm"
 rarity = 2
 unlocked_by_default = false
 projectile = ExtResource("2_qw5w3")
-base_damage = 3.0
+base_damage = 4.0
 base_fire_rate = 12.0
 base_range = 30.0
 base_speed = 500.0
-base_splash_radius = 3.0
 recoil = Vector2(0.1, 0.05)
 recoil_speed = 10.0
 snap = 4.0
-muzzle = ExtResource("3_pf6s2")
-muzzle_size = 0.5
 firing_audio = [NodePath("SMG"), NodePath("Splat")]
 
 [node name="Fire Rate Timer" type="Timer" parent="."]
@@ -691,19 +689,24 @@ one_shot = true
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04712995, -0.57799226)
 
+[node name="Muzzle Flash" parent="Bullet Point" instance=ExtResource("3_pf6s2")]
+size = 0.5
+
 [node name="SMG" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("4_of4dr")
-volume_db = -8.0
+volume_db = -16.0
 max_db = 0.0
 pitch_scale = 2.0
+panning_strength = 0.0
 bus = &"SFX"
 script = ExtResource("4_3gevr")
 
 [node name="Splat" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("6_rivr2")
-volume_db = -8.0
+volume_db = -16.0
 max_db = 0.0
-pitch_scale = 2.5
+pitch_scale = 2.0
+panning_strength = 0.0
 bus = &"SFX"
 script = ExtResource("4_3gevr")
 

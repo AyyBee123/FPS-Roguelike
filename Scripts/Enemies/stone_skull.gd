@@ -6,6 +6,7 @@ extends Enemy
 @onready var shoot_marker = %"Shoot Marker"
 @onready var shoot_SFX = %Shoot
 @onready var move_timer = %"Move Timer"
+@onready var muzzle = %"Muzzle Flash"
 
 @export var projectile_damage: float
 @export var projectile_speed: float
@@ -50,9 +51,7 @@ func move(delta):
 
 func shoot():
 	if is_on_screen:
-		var muzzle = MUZZLE_FLASH.instantiate()
-		shoot_marker.add_child(muzzle)
-		muzzle.set_color("ffb31b")
+		muzzle.play()
 		var direction = (player_pos - shoot_marker.global_position).normalized()
 		fire_projectile(STONE_SKULL_PROJECTILE, shoot_marker.global_position, direction)
 		shoot_SFX.play_deconflicted()

@@ -111,6 +111,7 @@ amount = 1
 lifetime = 0.25
 one_shot = true
 fixed_fps = 0
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_6o5yw")
 draw_pass_1 = ExtResource("2_ggp7a")
 

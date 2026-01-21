@@ -587,6 +587,10 @@ skeleton = NodePath("")
 unique_name_in_owner = true
 transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, -0.1365757, -0.7474738)
 
+[node name="Muzzle Flash" parent="Skull/Shoot Marker" instance=ExtResource("2_pqm40")]
+unique_name_in_owner = true
+color = Color(1, 0.7019608, 0.105882354, 1)
+
 [node name="Fire" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)

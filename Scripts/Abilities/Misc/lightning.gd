@@ -9,8 +9,11 @@ var damage: float
 
 var player: Player
 var max_lifetime: float
+var size: float = 1.0
 
 func _ready():
+	scale = Vector3.ONE * size
+	
 	var sb = soundboard.instantiate()
 	get_tree().current_scene.add_child(sb)
 	sb.global_position = global_position
@@ -19,7 +22,6 @@ func _ready():
 	for particle in particles:
 		particle.restart()
 		max_lifetime = max(particle.lifetime, max_lifetime)
-		blast.scale = scale
 	
 	await get_tree().create_timer(max_lifetime).timeout
 	queue_free()
