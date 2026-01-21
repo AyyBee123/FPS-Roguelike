@@ -57,6 +57,8 @@ diffuse_mode = 3
 specular_mode = 1
 albedo_color = Color(0.23719181, 0.398731, 0.15312223, 1)
 roughness = 0.35
+z_clip_scale = 0.8
+fov_override = 100.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e7yjk"]
 resource_name = "Base 2"
@@ -65,6 +67,8 @@ diffuse_mode = 3
 specular_mode = 1
 albedo_color = Color(0.24682927, 0.24682927, 0.24682927, 1)
 roughness = 0.35
+z_clip_scale = 0.8
+fov_override = 100.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_41flt"]
 resource_name = "Barrel"
@@ -73,6 +77,8 @@ diffuse_mode = 3
 specular_mode = 1
 albedo_color = Color(0.25315922, 0.25315922, 0.25315922, 1)
 roughness = 0.25
+z_clip_scale = 0.8
+fov_override = 100.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jjuwm"]
 resource_name = "Base.001"
@@ -81,6 +87,8 @@ diffuse_mode = 3
 specular_mode = 1
 albedo_color = Color(0.14682862, 0.24682896, 0.09478861, 1)
 roughness = 0.35
+z_clip_scale = 0.8
+fov_override = 100.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4vfbc"]
 resource_name = "Loop"
@@ -89,6 +97,8 @@ diffuse_mode = 3
 specular_mode = 1
 albedo_color = Color(0.35442123, 0.35442123, 0.35442123, 1)
 roughness = 0.2
+z_clip_scale = 0.8
+fov_override = 100.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mooo0"]
 resource_name = "Screw"
@@ -97,6 +107,8 @@ diffuse_mode = 3
 specular_mode = 1
 albedo_color = Color(0.3734124, 0.3734124, 0.3734124, 1)
 roughness = 0.25
+z_clip_scale = 0.8
+fov_override = 100.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_4r7eg"]
 _surfaces = [{
@@ -246,6 +258,8 @@ cull_mode = 2
 diffuse_mode = 3
 specular_mode = 1
 albedo_color = Color(0, 0, 0, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_t3cfb"]
 _surfaces = [{
@@ -329,6 +343,8 @@ cull_mode = 2
 diffuse_mode = 3
 specular_mode = 1
 albedo_color = Color(0.7215065, 0.19179106, 0.19179106, 1)
+z_clip_scale = 0.8
+fov_override = 100.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_racqr"]
 _surfaces = [{
@@ -608,6 +624,8 @@ specular_mode = 1
 albedo_color = Color(0.5253075, 0.38654, 0.30178055, 1)
 metallic = 0.2
 roughness = 0.25
+z_clip_scale = 0.8
+fov_override = 100.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_med5v"]
 _surfaces = [{
@@ -701,6 +719,15 @@ panning_strength = 0.0
 bus = &"SFX"
 script = ExtResource("4_3gevr")
 
+[node name="SMG2" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_of4dr")
+max_db = -2.0
+pitch_scale = 0.5
+panning_strength = 0.0
+bus = &"SFX"
+script = ExtResource("4_3gevr")
+
 [node name="Splat" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("6_rivr2")
 volume_db = -16.0
@@ -734,31 +761,31 @@ mesh = SubResource("ArrayMesh_qw5w3")
 skeleton = NodePath("")
 
 [node name="Cylinder_001" type="MeshInstance3D" parent="Armature/Base"]
-transform = Transform3D(0.6724985, -0.70710677, -0.21850792, 0.6724984, 0.70710677, -0.21850824, 0.3090171, 2.30968e-07, 0.9510565, -0.09509717, 0.0779379, -0.1780922)
+transform = Transform3D(0.67249846, -0.7071067, -0.21850792, 0.67249835, 0.7071067, -0.21850824, 0.30901703, 2.3841856e-07, 0.9510565, -0.09509717, 0.0779379, -0.1780922)
 material_overlay = ExtResource("7_3gevr")
 mesh = SubResource("ArrayMesh_pf6s2")
 skeleton = NodePath("")
 
 [node name="Cylinder_002" type="MeshInstance3D" parent="Armature/Base"]
-transform = Transform3D(-0.6724987, -0.7071067, 0.21850784, -0.67249835, 0.7071068, 0.21850818, -0.309017, 3.054738e-07, -0.9510566, -0.07793789, 0.09509717, -0.10848511)
+transform = Transform3D(-0.67249864, -0.70710665, 0.21850786, -0.6724983, 0.7071069, 0.21850823, -0.30901703, 3.1292439e-07, -0.9510565, -0.07793789, 0.09509717, -0.10848511)
 material_overlay = ExtResource("7_3gevr")
 mesh = SubResource("ArrayMesh_of4dr")
 skeleton = NodePath("")
 
 [node name="Cylinder_003" type="MeshInstance3D" parent="Armature/Base"]
-transform = Transform3D(0.6724985, -0.70710677, -0.21850792, 0.6724984, 0.70710677, -0.21850824, 0.3090171, 2.30968e-07, 0.9510565, -0.09509714, 0.07793788, -0.13168746)
+transform = Transform3D(0.67249846, -0.7071067, -0.21850792, 0.67249835, 0.7071067, -0.21850824, 0.30901703, 2.3841856e-07, 0.9510565, -0.09509714, 0.07793788, -0.13168746)
 material_overlay = ExtResource("7_3gevr")
 mesh = SubResource("ArrayMesh_rivr2")
 skeleton = NodePath("")
 
 [node name="Cylinder_004" type="MeshInstance3D" parent="Armature/Base"]
-transform = Transform3D(-0.6724987, -0.7071067, 0.21850784, -0.67249835, 0.7071068, 0.21850818, -0.309017, 3.054738e-07, -0.9510566, -0.077937886, 0.09509716, -0.15488984)
+transform = Transform3D(-0.67249864, -0.70710665, 0.21850786, -0.6724983, 0.7071069, 0.21850823, -0.30901703, 3.1292439e-07, -0.9510565, -0.077937886, 0.09509716, -0.15488984)
 material_overlay = ExtResource("7_3gevr")
 mesh = SubResource("ArrayMesh_3gevr")
 skeleton = NodePath("")
 
 [node name="Cylinder_005" type="MeshInstance3D" parent="Armature/Base"]
-transform = Transform3D(0.67249846, -0.7071067, -0.21850792, 0.67249835, 0.7071067, -0.21850824, 0.30901703, 2.3841856e-07, 0.9510565, -0.095097154, 0.0779379, -0.085282765)
+transform = Transform3D(0.67249846, -0.7071067, -0.21850792, 0.67249835, 0.7071067, -0.21850824, 0.30901703, 2.3841855e-07, 0.9510565, -0.095097154, 0.0779379, -0.085282765)
 material_overlay = ExtResource("7_3gevr")
 mesh = SubResource("ArrayMesh_otrpo")
 skeleton = NodePath("")

@@ -3,6 +3,7 @@ extends Arm
 @onready var barrel = %Barrel
 @onready var magazine = %Magazine
 @export var cylinders: Array[MeshInstance3D]
+@onready var buzz = %SMG2
 
 const SPOOL_TIME: float = 1.5
 const STEP = TAU / 5
@@ -43,6 +44,9 @@ func _input(event):
 	elif is_shoot_button_held and not Input.is_action_pressed("shoot"):
 		is_shoot_button_held = false
 		barrel.rotation.z = 0
+		if fire_rate_multiplier >= 0.98:
+			buzz.pitch_scale = max(1 - fire_rate_multiplier, 0.25)
+		buzz.play_deconflicted(0.1)
 		current_rotation = max(round(TAU * fire_rate_multiplier / STEP) * STEP, STEP)
 
 func shoot(ignore_fire_rate: bool = false, outside_source: Variant = self):

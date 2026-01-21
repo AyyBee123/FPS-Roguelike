@@ -1,5 +1,6 @@
 class_name ArmPickup extends RigidBody3D
 
+@export var arm_scene: PackedScene
 @export var shader: Shader
 
 @onready var collision_shape = %CollisionShape
@@ -22,8 +23,11 @@ var mesh_list: Array[MeshInstance3D]
 var tween: Tween
 
 func _ready():
-	if not arm:
-		arm = ArmPool.roll()
+	if not arm_scene:
+		if not arm:
+			arm = ArmPool.roll()
+	else:
+		arm = arm_scene.instantiate()
 	arm_name = arm.arm_name
 	if arm.get_node_or_null("Armature"):
 		armature = arm.get_node("Armature").duplicate()
@@ -78,9 +82,6 @@ func get_all_mesh_instances(node: Node) -> Array:
 				continue
 			mesh_list.append(child)
 			meshes.append(child)
-			#var overlay: ShaderMaterial = ShaderMaterial.new()
-			#overlay.shader = shader
-			#child.material_overlay = overlay
 		meshes += get_all_mesh_instances(child) # recursion for nested children
 	return meshes
 

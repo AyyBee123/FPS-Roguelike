@@ -1,4 +1,4 @@
-[gd_scene load_steps=192 format=4 uid="uid://djbj7k76p2w00"]
+[gd_scene load_steps=194 format=4 uid="uid://djbj7k76p2w00"]
 
 [ext_resource type="Script" uid="uid://xvth4kwhnsit" path="res://Scripts/Levels/level.gd" id="1_r3g2l"]
 [ext_resource type="Script" uid="uid://ddlx4tkndd0xd" path="res://Scripts/Utils/enemy_manager.gd" id="2_r3g2l"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://dhlu65iawdxvf" path="res://Scenes/Player/player.tscn" id="6_i3lab"]
 [ext_resource type="PackedScene" uid="uid://ukgrpto2cajc" path="res://Scenes/Misc/xp.tscn" id="8_4dovk"]
 [ext_resource type="Script" uid="uid://px8ih8py0glr" path="res://Scripts/Utils/chest_manager.gd" id="9_1mh2y"]
+[ext_resource type="PackedScene" uid="uid://ba7erkb81ks3u" path="res://Scenes/Pickups/arm_pickup.tscn" id="9_xbbd1"]
+[ext_resource type="PackedScene" uid="uid://g4getfqlb2sc" path="res://Scenes/Arms/miniarm.tscn" id="10_i3lab"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_k8g1k"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -2150,6 +2152,7 @@ size = Vector3(200, 1, 200)
 [node name="Desert" type="Node3D"]
 script = ExtResource("1_r3g2l")
 NUMBER_OF_CHESTS = 40
+box_cost = 0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_l7ek2")
@@ -2683,5 +2686,9 @@ shape = SubResource("BoxShape3D_1mh2y")
 [node name="XP" parent="." instance=ExtResource("8_4dovk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7931824, 0.53391767, 0)
 xp_amount = 100
+
+[node name="Arm Pickup" parent="." instance=ExtResource("9_xbbd1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3327227, 1.9999008, 9.293566)
+arm_scene = ExtResource("10_i3lab")
 
 [connection signal="timeout" from="Chest Manager/Timer" to="Chest Manager" method="_on_timer_timeout"]

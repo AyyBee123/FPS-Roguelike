@@ -20,6 +20,7 @@ func _run():
 				mesh_node.mesh.surface_set_material(i, material)
 				material.diffuse_mode = BaseMaterial3D.DIFFUSE_TOON
 				material.specular_mode = BaseMaterial3D.SPECULAR_TOON
+				# these are turned on when picking up the arm
 				material.use_z_clip_scale = false
 				material.use_fov_override = false
 		mesh_node.material_overlay = preload("uid://c0irpddjdacnu")
