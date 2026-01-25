@@ -5,6 +5,9 @@ signal enemy_hit(source, enemy, damage_taken)
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 @onready var on_screen_notifier: VisibleOnScreenNotifier3D = %VisibleOnScreenNotifier3D
 @onready var ray_cast: RayCast3D = %RayCast
+
+@onready var player = get_tree().get_first_node_in_group("Player")
+@onready var level: Level = get_tree().current_scene
 @onready var XP = get_tree().current_scene.XP
 
 @export var mesh: Array[MeshInstance3D]
@@ -16,6 +19,9 @@ signal enemy_hit(source, enemy, damage_taken)
 @export var contact_damage: float = 0.0 # amount of damage dealt to a player if in contact with them
 @export var weight: float = 1.0 # weight determines the anount the enemy gets pushed (lower weight gets pushed more)
 @export var damage_number: PackedScene
+
+var INITIAL_HEALTH: float
+var INITIAL_DAMAGE: float
 
 var angular_acceleration: float = 5
 var is_on_screen: bool = true
@@ -31,8 +37,6 @@ var accumulated_damage: float = 0.0
 var dmg_num: Node3D
 
 var is_dead: bool = false # prevents the enemy from triggering on death effects more than once
-
-@onready var player = get_tree().get_first_node_in_group("Player")
 
 func _ready():
 	ray_cast.global_transform = Transform3D(Basis(), ray_cast.global_position) # lock the ray cast's rotation
@@ -51,12 +55,10 @@ func _physics_process(delta):
 	var collision = move_and_collide(Vector3.ZERO)
 	if collision and contact_damage > 0.0:
 		var body = collision.get_collider()
-		
 		if body is Player:
-			body.hit(contact_damage, global_position)
-
-func target_position(target):
-	pass
+			body.hit(contact_damage * (1.0 + level.enemy_tier * 0.03), global_position)
+	
+	health = INITIAL_HEALTH * exp(level.enemy_tier * 0.08)
 
 func hit(_damage: float, source_player: Player, source: Variant):
 	health -= _damage
@@ -94,8 +96,6 @@ func die(_damage: float, source_player: Player, source: Variant):
 	drop_xp()
 	give_coins(source_player)
 	queue_free()
-
-
 
 func drop_xp():
 	var xp = XP.instantiate()

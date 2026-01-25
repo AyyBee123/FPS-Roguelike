@@ -10,13 +10,27 @@ signal cost_increased
 @export var chest_cost: int = 20
 @export var box_cost: int = 30
 
+var INITIAL_CHEST_COST: int
+var INITIAL_BOX_COST: int
+
+var number_of_chests_opened: int = 0
+
 const XP = preload("uid://ukgrpto2cajc")
 
 var time_left: float = 1200.0 # time in seconds (20 minutes, in this case)
+var elapsed_time: float = 0.0
 var current_number_of_enemies: int = 0
+var enemy_tier: int = 0:
+	get:
+		return floori(elapsed_time / 60)
+
+func _ready():
+	INITIAL_CHEST_COST = chest_cost
+	INITIAL_BOX_COST = box_cost
 
 func _physics_process(delta):
 	time_left = max(time_left - delta, 0)
+	elapsed_time += delta
 	if time_left <= 0: # do stuff when countdown time reaches zero
 		pass
 
@@ -44,6 +58,10 @@ func find_chest_spawn() -> Vector3:
 	return pos + Vector3(0, 1, 0) # add to the y-axis to prevent chests from spawning under the map
 
 func increase_costs():
-	box_cost += 10
-	chest_cost += 10
+	number_of_chests_opened += 1
+	box_cost = scale_cost(INITIAL_BOX_COST)
+	chest_cost = scale_cost(INITIAL_CHEST_COST)
 	cost_increased.emit()
+
+func scale_cost(cost: int) -> int:
+	return roundi(cost * exp(0.5 + (number_of_chests_opened - 1) * 0.1))

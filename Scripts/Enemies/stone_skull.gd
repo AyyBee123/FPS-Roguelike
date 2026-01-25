@@ -59,7 +59,7 @@ func shoot():
 
 func fire_projectile(proj: PackedScene, pos: Vector3, direction: Vector3):
 	var p = proj.instantiate()
-	p.damage = projectile_damage
+	p.damage = projectile_damage * (1.0 + level.enemy_tier * 0.03)
 	p.speed = projectile_speed
 	p.range = projectile_range
 	get_tree().current_scene.add_child(p)

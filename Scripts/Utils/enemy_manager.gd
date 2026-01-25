@@ -9,9 +9,12 @@ static var current_number_of_enemies: int = 0
 
 var NUMBER_OF_ENEMIES_TO_SPAWN: int = 1
 var MAX_NUMBER_OF_ENEMIES: int = 20
-var MIN_AMOUNT_OF_ENEMIES: int = 10
+var MIN_NUMBER_OF_ENEMIES: int = 10
 var SPAWNING_INTERVAL: float = 2
-var t: float = 0 
+var t: float = 0
+
+@onready var INITIAL_MAX_ENEMIES: int = MAX_NUMBER_OF_ENEMIES
+@onready var INITIAL_MIN_ENEMIES: int = MIN_NUMBER_OF_ENEMIES
 
 # distance range the enemy can spawn away from the player
 const MIN_DISTANCE: float = 20
@@ -23,12 +26,15 @@ func _ready():
 	SignalBus.enemy_defeated.connect(_on_enemy_defeat)
 
 func _physics_process(delta):
+	MAX_NUMBER_OF_ENEMIES = min(floori(INITIAL_MAX_ENEMIES * exp(level.enemy_tier * 0.08)), 100)
+	MIN_NUMBER_OF_ENEMIES = min(floori(INITIAL_MIN_ENEMIES * exp(level.enemy_tier * 0.09)), 80)
+	
 	t += delta
 	if t >= SPAWNING_INTERVAL:
 		t = 0
 		# spawn enemies if the current amount on the map is less than the maximum
 		if current_number_of_enemies < MAX_NUMBER_OF_ENEMIES:
-			for i in range(max(NUMBER_OF_ENEMIES_TO_SPAWN, MIN_AMOUNT_OF_ENEMIES - current_number_of_enemies)):
+			for i in range(max(NUMBER_OF_ENEMIES_TO_SPAWN, MIN_NUMBER_OF_ENEMIES - current_number_of_enemies)):
 				spawn_enemy(enemies.pick_random()) # for now
 	
 	if level.current_number_of_enemies != current_number_of_enemies:
