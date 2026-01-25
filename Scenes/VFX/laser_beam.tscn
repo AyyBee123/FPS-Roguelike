@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://fugesnigenkf"]
+[gd_scene load_steps=38 format=3 uid="uid://fugesnigenkf"]
 
 [ext_resource type="ArrayMesh" uid="uid://3r6n8ru1mlpv" path="res://Assets/VFX/Beam Cylinder.tres" id="1_1a31g"]
 [ext_resource type="Script" uid="uid://cd8u61udo3q3a" path="res://Scripts/Projectiles/Player/laser_beam.gd" id="1_kgi74"]
@@ -33,6 +33,15 @@ shader_parameter/color_2 = Color(0.9927862, 0.61883223, 0.6176955, 1)
 shader_parameter/color_3 = Color(0.95824426, 0.32677162, 0.409404, 1)
 shader_parameter/speed = 1.5
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_7brug")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7brug"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.97220653, 0.8167054, 0.82435185, 1)
+albedo_texture = ExtResource("3_klmes")
+
+[sub_resource type="QuadMesh" id="QuadMesh_bybgw"]
 
 [sub_resource type="Curve" id="Curve_g3qr6"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -213,6 +222,11 @@ transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 10, 0, 0, 0.025)
 material_override = SubResource("ShaderMaterial_bybgw")
 mesh = ExtResource("1_1a31g")
 skeleton = NodePath("../../..")
+
+[node name="Circle" type="MeshInstance3D" parent="Laser/VFX"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_7brug")
+mesh = SubResource("QuadMesh_bybgw")
 
 [node name="Lines" type="GPUParticles3D" parent="Laser/VFX"]
 unique_name_in_owner = true
