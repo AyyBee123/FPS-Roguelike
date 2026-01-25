@@ -10,12 +10,12 @@ signal cost_increased
 @export var chest_cost: int = 20
 @export var box_cost: int = 30
 
+const XP = preload("uid://ukgrpto2cajc")
+
 var INITIAL_CHEST_COST: int
 var INITIAL_BOX_COST: int
 
 var number_of_chests_opened: int = 0
-
-const XP = preload("uid://ukgrpto2cajc")
 
 var time_left: float = 1200.0 # time in seconds (20 minutes, in this case)
 var elapsed_time: float = 0.0
