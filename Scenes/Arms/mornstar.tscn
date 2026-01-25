@@ -976,7 +976,7 @@ script = ExtResource("4_6l7nf")
 [node name="Beam Shrink" type="AudioStreamPlayer3D" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("6_0ah4d")
-max_db = -10.0
+max_db = -12.0
 pitch_scale = 3.0
 panning_strength = 0.0
 bus = &"SFX"
