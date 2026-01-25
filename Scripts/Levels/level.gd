@@ -18,7 +18,7 @@ var number_of_chests_opened: int = 0
 const XP = preload("uid://ukgrpto2cajc")
 
 var time_left: float = 1200.0 # time in seconds (20 minutes, in this case)
-var elapsed_time: float = 0.0
+var elapsed_time: float = 500
 var current_number_of_enemies: int = 0
 var enemy_tier: int = 0:
 	get:

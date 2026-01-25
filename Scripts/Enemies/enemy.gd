@@ -9,6 +9,9 @@ signal enemy_hit(source, enemy, damage_taken)
 @onready var player = get_tree().get_first_node_in_group("Player")
 @onready var level: Level = get_tree().current_scene
 @onready var XP = get_tree().current_scene.XP
+@onready var INITIAL_HEALTH: float = health
+@onready var INITIAL_CONTACT_DAMAGE: float = contact_damage
+@onready var INITIAL_PROJECTILE_DAMAGE: float = projectile_damage
 
 @export var mesh: Array[MeshInstance3D]
 @export var raycast_offset: float = 0
@@ -20,8 +23,9 @@ signal enemy_hit(source, enemy, damage_taken)
 @export var weight: float = 1.0 # weight determines the anount the enemy gets pushed (lower weight gets pushed more)
 @export var damage_number: PackedScene
 
-var INITIAL_HEALTH: float
-var INITIAL_DAMAGE: float
+@export var projectile_damage: float
+@export var projectile_speed: float
+@export var projectile_range: float
 
 var angular_acceleration: float = 5
 var is_on_screen: bool = true
@@ -39,6 +43,10 @@ var dmg_num: Node3D
 var is_dead: bool = false # prevents the enemy from triggering on death effects more than once
 
 func _ready():
+	health = INITIAL_HEALTH * exp(level.enemy_tier * 0.08)
+	contact_damage = INITIAL_CONTACT_DAMAGE * (1.0 + level.enemy_tier * 0.1)
+	projectile_damage = INITIAL_PROJECTILE_DAMAGE * (1.0 + level.enemy_tier * 0.1)
+	
 	ray_cast.global_transform = Transform3D(Basis(), ray_cast.global_position) # lock the ray cast's rotation
 	ray_cast.force_raycast_update() # detect the ground immediately
 	position.y = ray_cast.get_collision_point().y + raycast_offset # snap the enemy to the ground (with offset)
@@ -56,9 +64,7 @@ func _physics_process(delta):
 	if collision and contact_damage > 0.0:
 		var body = collision.get_collider()
 		if body is Player:
-			body.hit(contact_damage * (1.0 + level.enemy_tier * 0.03), global_position)
-	
-	health = INITIAL_HEALTH * exp(level.enemy_tier * 0.08)
+			body.hit(contact_damage, global_position)
 
 func hit(_damage: float, source_player: Player, source: Variant):
 	health -= _damage

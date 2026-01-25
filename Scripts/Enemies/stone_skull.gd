@@ -8,10 +8,6 @@ extends Enemy
 @onready var move_timer = %"Move Timer"
 @onready var muzzle = %"Muzzle Flash"
 
-@export var projectile_damage: float
-@export var projectile_speed: float
-@export var projectile_range: float
-
 @export var MUZZLE_FLASH: PackedScene
 @export var STONE_SKULL_PROJECTILE: PackedScene
 
@@ -20,7 +16,7 @@ var can_shoot: bool = false
 
 func _ready():
 	super._ready()
-	move_timer.start(randf_range(TICK_RATE/2, TICK_RATE))
+	move_timer.start(randf_range(TICK_RATE / 2, TICK_RATE))
 
 func _physics_process(delta):
 	super._physics_process(delta)

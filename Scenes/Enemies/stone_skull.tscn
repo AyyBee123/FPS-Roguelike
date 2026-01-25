@@ -561,9 +561,6 @@ radius = 1.5
 [node name="Stone Skull" type="CharacterBody3D" node_paths=PackedStringArray("mesh") groups=["Enemy"]]
 collision_layer = 4
 script = ExtResource("1_o0abg")
-projectile_damage = 2.0
-projectile_speed = 50.0
-projectile_range = 70.0
 MUZZLE_FLASH = ExtResource("2_pqm40")
 STONE_SKULL_PROJECTILE = ExtResource("3_gx5od")
 mesh = [NodePath("Skull"), NodePath("Fire")]
@@ -571,6 +568,9 @@ raycast_offset = 6.0
 health = 20.0
 speed = 1.0
 damage_number = ExtResource("2_3kxp1")
+projectile_damage = 2.0
+projectile_speed = 50.0
+projectile_range = 70.0
 
 [node name="Skull" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
