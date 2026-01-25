@@ -60,12 +60,6 @@ func _ready():
 
 func _physics_process(delta):
 	t += delta
-	
-	# adjust audio player positions to the player's position
-	if player:
-		for a in get_children():
-			if a is AudioStreamPlayer3D:
-				a.global_position = player.global_position
 
 func shoot(ignore_fire_rate: bool = false, outside_source: Variant = self):
 	if t < fire_rate_timer and not ignore_fire_rate: return
@@ -74,7 +68,8 @@ func shoot(ignore_fire_rate: bool = false, outside_source: Variant = self):
 		t = 0.0
 	fire_rate_timer = 1.0 / fire_rate
 	animation_player.stop()
-	animation_player.play(shoot_animation)
+	if shoot_animation != "":
+		animation_player.play(shoot_animation)
 	if muzzle:
 		muzzle.play()
 	
@@ -89,12 +84,16 @@ func shoot(ignore_fire_rate: bool = false, outside_source: Variant = self):
 		if audio:
 			audio.play_deconflicted()
 
-func get_camera_collision() -> Vector3:
+func release(outside_source: Variant = self):
+	player._on_arm_released(self, outside_source)
+
+## get the crosshair aim point, where it collides with an object
+func get_camera_collision(_range: float = range) -> Vector3:
 	var camera = get_viewport().get_camera_3d()
 	var viewport = get_viewport().get_visible_rect().size
 	
 	var ray_origin = camera.project_ray_origin(viewport / 2)
-	var ray_end = ray_origin + camera.project_ray_normal(viewport / 2) * range
+	var ray_end = ray_origin + camera.project_ray_normal(viewport / 2) * _range
 	
 	var new_intersection = PhysicsRayQueryParameters3D.create(ray_origin, ray_end)
 	new_intersection.collision_mask = CollisionLayers.get_layer(["World", "Player"])
@@ -107,7 +106,19 @@ func get_camera_collision() -> Vector3:
 	else:
 		return ray_end
 
+## get the crosshair aim point, while ignoring collisions
+func get_camera_point(_range: float = range) -> Vector3:
+	var camera := get_viewport().get_camera_3d()
+	var viewport := get_viewport().get_visible_rect().size
+
+	var origin := camera.project_ray_origin(viewport / 2)
+	var direction := camera.project_ray_normal(viewport / 2)
+
+	return origin + direction * _range
+
 func launch_projectile(point: Vector3):
+	if not projectile: return
+	
 	var spread_rad: float = deg_to_rad(spread)
 	var direction = (point - bullet_point.get_global_transform().origin).normalized()
 	var proj = projectile.instantiate()
@@ -156,6 +167,10 @@ func set_material_override():
 				material.z_clip_scale = 0.8
 				material.use_fov_override = true
 				material.fov_override = 100
+			elif material is ShaderMaterial:
+				material.set_shader_parameter("viewmodel_enabled", true)
+				material.set_shader_parameter("z_clip_scale", 0.8)
+				material.set_shader_parameter("fov_override", 100.0)
 
 #func hit_scan_collision(collision_point):
 	#var bullet_direction = (collision_point - bullet_point.get_global_transform().origin).normalized()

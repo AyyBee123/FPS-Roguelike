@@ -33,4 +33,3 @@ func _on_item_pickup(item: Item):
 	item_resource.icon = item.icon
 	item_resource.description = item.description
 	item_queue.append(item_resource)
-	print(item_queue)

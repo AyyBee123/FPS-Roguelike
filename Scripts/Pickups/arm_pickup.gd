@@ -60,10 +60,8 @@ func pick_up(player):
 
 func get_visual_aabb(root: Node3D) -> AABB:
 	var meshes = get_all_mesh_instances(root)
-	
 	var combined: AABB = AABB()
 	var first: bool = true
-	
 	for mesh in meshes:
 		var aabb = mesh.get_aabb()
 		if first:
@@ -71,7 +69,6 @@ func get_visual_aabb(root: Node3D) -> AABB:
 			first = false
 		else:
 			combined = combined.merge(aabb)
-	
 	return combined
 
 func get_all_mesh_instances(node: Node) -> Array:

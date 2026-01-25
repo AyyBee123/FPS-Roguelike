@@ -36,6 +36,7 @@ func _ready():
 		audio.volume_db = -28
 		audio.max_db = 0
 	player.weapon_shot.connect(shoot)
+	player.weapon_released.connect(release)
 	pos = arm_node.position
 
 func _physics_process(delta):
@@ -58,14 +59,16 @@ func set_base_stats():
 
 func shoot(_arm: Arm, _source: Variant):
 	await get_tree().create_timer(1.0 / (arm.fire_rate * 8)).timeout
-	if arm and not _source.is_in_group("Appendage Projection"):
+	if arm and not _arm.is_in_group("Appendage Projection"):
 		arm.shoot(false, self)
+
+func release(_arm: Arm, _source: Variant):
+	if arm and not _arm.is_in_group("Appendage Projection"):
+		arm.release(self)
 
 func set_material_override():
 	var mesh_instances: Array = arm.find_children("", "MeshInstance3D", true)
-	
 	for mesh_node: MeshInstance3D in mesh_instances:
 		if mesh_node.mesh == null:
 			continue
-		
 		mesh_node.material_override = APPENDAGE_PROJECTION

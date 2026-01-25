@@ -10,10 +10,9 @@ var bounces: int = 5
 
 func _ready():
 	super._ready()
-	lifetime.start(10)
 	ball.material_override = material
 	blast_color = material.albedo_color
-	bounces = int(range)
+	bounces = int(range / 100)
 
 func _on_body_entered(body):
 	bounces -= 1

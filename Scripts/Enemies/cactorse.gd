@@ -10,7 +10,7 @@ var gravity = 9.8
 
 func _ready():
 	super._ready()
-	move_timer.start(randf_range(TICK_RATE/2, TICK_RATE))
+	move_timer.start(randf_range(TICK_RATE / 2, TICK_RATE))
 
 func _physics_process(delta):
 	super._physics_process(delta)

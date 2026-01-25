@@ -1,17 +1,16 @@
 extends Arm
 
+@export var cylinders: Array[MeshInstance3D]
+
 @onready var barrel = %Barrel
 @onready var magazine = %Magazine
-@export var cylinders: Array[MeshInstance3D]
 @onready var buzz = %SMG2
 
 const SPOOL_TIME: float = 1.5
 const STEP = TAU / 5
 
-var fire_rate_multiplier: float = 0.25
-
 var is_shoot_button_held: bool = false
-
+var fire_rate_multiplier: float = 0.25
 var current_rotation: float = 0.0
 var spool: float = 0.0
 
@@ -30,7 +29,7 @@ func _physics_process(delta):
 	for cylinder in cylinders:
 		cylinder.rotate_object_local(Vector3.UP, delta * dir)
 		dir = -dir
-	magazine.rotate_y(delta * 2)
+	magazine.rotation.z = -barrel.rotation.z / 2
 
 func ease_out_quad(t: float):
 	return 1.0 - (1.0 - t) * (1.0 - t)
@@ -46,7 +45,7 @@ func _input(event):
 		barrel.rotation.z = 0
 		if fire_rate_multiplier >= 0.98:
 			buzz.pitch_scale = max(1 - fire_rate_multiplier, 0.25)
-		buzz.play_deconflicted(0.1)
+		buzz.play_deconflicted(0.125)
 		current_rotation = max(round(TAU * fire_rate_multiplier / STEP) * STEP, STEP)
 
 func shoot(ignore_fire_rate: bool = false, outside_source: Variant = self):

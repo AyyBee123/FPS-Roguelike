@@ -65,14 +65,10 @@ func hit(_damage: float, source_player: Player, source: Variant):
 	tween = get_tree().create_tween().set_parallel(true)
 	# brief flash to indicate that the enemy was hit
 	for m in mesh:
-		var mat: ShaderMaterial = m.material_overlay
-		if mat and mat is ShaderMaterial:
-			tween.tween_callback(func(): mat.set_shader_parameter("fade", 1.0))
-			tween.tween_interval(0.05)
-			tween.tween_method(func(v):
-				mat.set_shader_parameter("fade", v),
-				1.0, 0.0, 0.1
-			)
+		tween.bind_node(m)
+		tween.tween_callback(func(): m.set_instance_shader_parameter("fade", 1.0))
+		tween.tween_interval(0.05)
+		tween.tween_method(func(v): m.set_instance_shader_parameter("fade", v), 1.0, 0.0, 0.1)
 	
 	var t: float = Time.get_ticks_msec() / 1000.0
 	
@@ -98,6 +94,8 @@ func die(_damage: float, source_player: Player, source: Variant):
 	drop_xp()
 	give_coins(source_player)
 	queue_free()
+
+
 
 func drop_xp():
 	var xp = XP.instantiate()

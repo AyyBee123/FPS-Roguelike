@@ -149,7 +149,6 @@ func format_number(n: float) -> String:
 		return str(int(n))
 	return str(n)
 
-
 func _on_focus_entered():
 	background_rarity.modulate = Color.WHITE * 0.65
 

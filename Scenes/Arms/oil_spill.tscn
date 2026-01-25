@@ -1,11 +1,10 @@
-[gd_scene load_steps=82 format=4 uid="uid://dajqdf341ehwu"]
+[gd_scene load_steps=81 format=4 uid="uid://dajqdf341ehwu"]
 
 [ext_resource type="Script" uid="uid://wtoa66s2o53o" path="res://Scripts/Player/Arms/arm.gd" id="1_p6h4n"]
 [ext_resource type="PackedScene" uid="uid://vnpmfor52wrk" path="res://Scenes/Projectiles/Arm/oil ball.tscn" id="2_p6h4n"]
 [ext_resource type="PackedScene" uid="uid://dphgx1a3xboty" path="res://Scenes/VFX/muzzle_flash.tscn" id="3_h7p05"]
 [ext_resource type="AudioStream" uid="uid://uhj8troyiq3e" path="res://Audio/SFX/Blob Launch.mp3" id="4_p6h4n"]
 [ext_resource type="Script" uid="uid://cc1romsfhth3n" path="res://Scripts/Utils/audio_player_deconflicter.gd" id="5_0kh4s"]
-[ext_resource type="Material" uid="uid://c0irpddjdacnu" path="res://Materials/Mesh Highlight.tres" id="6_0kh4s"]
 
 [sub_resource type="Animation" id="Animation_x7t37"]
 resource_name = "Idle"
@@ -1395,6 +1394,8 @@ fov_override = 100.0
 resource_name = "Hole"
 cull_mode = 2
 shading_mode = 0
+diffuse_mode = 3
+specular_mode = 1
 albedo_color = Color(0, 0, 0, 1)
 z_clip_scale = 0.8
 fov_override = 100.0
@@ -1800,7 +1801,6 @@ bone_idx = 3
 
 [node name="Cylinder_022" type="MeshInstance3D" parent="Armature/Skeleton3D/Bone_004"]
 transform = Transform3D(0.2953641, -4.2417117e-08, -2.9822445e-09, -3.4914557e-08, -0.35883296, 9.889558e-09, -2.6948772e-09, -1.08569305e-08, -0.32686028, -0.00011986308, 0.043760173, -2.5960617e-08)
-material_overlay = ExtResource("6_0kh4s")
 mesh = SubResource("ArrayMesh_6k6aw")
 skeleton = NodePath("")
 
@@ -1811,7 +1811,6 @@ bone_idx = 2
 
 [node name="Cylinder_021" type="MeshInstance3D" parent="Armature/Skeleton3D/Bone_003"]
 transform = Transform3D(0.3748532, -1.2769807e-09, -4.5324733e-10, -1.0511138e-09, -0.45540297, 1.8146988e-08, -4.0957254e-10, -1.9922082e-08, -0.4148257, -0.000119924545, 0.03416709, -4.5401976e-09)
-material_overlay = ExtResource("6_0kh4s")
 mesh = SubResource("ArrayMesh_h7p05")
 skeleton = NodePath("")
 
@@ -1822,7 +1821,6 @@ bone_idx = 1
 
 [node name="Cylinder_017" type="MeshInstance3D" parent="Armature/Skeleton3D/Bone_002"]
 transform = Transform3D(0.47418344, 1.5268677e-08, -1.701264e-09, 1.2568018e-08, -0.57607764, 2.3826047e-08, -1.53733e-09, -2.6156656e-08, -0.524748, -0.000119881704, 0.060449347, -7.438939e-08)
-material_overlay = ExtResource("6_0kh4s")
 mesh = SubResource("ArrayMesh_2xsgs")
 skeleton = NodePath("")
 
@@ -1833,7 +1831,6 @@ bone_idx = 6
 
 [node name="Cylinder_020" type="MeshInstance3D" parent="Armature/Skeleton3D/Bone_006"]
 transform = Transform3D(0.3101419, -4.3897245e-08, -1.1183044e-08, -3.4401467e-08, -0.39574984, 3.988602e-09, -1.0105449e-08, -4.599138e-09, -0.3432139, -0.0003287173, 0.046562485, 3.7049176e-08)
-material_overlay = ExtResource("6_0kh4s")
 mesh = SubResource("ArrayMesh_p6h4n")
 skeleton = NodePath("")
 
@@ -1844,7 +1841,6 @@ bone_idx = 5
 
 [node name="Cylinder_019" type="MeshInstance3D" parent="Armature/Skeleton3D/Bone_007"]
 transform = Transform3D(0.39360806, -8.298782e-09, 2.0973723e-09, -6.5036057e-09, -0.50225484, 1.7230048e-08, 1.89527e-09, -1.9867457e-08, -0.43558043, -0.0003286912, 0.05366224, -1.033186e-08)
-material_overlay = ExtResource("6_0kh4s")
 mesh = SubResource("ArrayMesh_0kh4s")
 skeleton = NodePath("")
 
@@ -1855,7 +1851,6 @@ bone_idx = 4
 
 [node name="Cylinder_018" type="MeshInstance3D" parent="Armature/Skeleton3D/Bone_005"]
 transform = Transform3D(0.49790803, 1.5191757e-08, -1.2772242e-09, 1.1905503e-08, -0.6353446, 2.2000073e-08, -1.1541506e-09, -2.5367628e-08, -0.55100256, -0.00032872334, 0.06240224, 4.5693014e-09)
-material_overlay = ExtResource("6_0kh4s")
 mesh = SubResource("ArrayMesh_aosw2")
 skeleton = NodePath("")
 
@@ -1866,7 +1861,6 @@ bone_idx = 9
 
 [node name="Cylinder_025" type="MeshInstance3D" parent="Armature/Skeleton3D/Bone_009"]
 transform = Transform3D(0.29536414, -4.7837002e-08, 4.5269755e-10, -3.7257387e-08, -0.3792358, 3.157508e-08, 4.090721e-10, -3.6634614e-08, -0.3268603, -0.00018426776, 0.045014966, -1.3969839e-08)
-material_overlay = ExtResource("6_0kh4s")
 mesh = SubResource("ArrayMesh_vtcev")
 skeleton = NodePath("")
 
@@ -1877,7 +1871,6 @@ bone_idx = 8
 
 [node name="Cylinder_024" type="MeshInstance3D" parent="Armature/Skeleton3D/Bone_010"]
 transform = Transform3D(0.3748532, 2.2452287e-09, -1.465847e-09, 1.7486743e-09, -0.48129666, 2.3784484e-08, -1.324598e-09, -2.7595664e-08, -0.41482577, -0.00018428895, 0.05181936, -4.3582986e-08)
-material_overlay = ExtResource("6_0kh4s")
 mesh = SubResource("ArrayMesh_j277n")
 skeleton = NodePath("")
 
@@ -1888,7 +1881,6 @@ bone_idx = 7
 
 [node name="Cylinder_023" type="MeshInstance3D" parent="Armature/Skeleton3D/Bone_008"]
 transform = Transform3D(0.47418353, 5.259335e-08, -6.6511335e-10, 4.0961833e-08, -0.60883266, 2.6250607e-08, -6.010211e-10, -3.045695e-08, -0.52474815, -0.00018429873, 0.061392687, 1.868466e-08)
-material_overlay = ExtResource("6_0kh4s")
 mesh = SubResource("ArrayMesh_fgy3q")
 skeleton = NodePath("")
 
@@ -1899,7 +1891,6 @@ bone_idx = 12
 
 [node name="Cylinder_028" type="MeshInstance3D" parent="Armature/Skeleton3D/Bone_012"]
 transform = Transform3D(0.29536417, -1.6108579e-16, -5.0538573e-09, -4.389954e-17, -0.30873057, 7.888106e-09, -4.56687e-09, -7.450582e-09, -0.32686028, -3.98518e-05, 0.03955145, -1.11780444e-07)
-material_overlay = ExtResource("6_0kh4s")
 mesh = SubResource("ArrayMesh_b2rt8")
 skeleton = NodePath("")
 
@@ -1910,7 +1901,6 @@ bone_idx = 11
 
 [node name="Cylinder_027" type="MeshInstance3D" parent="Armature/Skeleton3D/Bone_013"]
 transform = Transform3D(0.37485322, -1.09789294e-16, 7.2144437e-09, -2.909861e-16, -0.39181697, 1.18321575e-08, 6.5192602e-09, -1.1175873e-08, -0.4148258, -3.98518e-05, 0.045599855, 5.669052e-09)
-material_overlay = ExtResource("6_0kh4s")
 mesh = SubResource("ArrayMesh_16fpw")
 skeleton = NodePath("")
 
@@ -1921,7 +1911,6 @@ bone_idx = 10
 
 [node name="Cylinder_026" type="MeshInstance3D" parent="Armature/Skeleton3D/Bone_011"]
 transform = Transform3D(0.47418347, -1.4901161e-08, -2.9925906e-09, -1.4256018e-08, -0.49564224, 2.0323439e-08, -2.7042262e-09, -1.9196175e-08, -0.524748, -3.988966e-05, 0.053116806, 6.278979e-08)
-material_overlay = ExtResource("6_0kh4s")
 mesh = SubResource("ArrayMesh_8adj3")
 skeleton = NodePath("")
 
@@ -1932,7 +1921,6 @@ bone_idx = 15
 
 [node name="Cylinder_031" type="MeshInstance3D" parent="Armature/Skeleton3D/Bone_015"]
 transform = Transform3D(0.30269742, 7.256428e-09, -3.5325278e-09, 7.6553714e-09, -0.286923, 1.3818403e-08, -3.1921343e-09, -1.1836139e-08, -0.33497557, 0.0003393652, 0.034028586, -5.286687e-05)
-material_overlay = ExtResource("6_0kh4s")
 mesh = SubResource("ArrayMesh_hu3hr")
 skeleton = NodePath("")
 
@@ -1943,7 +1931,6 @@ bone_idx = 14
 
 [node name="Cylinder_030" type="MeshInstance3D" parent="Armature/Skeleton3D/Bone_016"]
 transform = Transform3D(0.3840477, 1.4326941e-08, 1.4127938e-09, 1.5102936e-08, -0.36431515, 2.9261715e-08, 1.2762849e-09, -2.5076123e-08, -0.425125, 0.00039798714, 0.027194165, -5.293165e-05)
-material_overlay = ExtResource("6_0kh4s")
 mesh = SubResource("ArrayMesh_mhkxs")
 skeleton = NodePath("")
 
@@ -1954,7 +1941,6 @@ bone_idx = 13
 
 [node name="Cylinder_029" type="MeshInstance3D" parent="Armature/Skeleton3D/Bone_014"]
 transform = Transform3D(0.5158314, 2.7154764e-08, 8.5303964e-10, 2.2351744e-08, -0.62667507, 2.788447e-08, 7.7084195e-10, -3.0612057e-08, -0.5708372, 0.001328218, 0.050463397, -5.275134e-05)
-material_overlay = ExtResource("6_0kh4s")
 mesh = SubResource("ArrayMesh_nyv5e")
 skeleton = NodePath("")
 
@@ -1965,18 +1951,15 @@ bone_idx = 0
 
 [node name="Arm" type="MeshInstance3D" parent="Armature/Skeleton3D/Bone"]
 transform = Transform3D(1.4022759, 0, 0, 0, 0, -1.4022759, 0, 1.4022759, 0, 0, 0, 0)
-material_overlay = ExtResource("6_0kh4s")
 mesh = SubResource("ArrayMesh_dtm8i")
 skeleton = NodePath("")
 
 [node name="Oil" type="MeshInstance3D" parent="Armature/Skeleton3D/Bone"]
 transform = Transform3D(1.4053051, 0, 0, 0, 0, -1.4053051, 0, 1.4053051, 0, 0, 1.0953109e-11, -0.00025057793)
-material_overlay = ExtResource("6_0kh4s")
 mesh = SubResource("ArrayMesh_087p2")
 skeleton = NodePath("")
 
 [node name="Tube" type="MeshInstance3D" parent="Armature/Skeleton3D/Bone"]
 transform = Transform3D(1.4053051, 0, 0, 0, 0, -1.4053051, 0, 1.4053051, 0, 0, 1.0953109e-11, -0.00025057793)
-material_overlay = ExtResource("6_0kh4s")
 mesh = SubResource("ArrayMesh_6wflf")
 skeleton = NodePath("")

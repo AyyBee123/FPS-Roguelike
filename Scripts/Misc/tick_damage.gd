@@ -16,6 +16,9 @@ func _ready():
 	tick_time = tick_rate # immediately set off a damage tick
 
 func _physics_process(delta):
+	if not source:
+		queue_free()
+	
 	tick_time += delta
 	if tick_time >= tick_rate:
 		tick_time = 0

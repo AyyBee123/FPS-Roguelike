@@ -13,7 +13,7 @@ signal cost_increased
 const XP = preload("uid://ukgrpto2cajc")
 
 var time_left: float = 1200.0 # time in seconds (20 minutes, in this case)
-var current_number_of_enemies: int
+var current_number_of_enemies: int = 0
 
 func _physics_process(delta):
 	time_left = max(time_left - delta, 0)

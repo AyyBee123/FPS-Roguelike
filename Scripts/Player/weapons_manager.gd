@@ -19,8 +19,9 @@ func _physics_process(delta):
 func _input(event):
 	if Input.is_action_pressed("shoot"):
 		is_shoot_button_held = true
-	else:
+	if is_shoot_button_held and not Input.is_action_pressed("shoot"):
 		is_shoot_button_held = false
+		release()
 
 func initialize():
 	current_arm = arm.get_child(0) # get child of the arm node as the active arm (there should only be one child)
@@ -42,3 +43,7 @@ func swap_arm(_new_arm): # swaps out the old weapon for a new one
 func shoot():
 	if current_arm:
 		current_arm.shoot()
+
+func release():
+	if current_arm:
+		current_arm.release()

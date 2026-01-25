@@ -4,6 +4,7 @@ signal enemy_hit(enemy, source, damage) # called when the player hits an enemy w
 signal enemy_killed(enemy, source, damage) # called when the player kills an enemy with a weapon or ability
 signal weapon_fired(projectile, damage) # called for each projectile of the weapon
 signal weapon_shot(weapon, source) # called for each instance of the weapon (for adding recoil mainly)
+signal weapon_released(weapon, source) # called when the fire button is no longer held
 signal weapon_spawned(projectile, damage) # called mainly for weapon after-effects (e.g. oil pool)
 signal on_landing(impact_speed) # called when the player lands on the ground from the air
 signal hit_taken(pos) # called when the player takes a hit
@@ -287,6 +288,9 @@ func _on_arm_fired(projectile: Variant, damage: float):
 
 func _on_arm_shot(_arm: Arm, _source: Variant):
 	weapon_shot.emit(_arm, _source)
+
+func _on_arm_released(_arm: Arm, _source: Variant):
+	weapon_released.emit(_arm, _source)
 
 func _on_weapon_spawned(projectile: Variant, damage: float):
 	weapon_spawned.emit(projectile, damage)

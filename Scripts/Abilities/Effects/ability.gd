@@ -55,11 +55,6 @@ func _init():
 	set_rarity()
 
 func _ready():
-	player = get_parent().player
-	player.enemy_hit.connect(_on_hit)
-	player.weapon_fired.connect(_on_shoot)
-	player.weapon_spawned.connect(_on_spawn)
-	
 	# populate the upgrade arrays
 	for a in ability_upgrades:
 		match a.rarity:
@@ -72,6 +67,13 @@ func _ready():
 			3:
 				rare_upgrades.append(a)
 	get_rarity()
+
+func _physics_process(delta):
+	if get_parent().name == "Abilities" and not player:
+		player = get_parent().get_parent()
+		player.enemy_hit.connect(_on_hit)
+		player.weapon_fired.connect(_on_shoot)
+		player.weapon_spawned.connect(_on_spawn)
 
 func get_rarity():
 	match rarity:

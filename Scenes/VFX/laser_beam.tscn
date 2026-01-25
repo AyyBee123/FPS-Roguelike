@@ -1,0 +1,269 @@
+[gd_scene load_steps=36 format=3 uid="uid://fugesnigenkf"]
+
+[ext_resource type="ArrayMesh" uid="uid://3r6n8ru1mlpv" path="res://Assets/VFX/Beam Cylinder.tres" id="1_1a31g"]
+[ext_resource type="Script" uid="uid://cd8u61udo3q3a" path="res://Scripts/Projectiles/Player/laser_beam.gd" id="1_kgi74"]
+[ext_resource type="PackedScene" uid="uid://b134fhcabkhmq" path="res://Scenes/Misc/tick_damage.tscn" id="2_0otya"]
+[ext_resource type="Shader" uid="uid://dc7gy3jix1b77" path="res://Shaders/laser_beam.gdshader" id="2_7hj0p"]
+[ext_resource type="Texture2D" uid="uid://babaa2pfo6hgq" path="res://Assets/Textures/Circle.png" id="3_klmes"]
+[ext_resource type="ArrayMesh" uid="uid://nup6lfpy4178" path="res://Assets/VFX/Muzzle Cone.tres" id="5_0otya"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kgi74"]
+render_priority = -1
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.679457, 0.17187336, 0.24674976, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0otya"]
+noise_type = 2
+frequency = 0.02
+fractal_weighted_strength = 1.0
+domain_warp_fractal_octaves = 10
+domain_warp_fractal_lacunarity = 17.615
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7brug"]
+resource_local_to_scene = true
+noise = SubResource("FastNoiseLite_0otya")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bybgw"]
+render_priority = 0
+shader = ExtResource("2_7hj0p")
+shader_parameter/color_1 = Color(1, 0.8039216, 0.8117647, 1)
+shader_parameter/color_2 = Color(0.9927862, 0.61883223, 0.6176955, 1)
+shader_parameter/color_3 = Color(0.95824426, 0.32677162, 0.409404, 1)
+shader_parameter/speed = 1.5
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_7brug")
+
+[sub_resource type="Curve" id="Curve_g3qr6"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_5x6u7"]
+_data = [Vector2(0, 0.033), 0.0, 0.0, 0, 0, Vector2(1, 0.033), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_cg3f4"]
+_data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 0.5), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_pxgtd"]
+curve_x = SubResource("Curve_g3qr6")
+curve_y = SubResource("Curve_5x6u7")
+curve_z = SubResource("Curve_cg3f4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x4e8g"]
+emission_shape_scale = Vector3(1, 1, 0)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 0.0
+emission_ring_radius = 0.28
+emission_ring_inner_radius = 0.3
+emission_ring_cone_angle = 90.0
+direction = Vector3(0, 0, 1)
+spread = 0.0
+initial_velocity_min = 40.0
+initial_velocity_max = 40.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveXYZTexture_pxgtd")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m6cvw"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0.8039216, 0.8117647, 1)
+albedo_texture = ExtResource("3_klmes")
+
+[sub_resource type="QuadMesh" id="QuadMesh_kegy8"]
+material = SubResource("StandardMaterial3D_m6cvw")
+orientation = 0
+
+[sub_resource type="Curve" id="Curve_mf4pe"]
+_data = [Vector2(0, 0.34831464), 0.0, -0.34831464, 0, 1, Vector2(1, 0), -0.34831464, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ms8to"]
+curve = SubResource("Curve_mf4pe")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1m0hn"]
+emission_shape_scale = Vector3(1, 1, 0)
+direction = Vector3(0, 0, 1)
+spread = 30.0
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.25
+scale_max = 0.25
+scale_curve = SubResource("CurveTexture_ms8to")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lw50q"]
+render_priority = -1
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.6784314, 0.17254902, 0.24705882, 1)
+albedo_texture = ExtResource("3_klmes")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_b3x5d"]
+material = SubResource("StandardMaterial3D_lw50q")
+size = Vector2(1.5, 1.5)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7brug"]
+load_path = "res://.godot/imported/Circle.png-82b824314a9487ab0a684b4327b30a69.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bybgw"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.99215686, 0.61960787, 0.61960787, 1)
+albedo_texture = SubResource("CompressedTexture2D_7brug")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_g3qr6"]
+material = SubResource("StandardMaterial3D_bybgw")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_klmes"]
+load_path = "res://.godot/imported/Muzzle Cone.png-5b5b88a022689ce4bf120ae1c87d99d4.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0otya"]
+resource_local_to_scene = true
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.99215686, 0.61960787, 0.61960787, 1)
+albedo_texture = SubResource("CompressedTexture2D_klmes")
+
+[sub_resource type="Curve" id="Curve_x4e8g"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.6966293), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_y1uap"]
+curve = SubResource("Curve_x4e8g")
+
+[sub_resource type="Curve" id="Curve_m6cvw"]
+_data = [Vector2(0, 0.48314613), 0.0, 0.8437179, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_mvaup"]
+curve = SubResource("Curve_m6cvw")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kegy8"]
+resource_local_to_scene = true
+particle_flag_rotate_y = true
+particle_flag_disable_z = true
+angle_min = 1.0728835e-05
+angle_max = 360.00003
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_mvaup")
+emission_curve = SubResource("CurveTexture_y1uap")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bybgw"]
+load_path = "res://.godot/imported/Muzzle Cone.png-5b5b88a022689ce4bf120ae1c87d99d4.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g3qr6"]
+resource_local_to_scene = true
+render_priority = -2
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.515068, 0.116074, 0.1785622, 1)
+albedo_texture = SubResource("CompressedTexture2D_bybgw")
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_klmes"]
+height = 20.0
+radius = 0.2
+
+[node name="Laser Beam" type="Node3D"]
+script = ExtResource("1_kgi74")
+tick_node = ExtResource("2_0otya")
+
+[node name="Laser" type="Area3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="VFX" type="Node3D" parent="Laser"]
+unique_name_in_owner = true
+
+[node name="Outer Beam" type="MeshInstance3D" parent="Laser/VFX"]
+unique_name_in_owner = true
+transform = Transform3D(0.275, 0, 0, 0, 0.275, 0, 0, 0, 10, 0, 0, 0.025)
+material_override = SubResource("StandardMaterial3D_kgi74")
+mesh = ExtResource("1_1a31g")
+skeleton = NodePath("../../..")
+
+[node name="Beam" type="MeshInstance3D" parent="Laser/VFX"]
+unique_name_in_owner = true
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 10, 0, 0, 0.025)
+material_override = SubResource("ShaderMaterial_bybgw")
+mesh = ExtResource("1_1a31g")
+skeleton = NodePath("../../..")
+
+[node name="Lines" type="GPUParticles3D" parent="Laser/VFX"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.17401898)
+lifetime = 0.47
+fixed_fps = 0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_x4e8g")
+draw_pass_1 = SubResource("QuadMesh_kegy8")
+
+[node name="Dots" type="GPUParticles3D" parent="Laser/VFX"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.17401898)
+amount = 3
+lifetime = 0.2
+fixed_fps = 0
+process_material = SubResource("ParticleProcessMaterial_1m0hn")
+draw_passes = 2
+draw_pass_1 = SubResource("QuadMesh_b3x5d")
+draw_pass_2 = SubResource("QuadMesh_g3qr6")
+
+[node name="MuzzleCone" type="GPUParticles3D" parent="Laser/VFX"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_0otya")
+amount = 2
+lifetime = 0.15000000000000002
+randomness = 1.0
+fixed_fps = 0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_kegy8")
+draw_pass_1 = ExtResource("5_0otya")
+
+[node name="MuzzleEnd" type="GPUParticles3D" parent="Laser/VFX"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
+material_override = SubResource("StandardMaterial3D_g3qr6")
+amount = 2
+lifetime = 0.15000000000000002
+randomness = 1.0
+fixed_fps = 0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_kegy8")
+draw_pass_1 = ExtResource("5_0otya")
+
+[node name="RayCast3D" type="RayCast3D" parent="Laser"]
+unique_name_in_owner = true
+target_position = Vector3(0, 0, 20)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Laser"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 10)
+shape = SubResource("CylinderShape3D_klmes")
+
+[connection signal="body_entered" from="Laser" to="." method="_on_laser_body_entered"]
+[connection signal="body_exited" from="Laser" to="." method="_on_laser_body_exited"]

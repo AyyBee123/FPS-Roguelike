@@ -8,7 +8,8 @@ func _ready():
 	super._ready()
 
 func _physics_process(delta):
-	if get_parent() == player.abilities and not node:
+	super._physics_process(delta)
+	if player and get_parent() == player.abilities and not node:
 		node = projection.instantiate()
 		node.ability = self
 		node.player = player
