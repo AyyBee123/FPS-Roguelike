@@ -43,9 +43,9 @@ var dmg_num: Node3D
 var is_dead: bool = false # prevents the enemy from triggering on death effects more than once
 
 func _ready():
-	health = INITIAL_HEALTH * exp(level.enemy_tier * 0.08)
-	contact_damage = INITIAL_CONTACT_DAMAGE * (1.0 + level.enemy_tier * 0.1)
-	projectile_damage = INITIAL_PROJECTILE_DAMAGE * (1.0 + level.enemy_tier * 0.1)
+	health = INITIAL_HEALTH * exp(level.enemy_tier * 0.1)
+	contact_damage = INITIAL_CONTACT_DAMAGE * (1.0 + level.enemy_tier * 0.12)
+	projectile_damage = INITIAL_PROJECTILE_DAMAGE * (1.0 + level.enemy_tier * 0.12)
 	
 	ray_cast.global_transform = Transform3D(Basis(), ray_cast.global_position) # lock the ray cast's rotation
 	ray_cast.force_raycast_update() # detect the ground immediately
