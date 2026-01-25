@@ -25,7 +25,6 @@ func _on_area_3d_body_exited(body):
 	if body is Enemy:
 		var index = enemies.find(body)
 		if index == -1: return
-		
 		var tick = tick_nodes.get(index)
 		tick_nodes.remove_at(index)
 		enemies.remove_at(index)

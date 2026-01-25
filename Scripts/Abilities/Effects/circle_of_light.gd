@@ -11,6 +11,7 @@ func _on_spawn(projectile: Variant, damage: float):
 	create_aura(projectile, damage)
 
 func create_aura(projectile: Variant, damage: float):
+	if projectile.get_node_or_null("Circle of Light Aura"): return
 	var aura = AURA.instantiate()
 	aura.visible = false
 	aura.damage = get_stat_value("Damage", damage * DAMAGE_MULTIPLIER)
