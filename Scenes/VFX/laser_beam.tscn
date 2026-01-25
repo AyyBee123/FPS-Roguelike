@@ -79,8 +79,8 @@ material = SubResource("StandardMaterial3D_m6cvw")
 orientation = 0
 
 [sub_resource type="Curve" id="Curve_mf4pe"]
-_data = [Vector2(0, 0.34831464), 0.0, -0.34831464, 0, 1, Vector2(1, 0), -0.34831464, 0.0, 1, 0]
-point_count = 2
+_data = [Vector2(0, 0), 0.0, 0.9071556, 0, 0, Vector2(0.2542373, 0.24719107), 1.0017478, -0.33146077, 0, 1, Vector2(1, 0), -0.33146077, 0.0, 1, 0]
+point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_ms8to"]
 curve = SubResource("Curve_mf4pe")
