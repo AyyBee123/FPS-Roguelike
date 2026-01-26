@@ -25,10 +25,10 @@ func populate_pool(pool, rarity):
 	var loader = PoolLoader.new()
 	loader.load_pool(json_file, pool, rarity)
 
-func roll() -> Arm:
+func roll(weights: Dictionary = rarity_weights) -> Arm:
 	# Convert to cumulative drop chances
 	var total_weight := 0.0
-	for weight in rarity_weights.values():
+	for weight in weights.values():
 		total_weight += weight
 	
 	var weighted_amount = randf() * total_weight
@@ -36,8 +36,8 @@ func roll() -> Arm:
 	# Find which rarity it falls into
 	var cumulative: float = 0.0
 	var chosen_rarity: int = -1
-	for rarity in rarity_weights.keys():
-		cumulative += rarity_weights[rarity]
+	for rarity in weights.keys():
+		cumulative += weights[rarity]
 		if weighted_amount <= cumulative:
 			chosen_rarity = rarity
 			break
