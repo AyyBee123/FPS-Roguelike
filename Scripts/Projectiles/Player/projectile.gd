@@ -23,7 +23,7 @@ func _ready():
 func _on_body_entered(body):
 	if body is Enemy:
 		body.hit(damage, player, self)
-	if spawn_impact:
+	else:
 		create_impact()
 	queue_free()
 

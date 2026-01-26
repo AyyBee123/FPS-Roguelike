@@ -360,7 +360,7 @@ resource_name = "Ball"
 cull_mode = 2
 diffuse_mode = 3
 specular_mode = 1
-albedo_color = Color(0.1514933, 0.9063355, 0.36344746, 1)
+albedo_color = Color(0.8627451, 0.44313726, 0.20392157, 1)
 roughness = 0.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_bkdpb"]

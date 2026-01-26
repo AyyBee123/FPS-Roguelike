@@ -35,7 +35,7 @@ mesh = SubResource("SphereMesh_ybiw2")
 script = ExtResource("2_ybiw2")
 
 [node name="Shadow" type="Decal" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, -1, 0)
 size = Vector3(1, 2, 1)
 texture_albedo = ExtResource("3_xmv11")
 cull_mask = 4
