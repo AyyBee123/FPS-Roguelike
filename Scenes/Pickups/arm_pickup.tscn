@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://ba7erkb81ks3u"]
 
 [ext_resource type="Script" uid="uid://bkw7gdmdy7v3x" path="res://Scripts/Pickups/arm_pickup.gd" id="1_ybiw2"]
-[ext_resource type="Shader" uid="uid://dbbojm5oryrbu" path="res://Shaders/mesh_highlight.gdshader" id="2_6475e"]
+[ext_resource type="Shader" uid="uid://cb3lg1sx3l43m" path="res://Shaders/object_outline.gdshader" id="2_l3y0a"]
 [ext_resource type="Script" uid="uid://baxqpjp3mlstv" path="res://Scripts/UI/minimap_icon.gd" id="2_ybiw2"]
 [ext_resource type="Texture2D" uid="uid://d0ov1ksvt5flx" path="res://Assets/Textures/Blob Shadow.png" id="3_xmv11"]
 [ext_resource type="AudioStream" uid="uid://bwgt480rbjjqq" path="res://Audio/SFX/Level Up.mp3" id="5_6qjca"]
@@ -19,7 +19,7 @@ radius = 1.2
 collision_layer = 8
 gravity_scale = 0.0
 script = ExtResource("1_ybiw2")
-shader = ExtResource("2_6475e")
+shader = ExtResource("2_l3y0a")
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
 unique_name_in_owner = true

@@ -8,7 +8,6 @@ class_name ArmPickup extends RigidBody3D
 @onready var jingle = %Jingle
 @onready var default_scale = get_scale()
 
-
 const AMPLITUDE: float = 0.05
 const FREQUENCY: float = 1.0
 
@@ -47,14 +46,14 @@ func _ready():
 	visual_offset.position -= aabb.position + aabb.size / 2
 	default_pos = visual_offset.position
 	
-	unhighlight()
+	#unhighlight()
 
 func _physics_process(delta):
 	time += delta * FREQUENCY
 	visual_offset.set_position(default_pos + Vector3(0, sin(time) * AMPLITUDE, 0))
 
 func pick_up(player):
-	unhighlight()
+	#unhighlight()
 	player.weapons_manager.swap_arm(arm)
 	queue_free()
 
@@ -77,6 +76,9 @@ func get_all_mesh_instances(node: Node) -> Array:
 		if child is MeshInstance3D:
 			if child.name == "Minimap Icon":
 				continue
+			var mat: ShaderMaterial = ShaderMaterial.new()
+			mat.shader = shader
+			child.material_overlay = mat
 			mesh_list.append(child)
 			meshes.append(child)
 		meshes += get_all_mesh_instances(child) # recursion for nested children
@@ -89,14 +91,14 @@ func play_tween():
 	tween.parallel().tween_property(self, "scale", default_scale * 1.5, 0.05)
 	tween.tween_property(self, "scale", default_scale, 0.1)
 
-func highlight():
-	for m in mesh_list:
-		var mat: ShaderMaterial = m.material_overlay
-		if mat and mat is ShaderMaterial:
-			mat.set_shader_parameter("strength", 0.075)
-
-func unhighlight():
-	for m in mesh_list:
-		var mat: ShaderMaterial = m.material_overlay
-		if mat and mat is ShaderMaterial:
-			mat.set_shader_parameter("strength", 0.0)
+#func highlight():
+	#for m in mesh_list:
+		#var mat: ShaderMaterial = m.material_overlay
+		#if mat and mat is ShaderMaterial:
+			#mat.set_shader_parameter("strength", 0.075)
+#
+#func unhighlight():
+	#for m in mesh_list:
+		#var mat: ShaderMaterial = m.material_overlay
+		#if mat and mat is ShaderMaterial:
+			#mat.set_shader_parameter("strength", 0.0)

@@ -7,7 +7,6 @@ extends Arm
 @onready var bulb_2: MeshInstance3D = %Cylinder_004
 @onready var bulb_3: MeshInstance3D = %Cylinder_003
 @onready var charging = %Charging
-@onready var light_switch = %"Light Switch"
 @onready var heavy_beam = %"Heavy Beam"
 @onready var beam_shrink = %"Beam Shrink"
 @onready var mornstar_laser = %"Mornstar Laser"
