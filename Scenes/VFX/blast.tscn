@@ -1,15 +1,14 @@
-[gd_scene load_steps=21 format=3 uid="uid://dwnmehkjsekxx"]
+[gd_scene load_steps=22 format=3 uid="uid://dwnmehkjsekxx"]
 
 [ext_resource type="Script" uid="uid://bjqgmy511ex76" path="res://Scripts/Passive Items/Effects/blast.gd" id="1_mch0n"]
 [ext_resource type="PackedScene" uid="uid://p3jtsddtuhua" path="res://Scenes/Misc/soundboard.tscn" id="2_obo5l"]
 [ext_resource type="ArrayMesh" uid="uid://cu13swck580wx" path="res://Assets/VFX/Ball.tres" id="3_s6mhv"]
-[ext_resource type="Texture2D" uid="uid://3xrjghmmqwx8" path="res://Assets/Textures/Ring Wave.png" id="4_obo5l"]
+[ext_resource type="Shader" uid="uid://hxp58c3chg1n" path="res://Shaders/color.gdshader" id="5_yvotw"]
+[ext_resource type="Texture2D" uid="uid://3xrjghmmqwx8" path="res://Assets/Textures/Ring Wave.png" id="6_jsrfa"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_obo5l"]
-resource_local_to_scene = true
-transparency = 1
-shading_mode = 0
-vertex_color_use_as_albedo = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_obo5l"]
+render_priority = 0
+shader = ExtResource("5_yvotw")
 
 [sub_resource type="Curve" id="Curve_e86rj"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -38,14 +37,10 @@ scale_curve = SubResource("CurveTexture_2c0a7")
 alpha_curve = SubResource("CurveTexture_yvotw")
 emission_curve = SubResource("CurveTexture_e86rj")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6pn5c"]
-resource_local_to_scene = true
-transparency = 1
-cull_mode = 2
-shading_mode = 0
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("4_obo5l")
-billboard_keep_scale = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e86rj"]
+render_priority = 0
+shader = ExtResource("5_yvotw")
+shader_parameter/albedo_texture = ExtResource("6_jsrfa")
 
 [sub_resource type="Curve" id="Curve_ub0h2"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.2542373, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.01262707, 0.0, 0, 0]
@@ -84,7 +79,7 @@ particles = [NodePath("Blast"), NodePath("Wave")]
 soundboard = ExtResource("2_obo5l")
 
 [node name="Blast" type="GPUParticles3D" parent="."]
-material_override = SubResource("StandardMaterial3D_obo5l")
+material_override = SubResource("ShaderMaterial_obo5l")
 emitting = false
 amount = 1
 lifetime = 0.25
@@ -95,7 +90,7 @@ process_material = SubResource("ParticleProcessMaterial_e5jha")
 draw_pass_1 = ExtResource("3_s6mhv")
 
 [node name="Wave" type="GPUParticles3D" parent="."]
-material_override = SubResource("StandardMaterial3D_6pn5c")
+material_override = SubResource("ShaderMaterial_e86rj")
 emitting = false
 amount = 1
 lifetime = 0.4
@@ -115,5 +110,4 @@ unique_name_in_owner = true
 shape = SubResource("SphereShape3D_jdps1")
 
 [connection signal="finished" from="Blast" to="." method="_on_blast_finished"]
-[connection signal="finished" from="@GPUParticles3D@196450" to="." method="_on_blast_finished"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

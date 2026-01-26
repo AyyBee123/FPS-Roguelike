@@ -3,7 +3,7 @@
 shader_type spatial;
 render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_toon, specular_toon, unshaded;
 
-instance uniform vec4 albedo_color : source_color = vec4(0.12, 0.12, 0.13, 1.0);
+instance uniform vec3 albedo_color : source_color = vec3(0.12, 0.12, 0.13);
 
 uniform bool viewmodel_enabled = false;
 uniform float z_clip_scale : hint_range(0.01, 1.0, 0.01) = 0.8;
@@ -25,5 +25,6 @@ void vertex() {
 
 void fragment() {
 	vec2 base_uv = UV;
-	ALBEDO = albedo_color.rgb;
+	ALBEDO = albedo_color;
+	ALPHA = COLOR.a;
 }

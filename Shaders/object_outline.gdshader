@@ -4,7 +4,7 @@ render_mode blend_premul_alpha, unshaded, ambient_light_disabled;
 uniform sampler2D depth_texture : hint_depth_texture;
 uniform int step_count : hint_range(3, 15, 2) = 3; // 2 samples per step
 uniform float thickness : hint_range(1.0, 16.0, 0.1) = 2.0;
-instance uniform vec3 edge_color : source_color = vec3(1.);
+instance uniform vec3 edge_color : source_color = vec3(1.0);
 uniform float fade_start : hint_range(1.0, 1000.0, 0.1) = 50.0;
 uniform float fade_length : hint_range(1.0, 1000.0, 0.1) = 200.0;
 

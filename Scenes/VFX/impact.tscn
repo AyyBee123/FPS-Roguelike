@@ -1,24 +1,16 @@
-[gd_scene load_steps=24 format=3 uid="uid://mhyvno5adlsw"]
+[gd_scene load_steps=25 format=3 uid="uid://mhyvno5adlsw"]
 
 [ext_resource type="Script" uid="uid://xnp2yx37srf2" path="res://Scripts/Misc/impact.gd" id="1_p5bny"]
 [ext_resource type="Texture2D" uid="uid://babaa2pfo6hgq" path="res://Assets/Textures/Circle.png" id="2_c7m83"]
+[ext_resource type="Shader" uid="uid://hxp58c3chg1n" path="res://Shaders/color.gdshader" id="2_w4l6d"]
 [ext_resource type="Texture2D" uid="uid://iss3hlurcmid" path="res://Assets/Textures/Toon Shockwave.png" id="3_p5bny"]
 [ext_resource type="Texture2D" uid="uid://dwu78nk6wtion" path="res://Assets/Textures/Triangle.png" id="4_p5bny"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2x3ni"]
-resource_local_to_scene = true
-render_priority = 3
-transparency = 1
-cull_mode = 2
-shading_mode = 0
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("2_c7m83")
-texture_filter = 0
-billboard_mode = 3
-billboard_keep_scale = true
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kcfvq"]
+render_priority = 0
+shader = ExtResource("2_w4l6d")
+shader_parameter/albedo_texture = ExtResource("2_c7m83")
+shader_parameter/enable_billboard = true
 
 [sub_resource type="Curve" id="Curve_ml6qe"]
 _data = [Vector2(0, 1), 0.0, -1.0, 0, 1, Vector2(1, 0), -1.0, 0.0, 1, 0]
@@ -35,7 +27,6 @@ point_count = 2
 curve = SubResource("Curve_j7fn2")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_32tsf"]
-resource_local_to_scene = true
 gravity = Vector3(0, 0, 0)
 scale_min = 0.5
 scale_max = 0.5
@@ -44,21 +35,11 @@ emission_curve = SubResource("CurveTexture_c6k5g")
 
 [sub_resource type="QuadMesh" id="QuadMesh_dc6rb"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fy0kl"]
-resource_local_to_scene = true
-render_priority = 3
-transparency = 1
-cull_mode = 2
-depth_draw_mode = 1
-shading_mode = 0
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("3_p5bny")
-texture_filter = 0
-billboard_mode = 3
-billboard_keep_scale = true
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2phh5"]
+render_priority = 0
+shader = ExtResource("2_w4l6d")
+shader_parameter/albedo_texture = ExtResource("3_p5bny")
+shader_parameter/enable_billboard = true
 
 [sub_resource type="Curve" id="Curve_rf0m5"]
 _data = [Vector2(0, 1), 0.0, 0.19497702, 0, 0, Vector2(0.2542373, 1), 0.0, 0.0, 0, 0, Vector2(0.7542373, 0.25842702), 0.0, 0.0, 0, 0, Vector2(1, 0.24719107), 0.0, 0.0, 0, 0]
@@ -68,22 +49,16 @@ point_count = 4
 curve = SubResource("Curve_rf0m5")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tp0la"]
-resource_local_to_scene = true
 angle_min = 1.0728835e-05
 angle_max = 360.00003
 gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_3urun")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c7m83"]
-resource_local_to_scene = true
-render_priority = 3
-transparency = 1
-cull_mode = 2
-shading_mode = 0
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("4_p5bny")
-texture_filter = 0
-billboard_keep_scale = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yf5n1"]
+render_priority = 0
+shader = ExtResource("2_w4l6d")
+shader_parameter/albedo_texture = ExtResource("4_p5bny")
+shader_parameter/enable_billboard = false
 
 [sub_resource type="Curve" id="Curve_kcfvq"]
 _data = [Vector2(0, 1), 0.0, -1.0, 0, 1, Vector2(1, 0), -1.0, 0.0, 1, 0]
@@ -111,7 +86,6 @@ curve_y = SubResource("Curve_47ym8")
 curve_z = SubResource("Curve_cioeb")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dc6rb"]
-resource_local_to_scene = true
 particle_flag_align_y = true
 spread = 180.0
 initial_velocity_min = 2.0
@@ -127,7 +101,7 @@ script = ExtResource("1_p5bny")
 particles = [NodePath("Flare"), NodePath("Shockwave"), NodePath("Sparks")]
 
 [node name="Flare" type="GPUParticles3D" parent="."]
-material_override = SubResource("StandardMaterial3D_2x3ni")
+material_override = SubResource("ShaderMaterial_kcfvq")
 emitting = false
 amount = 1
 lifetime = 0.15000000000000002
@@ -138,7 +112,7 @@ process_material = SubResource("ParticleProcessMaterial_32tsf")
 draw_pass_1 = SubResource("QuadMesh_dc6rb")
 
 [node name="Shockwave" type="GPUParticles3D" parent="."]
-material_override = SubResource("StandardMaterial3D_fy0kl")
+material_override = SubResource("ShaderMaterial_2phh5")
 emitting = false
 amount = 1
 lifetime = 0.1
@@ -149,7 +123,7 @@ process_material = SubResource("ParticleProcessMaterial_tp0la")
 draw_pass_1 = SubResource("QuadMesh_dc6rb")
 
 [node name="Sparks" type="GPUParticles3D" parent="."]
-material_override = SubResource("StandardMaterial3D_c7m83")
+material_override = SubResource("ShaderMaterial_yf5n1")
 emitting = false
 lifetime = 0.15000000000000002
 one_shot = true
