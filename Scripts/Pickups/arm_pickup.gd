@@ -51,6 +51,7 @@ func _ready():
 		# add item highlight shader
 		var mat: ShaderMaterial = ShaderMaterial.new()
 		mat.shader = shader
+		mat.resource_local_to_scene = true
 		new_mesh.material_overlay = mat
 		
 		# collapse local transforms from mesh up to the arm root
@@ -160,9 +161,9 @@ func play_tween():
 	tween.tween_property(self, "scale", default_scale * 1.25, 0.1)
 
 func highlight():
-	for m in mesh_list:
-		m.set_instance_shader_parameter("edge_color", HIGHLIGHT_COLOR)
+	for m: MeshInstance3D in mesh_list:
+		m.material_overlay.set_shader_parameter("edge_color", HIGHLIGHT_COLOR)
 
 func unhighlight():
 	for m in mesh_list:
-		m.set_instance_shader_parameter("edge_color", rarity_color)
+		m.material_overlay.set_shader_parameter("edge_color", rarity_color)

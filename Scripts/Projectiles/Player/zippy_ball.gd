@@ -5,14 +5,13 @@ extends "res://Scripts/Projectiles/Player/projectile.gd"
 @onready var ball = %Ball
 
 var material: StandardMaterial3D
-var blast_color: Color
+var color: Color
 var bounces: int = 5
 
 func _ready():
 	super._ready()
-	ball.material_override = material
-	blast_color = material.albedo_color
-	bounces = int(range / 100)
+	ball.set_instance_shader_parameter("zippy_albedo", color)
+	bounces = floori(range / 100)
 
 func _on_body_entered(body):
 	bounces -= 1
@@ -28,6 +27,6 @@ func explode():
 	blast.damage = damage
 	blast.radius = radius
 	blast.player = player
-	blast.color = blast_color
+	blast.color = color
 	blast.position = position
 	get_tree().current_scene.add_child(blast)

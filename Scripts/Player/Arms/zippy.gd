@@ -18,7 +18,7 @@ func _ready():
 	change_ball_color()
 
 func change_ball_color():
-	ball.mesh.surface_get_material(0).albedo_color = colors.pick_random()
+	ball.set_instance_shader_parameter("zippy_albedo", colors.pick_random())
 
 func launch_projectile(point: Vector3):
 	var spread_rad: float = deg_to_rad(spread)
@@ -42,7 +42,7 @@ func launch_projectile(point: Vector3):
 	proj.range = range
 	proj.radius = splash_radius
 	proj.player = player
-	proj.material = ball.mesh.surface_get_material(0).duplicate(true)
+	proj.color = ball.get_instance_shader_parameter("zippy_albedo")
 	
 	Utils.copy_groups(self, proj)
 	
