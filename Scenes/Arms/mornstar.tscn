@@ -916,7 +916,6 @@ render_priority = 0
 shader = ExtResource("3_4rx07")
 shader_parameter/empty_albedo = Color(0, 0, 0, 1)
 shader_parameter/fill_albedo = Color(0.95686275, 0.3254902, 0.40784314, 1)
-shader_parameter/fill_amount = 0.0
 shader_parameter/fill_multiplier = 0.10000000475
 shader_parameter/fill_offset = 0.81200003857
 shader_parameter/viewmodel_enabled = false
@@ -1259,7 +1258,7 @@ shadow_mesh = SubResource("ArrayMesh_fj8dp")
 
 [node name="Mornstar" type="Node3D" node_paths=PackedStringArray("laser_points")]
 script = ExtResource("1_312pq")
-laser_points = [NodePath(""), NodePath(""), NodePath(""), NodePath("")]
+laser_points = [null, null, null, null]
 arm_name = "Mornstar"
 rarity = 2
 unlocked_by_default = false

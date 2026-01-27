@@ -8,6 +8,11 @@ instance uniform vec3 edge_color : source_color = vec3(1.0);
 uniform float fade_start : hint_range(1.0, 1000.0, 0.1) = 50.0;
 uniform float fade_length : hint_range(1.0, 1000.0, 0.1) = 200.0;
 
+vec3 fresnel_glow(float amount, float intensity, vec3 color, vec3 normal, vec3 view)
+{
+	return pow((1.0 - dot(normalize(normal), normalize(view))), amount) * color * intensity;
+}
+
 void fragment() {
 	// Setup step parameters
 	vec2 step_length = 1.0 / VIEWPORT_SIZE * thickness;
@@ -49,8 +54,11 @@ void fragment() {
 	// Small vignette at screen edges
 	edge *= smoothstep(0.00, 0.015 * thickness,
 		1.0 - max(abs(SCREEN_UV.x - 0.5), abs(SCREEN_UV.y - 0.5)) * 2.0);
-
+	
+	// add fresnel glow aroud object
+	vec3 fresnel = fresnel_glow(6.0, 4.0, edge_color, NORMAL, VIEW);
+	
 	// blend_premul_alpha avoids need to sample screentexture.
-	ALBEDO = edge_color * edge;
+	ALBEDO = edge_color * edge + fresnel;
 	ALPHA = edge * distance_fade;
 }

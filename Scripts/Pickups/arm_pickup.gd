@@ -19,7 +19,7 @@ var offset: Vector3 = Vector3.ZERO
 var armature: Node3D
 var time: float = 0.0
 var default_pos: Vector3
-var mesh_list: Array[MeshInstance3D]
+var mesh_list: Array
 var tween: Tween
 var rarity: int
 var rarity_color: Color
@@ -41,17 +41,38 @@ func _ready():
 		2: # legendary
 			rarity_color = Color("e68b19")
 	
-	if arm.get_node_or_null("Armature"):
-		armature = arm.get_node("Armature").duplicate()
-		make_unique(armature)
-		armature.position.z = 0
-		visual_offset.add_child(armature)
-		offset = arm.get_node("Armature").position
+	var arm_mesh_list = arm.find_children("", "MeshInstance3D", true)
+	for mesh in arm_mesh_list:
+		var new_mesh: MeshInstance3D = mesh.duplicate()
+		visual_offset.add_child(new_mesh)
+		make_unique(new_mesh)
+		mesh_list.append(new_mesh)
+		
+		# add item highlight shader
+		var mat: ShaderMaterial = ShaderMaterial.new()
+		mat.shader = shader
+		new_mesh.material_overlay = mat
+		
+		# collapse local transforms from mesh up to the arm root
+		var xform: Transform3D = Transform3D.IDENTITY
+		var current: Node = mesh
+		
+		# iterate through all nodes and collapse their transforms
+		# this is for the rotation and scale (position is handled in the get_visual_aabb function)
+		while current != null and current != arm:
+			if current is Node3D:
+				var n3d: Node3D = current as Node3D
+				xform = n3d.transform * xform # global = parent * local
+			current = current.get_parent()
+		
+		# apply collapsed transform
+		new_mesh.transform = xform
+	
 	jingle.play_deconflicted(0.5)
 	play_tween()
 	
 	# get the mesh bounding box and create and collision box using the resulting bounding box
-	var aabb: AABB = get_visual_aabb(armature)
+	var aabb: AABB = get_visual_aabb(arm_mesh_list)
 	var box: Shape3D = BoxShape3D.new()
 	box.size = aabb.size
 	collision_shape.shape = box
@@ -70,37 +91,50 @@ func pick_up(player):
 	player.weapons_manager.swap_arm(arm)
 	queue_free()
 
-func get_visual_aabb(root: Node3D) -> AABB:
-	var meshes: Array = get_all_mesh_instances(root)
-	var combined: AABB = AABB()
+func get_visual_aabb(meshes: Array) -> AABB:
 	var first: bool = true
+	var combined: AABB = AABB()
+	
 	for mesh in meshes:
-		var aabb = mesh.get_aabb()
+		var xform: Transform3D = mesh.transform
+		var p: Node3D = mesh.get_parent()
+		
+		while p: # keep iterating through the parents
+			xform = p.transform * xform
+			p = p.get_parent()
+		var aabb: AABB = transform_aabb(mesh.mesh.get_aabb(), xform)
+		
 		if first:
 			combined = aabb
 			first = false
 		else:
 			combined = combined.merge(aabb)
+	
 	return combined
 
-func get_all_mesh_instances(node: Node) -> Array:
-	var meshes = []
-	for child in node.get_children():
-		if child is MeshInstance3D:
-			if child.name == "Minimap Icon":
-				continue
-			var mat: ShaderMaterial = ShaderMaterial.new()
-			mat.shader = shader
-			child.material_overlay = mat
-			mesh_list.append(child)
-			meshes.append(child)
-		meshes += get_all_mesh_instances(child) # recursion for nested children
-	return meshes
+func transform_aabb(aabb: AABB, xform: Transform3D) -> AABB:
+	# get the corner points of the aabb box
+	var points: Array[Vector3] = [
+		Vector3(aabb.position.x, aabb.position.y, aabb.position.z),
+		Vector3(aabb.position.x + aabb.size.x, aabb.position.y, aabb.position.z),
+		Vector3(aabb.position.x, aabb.position.y + aabb.size.y, aabb.position.z),
+		Vector3(aabb.position.x, aabb.position.y, aabb.position.z + aabb.size.z),
+		Vector3(aabb.position.x + aabb.size.x, aabb.position.y + aabb.size.y, aabb.position.z),
+		Vector3(aabb.position.x + aabb.size.x, aabb.position.y, aabb.position.z + aabb.size.z),
+		Vector3(aabb.position.x, aabb.position.y + aabb.size.y, aabb.position.z + aabb.size.z),
+		Vector3(aabb.position.x + aabb.size.x, aabb.position.y + aabb.size.y, aabb.position.z + aabb.size.z),
+	]
+	
+	var result: AABB = AABB(xform * points[0], Vector3.ZERO)
+	
+	for i in range(1, points.size()):
+		result = result.expand(xform * points[i])
+	return result
 
 func make_unique(root: Node) -> void:
 	for node in root.get_children():
 		if node is MeshInstance3D:
-			# Duplicate the mesh
+			# duplicate the mesh
 			if node.mesh:
 				node.mesh = node.mesh.duplicate()
 				
@@ -110,7 +144,7 @@ func make_unique(root: Node) -> void:
 				if mat:
 					node.set_surface_override_material(i, mat.duplicate())
 			
-			# also handle mesh surface materials
+			# duplicate all mesh surface materials
 			if node.mesh:
 				for i in node.mesh.get_surface_count():
 					var mat = node.mesh.surface_get_material(i)
@@ -127,10 +161,8 @@ func play_tween():
 
 func highlight():
 	for m in mesh_list:
-		if m.material_overlay:
-			m.set_instance_shader_parameter("edge_color", HIGHLIGHT_COLOR)
+		m.set_instance_shader_parameter("edge_color", HIGHLIGHT_COLOR)
 
 func unhighlight():
 	for m in mesh_list:
-		if m.material_overlay:
-			m.set_instance_shader_parameter("edge_color", rarity_color)
+		m.set_instance_shader_parameter("edge_color", rarity_color)
