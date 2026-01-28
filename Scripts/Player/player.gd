@@ -181,6 +181,8 @@ func get_pickup_collision():
 	
 	var query = PhysicsRayQueryParameters3D.create(ray_origin, ray_end)
 	query.collision_mask = CollisionLayers.get_layer(["Pickup"])
+	query.hit_back_faces = true
+	query.hit_from_inside = true
 	
 	var result = get_world_3d().direct_space_state.intersect_ray(query)
 	
