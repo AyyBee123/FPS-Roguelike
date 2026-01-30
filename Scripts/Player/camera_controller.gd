@@ -49,7 +49,7 @@ func add_recoil(_arm, _source) -> void:
 	recoil_target.x += _arm.recoil.x
 	recoil_target.y += _arm.recoil.y * randf_range(-1, 1)
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	# mouse look
 	yaw -= input.x * sensitivity
 	pitch -= input.y * sensitivity * 1.25
