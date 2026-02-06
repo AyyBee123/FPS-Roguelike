@@ -32,11 +32,11 @@ func move(delta):
 	else:
 		position.y = lerp_angle(position.y, ray_cast.get_collision_point().y + raycast_offset, 0.05)
 	
-	if position.distance_to(player_pos) > 15:
+	if position.distance_squared_to(player_pos) > 225:
 		position.x += (player_pos.x - position.x) * delta * speed
 		position.z += (player_pos.z - position.z) * delta * speed
 		can_shoot = false
-	elif position.distance_to(player_pos) > 12:
+	elif position.distance_squared_to(player_pos) > 144:
 		position.x += (player_pos.x - position.x) * delta * speed * 0.2
 		position.z += (player_pos.z - position.z) * delta * speed * 0.2
 		can_shoot = true

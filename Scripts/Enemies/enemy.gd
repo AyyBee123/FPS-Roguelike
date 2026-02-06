@@ -17,6 +17,7 @@ signal enemy_hit(source, enemy, damage_taken)
 @export var raycast_offset: float = 0
 @export var health: float = 25
 @export var speed: float = 5
+@export var angular_acceleration: float = 5
 @export var xp_amount: int = 1
 @export var coin_amount: int = 1
 @export var contact_damage: float = 0.0 # amount of damage dealt to a player if in contact with them
@@ -27,7 +28,6 @@ signal enemy_hit(source, enemy, damage_taken)
 @export var projectile_speed: float
 @export var projectile_range: float
 
-var angular_acceleration: float = 5
 var is_on_screen: bool = true
 var object: RID
 var tween: Tween

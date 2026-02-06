@@ -2,7 +2,7 @@ extends Area3D
 
 @onready var enemy: Enemy = get_parent()
 
-const SEPARATION_FORCE: float = 6.0
+const SEPARATION_FORCE: float = 10.0
 const MIN_DISTANCE: float = 1.0
 const TICK_RATE: float = 0.06
 
@@ -33,8 +33,7 @@ func push(delta):
 		
 		var weight_ratio: float = e.weight / enemy.weight
 		
-		if distance < MIN_DISTANCE:
-			enemy.global_position += direction.normalized() * (SEPARATION_FORCE / distance) * delta * weight_ratio
+		enemy.global_position += direction.normalized() * (SEPARATION_FORCE / distance) * delta * weight_ratio
 
 func _on_body_entered(body):
 	if body == enemy:

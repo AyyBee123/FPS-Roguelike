@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://bf7ljiiykmoi0"]
+[gd_scene load_steps=21 format=4 uid="uid://bf7ljiiykmoi0"]
 
 [ext_resource type="Script" uid="uid://dmf55xmm0lu8y" path="res://Scripts/Enemies/cactorse.gd" id="1_q0do1"]
 [ext_resource type="Shader" uid="uid://d1oiih60d8at2" path="res://Shaders/enemy_damaged.gdshader" id="2_jfm6g"]
@@ -668,9 +668,6 @@ height = 1.6618652
 radius = 0.421875
 height = 1.5510254
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_xbcap"]
-radius = 1.0
-
 [sub_resource type="SphereShape3D" id="SphereShape3D_jfm6g"]
 radius = 3.0
 
@@ -688,7 +685,8 @@ collision_mask = 2
 script = ExtResource("1_q0do1")
 mesh = [NodePath("Armature/Skeleton3D/Body")]
 health = 36.0
-speed = 20.0
+speed = 15.0
+angular_acceleration = 10.0
 contact_damage = 2.0
 weight = 3.0
 damage_number = ExtResource("2_xbcap")
@@ -952,15 +950,6 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 target_position = Vector3(0, -5000, 0)
 
-[node name="Object Avoidance" type="Area3D" parent="."]
-unique_name_in_owner = true
-collision_layer = 0
-monitorable = false
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Object Avoidance"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.333)
-shape = SubResource("SphereShape3D_xbcap")
-
 [node name="Enemy Detection Area" type="Area3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -984,5 +973,9 @@ cull_mask = 4
 
 [node name="Move Timer" type="Timer" parent="."]
 unique_name_in_owner = true
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+unique_name_in_owner = true
+debug_enabled = true
 
 [connection signal="timeout" from="Move Timer" to="." method="_on_move_timer_timeout"]
