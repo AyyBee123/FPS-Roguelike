@@ -976,6 +976,5 @@ unique_name_in_owner = true
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 unique_name_in_owner = true
-debug_enabled = true
 
 [connection signal="timeout" from="Move Timer" to="." method="_on_move_timer_timeout"]
