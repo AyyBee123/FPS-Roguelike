@@ -17,8 +17,9 @@ var INITIAL_BOX_COST: int
 
 var number_of_chests_opened: int = 0
 
-var time_left: float = 1200.0 # time in seconds (20 minutes, in this case)
-var elapsed_time: float = 0.0
+var time: float = 1200.0 # time in seconds (20 minutes, in this case)
+var time_left: float = time
+var elapsed_time: float = 600.0
 var current_number_of_enemies: int = 0
 var enemy_tier: int = 0:
 	get:
@@ -29,8 +30,8 @@ func _ready():
 	INITIAL_BOX_COST = box_cost
 
 func _physics_process(delta):
-	time_left = max(time_left - delta, 0)
 	elapsed_time += delta
+	time_left = max(time - elapsed_time, 0)
 	if time_left <= 0: # do stuff when countdown time reaches zero
 		pass
 
