@@ -40,6 +40,12 @@ func _physics_process(delta):
 	if level.current_number_of_enemies != current_number_of_enemies:
 		level.current_number_of_enemies = current_number_of_enemies
 
+func spawn_boss(spawn: BossSpawn):
+	current_number_of_enemies += 1
+	var boss = spawn.boss.instantiate()
+	boss.position = level.find_spawn_point(player.global_position, MIN_DISTANCE * 2, MAX_DISTANCE)
+	level.add_child(boss)
+
 func spawn_enemy(spawn: EnemySpawn) -> void:
 	current_number_of_enemies += 1
 	var enemy = spawn.enemy.instantiate()

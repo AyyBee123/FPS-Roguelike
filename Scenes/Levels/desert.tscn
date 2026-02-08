@@ -12,7 +12,7 @@
 
 [sub_resource type="Resource" id="Resource_ecsxk"]
 script = ExtResource("2_4dovk")
-time = 1.0
+time = 5.0
 boss = ExtResource("8_4dovk")
 metadata/_custom_type_script = "uid://c5fj4hsp172tf"
 
@@ -2171,10 +2171,12 @@ directional_shadow_mode = 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="Enemy Handler" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("2_r3g2l")
 enemies = Array[ExtResource("3_4dovk")]([SubResource("Resource_7rivk"), SubResource("Resource_hyk2w")])
 
 [node name="Chest Manager" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("9_1mh2y")
 
 [node name="Timer" type="Timer" parent="Chest Manager"]

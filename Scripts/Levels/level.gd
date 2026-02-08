@@ -2,6 +2,8 @@ class_name Level extends Node3D
 
 signal cost_increased
 
+@onready var enemy_handler = %"Enemy Handler"
+@onready var chest_manager = %"Chest Manager"
 @onready var nav_region: NavigationRegion3D = %NavigationRegion3D
 
 @export var NUMBER_OF_CHESTS: int = 25
@@ -9,6 +11,8 @@ signal cost_increased
 
 @export var chest_cost: int = 20
 @export var box_cost: int = 30
+
+@export var boss_spawns: Array[BossSpawn]
 
 const XP = preload("uid://ukgrpto2cajc")
 
@@ -34,6 +38,11 @@ func _physics_process(delta):
 	time_left = max(time - elapsed_time, 0)
 	if time_left <= 0: # do stuff when countdown time reaches zero
 		pass
+	
+	for spawn in boss_spawns:
+		if spawn.time <= elapsed_time + 1:
+			boss_spawns.erase(spawn)
+			enemy_handler.spawn_boss(spawn)
 
 func get_time_left() -> float:
 	return time_left
