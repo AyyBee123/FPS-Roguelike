@@ -19,7 +19,7 @@ var number_of_chests_opened: int = 0
 
 var time: float = 1200.0 # time in seconds (20 minutes, in this case)
 var time_left: float = time
-var elapsed_time: float = 600.0
+var elapsed_time: float = 0.0
 var current_number_of_enemies: int = 0
 var enemy_tier: int = 0:
 	get:

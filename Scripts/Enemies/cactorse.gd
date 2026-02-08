@@ -42,11 +42,6 @@ func move(delta):
 	position.x += vel.x * delta
 	position.z += vel.z * delta
 	position.y = lerp(position.y, raycast_y, delta * gravity)
-	
-	if not ray_cast.is_colliding():
-		position.y = 1000
-		ray_cast.force_raycast_update()
-		position.y = ray_cast.get_collision_point().y + raycast_offset
 
 func _on_move_timer_timeout():
 	move_timer.start(TICK_RATE)

@@ -186,5 +186,5 @@ func set_material_override():
 		#hit_indicator.global_translate(bullet_collision.position)
 		#
 		#var collider = bullet_collision.collider
-		#if collider.is_in_group("Enemy") and collider.has_method("hit"):
+		#if collider is Enemy:
 			#collider.hit(damage)

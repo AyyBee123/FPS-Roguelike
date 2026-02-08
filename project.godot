@@ -60,9 +60,9 @@ folder_colors={
 
 [global_group]
 
-Enemy=""
-Player=""
 Ground=""
+Player=""
+Enemy=""
 
 [input]
 

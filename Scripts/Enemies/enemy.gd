@@ -28,6 +28,8 @@ signal enemy_hit(source, enemy, damage_taken)
 @export var projectile_speed: float
 @export var projectile_range: float
 
+@export var TICK_RATE: float = 0.06
+
 var is_on_screen: bool = true
 var object: RID
 var tween: Tween
@@ -35,7 +37,6 @@ var spawn_tween: Tween
 var players_in_contact: Array[Player]
 
 const DAMAGE_BUFFER: float = 0.06
-const TICK_RATE: float = 0.06
 var buffer_time: float = 0.0
 var accumulated_damage: float = 0.0
 var dmg_num: Node3D
@@ -54,9 +55,10 @@ func _ready():
 	on_screen_notifier.screen_entered.connect(_on_screen_entered)
 	on_screen_notifier.screen_exited.connect(_on_screen_exited)
 	
+	var size: Vector3 = scale
 	scale = Vector3.ONE * 0.05
 	spawn_tween = get_tree().create_tween()
-	spawn_tween.tween_property(self, "scale", Vector3.ONE, 0.25).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	spawn_tween.tween_property(self, "scale", size, 0.25).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 
 func _physics_process(delta):
 	# detect collisions with players

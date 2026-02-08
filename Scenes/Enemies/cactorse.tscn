@@ -679,7 +679,7 @@ albedo_color = Color(1, 0, 0, 1)
 material = SubResource("StandardMaterial3D_ulhvv")
 radius = 1.5
 
-[node name="Cactorse" type="CharacterBody3D" node_paths=PackedStringArray("mesh") groups=["Enemy"]]
+[node name="Cactorse" type="CharacterBody3D" node_paths=PackedStringArray("mesh")]
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_q0do1")

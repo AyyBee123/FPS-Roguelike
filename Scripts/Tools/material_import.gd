@@ -20,6 +20,5 @@ func _run():
 				mesh_node.mesh.surface_set_material(i, material)
 				material.diffuse_mode = BaseMaterial3D.DIFFUSE_TOON
 				material.specular_mode = BaseMaterial3D.SPECULAR_TOON
-		mesh_node.material_overlay = null
 	
 	print("Material override complete.")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://dhlu65iawdxvf"]
+[gd_scene load_steps=59 format=3 uid="uid://dhlu65iawdxvf"]
 
 [ext_resource type="Script" uid="uid://c2cudrvyd4egp" path="res://Scripts/Player/player.gd" id="1_uvnfx"]
 [ext_resource type="Script" uid="uid://c4i7uubwdhgtw" path="res://Scripts/Player/weapons_manager.gd" id="2_htcer"]
@@ -37,7 +37,9 @@
 [ext_resource type="AudioStream" uid="uid://dymjngbslujpe" path="res://Audio/SFX/Jump.mp3" id="29_fcwna"]
 [ext_resource type="AudioStream" uid="uid://ckpyrftwekeyr" path="res://Audio/SFX/Land.mp3" id="30_1agin"]
 [ext_resource type="AudioStream" uid="uid://0ye4jgvtnnsw" path="res://Audio/SFX/Pick Up.mp3" id="31_1agin"]
+[ext_resource type="Script" uid="uid://b173hi8wxnnrp" path="res://Scripts/UI/boss_health_bars.gd" id="37_ixrbb"]
 [ext_resource type="AudioStream" uid="uid://id1yt3y16cbi" path="res://Audio/SFX/Enemy Hit.mp3" id="37_m6ahd"]
+[ext_resource type="PackedScene" uid="uid://be63qadoubjih" path="res://Scenes/UI/boss_health.tscn" id="38_ei2r2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mtuoh"]
 size = Vector3(1, 2, 1)
@@ -166,14 +168,14 @@ ProgressBar/colors/font_color = Color(0.9490196, 0.9490196, 0.9490196, 0)
 ProgressBar/styles/background = SubResource("StyleBoxTexture_74mp2")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_oikmp")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hnuln"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m6ahd"]
 texture = ExtResource("12_aqm4k")
 texture_margin_left = 4.0
 texture_margin_top = 4.0
 texture_margin_right = 4.0
 texture_margin_bottom = 4.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aqm4k"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ogmfp"]
 bg_color = Color(0.83137256, 0.023529412, 0, 1)
 border_width_left = 4
 border_width_top = 4
@@ -182,8 +184,8 @@ border_width_bottom = 4
 border_color = Color(0.8, 0.8, 0.8, 0)
 
 [sub_resource type="Theme" id="Theme_rcvs5"]
-ProgressBar/styles/background = SubResource("StyleBoxTexture_hnuln")
-ProgressBar/styles/fill = SubResource("StyleBoxFlat_aqm4k")
+ProgressBar/styles/background = SubResource("StyleBoxTexture_m6ahd")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_ogmfp")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dey5f"]
 bg_color = Color(0, 0, 0, 0.5019608)
@@ -656,6 +658,21 @@ theme_override_fonts/font = ExtResource("7_jlvik")
 theme_override_font_sizes/font_size = 48
 text = "0"
 vertical_alignment = 1
+
+[node name="Boss Health Bars" type="HBoxContainer" parent="CanvasLayer/HUD"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.133
+anchor_top = 0.089
+anchor_right = 0.133
+anchor_bottom = 0.089
+offset_left = 0.6399994
+offset_top = -0.12000275
+offset_right = 1408.64
+offset_bottom = 95.88
+pivot_offset = Vector2(704, 0)
+script = ExtResource("37_ixrbb")
+boss_health_bar = ExtResource("38_ei2r2")
 
 [node name="Upgrade" type="Node" parent="CanvasLayer"]
 unique_name_in_owner = true

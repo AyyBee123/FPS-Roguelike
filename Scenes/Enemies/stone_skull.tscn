@@ -558,7 +558,7 @@ albedo_color = Color(1, 0, 0, 1)
 material = SubResource("StandardMaterial3D_ulhvv")
 radius = 1.5
 
-[node name="Stone Skull" type="CharacterBody3D" node_paths=PackedStringArray("mesh") groups=["Enemy"]]
+[node name="Stone Skull" type="CharacterBody3D" node_paths=PackedStringArray("mesh")]
 collision_layer = 4
 script = ExtResource("1_o0abg")
 MUZZLE_FLASH = ExtResource("2_pqm40")
