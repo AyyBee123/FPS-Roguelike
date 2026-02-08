@@ -1,6 +1,7 @@
-[gd_scene load_steps=192 format=4 uid="uid://djbj7k76p2w00"]
+[gd_scene load_steps=194 format=4 uid="uid://djbj7k76p2w00"]
 
 [ext_resource type="Script" uid="uid://xvth4kwhnsit" path="res://Scripts/Levels/level.gd" id="1_r3g2l"]
+[ext_resource type="Script" uid="uid://c5fj4hsp172tf" path="res://Scripts/Resources/boss_spawn.gd" id="2_4dovk"]
 [ext_resource type="Script" uid="uid://ddlx4tkndd0xd" path="res://Scripts/Utils/enemy_manager.gd" id="2_r3g2l"]
 [ext_resource type="Script" uid="uid://e25j21vf5uye" path="res://Scripts/Utils/enemy_spawn_resource.gd" id="3_4dovk"]
 [ext_resource type="PackedScene" uid="uid://bf7ljiiykmoi0" path="res://Scenes/Enemies/cactorse.tscn" id="4_ecsxk"]
@@ -8,6 +9,12 @@
 [ext_resource type="PackedScene" uid="uid://dhlu65iawdxvf" path="res://Scenes/Player/player.tscn" id="6_i3lab"]
 [ext_resource type="PackedScene" uid="uid://d2ylcac3o1e8k" path="res://Scenes/Enemies/sand_shark.tscn" id="8_4dovk"]
 [ext_resource type="Script" uid="uid://px8ih8py0glr" path="res://Scripts/Utils/chest_manager.gd" id="9_1mh2y"]
+
+[sub_resource type="Resource" id="Resource_ecsxk"]
+script = ExtResource("2_4dovk")
+time = 1.0
+boss = ExtResource("8_4dovk")
+metadata/_custom_type_script = "uid://c5fj4hsp172tf"
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_k8g1k"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -2150,6 +2157,7 @@ size = Vector3(200, 1, 200)
 [node name="Desert" type="Node3D"]
 script = ExtResource("1_r3g2l")
 NUMBER_OF_CHESTS = 40
+boss_spawns = Array[ExtResource("2_4dovk")]([SubResource("Resource_ecsxk")])
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_l7ek2")
@@ -2679,8 +2687,5 @@ collision_mask = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Bounding Box/Roof"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 400, 0)
 shape = SubResource("BoxShape3D_1mh2y")
-
-[node name="Sand Shark" parent="." instance=ExtResource("8_4dovk")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -7.65564, 1.1384687, 1.5659162)
 
 [connection signal="timeout" from="Chest Manager/Timer" to="Chest Manager" method="_on_timer_timeout"]
