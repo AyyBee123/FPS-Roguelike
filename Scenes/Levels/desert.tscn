@@ -12,7 +12,7 @@
 
 [sub_resource type="Resource" id="Resource_ecsxk"]
 script = ExtResource("2_4dovk")
-time = 5.0
+time = 720.0
 boss = ExtResource("8_4dovk")
 metadata/_custom_type_script = "uid://c5fj4hsp172tf"
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://d2ylcac3o1e8k"]
+[gd_scene load_steps=30 format=4 uid="uid://d2ylcac3o1e8k"]
 
 [ext_resource type="Script" uid="uid://c70kooihnjehv" path="res://Scripts/Enemies/Sand Shark/sand_shark.gd" id="1_y8s18"]
 [ext_resource type="PackedScene" uid="uid://dm6474uy3ucte" path="res://Scenes/Misc/damage_number.tscn" id="2_72f83"]
@@ -7,6 +7,9 @@
 [ext_resource type="Script" uid="uid://baxqpjp3mlstv" path="res://Scripts/UI/minimap_icon.gd" id="5_byw4k"]
 [ext_resource type="Texture2D" uid="uid://d0ov1ksvt5flx" path="res://Assets/Textures/Blob Shadow.png" id="6_g6j6m"]
 [ext_resource type="Script" uid="uid://b7y13e0yyw3ig" path="res://Scripts/Enemies/Sand Shark/state_machine.gd" id="6_hro3n"]
+[ext_resource type="AudioStream" uid="uid://duvw7rqq3win5" path="res://Audio/SFX/Roar.mp3" id="8_byw4k"]
+[ext_resource type="Script" uid="uid://cc1romsfhth3n" path="res://Scripts/Utils/audio_player_deconflicter.gd" id="9_g6j6m"]
+[ext_resource type="AudioStream" uid="uid://ddhly68orfvku" path="res://Audio/SFX/Bite.mp3" id="10_jho62"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_72f83"]
 render_priority = 0
@@ -388,6 +391,23 @@ tracks/20/keys = {
 "transitions": PackedFloat32Array(1, 0.667, 1, 2, 1, 0.5, 1),
 "update": 0,
 "values": [Vector3(1.5707964, 0, 0), Vector3(1.0579773, 0.1302232, 0.58335274), Vector3(1.5707964, 0, 0), Vector3(1.9896754, 0, 0.4834562), Vector3(1.4184643, -0.4434536, -0.28234145), Vector3(1.4184643, 0.040683247, -0.28234148), Vector3(1.5281978, 2.972968, 2.7735913)]
+}
+tracks/21/type = "method"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath(".")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0.02, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [NodePath("Roar")],
+"method": &"play_sound"
+}, {
+"args": [NodePath("Bite")],
+"method": &"play_sound"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_jthrc"]
@@ -933,7 +953,7 @@ bones/20/rotation = Quaternion(0.7071068, 0, 0.7071068, 0)
 bones/20/scale = Vector3(0.99999994, 1, 0.99999994)
 
 [node name="Shark" type="MeshInstance3D" parent="Armature/Skeleton3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2200861, -0.12501976, -0.1256373)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.125, -0.126)
 material_overlay = SubResource("ShaderMaterial_72f83")
 mesh = SubResource("ArrayMesh_hro3n")
 skin = SubResource("Skin_72f83")
@@ -1007,6 +1027,23 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 script = ExtResource("6_hro3n")
 metadata/_custom_type_script = "uid://cq5y553syofa7"
+
+[node name="Roar" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("8_byw4k")
+unit_size = 50.0
+pitch_scale = 1.1
+bus = &"SFX"
+script = ExtResource("9_g6j6m")
+
+[node name="Bite" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("10_jho62")
+unit_size = 50.0
+max_db = -2.0
+pitch_scale = 0.8
+bus = &"SFX"
+script = ExtResource("9_g6j6m")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="Move Timer" to="." method="_on_move_timer_timeout"]

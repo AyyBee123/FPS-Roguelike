@@ -72,3 +72,6 @@ func _on_move_timer_timeout():
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "Bite":
 		_state_machine.set_state(_state_machine.states.swim)
+
+func play_sound(sound: NodePath):
+	get_node(sound).play_deconflicted()
