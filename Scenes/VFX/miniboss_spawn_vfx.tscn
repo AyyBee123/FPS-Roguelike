@@ -456,6 +456,6 @@ draw_pass_1 = SubResource("QuadMesh_hdwc1")
 unique_name_in_owner = true
 stream = ExtResource("5_cq21r")
 volume_db = 8.0
-pitch_scale = 0.77
+pitch_scale = 0.7
 bus = &"SFX"
 script = ExtResource("6_jqwot")
