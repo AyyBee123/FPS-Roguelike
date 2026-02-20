@@ -26,8 +26,8 @@ func _ready():
 	SignalBus.enemy_defeated.connect(_on_enemy_defeat)
 
 func _physics_process(delta):
-	MAX_NUMBER_OF_ENEMIES = min(floori(INITIAL_MAX_ENEMIES * exp(level.enemy_tier * 0.08)), 100)
-	MIN_NUMBER_OF_ENEMIES = min(floori(INITIAL_MIN_ENEMIES * exp(level.enemy_tier * 0.09)), 80)
+	MAX_NUMBER_OF_ENEMIES = min(floori(INITIAL_MAX_ENEMIES * exp(level.enemy_tier * 0.1)), 100)
+	MIN_NUMBER_OF_ENEMIES = min(floori(INITIAL_MIN_ENEMIES * exp(level.enemy_tier * 0.12)), 80)
 	
 	t += delta
 	if t >= SPAWNING_INTERVAL:
