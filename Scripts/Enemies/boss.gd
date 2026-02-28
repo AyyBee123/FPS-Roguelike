@@ -1,8 +1,6 @@
-class_name Miniboss extends Enemy
+class_name Boss extends Enemy
 
 @export var boss_name: String
-
-const MINIBOSS_SPAWN_VFX = preload("uid://3t4q01uo2ubp")
 
 func _ready():
 	ray_cast.global_transform = Transform3D(Basis(), ray_cast.global_position) # lock the ray cast's rotation
@@ -11,9 +9,6 @@ func _ready():
 	
 	on_screen_notifier.screen_entered.connect(_on_screen_entered)
 	on_screen_notifier.screen_exited.connect(_on_screen_exited)
-	
+
+func set_spawned():
 	SignalBus.boss_spawned.emit(self)
-	
-	var spawn_vfx = MINIBOSS_SPAWN_VFX.instantiate()
-	spawn_vfx.position = position
-	get_tree().current_scene.add_child(spawn_vfx)
