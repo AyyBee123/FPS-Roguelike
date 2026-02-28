@@ -42,6 +42,7 @@ func _enter_state(new_state, old_state):
 		states.swim:
 			parent.animation_player.play("Swim", -1, 0.5)
 			set_random_time(3, 6)
+			set_random_attack()
 		states.prepare:
 			parent.animation_player.play("Swim", -1, 2)
 			attack_timer.start(3)
@@ -61,9 +62,8 @@ func create_timer():
 	add_child(attack_timer)
 	attack_timer.one_shot = true
 
-func animation_finished():
+func set_random_attack():
 	random_attack = randi_range(0, num_of_attacks - 1)
-	set_random_time(3, 6)
 
 func set_random_time(min: float, max: float):
 	timer.start(randf_range(min, max))
