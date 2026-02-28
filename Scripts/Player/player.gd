@@ -131,12 +131,14 @@ func _physics_process(delta):
 	# input direction and movement/deceleration
 	var input_dir: Vector2 = Input.get_vector("left", "right", "up", "down")
 	var direction: Vector3 = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	var current_friction = friction if is_on_floor() else 5.0  # low = floaty, tweak to taste
+	
 	if direction:
-		velocity.x = velocity.lerp(direction * SPEED, delta * friction).x
-		velocity.z = velocity.lerp(direction * SPEED, delta * friction).z
+		velocity.x = velocity.lerp(direction * SPEED, delta * current_friction).x
+		velocity.z = velocity.lerp(direction * SPEED, delta * current_friction).z
 	else:
-		velocity.x = velocity.lerp(Vector3.ZERO, delta * friction).x
-		velocity.z = velocity.lerp(Vector3.ZERO, delta * friction).z
+		velocity.x = velocity.lerp(Vector3.ZERO, delta * current_friction).x
+		velocity.z = velocity.lerp(Vector3.ZERO, delta * current_friction).z
 	
 	move_and_slide()
 	

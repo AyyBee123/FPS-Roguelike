@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=4 uid="uid://ct8gokutu4ivs"]
+[gd_scene load_steps=54 format=4 uid="uid://ct8gokutu4ivs"]
 
 [ext_resource type="Script" uid="uid://ds8er88csvjs0" path="res://Scripts/Enemies/Stone Pillar/stone_pillar.gd" id="1_2sa45"]
 [ext_resource type="PackedScene" uid="uid://dm6474uy3ucte" path="res://Scenes/Misc/damage_number.tscn" id="2_dmfuk"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://baxqpjp3mlstv" path="res://Scripts/UI/minimap_icon.gd" id="5_g0w43"]
 [ext_resource type="Shader" uid="uid://d1oiih60d8at2" path="res://Shaders/enemy_damaged.gdshader" id="6_3v83o"]
 [ext_resource type="Script" uid="uid://c4ngmxqflh0ja" path="res://Scripts/Enemies/Stone Pillar/stone_pillar_rock.gd" id="6_smbcs"]
+[ext_resource type="Script" uid="uid://6nvj5l2ogcog" path="res://Scripts/Enemies/Stone Pillar/slam_area.gd" id="8_i3oko"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_xbcap"]
 radius = 3.0
@@ -434,6 +435,78 @@ tracks/19/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0)]
 }
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("%Armature/../Slam Area:rotation")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("%Armature/../Slam Area/CollisionShape3D:disabled")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("Rock_032/StaticBody3D/CollisionShape3D9:disabled")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("Rock_012/StaticBody3D/CollisionShape3D4:disabled")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/24/type = "value"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("Rock_011/StaticBody3D/CollisionShape3D3:disabled")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/25/type = "value"
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/path = NodePath("Rock_009/StaticBody3D/CollisionShape3D2:disabled")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_jrp5b"]
 resource_name = "Animation"
@@ -627,6 +700,78 @@ tracks/19/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0, 0, 0)]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("%Armature/../Slam Area:rotation")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 0.93333334, 1.0333333, 1.3333334, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 0.55, 1, 2, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.62831855, 0, 0), Vector3(-0.87266463, 0, 0), Vector3(0, 0, 0), Vector3(1.5707964, 0, 0), Vector3(1.5707964, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("%Armature/../Slam Area/CollisionShape3D:disabled")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0, 0.93333334, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("Rock_032/StaticBody3D/CollisionShape3D9:disabled")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0, 0.93333334, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("Rock_012/StaticBody3D/CollisionShape3D4:disabled")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0, 0.93333334, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/24/type = "value"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("Rock_011/StaticBody3D/CollisionShape3D3:disabled")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"times": PackedFloat32Array(0, 0.93333334, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/25/type = "value"
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/path = NodePath("Rock_009/StaticBody3D/CollisionShape3D2:disabled")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/keys = {
+"times": PackedFloat32Array(0, 0.93333334, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
 }
 
 [sub_resource type="Animation" id="Animation_6ov00"]
@@ -1338,6 +1483,9 @@ shadow_mesh = SubResource("ArrayMesh_fx1lg")
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_6ov00"]
 points = PackedVector3Array(5.4089336, -2.570015, -10.242416, 4.436146, 1.9022374, -9.3898115, 7.171671, -1.1193295, -9.798017, 6.995867, -5.322628, -7.115528, -7.41545, -4.770439, -6.612813, -7.659233, -2.9246533, -8.700087, -7.206828, 3.2434373, -7.9037857, 5.8238335, 3.0232759, -7.1979733, 2.6780977, 3.6563888, -8.390413, 6.841158, 1.0644336, -7.988241, 10.312719, -1.529901, -5.7762947, 8.357769, -5.7462897, -4.6401587, 4.562727, -6.3151393, -0.7672405, -7.13885, -6.1044984, 0.3869934, -9.73842, -5.4463944, -0.5661545, -11.641801, -3.9278755, -1.9214745, -9.850934, -3.2400198, -6.638954, -9.0586405, 1.477385, -5.8426533, -11.805885, 2.3354201, -0.009145737, -9.166468, 5.1070733, -1.5514765, -6.873971, 5.390308, -2.8927207, 1.6092033, 5.03567, -5.6475997, 6.236389, 5.113024, -0.5178938, 8.010847, 5.04281, 1.4708471, 12.14109, -0.5600004, 1.0525885, 8.200716, -6.056896, -2.609189, 3.7915287, -1.70365, 9.5243435, 1.6818695, -4.39676, 4.901376, -0.9341078, -6.3901134, 1.2898703, -7.0638404, -2.9341738, 7.953863, -8.864082, 4.0907607, 5.4825144, -8.65546, 5.5509667, 3.6928482, -6.1426225, 5.7663674, 4.1392593, 7.1622944, 5.5545373, 5.8987617, 8.453875, 4.9583163, 5.4402866, 10.195517, 2.2140336, 8.094622, 10.101753, -3.414959, -0.29066658, 7.1669827, 0.84070206, 10.300537, 6.3629684, -2.0880399, 6.188326, 1.7873526, -2.918703, 7.732668, -2.0639477, -2.6795006, 8.4766865, -4.9541807, 4.093141, 8.374132, -7.5725026, 5.3081937, 5.492569, 1.5716982, 4.172875, 9.407715, 7.921772, 2.9828134, 10.290482)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_3v83o"]
+size = Vector3(4.3184814, 21.712456, 4.180893)
+
 [node name="Stone Pillar" type="CharacterBody3D" node_paths=PackedStringArray("mesh")]
 collision_layer = 4
 collision_mask = 2
@@ -1348,7 +1496,6 @@ health = 2000.0
 speed = 8.0
 angular_acceleration = 15.0
 xp_amount = 12
-contact_damage = 8.0
 weight = 10000.0
 damage_number = ExtResource("2_dmfuk")
 TICK_RATE = 0.03
@@ -1420,7 +1567,6 @@ collision_layer = 4
 collision_mask = 2
 script = ExtResource("6_smbcs")
 pillar = NodePath("../../..")
-weight = 0.0
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Armature/Rock_003/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_smbcs")
@@ -1436,7 +1582,6 @@ collision_layer = 4
 collision_mask = 2
 script = ExtResource("6_smbcs")
 pillar = NodePath("../../..")
-weight = 0.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Armature/Rock_006/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_3v83o")
@@ -1452,7 +1597,6 @@ collision_layer = 4
 collision_mask = 2
 script = ExtResource("6_smbcs")
 pillar = NodePath("../../..")
-weight = 0.0
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Armature/Rock_009/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_i3oko")
@@ -1468,7 +1612,6 @@ collision_layer = 4
 collision_mask = 2
 script = ExtResource("6_smbcs")
 pillar = NodePath("../../..")
-weight = 0.0
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="Armature/Rock_011/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_sqi3x")
@@ -1484,7 +1627,6 @@ collision_layer = 4
 collision_mask = 2
 script = ExtResource("6_smbcs")
 pillar = NodePath("../../..")
-weight = 0.0
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="Armature/Rock_012/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_wcp62")
@@ -1500,7 +1642,6 @@ collision_layer = 4
 collision_mask = 2
 script = ExtResource("6_smbcs")
 pillar = NodePath("../../..")
-weight = 0.0
 
 [node name="CollisionShape3D5" type="CollisionShape3D" parent="Armature/Rock_018/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_dmfuk")
@@ -1516,7 +1657,6 @@ collision_layer = 4
 collision_mask = 2
 script = ExtResource("6_smbcs")
 pillar = NodePath("../../..")
-weight = 0.0
 
 [node name="CollisionShape3D6" type="CollisionShape3D" parent="Armature/Rock_021/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_y622c")
@@ -1532,7 +1672,6 @@ collision_layer = 4
 collision_mask = 2
 script = ExtResource("6_smbcs")
 pillar = NodePath("../../..")
-weight = 0.0
 
 [node name="CollisionShape3D7" type="CollisionShape3D" parent="Armature/Rock_001/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_i2ndu")
@@ -1548,7 +1687,6 @@ collision_layer = 4
 collision_mask = 2
 script = ExtResource("6_smbcs")
 pillar = NodePath("../../..")
-weight = 0.0
 
 [node name="CollisionShape3D8" type="CollisionShape3D" parent="Armature/Rock_002/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_g0w43")
@@ -1564,8 +1702,19 @@ collision_layer = 4
 collision_mask = 2
 script = ExtResource("6_smbcs")
 pillar = NodePath("../../..")
-weight = 0.0
 
 [node name="CollisionShape3D9" type="CollisionShape3D" parent="Armature/Rock_032/StaticBody3D"]
 transform = Transform3D(0.99999994, 0, 2.842171e-14, 0, 0.99999994, 0, -2.842171e-14, 0, 0.99999994, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_6ov00")
+
+[node name="Slam Area" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("8_i3oko")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Slam Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.335, 0)
+shape = SubResource("BoxShape3D_3v83o")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="Slam Area" to="Slam Area" method="_on_body_entered"]
