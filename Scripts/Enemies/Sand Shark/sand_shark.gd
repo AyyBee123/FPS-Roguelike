@@ -1,7 +1,7 @@
 extends Miniboss
 
 @onready var move_timer = %"Move Timer"
-@onready var _state_machine = %state_machine
+@onready var _state_machine: state_machine = %state_machine
 
 var normal: Vector3 = Vector3.UP
 var desired: Vector3

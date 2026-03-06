@@ -2,7 +2,7 @@ extends state_machine
 
 var timer = Timer.new()
 var random_attack: int
-var num_of_attacks: int = 1
+var num_of_attacks: int = 2
 var is_slamming: bool = false
 
 func _ready():
@@ -12,6 +12,7 @@ func _ready():
 	add_state("idle_from_dig")
 	add_state("spread")
 	add_state("spin")
+	add_state("contract")
 	add_state("dig_down")
 	add_state("dig_up")
 	add_state("slam")
@@ -36,8 +37,8 @@ func _get_transition(delta):
 			if timer.is_stopped():
 				if random_attack == 0:
 					return states.dig_down
-				#if random_attack == 1:
-					#return states.wiggle
+				if random_attack == 1:
+					return states.spread
 	return null
 
 func _enter_state(new_state, old_state):
@@ -63,6 +64,12 @@ func _enter_state(new_state, old_state):
 			set_state(states.idle_from_dig)
 		states.slam:
 			parent.animation_player.play("Slam")
+		states.spread:
+			parent.animation_player.play("Spread")
+		states.spin:
+			parent.animation_player.play("Spin")
+		states.contract:
+			parent.animation_player.play_backwards("Spread")
 
 func _exit_state(old_state, new_state):
 	match old_state:

@@ -1,6 +1,9 @@
 extends Boss
 
-@onready var _state_machine = %state_machine
+@onready var _state_machine: state_machine = %state_machine
+
+const SPIN_COUNT: int = 4
+var current_spin: int = 0
 
 var is_spawned: bool = false
 
@@ -61,3 +64,15 @@ func _on_animation_player_animation_finished(anim_name):
 		_state_machine.set_state(_state_machine.states.idle)
 	if anim_name == "Slam":
 		_state_machine.set_state(_state_machine.states.idle)
+	if anim_name == "Spread":
+		if _state_machine.state == _state_machine.states.spread:
+			_state_machine.set_state(_state_machine.states.spin)
+		elif _state_machine.state == _state_machine.states.contract:
+			_state_machine.set_state(_state_machine.states.idle)
+	if anim_name == "Spin":
+		if current_spin < SPIN_COUNT - 1:
+			current_spin += 1
+			animation_player.play("Spin")
+		else:
+			current_spin = 0
+			_state_machine.set_state(_state_machine.states.contract)
