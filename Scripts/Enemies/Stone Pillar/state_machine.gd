@@ -47,7 +47,7 @@ func _enter_state(new_state, old_state):
 			parent.animation_player.play_backwards("Spawn")
 		states.idle:
 			parent.animation_player.play("Idle")
-			set_random_time(2, 5)
+			set_random_time(2, 4)
 			set_random_attack()
 		states.idle_from_dig:
 			parent.animation_player.play("Idle")
@@ -81,7 +81,7 @@ func _exit_state(old_state, new_state):
 func create_timer():
 	add_child(timer)
 	timer.one_shot = true
-	set_random_time(2, 5)
+	set_random_time(2, 4)
 
 func set_random_attack():
 	random_attack = randi_range(0, num_of_attacks - 1)
