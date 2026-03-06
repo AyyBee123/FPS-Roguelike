@@ -67,7 +67,7 @@ func _enter_state(new_state, old_state):
 		states.spread:
 			parent.animation_player.play("Spread")
 		states.spin:
-			parent.animation_player.play("Spin")
+			parent.animation_player.play("Spin", -1, 0.8)
 		states.contract:
 			parent.animation_player.play_backwards("Spread")
 
