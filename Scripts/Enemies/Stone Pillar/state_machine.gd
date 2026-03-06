@@ -75,6 +75,8 @@ func _exit_state(old_state, new_state):
 	match old_state:
 		states.spawn:
 			parent.set_spawned()
+		states.spin:
+			parent.rotation_offset = 0.0
 
 func create_timer():
 	add_child(timer)

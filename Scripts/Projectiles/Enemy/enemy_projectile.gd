@@ -1,5 +1,7 @@
 extends Area3D
 
+@export var TICK_RATE: float = 0.04
+
 @onready var collision_shape = %CollisionShape3D
 @onready var lifetime = %Lifetime
 
@@ -9,11 +11,10 @@ var range: float
 
 var direction: Vector3
 
-const TICK_RATE: float = 0.04
 var t: float = 0.0
 
 func _ready():
-	t = randf_range(TICK_RATE/2, TICK_RATE)
+	t = randf_range(TICK_RATE / 2, TICK_RATE)
 	lifetime.wait_time = range / speed
 	lifetime.start()
 

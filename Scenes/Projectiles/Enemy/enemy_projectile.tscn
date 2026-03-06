@@ -7,6 +7,9 @@
 [sub_resource type="SphereMesh" id="SphereMesh_gvsvj"]
 
 [node name="Enemy Projectile" type="Area3D"]
+collision_layer = 0
+collision_mask = 3
+monitorable = false
 script = ExtResource("1_lus1b")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

@@ -2,10 +2,13 @@ extends Boss
 
 @onready var _state_machine: state_machine = %state_machine
 
+const ROCK_PROJECTILE = preload("uid://dnqq7qijuqd8r")
+
 const SPIN_COUNT: int = 4
 var current_spin: int = 0
 
 var is_spawned: bool = false
+var rotation_offset: float = 0.0
 
 func _ready():
 	super._ready()
@@ -26,7 +29,7 @@ func dig_down():
 	look()
 
 func set_dig_pos():
-	global_position = find_dig_point(player.global_position, 15, 20)
+	global_position = find_dig_point(player.global_position, 10, 20)
 
 func look():
 	var dir: Vector3 = player.global_position - global_position
@@ -38,7 +41,7 @@ func look():
 	rotation.y = lerp_angle(rotation.y, atan2(vel.x, vel.z), get_physics_process_delta_time() * angular_acceleration)
 
 func find_dig_point(player_pos: Vector3, min_distance: float, max_distance: float) -> Vector3: # enemy spawn
-	for i in 50:
+	for i in 100:
 		var pos: Vector3 = NavigationServer3D.map_get_random_point(
 			get_tree().current_scene.nav_region.get_navigation_map(), 1, false
 		)
@@ -54,6 +57,23 @@ func find_dig_point(player_pos: Vector3, min_distance: float, max_distance: floa
 		return pos
 	
 	return Vector3.ZERO
+
+func shoot_rocks():
+	var angle: float = 0.0
+	var number_of_projectiles: int = 16
+	
+	while angle < TAU:
+		var rock = ROCK_PROJECTILE.instantiate()
+		rock.direction = Vector3.RIGHT.rotated(Vector3.UP, angle + rotation_offset)
+		rock.damage = projectile_damage
+		rock.speed = projectile_speed
+		rock.range = projectile_range
+		get_tree().current_scene.add_child(rock)
+		rock.global_position = $Armature/Rock_021.global_position + rock.direction * 2
+		
+		angle += TAU / number_of_projectiles
+	
+	rotation_offset += TAU / number_of_projectiles * 0.5
 
 func set_spawned():
 	SignalBus.boss_spawned.emit(self)
