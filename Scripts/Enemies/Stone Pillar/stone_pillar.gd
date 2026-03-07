@@ -2,7 +2,6 @@ extends Boss
 
 @onready var _state_machine: state_machine = %state_machine
 
-const BIG_ROCK_BALL = preload("uid://ci7pyuoph3ar")
 const ROCK_PROJECTILE = preload("uid://dnqq7qijuqd8r")
 
 const SPIN_COUNT: int = 5
