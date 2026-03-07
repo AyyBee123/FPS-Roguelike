@@ -2,9 +2,10 @@ extends Boss
 
 @onready var _state_machine: state_machine = %state_machine
 
+const BIG_ROCK_BALL = preload("uid://ci7pyuoph3ar")
 const ROCK_PROJECTILE = preload("uid://dnqq7qijuqd8r")
 
-const SPIN_COUNT: int = 4
+const SPIN_COUNT: int = 5
 var current_spin: int = 0
 
 var is_spawned: bool = false
@@ -69,7 +70,7 @@ func shoot_rocks():
 		rock.speed = projectile_speed
 		rock.range = projectile_range
 		get_tree().current_scene.add_child(rock)
-		rock.global_position = $Armature/Rock_021.global_position + rock.direction * 2
+		rock.global_position = global_position + rock.direction * 2
 		
 		angle += TAU / number_of_projectiles
 	
