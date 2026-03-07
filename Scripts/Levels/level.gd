@@ -28,6 +28,9 @@ var current_number_of_enemies: int = 0
 var enemy_tier: int = 0:
 	get:
 		return floori(elapsed_time / 60)
+var timeup: bool = false:
+	get:
+		return time_left <= 0
 
 func _ready():
 	INITIAL_CHEST_COST = chest_cost
@@ -36,8 +39,12 @@ func _ready():
 func _physics_process(delta):
 	elapsed_time += delta
 	time_left = max(time - elapsed_time, 0)
-	if time_left <= 0: # do stuff when countdown time reaches zero
-		pass
+	# kill all remaining enemies and spawn the end boss when countdown time reaches zero
+	if timeup and not enemy_handler.boss_spawned:
+		enemy_handler.boss_spawned = true
+		enemy_handler.kill_enemies()
+		await get_tree().create_timer(1).timeout
+		enemy_handler.spawn_end_boss()
 	
 	for spawn in boss_spawns:
 		if spawn.time <= elapsed_time + 1:

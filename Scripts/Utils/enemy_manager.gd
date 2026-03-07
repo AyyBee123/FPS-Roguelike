@@ -1,6 +1,7 @@
 extends Node
 
 @export var enemies: Array[EnemySpawn]
+@export var bosses: Array[EndBossSpawn]
 
 @onready var player = get_tree().get_first_node_in_group("Player")
 @onready var level: Level = get_parent()
@@ -11,6 +12,7 @@ var NUMBER_OF_ENEMIES_TO_SPAWN: int = 1
 var MAX_NUMBER_OF_ENEMIES: int = 20
 var MIN_NUMBER_OF_ENEMIES: int = 10
 var SPAWNING_INTERVAL: float = 2
+var boss_spawned: bool = false
 var t: float = 0
 
 @onready var INITIAL_MAX_ENEMIES: int = MAX_NUMBER_OF_ENEMIES
@@ -26,6 +28,8 @@ func _ready():
 	SignalBus.enemy_defeated.connect(_on_enemy_defeat)
 
 func _physics_process(delta):
+	if boss_spawned: return
+	
 	MAX_NUMBER_OF_ENEMIES = min(floori(INITIAL_MAX_ENEMIES * exp(level.enemy_tier * 0.1)), 100)
 	MIN_NUMBER_OF_ENEMIES = min(floori(INITIAL_MIN_ENEMIES * exp(level.enemy_tier * 0.12)), 80)
 	
@@ -40,17 +44,33 @@ func _physics_process(delta):
 	if level.current_number_of_enemies != current_number_of_enemies:
 		level.current_number_of_enemies = current_number_of_enemies
 
+func spawn_enemy(spawn: EnemySpawn) -> void:
+	current_number_of_enemies += 1
+	var enemy = spawn.enemy.instantiate()
+	enemy.position = level.find_spawn_point(player.global_position, MIN_DISTANCE, MAX_DISTANCE)
+	level.add_child.call_deferred(enemy)
+
 func spawn_boss(spawn: BossSpawn):
 	current_number_of_enemies += 1
 	var boss = spawn.boss.instantiate()
 	boss.position = level.find_spawn_point(player.global_position, MIN_DISTANCE * 2, MAX_DISTANCE)
 	level.add_child(boss)
 
-func spawn_enemy(spawn: EnemySpawn) -> void:
-	current_number_of_enemies += 1
-	var enemy = spawn.enemy.instantiate()
-	enemy.position = level.find_spawn_point(player.global_position, MIN_DISTANCE, MAX_DISTANCE)
-	level.add_child.call_deferred(enemy)
+func spawn_end_boss():
+	for spawn: EndBossSpawn in bosses:
+		current_number_of_enemies += 1
+		var boss: Boss = spawn.boss.instantiate()
+		if spawn.is_random_position:
+			boss.position = level.find_spawn_point(player.global_position, MIN_DISTANCE * 2, MAX_DISTANCE)
+		else:
+			boss.position = spawn.spawn_position
+		level.add_child(boss)
+
+func kill_enemies():
+	for node in level.get_children():
+		if node is Enemy:
+			node.queue_free()
+	current_number_of_enemies = 0
 
 func _on_enemy_defeat(_enemy) -> void:
 	current_number_of_enemies -= 1
