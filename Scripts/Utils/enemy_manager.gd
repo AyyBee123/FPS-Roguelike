@@ -25,7 +25,8 @@ const MAX_DISTANCE: float = 100
 const ENEMY = preload("uid://bf7ljiiykmoi0")
 
 func _ready():
-	SignalBus.enemy_defeated.connect(_on_enemy_defeat)
+	SignalBus.enemy_defeated.connect(func(_enemy): current_number_of_enemies = max(current_number_of_enemies - 1, 0))
+	SignalBus.end_boss_defeat.connect(func(_boss): check_for_boss())
 
 func _physics_process(delta):
 	if boss_spawned: return
@@ -39,14 +40,13 @@ func _physics_process(delta):
 		# spawn enemies if the current amount on the map is less than the maximum
 		if current_number_of_enemies < MAX_NUMBER_OF_ENEMIES:
 			for i in range(max(NUMBER_OF_ENEMIES_TO_SPAWN, MIN_NUMBER_OF_ENEMIES - current_number_of_enemies)):
-				spawn_enemy(enemies.pick_random()) # for now
+				spawn_enemy(enemies.pick_random().enemy.instantiate()) # for now
 	
 	if level.current_number_of_enemies != current_number_of_enemies:
 		level.current_number_of_enemies = current_number_of_enemies
 
-func spawn_enemy(spawn: EnemySpawn) -> void:
+func spawn_enemy(enemy: Enemy) -> void:
 	current_number_of_enemies += 1
-	var enemy = spawn.enemy.instantiate()
 	enemy.position = level.find_spawn_point(player.global_position, MIN_DISTANCE, MAX_DISTANCE)
 	level.add_child.call_deferred(enemy)
 
@@ -66,12 +66,15 @@ func spawn_end_boss():
 			boss.position = spawn.spawn_position
 		level.add_child(boss)
 
+func check_for_boss():
+	for node in level.get_children():
+		if node is Boss:
+			return
+		kill_enemies()
+		level.set_win()
+
 func kill_enemies():
 	for node in level.get_children():
 		if node is Enemy:
 			node.queue_free()
 	current_number_of_enemies = 0
-
-func _on_enemy_defeat(_enemy) -> void:
-	current_number_of_enemies -= 1
-	current_number_of_enemies = max(0, current_number_of_enemies)

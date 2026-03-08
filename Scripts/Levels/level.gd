@@ -55,7 +55,7 @@ func get_time_left() -> float:
 	return time_left
 
 func find_spawn_point(player_pos: Vector3, min_distance: float, max_distance: float) -> Vector3: # enemy spawn
-	for i in 50:
+	for i in 100:
 		var pos: Vector3 = NavigationServer3D.map_get_random_point(nav_region.get_navigation_map(), 1, false)
 		
 		if pos == Vector3.ZERO:
@@ -82,3 +82,6 @@ func increase_costs():
 
 func scale_cost(cost: int) -> int:
 	return roundi(cost * exp(0.5 + (number_of_chests_opened - 1) * 0.1))
+
+func set_win():
+	print("You Win!")

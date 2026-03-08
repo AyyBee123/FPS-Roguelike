@@ -106,12 +106,14 @@ func die(_damage: float, source_player: Player, source: Variant):
 	queue_free()
 
 func drop_xp():
+	if xp_amount <= 0: return
 	var xp = XP.instantiate()
 	xp.xp_amount = xp_amount
 	xp.position = position + Vector3(0, 1, 0)
 	get_tree().current_scene.add_child(xp)
 
 func give_coins(_player: Player):
+	if coin_amount == 0: return
 	_player.update_coins(coin_amount)
 
 func _on_body_entered(body):

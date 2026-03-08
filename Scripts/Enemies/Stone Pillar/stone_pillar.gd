@@ -3,6 +3,7 @@ extends Boss
 @onready var _state_machine: state_machine = %state_machine
 
 const ROCK_PROJECTILE = preload("uid://dnqq7qijuqd8r")
+const BIG_ROCK_BALL = preload("uid://ci7pyuoph3ar")
 
 const SPIN_COUNT: int = 5
 var current_spin: int = 0
@@ -30,6 +31,24 @@ func dig_down():
 
 func set_dig_pos():
 	global_position = find_dig_point(player.global_position, 10, 20)
+
+func find_spawn_point(player_pos: Vector3, min_distance: float, max_distance: float) -> Vector3: # enemy spawn
+	for i in 100:
+		var pos: Vector3 = NavigationServer3D.map_get_random_point(
+			get_tree().current_scene.nav_region.get_navigation_map(), 1, false
+		)
+		
+		if pos == Vector3.ZERO:
+			continue
+		
+		var plane_distance: float = Vector2(pos.x, pos.z).distance_to(Vector2(player_pos.x, player_pos.z))
+		
+		if plane_distance < min_distance or plane_distance > max_distance:
+			continue
+		
+		return pos + Vector3(0, 1000, 0) # add to the y-axis to prevent enemies from spawning under the map
+	
+	return Vector3.ZERO
 
 func look():
 	var dir: Vector3 = player.global_position - global_position
@@ -79,8 +98,17 @@ func set_spawned():
 	SignalBus.boss_spawned.emit(self)
 	is_spawned = true
 
+func die(_damage: float, source_player: Player, source: Variant):
+	if is_dead: return
+	is_dead = true
+	
+	source_player._on_enemy_killed(self, source, _damage)
+	# probably play an animation first
+	SignalBus.end_boss_defeat.emit(self)
+	queue_free()
+
 func _on_animation_player_animation_finished(anim_name):
-	if anim_name == "Spawn":
+	if anim_name == "Dig Up":
 		_state_machine.set_state(_state_machine.states.idle)
 	if anim_name == "Slam":
 		_state_machine.set_state(_state_machine.states.idle)
@@ -96,3 +124,6 @@ func _on_animation_player_animation_finished(anim_name):
 		else:
 			current_spin = 0
 			_state_machine.set_state(_state_machine.states.contract)
+
+func _on_rock_spawn_interval_timeout():
+	get_tree().current_scene.enemy_handler.spawn_enemy(BIG_ROCK_BALL.instantiate())

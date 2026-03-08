@@ -44,7 +44,7 @@ func _get_transition(delta):
 func _enter_state(new_state, old_state):
 	match new_state:
 		states.spawn:
-			parent.animation_player.play_backwards("Spawn")
+			parent.animation_player.play("Dig Up")
 		states.idle:
 			parent.animation_player.play("Idle")
 			set_random_time(2, 4)
@@ -59,7 +59,7 @@ func _enter_state(new_state, old_state):
 			set_state(states.dig_up)
 		states.dig_up:
 			parent.set_dig_pos()
-			parent.animation_player.play_backwards("Dig Down")
+			parent.animation_player.play("Dig Up")
 			await get_tree().create_timer(parent.animation_player.current_animation_length).timeout
 			set_state(states.idle_from_dig)
 		states.slam:
