@@ -918,9 +918,6 @@ shader_parameter/empty_albedo = Color(0, 0, 0, 1)
 shader_parameter/fill_albedo = Color(0.95686275, 0.3254902, 0.40784314, 1)
 shader_parameter/fill_multiplier = 0.10000000475
 shader_parameter/fill_offset = 0.81200003857
-shader_parameter/viewmodel_enabled = false
-shader_parameter/z_clip_scale = 0.8
-shader_parameter/fov_override = 100.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_kk14q"]
 _surfaces = [{
@@ -1000,19 +997,17 @@ shadow_mesh = SubResource("ArrayMesh_kk14q")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_urtb5"]
 resource_name = "Glass"
+render_priority = 1
 transparency = 4
 cull_mode = 2
 diffuse_mode = 3
 specular_mode = 1
-albedo_color = Color(1, 1, 1, 0.1254902)
+albedo_color = Color(1, 1, 1, 0.09411765)
 roughness = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oqla6"]
 render_priority = 0
 shader = ExtResource("10_j8lnn")
-shader_parameter/viewmodel_enabled = false
-shader_parameter/z_clip_scale = 0.8
-shader_parameter/fov_override = 100.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_5ilbc"]
 _surfaces = [{
@@ -1093,9 +1088,6 @@ shadow_mesh = SubResource("ArrayMesh_5ilbc")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_j8lnn"]
 render_priority = 0
 shader = ExtResource("10_j8lnn")
-shader_parameter/viewmodel_enabled = false
-shader_parameter/z_clip_scale = 0.8
-shader_parameter/fov_override = 100.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_fusfu"]
 _surfaces = [{
@@ -1176,9 +1168,6 @@ shadow_mesh = SubResource("ArrayMesh_fusfu")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tm4db"]
 render_priority = 0
 shader = ExtResource("10_j8lnn")
-shader_parameter/viewmodel_enabled = false
-shader_parameter/z_clip_scale = 0.8
-shader_parameter/fov_override = 100.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_fj8dp"]
 _surfaces = [{

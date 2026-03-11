@@ -17,6 +17,7 @@ signal coin_count_changed(amount)
 signal meta_coin_count_changed(amount)
 
 @onready var camera = %Camera
+@onready var fps_rig = %"FPS Rig"
 @onready var animation_player = %AnimationPlayer
 @onready var weapons_manager = %"Weapons Manager"
 @onready var camera_controller = %"Camera Controller"
@@ -49,6 +50,7 @@ var upgrade_queue_count: int = 0 # the amount of level up choices that are in qu
 var was_on_floor: bool = false
 var speed_before_landing: float = 0.0
 var friction: float = 50.0
+var sway_input: Vector2 # value gotten from the camera controller script
 
 var is_dead: bool = false
 

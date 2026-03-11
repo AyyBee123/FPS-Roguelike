@@ -1,6 +1,7 @@
 class_name Enemy extends CharacterBody3D
 
 signal enemy_hit(source, enemy, damage_taken)
+signal died(enemy)
 
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 @onready var on_screen_notifier: VisibleOnScreenNotifier3D = %VisibleOnScreenNotifier3D
@@ -103,6 +104,7 @@ func die(_damage: float, source_player: Player, source: Variant):
 	source_player._on_enemy_killed(self, source, _damage)
 	drop_xp()
 	give_coins(source_player)
+	died.emit(self)
 	queue_free()
 
 func drop_xp():

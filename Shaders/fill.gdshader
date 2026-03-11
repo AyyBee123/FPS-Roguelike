@@ -8,14 +8,14 @@ instance uniform float fill_amount : hint_range(0.0, 1.0);
 uniform float fill_multiplier : hint_range(0.0, 1.0) = 1.0;
 uniform float fill_offset : hint_range(0.0, 1.0) = 0.8;
 
-uniform bool viewmodel_enabled = false;
-uniform float z_clip_scale : hint_range(0.01, 1.0, 0.01) = 0.8;
-uniform float fov_override : hint_range(1.0, 179.0, 0.1) = 100.0;
+instance uniform bool viewmodel_enabled = false;
+instance uniform float z_clip_scale : hint_range(0.01, 1.0, 0.01) = 0.8;
+instance uniform float fov_override : hint_range(1.0, 179.0, 0.1) = 100.0;
 
 void vertex() {
 	if (viewmodel_enabled) {
 		Z_CLIP_SCALE = z_clip_scale;
-		
+
 		if (!IN_SHADOW_PASS) {
 			float flip_y = sign(PROJECTION_MATRIX[1][1]);
 			float aspect = PROJECTION_MATRIX[1][1] / PROJECTION_MATRIX[0][0];

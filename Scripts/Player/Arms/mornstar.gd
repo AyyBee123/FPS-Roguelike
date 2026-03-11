@@ -26,6 +26,7 @@ var current_fill: float = 0.0
 func _ready():
 	super._ready()
 	bar = %Arm.get_active_material(2)
+	
 	fill_amount = 0.0
 
 func shoot(ignore_fire_rate: bool = false, outside_source: Variant = self):

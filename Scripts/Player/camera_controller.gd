@@ -42,6 +42,7 @@ var input := Vector2.ZERO
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		input += event.relative
+		player.sway_input = input
 
 # add recoil (called when shooting)
 func add_recoil(_arm, _source) -> void:
