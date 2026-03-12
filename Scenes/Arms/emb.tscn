@@ -8,7 +8,7 @@
 [ext_resource type="Shader" uid="uid://bk80rwse7kgm8" path="res://Shaders/weapon_beam.gdshader" id="5_b4jia"]
 [ext_resource type="Shader" uid="uid://cw0t5vrx8arqa" path="res://Shaders/weapon_fresnel.gdshader" id="6_kucxv"]
 [ext_resource type="ArrayMesh" uid="uid://3r6n8ru1mlpv" path="res://Assets/VFX/Beam Cylinder.tres" id="7_k7uim"]
-[ext_resource type="AudioStream" uid="uid://je1d8sh5xgw" path="res://Audio/SFX/EMB Shot.mp3" id="8_nkat2"]
+[ext_resource type="AudioStream" uid="uid://dxygy7mam1tjt" path="res://Audio/SFX/EMB Shot.mp3" id="8_nkat2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f6dus"]
 resource_name = "Base"
@@ -530,7 +530,6 @@ base_damage = 5.0
 base_fire_rate = 1.0
 base_range = 200.0
 base_speed = 25.0
-base_splash_radius = 0.75
 recoil = Vector2(1, 0)
 recoil_speed = 10.0
 snap = 4.0
@@ -670,7 +669,7 @@ speed_scale = 0.8
 [node name="EMB Shot" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("8_nkat2")
 max_db = 0.0
-pitch_scale = 1.5
+pitch_scale = 1.25
 panning_strength = 0.0
 bus = &"SFX"
 script = ExtResource("5_2adyw")

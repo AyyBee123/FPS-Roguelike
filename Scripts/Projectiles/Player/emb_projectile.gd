@@ -90,7 +90,6 @@ func explode():
 	blast.damage = damage
 	blast.radius = radius
 	blast.player = player
-	blast.make_sound = false
 	blast.color = "00ffff"
 	blast.position = position
 	get_tree().current_scene.add_child.call_deferred(blast)

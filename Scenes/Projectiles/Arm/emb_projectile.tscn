@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=4 uid="uid://bk8vsjxrhw1v6"]
 
 [ext_resource type="Script" uid="uid://cacssbxvx2axt" path="res://Scripts/Projectiles/Player/emb_projectile.gd" id="1_toapn"]
-[ext_resource type="PackedScene" uid="uid://dwnmehkjsekxx" path="res://Scenes/VFX/blast.tscn" id="2_fdaqe"]
+[ext_resource type="PackedScene" uid="uid://cjqada66o1hjq" path="res://Scenes/VFX/emb_blast.tscn" id="2_1f1kd"]
 [ext_resource type="PackedScene" uid="uid://coo8vx21omilk" path="res://Scenes/VFX/emb_beam.tscn" id="3_1f1kd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sov4n"]
@@ -93,7 +93,7 @@ continuous_cd = true
 contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("1_toapn")
-BLAST = ExtResource("2_fdaqe")
+BLAST = ExtResource("2_1f1kd")
 BEAM = ExtResource("3_1f1kd")
 impact_color = Color(0, 1, 1, 1)
 
