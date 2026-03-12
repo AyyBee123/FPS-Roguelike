@@ -132,26 +132,26 @@ func transform_aabb(aabb: AABB, xform: Transform3D) -> AABB:
 		result = result.expand(xform * points[i])
 	return result
 
-func make_unique(root: Node) -> void:
-	for node in root.get_children():
-		if node is MeshInstance3D:
-			# duplicate the mesh
-			if node.mesh:
-				node.mesh = node.mesh.duplicate()
-				
-			# duplicate all materials
-			for i in node.get_surface_override_material_count():
-				var mat = node.get_surface_override_material(i)
-				if mat:
-					node.set_surface_override_material(i, mat.duplicate())
-			
-			# duplicate all mesh surface materials
-			if node.mesh:
-				for i in node.mesh.get_surface_count():
-					var mat = node.mesh.surface_get_material(i)
-					if mat:
-						node.mesh.surface_set_material(i, mat.duplicate())
-		make_unique(node)
+func make_unique(node: Node) -> void:
+	if node is MeshInstance3D:
+		# duplicate all materials
+		for i in node.get_surface_override_material_count():
+			var mat = node.get_active_material(i)
+			if mat:
+				var new_mat = mat.duplicate()
+				if new_mat is StandardMaterial3D:
+					new_mat.use_fov_override = false
+					new_mat.use_z_clip_scale = false
+				node.set_surface_override_material(i, new_mat)
+		
+		# duplicate material override
+		if node.material_override:
+			var mat = node.material_override
+			if mat:
+				var new_mat = mat.duplicate()
+				if mat.shader:
+					new_mat.shader = new_mat.shader.duplicate()
+				node.material_override = new_mat
 
 func play_tween():
 	tween = get_tree().create_tween()

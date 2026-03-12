@@ -112,5 +112,4 @@ unique_name_in_owner = true
 shape = SubResource("SphereShape3D_jdps1")
 
 [connection signal="finished" from="Blast" to="." method="_on_blast_finished"]
-[connection signal="finished" from="@GPUParticles3D@543169" to="." method="_on_blast_finished"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

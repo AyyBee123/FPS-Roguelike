@@ -32,6 +32,7 @@ func set_shader_color(color: Color):
 func _on_animation_player_animation_started(anim_name):
 	if anim_name == "Shoot":
 		color_tween = get_tree().create_tween()
-		color_tween.bind_node(self).tween_method(set_shader_color, dim_color, light_color, 0.05)
-		color_tween.bind_node(self).tween_interval(0.05)
-		color_tween.bind_node(self).tween_method(set_shader_color, light_color, dim_color, 0.25)
+		color_tween.bind_node(self)
+		color_tween.tween_method(set_shader_color, dim_color, light_color, 0.05)
+		color_tween.tween_interval(0.05)
+		color_tween.tween_method(set_shader_color, light_color, dim_color, 0.25)

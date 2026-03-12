@@ -8,14 +8,16 @@ extends Node3D
 var player: Player
 var damage: float
 var radius: float
+var make_sound: bool = true
 var color: Color = Color.SANDY_BROWN
 var max_lifetime: float
 
 func _ready():
-	var sb = soundboard.instantiate()
-	get_tree().current_scene.add_child(sb)
-	sb.global_position = global_position
-	sb.blast.play_deconflicted()
+	if make_sound:
+		var sb = soundboard.instantiate()
+		get_tree().current_scene.add_child(sb)
+		sb.global_position = global_position
+		sb.blast.play_deconflicted()
 	
 	scale = Vector3.ONE * radius
 	
