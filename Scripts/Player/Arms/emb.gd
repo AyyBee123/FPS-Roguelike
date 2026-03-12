@@ -3,11 +3,11 @@ extends Arm
 @export var light_color: Color = "43e4e7"
 @export var dim_color: Color = "1e6466"
 
-@onready var beam = %Beam
-@onready var beam_2 = %Beam2
-@onready var sphere = %Sphere
-@onready var arm = %Arm
-@onready var barrel = %Barrel
+@onready var beam: MeshInstance3D = %Beam
+@onready var beam_2: MeshInstance3D = %Beam2
+@onready var sphere: MeshInstance3D = %Sphere
+@onready var arm: MeshInstance3D = %Arm
+@onready var barrel: MeshInstance3D = %Barrel
 
 var color_tween: Tween
 var sphere_pos: Vector3

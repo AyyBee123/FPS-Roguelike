@@ -4,7 +4,15 @@
 		"rarity": 0
 	},
 	{
+		"path": "res://Scenes/Arms/emb.tscn",
+		"rarity": 1
+	},
+	{
 		"path": "res://Scenes/Arms/miniarm.tscn",
+		"rarity": 2
+	},
+	{
+		"path": "res://Scenes/Arms/mornstar.tscn",
 		"rarity": 2
 	},
 	{
