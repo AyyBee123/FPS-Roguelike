@@ -20,7 +20,7 @@ script = ExtResource("3_x04wh")
 [node name="EMB Blast" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("4_x04wh")
 attenuation_model = 1
-max_db = -1.0
+max_db = -2.0
 pitch_scale = 1.5
 bus = &"SFX"
 script = ExtResource("3_x04wh")
