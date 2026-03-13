@@ -28,6 +28,7 @@ signal meta_coin_count_changed(amount)
 @onready var arm = %Arm
 @onready var ability_slots = %"Ability Slots"
 @onready var i_frames = %IFrames
+@onready var dash_cooldown = %"Dash Cooldown"
 @onready var pick_up_label = %"Pick Up Label"
 @onready var xp_audio = %Xp
 @onready var damage_taken_audio = %DamageTaken
@@ -50,8 +51,9 @@ var upgrade_queue_count: int = 0 # the amount of level up choices that are in qu
 var was_on_floor: bool = false
 var speed_before_landing: float = 0.0
 var friction: float = 50.0
-var sway_input: Vector2 # value gotten from the camera controller scrit
-
+var dash_speed: float = 100.0
+var is_dashing: bool = false
+var sway_input: Vector2 # value gotten from the camera controller script
 var is_dead: bool = false
 
 var kill_count: int = 0:
@@ -91,6 +93,9 @@ var LUCK_MULTIPLIER: float:
 var PICKUP_RADIUS: float:
 	get:
 		return stats.get_stat("Pickup_Radius")
+var FRICTION: float:
+	get:
+		return stats.get_stat("Friction")
 
 var current_health: float
 var current_jumps: int = 0 # the current number of extra jumps that can be used
@@ -133,14 +138,36 @@ func _physics_process(delta):
 	# input direction and movement/deceleration
 	var input_dir: Vector2 = Input.get_vector("left", "right", "up", "down")
 	var direction: Vector3 = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	var current_friction = friction if is_on_floor() else 5.0  # low = floaty, tweak to taste
+	if is_dashing:
+		friction = 0.0
+	else:
+		friction = FRICTION if is_on_floor() else 5.0
 	
 	if direction:
-		velocity.x = velocity.lerp(direction * SPEED, delta * current_friction).x
-		velocity.z = velocity.lerp(direction * SPEED, delta * current_friction).z
+		velocity.x = velocity.lerp(direction * SPEED, delta * friction).x
+		velocity.z = velocity.lerp(direction * SPEED, delta * friction).z
 	else:
-		velocity.x = velocity.lerp(Vector3.ZERO, delta * current_friction).x
-		velocity.z = velocity.lerp(Vector3.ZERO, delta * current_friction).z
+		velocity.x = velocity.lerp(Vector3.ZERO, delta * friction).x
+		velocity.z = velocity.lerp(Vector3.ZERO, delta * friction).z
+	
+	# dashing
+	if Input.is_action_just_pressed("dash") and dash_cooldown.is_stopped():
+		dash_cooldown.start()
+		
+		if velocity.x < 0.01 and velocity.z < 0.01:
+			var cam_forward = -camera.global_transform.basis.z  # -z is forward
+			cam_forward.y = 0  # keep it horizontal
+			cam_forward = cam_forward.normalized()
+			velocity += cam_forward * dash_speed
+		else:
+			velocity += direction * dash_speed
+		
+		if velocity.y < 0: velocity.y = 2
+		
+		var dash_tween: Tween = get_tree().create_tween()
+		dash_tween.tween_callback(func(): is_dashing = true)
+		dash_tween.tween_interval(0.05)
+		dash_tween.tween_callback(func(): is_dashing = false; velocity /= 3)
 	
 	move_and_slide()
 	
