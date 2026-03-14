@@ -1,5 +1,9 @@
 [
 	{
+		"path": "res://Scenes/Arms/cactarm.tscn",
+		"rarity": 0
+	},
+	{
 		"path": "res://Scenes/Arms/double_finger.tscn",
 		"rarity": 0
 	},
