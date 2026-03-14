@@ -33,6 +33,7 @@ signal meta_coin_count_changed(amount)
 @onready var xp_audio = %Xp
 @onready var damage_taken_audio = %DamageTaken
 @onready var jump = %Jump
+@onready var dash = %Dash
 @onready var land = %Land
 @onready var pick_up = %"Pick Up"
 @onready var buffs = %Buffs
@@ -143,7 +144,7 @@ func _physics_process(delta):
 	else:
 		friction = FRICTION if is_on_floor() else 5.0
 	
-	if direction:
+	if direction.length() > 0.01:
 		velocity.x = velocity.lerp(direction * SPEED, delta * friction).x
 		velocity.z = velocity.lerp(direction * SPEED, delta * friction).z
 	else:
@@ -153,6 +154,8 @@ func _physics_process(delta):
 	# dashing
 	if Input.is_action_just_pressed("dash") and dash_cooldown.is_stopped():
 		dash_cooldown.start()
+		
+		dash.play_deconflicted()
 		
 		if velocity.x < 0.01 and velocity.z < 0.01:
 			var cam_forward = -camera.global_transform.basis.z  # -z is forward

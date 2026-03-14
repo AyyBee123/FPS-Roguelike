@@ -1,0 +1,72 @@
+[gd_scene load_steps=6 format=4 uid="uid://30aqfsvm5c6t"]
+
+[ext_resource type="Script" uid="uid://ddcu3pajkhss6" path="res://Scripts/Projectiles/Player/cactarm_needle.gd" id="1_0ck08"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1bece"]
+radius = 0.25
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hwkdu"]
+resource_name = "Spike"
+cull_mode = 2
+albedo_color = Color(0.1622795, 0.028542751, 0, 1)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_6o5yh"]
+_surfaces = [{
+"aabb": AABB(-1, -0.8420862, -1, 2, 3.265891, 2),
+"format": 34896613377,
+"index_count": 18,
+"index_data": PackedByteArray("AAABAAIAAQAAAAMAAwAAAAIAAQAEAAIABAADAAIAAQADAAQA"),
+"name": "Spike",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 5,
+"vertex_data": PackedByteArray("AAAAAP//AAAAAAAAAAAAAP9/////fwAA//8AAP//AAD//wAAAAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_0ck08"]
+resource_name = "Cactarm Projectile_Cube_001"
+_surfaces = [{
+"aabb": AABB(-1, -0.8420862, -1, 2, 3.265891, 2),
+"attribute_data": PackedByteArray("/1////9f/7//n/+//1//v/9f/3//n/9//1//f/9f/z//n/8//1//P/9fAAD/nwAA/x//f/9f/z//X/9//x//Pw=="),
+"format": 34896613399,
+"index_count": 18,
+"index_data": PackedByteArray("AAABAAIAAwAEAAUABgAHAAgACQAKAAsADAANAA4ADAAPAA0A"),
+"material": SubResource("StandardMaterial3D_hwkdu"),
+"name": "Spike",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("AAAAAP//QMkAAAAAAABAyf9/////f0DJAAAAAAAAwfj//wAAAADB+P9/////f8H4//8AAAAAntX//wAA//+e1f9/////f57V//8AAP//lLUAAAAA//+Utf9/////f5S1AAAAAAAA/7///wAA////v///AAAAAP+/AAAAAP///79f0MfPX9DHz1/Qx89/smfDf7Jnw3+yZ8OHNmUdhzZlHYc2ZR3M8fMSzPHzEszx8xIAAP9/AAD/fwAA/38AAP9/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_6o5yh")
+
+[node name="Needle" type="RigidBody3D"]
+top_level = true
+collision_layer = 0
+collision_mask = 5
+mass = 0.1
+gravity_scale = 0.0
+continuous_cd = true
+contact_monitor = true
+max_contacts_reported = 10
+script = ExtResource("1_0ck08")
+impact_color = Color(0.16078432, 0.02745098, 0, 1)
+impact_size = 0.5
+
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+shape = SubResource("SphereShape3D_1bece")
+
+[node name="Lifetime" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.08261162, 0, 0, 0, -3.6110686e-09, 0.08261162, 0, -0.08261162, -3.6110686e-09, 0, 0, 0.05)
+mesh = SubResource("ArrayMesh_0ck08")
+skeleton = NodePath("")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
