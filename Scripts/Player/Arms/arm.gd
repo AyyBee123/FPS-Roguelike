@@ -26,7 +26,7 @@ class_name Arm extends Node3D
 
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 @onready var bullet_point: Marker3D = %"Bullet Point"
-@onready var muzzle = bullet_point.find_child("Muzzle Flash")
+@onready var muzzle: Node = bullet_point.find_child("Muzzle Flash")
 
 var player: Player # declared in the weapons manager script
 var fov_override: float = 90.0

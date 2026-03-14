@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://ddcu3pajkhss6" path="res://Scripts/Projectiles/Player/cactarm_needle.gd" id="1_0ck08"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_1bece"]
-radius = 0.25
+radius = 0.333
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hwkdu"]
 resource_name = "Spike"
@@ -64,8 +64,11 @@ shape = SubResource("SphereShape3D_1bece")
 unique_name_in_owner = true
 one_shot = true
 
-[node name="Mesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.08261162, 0, 0, 0, -3.6110686e-09, 0.08261162, 0, -0.08261162, -3.6110686e-09, 0, 0, 0.05)
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(0.058415238, -0.058415238, 0, 0.058415238, 0.058415238, 0, 0, 0, 0.08261162, 0, 0, 0.05)
+
+[node name="Mesh" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(1.25, 0, 0, 0, -5.4639237e-08, 1.25, 0, -1.25, -5.4639237e-08, 0, 0, 0)
 mesh = SubResource("ArrayMesh_0ck08")
 skeleton = NodePath("")
 

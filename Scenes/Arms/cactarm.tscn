@@ -806,7 +806,7 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.3671512)
 
 [node name="Muzzle Flash" parent="Bullet Point" instance=ExtResource("3_qgkp4")]
-color = Color(0.520797, 0.89329493, 0.796169, 1)
+color = Color(0.34901962, 0.4862745, 0.25882354, 1)
 size = 0.75
 
 [node name="Cactarm Shot" type="AudioStreamPlayer3D" parent="."]
