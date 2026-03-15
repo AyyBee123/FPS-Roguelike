@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=4 uid="uid://nocjsr8ynhmk"]
+[gd_scene load_steps=8 format=4 uid="uid://nocjsr8ynhmk"]
 
 [ext_resource type="Script" uid="uid://qap15jej2dv6" path="res://Scripts/Misc/oil_pool.gd" id="1_2oasf"]
-[ext_resource type="PackedScene" uid="uid://b134fhcabkhmq" path="res://Scenes/Misc/tick_damage.tscn" id="2_dmt1y"]
 [ext_resource type="AudioStream" uid="uid://d3l6wn8dvlk18" path="res://Audio/SFX/Splat.mp3" id="4_snjs3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_px1hv"]
@@ -58,7 +57,6 @@ func play_deconflicted(from_position = 0.0) -> void:
 
 [node name="Oil Pool" type="Node3D"]
 script = ExtResource("1_2oasf")
-tick_node = ExtResource("2_dmt1y")
 
 [node name="OilPool" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true

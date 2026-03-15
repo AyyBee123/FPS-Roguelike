@@ -1,7 +1,5 @@
 extends Node3D
 
-@export var tick_node: PackedScene
-
 @onready var laser = %Laser
 @onready var vfx = %VFX
 @onready var collision_shape_3d = %CollisionShape3D
@@ -24,7 +22,7 @@ var direction: Vector3
 var tween: Tween
 
 var enemies: Array[Enemy]
-var tick_nodes: Array[Node]
+var damage_timer: float = INF
 var TICK_MULTIPLIER: float
 
 func _ready():
@@ -46,6 +44,12 @@ func _physics_process(delta):
 	var camera_direction = (mornstar.get_camera_point(range) - get_global_transform().origin).normalized()
 	look_at(global_transform.origin + camera_direction, Vector3.UP)
 	adjust_length()
+	
+	damage_timer += delta
+	if damage_timer >= tick_rate and enemies.size() > 0:
+		damage_timer = 0.0
+		for enemy in enemies:
+			enemy.hit(damage, player, self)
 
 func adjust_length():
 	ray_cast.target_position.z = range
@@ -72,21 +76,16 @@ func shrink():
 	tween.tween_callback(queue_free)
 
 func _on_laser_body_entered(body):
-	if body is Enemy:
-		var tick = tick_node.instantiate()
-		tick.player = player
-		tick.source = self
-		tick.damage = damage
-		tick.tick_rate = tick_rate
-		body.add_child(tick)
-		enemies.append(body)
-		tick_nodes.append(tick)
+	if not body is Enemy:
+		return
+	if not body.has_meta("circle_of_light_overlap"):
+		body.set_meta("circle_of_light_overlap", [])
+	body.get_meta("circle_of_light_overlap").append(self)
+	enemies.append(body)
 
 func _on_laser_body_exited(body):
-	if body is Enemy:
-		var index = enemies.find(body)
-		if index == -1: return
-		var tick = tick_nodes.get(index)
-		tick_nodes.remove_at(index)
-		enemies.remove_at(index)
-		tick.queue_free()
+	if not body is Enemy:
+		return
+	if body.has_meta("circle_of_light_overlap"):
+		body.get_meta("circle_of_light_overlap", []).erase(self)
+	enemies.erase(body)

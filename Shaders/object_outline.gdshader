@@ -56,7 +56,7 @@ void fragment() {
 		1.0 - max(abs(SCREEN_UV.x - 0.5), abs(SCREEN_UV.y - 0.5)) * 2.0);
 	
 	// add fresnel glow aroud object
-	vec3 fresnel = fresnel_glow(6.0, 4.0, edge_color, NORMAL, VIEW);
+	vec3 fresnel = fresnel_glow(6.0, 1.0, edge_color, NORMAL, VIEW);
 	
 	// blend_premul_alpha avoids need to sample screentexture.
 	ALBEDO *= edge_color * edge + fresnel;

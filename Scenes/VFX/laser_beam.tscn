@@ -1,8 +1,7 @@
-[gd_scene load_steps=38 format=3 uid="uid://fugesnigenkf"]
+[gd_scene load_steps=37 format=3 uid="uid://fugesnigenkf"]
 
 [ext_resource type="ArrayMesh" uid="uid://3r6n8ru1mlpv" path="res://Assets/VFX/Beam Cylinder.tres" id="1_1a31g"]
 [ext_resource type="Script" uid="uid://cd8u61udo3q3a" path="res://Scripts/Projectiles/Player/laser_beam.gd" id="1_kgi74"]
-[ext_resource type="PackedScene" uid="uid://b134fhcabkhmq" path="res://Scenes/Misc/tick_damage.tscn" id="2_0otya"]
 [ext_resource type="Shader" uid="uid://dc7gy3jix1b77" path="res://Shaders/laser_beam.gdshader" id="2_7hj0p"]
 [ext_resource type="Texture2D" uid="uid://babaa2pfo6hgq" path="res://Assets/Textures/Circle.png" id="3_klmes"]
 [ext_resource type="ArrayMesh" uid="uid://nup6lfpy4178" path="res://Assets/VFX/Muzzle Cone.tres" id="5_0otya"]
@@ -197,7 +196,6 @@ radius = 0.2
 
 [node name="Laser Beam" type="Node3D"]
 script = ExtResource("1_kgi74")
-tick_node = ExtResource("2_0otya")
 
 [node name="Laser" type="Area3D" parent="."]
 unique_name_in_owner = true

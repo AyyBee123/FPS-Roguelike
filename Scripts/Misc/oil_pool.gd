@@ -1,6 +1,5 @@
 extends Node3D
 
-@export var tick_node: PackedScene
 @export var tick_rate: float = 0.2
 
 @onready var oil_pool: MeshInstance3D = %OilPool
@@ -16,7 +15,7 @@ var range: float
 var player: Player
 
 var enemies: Array[Enemy]
-var tick_nodes: Array[Node]
+var damage_timer: float = INF
 
 func _ready():
 	splat.play_deconflicted()
@@ -26,6 +25,13 @@ func _ready():
 	tween.tween_property(oil_pool, "scale:x", 1, 0.1)
 	tween.parallel().tween_property(oil_pool, "scale:z", 1, 0.1)
 
+func _physics_process(delta):
+	damage_timer += delta
+	if damage_timer >= tick_rate and enemies.size() > 0:
+		damage_timer = 0.0
+		for enemy in enemies:
+			enemy.hit(damage, player, self)
+
 func _on_lifetime_timeout():
 	tween = get_tree().create_tween()
 	tween.tween_property(oil_pool, "scale:x", 0, 0.25)
@@ -33,21 +39,16 @@ func _on_lifetime_timeout():
 	tween.tween_callback(queue_free.call_deferred)
 
 func _on_area_3d_body_entered(body):
-	if body is Enemy:
-		var tick = tick_node.instantiate()
-		tick.player = player
-		tick.source = self
-		tick.damage = damage
-		tick.tick_rate = tick_rate
-		body.add_child(tick)
-		enemies.append(body)
-		tick_nodes.append(tick)
+	if not body is Enemy:
+		return
+	if not body.has_meta("oil_spill_overlapping"):
+		body.set_meta("oil_spill_overlapping", [])
+	body.get_meta("oil_spill_overlapping").append(self)
+	enemies.append(body)
 
 func _on_area_3d_body_exited(body):
-	if body is Enemy:
-		var index = enemies.find(body)
-		if index == -1: return
-		var tick = tick_nodes.get(index)
-		tick_nodes.remove_at(index)
-		enemies.remove_at(index)
-		tick.queue_free()
+	if not body is Enemy:
+		return
+	if body.has_meta("oil_spill_overlapping"):
+		body.get_meta("oil_spill_overlapping", []).erase(self)
+	enemies.erase(body)

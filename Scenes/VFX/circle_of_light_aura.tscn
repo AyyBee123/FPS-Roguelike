@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=4 uid="uid://brrube6jjie8x"]
+[gd_scene load_steps=7 format=4 uid="uid://brrube6jjie8x"]
 
 [ext_resource type="Script" uid="uid://ckswi6f6djqc4" path="res://Scripts/Abilities/Misc/circle_of_light_aura.gd" id="1_kmoh4"]
-[ext_resource type="PackedScene" uid="uid://b134fhcabkhmq" path="res://Scenes/Misc/tick_damage.tscn" id="2_or0jv"]
 [ext_resource type="Shader" uid="uid://dotnbussbwm01" path="res://Shaders/fresnel.gdshader" id="3_opsxp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_buf71"]
@@ -9,6 +8,8 @@ render_priority = 0
 shader = ExtResource("3_opsxp")
 shader_parameter/base_color = Color(0.8862745, 0.7294118, 0.3764706, 0.015686275)
 shader_parameter/fresnel_color = Color(0.95686275, 0.84313726, 0.6, 0.0627451)
+shader_parameter/fresnel_amount = 4.0
+shader_parameter/fresnel_intensity = 4.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_oi1a0"]
 _surfaces = [{
@@ -49,7 +50,6 @@ radius = 2.0
 
 [node name="Circle of Light Aura" type="Node3D"]
 script = ExtResource("1_kmoh4")
-tick_node = ExtResource("2_or0jv")
 
 [node name="Ball" type="MeshInstance3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
