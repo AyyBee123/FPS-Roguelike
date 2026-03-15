@@ -2,7 +2,7 @@ extends Ability
 
 @export var AURA: PackedScene
 
-const DAMAGE_MULTIPLIER: float = 0.2
+const DAMAGE_MULTIPLIER: float = 0.333
 
 func _on_shoot(projectile: Variant, damage: float):
 	create_aura(projectile, damage)
