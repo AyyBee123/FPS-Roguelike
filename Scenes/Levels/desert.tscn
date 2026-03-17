@@ -1589,7 +1589,6 @@ cull_mode = 2
 diffuse_mode = 3
 specular_mode = 1
 albedo_color = Color(0.15681665, 0.37975225, 0.14327715, 1)
-roughness = 0.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yha1p"]
 resource_name = "Cactus Spike"
@@ -1665,7 +1664,6 @@ cull_mode = 2
 diffuse_mode = 3
 specular_mode = 1
 albedo_color = Color(0.15681665, 0.37975225, 0.14327715, 1)
-roughness = 0.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_72brp"]
 resource_name = "Cactus Spike"
@@ -1739,7 +1737,6 @@ cull_mode = 2
 diffuse_mode = 3
 specular_mode = 1
 albedo_color = Color(0.15681665, 0.37975225, 0.14327715, 1)
-roughness = 0.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dtlbb"]
 resource_name = "Cactus Spike"
@@ -1813,7 +1810,6 @@ cull_mode = 2
 diffuse_mode = 3
 specular_mode = 1
 albedo_color = Color(0.15681665, 0.37975225, 0.14327715, 1)
-roughness = 0.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fg1pk"]
 resource_name = "Cactus Spike"
@@ -1887,7 +1883,6 @@ cull_mode = 2
 diffuse_mode = 3
 specular_mode = 1
 albedo_color = Color(0.15681665, 0.37975225, 0.14327715, 1)
-roughness = 0.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2qe30"]
 resource_name = "Cactus Spike"
@@ -1963,7 +1958,6 @@ cull_mode = 2
 diffuse_mode = 3
 specular_mode = 1
 albedo_color = Color(0.15681665, 0.37975225, 0.14327715, 1)
-roughness = 0.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gnde6"]
 resource_name = "Cactus Spike"
@@ -2037,7 +2031,6 @@ cull_mode = 2
 diffuse_mode = 3
 specular_mode = 1
 albedo_color = Color(0.15681665, 0.37975225, 0.14327715, 1)
-roughness = 0.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_43vyj"]
 resource_name = "Cactus Spike"
