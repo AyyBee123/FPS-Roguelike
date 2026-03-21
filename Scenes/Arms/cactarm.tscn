@@ -1,10 +1,11 @@
-[gd_scene load_steps=22 format=4 uid="uid://bekdgtbfhlrcs"]
+[gd_scene load_steps=23 format=4 uid="uid://bekdgtbfhlrcs"]
 
-[ext_resource type="Script" uid="uid://wtoa66s2o53o" path="res://Scripts/Player/Arms/arm.gd" id="1_lagsi"]
+[ext_resource type="Script" uid="uid://cww6s4fh4s5gw" path="res://Scripts/Player/Arms/cactarm.gd" id="1_lagsi"]
 [ext_resource type="PackedScene" uid="uid://30aqfsvm5c6t" path="res://Scenes/Projectiles/Arm/cactarm_needle.tscn" id="2_thdwx"]
 [ext_resource type="PackedScene" uid="uid://dphgx1a3xboty" path="res://Scenes/VFX/muzzle_flash.tscn" id="3_qgkp4"]
 [ext_resource type="AudioStream" uid="uid://c2nxqat0r835l" path="res://Audio/SFX/Cactarm Shot.mp3" id="4_lagsi"]
 [ext_resource type="Script" uid="uid://cc1romsfhth3n" path="res://Scripts/Utils/audio_player_deconflicter.gd" id="5_jhl53"]
+[ext_resource type="AudioStream" uid="uid://bch8cvkxp7a76" path="res://Audio/SFX/Cactarm Shotgun.mp3" id="6_jhl53"]
 
 [sub_resource type="Animation" id="Animation_pl5x5"]
 resource_name = "Idle"
@@ -783,7 +784,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[node name="Cactarm" type="Node3D" node_paths=PackedStringArray("firing_audio")]
+[node name="Cactarm" type="Node3D"]
 script = ExtResource("1_lagsi")
 arm_name = "Cactarm"
 rarity = 0
@@ -795,9 +796,12 @@ base_speed = 200.0
 recoil = Vector2(0.125, 0.05)
 recoil_speed = 12.0
 snap = 6.0
-firing_audio = [NodePath("Cactarm Shot")]
 
 [node name="Fire Rate Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="Release Timer" type="Timer" parent="."]
 unique_name_in_owner = true
 one_shot = true
 
@@ -810,9 +814,19 @@ color = Color(0.34901962, 0.4862745, 0.25882354, 1)
 size = 0.75
 
 [node name="Cactarm Shot" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
 stream = ExtResource("4_lagsi")
 max_db = 0.0
 pitch_scale = 4.0
+panning_strength = 0.0
+bus = &"SFX"
+script = ExtResource("5_jhl53")
+
+[node name="Cactarm Shotgun" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("6_jhl53")
+max_db = 0.0
+pitch_scale = 2.5
 panning_strength = 0.0
 bus = &"SFX"
 script = ExtResource("5_jhl53")
