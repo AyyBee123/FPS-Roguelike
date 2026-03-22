@@ -63,6 +63,7 @@ func _physics_process(delta):
 func _on_body_entered(body):
 	if not grounded:
 		lifetime.start(range / (speed * LAUNCH_SPEED_MULTIPLIER))
+		saw.pitch_scale = randf_range(0.75, 1.25)
 		saw.play_deconflicted()
 	grounded = true
 
