@@ -1,12 +1,12 @@
 shader_type spatial;
 render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_burley, specular_schlick_ggx;
 
-uniform bool enabled = false;
-uniform float z_clip_scale : hint_range(0.01, 1.0, 0.01) = 0.8;
-uniform float fov_override : hint_range(1.0, 179.0, 0.1) = 100.0;
+instance uniform bool viewmodel_enabled = false;
+instance uniform float z_clip_scale : hint_range(0.01, 1.0, 0.01) = 0.8;
+instance uniform float fov_override : hint_range(1.0, 179.0, 0.1) = 100.0;
 
 void vertex() {
-	if (enabled) {
+	if (viewmodel_enabled) {
 		Z_CLIP_SCALE = z_clip_scale;
 		
 		if (!IN_SHADOW_PASS) {

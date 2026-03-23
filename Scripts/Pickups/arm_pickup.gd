@@ -33,6 +33,8 @@ func _ready():
 	arm_name = arm.arm_name
 	rarity = arm.rarity
 	
+	var new_arm: Arm = arm.duplicate()
+	
 	match rarity:
 		0: # common
 			rarity_color = Color("cccccc")
@@ -41,33 +43,16 @@ func _ready():
 		2: # legendary
 			rarity_color = Color("e68b19")
 	
-	var arm_mesh_list = arm.find_children("", "MeshInstance3D", true)
+	var arm_mesh_list = new_arm.find_children("", "MeshInstance3D", true)
 	for mesh in arm_mesh_list:
-		var new_mesh: MeshInstance3D = mesh.duplicate()
-		visual_offset.add_child(new_mesh)
-		make_unique(new_mesh)
-		mesh_list.append(new_mesh)
+		make_unique(mesh)
+		mesh_list.append(mesh)
 		
 		# add item highlight shader
 		var mat: ShaderMaterial = ShaderMaterial.new()
 		mat.shader = shader
 		mat.resource_local_to_scene = true
-		new_mesh.material_overlay = mat
-		
-		# collapse local transforms from mesh up to the arm root
-		var xform: Transform3D = Transform3D.IDENTITY
-		var current: Node = mesh
-		
-		# iterate through all nodes and collapse their transforms
-		# this is for the rotation and scale (position is handled in the get_visual_aabb function)
-		while current != null and current != arm:
-			if current is Node3D:
-				var n3d: Node3D = current as Node3D
-				xform = n3d.transform * xform # global = parent * local
-			current = current.get_parent()
-		
-		# apply collapsed transform
-		new_mesh.transform = xform
+		mesh.material_overlay = mat
 	
 	jingle.play_deconflicted(0.5)
 	play_tween()
@@ -81,6 +66,8 @@ func _ready():
 	# center the arm's position
 	visual_offset.position -= aabb.position + aabb.size / 2
 	default_pos = visual_offset.position
+	
+	visual_offset.add_child(new_arm)
 	
 	unhighlight()
 

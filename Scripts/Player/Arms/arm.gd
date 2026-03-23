@@ -53,14 +53,16 @@ var projectile_count: int:
 
 var fire_rate_timer: float = 0.0
 var t: float = 0.0
+var material_override_set: bool = false
 
 const DEBUG_BULLET = preload("uid://btq2f4vqn8fhy")
 
 func _ready():
 	fire_rate_timer = 1.0 / fire_rate
-	set_material_override()
 
 func _physics_process(delta):
+	if player and not material_override_set:
+		set_material_override()
 	t += delta
 
 func shoot(ignore_fire_rate: bool = false, outside_source: Variant = self):
@@ -159,21 +161,24 @@ func set_material_override():
 	var mesh_instances = find_children("", "MeshInstance3D", true)
 	
 	for mesh_node: MeshInstance3D in mesh_instances:
-		if mesh_node.mesh == null:
-			continue
+		if mesh_node.mesh == null: continue
 		
 		mesh_node.set_instance_shader_parameter("viewmodel_enabled", true)
 		mesh_node.set_instance_shader_parameter("z_clip_scale", z_clip_scale)
 		mesh_node.set_instance_shader_parameter("fov_override", fov_override)
 		
 		for i in range(mesh_node.mesh.get_surface_count()):
-			var material := mesh_node.mesh.surface_get_material(i)
+			var material: Material = mesh_node.mesh.surface_get_material(i)
+			
+			if material == null: continue
 			
 			if material is StandardMaterial3D:
 				material.use_z_clip_scale = true
 				material.z_clip_scale = z_clip_scale
 				material.use_fov_override = true
 				material.fov_override = fov_override
+	
+	material_override_set = true
 
 #func hit_scan_collision(collision_point):
 	#var bullet_direction = (collision_point - bullet_point.get_global_transform().origin).normalized()
