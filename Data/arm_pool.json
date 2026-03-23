@@ -1,5 +1,9 @@
 [
 	{
+		"path": "res://Scenes/Arms/armsaw.tscn",
+		"rarity": 1
+	},
+	{
 		"path": "res://Scenes/Arms/cactarm.tscn",
 		"rarity": 0
 	},
