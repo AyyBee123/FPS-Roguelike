@@ -68,6 +68,7 @@ func _ready():
 	default_pos = visual_offset.position
 	
 	visual_offset.add_child(new_arm)
+	new_arm.animation_player.stop()
 	
 	unhighlight()
 
