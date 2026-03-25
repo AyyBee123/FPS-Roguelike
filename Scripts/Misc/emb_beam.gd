@@ -11,8 +11,6 @@ extends Node3D
 @onready var outer_beam_radius: float = outer_beam.scale.x
 
 var target: RigidBody3D
-var tween: Tween
-var is_destroyed: bool = false
 
 var player: Player
 var damage: float

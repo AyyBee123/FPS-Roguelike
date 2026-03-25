@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=3 uid="uid://byoo2myfpggkm"]
+
+[ext_resource type="Script" uid="uid://ba3gdf41t6u0t" path="res://Scripts/Passive Items/shiny_mirror.gd" id="1_s437y"]
+[ext_resource type="Texture2D" uid="uid://1co6ek5lt3eg" path="res://Assets/Sprites/Items/Shiny Mirror.png" id="2_lxyaj"]
+
+[node name="Shiny Mirror" type="Node"]
+script = ExtResource("1_s437y")
+item_name = "Shiny Mirror"
+rarity = 1
+icon = ExtResource("2_lxyaj")
+description = "Upon hitting an enemy, chance to hit another."
+detailed_description = "%d%% (+%d%%/stack) chance to hit a nearby enemy when hitting an enemy."
+stats = {
+"Crit_Chance": {
+"+": 0.0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1.0
+},
+"Crit_Damage": {
+"+": 0.0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1.0
+},
+"Damage": {
+"+": 0.0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1.0
+},
+"Fire_Rate": {
+"+": 0.0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1.0
+},
+"Projectile_Count": {
+"+": 0.0,
+"base": 1,
+"flat": 0,
+"x": 1.0
+},
+"Range": {
+"+": 0.0,
+"base": 20.0,
+"flat": 0.0,
+"x": 1.0
+},
+"Speed": {
+"+": 0.0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1.0
+},
+"Splash_Radius": {
+"+": 0.0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1.0
+}
+}

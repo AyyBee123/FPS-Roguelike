@@ -1,0 +1,150 @@
+[gd_scene load_steps=8 format=3 uid="uid://pvaicrxrjr3q"]
+
+[ext_resource type="Script" uid="uid://b78ddgcfrrkyc" path="res://Scripts/Misc/shiny_mirror_beam.gd" id="1_jv3cc"]
+[ext_resource type="ArrayMesh" uid="uid://j4ewt20lcybn" path="res://Assets/VFX/Open Cylinder Pivot.tres" id="2_wuoib"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cbior"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.72, 0.72, 0.72, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ehnak"]
+render_priority = -1
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+
+[sub_resource type="Animation" id="Animation_wuoib"]
+resource_name = "new_animation"
+length = 0.1334
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Outer Beam:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.13333334),
+"transitions": PackedFloat32Array(2, 0.5, 1),
+"update": 0,
+"values": [0.012, 0.12, 0.01]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Outer Beam:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.13333334),
+"transitions": PackedFloat32Array(2, 0.5, 1),
+"update": 0,
+"values": [0.012, 0.12, 0.01]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Beam:scale:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.13333334),
+"transitions": PackedFloat32Array(2, 0.5, 1),
+"update": 0,
+"values": [0.01, 0.1, 0.01]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Beam:scale:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.13333334),
+"transitions": PackedFloat32Array(2, 0.5, 1),
+"update": 0,
+"values": [0.01, 0.1, 0.01]
+}
+
+[sub_resource type="Animation" id="Animation_cbior"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Outer Beam:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.12]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Outer Beam:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.12]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Beam:scale:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Beam:scale:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ehnak"]
+_data = {
+&"RESET": SubResource("Animation_cbior"),
+&"new_animation": SubResource("Animation_wuoib")
+}
+
+[node name="Shiny Mirror Beam" type="Node3D"]
+script = ExtResource("1_jv3cc")
+
+[node name="Beam" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-0.1, 0, -1.006689e-06, 0, 0.1, 0, 1.509958e-08, 0, -6.667, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_cbior")
+mesh = ExtResource("2_wuoib")
+skeleton = NodePath("../..")
+
+[node name="Outer Beam" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-0.12, 0, -1.0658794e-06, 0, 0.12, 0, 1.8119495e-08, 0, -7.059, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_ehnak")
+mesh = ExtResource("2_wuoib")
+skeleton = NodePath("../..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ehnak")
+}
+autoplay = "new_animation"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

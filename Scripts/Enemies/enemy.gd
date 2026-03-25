@@ -69,9 +69,11 @@ func _physics_process(delta):
 		if body is Player:
 			body.hit(contact_damage, global_position)
 
-func hit(_damage: float, source_player: Player, source: Variant):
+func hit(_damage: float, source_player: Player, source: Variant, can_proc: bool = true):
 	health -= _damage
-	source_player._on_enemy_hit(self, source, _damage)
+	
+	if can_proc:
+		source_player._on_enemy_hit(self, source, _damage)
 	
 	tween = get_tree().create_tween().set_parallel(true)
 	# brief flash to indicate that the enemy was hit

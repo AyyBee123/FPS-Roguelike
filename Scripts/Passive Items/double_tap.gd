@@ -5,10 +5,6 @@ const FIRE_DELAY_MULTIPLIER: float = 4.0
 var chance: float = 0.1
 var chance_increase: float = 0.1
 
-func _ready():
-	super._ready()
-	randomize()
-
 func on_weapon_shot(_arm: Arm, _source: Variant):
 	if _source == self: return
 	if randf() <= chance:

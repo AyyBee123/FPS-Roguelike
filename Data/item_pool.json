@@ -20,6 +20,10 @@
 		"rarity": 2
 	},
 	{
+		"path": "res://Scenes/Passive Items/shiny_mirror.tscn",
+		"rarity": 1
+	},
+	{
 		"path": "res://Scenes/Passive Items/unstable_molecule.tscn",
 		"rarity": 0
 	}

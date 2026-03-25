@@ -5,7 +5,7 @@ signal enemy_killed(enemy, source, damage) # called when the player kills an ene
 signal weapon_fired(projectile, damage) # called for each projectile of the weapon
 signal weapon_shot(weapon, source) # called for each instance of the weapon (for adding recoil mainly)
 signal weapon_released(weapon, source) # called when the fire button is no longer held
-signal weapon_spawned(projectile, damage) # called mainly for weapon after-effects (e.g. oil pool)
+signal weapon_spawned(projectile, damage) # called mainly for weapon after-effects (e.g. oil pool, reflected bullets)
 signal on_landing(impact_speed) # called when the player lands on the ground from the air
 signal hit_taken(pos) # called when the player takes a hit
 signal item_hovered(item) # called when an item is looked at with the crosshair and is within pickup range
