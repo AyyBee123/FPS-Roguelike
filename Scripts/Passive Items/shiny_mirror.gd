@@ -4,15 +4,16 @@ const SHINY_MIRROR_BEAM = preload("uid://pvaicrxrjr3q")
 
 var chance: float = 0.5
 var chance_increase: float = 0.5
+var base_chance: float = chance
 
 func on_enemy_hit(_enemy: Enemy, _source: Variant, _damage: float):
 	if _source == self: return
 	
-	var procs: int = floor(chance)
-	if randf() <= fmod(chance, 1.0): # remainder as probability
+	var procs: int = floor(chance) # get extra procs beyond 100%
+	if randf() <= fmod(chance, 1.0): # get remainder as probability
 		procs += 1
 	
-	var ignored = [_enemy] # start by ignoring the hit enemy
+	var ignored = [_enemy] # start by ignoring the enemy that was hit
 	
 	for i in procs:
 		var target = get_closest_enemy(_enemy, ignored, get_stat_value("Range"))
@@ -31,7 +32,7 @@ func on_stack():
 
 func set_detailed_desription():
 	detailed_description %= [
-		chance * 100,
+		base_chance * 100,
 		chance_increase * 100
 	]
 

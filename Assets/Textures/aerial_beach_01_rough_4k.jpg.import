@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c65lhchunc3ml"
-path.s3tc="res://.godot/imported/Wood.jpg-f9f3d6a4694ec60f4676b87b663aea9d.s3tc.ctex"
+uid="uid://d3mwgkbxct6tr"
+path.s3tc="res://.godot/imported/aerial_beach_01_rough_4k.jpg-b79b5eafc16244b0de1206b5221a4f56.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Wood.jpg"
-dest_files=["res://.godot/imported/Wood.jpg-f9f3d6a4694ec60f4676b87b663aea9d.s3tc.ctex"]
+source_file="res://Assets/Textures/aerial_beach_01_rough_4k.jpg"
+dest_files=["res://.godot/imported/aerial_beach_01_rough_4k.jpg-b79b5eafc16244b0de1206b5221a4f56.s3tc.ctex"]
 
 [params]
 
@@ -22,7 +22,7 @@ compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bn4u5rrrkf7ka" path="res://Scripts/Player/Arms/armsaw.gd" id="1_bueri"]
 [ext_resource type="PackedScene" uid="uid://b0esjsbrkftmk" path="res://Scenes/Projectiles/Arm/saw.tscn" id="2_xgomj"]
 [ext_resource type="AudioStream" uid="uid://v1orbwydglme" path="res://Audio/SFX/Saw Shot.mp3" id="3_br021"]
-[ext_resource type="Texture2D" uid="uid://c65lhchunc3ml" path="res://Assets/Wood.jpg" id="4_xgomj"]
+[ext_resource type="Texture2D" uid="uid://c65lhchunc3ml" path="res://Assets/Textures/Wood.jpg" id="4_xgomj"]
 [ext_resource type="Script" uid="uid://cc1romsfhth3n" path="res://Scripts/Utils/audio_player_deconflicter.gd" id="5_5tnif"]
 
 [sub_resource type="Animation" id="Animation_u2bvj"]

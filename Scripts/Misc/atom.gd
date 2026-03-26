@@ -1,4 +1,3 @@
-@tool
 extends Node3D
 
 @onready var pivot = %Pivot
