@@ -13,7 +13,7 @@ func on_enemy_hit(_enemy: Enemy, _source: Variant, _damage: float):
 	if randf() <= fmod(chance, 1.0): # get remainder as probability
 		procs += 1
 	
-	var ignored = [_enemy] # start by ignoring the enemy that was hit
+	var ignored: Array = [_enemy] # start by ignoring the enemy that was hit
 	
 	for i in procs:
 		var target = get_closest_enemy(_enemy, ignored, get_stat_value("Range"))

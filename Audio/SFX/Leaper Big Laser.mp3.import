@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dwfmpjboieiij"
+path="res://.godot/imported/Leaper Big Laser.mp3-3c99771a5fe9350f1db8be39b6c1b89d.mp3str"
+
+[deps]
+
+source_file="res://Audio/SFX/Leaper Big Laser.mp3"
+dest_files=["res://.godot/imported/Leaper Big Laser.mp3-3c99771a5fe9350f1db8be39b6c1b89d.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

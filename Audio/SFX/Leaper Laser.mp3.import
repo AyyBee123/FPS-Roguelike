@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cr6r0fldgw1s"
+path="res://.godot/imported/Leaper Laser.mp3-a076a9c14260de30e0f9bbe839901619.mp3str"
+
+[deps]
+
+source_file="res://Audio/SFX/Leaper Laser.mp3"
+dest_files=["res://.godot/imported/Leaper Laser.mp3-a076a9c14260de30e0f9bbe839901619.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

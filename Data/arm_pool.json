@@ -16,6 +16,10 @@
 		"rarity": 1
 	},
 	{
+		"path": "res://Scenes/Arms/leaper.tscn",
+		"rarity": 1
+	},
+	{
 		"path": "res://Scenes/Arms/miniarm.tscn",
 		"rarity": 2
 	},

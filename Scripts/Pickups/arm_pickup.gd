@@ -122,24 +122,17 @@ func transform_aabb(aabb: AABB, xform: Transform3D) -> AABB:
 
 func make_unique(node: Node) -> void:
 	if node is MeshInstance3D:
-		# duplicate all materials
+		# make the mesh resource unique first
+		if node.mesh:
+			node.mesh = node.mesh.duplicate(true)
+		
 		for i in node.get_surface_override_material_count():
 			var mat = node.get_active_material(i)
 			if mat:
-				var new_mat = mat.duplicate()
-				if new_mat is StandardMaterial3D:
-					new_mat.use_fov_override = false
-					new_mat.use_z_clip_scale = false
-				node.set_surface_override_material(i, new_mat)
+				node.set_surface_override_material(i, mat.duplicate(true)) # deep copy
 		
-		# duplicate material override
 		if node.material_override:
-			var mat = node.material_override
-			if mat:
-				var new_mat = mat.duplicate()
-				if mat.shader:
-					new_mat.shader = new_mat.shader.duplicate()
-				node.material_override = new_mat
+			node.material_override = node.material_override.duplicate(true)
 
 func play_tween():
 	tween = get_tree().create_tween()

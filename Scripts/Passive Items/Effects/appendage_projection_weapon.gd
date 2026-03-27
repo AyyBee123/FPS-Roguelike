@@ -22,6 +22,9 @@ var base_speed: float # velocity of the projectile shot by the arm
 func _ready():
 	await get_tree().physics_frame
 	var arm_scene = player.weapons_manager.current_arm.duplicate()
+	var arm_mesh_list = arm_scene.find_children("", "MeshInstance3D", true)
+	for mesh in arm_mesh_list:
+		make_unique(mesh)
 	if arm_scene.get_parent():
 		arm_scene.get_parent().remove_child(arm_scene)
 	%"Arm Node".add_child(arm_scene)
@@ -72,3 +75,17 @@ func set_material_override():
 		if mesh_node.mesh == null:
 			continue
 		mesh_node.material_override = APPENDAGE_PROJECTION
+
+func make_unique(node: Node) -> void:
+	if node is MeshInstance3D:
+		# make the mesh resource unique first
+		if node.mesh:
+			node.mesh = node.mesh.duplicate(true)
+		
+		for i in node.get_surface_override_material_count():
+			var mat = node.get_active_material(i)
+			if mat:
+				node.set_surface_override_material(i, mat.duplicate(true)) # deep copy
+		
+		if node.material_override:
+			node.material_override = node.material_override.duplicate(true)

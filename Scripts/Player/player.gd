@@ -170,7 +170,7 @@ func _physics_process(delta):
 		var dash_tween: Tween = get_tree().create_tween()
 		dash_tween.tween_callback(func(): is_dashing = true)
 		dash_tween.tween_interval(0.05)
-		dash_tween.tween_callback(func(): is_dashing = false; velocity /= 3)
+		dash_tween.tween_callback(func(): is_dashing = false; velocity /= 4)
 	
 	move_and_slide()
 	
