@@ -98,15 +98,6 @@ func set_spawned():
 	SignalBus.boss_spawned.emit(self)
 	is_spawned = true
 
-func die(_damage: float, source_player: Player, source: Variant):
-	if is_dead: return
-	is_dead = true
-	
-	source_player._on_enemy_killed(self, source, _damage)
-	# probably play an animation first
-	SignalBus.end_boss_defeat.emit(self)
-	queue_free()
-
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "Dig Up":
 		_state_machine.set_state(_state_machine.states.idle)

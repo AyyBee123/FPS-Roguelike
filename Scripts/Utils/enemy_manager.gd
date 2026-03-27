@@ -60,6 +60,7 @@ func spawn_end_boss():
 	for spawn: EndBossSpawn in bosses:
 		current_number_of_enemies += 1
 		var boss: Boss = spawn.boss.instantiate()
+		boss.is_end_boss = true
 		if spawn.is_random_position:
 			boss.position = level.find_spawn_point(player.global_position, MIN_DISTANCE * 2, MAX_DISTANCE)
 		else:

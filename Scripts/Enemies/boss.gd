@@ -2,6 +2,8 @@ class_name Boss extends Enemy
 
 @export var boss_name: String
 
+var is_end_boss: bool = false
+
 func _ready():
 	ray_cast.global_transform = Transform3D(Basis(), ray_cast.global_position) # lock the ray cast's rotation
 	ray_cast.force_raycast_update() # detect the ground immediately
@@ -12,3 +14,13 @@ func _ready():
 
 func set_spawned():
 	SignalBus.boss_spawned.emit(self)
+
+func die(_damage: float, source_player: Player, source: Variant):
+	if is_dead: return
+	is_dead = true
+	
+	source_player._on_enemy_killed(self, source, _damage)
+	# probably play an animation first and queue when the animation is done
+	if is_end_boss:
+		SignalBus.end_boss_defeat.emit(self)
+	queue_free()
