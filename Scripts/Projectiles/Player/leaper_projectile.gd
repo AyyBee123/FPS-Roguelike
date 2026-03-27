@@ -34,7 +34,7 @@ func bounce(enemy: Enemy):
 				proj.set(property.name, value)
 		proj.bounce_count += 1
 		proj.target = _target
-		proj.damage = damage
+		proj.damage /= 2
 		proj.set_collision_mask_value(CollisionLayers.get_layer(["World"]), false)
 		get_tree().current_scene.add_child(proj)
 		player._on_weapon_spawned(proj, damage)
