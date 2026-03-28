@@ -22,6 +22,7 @@ func _on_body_entered(body):
 			queue_free()
 	else:
 		create_impact()
+		queue_free()
 
 func bounce(enemy: Enemy):
 	ignored.append(enemy)
