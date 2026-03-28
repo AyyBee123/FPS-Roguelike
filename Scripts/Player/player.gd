@@ -157,13 +157,21 @@ func _physics_process(delta):
 		
 		dash.play_deconflicted()
 		
-		if velocity.x < 0.01 and velocity.z < 0.01:
+		if input_dir.length() < 0.01:
 			var cam_forward = -camera.global_transform.basis.z  # -z is forward
 			cam_forward.y = 0  # keep it horizontal
 			cam_forward = cam_forward.normalized()
 			velocity += cam_forward * dash_speed
 		else:
-			velocity += direction * dash_speed
+			var cam_basis = camera.global_transform.basis
+			var forward = cam_basis.z
+			var right = cam_basis.x
+			forward.y = 0
+			right.y = 0
+			forward = forward.normalized()
+			right = right.normalized()
+			var dash_dir = (forward * input_dir.y + right * input_dir.x).normalized()
+			velocity += dash_dir * dash_speed
 		
 		if velocity.y < 0: velocity.y = 2
 		
