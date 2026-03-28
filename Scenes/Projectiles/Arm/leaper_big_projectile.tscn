@@ -12,7 +12,7 @@ albedo_color = Color(0.90588236, 0.6392157, 0.3764706, 1)
 [sub_resource type="SphereMesh" id="SphereMesh_1bece"]
 material = SubResource("StandardMaterial3D_1bece")
 
-[node name="Leaper Big Projectile" type="RigidBody3D"]
+[node name="Leaper Big Projectile" type="RigidBody3D" node_paths=PackedStringArray("INITIAL_NODES")]
 top_level = true
 collision_layer = 0
 collision_mask = 5
@@ -23,6 +23,7 @@ contact_monitor = true
 max_contacts_reported = 10
 script = ExtResource("1_ashjp")
 NUMBER_OF_BOUNCES = 2
+INITIAL_NODES = [NodePath("CollisionShape"), NodePath("Mesh"), NodePath("Lifetime")]
 impact_color = Color(0.90588236, 0.6392157, 0.3764706, 1)
 impact_size = 1.333
 

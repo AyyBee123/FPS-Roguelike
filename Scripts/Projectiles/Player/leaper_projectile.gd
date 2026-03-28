@@ -16,31 +16,27 @@ func _on_body_entered(body):
 		return
 	if body is Enemy:
 		body.hit(damage, player, self)
-		bounce(body)
+		if bounce_count < NUMBER_OF_BOUNCES:
+			bounce(body)
+		else:
+			queue_free()
 	else:
 		create_impact()
-	queue_free()
 
 func bounce(enemy: Enemy):
-	if bounce_count >= NUMBER_OF_BOUNCES: return
 	ignored.append(enemy)
 	var _target: Enemy = get_closest_enemy(enemy, ignored, range / 2)
 	if _target:
-		var proj = duplicate()
 		var direction: Vector3 = _target.global_position - enemy.global_position
-		for property in get_script().get_script_property_list():
-			var value = get(property.name)
-			if value != null:
-				proj.set(property.name, value)
-		proj.bounce_count += 1
-		proj.target = _target
-		proj.damage /= 2
-		proj.set_collision_mask_value(CollisionLayers.get_layer(["World"]), false)
-		get_tree().current_scene.add_child(proj)
-		player._on_weapon_spawned(proj, damage)
-		proj.global_position = enemy.global_position
-		proj.look_at(proj.global_position + direction, Vector3.UP)
-		proj.set_linear_velocity(direction * speed)
+		lifetime.start()
+		bounce_count += 1
+		target = _target
+		damage /= 2
+		set_collision_mask_value(CollisionLayers.get_layer(["World"]), false)
+		global_position = enemy.global_position
+		look_at(global_position + direction, Vector3.UP)
+	else:
+		queue_free()
 
 func get_closest_enemy(origin: Enemy, ignore: Array, max_range: float = INF) -> Enemy:
 	var closest: Enemy = null
