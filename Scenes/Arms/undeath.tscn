@@ -8,7 +8,7 @@
 
 [sub_resource type="Animation" id="Animation_sd8g8"]
 resource_name = "Idle"
-length = 1.6
+length = 1.7
 loop_mode = 1
 tracks/0/type = "rotation_3d"
 tracks/0/imported = true
