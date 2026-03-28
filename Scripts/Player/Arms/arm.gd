@@ -18,6 +18,7 @@ class_name Arm extends Node3D
 @export var recoil: Vector2 # amount of recoil created the arm rotates by when shot
 @export var recoil_speed: float # speed in which the camera rotates
 @export var snap: float # the speed in which the camera snaps back to its original rotation
+var recoil_multiplier: float # multiplier for amount of recoil created
 
 @export_category("Miscellaneous")
 @export var shoot_animation: String = "Shoot"
@@ -179,6 +180,29 @@ func set_material_override():
 				material.fov_override = fov_override
 	
 	material_override_set = true
+
+func shoot_different_projectile(proj: PackedScene, ignore_fire_rate: bool = false, outside_source: Variant = self):
+	if t < fire_rate_timer and not ignore_fire_rate: return
+	
+	if not ignore_fire_rate:
+		t = 0.0
+	fire_rate_timer = 1.0 / fire_rate
+	animation_player.stop()
+	if shoot_animation != "":
+		animation_player.play(shoot_animation)
+	if muzzle:
+		muzzle.play()
+	
+	var camera_collision = get_camera_collision()
+	
+	player._on_arm_shot(self, outside_source)
+	
+	for i in range(projectile_count):
+		launch_projectile(camera_collision)
+	
+	for audio in firing_audio:
+		if audio:
+			audio.play_deconflicted()
 
 #func hit_scan_collision(collision_point):
 	#var bullet_direction = (collision_point - bullet_point.get_global_transform().origin).normalized()

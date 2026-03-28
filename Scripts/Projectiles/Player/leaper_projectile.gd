@@ -2,9 +2,19 @@ extends "res://Scripts/Projectiles/Player/projectile.gd"
 
 @export var NUMBER_OF_BOUNCES: int = 1
 
+@onready var mesh = %Mesh
+
 var ignored: Array = [] # start by ignoring the enemy that was hit
 var bounce_count: int = 0
 var target: Enemy
+var is_big_shot: bool = false
+
+func _ready():
+	super._ready()
+	if is_big_shot:
+		damage *= 2
+		%Mesh.scale = Vector3.ONE * 0.4
+		NUMBER_OF_BOUNCES = 2
 
 func _physics_process(delta: float) -> void:
 	if target and is_instance_valid(target):

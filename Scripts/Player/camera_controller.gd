@@ -33,11 +33,11 @@ var pitch: float = 0.0
 var yaw: float = 0.0
 
 # Recoil state
-var recoil_current := Vector2.ZERO
-var recoil_target := Vector2.ZERO
+var recoil_current: Vector2 = Vector2.ZERO
+var recoil_target: Vector2 = Vector2.ZERO
 
 # Stores mouse delta each frame
-var input := Vector2.ZERO
+var input: Vector2 = Vector2.ZERO
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -45,10 +45,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		player.sway_input = input
 
 # add recoil (called when shooting)
-func add_recoil(_arm, _source) -> void:
+func add_recoil(_arm: Arm, _source: Node) -> void:
 	arm = _arm
-	recoil_target.x += _arm.recoil.x
-	recoil_target.y += _arm.recoil.y * randf_range(-1, 1)
+	recoil_target.x += _arm.recoil.x * _arm.recoil_multiplier
+	recoil_target.y += _arm.recoil.y * _arm.recoil_multiplier * randf_range(-1, 1)
 
 func _physics_process(delta: float) -> void:
 	# mouse look
