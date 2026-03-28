@@ -18,7 +18,7 @@ class_name Arm extends Node3D
 @export var recoil: Vector2 # amount of recoil created the arm rotates by when shot
 @export var recoil_speed: float # speed in which the camera rotates
 @export var snap: float # the speed in which the camera snaps back to its original rotation
-var recoil_multiplier: float # multiplier for amount of recoil created
+var recoil_multiplier: float = 1.0 # multiplier for amount of recoil created
 
 @export_category("Miscellaneous")
 @export var shoot_animation: String = "Shoot"
