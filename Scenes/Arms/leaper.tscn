@@ -113,6 +113,18 @@ tracks/13/keys = {
 "update": 0,
 "values": [0.0, 4.0, 0.0]
 }
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Armature/Skeleton3D/Bone/Arm:mesh:surface_2/material:emission")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0.6081939, 0.3882935, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_2pxo1"]
 resource_name = "Idle"
@@ -220,6 +232,18 @@ tracks/13/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Armature/Skeleton3D/Bone/Arm:mesh:surface_2/material:emission")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.90588236, 0.6392157, 0.3764706, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_nfied"]
 length = 0.001
@@ -234,6 +258,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Armature/Skeleton3D/Bone/Arm:mesh:surface_2/material:emission")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.90588236, 0.6392157, 0.3764706, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_8kjv1"]
@@ -341,6 +377,18 @@ tracks/13/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [0.0, 1.0, 0.0]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Armature/Skeleton3D/Bone/Arm:mesh:surface_2/material:emission")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.90588236, 0.6392157, 0.3764706, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_r7s83"]
@@ -843,7 +891,7 @@ bones/3/parent = 2
 bones/3/rest = Transform3D(1, -5.662441e-07, -6.525421e-08, 5.662441e-07, 1, 1.0176885e-13, 6.525421e-08, -1.3871865e-13, 1, 5.093213e-09, 0.05700006, 6.3520076e-08)
 bones/3/enabled = true
 bones/3/position = Vector3(5.093213e-09, 0.05700006, 6.3520076e-08)
-bones/3/rotation = Quaternion(-0.25348848, -1.18932185e-07, 2.7128715e-07, 0.9673385)
+bones/3/rotation = Quaternion(-0.2534881, -1.03527896e-07, 2.7513826e-07, 0.9673385)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/name = "middlefinger.l"
 bones/4/parent = 0
@@ -878,7 +926,7 @@ bones/8/parent = 7
 bones/8/rest = Transform3D(1, -6.854534e-07, -1.09373204e-07, 6.854534e-07, 1, 7.367892e-15, 1.09373204e-07, -8.233813e-14, 1, 1.3918253e-09, 0.043004993, 5.768306e-08)
 bones/8/enabled = true
 bones/8/position = Vector3(1.3918253e-09, 0.043004993, 5.768306e-08)
-bones/8/rotation = Quaternion(-0.2781779, -1.5060306e-07, 3.2635756e-07, 0.96052957)
+bones/8/rotation = Quaternion(-0.2781779, -1.5060306e-07, 3.2635756e-07, 0.9605296)
 bones/8/scale = Vector3(1, 1, 1)
 bones/9/name = "thumb.002"
 bones/9/parent = 8

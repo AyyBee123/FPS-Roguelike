@@ -18,7 +18,7 @@ func shoot(ignore_fire_rate: bool = false, outside_source: Variant = self):
 	else:
 		current_shot = 0
 		shoot_animation = "Big Shoot"
-		recoil_multiplier = 3
+		recoil_multiplier = 4
 		is_big_shot = true
 		if not firing_audio.has(%"Leaper Big Laser"):
 			firing_audio.append(%"Leaper Big Laser")

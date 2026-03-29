@@ -2,7 +2,7 @@ extends "res://Scripts/Projectiles/Player/projectile.gd"
 
 @export var NUMBER_OF_BOUNCES: int = 1
 
-@onready var mesh = %Mesh
+@onready var mesh: MeshInstance3D = %Mesh
 
 var ignored: Array = [] # start by ignoring the enemy that was hit
 var bounce_count: int = 0
@@ -13,7 +13,8 @@ func _ready():
 	super._ready()
 	if is_big_shot:
 		damage *= 2
-		%Mesh.scale = Vector3.ONE * 0.4
+		mesh.scale = Vector3.ONE * 0.5
+		mesh.get_active_material(0).albedo_color = Color("ff9b63")
 		NUMBER_OF_BOUNCES = 2
 
 func _physics_process(delta: float) -> void:
