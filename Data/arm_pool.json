@@ -32,6 +32,10 @@
 		"rarity": 1
 	},
 	{
+		"path": "res://Scenes/Arms/pocket_rocket.tscn",
+		"rarity": 2
+	},
+	{
 		"path": "res://Scenes/Arms/spark_plug.tscn",
 		"rarity": 0
 	},

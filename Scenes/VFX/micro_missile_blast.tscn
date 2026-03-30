@@ -47,9 +47,14 @@ script = ExtResource("1_fjk8k")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 unique_name_in_owner = true
+emitting = false
 amount = 1
-lifetime = 0.25
+lifetime = 0.18000000000000002
+one_shot = true
+fixed_fps = 0
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_obo5l")
 draw_pass_1 = SubResource("SphereMesh_e86rj")
 
 [connection signal="finished" from="GPUParticles3D" to="." method="_on_gpu_particles_3d_finished"]
+[connection signal="finished" from="@GPUParticles3D@605447" to="." method="_on_gpu_particles_3d_finished"]

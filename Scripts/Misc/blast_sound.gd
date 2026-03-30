@@ -1,6 +1,7 @@
 extends Node3D
 
 @onready var blast = $Blast
+@onready var small_blast = $"Small Blast"
 @onready var emb_blast = $"EMB Blast"
 @onready var lightning = $Lightning
 @onready var saw_hit = $"Saw Hit"

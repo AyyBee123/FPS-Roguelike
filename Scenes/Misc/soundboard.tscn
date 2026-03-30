@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://p3jtsddtuhua"]
+[gd_scene load_steps=8 format=3 uid="uid://p3jtsddtuhua"]
 
 [ext_resource type="Script" uid="uid://dg7xhdua3fnyx" path="res://Scripts/Misc/blast_sound.gd" id="1_ct0jj"]
 [ext_resource type="AudioStream" uid="uid://cxafjf5msng0p" path="res://Audio/SFX/Lightning.mp3" id="2_4rf7h"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://cc1romsfhth3n" path="res://Scripts/Utils/audio_player_deconflicter.gd" id="3_x04wh"]
 [ext_resource type="AudioStream" uid="uid://je1d8sh5xgw" path="res://Audio/SFX/EMB Explosion.mp3" id="4_x04wh"]
 [ext_resource type="AudioStream" uid="uid://buqpajjdlljgt" path="res://Audio/SFX/Saw Hit.mp3" id="6_q3eeu"]
+[ext_resource type="AudioStream" uid="uid://ccgrbb5nouuib" path="res://Audio/SFX/Small Blast.mp3" id="7_wn1i6"]
 
 [node name="Soundboard" type="Node3D"]
 script = ExtResource("1_ct0jj")
@@ -15,6 +16,14 @@ stream = ExtResource("2_ct0jj")
 attenuation_model = 1
 unit_size = 50.0
 max_db = 2.0
+bus = &"SFX"
+script = ExtResource("3_x04wh")
+
+[node name="Small Blast" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("7_wn1i6")
+unit_size = 20.0
+max_db = 0.0
+pitch_scale = 1.5
 bus = &"SFX"
 script = ExtResource("3_x04wh")
 
@@ -48,6 +57,7 @@ one_shot = true
 autostart = true
 
 [connection signal="finished" from="Blast" to="." method="_on_sound_finished"]
+[connection signal="finished" from="Small Blast" to="." method="_on_sound_finished"]
 [connection signal="finished" from="EMB Blast" to="." method="_on_sound_finished"]
 [connection signal="finished" from="Lightning" to="." method="_on_sound_finished"]
 [connection signal="finished" from="Saw Hit" to="." method="_on_sound_finished"]
