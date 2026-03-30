@@ -62,7 +62,6 @@ contact_monitor = true
 max_contacts_reported = 10
 script = ExtResource("1_hhbuh")
 BLAST = ExtResource("2_hhbuh")
-spawn_impact = false
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
 unique_name_in_owner = true
