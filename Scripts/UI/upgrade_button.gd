@@ -56,12 +56,25 @@ func select_passive():
 	var passive: Passive = get_tree().current_scene.passive_pool.get_stat()
 	var scene = load(passive.scene_file_path)
 	
-	while menu.current_list.has(scene):
+	var attempts: int = 0
+	
+	while menu.current_list.has(scene) and attempts < 100:
 		passive = get_tree().current_scene.passive_pool.get_stat()
+		scene = load(passive.scene_file_path)
+	
+	if attempts >= 100:
+		bug()
+		return
+	
+	var rarity_attempts = 0
 	
 	if filtered.size() == 1:
-		while passive.rarity == 3: # Rare
+		while passive.rarity == 3 and rarity_attempts < 100: # rare
 			passive.set_rarity()
+	
+	if rarity_attempts >= 100:
+		bug()
+		return
 	
 	passives.append(passive)
 	add_child(passive)
@@ -136,13 +149,21 @@ func select_ability():
 	ability = get_tree().current_scene.ability_pool.get_ability()
 	var scene = load(ability.scene_file_path)
 	
+	var attempts: int = 0
+	
 	# if the player has 3 (or more) abilities, only show upgrades for the existing ones
 	if player.number_of_abilities >= 3:
-		while not player_abilities.has(ability.ability_name) or menu.current_list.has(scene):
+		while (not player_abilities.has(ability.ability_name) or menu.current_list.has(scene)) and attempts < 100:
 			ability = get_tree().current_scene.ability_pool.get_ability()
+			scene = load(ability.scene_file_path)
 	else:
-		while menu.current_list.has(scene):
+		while menu.current_list.has(scene) and attempts < 100:
 			ability = get_tree().current_scene.ability_pool.get_ability()
+			scene = load(ability.scene_file_path)
+	
+	if attempts >= 100:
+		bug()
+		return
 	
 	add_child(ability)
 	menu.current_list.append(scene)
@@ -193,6 +214,11 @@ func why():
 	rarity.text = ""
 	description.text = "If you're reading this, everything has been banished; This gives nothing."
 	upgrade_icon.texture = load("uid://bfvvoax7qdiqk")
+
+func bug():
+	passive_name.text = "ERROR"
+	rarity.text = ""
+	description.text = "If you're reading this, something went wrong."
 
 func format_number(n: float) -> String:
 	if is_equal_approx(n, int(n)):
