@@ -22,7 +22,7 @@ script = ExtResource("3_x04wh")
 [node name="Small Blast" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("7_wn1i6")
 unit_size = 20.0
-max_db = 0.0
+max_db = -2.0
 pitch_scale = 1.5
 bus = &"SFX"
 script = ExtResource("3_x04wh")
