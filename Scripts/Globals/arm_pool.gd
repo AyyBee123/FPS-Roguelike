@@ -13,7 +13,7 @@ var legendary_pool: Array[PackedScene] = []
 var json_file: String = "res://Data/arm_pool.json"
 
 func _init() -> void:
-	# populate the item pools
+	# populate the arm pools
 	populate_pool(common_pool, 0)
 	populate_pool(uncommon_pool, 1)
 	populate_pool(legendary_pool, 2)
@@ -30,7 +30,7 @@ func roll(weights: Dictionary = rarity_weights) -> Arm:
 	
 	var weighted_amount = randf() * total_weight
 	
-	# Find which rarity it falls into
+	# find which rarity it falls into
 	var cumulative: float = 0.0
 	var chosen_rarity: int = -1
 	for rarity in weights.keys():
@@ -39,8 +39,8 @@ func roll(weights: Dictionary = rarity_weights) -> Arm:
 			chosen_rarity = rarity
 			break
 	
-	# pick item from the correct pool
-	var pool_name := ""
+	# pick arm from the correct pool
+	var pool_name: String = ""
 	match chosen_rarity:
 		0: pool_name = "common_pool"
 		1: pool_name = "uncommon_pool"

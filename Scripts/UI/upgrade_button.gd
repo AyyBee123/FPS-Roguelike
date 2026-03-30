@@ -37,14 +37,35 @@ func get_abilities():
 		player_abilities.append(a.ability_name)
 
 func select_passive():
-	var passive: Passive = get_tree().current_scene.passive_pool.get_stat()
+	var current_set = {}
+	for item in menu.current_list:
+		current_set[item] = true
 	
-	while menu.current_list.has(passive.stat_name):
+	var filtered = get_tree().current_scene.passive_pool.passives.filter(
+		func(a): return not current_set.has(a)
+	)
+	
+	if filtered.size() <= 0:
+		if get_tree().current_scene.ability_pool.abilities.size() > 0:
+			select_ability()
+			return
+		else:
+			why()
+			return
+	
+	var passive: Passive = get_tree().current_scene.passive_pool.get_stat()
+	var scene = load(passive.scene_file_path)
+	
+	while menu.current_list.has(scene):
 		passive = get_tree().current_scene.passive_pool.get_stat()
+	
+	if filtered.size() == 1:
+		while passive.rarity == 3: # Rare
+			passive.set_rarity()
 	
 	passives.append(passive)
 	add_child(passive)
-	menu.current_list.append(passive.stat_name)
+	menu.current_list.append(scene)
 	
 	upgrade_icon.texture = passive.icon
 	passive_name.text = "%s Module" % passive.stat_name
@@ -78,7 +99,7 @@ func select_passive():
 	rarity.modulate = rarity_color
 	background_rarity.color = rarity_color
 	
-	if passive.rarity == 3:
+	if passive.rarity == 3 and filtered.size() > 1:
 		var second_passive: Passive = get_tree().current_scene.passive_pool.get_stat(passive)
 		second_passive.rarity = 3 # hybrid/rare
 		passives.append(second_passive)
@@ -96,18 +117,35 @@ func select_passive():
 			description.text += "\n"
 
 func select_ability():
+	var current_set = {}
+	for item in menu.current_list:
+		current_set[item] = true
+	
+	var filtered = get_tree().current_scene.ability_pool.abilities.filter(
+		func(a): return not current_set.has(a)
+	)
+	
+	if filtered.size() <= 0:
+		if get_tree().current_scene.passive_pool.passives.size() > 0:
+			select_passive()
+			return
+		else:
+			why()
+			return
+	
 	ability = get_tree().current_scene.ability_pool.get_ability()
+	var scene = load(ability.scene_file_path)
 	
 	# if the player has 3 (or more) abilities, only show upgrades for the existing ones
 	if player.number_of_abilities >= 3:
-		while not player_abilities.has(ability.ability_name) or menu.current_list.has(ability.ability_name):
+		while not player_abilities.has(ability.ability_name) or menu.current_list.has(scene):
 			ability = get_tree().current_scene.ability_pool.get_ability()
 	else:
-		while menu.current_list.has(ability.ability_name):
+		while menu.current_list.has(scene):
 			ability = get_tree().current_scene.ability_pool.get_ability()
 	
 	add_child(ability)
-	menu.current_list.append(ability.ability_name)
+	menu.current_list.append(scene)
 	for a in player_abilities:
 		if a == ability.ability_name: # set a flag if the player already has the ability
 			ability.ability_exists = true
@@ -149,6 +187,12 @@ func select_ability():
 	else:
 		rarity.text = ""
 		description.text = ability.description
+
+func why():
+	passive_name.text = "WHY?!"
+	rarity.text = ""
+	description.text = "If you're reading this, everything has been banished; This gives nothing."
+	upgrade_icon.texture = load("uid://bfvvoax7qdiqk")
 
 func format_number(n: float) -> String:
 	if is_equal_approx(n, int(n)):

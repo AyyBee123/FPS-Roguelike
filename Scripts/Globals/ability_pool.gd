@@ -11,5 +11,6 @@ func populate_pool():
 	loader.load_pool(json_file, abilities)
 
 func get_ability():
+	if abilities.is_empty(): return null
 	var ability: Ability = abilities.pick_random().instantiate()
 	return ability

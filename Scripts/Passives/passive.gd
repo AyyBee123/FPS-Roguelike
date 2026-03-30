@@ -24,7 +24,7 @@ func _ready():
 
 func set_rarity():
 	# convert to cumulative drop chances
-	var total_weight := 0.0
+	var total_weight: float = 0.0
 	for weight in rarity_weights.values():
 		total_weight += weight
 	

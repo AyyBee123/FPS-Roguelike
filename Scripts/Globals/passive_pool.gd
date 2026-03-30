@@ -11,6 +11,7 @@ func populate_pool():
 	loader.load_pool(json_file, passives)
 
 func get_stat(passive_to_not_pick: Passive = null):
+	if passives.is_empty(): return null
 	var passive: Passive = passives.pick_random().instantiate()
 	if passive_to_not_pick:
 		if passive.stat_name == passive_to_not_pick.stat_name:
