@@ -16,15 +16,21 @@ var player_abilities: Array[String]
 
 func _ready():
 	randomize()
-	description.text = ""
 	player = menu.player
+	roll()
+	mouse_entered.connect(func(): if not has_focus(): grab_focus())
+	_on_focus_exited()
+
+func roll():
+	if ability:
+		ability.queue_free()
+	passives.clear()
+	description.text = ""
 	if randf() < 0.5:
 		select_passive()
 	else:
 		get_abilities()
 		select_ability()
-	mouse_entered.connect(func(): if not has_focus(): grab_focus())
-	_on_focus_exited()
 
 func get_abilities():
 	for a in player.abilities.get_children():

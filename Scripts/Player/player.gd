@@ -57,6 +57,10 @@ var is_dashing: bool = false
 var sway_input: Vector2 # value gotten from the camera controller script
 var is_dead: bool = false
 
+var reroll_amount: int = 0
+var banish_amount: int = 0
+var skip_amount: int = 0
+
 var kill_count: int = 0:
 	set(value):
 		kill_count = value
