@@ -31,10 +31,10 @@ func get_abilities():
 		player_abilities.append(a.ability_name)
 
 func select_passive():
-	var passive: Passive = PassivePool.get_stat()
+	var passive: Passive = get_tree().current_scene.passive_pool.get_stat()
 	
 	while menu.current_list.has(passive.stat_name):
-		passive = PassivePool.get_stat()
+		passive = get_tree().current_scene.passive_pool.get_stat()
 	
 	passives.append(passive)
 	add_child(passive)
@@ -73,7 +73,7 @@ func select_passive():
 	background_rarity.color = rarity_color
 	
 	if passive.rarity == 3:
-		var second_passive: Passive = PassivePool.get_stat(passive)
+		var second_passive: Passive = get_tree().current_scene.passive_pool.get_stat(passive)
 		second_passive.rarity = 3 # hybrid/rare
 		passives.append(second_passive)
 		add_child(second_passive)
@@ -90,15 +90,15 @@ func select_passive():
 			description.text += "\n"
 
 func select_ability():
-	ability = AbilityPool.get_ability()
+	ability = get_tree().current_scene.ability_pool.get_ability()
 	
 	# if the player has 3 (or more) abilities, only show upgrades for the existing ones
 	if player.number_of_abilities >= 3:
 		while not player_abilities.has(ability.ability_name) or menu.current_list.has(ability.ability_name):
-			ability = AbilityPool.get_ability()
+			ability = get_tree().current_scene.ability_pool.get_ability()
 	else:
 		while menu.current_list.has(ability.ability_name):
-			ability = AbilityPool.get_ability()
+			ability = get_tree().current_scene.ability_pool.get_ability()
 	
 	add_child(ability)
 	menu.current_list.append(ability.ability_name)

@@ -1,7 +1,6 @@
 extends Node
 
 var abilities: Array[PackedScene]
-
 var json_file: String = "res://Data/ability_pool.json"
 
 func _init():

@@ -18,16 +18,13 @@ func _init() -> void:
 	populate_pool(uncommon_pool, 1)
 	populate_pool(legendary_pool, 2)
 
-func _ready():
-	randomize()
-
 func populate_pool(pool, rarity):
 	var loader = PoolLoader.new()
 	loader.load_pool(json_file, pool, rarity)
 
 func roll(weights: Dictionary = rarity_weights) -> Arm:
 	# Convert to cumulative drop chances
-	var total_weight := 0.0
+	var total_weight: float = 0.0
 	for weight in weights.values():
 		total_weight += weight
 	

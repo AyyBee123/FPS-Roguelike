@@ -18,9 +18,6 @@ func _init() -> void:
 	populate_pool(uncommon_pool, 1)
 	populate_pool(legendary_pool, 2)
 
-func _ready():
-	randomize()
-
 func populate_pool(pool, rarity):
 	var loader = PoolLoader.new()
 	loader.load_pool(json_file, pool, rarity)

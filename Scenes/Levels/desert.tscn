@@ -1,4 +1,4 @@
-[gd_scene load_steps=197 format=4 uid="uid://djbj7k76p2w00"]
+[gd_scene load_steps=201 format=4 uid="uid://djbj7k76p2w00"]
 
 [ext_resource type="Script" uid="uid://xvth4kwhnsit" path="res://Scripts/Levels/level.gd" id="1_r3g2l"]
 [ext_resource type="Script" uid="uid://c5fj4hsp172tf" path="res://Scripts/Resources/boss_spawn.gd" id="2_4dovk"]
@@ -10,7 +10,11 @@
 [ext_resource type="PackedScene" uid="uid://d2ylcac3o1e8k" path="res://Scenes/Enemies/sand_shark.tscn" id="8_4dovk"]
 [ext_resource type="Script" uid="uid://px8ih8py0glr" path="res://Scripts/Utils/chest_manager.gd" id="9_1mh2y"]
 [ext_resource type="Script" uid="uid://csjuscamg8frf" path="res://Scripts/Resources/end_boss_spawn.gd" id="9_i3lab"]
+[ext_resource type="Script" uid="uid://652066s8oj06" path="res://Scripts/Globals/arm_pool.gd" id="11_1mh2y"]
 [ext_resource type="Texture2D" uid="uid://d3mwgkbxct6tr" path="res://Assets/Textures/aerial_beach_01_rough_4k.jpg" id="11_i3lab"]
+[ext_resource type="Script" uid="uid://caq32sajxn8pu" path="res://Scripts/Globals/item_pool.gd" id="12_t1ox7"]
+[ext_resource type="Script" uid="uid://c3tr181aifqm8" path="res://Scripts/Globals/ability_pool.gd" id="13_np4fc"]
+[ext_resource type="Script" uid="uid://3fq6hfdn5n35" path="res://Scripts/Globals/passive_pool.gd" id="14_glso8"]
 
 [sub_resource type="Resource" id="Resource_ecsxk"]
 script = ExtResource("2_4dovk")
@@ -2187,6 +2191,24 @@ script = ExtResource("9_1mh2y")
 wait_time = 2.0
 one_shot = true
 autostart = true
+
+[node name="Pools" type="Node" parent="."]
+
+[node name="Arm Pool" type="Node" parent="Pools"]
+unique_name_in_owner = true
+script = ExtResource("11_1mh2y")
+
+[node name="Item Pool" type="Node" parent="Pools"]
+unique_name_in_owner = true
+script = ExtResource("12_t1ox7")
+
+[node name="Ability Pool" type="Node" parent="Pools"]
+unique_name_in_owner = true
+script = ExtResource("13_np4fc")
+
+[node name="Passive Pool" type="Node" parent="Pools"]
+unique_name_in_owner = true
+script = ExtResource("14_glso8")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 unique_name_in_owner = true

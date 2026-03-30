@@ -19,13 +19,9 @@ config/icon="res://icon.svg"
 [autoload]
 
 CollisionLayers="*res://Scripts/Globals/collision_layers.gd"
-ItemPool="*res://Scripts/Globals/item_pool.gd"
-ArmPool="*res://Scripts/Globals/arm_pool.gd"
 SignalBus="*res://Scripts/Utils/signal_bus.gd"
-AbilityPool="*res://Scripts/Globals/ability_pool.gd"
 GeneralUtils="*res://Scripts/Utils/general_utils.gd"
 Globals="*res://Scenes/Globals/globals.tscn"
-PassivePool="*res://Scripts/Globals/passive_pool.gd"
 SfxDeconflicter="*res://Scripts/Utils/sfx_deconflicter.gd"
 
 [debug]

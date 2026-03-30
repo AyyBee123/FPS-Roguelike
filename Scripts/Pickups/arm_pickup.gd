@@ -7,6 +7,7 @@ class_name ArmPickup extends RigidBody3D
 @onready var visual_offset = %"Visual Offset"
 @onready var jingle = %Jingle
 @onready var default_scale = get_scale()
+@onready var rarity_weights = get_tree().current_scene.arm_pool.rarity_weights
 
 const AMPLITUDE: float = 0.05
 const FREQUENCY: float = 1.0
@@ -14,7 +15,6 @@ const HIGHLIGHT_COLOR: Color = Color(0.88, 1.0, 0.0)
 
 var arm: Arm
 var arm_name: String
-var rarity_weights = ArmPool.rarity_weights
 var offset: Vector3 = Vector3.ZERO
 var armature: Node3D
 var time: float = 0.0
@@ -27,7 +27,7 @@ var rarity_color: Color
 func _ready():
 	if not arm_scene:
 		if not arm:
-			arm = ArmPool.roll()
+			arm = get_tree().current_scene.arm_pool.roll()
 	else:
 		arm = arm_scene.instantiate()
 	arm_name = arm.arm_name

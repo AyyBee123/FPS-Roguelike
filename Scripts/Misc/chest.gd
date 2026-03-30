@@ -61,7 +61,7 @@ func open(player: Player):
 	get_tree().current_scene.increase_costs()
 
 func roll_item(): # called from the animation player
-	var rolled_item: Item = ItemPool.roll()
+	var rolled_item: Item = get_tree().current_scene.item_pool.roll()
 	item = ITEM.instantiate()
 	item.item = rolled_item
 	get_tree().current_scene.add_child(item)

@@ -32,7 +32,7 @@ var can_pickup: bool = false:
 
 var rolling_done: bool = false
 
-var rarity_weights = ItemPool.rarity_weights
+@onready var rarity_weights = get_tree().current_scene.item_pool.rarity_weights
 
 func _ready():
 	randomize()
@@ -43,7 +43,7 @@ func _ready():
 	collision_shape.disabled = true
 	
 	if not item:
-		item = ItemPool.roll()
+		item = get_tree().current_scene.item_pool.roll()
 	item_name = item.item_name
 	passive.add_child(item)
 	
@@ -80,10 +80,10 @@ func rapid_roll(delta):
 	if t >= ROLLING_INTERVAL:
 		t = 0
 		if not visual_item:
-			visual_item = ItemPool.roll()
+			visual_item = get_tree().current_scene.item_pool.roll()
 		var i: Item = visual_item
 		while i.item_name == visual_item.item_name:
-			i = ItemPool.roll()
+			i = get_tree().current_scene.item_pool.roll()
 		display_item(i)
 	
 	if elapsed_time >= ROLLING_TIME:

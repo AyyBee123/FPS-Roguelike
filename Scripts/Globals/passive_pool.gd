@@ -1,7 +1,6 @@
 extends Node
 
 var passives: Array[PackedScene]
-
 var json_file: String = "res://Data/passive_pool.json"
 
 func _init():

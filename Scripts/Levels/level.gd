@@ -4,6 +4,10 @@ signal cost_increased
 
 @onready var enemy_handler = %"Enemy Handler"
 @onready var chest_manager = %"Chest Manager"
+@onready var arm_pool = %"Arm Pool"
+@onready var item_pool = %"Item Pool"
+@onready var ability_pool = %"Ability Pool"
+@onready var passive_pool = %"Passive Pool"
 @onready var nav_region: NavigationRegion3D = %NavigationRegion3D
 
 @export var NUMBER_OF_CHESTS: int = 25
