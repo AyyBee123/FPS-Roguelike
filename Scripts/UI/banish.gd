@@ -3,6 +3,7 @@ extends Button
 @export var menu: Control
 
 @onready var amount = $Amount
+@onready var banish_audio = %"Banish Audio"
 
 var player: Player
 
@@ -23,7 +24,7 @@ func _on_pressed():
 func banish(button):
 	if button.ability:
 		var pool = get_tree().current_scene.ability_pool.abilities
-		var idx = pool.find_custom(func(packed): 
+		var idx = pool.find_custom(func(packed):
 			return packed.resource_path == button.ability.scene_file_path
 		)
 		if idx != -1:
@@ -35,6 +36,7 @@ func banish(button):
 		)
 		if idx != -1:
 			pool.remove_at(idx)
+	banish_audio.play()
 	button.roll()
 	menu.is_banishing = false
 	player.banish_amount -= 1

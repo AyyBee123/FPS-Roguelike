@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://clamkav36kau4"]
+[gd_scene load_steps=20 format=3 uid="uid://clamkav36kau4"]
 
 [ext_resource type="Script" uid="uid://du4ekibi7bb2c" path="res://Scripts/UI/passive_menu.gd" id="1_hslo0"]
 [ext_resource type="Texture2D" uid="uid://b8r3j7kclf0v8" path="res://Assets/UI/Passive Background.png" id="1_w4v7t"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://doyh5iljaundp" path="res://Scripts/UI/banish.gd" id="10_n4alr"]
 [ext_resource type="Script" uid="uid://swe1lsbe56w2" path="res://Scripts/UI/skip.gd" id="11_06nkn"]
 [ext_resource type="Texture2D" uid="uid://c22kyilgkifmv" path="res://Assets/UI/Coin.png" id="12_nj1sg"]
+[ext_resource type="AudioStream" uid="uid://betdhw3ko44le" path="res://Audio/SFX/Banish.mp3" id="13_yo2iq"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xxk11"]
 texture = ExtResource("5_kleow")
@@ -272,6 +273,13 @@ mouse_filter = 2
 texture = ExtResource("12_nj1sg")
 expand_mode = 5
 stretch_mode = 5
+
+[node name="Banish Audio" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("13_yo2iq")
+volume_db = -8.0
+pitch_scale = 1.5
+bus = &"SFX"
 
 [node name="Buffer" type="Timer" parent="."]
 unique_name_in_owner = true

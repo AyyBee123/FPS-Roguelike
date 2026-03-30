@@ -31,6 +31,7 @@ signal meta_coin_count_changed(amount)
 @onready var dash_cooldown = %"Dash Cooldown"
 @onready var pick_up_label = %"Pick Up Label"
 @onready var xp_audio = %Xp
+@onready var banish_audio = %Banish
 @onready var damage_taken_audio = %DamageTaken
 @onready var jump = %Jump
 @onready var dash = %Dash
@@ -58,7 +59,7 @@ var sway_input: Vector2 # value gotten from the camera controller script
 var is_dead: bool = false
 
 var reroll_amount: int = 0
-var banish_amount: int = 0
+var banish_amount: int = 3
 var skip_amount: int = 0
 
 var kill_count: int = 0:
@@ -221,6 +222,7 @@ func _input(event):
 	if event.is_action_pressed("alt_pickup") and pickup:
 		if pickup is ItemPickup and banish_amount > 0: # banishing items
 			pickup.banish()
+			banish_audio.play_deconflicted()
 			banish_amount -= 1
 
 func get_pickup_collision():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://dhlu65iawdxvf"]
+[gd_scene load_steps=60 format=3 uid="uid://dhlu65iawdxvf"]
 
 [ext_resource type="Script" uid="uid://c2cudrvyd4egp" path="res://Scripts/Player/player.gd" id="1_uvnfx"]
 [ext_resource type="Script" uid="uid://c4i7uubwdhgtw" path="res://Scripts/Player/weapons_manager.gd" id="2_htcer"]
@@ -24,6 +24,7 @@
 [ext_resource type="Script" uid="uid://cgnrhxmu6r3so" path="res://Scripts/UI/items.gd" id="17_qr1w5"]
 [ext_resource type="Texture2D" uid="uid://cmy3pqe04w5m3" path="res://Assets/UI/Items Border.png" id="17_rqdc0"]
 [ext_resource type="Texture2D" uid="uid://d0ov1ksvt5flx" path="res://Assets/Textures/Blob Shadow.png" id="19_aqm4k"]
+[ext_resource type="AudioStream" uid="uid://betdhw3ko44le" path="res://Audio/SFX/Banish.mp3" id="19_ei2r2"]
 [ext_resource type="Script" uid="uid://dxumsdla3i8vf" path="res://Scripts/UI/items_container.gd" id="19_ythyg"]
 [ext_resource type="Texture2D" uid="uid://ckep0h8e5dhm2" path="res://Assets/UI/Kill.png" id="20_2jnj1"]
 [ext_resource type="Script" uid="uid://dn2npuymrf2i" path="res://Scripts/UI/kill_count.gd" id="20_mwii3"]
@@ -356,6 +357,16 @@ panning_strength = 0.0
 bus = &"SFX"
 script = ExtResource("29_2ahak")
 player = NodePath("..")
+
+[node name="Banish" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("19_ei2r2")
+max_db = -2.0
+pitch_scale = 1.5
+panning_strength = 0.0
+bus = &"SFX"
+script = ExtResource("27_bmb2s")
+metadata/_custom_type_script = "uid://cc1romsfhth3n"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
