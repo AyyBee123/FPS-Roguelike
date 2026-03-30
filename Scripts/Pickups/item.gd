@@ -1,6 +1,7 @@
 class_name ItemPickup extends Node3D
 
 @export var sound_node: PackedScene
+@export var banish_text: PackedScene
 
 @onready var passive = %Passive
 @onready var sprite_3d: Sprite3D = %Sprite3D
@@ -35,7 +36,10 @@ var rolling_done: bool = false
 @onready var rarity_weights = get_tree().current_scene.item_pool.rarity_weights
 
 func _ready():
-	randomize()
+	var pool = get_tree().current_scene.item_pool
+	if pool.common_pool.is_empty() and pool.uncommon_pool.is_empty() and pool.legendary_pool.is_empty():
+		queue_free()
+		return
 	
 	rolling_jingle.play_deconflicted()
 	
@@ -60,8 +64,21 @@ func _physics_process(delta):
 	if not can_pickup:
 		rapid_roll(delta)
 
-func pick_up(player):
+func pick_up(player: Player):
 	item.on_pick_up(player)
+	queue_free()
+
+func banish():
+	var pool = get_tree().current_scene.item_pool
+	for tier in [pool.common_pool, pool.uncommon_pool, pool.legendary_pool]:
+		for scene in tier:
+			if scene.resource_path == item.scene_file_path:
+				tier.erase(scene)
+				break
+	var banished = banish_text.instantiate()
+	banished.item = item
+	get_tree().current_scene.add_child(banished)
+	banished.global_position = global_position
 	queue_free()
 
 func display_item(_item):
@@ -70,6 +87,9 @@ func display_item(_item):
 
 func rapid_roll(delta):
 	if can_pickup:
+		return
+	
+	if not item:
 		return
 	
 	t += delta
@@ -82,8 +102,12 @@ func rapid_roll(delta):
 		if not visual_item:
 			visual_item = get_tree().current_scene.item_pool.roll()
 		var i: Item = visual_item
-		while i.item_name == visual_item.item_name:
-			i = get_tree().current_scene.item_pool.roll()
+		var pool = get_tree().current_scene.item_pool
+		if pool.common_pool.size() + pool.uncommon_pool.size() + pool.legendary_pool.size() > 1:
+			while i.item_name == visual_item.item_name:
+				i = get_tree().current_scene.item_pool.roll()
+		else:
+			elapsed_time = INF
 		display_item(i)
 	
 	if elapsed_time >= ROLLING_TIME:
@@ -115,5 +139,5 @@ func play_tween():
 	tween.tween_callback(func(): rolling_done = true)
 
 func _exit_tree():
-	if tween.is_running():
+	if tween and tween.is_running():
 		tween.kill()

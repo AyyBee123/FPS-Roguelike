@@ -218,6 +218,10 @@ func _input(event):
 		else:
 			pick_up.play_deconflicted()
 			pickup.pick_up(self)
+	if event.is_action_pressed("alt_pickup") and pickup:
+		if pickup is ItemPickup and banish_amount > 0: # banishing items
+			pickup.banish()
+			banish_amount -= 1
 
 func get_pickup_collision():
 	var viewport = get_viewport().get_visible_rect().size

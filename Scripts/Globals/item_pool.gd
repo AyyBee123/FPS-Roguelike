@@ -46,4 +46,10 @@ func roll(weights: Dictionary = rarity_weights) -> Item:
 		1: pool_name = "uncommon_pool"
 		2: pool_name = "legendary_pool"
 	
+	if get(pool_name).is_empty():
+		if common_pool.is_empty() and uncommon_pool.is_empty() and legendary_pool.is_empty():
+			return null
+		else:
+			return roll(weights)
+	
 	return get(pool_name).pick_random().instantiate()

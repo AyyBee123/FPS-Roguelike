@@ -23,3 +23,5 @@ func on_item_hovered(item):
 		text = "Pick up %s" % item.arm_name
 	elif item is ItemPickup:
 		text = "Pick up %s" % item.item_name
+		if player.banish_amount > 0:
+			text += "\n" + "Q to Banish (%d Left)" % player.banish_amount
