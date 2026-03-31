@@ -27,6 +27,7 @@ func _ready():
 	tween.tween_property(transition, "scale", Vector2.ONE, 0.15)
 
 func _physics_process(delta):
+	get_tree().paused = true
 	banish_background.visible = is_banishing
 
 func set_buttons():
@@ -48,6 +49,7 @@ func select_upgrade(button):
 	
 	Globals.sfx.confirm.play_deconflicted()
 	
+	set_physics_process(false)
 	get_tree().paused = false
 	if button.passives.size() > 0:
 		upgrade_selected.emit(button.passives)
