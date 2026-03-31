@@ -1,7 +1,7 @@
 extends Button
 
-var focused_once := false
-var initial_focus := false
+var focused_once: bool = false
+var initial_focus: bool = false
 
 func _ready():
 	mouse_entered.connect(_on_mouse_entered)

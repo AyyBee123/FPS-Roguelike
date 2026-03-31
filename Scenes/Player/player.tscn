@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://dhlu65iawdxvf"]
+[gd_scene load_steps=61 format=3 uid="uid://dhlu65iawdxvf"]
 
 [ext_resource type="Script" uid="uid://c2cudrvyd4egp" path="res://Scripts/Player/player.gd" id="1_uvnfx"]
 [ext_resource type="Script" uid="uid://c4i7uubwdhgtw" path="res://Scripts/Player/weapons_manager.gd" id="2_htcer"]
@@ -41,6 +41,7 @@
 [ext_resource type="Script" uid="uid://b173hi8wxnnrp" path="res://Scripts/UI/boss_health_bars.gd" id="37_ixrbb"]
 [ext_resource type="AudioStream" uid="uid://id1yt3y16cbi" path="res://Audio/SFX/Enemy Hit.mp3" id="37_m6ahd"]
 [ext_resource type="PackedScene" uid="uid://be63qadoubjih" path="res://Scenes/UI/boss_health.tscn" id="38_ei2r2"]
+[ext_resource type="PackedScene" uid="uid://ciwcgspt3ffn2" path="res://Scenes/UI/pause_menu.tscn" id="40_j6uq4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mtuoh"]
 size = Vector3(1, 2, 1)
@@ -696,6 +697,10 @@ offset_bottom = 95.88
 pivot_offset = Vector2(704, 0)
 script = ExtResource("37_ixrbb")
 boss_health_bar = ExtResource("38_ei2r2")
+
+[node name="Pause Menu" parent="CanvasLayer/HUD" instance=ExtResource("40_j6uq4")]
+visible = false
+layout_mode = 1
 
 [node name="Upgrade" type="Node" parent="CanvasLayer"]
 unique_name_in_owner = true

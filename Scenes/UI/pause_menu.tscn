@@ -1,0 +1,171 @@
+[gd_scene format=3 uid="uid://ciwcgspt3ffn2"]
+
+[ext_resource type="Script" uid="uid://bwr1ovi81o0ru" path="res://Scripts/UI/pause_menu.gd" id="1_8rf44"]
+[ext_resource type="FontFile" uid="uid://bfhwilg3cupoh" path="res://Fonts/Name Font.ttf" id="1_rrvs5"]
+[ext_resource type="Script" uid="uid://e8gk7vklxd3s" path="res://Scripts/UI/button.gd" id="3_r2i2h"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_r2i2h"]
+load_path = "res://.godot/imported/Passive Selection.png-130c78e84a106df4972e519c7de434a5.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oykix"]
+texture = SubResource("CompressedTexture2D_r2i2h")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kdnb7"]
+load_path = "res://.godot/imported/Passive Selection Focus.png-ac61f7aeefd7277ef71aa15d4436febd.s3tc.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_702e2"]
+texture = SubResource("CompressedTexture2D_kdnb7")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qyryt"]
+load_path = "res://.godot/imported/Passive Selection Hover.png-69ee582e6ab3910328cccf9973484c83.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_23me3"]
+texture = SubResource("CompressedTexture2D_qyryt")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_deree"]
+load_path = "res://.godot/imported/Passive Selection.png-130c78e84a106df4972e519c7de434a5.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yq7um"]
+texture = SubResource("CompressedTexture2D_deree")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nqqw2"]
+load_path = "res://.godot/imported/Passive Selection Press.png-2e838eaa87220e30923ef3cfb834a976.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hanoc"]
+texture = SubResource("CompressedTexture2D_nqqw2")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+
+[sub_resource type="Theme" id="Theme_kxh81"]
+Button/styles/disabled = SubResource("StyleBoxTexture_oykix")
+Button/styles/focus = SubResource("StyleBoxTexture_702e2")
+Button/styles/hover = SubResource("StyleBoxTexture_23me3")
+Button/styles/normal = SubResource("StyleBoxTexture_yq7um")
+Button/styles/pressed = SubResource("StyleBoxTexture_hanoc")
+
+[node name="Pause Menu" type="Control" unique_id=1729089376]
+process_mode = 3
+z_index = 24
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8rf44")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1215079597]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.2509804)
+
+[node name="Paused" type="Label" parent="." unique_id=2140966186]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 160.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 32
+theme_override_fonts/font = ExtResource("1_rrvs5")
+theme_override_font_sizes/font_size = 128
+text = "Paused"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=443306703]
+layout_mode = 0
+offset_top = 192.0
+offset_right = 1920.0
+offset_bottom = 896.0
+theme_override_constants/margin_left = 640
+theme_override_constants/margin_right = 640
+
+[node name="Buttons" type="VBoxContainer" parent="MarginContainer" unique_id=1924371194]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="Resume" type="Button" parent="MarginContainer/Buttons" unique_id=615171579]
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+size_flags_vertical = 4
+theme = SubResource("Theme_kxh81")
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("1_rrvs5")
+theme_override_font_sizes/font_size = 48
+text = "Resume"
+script = ExtResource("3_r2i2h")
+
+[node name="Restart" type="Button" parent="MarginContainer/Buttons" unique_id=1573580118]
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+size_flags_vertical = 4
+theme = SubResource("Theme_kxh81")
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("1_rrvs5")
+theme_override_font_sizes/font_size = 48
+text = "Restart"
+script = ExtResource("3_r2i2h")
+
+[node name="Settings" type="Button" parent="MarginContainer/Buttons" unique_id=2015312823]
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+size_flags_vertical = 4
+theme = SubResource("Theme_kxh81")
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("1_rrvs5")
+theme_override_font_sizes/font_size = 48
+text = "Settings"
+script = ExtResource("3_r2i2h")
+
+[node name="Quit to Menu" type="Button" parent="MarginContainer/Buttons" unique_id=1491283446]
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+size_flags_vertical = 4
+theme = SubResource("Theme_kxh81")
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("1_rrvs5")
+theme_override_font_sizes/font_size = 48
+text = "Quit to Menu"
+script = ExtResource("3_r2i2h")
+
+[node name="Quit to Desktop" type="Button" parent="MarginContainer/Buttons" unique_id=1198414624]
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+size_flags_vertical = 4
+theme = SubResource("Theme_kxh81")
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("1_rrvs5")
+theme_override_font_sizes/font_size = 48
+text = "Quit to Desktop"
+script = ExtResource("3_r2i2h")
+
+[connection signal="pressed" from="MarginContainer/Buttons/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="MarginContainer/Buttons/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="MarginContainer/Buttons/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="MarginContainer/Buttons/Quit to Menu" to="." method="_on_quit_to_menu_pressed"]
+[connection signal="pressed" from="MarginContainer/Buttons/Quit to Desktop" to="." method="_on_quit_to_desktop_pressed"]

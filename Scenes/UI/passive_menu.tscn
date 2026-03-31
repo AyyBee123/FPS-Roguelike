@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://clamkav36kau4"]
+[gd_scene format=3 uid="uid://clamkav36kau4"]
 
 [ext_resource type="Script" uid="uid://du4ekibi7bb2c" path="res://Scripts/UI/passive_menu.gd" id="1_hslo0"]
 [ext_resource type="Texture2D" uid="uid://b8r3j7kclf0v8" path="res://Assets/UI/Passive Background.png" id="1_w4v7t"]
@@ -56,7 +56,7 @@ Button/styles/hover = SubResource("StyleBoxTexture_asjw3")
 Button/styles/normal = SubResource("StyleBoxTexture_hottw")
 Button/styles/pressed = SubResource("StyleBoxTexture_wagd0")
 
-[node name="Passive Menu" type="Control"]
+[node name="Passive Menu" type="Control" unique_id=147814883]
 process_mode = 3
 z_index = 5
 layout_mode = 3
@@ -68,14 +68,14 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_hslo0")
 
-[node name="Scale" type="Node2D" parent="."]
+[node name="Scale" type="Node2D" parent="." unique_id=468685224]
 unique_name_in_owner = true
 position = Vector2(960, 540)
 
-[node name="Transition" type="Node2D" parent="Scale"]
+[node name="Transition" type="Node2D" parent="Scale" unique_id=72414609]
 unique_name_in_owner = true
 
-[node name="Background" type="NinePatchRect" parent="Scale/Transition"]
+[node name="Background" type="NinePatchRect" parent="Scale/Transition" unique_id=1901632356]
 z_index = 6
 anchors_preset = 8
 anchor_left = 0.5
@@ -94,7 +94,7 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 
-[node name="MarginContainer" type="MarginContainer" parent="Scale/Transition/Background"]
+[node name="MarginContainer" type="MarginContainer" parent="Scale/Transition/Background" unique_id=1854915906]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -113,24 +113,24 @@ theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
-[node name="Upgrade List" type="VBoxContainer" parent="Scale/Transition/Background/MarginContainer"]
+[node name="Upgrade List" type="VBoxContainer" parent="Scale/Transition/Background/MarginContainer" unique_id=1887954022]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 24
 
-[node name="Upgrade" parent="Scale/Transition/Background/MarginContainer/Upgrade List" node_paths=PackedStringArray("menu") instance=ExtResource("3_aokas")]
+[node name="Upgrade" parent="Scale/Transition/Background/MarginContainer/Upgrade List" unique_id=658495641 node_paths=PackedStringArray("menu") instance=ExtResource("3_aokas")]
 layout_mode = 2
 menu = NodePath("../../../../../..")
 
-[node name="Upgrade2" parent="Scale/Transition/Background/MarginContainer/Upgrade List" node_paths=PackedStringArray("menu") instance=ExtResource("3_aokas")]
+[node name="Upgrade2" parent="Scale/Transition/Background/MarginContainer/Upgrade List" unique_id=2000777645 node_paths=PackedStringArray("menu") instance=ExtResource("3_aokas")]
 layout_mode = 2
 menu = NodePath("../../../../../..")
 
-[node name="Upgrade3" parent="Scale/Transition/Background/MarginContainer/Upgrade List" node_paths=PackedStringArray("menu") instance=ExtResource("3_aokas")]
+[node name="Upgrade3" parent="Scale/Transition/Background/MarginContainer/Upgrade List" unique_id=1566947690 node_paths=PackedStringArray("menu") instance=ExtResource("3_aokas")]
 layout_mode = 2
 menu = NodePath("../../../../../..")
 
-[node name="Level Up Text" type="Label" parent="Scale/Transition/Background"]
+[node name="Level Up Text" type="Label" parent="Scale/Transition/Background" unique_id=251005936]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -147,7 +147,7 @@ text = "Choose Upgrade"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Modify Options" type="HBoxContainer" parent="Scale/Transition/Background"]
+[node name="Modify Options" type="HBoxContainer" parent="Scale/Transition/Background" unique_id=2134867243]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -160,7 +160,7 @@ grow_vertical = 0
 theme_override_constants/separation = 48
 alignment = 1
 
-[node name="Reroll" type="Button" parent="Scale/Transition/Background/Modify Options" node_paths=PackedStringArray("menu")]
+[node name="Reroll" type="Button" parent="Scale/Transition/Background/Modify Options" unique_id=55200551 node_paths=PackedStringArray("menu")]
 custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
 theme = SubResource("Theme_nj1sg")
@@ -171,7 +171,7 @@ text = "Reroll"
 script = ExtResource("9_16wpu")
 menu = NodePath("../../../../..")
 
-[node name="Amount" type="Label" parent="Scale/Transition/Background/Modify Options/Reroll"]
+[node name="Amount" type="Label" parent="Scale/Transition/Background/Modify Options/Reroll" unique_id=2127639035]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.83300006
@@ -190,7 +190,7 @@ theme_override_font_sizes/font_size = 32
 text = "x1"
 horizontal_alignment = 1
 
-[node name="Banish" type="Button" parent="Scale/Transition/Background/Modify Options" node_paths=PackedStringArray("menu")]
+[node name="Banish" type="Button" parent="Scale/Transition/Background/Modify Options" unique_id=1164315463 node_paths=PackedStringArray("menu")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
@@ -202,7 +202,7 @@ text = "Banish"
 script = ExtResource("10_n4alr")
 menu = NodePath("../../../../..")
 
-[node name="Amount" type="Label" parent="Scale/Transition/Background/Modify Options/Banish"]
+[node name="Amount" type="Label" parent="Scale/Transition/Background/Modify Options/Banish" unique_id=1542013085]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.83300006
@@ -221,7 +221,7 @@ theme_override_font_sizes/font_size = 32
 text = "x1"
 horizontal_alignment = 1
 
-[node name="Skip" type="Button" parent="Scale/Transition/Background/Modify Options" node_paths=PackedStringArray("menu")]
+[node name="Skip" type="Button" parent="Scale/Transition/Background/Modify Options" unique_id=1610366558 node_paths=PackedStringArray("menu")]
 custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
 theme = SubResource("Theme_nj1sg")
@@ -232,7 +232,7 @@ text = "Skip        "
 script = ExtResource("11_06nkn")
 menu = NodePath("../../../../..")
 
-[node name="Amount" type="Label" parent="Scale/Transition/Background/Modify Options/Skip"]
+[node name="Amount" type="Label" parent="Scale/Transition/Background/Modify Options/Skip" unique_id=707485772]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.83300006
@@ -251,14 +251,14 @@ theme_override_font_sizes/font_size = 32
 text = "x1"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Scale/Transition/Background/Modify Options/Skip"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Scale/Transition/Background/Modify Options/Skip" unique_id=1183418934]
 layout_mode = 0
 offset_left = 144.0
 offset_right = 248.0
 offset_bottom = 96.0
 mouse_filter = 2
 
-[node name="Coin Amount" type="Label" parent="Scale/Transition/Background/Modify Options/Skip/HBoxContainer"]
+[node name="Coin Amount" type="Label" parent="Scale/Transition/Background/Modify Options/Skip/HBoxContainer" unique_id=629443004]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/outline_size = 12
@@ -266,7 +266,7 @@ theme_override_fonts/font = ExtResource("3_hslo0")
 theme_override_font_sizes/font_size = 32
 text = "+25"
 
-[node name="TextureRect" type="TextureRect" parent="Scale/Transition/Background/Modify Options/Skip/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="Scale/Transition/Background/Modify Options/Skip/HBoxContainer" unique_id=1636510489]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
@@ -274,20 +274,20 @@ texture = ExtResource("12_nj1sg")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="Banish Audio" type="AudioStreamPlayer" parent="."]
+[node name="Banish Audio" type="AudioStreamPlayer" parent="." unique_id=1980471598]
 unique_name_in_owner = true
 stream = ExtResource("13_yo2iq")
 volume_db = -8.0
 pitch_scale = 1.5
 bus = &"SFX"
 
-[node name="Buffer" type="Timer" parent="."]
+[node name="Buffer" type="Timer" parent="." unique_id=2037226452]
 unique_name_in_owner = true
 wait_time = 0.4
 one_shot = true
 autostart = true
 
-[node name="Banish Background" type="ColorRect" parent="."]
+[node name="Banish Background" type="ColorRect" parent="." unique_id=1621414876]
 unique_name_in_owner = true
 visible = false
 z_index = -1
