@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://bdjqo8qnjbg5j"]
+
+[ext_resource type="Script" uid="uid://dduxjgegenhbb" path="res://Scripts/Player/death_camera.gd" id="1_27pkg"]
+[ext_resource type="AudioStream" uid="uid://c4gemvjox78b6" path="res://Audio/SFX/Death.mp3" id="2_1hqhj"]
+[ext_resource type="Script" uid="uid://cc1romsfhth3n" path="res://Scripts/Utils/audio_player_deconflicter.gd" id="3_afrl0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_27pkg"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[node name="Death Camera" type="RigidBody3D" unique_id=1142921820]
+collision_layer = 0
+script = ExtResource("1_27pkg")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=27320449]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 0, 0.1254902)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=161377287]
+shape = SubResource("BoxShape3D_27pkg")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1442812769]
+unique_name_in_owner = true
+cull_mask = 5
+
+[node name="Death" type="AudioStreamPlayer3D" parent="." unique_id=1204150573]
+unique_name_in_owner = true
+stream = ExtResource("2_1hqhj")
+max_db = 6.0
+panning_strength = 0.0
+script = ExtResource("3_afrl0")
+metadata/_custom_type_script = "uid://cc1romsfhth3n"
+
+[node name="Timer" type="Timer" parent="." unique_id=1848591564]
+unique_name_in_owner = true
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

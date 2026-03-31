@@ -12,14 +12,7 @@ func _ready():
 	for button in buttons.get_children():
 		button.mouse_entered.connect(func(): if not has_focus(): grab_focus())
 
-func _unhandled_input(event):
-	if event.is_action_pressed("pause"):
-		if is_pause_menu_open:
-			close_pause_menu()
-		elif not get_tree().paused and not player.is_dead: # only open if nothing else paused the game and the player is still alive
-			open_pause_menu()
-
-func open_pause_menu() -> void:
+func open_death_menu() -> void:
 	is_pause_menu_open = true
 	get_tree().paused = true
 	visible = true
@@ -30,20 +23,9 @@ func open_pause_menu() -> void:
 	first_button.grab_focus()
 	first_button.initial_focus = false
 
-func close_pause_menu() -> void:
-	is_pause_menu_open = false
-	get_tree().paused = false
-	visible = false
-
-func _on_resume_pressed():
-	close_pause_menu()
-
 func _on_restart_pressed():
 	get_tree().paused = false
 	get_tree().reload_current_scene()
-
-func _on_settings_pressed():
-	pass # Replace with function body.
 
 func _on_quit_to_menu_pressed():
 	pass # Replace with function body.

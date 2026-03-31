@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://dhlu65iawdxvf"]
+[gd_scene format=3 uid="uid://dhlu65iawdxvf"]
 
 [ext_resource type="Script" uid="uid://c2cudrvyd4egp" path="res://Scripts/Player/player.gd" id="1_uvnfx"]
 [ext_resource type="Script" uid="uid://c4i7uubwdhgtw" path="res://Scripts/Player/weapons_manager.gd" id="2_htcer"]
@@ -42,6 +42,7 @@
 [ext_resource type="AudioStream" uid="uid://id1yt3y16cbi" path="res://Audio/SFX/Enemy Hit.mp3" id="37_m6ahd"]
 [ext_resource type="PackedScene" uid="uid://be63qadoubjih" path="res://Scenes/UI/boss_health.tscn" id="38_ei2r2"]
 [ext_resource type="PackedScene" uid="uid://ciwcgspt3ffn2" path="res://Scenes/UI/pause_menu.tscn" id="40_j6uq4"]
+[ext_resource type="PackedScene" uid="uid://bftja31phwkj2" path="res://Scenes/UI/death_menu.tscn" id="41_h5u0x"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mtuoh"]
 size = Vector3(1, 2, 1)
@@ -207,98 +208,97 @@ shader = ExtResource("12_r5xpd")
 [sub_resource type="ViewportTexture" id="ViewportTexture_r5xpd"]
 viewport_path = NodePath("CanvasLayer/Minimap/Mask/SubViewport")
 
-[node name="Player" type="CharacterBody3D" groups=["Player"]]
+[node name="Player" type="CharacterBody3D" unique_id=1837682708 groups=["Player"]]
 collision_layer = 2
 collision_mask = 21
 script = ExtResource("1_uvnfx")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1132027493]
+unique_name_in_owner = true
 shape = SubResource("BoxShape3D_mtuoh")
 
-[node name="Camera Controller" type="Node3D" parent="." node_paths=PackedStringArray("player", "rig")]
+[node name="Camera Controller" type="Node3D" parent="." unique_id=1800024889 node_paths=PackedStringArray("player", "rig")]
 unique_name_in_owner = true
 script = ExtResource("2_rcvs5")
 player = NodePath("..")
 rig = NodePath("Camera/Weapons Manager/FPS Rig")
 
-[node name="Camera" type="Camera3D" parent="Camera Controller"]
+[node name="Camera" type="Camera3D" parent="Camera Controller" unique_id=965399448]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 cull_mask = 5
 current = true
 fov = 100.0
 
-[node name="Outline" type="MeshInstance3D" parent="Camera Controller/Camera"]
+[node name="Outline" type="MeshInstance3D" parent="Camera Controller/Camera" unique_id=1148719567]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15)
 extra_cull_margin = 16384.0
 mesh = SubResource("QuadMesh_0u5uq")
 
-[node name="Weapons Manager" type="Node3D" parent="Camera Controller/Camera" node_paths=PackedStringArray("player")]
+[node name="Weapons Manager" type="Node3D" parent="Camera Controller/Camera" unique_id=1829549332 node_paths=PackedStringArray("player")]
 unique_name_in_owner = true
 script = ExtResource("2_htcer")
 player = NodePath("../../..")
 
-[node name="FPS Rig" type="Node3D" parent="Camera Controller/Camera/Weapons Manager"]
+[node name="FPS Rig" type="Node3D" parent="Camera Controller/Camera/Weapons Manager" unique_id=3041693]
 unique_name_in_owner = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera Controller/Camera/Weapons Manager/FPS Rig"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera Controller/Camera/Weapons Manager/FPS Rig" unique_id=1969625668]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_mtuoh")
-}
+libraries/ = SubResource("AnimationLibrary_mtuoh")
 
-[node name="Arm" type="Node3D" parent="Camera Controller/Camera/Weapons Manager/FPS Rig"]
+[node name="Arm" type="Node3D" parent="Camera Controller/Camera/Weapons Manager/FPS Rig" unique_id=1438917563]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0.37, -0.3, -0.5)
 
-[node name="Pocket Rocket" parent="Camera Controller/Camera/Weapons Manager/FPS Rig/Arm" instance=ExtResource("5_ixrbb")]
+[node name="Pocket Rocket" parent="Camera Controller/Camera/Weapons Manager/FPS Rig/Arm" unique_id=321913865 instance=ExtResource("5_ixrbb")]
 
-[node name="Minimap Icon" type="MeshInstance3D" parent="."]
+[node name="Minimap Icon" type="MeshInstance3D" parent="." unique_id=166767727]
 transform = Transform3D(-1, -8.742278e-08, 3.821371e-15, 0, -4.371139e-08, -1, 8.742278e-08, -1, 4.371139e-08, 0, 0, -0.2)
 visible = false
 layers = 2
 mesh = SubResource("PrismMesh_r5xpd")
 script = ExtResource("6_rcvs5")
 
-[node name="XP Detect" type="Area3D" parent="." node_paths=PackedStringArray("player")]
+[node name="XP Detect" type="Area3D" parent="." unique_id=854579962 node_paths=PackedStringArray("player")]
 collision_layer = 0
 collision_mask = 8
 script = ExtResource("9_gk6dx")
 player = NodePath("..")
 
-[node name="XP Collision" type="CollisionShape3D" parent="XP Detect"]
+[node name="XP Collision" type="CollisionShape3D" parent="XP Detect" unique_id=1612652102]
 unique_name_in_owner = true
 shape = SubResource("SphereShape3D_mtuoh")
 
-[node name="Passives" type="Node" parent="."]
+[node name="Passives" type="Node" parent="." unique_id=1415729429]
 unique_name_in_owner = true
 
-[node name="Abilities" type="Node" parent="." node_paths=PackedStringArray("player")]
+[node name="Abilities" type="Node" parent="." unique_id=445655097 node_paths=PackedStringArray("player")]
 unique_name_in_owner = true
 script = ExtResource("13_7g0yx")
 player = NodePath("..")
 
-[node name="Paused Check" type="Node" parent="."]
+[node name="Paused Check" type="Node" parent="." unique_id=182250736]
 process_mode = 3
 script = ExtResource("13_06tpx")
 
-[node name="IFrames" type="Timer" parent="."]
+[node name="IFrames" type="Timer" parent="." unique_id=422409080]
 unique_name_in_owner = true
 wait_time = 0.2
 one_shot = true
 
-[node name="Dash Cooldown" type="Timer" parent="."]
+[node name="Dash Cooldown" type="Timer" parent="." unique_id=1499919355]
 unique_name_in_owner = true
 wait_time = 2.0
 one_shot = true
 
-[node name="Shadow" type="Decal" parent="."]
+[node name="Shadow" type="Decal" parent="." unique_id=325062015]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
 size = Vector3(1.5, 3, 1.5)
 texture_albedo = ExtResource("19_aqm4k")
 cull_mask = 4
 
-[node name="Xp" type="AudioStreamPlayer3D" parent="."]
+[node name="Xp" type="AudioStreamPlayer3D" parent="." unique_id=1393177667]
 unique_name_in_owner = true
 process_mode = 3
 stream = ExtResource("26_ythyg")
@@ -308,7 +308,7 @@ panning_strength = 0.0
 bus = &"SFX"
 script = ExtResource("27_bmb2s")
 
-[node name="DamageTaken" type="AudioStreamPlayer3D" parent="."]
+[node name="DamageTaken" type="AudioStreamPlayer3D" parent="." unique_id=651178847]
 unique_name_in_owner = true
 stream = ExtResource("28_rukb4")
 max_db = 2.0
@@ -316,7 +316,7 @@ panning_strength = 0.0
 bus = &"SFX"
 script = ExtResource("27_bmb2s")
 
-[node name="Jump" type="AudioStreamPlayer3D" parent="."]
+[node name="Jump" type="AudioStreamPlayer3D" parent="." unique_id=1165878897]
 unique_name_in_owner = true
 stream = ExtResource("29_fcwna")
 max_db = 2.0
@@ -325,14 +325,14 @@ panning_strength = 0.0
 bus = &"SFX"
 script = ExtResource("27_bmb2s")
 
-[node name="Dash" type="AudioStreamPlayer3D" parent="."]
+[node name="Dash" type="AudioStreamPlayer3D" parent="." unique_id=1896345443]
 unique_name_in_owner = true
 stream = ExtResource("29_fcwna")
 panning_strength = 0.0
 bus = &"SFX"
 script = ExtResource("27_bmb2s")
 
-[node name="Land" type="AudioStreamPlayer3D" parent="."]
+[node name="Land" type="AudioStreamPlayer3D" parent="." unique_id=1450935692]
 unique_name_in_owner = true
 stream = ExtResource("30_1agin")
 pitch_scale = 2.0
@@ -340,14 +340,14 @@ panning_strength = 0.0
 bus = &"SFX"
 script = ExtResource("27_bmb2s")
 
-[node name="Pick Up" type="AudioStreamPlayer3D" parent="."]
+[node name="Pick Up" type="AudioStreamPlayer3D" parent="." unique_id=1989330805]
 unique_name_in_owner = true
 stream = ExtResource("31_1agin")
 panning_strength = 0.0
 bus = &"SFX"
 script = ExtResource("27_bmb2s")
 
-[node name="Hit" type="AudioStreamPlayer3D" parent="." node_paths=PackedStringArray("player")]
+[node name="Hit" type="AudioStreamPlayer3D" parent="." unique_id=1299640471 node_paths=PackedStringArray("player")]
 stream = ExtResource("37_m6ahd")
 attenuation_model = 3
 volume_db = -2.0
@@ -359,7 +359,7 @@ bus = &"SFX"
 script = ExtResource("29_2ahak")
 player = NodePath("..")
 
-[node name="Banish" type="AudioStreamPlayer3D" parent="."]
+[node name="Banish" type="AudioStreamPlayer3D" parent="." unique_id=1710620956]
 unique_name_in_owner = true
 stream = ExtResource("19_ei2r2")
 max_db = -2.0
@@ -369,10 +369,10 @@ bus = &"SFX"
 script = ExtResource("27_bmb2s")
 metadata/_custom_type_script = "uid://cc1romsfhth3n"
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=390341422]
 unique_name_in_owner = true
 
-[node name="HUD" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("player")]
+[node name="HUD" type="Control" parent="CanvasLayer" unique_id=2081373918 node_paths=PackedStringArray("player")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -385,7 +385,7 @@ player = NodePath("../..")
 marker = ExtResource("8_h8ma5")
 item_ui = ExtResource("24_m6ahd")
 
-[node name="Damage Indicators" type="Control" parent="CanvasLayer/HUD"]
+[node name="Damage Indicators" type="Control" parent="CanvasLayer/HUD" unique_id=1439140862]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -396,7 +396,7 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Crosshair" type="TextureRect" parent="CanvasLayer/HUD"]
+[node name="Crosshair" type="TextureRect" parent="CanvasLayer/HUD" unique_id=1333205945]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 1
@@ -413,7 +413,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_mtuoh")
 
-[node name="Timer" type="Label" parent="CanvasLayer/HUD"]
+[node name="Timer" type="Label" parent="CanvasLayer/HUD" unique_id=1523375413]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 1
 anchors_preset = 5
@@ -433,7 +433,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("7_0u5uq")
 
-[node name="Pick Up Label" type="Label" parent="CanvasLayer/HUD" node_paths=PackedStringArray("player")]
+[node name="Pick Up Label" type="Label" parent="CanvasLayer/HUD" unique_id=438410775 node_paths=PackedStringArray("player")]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
@@ -454,7 +454,7 @@ vertical_alignment = 1
 script = ExtResource("16_eksi1")
 player = NodePath("../../..")
 
-[node name="Buffs" type="HBoxContainer" parent="CanvasLayer/HUD"]
+[node name="Buffs" type="HBoxContainer" parent="CanvasLayer/HUD" unique_id=156416066]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 1
@@ -471,7 +471,7 @@ grow_horizontal = 0
 grow_vertical = 0
 theme_override_constants/separation = 8
 
-[node name="Bottom UI Container" type="HBoxContainer" parent="CanvasLayer/HUD"]
+[node name="Bottom UI Container" type="HBoxContainer" parent="CanvasLayer/HUD" unique_id=271454202]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.017
@@ -488,11 +488,11 @@ pivot_offset = Vector2(928, 88)
 theme_override_constants/separation = 32
 metadata/_edit_use_anchors_ = true
 
-[node name="Control" type="Control" parent="CanvasLayer/HUD/Bottom UI Container"]
+[node name="Control" type="Control" parent="CanvasLayer/HUD/Bottom UI Container" unique_id=1224526528]
 custom_minimum_size = Vector2(368, 0)
 layout_mode = 2
 
-[node name="Ability Slots" type="HBoxContainer" parent="CanvasLayer/HUD/Bottom UI Container/Control"]
+[node name="Ability Slots" type="HBoxContainer" parent="CanvasLayer/HUD/Bottom UI Container/Control" unique_id=149872375]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
@@ -504,7 +504,7 @@ offset_bottom = 0.016000748
 pivot_offset = Vector2(0, 64)
 theme_override_constants/separation = 12
 
-[node name="XP Bar" type="ProgressBar" parent="CanvasLayer/HUD/Bottom UI Container/Control" node_paths=PackedStringArray("player")]
+[node name="XP Bar" type="ProgressBar" parent="CanvasLayer/HUD/Bottom UI Container/Control" unique_id=1751523002 node_paths=PackedStringArray("player")]
 process_mode = 3
 layout_mode = 1
 anchors_preset = -1
@@ -518,7 +518,7 @@ step = 0.001
 script = ExtResource("10_74mp2")
 player = NodePath("../../../../..")
 
-[node name="Level" type="Label" parent="CanvasLayer/HUD/Bottom UI Container/Control/XP Bar" node_paths=PackedStringArray("player")]
+[node name="Level" type="Label" parent="CanvasLayer/HUD/Bottom UI Container/Control/XP Bar" unique_id=557556009 node_paths=PackedStringArray("player")]
 unique_name_in_owner = true
 process_mode = 3
 custom_minimum_size = Vector2(128, 0)
@@ -542,7 +542,7 @@ script = ExtResource("11_oikmp")
 player = NodePath("../../../../../..")
 metadata/_edit_use_anchors_ = true
 
-[node name="Health Bar" type="ProgressBar" parent="CanvasLayer/HUD/Bottom UI Container/Control" node_paths=PackedStringArray("player")]
+[node name="Health Bar" type="ProgressBar" parent="CanvasLayer/HUD/Bottom UI Container/Control" unique_id=91593187 node_paths=PackedStringArray("player")]
 unique_name_in_owner = true
 layout_mode = 0
 offset_top = 40.0
@@ -557,7 +557,7 @@ show_percentage = false
 script = ExtResource("14_h8ma5")
 player = NodePath("../../../../..")
 
-[node name="Health Text" type="Label" parent="CanvasLayer/HUD/Bottom UI Container/Control/Health Bar"]
+[node name="Health Text" type="Label" parent="CanvasLayer/HUD/Bottom UI Container/Control/Health Bar" unique_id=897944777]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -578,14 +578,14 @@ text = "100 / 100"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Items" type="ColorRect" parent="CanvasLayer/HUD/Bottom UI Container" node_paths=PackedStringArray("player")]
+[node name="Items" type="ColorRect" parent="CanvasLayer/HUD/Bottom UI Container" unique_id=1257792483 node_paths=PackedStringArray("player")]
 layout_mode = 2
 size_flags_horizontal = 3
 color = Color(1, 1, 1, 0.03137255)
 script = ExtResource("17_qr1w5")
 player = NodePath("../../../..")
 
-[node name="Border" type="NinePatchRect" parent="CanvasLayer/HUD/Bottom UI Container/Items"]
+[node name="Border" type="NinePatchRect" parent="CanvasLayer/HUD/Bottom UI Container/Items" unique_id=539178565]
 modulate = Color(1, 1, 1, 0.2509804)
 layout_mode = 1
 anchors_preset = 15
@@ -599,7 +599,7 @@ patch_margin_top = 4
 patch_margin_right = 4
 patch_margin_bottom = 4
 
-[node name="Items Container" type="GridContainer" parent="CanvasLayer/HUD/Bottom UI Container/Items" node_paths=PackedStringArray("player")]
+[node name="Items Container" type="GridContainer" parent="CanvasLayer/HUD/Bottom UI Container/Items" unique_id=917021562 node_paths=PackedStringArray("player")]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
@@ -615,7 +615,7 @@ columns = 21
 script = ExtResource("19_ythyg")
 player = NodePath("../../../../..")
 
-[node name="Coin & Kill Count" type="HBoxContainer" parent="CanvasLayer/HUD"]
+[node name="Coin & Kill Count" type="HBoxContainer" parent="CanvasLayer/HUD" unique_id=75876717]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.43300003
@@ -625,17 +625,17 @@ offset_right = 0.6399536
 offset_bottom = 8.279995
 theme_override_constants/separation = 0
 
-[node name="Kill Count" type="HBoxContainer" parent="CanvasLayer/HUD/Coin & Kill Count" node_paths=PackedStringArray("player")]
+[node name="Kill Count" type="HBoxContainer" parent="CanvasLayer/HUD/Coin & Kill Count" unique_id=1145477625 node_paths=PackedStringArray("player")]
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("20_mwii3")
 player = NodePath("../../../..")
 
-[node name="Icon" type="TextureRect" parent="CanvasLayer/HUD/Coin & Kill Count/Kill Count"]
+[node name="Icon" type="TextureRect" parent="CanvasLayer/HUD/Coin & Kill Count/Kill Count" unique_id=129591705]
 layout_mode = 2
 texture = ExtResource("20_2jnj1")
 
-[node name="Label" type="Label" parent="CanvasLayer/HUD/Coin & Kill Count/Kill Count"]
+[node name="Label" type="Label" parent="CanvasLayer/HUD/Coin & Kill Count/Kill Count" unique_id=1123578155]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -645,17 +645,17 @@ theme_override_font_sizes/font_size = 48
 text = "0"
 vertical_alignment = 1
 
-[node name="Coin Count" type="HBoxContainer" parent="CanvasLayer/HUD/Coin & Kill Count" node_paths=PackedStringArray("player")]
+[node name="Coin Count" type="HBoxContainer" parent="CanvasLayer/HUD/Coin & Kill Count" unique_id=1116938884 node_paths=PackedStringArray("player")]
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("22_2aanf")
 player = NodePath("../../../..")
 
-[node name="Icon" type="TextureRect" parent="CanvasLayer/HUD/Coin & Kill Count/Coin Count"]
+[node name="Icon" type="TextureRect" parent="CanvasLayer/HUD/Coin & Kill Count/Coin Count" unique_id=1114188408]
 layout_mode = 2
 texture = ExtResource("21_enij7")
 
-[node name="Label" type="Label" parent="CanvasLayer/HUD/Coin & Kill Count/Coin Count"]
+[node name="Label" type="Label" parent="CanvasLayer/HUD/Coin & Kill Count/Coin Count" unique_id=1290502136]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -665,15 +665,15 @@ theme_override_font_sizes/font_size = 48
 text = "0"
 vertical_alignment = 1
 
-[node name="Meta Coin Count3" type="HBoxContainer" parent="CanvasLayer/HUD/Coin & Kill Count"]
+[node name="Meta Coin Count3" type="HBoxContainer" parent="CanvasLayer/HUD/Coin & Kill Count" unique_id=749886323]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Icon" type="TextureRect" parent="CanvasLayer/HUD/Coin & Kill Count/Meta Coin Count3"]
+[node name="Icon" type="TextureRect" parent="CanvasLayer/HUD/Coin & Kill Count/Meta Coin Count3" unique_id=1962626103]
 layout_mode = 2
 texture = ExtResource("21_enij7")
 
-[node name="Label" type="Label" parent="CanvasLayer/HUD/Coin & Kill Count/Meta Coin Count3"]
+[node name="Label" type="Label" parent="CanvasLayer/HUD/Coin & Kill Count/Meta Coin Count3" unique_id=72327627]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -683,7 +683,7 @@ theme_override_font_sizes/font_size = 48
 text = "0"
 vertical_alignment = 1
 
-[node name="Boss Health Bars" type="HBoxContainer" parent="CanvasLayer/HUD"]
+[node name="Boss Health Bars" type="HBoxContainer" parent="CanvasLayer/HUD" unique_id=1600276578]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.133
@@ -698,14 +698,20 @@ pivot_offset = Vector2(704, 0)
 script = ExtResource("37_ixrbb")
 boss_health_bar = ExtResource("38_ei2r2")
 
-[node name="Pause Menu" parent="CanvasLayer/HUD" instance=ExtResource("40_j6uq4")]
+[node name="Pause Menu" parent="CanvasLayer/HUD" unique_id=1857909766 node_paths=PackedStringArray("player") instance=ExtResource("40_j6uq4")]
+visible = false
+layout_mode = 1
+player = NodePath("../../..")
+
+[node name="Death Menu" parent="CanvasLayer/HUD" unique_id=1729089376 instance=ExtResource("41_h5u0x")]
+unique_name_in_owner = true
 visible = false
 layout_mode = 1
 
-[node name="Upgrade" type="Node" parent="CanvasLayer"]
+[node name="Upgrade" type="Node" parent="CanvasLayer" unique_id=463688370]
 unique_name_in_owner = true
 
-[node name="Minimap" type="PanelContainer" parent="CanvasLayer"]
+[node name="Minimap" type="PanelContainer" parent="CanvasLayer" unique_id=1983173173]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -717,21 +723,21 @@ grow_horizontal = 0
 pivot_offset = Vector2(192, 0)
 theme_override_styles/panel = SubResource("StyleBoxFlat_dey5f")
 
-[node name="Mask" type="TextureRect" parent="CanvasLayer/Minimap"]
+[node name="Mask" type="TextureRect" parent="CanvasLayer/Minimap" unique_id=1849642703]
 material = SubResource("ShaderMaterial_ks1b7")
 layout_mode = 2
 mouse_filter = 2
 texture = SubResource("ViewportTexture_r5xpd")
 expand_mode = 1
 
-[node name="SubViewport" type="SubViewport" parent="CanvasLayer/Minimap/Mask"]
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/Minimap/Mask" unique_id=1950263519]
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(192, 192)
 render_target_clear_mode = 1
 render_target_update_mode = 4
 
-[node name="Camera3D" type="Camera3D" parent="CanvasLayer/Minimap/Mask/SubViewport" node_paths=PackedStringArray("player")]
+[node name="Camera3D" type="Camera3D" parent="CanvasLayer/Minimap/Mask/SubViewport" unique_id=1832365676 node_paths=PackedStringArray("player")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 50, 0)
 cull_mask = 2
 script = ExtResource("12_dey5f")

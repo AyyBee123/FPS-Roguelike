@@ -38,11 +38,13 @@ signal meta_coin_count_changed(amount)
 @onready var land = %Land
 @onready var pick_up = %"Pick Up"
 @onready var buffs = %Buffs
+@onready var death_menu = %"Death Menu"
 
 const Stats = preload("uid://d0a7frb8gvg68")
 const PASSIVE_MENU = preload("uid://clamkav36kau4")
 const ABILITY_SLOT = preload("uid://y78kmes1pij6")
 const DAMAGE_INDICATOR = preload("uid://cmwgutqrbavj5")
+const DEATH_CAMERA = preload("uid://bdjqo8qnjbg5j")
 
 var stats: Stats
 var XP_NEEDED: float = 5
@@ -224,6 +226,8 @@ func _input(event):
 			pickup.banish()
 			banish_audio.play_deconflicted()
 			banish_amount -= 1
+	if event.is_action_pressed("kill") and OS.has_feature("editor"):
+		die()
 
 func get_pickup_collision():
 	var viewport = get_viewport().get_visible_rect().size
@@ -269,7 +273,20 @@ func die():
 	if is_dead: return
 	is_dead = true
 	
-	print("L")
+	set_physics_process(false)
+	camera_controller.set_physics_process(false)
+	weapons_manager.set_physics_process(false)
+	weapons_manager.visible = false
+	
+	var death_camera = DEATH_CAMERA.instantiate()
+	death_camera.player = self
+	death_camera.rotation = camera.rotation
+	%CollisionShape3D.disabled = true
+	get_tree().current_scene.add_child(death_camera)
+	death_camera.global_transform = camera.global_transform
+
+func open_death_menu():
+	death_menu.open_death_menu()
 
 func get_health_difference(stat, old_value, new_value):
 	if stat != "Max_Health": return
