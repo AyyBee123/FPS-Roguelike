@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://ho34etgm3m73"]
+[gd_scene format=4 uid="uid://ho34etgm3m73"]
 
 [ext_resource type="Script" uid="uid://cm5aas8c3bkwd" path="res://Scripts/Projectiles/Player/micro_rocket.gd" id="1_p0cub"]
 [ext_resource type="PackedScene" uid="uid://d2rqsv85ki5y3" path="res://Scenes/VFX/micro_missile_blast.tscn" id="2_5bbws"]
@@ -176,7 +176,7 @@ material = SubResource("ShaderMaterial_p8td0")
 [sub_resource type="SphereShape3D" id="SphereShape3D_p0cub"]
 radius = 4.0
 
-[node name="Micro Rocket" type="RigidBody3D" groups=["Micro Missile"]]
+[node name="Micro Rocket" type="RigidBody3D" unique_id=1055627703 groups=["Micro Missile"]]
 collision_layer = 0
 collision_mask = 5
 mass = 0.1
@@ -191,20 +191,20 @@ IMPACT = ExtResource("2_5bbws")
 impact_color = Color(1, 0.47058824, 0.4, 1)
 impact_size = 0.667
 
-[node name="CollisionShape" type="CollisionShape3D" parent="."]
+[node name="CollisionShape" type="CollisionShape3D" parent="." unique_id=1857188443]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 1.4210855e-14, 0, 1, 0, -1.4210855e-14, 0, 1, 0, 0, 0)
 shape = SubResource("SphereShape3D_c2kk3")
 
-[node name="Mesh" type="MeshInstance3D" parent="."]
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=958108953]
 transform = Transform3D(-0.06, 0, -9.059748e-09, 0, 0.06, 0, 9.059748e-09, 0, -0.06, 0, 0, 0)
 mesh = SubResource("ArrayMesh_c2kk3")
 
-[node name="Lifetime" type="Timer" parent="."]
+[node name="Lifetime" type="Timer" parent="." unique_id=115945261]
 unique_name_in_owner = true
 one_shot = true
 
-[node name="GPUTrail3D" type="GPUParticles3D" parent="."]
+[node name="GPUTrail3D" type="GPUParticles3D" parent="." unique_id=1850465444]
 transform = Transform3D(0.06, 0, 0, 0, 0.06, 0, 0, 0, 0.06, 0, 0, 0.1374523)
 amount = 36
 lifetime = 36.0
@@ -221,23 +221,23 @@ billboard = true
 _defaults_have_been_set = true
 metadata/_custom_type_script = "uid://b27gxyjpmtppf"
 
-[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="." unique_id=1986116705]
 unique_name_in_owner = true
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Area3D" type="Area3D" parent="." unique_id=2030332641]
 unique_name_in_owner = true
 collision_layer = 0
 collision_mask = 4
 monitorable = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1029290008]
 shape = SubResource("SphereShape3D_p0cub")
 
-[node name="Homing Buffer" type="Timer" parent="."]
+[node name="Homing Buffer" type="Timer" parent="." unique_id=1270278001]
+unique_name_in_owner = true
 wait_time = 0.2
 one_shot = true
-autostart = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_entered"]

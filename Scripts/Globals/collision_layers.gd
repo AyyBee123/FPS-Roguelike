@@ -1,11 +1,11 @@
 extends Node
 
 # dictionary automatically built from ProjectSettings layer names
-var layer_bits := {}
+var layer_bits: Dictionary = {}
 
 func _ready():
 	# detect both 2D and 3D layer settings
-	var prefix := "layer_names/3d_physics"
+	var prefix: String = "layer_names/3d_physics"
 	if not ProjectSettings.has_setting(prefix + "/layer_1"):
 		prefix = "layer_names/2d_physics"
 	
@@ -16,7 +16,7 @@ func _ready():
 			layer_bits[name] = 1 << (i - 1)
 
 func get_layer(names: Array) -> int:
-	var mask := 0
+	var mask: int = 0
 	for n in names:
 		if layer_bits.has(n):
 			mask |= layer_bits[n]
