@@ -227,7 +227,7 @@ func _input(event):
 			banish_audio.play_deconflicted()
 			banish_amount -= 1
 	if event.is_action_pressed("kill") and OS.has_feature("editor"):
-		die()
+		hit(current_health, Vector3.ZERO)
 
 func get_pickup_collision():
 	var viewport = get_viewport().get_visible_rect().size
