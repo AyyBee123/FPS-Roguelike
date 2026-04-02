@@ -16,7 +16,7 @@ script = ExtResource("1_o14dv")
 [node name="Back" type="AudioStreamPlayer" parent="." unique_id=1098155960]
 unique_name_in_owner = true
 stream = ExtResource("2_u7lva")
-volume_db = 8.0
+volume_db = 4.0
 pitch_scale = 2.0
 bus = &"SFX"
 

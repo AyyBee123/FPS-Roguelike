@@ -103,7 +103,7 @@ vertical_alignment = 1
 [node name="Back" type="AudioStreamPlayer" parent="." unique_id=1084786918]
 unique_name_in_owner = true
 stream = ExtResource("3_qyryt")
-volume_db = 8.0
+volume_db = 4.0
 pitch_scale = 2.0
 bus = &"SFX"
 
