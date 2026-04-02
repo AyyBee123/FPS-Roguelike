@@ -4,9 +4,9 @@ extends Control
 
 @onready var buttons = %Buttons
 @onready var confirm: AudioStreamPlayer = %Confirm
+@onready var back: AudioStreamPlayer = %Back
 @onready var pause: AudioStreamPlayer = %Pause
 @onready var unpause: AudioStreamPlayer = %Unpause
-@onready var back: AudioStreamPlayer = %Back
 
 var is_pause_menu_open: bool = false
 var is_changing_scene: bool = false

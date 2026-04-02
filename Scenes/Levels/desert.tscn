@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://caq32sajxn8pu" path="res://Scripts/Globals/item_pool.gd" id="12_t1ox7"]
 [ext_resource type="Script" uid="uid://c3tr181aifqm8" path="res://Scripts/Globals/ability_pool.gd" id="13_np4fc"]
 [ext_resource type="Script" uid="uid://3fq6hfdn5n35" path="res://Scripts/Globals/passive_pool.gd" id="14_glso8"]
+[ext_resource type="PackedScene" uid="uid://ukgrpto2cajc" path="res://Scenes/Misc/xp.tscn" id="15_t1ox7"]
 
 [sub_resource type="Resource" id="Resource_ecsxk"]
 script = ExtResource("2_4dovk")
@@ -2209,6 +2210,10 @@ script = ExtResource("13_np4fc")
 [node name="Passive Pool" type="Node" parent="Pools" unique_id=1836986451]
 unique_name_in_owner = true
 script = ExtResource("14_glso8")
+
+[node name="XP" parent="Pools" unique_id=1686531915 instance=ExtResource("15_t1ox7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.681876, 1.9999018, -0.5310507)
+xp_amount = 5
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1064311411]
 unique_name_in_owner = true

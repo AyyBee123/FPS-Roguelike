@@ -14,7 +14,6 @@ func _ready():
 	amount.text = "x%d" % player.skip_amount
 	coin_amount.text = "+%d" % COIN_AMOUNT
 	mouse_entered.connect(func(): if not has_focus(): grab_focus())
-	focus_exited.connect(func(): if player.skip_amount <= 0: menu.upgrade_list.get_children()[2].grab_focus())
 
 func _physics_process(delta):
 	visible = player.skip_amount > 0
@@ -22,6 +21,7 @@ func _physics_process(delta):
 	amount.text = "x%d" % player.skip_amount
 
 func _on_pressed():
+	Globals.sfx.confirm.play_deconflicted()
 	player.skip_amount -= 1
 	player.coin_count += COIN_AMOUNT # * player.coin_multiplier, add later
 	get_tree().paused = false

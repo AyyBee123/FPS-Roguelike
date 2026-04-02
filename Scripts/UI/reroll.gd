@@ -18,6 +18,7 @@ func _physics_process(delta):
 	amount.text = "x%d" % player.reroll_amount
 
 func _on_pressed():
+	Globals.sfx.confirm.play_deconflicted()
 	menu.current_list.clear()
 	for upgrade in menu.upgrade_list.get_children():
 		upgrade.roll()

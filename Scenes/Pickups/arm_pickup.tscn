@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ba7erkb81ks3u"]
+[gd_scene format=3 uid="uid://ba7erkb81ks3u"]
 
 [ext_resource type="Script" uid="uid://bkw7gdmdy7v3x" path="res://Scripts/Pickups/arm_pickup.gd" id="1_ybiw2"]
 [ext_resource type="Shader" uid="uid://cb3lg1sx3l43m" path="res://Shaders/object_outline.gdshader" id="2_l3y0a"]
@@ -15,32 +15,32 @@ albedo_color = Color(0.5262721, 0.28343323, 1, 1)
 material = SubResource("StandardMaterial3D_djrlg")
 radius = 1.2
 
-[node name="Arm Pickup" type="RigidBody3D" groups=["Arm Pickup"]]
+[node name="Arm Pickup" type="RigidBody3D" unique_id=1411206530 groups=["Arm Pickup"]]
 collision_layer = 8
 gravity_scale = 0.0
 script = ExtResource("1_ybiw2")
 shader = ExtResource("2_l3y0a")
 
-[node name="CollisionShape" type="CollisionShape3D" parent="."]
+[node name="CollisionShape" type="CollisionShape3D" parent="." unique_id=136583287]
 unique_name_in_owner = true
 transform = Transform3D(1.255, 0, 0, 0, 1.255, 0, 0, 0, 1.255, 0, 0, 0)
 
-[node name="Visual Offset" type="Node3D" parent="."]
+[node name="Visual Offset" type="Node3D" parent="." unique_id=370961647]
 unique_name_in_owner = true
 
-[node name="Minimap Icon" type="MeshInstance3D" parent="."]
+[node name="Minimap Icon" type="MeshInstance3D" parent="." unique_id=368644973]
 visible = false
 layers = 2
 mesh = SubResource("SphereMesh_ybiw2")
 script = ExtResource("2_ybiw2")
 
-[node name="Shadow" type="Decal" parent="."]
+[node name="Shadow" type="Decal" parent="." unique_id=1778602263]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, -1, 0)
 size = Vector3(1, 2, 1)
 texture_albedo = ExtResource("3_xmv11")
 cull_mask = 4
 
-[node name="Jingle" type="AudioStreamPlayer3D" parent="."]
+[node name="Jingle" type="AudioStreamPlayer3D" parent="." unique_id=880316232]
 unique_name_in_owner = true
 stream = ExtResource("5_6qjca")
 pitch_scale = 2.5

@@ -3,9 +3,70 @@
 [ext_resource type="Script" uid="uid://b2ifym0g4fb3g" path="res://Scripts/UI/main_menu.gd" id="1_o14dv"]
 [ext_resource type="FontFile" uid="uid://bfhwilg3cupoh" path="res://Fonts/Name Font.ttf" id="2_mrfpk"]
 [ext_resource type="AudioStream" uid="uid://b6l06tw8bieby" path="res://Audio/SFX/Back.mp3" id="2_u7lva"]
+[ext_resource type="Script" uid="uid://e8gk7vklxd3s" path="res://Scripts/UI/button.gd" id="3_4pqbp"]
 [ext_resource type="AudioStream" uid="uid://bgaecf6nbc3b2" path="res://Audio/SFX/Confirm.mp3" id="3_mrfpk"]
 
-[node name="Main Menu" type="Control" unique_id=415221289]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gih0s"]
+load_path = "res://.godot/imported/Passive Selection.png-130c78e84a106df4972e519c7de434a5.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oykix"]
+texture = SubResource("CompressedTexture2D_gih0s")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_k33u3"]
+load_path = "res://.godot/imported/Passive Selection Focus.png-ac61f7aeefd7277ef71aa15d4436febd.s3tc.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_702e2"]
+texture = SubResource("CompressedTexture2D_k33u3")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lrjdf"]
+load_path = "res://.godot/imported/Passive Selection Hover.png-69ee582e6ab3910328cccf9973484c83.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_23me3"]
+texture = SubResource("CompressedTexture2D_lrjdf")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wqme5"]
+load_path = "res://.godot/imported/Passive Selection.png-130c78e84a106df4972e519c7de434a5.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yq7um"]
+texture = SubResource("CompressedTexture2D_wqme5")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jewm6"]
+load_path = "res://.godot/imported/Passive Selection Press.png-2e838eaa87220e30923ef3cfb834a976.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hanoc"]
+texture = SubResource("CompressedTexture2D_jewm6")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+
+[sub_resource type="Theme" id="Theme_cejvf"]
+Button/colors/font_disabled_color = Color(0.88, 0.88, 0.88, 1)
+Button/styles/disabled = SubResource("StyleBoxTexture_oykix")
+Button/styles/focus = SubResource("StyleBoxTexture_702e2")
+Button/styles/hover = SubResource("StyleBoxTexture_23me3")
+Button/styles/normal = SubResource("StyleBoxTexture_yq7um")
+Button/styles/pressed = SubResource("StyleBoxTexture_hanoc")
+
+[node name="Main Menu" type="Node3D" unique_id=2074406089]
+
+[node name="Menu" type="Control" parent="." unique_id=545613794]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,7 +75,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_o14dv")
 
-[node name="Title" type="Label" parent="." unique_id=784502609]
+[node name="Title" type="Label" parent="Menu" unique_id=784502609]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -26,6 +87,57 @@ theme_override_font_sizes/font_size = 128
 text = "Saif is a Chicken"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="Menu/Title" unique_id=1817595823]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.033
+anchor_top = 3.4
+anchor_right = 0.033
+anchor_bottom = 3.4
+offset_left = 0.6399994
+offset_top = -352.0
+offset_right = 640.64
+offset_bottom = 352.0
+pivot_offset = Vector2(-0.64, 0)
+pivot_offset_ratio = Vector2(0, 0.5)
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="Play" type="Button" parent="Menu/Title/Buttons" unique_id=990389709]
+custom_minimum_size = Vector2(640, 96)
+layout_mode = 2
+size_flags_vertical = 4
+theme = SubResource("Theme_cejvf")
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("2_mrfpk")
+theme_override_font_sizes/font_size = 48
+text = "Play
+"
+script = ExtResource("3_4pqbp")
+
+[node name="Settings" type="Button" parent="Menu/Title/Buttons" unique_id=727483678]
+custom_minimum_size = Vector2(640, 96)
+layout_mode = 2
+size_flags_vertical = 4
+theme = SubResource("Theme_cejvf")
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("2_mrfpk")
+theme_override_font_sizes/font_size = 48
+text = "Settings"
+script = ExtResource("3_4pqbp")
+
+[node name="Quit to Desktop" type="Button" parent="Menu/Title/Buttons" unique_id=1298595342]
+custom_minimum_size = Vector2(640, 96)
+layout_mode = 2
+size_flags_vertical = 4
+theme = SubResource("Theme_cejvf")
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("2_mrfpk")
+theme_override_font_sizes/font_size = 48
+text = "Quit to Desktop"
+script = ExtResource("3_4pqbp")
 
 [node name="Back" type="AudioStreamPlayer" parent="." unique_id=1098155960]
 unique_name_in_owner = true
@@ -39,3 +151,11 @@ unique_name_in_owner = true
 stream = ExtResource("3_mrfpk")
 pitch_scale = 2.0
 bus = &"SFX"
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1102671115]
+cull_mask = 5
+current = true
+
+[connection signal="pressed" from="Menu/Title/Buttons/Play" to="Menu" method="_on_play_pressed"]
+[connection signal="pressed" from="Menu/Title/Buttons/Settings" to="Menu" method="_on_settings_pressed"]
+[connection signal="pressed" from="Menu/Title/Buttons/Quit to Desktop" to="Menu" method="_on_quit_to_desktop_pressed"]
