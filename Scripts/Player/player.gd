@@ -58,7 +58,6 @@ var was_on_floor: bool = false
 var speed_before_landing: float = 0.0
 var friction: float = 50.0
 var dash_speed: float = 100.0
-var dash_cooldown: float = 2.0
 var dash_charges: Array[float] = []
 var dash_bar_array: Array[ProgressBar] = []
 var sway_input: Vector2 # value gotten from the camera controller script
@@ -113,6 +112,9 @@ var DASHES: int:
 	get:
 		set_dash_charges(stats.get_stat("Dashes"))
 		return stats.get_stat("Dashes")
+var DASH_COOLDOWN: float:
+	get:
+		return stats.get_stat("Dash_Cooldown")
 
 var current_health: float
 var current_jumps: int = 0 # the current number of extra jumps that can be used
@@ -204,7 +206,7 @@ func _physics_process(delta):
 	
 	for i in range(dash_bar_array.size()):
 		var cooldown = dash_charges[i]
-		dash_bar_array[i].value = dash_bar_array[i].max_value - (cooldown / dash_cooldown)
+		dash_bar_array[i].value = dash_bar_array[i].max_value - (cooldown / DASH_COOLDOWN)
 	
 	move_and_slide()
 	
@@ -246,9 +248,7 @@ func _input(event):
 			banish_audio.play_deconflicted()
 			banish_amount -= 1
 	if event.is_action_pressed("kill") and OS.has_feature("editor"):
-		stats.add_flat_stat("Dashes", 1)
-		print(DASHES)
-		#hit(current_health, Vector3.ZERO)
+		hit(current_health, Vector3.ZERO)
 
 func get_pickup_collision():
 	var viewport = get_viewport().get_visible_rect().size
@@ -294,7 +294,7 @@ func try_dash():
 	var idx = get_available_charge()
 	if idx == -1:
 		return false
-	dash_charges[idx] = dash_cooldown
+	dash_charges[idx] = DASH_COOLDOWN
 	return true
 
 func get_available_charge() -> int:
