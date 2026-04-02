@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://crnx73g4cc4jh"]
+[gd_scene format=3 uid="uid://crnx73g4cc4jh"]
 
 [ext_resource type="Script" uid="uid://dkmdv02ycbtcu" path="res://Scripts/Passive Items/appendage_projection.gd" id="1_pcany"]
 [ext_resource type="PackedScene" uid="uid://4g4sp84tgd3i" path="res://Scenes/VFX/appendage_projection.tscn" id="2_pxp5o"]
@@ -129,11 +129,61 @@ amount = 50.0
 type = "+"
 metadata/_custom_type_script = "uid://crdmjkiq4812g"
 
-[node name="Appendage Projection" type="Node"]
+[node name="Appendage Projection" type="Node" unique_id=1051751307]
 script = ExtResource("1_pcany")
 projection = ExtResource("2_pxp5o")
 icon = ExtResource("3_jw31w")
 ability_name = "Appendage Projection"
 unlocked_by_default = false
-description = "Creates a copy of your currently equipped weapon. The weapon cannot be changed afterwards."
+description = "Creates a copy of your currently equipped weapon that deals 50% damage. The weapon cannot be changed afterwards."
 ability_upgrades = Array[ExtResource("3_pxp5o")]([SubResource("Resource_vn344"), SubResource("Resource_kerm7"), SubResource("Resource_avnyv"), SubResource("Resource_l8ju7"), SubResource("Resource_pcany"), SubResource("Resource_pxp5o"), SubResource("Resource_jc7ow"), SubResource("Resource_y06qt"), SubResource("Resource_jw31w"), SubResource("Resource_o681e"), SubResource("Resource_qwlk7"), SubResource("Resource_ncwsp"), SubResource("Resource_anvmm"), SubResource("Resource_vom1c"), SubResource("Resource_vx8hj"), SubResource("Resource_7lay8")])
+stats = {
+"Crit_Chance": {
+"+": 0.0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1.0
+},
+"Crit_Damage": {
+"+": 0.0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1.0
+},
+"Damage": {
+"+": 0.0,
+"base": 1.0,
+"flat": 0.0,
+"x": 0.5
+},
+"Fire_Rate": {
+"+": 0.0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1.0
+},
+"Projectile_Count": {
+"+": 0.0,
+"base": 1,
+"flat": 0,
+"x": 1.0
+},
+"Range": {
+"+": 0.0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1.0
+},
+"Speed": {
+"+": 0.0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1.0
+},
+"Splash_Radius": {
+"+": 0.0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1.0
+}
+}
