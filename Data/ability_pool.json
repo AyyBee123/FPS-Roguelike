@@ -7,8 +7,5 @@
 	},
 	{
 		"path": "res://Scenes/Abilities/lightning_strike.tscn"
-	},
-	{
-		"path": "res://Scenes/Abilities/micro_missile.tscn"
 	}
 ]

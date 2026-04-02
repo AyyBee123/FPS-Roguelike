@@ -25,7 +25,6 @@ func _physics_process(delta):
 	elif not %Area3D.get_overlapping_bodies().is_empty() and %Area3D.get_overlapping_bodies()[0] is Enemy:
 		target = %Area3D.get_overlapping_bodies()[0]
 
-
 func has_line_of_sight(target: Node3D) -> bool:
 	var space_state = get_world_3d().direct_space_state
 	
