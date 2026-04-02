@@ -33,7 +33,6 @@
 [ext_resource type="PackedScene" uid="uid://dyikjq0bby1a7" path="res://Scenes/UI/Item Pick UI.tscn" id="24_m6ahd"]
 [ext_resource type="AudioStream" uid="uid://bx08sy2wixqjv" path="res://Audio/SFX/XP.mp3" id="26_ythyg"]
 [ext_resource type="Script" uid="uid://cc1romsfhth3n" path="res://Scripts/Utils/audio_player_deconflicter.gd" id="27_bmb2s"]
-[ext_resource type="Script" uid="uid://diqdjwd6wel1v" path="res://Scripts/UI/dashes.gd" id="27_v37cr"]
 [ext_resource type="PackedScene" uid="uid://sdkqut4wd3sl" path="res://Scenes/UI/dash_cooldown_bar.tscn" id="28_8d028"]
 [ext_resource type="AudioStream" uid="uid://k6deuqev1ba0" path="res://Audio/SFX/Damage Taken.mp3" id="28_rukb4"]
 [ext_resource type="Script" uid="uid://b8nkqqq3wwo7l" path="res://Scripts/Misc/hit_audio.gd" id="29_2ahak"]
@@ -512,11 +511,9 @@ offset_top = 0.032001495
 offset_bottom = -8.032
 pivot_offset_ratio = Vector2(0, 1)
 theme_override_constants/separation = 8
-script = ExtResource("27_v37cr")
 
-[node name="Dash Cooldown Bar" parent="CanvasLayer/HUD/Bottom UI Container/Control/Dashes" unique_id=1352444702 node_paths=PackedStringArray("player") instance=ExtResource("28_8d028")]
+[node name="Dash Cooldown Bar" parent="CanvasLayer/HUD/Bottom UI Container/Control/Dashes" unique_id=1352444702 instance=ExtResource("28_8d028")]
 layout_mode = 2
-player = NodePath("../../../../../..")
 
 [node name="XP Bar" type="ProgressBar" parent="CanvasLayer/HUD/Bottom UI Container/Control" unique_id=1751523002 node_paths=PackedStringArray("player")]
 process_mode = 3

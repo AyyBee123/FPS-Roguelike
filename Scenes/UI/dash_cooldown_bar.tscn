@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://sdkqut4wd3sl"]
 
 [ext_resource type="Texture2D" uid="uid://bvrlxjkxyuct7" path="res://Assets/UI/Health Bar.png" id="1_we0jn"]
-[ext_resource type="Script" uid="uid://dlsw6yllu5s7k" path="res://Scripts/UI/dash_cooldown_bar.gd" id="2_g6le7"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h5u0x"]
 texture = ExtResource("1_we0jn")
@@ -21,15 +20,13 @@ ProgressBar/colors/font_color = Color(0.95, 0.95, 0.95, 0)
 ProgressBar/styles/background = SubResource("StyleBoxTexture_h5u0x")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_po18e")
 
-[node name="Dash Cooldown Bar" type="ProgressBar" unique_id=1352444702 node_paths=PackedStringArray("player")]
+[node name="Dash Cooldown Bar" type="ProgressBar" unique_id=1352444702]
 process_mode = 3
 size_flags_horizontal = 3
 theme = SubResource("Theme_v37cr")
 max_value = 1.0
 step = 0.001
 value = 1.0
-script = ExtResource("2_g6le7")
-player = NodePath("")
 
 [node name="Bottom Bar" type="ColorRect" parent="." unique_id=962391811]
 layout_mode = 1
