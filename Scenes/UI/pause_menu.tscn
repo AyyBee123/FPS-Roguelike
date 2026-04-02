@@ -2,7 +2,11 @@
 
 [ext_resource type="Script" uid="uid://bwr1ovi81o0ru" path="res://Scripts/UI/pause_menu.gd" id="1_8rf44"]
 [ext_resource type="FontFile" uid="uid://bfhwilg3cupoh" path="res://Fonts/Name Font.ttf" id="1_rrvs5"]
+[ext_resource type="AudioStream" uid="uid://bgaecf6nbc3b2" path="res://Audio/SFX/Confirm.mp3" id="3_oykix"]
+[ext_resource type="AudioStream" uid="uid://b6l06tw8bieby" path="res://Audio/SFX/Back.mp3" id="3_qyryt"]
 [ext_resource type="Script" uid="uid://e8gk7vklxd3s" path="res://Scripts/UI/button.gd" id="3_r2i2h"]
+[ext_resource type="AudioStream" uid="uid://e2vll7e3j6o1" path="res://Audio/SFX/Pause.mp3" id="4_702e2"]
+[ext_resource type="AudioStream" uid="uid://da63alh8us5fs" path="res://Audio/SFX/Unpause.mp3" id="5_qyryt"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_r2i2h"]
 load_path = "res://.godot/imported/Passive Selection.png-130c78e84a106df4972e519c7de434a5.ctex"
@@ -55,6 +59,7 @@ texture_margin_right = 8.0
 texture_margin_bottom = 8.0
 
 [sub_resource type="Theme" id="Theme_kxh81"]
+Button/colors/font_disabled_color = Color(0.88, 0.88, 0.88, 1)
 Button/styles/disabled = SubResource("StyleBoxTexture_oykix")
 Button/styles/focus = SubResource("StyleBoxTexture_702e2")
 Button/styles/hover = SubResource("StyleBoxTexture_23me3")
@@ -94,6 +99,31 @@ theme_override_font_sizes/font_size = 128
 text = "Paused"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Back" type="AudioStreamPlayer" parent="." unique_id=1084786918]
+unique_name_in_owner = true
+stream = ExtResource("3_qyryt")
+volume_db = 8.0
+pitch_scale = 2.0
+bus = &"SFX"
+
+[node name="Confirm" type="AudioStreamPlayer" parent="." unique_id=1782355486]
+unique_name_in_owner = true
+stream = ExtResource("3_oykix")
+pitch_scale = 2.0
+bus = &"SFX"
+
+[node name="Pause" type="AudioStreamPlayer" parent="." unique_id=2113480113]
+unique_name_in_owner = true
+stream = ExtResource("4_702e2")
+volume_db = 4.0
+bus = &"SFX"
+
+[node name="Unpause" type="AudioStreamPlayer" parent="." unique_id=1339113981]
+unique_name_in_owner = true
+stream = ExtResource("5_qyryt")
+volume_db = 4.0
+bus = &"SFX"
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=443306703]
 layout_mode = 0
