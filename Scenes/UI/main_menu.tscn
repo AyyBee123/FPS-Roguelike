@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bhk4jon3yjyso"]
 
 [ext_resource type="Script" uid="uid://b2ifym0g4fb3g" path="res://Scripts/UI/main_menu.gd" id="1_o14dv"]
+[ext_resource type="FontFile" uid="uid://bfhwilg3cupoh" path="res://Fonts/Name Font.ttf" id="2_mrfpk"]
 [ext_resource type="AudioStream" uid="uid://b6l06tw8bieby" path="res://Audio/SFX/Back.mp3" id="2_u7lva"]
 [ext_resource type="AudioStream" uid="uid://bgaecf6nbc3b2" path="res://Audio/SFX/Confirm.mp3" id="3_mrfpk"]
 
@@ -12,6 +13,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_o14dv")
+
+[node name="Title" type="Label" parent="." unique_id=784502609]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 160.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 32
+theme_override_fonts/font = ExtResource("2_mrfpk")
+theme_override_font_sizes/font_size = 128
+text = "Saif is a Chicken"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Back" type="AudioStreamPlayer" parent="." unique_id=1098155960]
 unique_name_in_owner = true
