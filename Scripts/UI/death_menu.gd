@@ -11,7 +11,7 @@ func _ready():
 	visible = false
 	
 	for button: Button in buttons.get_children():
-		button.mouse_entered.connect(func(): if not has_focus(): grab_focus())
+		button.mouse_entered.connect(func(): if not has_focus(): button.grab_focus())
 		button.pressed.connect(func(): confirm.play(); disable_buttons())
 
 func open_death_menu() -> void:
