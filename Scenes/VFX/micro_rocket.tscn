@@ -8,9 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://crk6pkb7e5rwc" path="res://GPUTrail-main/defaults/texture.tres" id="4_kmtcc"]
 [ext_resource type="Script" uid="uid://b27gxyjpmtppf" path="res://GPUTrail-main/GPUTrail3D.gd" id="5_arhar"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_c2kk3"]
-radius = 0.1
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_he62o"]
 resource_name = "Base"
 cull_mode = 2
@@ -176,6 +173,9 @@ material = SubResource("ShaderMaterial_p8td0")
 [sub_resource type="SphereShape3D" id="SphereShape3D_p0cub"]
 radius = 4.0
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_c2kk3"]
+radius = 0.1
+
 [node name="Micro Rocket" type="RigidBody3D" unique_id=1055627703 groups=["Micro Missile"]]
 collision_layer = 0
 collision_mask = 5
@@ -190,11 +190,6 @@ SOUNDBOARD = ExtResource("2_kmtcc")
 IMPACT = ExtResource("2_5bbws")
 impact_color = Color(1, 0.47058824, 0.4, 1)
 impact_size = 0.667
-
-[node name="CollisionShape" type="CollisionShape3D" parent="." unique_id=1857188443]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 1.4210855e-14, 0, 1, 0, -1.4210855e-14, 0, 1, 0, 0, 0)
-shape = SubResource("SphereShape3D_c2kk3")
 
 [node name="Mesh" type="MeshInstance3D" parent="." unique_id=958108953]
 transform = Transform3D(-0.06, 0, -9.059748e-09, 0, 0.06, 0, 9.059748e-09, 0, -0.06, 0, 0, 0)
@@ -238,6 +233,11 @@ shape = SubResource("SphereShape3D_p0cub")
 unique_name_in_owner = true
 wait_time = 0.2
 one_shot = true
+
+[node name="CollisionShape" type="CollisionShape3D" parent="." unique_id=1857188443]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 1.4210855e-14, 0, 1, 0, -1.4210855e-14, 0, 1, 0, 0, 0)
+shape = SubResource("SphereShape3D_c2kk3")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_entered"]

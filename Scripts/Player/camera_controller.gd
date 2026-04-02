@@ -7,6 +7,7 @@ var current_rotation: Vector3
 var target_rotation: Vector3
 var rig_origin: Vector3
 var land_tween: Tween
+var dash_tween: Tween
 var hit_tween: Tween
 
 @export var sensitivity: float = 0.001
@@ -24,6 +25,7 @@ var arm: Arm
 func _ready():
 	player.weapon_shot.connect(add_recoil)
 	player.on_landing.connect(land)
+	player.on_dash.connect(dash)
 	player.hit_taken.connect(hit)
 	rig_origin = rig.position
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -71,7 +73,7 @@ func _physics_process(delta: float) -> void:
 	player.rotation.y = yaw + recoil_current.y
 	
 	# interpolate position for jitter-free camera
-	var interp = player.get_global_transform_interpolated()
+	var interp: Transform3D = player.get_global_transform_interpolated()
 	global_transform.origin = interp.origin
 	
 	# vertical rotation (pitch + recoil) to pivot
@@ -89,6 +91,7 @@ func bob(vel: float, delta):
 				rig.position.x = lerp(rig.position.x, rig_origin.x + sin(Time.get_ticks_msec() * bob_freq * 0.5 * player.SPEED / 8) * bob_amount, 10 * delta)
 			else:
 				rig.rotation.x = lerp(rig.rotation.x, -player.velocity.y * 0.1, 10 * delta)
+				rig.position.x = lerp(rig.position.x, rig_origin.x, 10 * delta)
 				if player.velocity.y > 0:
 					rig.position.y = lerp(rig.position.y, rig_origin.y - player.velocity.y * 0.025, 10 * delta)
 				else:
@@ -102,16 +105,22 @@ func bob(vel: float, delta):
 		rig.position = rig.position.clamp(-Vector3.ONE * rig_max_position, Vector3.ONE * rig_max_position)
 
 func land(impact_speed: float):
-	var impact_strength = 0.025
-	var impact_duration = 0.1
+	var impact_strength: float = 0.025
+	var impact_duration: float = 0.1
 	
 	land_tween = get_tree().create_tween()
 	land_tween.tween_property(rig, "position:y", impact_speed * impact_strength, impact_duration).as_relative()
 	land_tween.parallel().tween_property(rig, "rotation:x", impact_speed * impact_strength, impact_duration).as_relative()
 
+func dash(_dash_speed: float, dash_direction: Vector2):
+	var dash_duration: float = 0.05
+	var dir = Vector3(dash_direction.x, 0, dash_direction.y).normalized()
+	dash_tween = get_tree().create_tween()
+	dash_tween.tween_property(rig, "position", -dir * 0.25, dash_duration).as_relative()
+
 func hit(pos):
-	var hit_strength = 0.333
-	var hit_duration = 0.05
+	var hit_strength: float = 0.333
+	var hit_duration: float = 0.05
 	
 	hit_tween = get_tree().create_tween()
 	hit_tween.tween_property(rig, "position:x", -pos.normalized().x * hit_strength, hit_duration).as_relative()

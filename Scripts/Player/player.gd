@@ -7,6 +7,7 @@ signal weapon_shot(weapon, source) # called for each instance of the weapon (for
 signal weapon_released(weapon, source) # called when the fire button is no longer held
 signal weapon_spawned(projectile, damage) # called mainly for weapon after-effects (e.g. oil pool, reflected bullets)
 signal on_landing(impact_speed) # called when the player lands on the ground from the air
+signal on_dash(speed, direction) # called when the player dashes
 signal hit_taken(pos) # called when the player takes a hit
 signal item_hovered(item) # called when an item is looked at with the crosshair and is within pickup range
 signal item_picked(item) # called when an item is picked up (called from the item script)
@@ -28,7 +29,7 @@ signal meta_coin_count_changed(amount)
 @onready var arm = %Arm
 @onready var ability_slots = %"Ability Slots"
 @onready var i_frames = %IFrames
-@onready var dash_cooldown = %"Dash Cooldown"
+@onready var dash_bars = %Dashes
 @onready var pick_up_label = %"Pick Up Label"
 @onready var xp_audio = %Xp
 @onready var banish_audio = %Banish
@@ -45,6 +46,7 @@ const PASSIVE_MENU = preload("uid://clamkav36kau4")
 const ABILITY_SLOT = preload("uid://y78kmes1pij6")
 const DAMAGE_INDICATOR = preload("uid://cmwgutqrbavj5")
 const DEATH_CAMERA = preload("uid://bdjqo8qnjbg5j")
+const DASH_COOLDOWN_BAR = preload("uid://sdkqut4wd3sl")
 
 var stats: Stats
 var XP_NEEDED: float = 5
@@ -56,8 +58,11 @@ var was_on_floor: bool = false
 var speed_before_landing: float = 0.0
 var friction: float = 50.0
 var dash_speed: float = 100.0
-var is_dashing: bool = false
+var dash_cooldown: float = 2.0
+var dash_charges: Array[float] = []
+var dash_bar_array: Array[ProgressBar] = []
 var sway_input: Vector2 # value gotten from the camera controller script
+var is_dashing: bool = false
 var is_dead: bool = false
 
 var reroll_amount: int = 0
@@ -104,6 +109,10 @@ var PICKUP_RADIUS: float:
 var FRICTION: float:
 	get:
 		return stats.get_stat("Friction")
+var DASHES: int:
+	get:
+		set_dash_charges(stats.get_stat("Dashes"))
+		return stats.get_stat("Dashes")
 
 var current_health: float
 var current_jumps: int = 0 # the current number of extra jumps that can be used
@@ -118,6 +127,7 @@ func _init():
 
 func _ready():
 	current_health = MAX_HEALTH
+	set_dash_charges(DASHES)
 	stats.stat_changed.connect(get_health_difference)
 	enemy_killed.connect(func(_enemy, _source, _damage): kill_count += 1)
 	update_ability_slots()
@@ -159,9 +169,7 @@ func _physics_process(delta):
 		velocity.z = velocity.lerp(Vector3.ZERO, delta * friction).z
 	
 	# dashing
-	if Input.is_action_just_pressed("dash") and dash_cooldown.is_stopped():
-		dash_cooldown.start()
-		
+	if Input.is_action_just_pressed("dash") and try_dash():
 		dash.play_deconflicted()
 		
 		if input_dir.length() < 0.01:
@@ -169,6 +177,7 @@ func _physics_process(delta):
 			cam_forward.y = 0  # keep it horizontal
 			cam_forward = cam_forward.normalized()
 			velocity += cam_forward * dash_speed
+			on_dash.emit(dash_speed, Vector2(cam_forward.x, cam_forward.z))
 		else:
 			var cam_basis = camera.global_transform.basis
 			var forward = cam_basis.z
@@ -179,6 +188,7 @@ func _physics_process(delta):
 			right = right.normalized()
 			var dash_dir = (forward * input_dir.y + right * input_dir.x).normalized()
 			velocity += dash_dir * dash_speed
+			on_dash.emit(dash_speed, input_dir)
 		
 		if velocity.y < 0: velocity.y = 2
 		
@@ -186,6 +196,15 @@ func _physics_process(delta):
 		dash_tween.tween_callback(func(): is_dashing = true)
 		dash_tween.tween_interval(0.05)
 		dash_tween.tween_callback(func(): is_dashing = false; velocity /= 4)
+	
+	# dash bars
+	for i in range(dash_charges.size()):
+		if dash_charges[i] > 0.0:
+			dash_charges[i] = max(0.0, dash_charges[i] - delta)
+	
+	for i in range(dash_bar_array.size()):
+		var cooldown = dash_charges[i]
+		dash_bar_array[i].value = dash_bar_array[i].max_value - (cooldown / dash_cooldown)
 	
 	move_and_slide()
 	
@@ -227,7 +246,9 @@ func _input(event):
 			banish_audio.play_deconflicted()
 			banish_amount -= 1
 	if event.is_action_pressed("kill") and OS.has_feature("editor"):
-		hit(current_health, Vector3.ZERO)
+		stats.add_flat_stat("Dashes", 1)
+		print(DASHES)
+		#hit(current_health, Vector3.ZERO)
 
 func get_pickup_collision():
 	var viewport = get_viewport().get_visible_rect().size
@@ -268,6 +289,35 @@ func hit(amount, pos):
 	
 	if current_health <= 0:
 		die()
+
+func try_dash():
+	var idx = get_available_charge()
+	if idx == -1:
+		return false
+	dash_charges[idx] = dash_cooldown
+	return true
+
+func get_available_charge() -> int:
+	for i in range(dash_charges.size()):
+		if dash_charges[i] <= 0.0:
+			return i
+	return -1
+
+func set_dash_charges(amount: int):
+	amount = max(0, amount)
+	var old_amount = dash_charges.size()
+	
+	dash_charges.resize(amount)
+	
+	for dash_bar in dash_bars.get_children():
+		dash_bar.queue_free()
+	dash_bar_array.clear()
+	
+	for i in range(amount):
+		var bar = DASH_COOLDOWN_BAR.instantiate()
+		dash_bars.add_child(bar)
+		dash_bar_array.append(bar)
+		dash_charges[i] = 0.0
 
 func die():
 	if is_dead: return

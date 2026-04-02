@@ -17,6 +17,7 @@ var stats: Dictionary = {
 	"XP_Gained": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
 	"Luck": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
 	"Friction": { "base": 50.0, "+": 0, "x": 1, "flat": 0.0 },
+	"Dashes": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
 	
 	# arm stats
 	"Damage": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },

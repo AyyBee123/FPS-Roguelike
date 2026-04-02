@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://brrube6jjie8x"]
+[gd_scene format=4 uid="uid://brrube6jjie8x"]
 
 [ext_resource type="Script" uid="uid://ckswi6f6djqc4" path="res://Scripts/Abilities/Misc/circle_of_light_aura.gd" id="1_kmoh4"]
 [ext_resource type="Shader" uid="uid://dotnbussbwm01" path="res://Shaders/fresnel.gdshader" id="3_opsxp"]
@@ -7,7 +7,7 @@
 render_priority = 0
 shader = ExtResource("3_opsxp")
 shader_parameter/base_color = Color(0.8862745, 0.7294118, 0.3764706, 0.015686275)
-shader_parameter/fresnel_color = Color(0.95686275, 0.84313726, 0.6, 0.0627451)
+shader_parameter/fresnel_color = Color(0.96, 0.84752, 0.6048, 0.03137255)
 shader_parameter/fresnel_amount = 4.0
 shader_parameter/fresnel_intensity = 4.5
 
@@ -48,23 +48,23 @@ shadow_mesh = SubResource("ArrayMesh_oi1a0")
 [sub_resource type="SphereShape3D" id="SphereShape3D_o7fdg"]
 radius = 2.0
 
-[node name="Circle of Light Aura" type="Node3D"]
+[node name="Circle of Light Aura" type="Node3D" unique_id=1012917489]
 script = ExtResource("1_kmoh4")
 
-[node name="Ball" type="MeshInstance3D" parent="."]
+[node name="Ball" type="MeshInstance3D" parent="." unique_id=2101179701]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 mesh = SubResource("ArrayMesh_wkdc1")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Area3D" type="Area3D" parent="." unique_id=2004181241]
 unique_name_in_owner = true
 collision_layer = 0
 collision_mask = 4
 monitorable = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1911900569]
 shape = SubResource("SphereShape3D_o7fdg")
 
-[node name="Tick Rate" type="Timer" parent="."]
+[node name="Tick Rate" type="Timer" parent="." unique_id=22056153]
 wait_time = 0.05
 one_shot = true
 
