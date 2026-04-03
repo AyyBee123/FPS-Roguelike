@@ -109,8 +109,9 @@ var FRICTION: float:
 	get:
 		return stats.get_stat("Friction")
 var DASHES: int:
+	set(value):
+		set_dash_charges(value)
 	get:
-		set_dash_charges(stats.get_stat("Dashes"))
 		return stats.get_stat("Dashes")
 var DASH_COOLDOWN: float:
 	get:
@@ -151,6 +152,7 @@ func _physics_process(delta):
 		velocity.y += JUMP_HEIGHT
 		jump.play_deconflicted()
 	if Input.is_action_just_pressed("jump") and not is_on_floor() and current_jumps > 0:
+		velocity.y = 0
 		velocity.y += JUMP_HEIGHT
 		current_jumps -= 1
 		jump.play_deconflicted()
@@ -207,6 +209,9 @@ func _physics_process(delta):
 	for i in range(dash_bar_array.size()):
 		var cooldown = dash_charges[i]
 		dash_bar_array[i].value = dash_bar_array[i].max_value - (cooldown / DASH_COOLDOWN)
+	
+	if DASHES != dash_charges.size():
+		set_dash_charges(DASHES)
 	
 	move_and_slide()
 	
@@ -305,7 +310,6 @@ func get_available_charge() -> int:
 
 func set_dash_charges(amount: int):
 	amount = max(0, amount)
-	var old_amount = dash_charges.size()
 	
 	dash_charges.resize(amount)
 	

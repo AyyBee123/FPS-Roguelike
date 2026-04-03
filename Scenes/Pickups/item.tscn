@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dyk4mpi4d6hrl"]
+[gd_scene format=3 uid="uid://dyk4mpi4d6hrl"]
 
 [ext_resource type="Script" uid="uid://bu3xt72h8nf67" path="res://Scripts/Pickups/item.gd" id="1_dyk4n"]
 [ext_resource type="Script" uid="uid://baxqpjp3mlstv" path="res://Scripts/UI/minimap_icon.gd" id="2_bq1bg"]
@@ -28,14 +28,14 @@ albedo_color = Color(0.94119036, 0.70253235, 0.030922275, 1)
 material = SubResource("StandardMaterial3D_dyk4n")
 radius = 1.2
 
-[node name="Item" type="RigidBody3D"]
+[node name="Item" type="RigidBody3D" unique_id=1899393121]
 collision_layer = 8
 gravity_scale = 0.0
 script = ExtResource("1_dyk4n")
 sound_node = ExtResource("2_mc8js")
 banish_text = ExtResource("3_ctojr")
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=990336572]
 unique_name_in_owner = true
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 material_overlay = SubResource("ShaderMaterial_ctojr")
@@ -44,27 +44,27 @@ double_sided = false
 texture_filter = 0
 render_priority = 126
 
-[node name="CollisionShape" type="CollisionShape3D" parent="."]
+[node name="CollisionShape" type="CollisionShape3D" parent="." unique_id=1663854421]
 unique_name_in_owner = true
 shape = SubResource("SphereShape3D_0c04t")
 disabled = true
 
-[node name="Passive" type="Node" parent="."]
+[node name="Passive" type="Node" parent="." unique_id=1974702298]
 unique_name_in_owner = true
 
-[node name="Minimap Icon" type="MeshInstance3D" parent="."]
+[node name="Minimap Icon" type="MeshInstance3D" parent="." unique_id=1744549257]
 visible = false
 layers = 2
 mesh = SubResource("SphereMesh_bq1bg")
 script = ExtResource("2_bq1bg")
 
-[node name="Shadow" type="Decal" parent="."]
+[node name="Shadow" type="Decal" parent="." unique_id=2068967935]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 size = Vector3(1, 2, 1)
 texture_albedo = ExtResource("3_0c04t")
 cull_mask = 4
 
-[node name="RollingJingle" type="AudioStreamPlayer3D" parent="."]
+[node name="RollingJingle" type="AudioStreamPlayer3D" parent="." unique_id=1473915038]
 unique_name_in_owner = true
 stream = ExtResource("4_xv3jo")
 max_db = 0.0

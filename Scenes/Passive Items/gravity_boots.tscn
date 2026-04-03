@@ -1,12 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://db1hw0tn6gw6s"]
+[gd_scene format=3 uid="uid://db1hw0tn6gw6s"]
 
 [ext_resource type="Script" uid="uid://c2rcw0wqpxrl1" path="res://Scripts/Passive Items/gravity_boots.gd" id="1_ykqc8"]
 [ext_resource type="Texture2D" uid="uid://ypsbde8tkufi" path="res://Assets/Sprites/Items/Gravity Boots.png" id="2_o0ebn"]
 
-[node name="Gravity Boots" type="Node"]
+[node name="Gravity Boots" type="Node" unique_id=2135845978]
 script = ExtResource("1_ykqc8")
 item_name = "Gravity Boots"
 rarity = 2
 icon = ExtResource("2_o0ebn")
-description = "+5 Extra Jumps. Reduces Gravity."
-detailed_description = "+%d (+%d/stack) Extra jumps. Reduces gravity to %sx."
+description = "+3 extra jumps. and reduces gravity."
+detailed_description = "+%d (+%d/stack) extra jumps. Reduces gravity by %d%%."

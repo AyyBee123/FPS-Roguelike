@@ -8,6 +8,10 @@
 		"rarity": 0
 	},
 	{
+		"path": "res://Scenes/Passive Items/exhaust_engine.tscn",
+		"rarity": 0
+	},
+	{
 		"path": "res://Scenes/Passive Items/fast_track.tscn",
 		"rarity": 1
 	},

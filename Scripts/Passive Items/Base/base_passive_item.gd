@@ -23,11 +23,13 @@ signal send_buff(buff)
 @export var stacks: int = 1
 var player: Player
 var existing_item: Item
+var signals_connected: bool = false
 
 func _ready():
 	if get_parent().get_parent() is Player:
 		player = get_parent().get_parent()
 		setup_signals(player)
+		on_pick_up(player)
 		for i in range(stacks - 1):
 			on_stack()
 	set_detailed_desription()
@@ -35,25 +37,40 @@ func _ready():
 func on_pick_up(_player: Player):
 	player = _player
 	
-	if player.get_node_or_null("%Passives/" + name): # stack the item if it already exists
+	# stack the item if it already exists
+	if player.get_node_or_null("%Passives/" + name) and player.get_node_or_null("%Passives/" + name) != self:
 		existing_item = player.get_node("%Passives/" + name)
 		existing_item.stacks += 1
 		existing_item.on_stack()
 		player.item_picked.emit(self)
 		queue_free()
 		return
-	else:
-		if get_parent():
-			get_parent().remove_child(self)
+	
+	if get_parent() and get_parent() != player.get_node("%Passives"):
+		get_parent().remove_child(self)
+	if get_parent() != player.get_node("%Passives"):
 		player.passives.add_child(self)
+	on_first_stack()
 	
 	player.item_picked.emit(self)
 	setup_signals(player)
 
+func on_first_stack():
+	pass
+
 func on_stack():
 	pass
 
+func on_remove():
+	pass
+
+func on_stack_remove():
+	pass
+
 func setup_signals(_player: Player):
+	if signals_connected: return
+	signals_connected = true
+	
 	_player.enemy_killed.connect(on_enemy_killed)
 	_player.enemy_hit.connect(on_enemy_hit)
 	_player.weapon_fired.connect(on_weapon_fired)
