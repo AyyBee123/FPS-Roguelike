@@ -6,7 +6,6 @@
 [ext_resource type="Script" uid="uid://e25j21vf5uye" path="res://Scripts/Utils/enemy_spawn_resource.gd" id="3_4dovk"]
 [ext_resource type="PackedScene" uid="uid://bf7ljiiykmoi0" path="res://Scenes/Enemies/cactorse.tscn" id="4_ecsxk"]
 [ext_resource type="PackedScene" uid="uid://yipp43yiqwke" path="res://Scenes/Enemies/stone_skull.tscn" id="5_xbbd1"]
-[ext_resource type="PackedScene" uid="uid://dhlu65iawdxvf" path="res://Scenes/Player/player.tscn" id="6_i3lab"]
 [ext_resource type="PackedScene" uid="uid://d2ylcac3o1e8k" path="res://Scenes/Enemies/sand_shark.tscn" id="8_4dovk"]
 [ext_resource type="Script" uid="uid://px8ih8py0glr" path="res://Scripts/Utils/chest_manager.gd" id="9_1mh2y"]
 [ext_resource type="Script" uid="uid://csjuscamg8frf" path="res://Scripts/Resources/end_boss_spawn.gd" id="9_i3lab"]
@@ -15,7 +14,6 @@
 [ext_resource type="Script" uid="uid://caq32sajxn8pu" path="res://Scripts/Globals/item_pool.gd" id="12_t1ox7"]
 [ext_resource type="Script" uid="uid://c3tr181aifqm8" path="res://Scripts/Globals/ability_pool.gd" id="13_np4fc"]
 [ext_resource type="Script" uid="uid://3fq6hfdn5n35" path="res://Scripts/Globals/passive_pool.gd" id="14_glso8"]
-[ext_resource type="PackedScene" uid="uid://ukgrpto2cajc" path="res://Scenes/Misc/xp.tscn" id="15_t1ox7"]
 
 [sub_resource type="Resource" id="Resource_ecsxk"]
 script = ExtResource("2_4dovk")
@@ -2165,7 +2163,6 @@ size = Vector3(200, 1, 200)
 [node name="Desert" type="Node3D" unique_id=721472373]
 script = ExtResource("1_r3g2l")
 NUMBER_OF_CHESTS = 40
-chest_cost = 0
 boss_spawns = Array[ExtResource("2_4dovk")]([SubResource("Resource_ecsxk")])
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1429438397]
@@ -2175,9 +2172,6 @@ environment = SubResource("Environment_l7ek2")
 transform = Transform3D(1, 0, 0, 0, -0.5224987, 0.85264003, 0, -0.85264003, -0.5224987, 0, 346.12, 0)
 shadow_normal_bias = 10.0
 directional_shadow_mode = 0
-
-[node name="Player" parent="." unique_id=1745968323 instance=ExtResource("6_i3lab")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="Enemy Handler" type="Node" parent="." unique_id=10471636]
 unique_name_in_owner = true
@@ -2211,10 +2205,6 @@ script = ExtResource("13_np4fc")
 [node name="Passive Pool" type="Node" parent="Pools" unique_id=1836986451]
 unique_name_in_owner = true
 script = ExtResource("14_glso8")
-
-[node name="XP" parent="Pools" unique_id=1686531915 instance=ExtResource("15_t1ox7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.681876, 1.9999018, -0.5310507)
-xp_amount = 5
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1064311411]
 unique_name_in_owner = true
