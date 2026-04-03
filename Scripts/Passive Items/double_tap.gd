@@ -13,7 +13,10 @@ func on_weapon_shot(_arm: Arm, _source: Variant):
 		_arm.shoot(true, self)
 
 func on_stack():
-	chance = clamp(chance + chance_increase, 0, 1)
+	chance += chance_increase
+
+func on_stack_remove():
+	chance -= chance_increase
 
 func set_detailed_desription():
 	detailed_description %= [

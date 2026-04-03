@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://byoo2myfpggkm"]
+[gd_scene format=3 uid="uid://byoo2myfpggkm"]
 
 [ext_resource type="Script" uid="uid://ba3gdf41t6u0t" path="res://Scripts/Passive Items/shiny_mirror.gd" id="1_s437y"]
 [ext_resource type="Texture2D" uid="uid://1co6ek5lt3eg" path="res://Assets/Sprites/Items/Shiny Mirror.png" id="2_lxyaj"]
 
-[node name="Shiny Mirror" type="Node"]
+[node name="Shiny Mirror" type="Node" unique_id=1740286445]
 script = ExtResource("1_s437y")
 item_name = "Shiny Mirror"
 rarity = 1

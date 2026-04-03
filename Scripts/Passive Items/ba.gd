@@ -37,6 +37,10 @@ func on_stack():
 	add_flat_stat("Damage", damage_increase)
 	add_flat_stat("Splash_Radius", radius_increase)
 
+func on_stack_remove():
+	add_flat_stat("Damage", -damage_increase)
+	add_flat_stat("Splash_Radius", -radius_increase)
+
 func set_detailed_desription():
 	detailed_description %= [
 		stats["Damage"]["base"],

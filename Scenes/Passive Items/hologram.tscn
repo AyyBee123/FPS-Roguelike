@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://b6rv6mhq71yhl"]
+[gd_scene format=3 uid="uid://b6rv6mhq71yhl"]
 
 [ext_resource type="Script" uid="uid://djxblnu46m8do" path="res://Scripts/Passive Items/hologram.gd" id="1_xc3mw"]
 [ext_resource type="Texture2D" uid="uid://dqybxtpd0b8e6" path="res://Assets/Sprites/Items/Hologram.png" id="2_xibyf"]
 
-[node name="Hologram" type="Node" groups=["Hologram"]]
+[node name="Hologram" type="Node" unique_id=1656315814 groups=["Hologram"]]
 script = ExtResource("1_xc3mw")
 item_name = "Hologram"
 rarity = 2

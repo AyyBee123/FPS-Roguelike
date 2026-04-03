@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://c50dgm7dsy6kp"]
+[gd_scene format=3 uid="uid://c50dgm7dsy6kp"]
 
 [ext_resource type="Script" uid="uid://ceugwxfr4n1sw" path="res://Scripts/Passive Items/double_tap.gd" id="1_k6hb4"]
 [ext_resource type="Texture2D" uid="uid://ceebqqlt7r6ix" path="res://Assets/Sprites/Items/Double Tap.png" id="2_eskhf"]
 
-[node name="Double Tap" type="Node"]
+[node name="Double Tap" type="Node" unique_id=291008023]
 script = ExtResource("1_k6hb4")
 item_name = "Double Tap"
 rarity = 0

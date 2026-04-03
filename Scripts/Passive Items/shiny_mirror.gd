@@ -28,7 +28,10 @@ func on_enemy_hit(_enemy: Enemy, _source: Variant, _damage: float):
 			target.hit(_damage, player, self, false)
 
 func on_stack():
-	chance = chance + chance_increase
+	chance += chance_increase
+
+func on_stack_remove():
+	chance -= chance_increase
 
 func set_detailed_desription():
 	detailed_description %= [

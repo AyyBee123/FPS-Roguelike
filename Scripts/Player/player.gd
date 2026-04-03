@@ -132,6 +132,7 @@ func _ready():
 	current_health = MAX_HEALTH
 	set_dash_charges(DASHES)
 	stats.stat_changed.connect(get_health_difference)
+	stats.stat_changed.connect(get_dashes)
 	enemy_killed.connect(func(_enemy, _source, _damage): kill_count += 1)
 	update_ability_slots()
 
@@ -209,9 +210,6 @@ func _physics_process(delta):
 	for i in range(dash_bar_array.size()):
 		var cooldown = dash_charges[i]
 		dash_bar_array[i].value = dash_bar_array[i].max_value - (cooldown / DASH_COOLDOWN)
-	
-	if DASHES != dash_charges.size():
-		set_dash_charges(DASHES)
 	
 	move_and_slide()
 	
@@ -341,6 +339,10 @@ func die():
 
 func open_death_menu():
 	death_menu.open_death_menu()
+
+func get_dashes(stat, old_value, new_value):
+	if stat != "Dashes": return
+	if old_value != new_value: set_dash_charges(new_value)
 
 func get_health_difference(stat, old_value, new_value):
 	if stat != "Max_Health": return

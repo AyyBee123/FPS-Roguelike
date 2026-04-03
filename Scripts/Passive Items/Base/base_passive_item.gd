@@ -26,13 +26,13 @@ var existing_item: Item
 var signals_connected: bool = false
 
 func _ready():
+	set_detailed_desription()
 	if get_parent().get_parent() is Player:
 		player = get_parent().get_parent()
 		setup_signals(player)
 		on_pick_up(player)
 		for i in range(stacks - 1):
 			on_stack()
-	set_detailed_desription()
 
 func on_pick_up(_player: Player):
 	player = _player

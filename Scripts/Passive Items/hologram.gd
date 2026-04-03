@@ -14,6 +14,9 @@ func on_item_picked(item: Item):
 func on_stack():
 	number_of_stacks += number_of_stacks_increase
 
+func on_stack_remove():
+	number_of_stacks -= number_of_stacks_increase
+
 func set_detailed_desription():
 	detailed_description %= [
 		base_number_of_stacks,

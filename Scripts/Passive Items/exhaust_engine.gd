@@ -14,6 +14,14 @@ func on_stack():
 	player.stats.add_flat_stat("Dashes", dash_charge_increase)
 	player.stats.add_percent_stat("Move_Speed", move_speed_increase)
 
+func on_remove():
+	player.stats.add_flat_stat("Dashes", -dash_charges)
+	player.stats.add_percent_stat("Move_Speed", -move_speed)
+
+func on_stack_remove():
+	player.stats.add_flat_stat("Dashes", -dash_charge_increase)
+	player.stats.add_percent_stat("Move_Speed", -move_speed_increase)
+
 func set_detailed_desription():
 	detailed_description %= [
 		move_speed,
