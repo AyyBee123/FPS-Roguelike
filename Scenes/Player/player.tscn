@@ -11,6 +11,7 @@
 [ext_resource type="FontFile" uid="uid://bfhwilg3cupoh" path="res://Fonts/Name Font.ttf" id="7_jlvik"]
 [ext_resource type="Script" uid="uid://cm071kmltyo4t" path="res://Scripts/UI/player_ui.gd" id="7_rcvs5"]
 [ext_resource type="PackedScene" uid="uid://cmwgutqrbavj5" path="res://Scenes/UI/damage_indicator.tscn" id="8_h8ma5"]
+[ext_resource type="Script" uid="uid://d0a7frb8gvg68" path="res://Scripts/Player/stats.gd" id="8_v37cr"]
 [ext_resource type="Script" uid="uid://dxuyltrlql3nd" path="res://Scripts/Player/pickup_detect.gd" id="9_gk6dx"]
 [ext_resource type="Script" uid="uid://c4cp63v81m23v" path="res://Scripts/UI/xp_bar.gd" id="10_74mp2"]
 [ext_resource type="Script" uid="uid://byac7cqcf6if2" path="res://Scripts/UI/level.gd" id="11_oikmp"]
@@ -270,6 +271,9 @@ player = NodePath("..")
 [node name="XP Collision" type="CollisionShape3D" parent="XP Detect" unique_id=1612652102]
 unique_name_in_owner = true
 shape = SubResource("SphereShape3D_mtuoh")
+
+[node name="Stats" type="Node" parent="." unique_id=1887555223]
+script = ExtResource("8_v37cr")
 
 [node name="Passives" type="Node" parent="." unique_id=1415729429]
 unique_name_in_owner = true

@@ -10,6 +10,8 @@ signal cost_increased
 @onready var passive_pool = %"Passive Pool"
 @onready var nav_region: NavigationRegion3D = %NavigationRegion3D
 
+@export var PLAYER_SPAWN_POSITION: Vector2
+
 @export var NUMBER_OF_CHESTS: int = 25
 @export var NUMBER_OF_ARMORY_BOXES: int = 10
 
@@ -37,6 +39,11 @@ var timeup: bool = false:
 		return time_left <= 0
 
 func _ready():
+	var player: Player = GameState.selected_character.instantiate()
+	add_child(player)
+	player.global_position.x = PLAYER_SPAWN_POSITION.x
+	player.global_position.z = PLAYER_SPAWN_POSITION.y
+	
 	INITIAL_CHEST_COST = chest_cost
 	INITIAL_BOX_COST = box_cost
 

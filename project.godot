@@ -27,6 +27,7 @@ SignalBus="*res://Scripts/Utils/signal_bus.gd"
 GeneralUtils="*res://Scripts/Utils/general_utils.gd"
 Globals="*res://Scenes/Globals/globals.tscn"
 SfxDeconflicter="*res://Scripts/Utils/sfx_deconflicter.gd"
+GameState="*uid://ca54crh142u5f"
 
 [debug]
 

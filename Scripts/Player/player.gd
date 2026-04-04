@@ -41,14 +41,14 @@ signal meta_coin_count_changed(amount)
 @onready var buffs = %Buffs
 @onready var death_menu = %"Death Menu"
 
-const Stats = preload("uid://d0a7frb8gvg68")
+#const Stats = preload("uid://d0a7frb8gvg68")
 const PASSIVE_MENU = preload("uid://clamkav36kau4")
 const ABILITY_SLOT = preload("uid://y78kmes1pij6")
 const DAMAGE_INDICATOR = preload("uid://cmwgutqrbavj5")
 const DEATH_CAMERA = preload("uid://bdjqo8qnjbg5j")
 const DASH_COOLDOWN_BAR = preload("uid://sdkqut4wd3sl")
 
-var stats: Stats
+@onready var stats = $Stats
 var XP_NEEDED: float = 5
 var current_xp: float = 0
 var current_level: int = 1
@@ -83,38 +83,60 @@ var meta_coin_count: float = 0.0:
 
 var MAX_HEALTH: float:
 	get:
+		if not is_node_ready() or stats == null:
+			return 0
 		return stats.get_stat("Max_Health")
 var SPEED: float:
 	get:
+		if not is_node_ready() or stats == null:
+			return 0
 		return stats.get_stat("Move_Speed")
 var JUMP_HEIGHT: float:
 	get:
+		if not is_node_ready() or stats == null:
+			return 0
 		return stats.get_stat("Jump_Height")
 var FALL_SPEED: float:
 	get:
+		if not is_node_ready() or stats == null:
+			return 0
 		return stats.get_stat("Fall_Speed")
 var NUMBER_OF_EXTRA_JUMPS: int:
 	get:
+		if not is_node_ready() or stats == null:
+			return 0
 		return stats.get_stat("Extra_Jumps")
 var XP_MULTIPLIER: float:
 	get:
+		if not is_node_ready() or stats == null:
+			return 0
 		return stats.get_stat("XP_Gained")
 var LUCK_MULTIPLIER: float:
 	get:
+		if not is_node_ready() or stats == null:
+			return 0
 		return stats.get_stat("Luck")
 var PICKUP_RADIUS: float:
 	get:
+		if not is_node_ready() or stats == null:
+			return 0
 		return stats.get_stat("Pickup_Radius")
 var FRICTION: float:
 	get:
+		if not is_node_ready() or stats == null:
+			return 0
 		return stats.get_stat("Friction")
 var DASHES: int:
 	set(value):
 		set_dash_charges(value)
 	get:
+		if not is_node_ready() or stats == null:
+			return 0
 		return stats.get_stat("Dashes")
 var DASH_COOLDOWN: float:
 	get:
+		if not is_node_ready() or stats == null:
+			return 0
 		return stats.get_stat("Dash_Cooldown")
 
 var current_health: float
@@ -125,10 +147,8 @@ var number_of_abilities: int:
 	get:
 		return abilities.get_child_count()
 
-func _init():
-	stats = Stats.new()
-
 func _ready():
+	snap_to_ground()
 	current_health = MAX_HEALTH
 	set_dash_charges(DASHES)
 	stats.stat_changed.connect(get_health_difference)
@@ -252,6 +272,15 @@ func _input(event):
 			banish_amount -= 1
 	if event.is_action_pressed("kill") and OS.has_feature("editor"):
 		hit(current_health, Vector3.ZERO)
+
+func snap_to_ground():
+	global_position.y = 100
+	var space_state = get_world_3d().direct_space_state
+	var query = PhysicsRayQueryParameters3D.create(global_position, global_position + Vector3.DOWN * 1000.0)
+	var result = space_state.intersect_ray(query)
+	
+	if result:
+		global_position.y = result.position.y
 
 func get_pickup_collision():
 	var viewport = get_viewport().get_visible_rect().size

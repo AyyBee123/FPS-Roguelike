@@ -5,7 +5,7 @@ signal stat_changed(stat, old_value, new_value)
 ## "base" -> the base stat
 ## "+" -> the increase in the base stat (in decimal, e.g. 0.1 for a 10% increase)
 ## "x" -> the final multiplier of the base stat and the increase
-var stats: Dictionary = {
+@export var stats: Dictionary = {
 	# character stats
 	"Max_Health": { "base": 100.0, "+": 0, "x": 1, "flat": 0.0 },
 	"Move_Speed": { "base": 8.0, "+": 0, "x": 1, "flat": 0.0 },

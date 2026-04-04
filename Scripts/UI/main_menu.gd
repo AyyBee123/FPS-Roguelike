@@ -3,6 +3,7 @@ extends Control
 @onready var buttons = %Buttons
 @onready var confirm: AudioStreamPlayer = %Confirm
 @onready var back: AudioStreamPlayer = %Back
+@onready var menu_canvas = get_parent()
 
 func _ready():
 	for button: Button in buttons.get_children():
@@ -10,7 +11,7 @@ func _ready():
 		button.pressed.connect(func(): confirm.play())
 
 func _on_play_pressed():
-	pass
+	menu_canvas.show_only(menu_canvas.character_select)
 
 func _on_settings_pressed():
 	pass

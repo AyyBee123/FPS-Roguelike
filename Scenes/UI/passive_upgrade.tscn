@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://gm61roaknon"]
+[gd_scene format=3 uid="uid://gm61roaknon"]
 
 [ext_resource type="Texture2D" uid="uid://c54dfiifowoeu" path="res://Assets/UI/Passive Selection.png" id="1_qlp28"]
 [ext_resource type="Texture2D" uid="uid://cey6mevdia2de" path="res://Assets/UI/Passive Selection Focus.png" id="2_a3lg8"]
@@ -51,7 +51,7 @@ Button/styles/hover = SubResource("StyleBoxTexture_asjw3")
 Button/styles/normal = SubResource("StyleBoxTexture_hottw")
 Button/styles/pressed = SubResource("StyleBoxTexture_wagd0")
 
-[node name="Upgrade" type="Button"]
+[node name="Upgrade" type="Button" unique_id=1895656878]
 custom_minimum_size = Vector2(688, 196)
 offset_right = 688.0
 offset_bottom = 196.0
@@ -59,7 +59,7 @@ size_flags_horizontal = 3
 theme = SubResource("Theme_havy7")
 script = ExtResource("5_a3lg8")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1859894527]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -72,14 +72,14 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="Background Rarity" type="ColorRect" parent="MarginContainer"]
+[node name="Background Rarity" type="ColorRect" parent="MarginContainer" unique_id=724612461]
 unique_name_in_owner = true
 modulate = Color(0.74558026, 0.7455802, 0.7455802, 1)
 layout_mode = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
 
-[node name="Border" type="NinePatchRect" parent="."]
+[node name="Border" type="NinePatchRect" parent="." unique_id=1240512401]
 layout_mode = 0
 offset_left = 24.0
 offset_top = 40.0
@@ -91,7 +91,7 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 
-[node name="MarginContainer" type="MarginContainer" parent="Border"]
+[node name="MarginContainer" type="MarginContainer" parent="Border" unique_id=1999424934]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -104,13 +104,13 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="Icon Rarity" type="ColorRect" parent="Border/MarginContainer"]
+[node name="Icon Rarity" type="ColorRect" parent="Border/MarginContainer" unique_id=2059913308]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Icon" type="TextureRect" parent="Border"]
+[node name="Icon" type="TextureRect" parent="Border" unique_id=1165118943]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
@@ -125,7 +125,7 @@ offset_bottom = 0.06399536
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Name" type="Label" parent="."]
+[node name="Name" type="Label" parent="." unique_id=1711641243]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 168.0
@@ -141,7 +141,7 @@ theme_override_fonts/font = ExtResource("3_havy7")
 theme_override_font_sizes/font_size = 48
 text = "Name"
 
-[node name="Description" type="Label" parent="."]
+[node name="Description" type="Label" parent="." unique_id=418660100]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(504, 114)
 layout_mode = 1
@@ -163,7 +163,7 @@ text = "+0% Happiness
 +100% Poop"
 autowrap_mode = 2
 
-[node name="Rarity" type="Label" parent="."]
+[node name="Rarity" type="Label" parent="." unique_id=1712571893]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 16.0

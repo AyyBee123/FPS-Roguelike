@@ -14,35 +14,35 @@
 [ext_resource type="Texture2D" uid="uid://c22kyilgkifmv" path="res://Assets/UI/Coin.png" id="12_nj1sg"]
 [ext_resource type="AudioStream" uid="uid://betdhw3ko44le" path="res://Audio/SFX/Banish.mp3" id="13_yo2iq"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xxk11"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yo2iq"]
 texture = ExtResource("5_kleow")
 texture_margin_left = 8.0
 texture_margin_top = 8.0
 texture_margin_right = 8.0
 texture_margin_bottom = 8.0
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g6tbq"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dr118"]
 texture = ExtResource("6_16wpu")
 texture_margin_left = 12.0
 texture_margin_top = 12.0
 texture_margin_right = 12.0
 texture_margin_bottom = 12.0
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_asjw3"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i5e0v"]
 texture = ExtResource("7_n4alr")
 texture_margin_left = 8.0
 texture_margin_top = 8.0
 texture_margin_right = 8.0
 texture_margin_bottom = 8.0
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hottw"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cf6fv"]
 texture = ExtResource("5_kleow")
 texture_margin_left = 8.0
 texture_margin_top = 8.0
 texture_margin_right = 8.0
 texture_margin_bottom = 8.0
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wagd0"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7br7c"]
 texture = ExtResource("8_06nkn")
 texture_margin_left = 8.0
 texture_margin_top = 8.0
@@ -50,16 +50,17 @@ texture_margin_right = 8.0
 texture_margin_bottom = 8.0
 
 [sub_resource type="Theme" id="Theme_nj1sg"]
-Button/styles/disabled = SubResource("StyleBoxTexture_xxk11")
-Button/styles/focus = SubResource("StyleBoxTexture_g6tbq")
-Button/styles/hover = SubResource("StyleBoxTexture_asjw3")
-Button/styles/normal = SubResource("StyleBoxTexture_hottw")
-Button/styles/pressed = SubResource("StyleBoxTexture_wagd0")
+Button/styles/disabled = SubResource("StyleBoxTexture_yo2iq")
+Button/styles/focus = SubResource("StyleBoxTexture_dr118")
+Button/styles/hover = SubResource("StyleBoxTexture_i5e0v")
+Button/styles/normal = SubResource("StyleBoxTexture_cf6fv")
+Button/styles/pressed = SubResource("StyleBoxTexture_7br7c")
 
 [node name="Passive Menu" type="Control" unique_id=147814883]
 process_mode = 3
 z_index = 5
 layout_mode = 3
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5

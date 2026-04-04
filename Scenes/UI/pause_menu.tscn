@@ -11,7 +11,7 @@
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_r2i2h"]
 load_path = "res://.godot/imported/Passive Selection.png-130c78e84a106df4972e519c7de434a5.ctex"
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oykix"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qyryt"]
 texture = SubResource("CompressedTexture2D_r2i2h")
 texture_margin_left = 8.0
 texture_margin_top = 8.0
@@ -21,7 +21,7 @@ texture_margin_bottom = 8.0
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kdnb7"]
 load_path = "res://.godot/imported/Passive Selection Focus.png-ac61f7aeefd7277ef71aa15d4436febd.s3tc.ctex"
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_702e2"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_23me3"]
 texture = SubResource("CompressedTexture2D_kdnb7")
 texture_margin_left = 12.0
 texture_margin_top = 12.0
@@ -31,7 +31,7 @@ texture_margin_bottom = 12.0
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qyryt"]
 load_path = "res://.godot/imported/Passive Selection Hover.png-69ee582e6ab3910328cccf9973484c83.ctex"
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_23me3"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_deree"]
 texture = SubResource("CompressedTexture2D_qyryt")
 texture_margin_left = 8.0
 texture_margin_top = 8.0
@@ -51,7 +51,7 @@ texture_margin_bottom = 8.0
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nqqw2"]
 load_path = "res://.godot/imported/Passive Selection Press.png-2e838eaa87220e30923ef3cfb834a976.ctex"
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hanoc"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nqqw2"]
 texture = SubResource("CompressedTexture2D_nqqw2")
 texture_margin_left = 8.0
 texture_margin_top = 8.0
@@ -60,11 +60,11 @@ texture_margin_bottom = 8.0
 
 [sub_resource type="Theme" id="Theme_kxh81"]
 Button/colors/font_disabled_color = Color(0.88, 0.88, 0.88, 1)
-Button/styles/disabled = SubResource("StyleBoxTexture_oykix")
-Button/styles/focus = SubResource("StyleBoxTexture_702e2")
-Button/styles/hover = SubResource("StyleBoxTexture_23me3")
+Button/styles/disabled = SubResource("StyleBoxTexture_qyryt")
+Button/styles/focus = SubResource("StyleBoxTexture_23me3")
+Button/styles/hover = SubResource("StyleBoxTexture_deree")
 Button/styles/normal = SubResource("StyleBoxTexture_yq7um")
-Button/styles/pressed = SubResource("StyleBoxTexture_hanoc")
+Button/styles/pressed = SubResource("StyleBoxTexture_nqqw2")
 
 [node name="Pause Menu" type="Control" unique_id=1729089376]
 process_mode = 3
@@ -133,9 +133,9 @@ anchor_top = 0.504
 anchor_right = 0.5
 anchor_bottom = 0.504
 offset_left = -960.0
-offset_top = -352.32
+offset_top = -368.32
 offset_right = 960.0
-offset_bottom = 351.68
+offset_bottom = 415.68
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
@@ -168,6 +168,17 @@ theme_override_constants/outline_size = 12
 theme_override_fonts/font = ExtResource("1_rrvs5")
 theme_override_font_sizes/font_size = 48
 text = "Restart"
+script = ExtResource("3_r2i2h")
+
+[node name="Inventory" type="Button" parent="MarginContainer/Buttons" unique_id=2012718984]
+custom_minimum_size = Vector2(640, 96)
+layout_mode = 2
+size_flags_vertical = 4
+theme = SubResource("Theme_kxh81")
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("1_rrvs5")
+theme_override_font_sizes/font_size = 48
+text = "View Inventory"
 script = ExtResource("3_r2i2h")
 
 [node name="Settings" type="Button" parent="MarginContainer/Buttons" unique_id=2015312823]
@@ -205,6 +216,7 @@ script = ExtResource("3_r2i2h")
 
 [connection signal="pressed" from="MarginContainer/Buttons/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="MarginContainer/Buttons/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="MarginContainer/Buttons/Inventory" to="." method="_on_inventory_pressed"]
 [connection signal="pressed" from="MarginContainer/Buttons/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="MarginContainer/Buttons/Quit to Menu" to="." method="_on_quit_to_menu_pressed"]
 [connection signal="pressed" from="MarginContainer/Buttons/Quit to Desktop" to="." method="_on_quit_to_desktop_pressed"]

@@ -3,11 +3,11 @@ extends Node
 @export var enemies: Array[EnemySpawn]
 @export var bosses: Array[EndBossSpawn]
 
-@onready var player = get_tree().get_first_node_in_group("Player")
 @onready var level: Level = get_parent()
 
 static var current_number_of_enemies: int = 0
 
+var player: Player
 var NUMBER_OF_ENEMIES_TO_SPAWN: int = 1
 var MAX_NUMBER_OF_ENEMIES: int = 20
 var MIN_NUMBER_OF_ENEMIES: int = 10
@@ -29,8 +29,10 @@ func _ready():
 	SignalBus.end_boss_defeat.connect(func(_boss): check_for_boss())
 
 func _physics_process(delta):
-	if boss_spawned: return
-	
+	if not boss_spawned: spawn_horde(delta)
+	if not player: player = get_tree().get_first_node_in_group("Player")
+
+func spawn_horde(delta):
 	MAX_NUMBER_OF_ENEMIES = min(floori(INITIAL_MAX_ENEMIES * exp(level.enemy_tier * 0.1)), 100)
 	MIN_NUMBER_OF_ENEMIES = min(floori(INITIAL_MIN_ENEMIES * exp(level.enemy_tier * 0.12)), 80)
 	

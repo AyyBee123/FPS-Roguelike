@@ -47,7 +47,7 @@ func select_upgrade(button):
 		%Banish.banish(button)
 		return
 	
-	Globals.sfx.confirm.play_deconflicted()
+	Globals.sfx.confirm.play()
 	
 	set_physics_process(false)
 	get_tree().paused = false
