@@ -26,8 +26,8 @@ var uncommon_upgrades: Array[AbilityUpgradeResource] = []
 var rare_upgrades: Array[AbilityUpgradeResource] = []
 var legendary_upgrades: Array[AbilityUpgradeResource] = []
 
-var upgrades: Array[AbilityUpgradeResource] = []
-var upgrades_to_add: Array[AbilityUpgradeResource] = []
+var upgrades: Array[AbilityUpgradeResource] = [] # get the upgrades of the same rarity and then picks 1 or 2 at random
+var upgrades_to_add: Array[AbilityUpgradeResource] = [] # upgrades chosen to add to the level up choice button
 
 var player: Player
 
@@ -86,6 +86,11 @@ func get_rarity():
 		3:
 			get_stats(rare_upgrades)
 
+func get_stats_existing_ability():
+	upgrades_to_add.clear()
+	upgrades.clear()
+	get_rarity()
+
 func get_stats(_stats: Array[AbilityUpgradeResource]):
 	var number_of_stats: int = 1
 	if randf() < chance_for_extra_stat[rarity] and _stats.size() > 1:
@@ -96,7 +101,8 @@ func get_stats(_stats: Array[AbilityUpgradeResource]):
 	
 	for i in range(number_of_stats):
 		var stat_to_add: AbilityUpgradeResource = get_upgrade_stat()
-		upgrades_to_add.append(stat_to_add)
+		if stat_to_add != null:
+			upgrades_to_add.append(stat_to_add)
 
 func add_stats(upgrade_list):
 	for stat in upgrade_list:
@@ -137,6 +143,8 @@ func get_stat_value(stat_type: String, value: Variant = null):
 	return final_value
 
 func get_upgrade_stat():
+	if upgrades.size() - upgrades_to_add.size() <= 0:
+		return null
 	var upgrade = upgrades.pick_random()
 	if upgrades_to_add.has(upgrade):
 		return get_upgrade_stat()
@@ -156,6 +164,35 @@ func set_rarity():
 		cumulative += rarity_weights[r]
 		if weighted_amount <= cumulative:
 			rarity = r
+			break
+
+func set_upgrades(player_ability: Ability):
+	common_upgrades.clear()
+	for ability in player_ability.common_upgrades:
+		common_upgrades.append(ability)
+	
+	uncommon_upgrades.clear()
+	for ability in player_ability.uncommon_upgrades:
+		uncommon_upgrades.append(ability)
+	
+	rare_upgrades.clear()
+	for ability in player_ability.rare_upgrades:
+		rare_upgrades.append(ability)
+	
+	legendary_upgrades.clear()
+	for ability in player_ability.legendary_upgrades:
+		legendary_upgrades.append(ability)
+
+func remove_stat(stat: String):
+	remove_upgrade(common_upgrades, stat)
+	remove_upgrade(uncommon_upgrades, stat)
+	remove_upgrade(rare_upgrades, stat)
+	remove_upgrade(legendary_upgrades, stat)
+
+func remove_upgrade(list: Array, stat: String):
+	for i in range(list.size()):
+		if list[i].stat == stat:
+			list.remove_at(i)
 			break
 
 func _on_hit(enemy: Enemy, source: Variant, damage: float):

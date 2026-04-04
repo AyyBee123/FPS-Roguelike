@@ -24,12 +24,18 @@ func _on_pressed():
 
 func banish(button):
 	if button.ability:
-		var pool = get_tree().current_scene.ability_pool.abilities
-		var idx = pool.find_custom(func(packed):
-			return packed.resource_path == button.ability.scene_file_path
-		)
-		if idx != -1:
-			pool.remove_at(idx)
+		if button.ability.ability_exists:
+			for ability: Ability in player.abilities.get_children():
+				if ability.ability_name == button.ability.ability_name:
+					ability.remove_stat(button.ability.upgrades_to_add[0].stat)
+					break
+		else:
+			var pool = get_tree().current_scene.ability_pool.abilities
+			var idx = pool.find_custom(func(packed):
+				return packed.resource_path == button.ability.scene_file_path
+			)
+			if idx != -1:
+				pool.remove_at(idx)
 	elif button.passives.size() > 0:
 		var pool = get_tree().current_scene.passive_pool.passives
 		var idx = pool.find_custom(func(packed): 

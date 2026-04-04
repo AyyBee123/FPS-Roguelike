@@ -7,6 +7,7 @@ var menus: Array[Control] = []
 @onready var level_select = %"Level Select"
 
 func _ready():
+	get_tree().paused = false
 	menus = [main_menu, character_select, level_select]
 	for menu in menus:
 		menu.visibility_changed.connect(_on_visibility_changed.bind(menu))

@@ -13,6 +13,7 @@ var passives: Array[Passive] = []
 var ability: Ability
 var player: Player
 var player_abilities: Array[String]
+var player_ability_nodes: Array[Ability]
 
 func _ready():
 	randomize()
@@ -22,6 +23,7 @@ func _ready():
 	_on_focus_exited()
 
 func roll():
+	
 	if ability:
 		ability.queue_free()
 	passives.clear()
@@ -35,6 +37,7 @@ func roll():
 func get_abilities():
 	for a in player.abilities.get_children():
 		player_abilities.append(a.ability_name)
+		player_ability_nodes.append(a)
 
 func select_passive():
 	var current_set = {}
@@ -167,9 +170,11 @@ func select_ability():
 	
 	add_child(ability)
 	menu.current_list.append(scene)
-	for a in player_abilities:
-		if a == ability.ability_name: # set a flag if the player already has the ability
+	for i in range(player_abilities.size()):
+		if player_abilities[i] == ability.ability_name: # set a flag if the player already has the ability
 			ability.ability_exists = true
+			ability.set_upgrades(player_ability_nodes[i])
+			ability.get_stats_existing_ability()
 			break
 	
 	upgrade_icon.texture = ability.icon
@@ -205,20 +210,36 @@ func select_ability():
 				"flat":
 					description.text += "+%s %s" % values
 			description.text += "\n"
+		if description.text == "":
+			description.text = "All upgrades for this ability have been banished. This gives nothing."
+			background_rarity.color = "00000000"
+			icon_rarity.color = "000000"
+			rarity.modulate = "FFFFFF"
+			rarity.text = ""
+			ability.rarity = -1
 	else:
+		background_rarity.color = "00000000"
+		icon_rarity.color = "000000"
+		rarity.modulate = "FFFFFF"
 		rarity.text = ""
 		description.text = ability.description
 
 func why():
 	passive_name.text = "WHY?!"
+	icon_rarity.color = "000000"
 	rarity.text = ""
+	rarity.modulate = "FFFFFF"
 	description.text = "If you're reading this, everything has been banished; This gives nothing."
 	upgrade_icon.texture = load("uid://bfvvoax7qdiqk")
+	ability.rarity = -1
 
 func bug():
 	passive_name.text = "ERROR"
+	icon_rarity.color = "000000"
 	rarity.text = ""
+	rarity.modulate = "FFFFFF"
 	description.text = "If you're reading this, something went wrong."
+	ability.rarity = -1
 
 func format_number(n: float) -> String:
 	if is_equal_approx(n, int(n)):

@@ -16,7 +16,7 @@ func _ready():
 	
 	for button: Button in buttons.get_children():
 		button.mouse_entered.connect(func(): if not has_focus(): button.grab_focus())
-		button.pressed.connect(func(): confirm.play())
+		button.pressed.connect(func(): Globals.sfx.button_confirm.play())
 
 func _unhandled_input(event):
 	if event.is_action_pressed("pause"):
@@ -49,26 +49,18 @@ func _on_resume_pressed():
 	close_pause_menu()
 
 func _on_restart_pressed():
-	disable_buttons()
-	await confirm.finished
 	get_tree().paused = false
 	get_tree().reload_current_scene()
 
 func _on_inventory_pressed():
-	pass # Replace with function body.
+	pass
 
 func _on_settings_pressed():
 	pass
 
 func _on_quit_to_menu_pressed():
-	disable_buttons()
-	await confirm.finished
+	get_tree().paused = false
+	get_tree().change_scene_to_packed(load("res://Scenes/UI/main_menu.tscn"))
 
 func _on_quit_to_desktop_pressed():
-	disable_buttons()
-	await confirm.finished
 	get_tree().quit()
-
-func disable_buttons():
-	for button: Button in buttons.get_children():
-		button.disabled = true

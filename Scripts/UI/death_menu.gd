@@ -12,7 +12,7 @@ func _ready():
 	
 	for button: Button in buttons.get_children():
 		button.mouse_entered.connect(func(): if not has_focus(): button.grab_focus())
-		button.pressed.connect(func(): confirm.play(); disable_buttons())
+		button.pressed.connect(func(): Globals.sfx.button_confirm.play())
 
 func open_death_menu() -> void:
 	is_pause_menu_open = true
@@ -25,18 +25,13 @@ func open_death_menu() -> void:
 	first_button.grab_focus()
 	first_button.initial_focus = false
 
-func disable_buttons():
-	for button: Button in buttons.get_children():
-		button.disabled = true
-
 func _on_restart_pressed():
-	await confirm.finished
 	get_tree().paused = false
 	get_tree().reload_current_scene()
 
 func _on_quit_to_menu_pressed():
-	await confirm.finished
+	get_tree().paused = false
+	get_tree().change_scene_to_packed(load("res://Scenes/UI/main_menu.tscn"))
 
 func _on_quit_to_desktop_pressed():
-	await confirm.finished
 	get_tree().quit()
