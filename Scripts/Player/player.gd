@@ -270,8 +270,11 @@ func _input(event):
 			pickup.banish()
 			banish_audio.play_deconflicted()
 			banish_amount -= 1
-	if event.is_action_pressed("kill") and OS.has_feature("editor"):
-		hit(current_health, Vector3.ZERO)
+	if event is InputEventKey and event.pressed and OS.has_feature("editor"):
+		if event.keycode == KEY_K:
+			hit(current_health, Vector3.ZERO)
+		if event.keycode == KEY_L:
+			gain_xp(roundi(XP_NEEDED))
 
 func snap_to_ground():
 	global_position.y = 100

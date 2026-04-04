@@ -12,7 +12,9 @@
 [ext_resource type="Script" uid="uid://doyh5iljaundp" path="res://Scripts/UI/banish.gd" id="10_n4alr"]
 [ext_resource type="Script" uid="uid://swe1lsbe56w2" path="res://Scripts/UI/skip.gd" id="11_06nkn"]
 [ext_resource type="Texture2D" uid="uid://c22kyilgkifmv" path="res://Assets/UI/Coin.png" id="12_nj1sg"]
+[ext_resource type="Script" uid="uid://d22p4bqhyn3yn" path="res://Scripts/UI/give_options.gd" id="13_i5e0v"]
 [ext_resource type="AudioStream" uid="uid://betdhw3ko44le" path="res://Audio/SFX/Banish.mp3" id="13_yo2iq"]
+[ext_resource type="Script" uid="uid://e8gk7vklxd3s" path="res://Scripts/UI/button.gd" id="14_cf6fv"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yo2iq"]
 texture = ExtResource("5_kleow")
@@ -283,6 +285,54 @@ texture = ExtResource("12_nj1sg")
 expand_mode = 5
 stretch_mode = 5
 
+[node name="Give Options" type="VBoxContainer" parent="Scale/Transition/Background" unique_id=1394644007 node_paths=PackedStringArray("menu")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.98300004
+anchor_right = 0.5
+anchor_bottom = 0.98300004
+offset_left = 528.0
+offset_top = -591.952
+offset_right = 784.0
+offset_bottom = -267.95203
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 48
+alignment = 1
+script = ExtResource("13_i5e0v")
+menu = NodePath("../../../..")
+
+[node name="Reroll" type="Button" parent="Scale/Transition/Background/Give Options" unique_id=1899472050]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+theme = SubResource("Theme_nj1sg")
+theme_override_constants/outline_size = 13
+theme_override_fonts/font = ExtResource("3_hslo0")
+theme_override_font_sizes/font_size = 48
+text = "Reroll +1"
+script = ExtResource("14_cf6fv")
+
+[node name="Banish" type="Button" parent="Scale/Transition/Background/Give Options" unique_id=1303990672]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+theme = SubResource("Theme_nj1sg")
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("3_hslo0")
+theme_override_font_sizes/font_size = 48
+text = "Banish +1"
+script = ExtResource("14_cf6fv")
+
+[node name="Skip" type="Button" parent="Scale/Transition/Background/Give Options" unique_id=901215281]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+theme = SubResource("Theme_nj1sg")
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("3_hslo0")
+theme_override_font_sizes/font_size = 48
+text = "Skip +1"
+script = ExtResource("14_cf6fv")
+
 [node name="Banish Audio" type="AudioStreamPlayer" parent="." unique_id=1980471598]
 unique_name_in_owner = true
 stream = ExtResource("13_yo2iq")
@@ -312,3 +362,6 @@ color = Color(1, 0, 0, 0.2509804)
 [connection signal="pressed" from="Scale/Transition/Background/Modify Options/Reroll" to="Scale/Transition/Background/Modify Options/Reroll" method="_on_pressed"]
 [connection signal="pressed" from="Scale/Transition/Background/Modify Options/Banish" to="Scale/Transition/Background/Modify Options/Banish" method="_on_pressed"]
 [connection signal="pressed" from="Scale/Transition/Background/Modify Options/Skip" to="Scale/Transition/Background/Modify Options/Skip" method="_on_pressed"]
+[connection signal="pressed" from="Scale/Transition/Background/Give Options/Reroll" to="Scale/Transition/Background/Give Options" method="_on_reroll_pressed"]
+[connection signal="pressed" from="Scale/Transition/Background/Give Options/Banish" to="Scale/Transition/Background/Give Options" method="_on_banish_pressed"]
+[connection signal="pressed" from="Scale/Transition/Background/Give Options/Skip" to="Scale/Transition/Background/Give Options" method="_on_skip_pressed"]
