@@ -403,6 +403,7 @@ func level_up():
 	current_level += 1
 
 func get_upgrade(_upgrade):
+	if _upgrade == null: return
 	if _upgrade is Array[Passive]:
 		for i in _upgrade:
 			i.add_stats(self)

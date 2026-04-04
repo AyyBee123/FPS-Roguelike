@@ -23,16 +23,20 @@ func _ready():
 	_on_focus_exited()
 
 func roll():
-	
 	if ability:
 		ability.queue_free()
 	passives.clear()
+	
 	description.text = ""
+	
 	if randf() < 0.5:
 		select_passive()
 	else:
 		get_abilities()
 		select_ability()
+	
+	if rarity.text == "Legendary":
+		print("WOW!")
 
 func get_abilities():
 	for a in player.abilities.get_children():
@@ -216,7 +220,6 @@ func select_ability():
 			icon_rarity.color = "000000"
 			rarity.modulate = "FFFFFF"
 			rarity.text = ""
-			ability.rarity = -1
 	else:
 		background_rarity.color = "00000000"
 		icon_rarity.color = "000000"
@@ -232,7 +235,6 @@ func why():
 	rarity.modulate = "FFFFFF"
 	description.text = "EVERYTHING has been banished; This gives nothing."
 	upgrade_icon.texture = load("uid://bfvvoax7qdiqk")
-	ability.rarity = -1
 
 func bug():
 	passive_name.text = "ERROR"
@@ -240,7 +242,6 @@ func bug():
 	rarity.text = ""
 	rarity.modulate = "FFFFFF"
 	description.text = "If you're reading this, something went wrong."
-	ability.rarity = -1
 
 func format_number(n: float) -> String:
 	if is_equal_approx(n, int(n)):
