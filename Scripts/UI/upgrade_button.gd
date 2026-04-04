@@ -212,7 +212,7 @@ func select_ability():
 			description.text += "\n"
 		if description.text == "":
 			description.text = "All upgrades for this ability have been banished. This gives nothing."
-			background_rarity.color = "00000000"
+			background_rarity.color = "00000080"
 			icon_rarity.color = "000000"
 			rarity.modulate = "FFFFFF"
 			rarity.text = ""
@@ -226,10 +226,11 @@ func select_ability():
 
 func why():
 	passive_name.text = "WHY?!"
+	background_rarity.color = "00000080"
 	icon_rarity.color = "000000"
 	rarity.text = ""
 	rarity.modulate = "FFFFFF"
-	description.text = "If you're reading this, everything has been banished; This gives nothing."
+	description.text = "EVERYTHING has been banished; This gives nothing."
 	upgrade_icon.texture = load("uid://bfvvoax7qdiqk")
 	ability.rarity = -1
 
