@@ -4,14 +4,16 @@ var target: Node
 var current_speed: float
 var is_returning: bool = false
 var tween: Tween
+var rotation_direction: float
 
 func _ready():
 	super._ready()
 	%"Rotation Node".rotation.z = randf_range(-PI/6, PI/6)
+	rotation_direction = sign(%"Rotation Node".rotation.z)
 
 func _physics_process(delta):
 	super._physics_process(delta)
-	%Mesh.rotation.y += 5.0 * delta
+	%Mesh.rotation.y += 5.0 * delta * rotation_direction
 	
 	if not is_instance_valid(target):
 		queue_free()
