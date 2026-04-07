@@ -1,4 +1,4 @@
-[gd_resource type="ArrayMesh" load_steps=6 format=4 uid="uid://b3knx0o237wi6"]
+[gd_resource type="ArrayMesh" format=4 uid="uid://b3knx0o237wi6"]
 
 [ext_resource type="Shader" uid="uid://t5ew2scbt8pm" path="res://Shaders/blast.gdshader" id="1_n8oq4"]
 
