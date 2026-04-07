@@ -8,7 +8,7 @@ var rotation_direction: float
 
 func _ready():
 	super._ready()
-	%"Rotation Node".rotation.z = randf_range(-PI/6, PI/6)
+	%"Rotation Node".rotation.z = randf_range(-PI/12, PI/12)
 	rotation_direction = sign(%"Rotation Node".rotation.z)
 
 func _physics_process(delta):
