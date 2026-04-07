@@ -8,6 +8,10 @@
 		"rarity": 0
 	},
 	{
+		"path": "res://Scenes/Arms/crescent_star.tscn",
+		"rarity": 1
+	},
+	{
 		"path": "res://Scenes/Arms/double_finger.tscn",
 		"rarity": 0
 	},
@@ -33,7 +37,7 @@
 	},
 	{
 		"path": "res://Scenes/Arms/pocket_rocket.tscn",
-		"rarity": 2
+		"rarity": 1
 	},
 	{
 		"path": "res://Scenes/Arms/spark_plug.tscn",

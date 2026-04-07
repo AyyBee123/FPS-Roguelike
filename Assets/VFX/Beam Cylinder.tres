@@ -1,4 +1,4 @@
-[gd_resource type="ArrayMesh" load_steps=6 format=4 uid="uid://3r6n8ru1mlpv"]
+[gd_resource type="ArrayMesh" format=4 uid="uid://3r6n8ru1mlpv"]
 
 [ext_resource type="Shader" uid="uid://bk80rwse7kgm8" path="res://Shaders/weapon_beam.gdshader" id="1_oo0a2"]
 

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bj4nwtlf2yd5a"
+path="res://.godot/imported/Star Shot.mp3-b604b0a95b28ef32717910574c69fe02.mp3str"
+
+[deps]
+
+source_file="res://Audio/SFX/Star Shot.mp3"
+dest_files=["res://.godot/imported/Star Shot.mp3-b604b0a95b28ef32717910574c69fe02.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
