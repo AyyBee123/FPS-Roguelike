@@ -60,8 +60,8 @@ func _physics_process(delta):
 		barrel_marker.position.z = min(player.camera_controller.rig.rotation.x, max_sway) * sway_amount + barrel_pos.z
 	
 	for i in range(stars.size()):
-		star_speeds[i] = lerpf(star_speeds[i], STAR_ROTATION_SPEEDS[i], 1)
-		star_self_speeds[i] = lerpf(star_self_speeds[i], STAR_SELF_ROTATION_SPEEDS[i], 1)
+		star_speeds[i] = lerpf(star_speeds[i], STAR_ROTATION_SPEEDS[i], 0.08)
+		star_self_speeds[i] = lerpf(star_self_speeds[i], STAR_SELF_ROTATION_SPEEDS[i], 0.08)
 		star_markers[i].rotation.y += star_speeds[i] * delta
 		stars[i].rotation.y += star_self_speeds[i] * delta
 	
@@ -107,5 +107,5 @@ func launch_projectile(point: Vector3):
 	
 	star_barrel_speed = ROTATION_SPEED_MAX
 	for i in range(stars.size()):
-		star_speeds[i] = ROTATION_SPEED_MAX
-		star_self_speeds[i] = ROTATION_SPEED_MAX
+		star_speeds[i] = ROTATION_SPEED_MAX / 6.67 * sign(star_speeds[i])
+		star_self_speeds[i] = ROTATION_SPEED_MAX * sign(star_self_speeds[i])
