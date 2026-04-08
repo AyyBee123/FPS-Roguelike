@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c2o7h4efocscc"]
+[gd_scene format=3 uid="uid://c2o7h4efocscc"]
 
 [ext_resource type="Script" uid="uid://rsf22r0ascvn" path="res://Scripts/Abilities/Effects/lightning_strike.gd" id="1_0h5so"]
 [ext_resource type="Texture2D" uid="uid://cqo18g5ncyluk" path="res://Assets/Sprites/Abilities/Lightning Strike.png" id="2_63a1l"]
@@ -67,10 +67,14 @@ amount = 45.0
 type = "+"
 metadata/_custom_type_script = "uid://crdmjkiq4812g"
 
-[node name="Lightning Strike" type="Node"]
+[node name="Lightning Strike" type="Node" unique_id=1355233793]
 script = ExtResource("1_0h5so")
 LIGHTNING = ExtResource("2_ui8eq")
 icon = ExtResource("2_63a1l")
 ability_name = "Lightning Strike"
 description = "Calls down a bolt of lightning when hitting an enemy."
 ability_upgrades = Array[ExtResource("2_ckqsu")]([SubResource("Resource_63a1l"), SubResource("Resource_ckqsu"), SubResource("Resource_ui8eq"), SubResource("Resource_3ngp5"), SubResource("Resource_hseq8"), SubResource("Resource_3p1ef"), SubResource("Resource_4fi77"), SubResource("Resource_roj1p")])
+
+[node name="Cooldown" type="Timer" parent="." unique_id=177865592]
+unique_name_in_owner = true
+one_shot = true
