@@ -8,6 +8,7 @@ extends Node
 static var current_number_of_enemies: int = 0
 
 var player: Player
+var current_enemy_id: int = 0
 var NUMBER_OF_ENEMIES_TO_SPAWN: int = 1
 var MAX_NUMBER_OF_ENEMIES: int = 20
 var MIN_NUMBER_OF_ENEMIES: int = 10
@@ -25,6 +26,7 @@ const MAX_DISTANCE: float = 100
 const ENEMY = preload("uid://bf7ljiiykmoi0")
 
 func _ready():
+	current_number_of_enemies = 0
 	SignalBus.enemy_defeated.connect(func(_enemy): current_number_of_enemies = max(current_number_of_enemies - 1, 0))
 	SignalBus.end_boss_defeat.connect(func(_boss): check_for_boss())
 
@@ -49,6 +51,8 @@ func spawn_horde(delta):
 
 func spawn_enemy(enemy: Enemy) -> void:
 	current_number_of_enemies += 1
+	enemy.id = current_enemy_id
+	current_enemy_id += 1
 	enemy.position = level.find_spawn_point(player.global_position, MIN_DISTANCE, MAX_DISTANCE)
 	level.add_child.call_deferred(enemy)
 

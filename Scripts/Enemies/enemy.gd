@@ -31,6 +31,7 @@ signal died(enemy)
 
 @export var TICK_RATE: float = 0.06
 
+var id: int
 var is_on_screen: bool = true
 var object: RID
 var tween: Tween

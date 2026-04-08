@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://yipp43yiqwke"]
+[gd_scene format=4 uid="uid://yipp43yiqwke"]
 
 [ext_resource type="Script" uid="uid://bj4il52perdx8" path="res://Scripts/Enemies/stone_skull.gd" id="1_o0abg"]
 [ext_resource type="PackedScene" uid="uid://dm6474uy3ucte" path="res://Scenes/Misc/damage_number.tscn" id="2_3kxp1"]
@@ -92,12 +92,10 @@ shader = ExtResource("2_ulhvv")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_erual"]
 resource_name = "Material.001"
+shading_mode = 0
 diffuse_mode = 3
 specular_mode = 1
 albedo_color = Color(0.9066433, 0.36438173, 0, 1)
-roughness = 0.5
-emission_enabled = true
-emission = Color(0.9706715, 0.27000007, 0, 1)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_vcejm"]
 resource_name = "Stone Skull_Cube_001"
@@ -558,7 +556,7 @@ albedo_color = Color(1, 0, 0, 1)
 material = SubResource("StandardMaterial3D_ulhvv")
 radius = 1.5
 
-[node name="Stone Skull" type="CharacterBody3D" node_paths=PackedStringArray("mesh")]
+[node name="Stone Skull" type="CharacterBody3D" unique_id=813874945 node_paths=PackedStringArray("mesh")]
 collision_layer = 4
 script = ExtResource("1_o0abg")
 MUZZLE_FLASH = ExtResource("2_pqm40")
@@ -566,28 +564,27 @@ STONE_SKULL_PROJECTILE = ExtResource("3_gx5od")
 mesh = [NodePath("Skull"), NodePath("Fire")]
 raycast_offset = 6.0
 health = 20.0
-speed = 1.0
+speed = 0.167
 damage_number = ExtResource("2_3kxp1")
 projectile_damage = 2.0
 projectile_speed = 50.0
 projectile_range = 70.0
 
-[node name="Skull" type="MeshInstance3D" parent="."]
+[node name="Skull" type="MeshInstance3D" parent="." unique_id=1638449391]
 unique_name_in_owner = true
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 material_overlay = SubResource("ShaderMaterial_2rd6j")
 mesh = SubResource("ArrayMesh_3kxp1")
-skeleton = NodePath("")
 
-[node name="Shoot Marker" type="Marker3D" parent="Skull"]
+[node name="Shoot Marker" type="Marker3D" parent="Skull" unique_id=1619798750]
 unique_name_in_owner = true
 transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, -0.1365757, -0.7474738)
 
-[node name="Muzzle Flash" parent="Skull/Shoot Marker" instance=ExtResource("2_pqm40")]
+[node name="Muzzle Flash" parent="Skull/Shoot Marker" unique_id=1668877883 instance=ExtResource("2_pqm40")]
 unique_name_in_owner = true
 color = Color(1, 0.7019608, 0.105882354, 1)
 
-[node name="Fire" type="MeshInstance3D" parent="."]
+[node name="Fire" type="MeshInstance3D" parent="." unique_id=1444010071]
 unique_name_in_owner = true
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 material_overlay = SubResource("ShaderMaterial_ulhvv")
@@ -653,54 +650,52 @@ blend_shapes/frame_0056 = 0.0
 blend_shapes/frame_0057 = 0.0
 blend_shapes/frame_0058 = 0.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=980945506]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_kyj4i")
-}
-autoplay = "fire"
+libraries/ = SubResource("AnimationLibrary_kyj4i")
+autoplay = &"fire"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1561080363]
 shape = SubResource("SphereShape3D_lt0pw")
 
-[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="." unique_id=1298390300]
 unique_name_in_owner = true
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 
-[node name="Shoot Time" type="Timer" parent="."]
+[node name="Shoot Time" type="Timer" parent="." unique_id=838166486]
 unique_name_in_owner = true
 wait_time = 2.5
 one_shot = true
 autostart = true
 
-[node name="RayCast" type="RayCast3D" parent="."]
+[node name="RayCast" type="RayCast3D" parent="." unique_id=980915863]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1000, 0)
 target_position = Vector3(0, -6000, 0)
 
-[node name="Enemy Detection Area" type="Area3D" parent="."]
+[node name="Enemy Detection Area" type="Area3D" parent="." unique_id=1166458835]
 unique_name_in_owner = true
 collision_layer = 0
 collision_mask = 4
 monitorable = false
 script = ExtResource("5_ulhvv")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy Detection Area"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy Detection Area" unique_id=190098981]
 shape = SubResource("SphereShape3D_2rd6j")
 
-[node name="Minimap Icon" type="MeshInstance3D" parent="."]
+[node name="Minimap Icon" type="MeshInstance3D" parent="." unique_id=1283089181]
 visible = false
 layers = 2
 mesh = SubResource("SphereMesh_2rd6j")
 script = ExtResource("6_2rd6j")
 
-[node name="Shadow" type="Decal" parent="."]
+[node name="Shadow" type="Decal" parent="." unique_id=374575115]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
 size = Vector3(1.5, 3, 1.5)
 texture_albedo = ExtResource("7_at0v4")
 cull_mask = 4
 
-[node name="Shoot" type="AudioStreamPlayer3D" parent="."]
+[node name="Shoot" type="AudioStreamPlayer3D" parent="." unique_id=383976307]
 unique_name_in_owner = true
 stream = ExtResource("9_pqm40")
 unit_size = 50.0
@@ -709,7 +704,7 @@ pitch_scale = 2.5
 bus = &"SFX"
 script = ExtResource("10_gx5od")
 
-[node name="Move Timer" type="Timer" parent="."]
+[node name="Move Timer" type="Timer" parent="." unique_id=555673526]
 unique_name_in_owner = true
 
 [connection signal="timeout" from="Move Timer" to="." method="_on_move_timer_timeout"]

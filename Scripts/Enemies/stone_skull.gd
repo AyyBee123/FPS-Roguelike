@@ -32,11 +32,12 @@ func move(delta):
 	else:
 		position.y = lerp_angle(position.y, ray_cast.get_collision_point().y + raycast_offset, 0.05)
 	
-	if position.distance_squared_to(player_pos) > 225:
+	var dist_sq = position.distance_squared_to(player_pos)
+	if dist_sq > 225:
 		position.x += (player_pos.x - position.x) * delta * speed
 		position.z += (player_pos.z - position.z) * delta * speed
 		can_shoot = false
-	elif position.distance_squared_to(player_pos) > 144:
+	elif dist_sq > 144:
 		position.x += (player_pos.x - position.x) * delta * speed * 0.2
 		position.z += (player_pos.z - position.z) * delta * speed * 0.2
 		can_shoot = true
@@ -64,4 +65,4 @@ func fire_projectile(proj: PackedScene, pos: Vector3, direction: Vector3):
 
 func _on_move_timer_timeout():
 	move_timer.start(TICK_RATE)
-	move(get_physics_process_delta_time())
+	move(TICK_RATE)

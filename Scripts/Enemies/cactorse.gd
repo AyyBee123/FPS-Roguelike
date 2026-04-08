@@ -35,7 +35,7 @@ func move(delta):
 	
 	desired = Vector3.ZERO
 	
-	rotation.y = lerp_angle(rotation.y, atan2(vel.x, vel.z), delta * angular_acceleration)
+	rotation.y = lerp(rotation.y, atan2(vel.x, vel.z), delta * angular_acceleration)
 	
 	var raycast_y: float = ray_cast.get_collision_point().y + raycast_offset
 	
@@ -45,7 +45,7 @@ func move(delta):
 
 func _on_move_timer_timeout():
 	move_timer.start(TICK_RATE)
-	if current_player_pos == Vector3.ZERO or abs(player.global_position.length() - current_player_pos.length()) > 0.6:
+	if current_player_pos == Vector3.ZERO or player.global_position.distance_squared_to(current_player_pos) > 0.36:
 		nav_agent.set_target_position(player.global_position)
 		current_player_pos = player.global_position
-	move(get_physics_process_delta_time())
+	move(TICK_RATE)
