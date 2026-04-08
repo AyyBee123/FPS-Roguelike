@@ -6,7 +6,9 @@ var damage_increase: float = 5
 var radius_increase: float = 1
 
 func on_enemy_killed(_enemy: Enemy, _source: Variant, _damage: float):
+	if _source.is_in_group("Unstable Molecule Blast"): return
 	var blast = BLAST.instantiate()
+	blast.add_to_group("Unstable Molecule Blast")
 	blast.player = player
 	blast.damage = get_stat_value("Damage")
 	blast.radius = get_stat_value("Splash_Radius")

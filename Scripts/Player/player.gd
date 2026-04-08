@@ -9,6 +9,7 @@ signal weapon_spawned(projectile, damage) # called mainly for weapon after-effec
 signal on_landing(impact_speed) # called when the player lands on the ground from the air
 signal on_dash(speed, direction) # called when the player dashes
 signal hit_taken(pos) # called when the player takes a hit
+signal health_lost(amount)
 signal item_hovered(item) # called when an item is looked at with the crosshair and is within pickup range
 signal item_picked(item) # called when an item is picked up (called from the item script)
 signal arm_picked(_arm) # called when an arm is picked up
@@ -321,6 +322,7 @@ func hit(amount, pos):
 	var x = dir.dot(right)
 	var y = dir.dot(forward)
 	hit_taken.emit(Vector2(x, y))
+	health_lost.emit(amount)
 	
 	if current_health <= 0:
 		die()
@@ -382,6 +384,8 @@ func get_health_difference(stat, old_value, new_value):
 
 func heal(amount):
 	current_health = clamp(0, current_health + amount, MAX_HEALTH)
+	if amount < 0:
+		health_lost.emit(amount)
 
 func gain_xp(amount: int):
 	xp_audio.play_deconflicted()

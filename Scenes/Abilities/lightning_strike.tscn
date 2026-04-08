@@ -77,4 +77,5 @@ ability_upgrades = Array[ExtResource("2_ckqsu")]([SubResource("Resource_63a1l"),
 
 [node name="Cooldown" type="Timer" parent="." unique_id=177865592]
 unique_name_in_owner = true
+wait_time = 0.1
 one_shot = true
