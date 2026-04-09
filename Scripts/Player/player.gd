@@ -152,8 +152,7 @@ func _ready():
 	snap_to_ground()
 	current_health = MAX_HEALTH
 	set_dash_charges(DASHES)
-	stats.stat_changed.connect(get_health_difference)
-	stats.stat_changed.connect(get_dashes)
+	stats.stat_changed.connect(get_stat)
 	enemy_killed.connect(func(_enemy, _source, _damage): kill_count += 1)
 	update_ability_slots()
 
@@ -374,12 +373,14 @@ func die():
 func open_death_menu():
 	death_menu.open_death_menu()
 
-func get_dashes(stat, old_value, new_value):
-	if stat != "Dashes": return
+func get_stat(stat, old_value, new_value):
+	if stat == "Dashes": get_dashes(old_value, new_value)
+	if stat == "Max_Health": get_health_difference(old_value, new_value)
+
+func get_dashes(old_value, new_value):
 	if old_value != new_value: set_dash_charges(new_value)
 
-func get_health_difference(stat, old_value, new_value):
-	if stat != "Max_Health": return
+func get_health_difference(old_value, new_value):
 	heal(new_value - old_value)
 
 func heal(amount):
