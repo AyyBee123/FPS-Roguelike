@@ -13,6 +13,7 @@ signal health_lost(amount)
 signal item_hovered(item) # called when an item is looked at with the crosshair and is within pickup range
 signal item_picked(item) # called when an item is picked up (called from the item script)
 signal arm_picked(_arm) # called when an arm is picked up
+signal leveled_up(_level, source) # called when the player levels up (source = from item or event)
 
 signal kill_count_changed(amount)
 signal coin_count_changed(amount)
@@ -388,8 +389,7 @@ func heal(amount):
 	if amount < 0:
 		health_lost.emit(amount)
 
-func gain_xp(amount: int):
-	xp_audio.play_deconflicted()
+func gain_xp(amount: int, source: Variant = null):
 	current_xp += amount * XP_MULTIPLIER
 	if current_xp >= XP_NEEDED:
 		current_xp -= XP_NEEDED
@@ -398,6 +398,7 @@ func gain_xp(amount: int):
 		else:
 			XP_NEEDED += 10 # increases xp required to reach the next level by 10
 		upgrade_queue_count += 1
+		leveled_up.emit(current_level, source)
 		# if the amount of xp still reaches or exceeds the xp needed, recall the function to level up again
 		if current_xp >= XP_NEEDED:
 			gain_xp(0)

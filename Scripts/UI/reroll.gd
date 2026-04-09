@@ -12,13 +12,14 @@ func _ready():
 	mouse_entered.connect(func(): if not has_focus(): grab_focus())
 	focus_exited.connect(func(): if player.reroll_amount <= 0: menu.upgrade_list.get_children()[2].grab_focus())
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	visible = player.reroll_amount > 0
 	disabled = not visible
 	amount.text = "x%d" % player.reroll_amount
 
 func _on_pressed():
 	Globals.sfx.confirm.play_deconflicted()
+	menu.is_banishing = false
 	menu.current_list.clear()
 	for upgrade in menu.upgrade_list.get_children():
 		upgrade.roll()

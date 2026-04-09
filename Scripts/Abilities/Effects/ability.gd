@@ -190,10 +190,9 @@ func remove_stat(stat: String):
 	remove_upgrade(legendary_upgrades, stat)
 
 func remove_upgrade(list: Array, stat: String):
-	for i in range(list.size()):
+	for i in range(list.size() - 1, -1, -1):
 		if list[i].stat == stat:
 			list.remove_at(i)
-			break
 
 func _on_hit(enemy: Enemy, source: Variant, damage: float):
 	pass

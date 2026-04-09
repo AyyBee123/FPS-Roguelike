@@ -13,7 +13,7 @@ func _ready():
 	mouse_entered.connect(func(): if not has_focus(): grab_focus())
 	focus_exited.connect(func(): if player.banish_amount <= 0: menu.upgrade_list.get_children()[2].grab_focus())
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	visible = player.banish_amount > 0
 	disabled = not visible
 	amount.text = "x%d" % player.banish_amount

@@ -30,4 +30,5 @@ func _physics_process(delta):
 func _on_body_entered(body):
 	if body is Player:
 		body.gain_xp(xp_amount)
+		body.xp_audio.play_deconflicted()
 		queue_free()

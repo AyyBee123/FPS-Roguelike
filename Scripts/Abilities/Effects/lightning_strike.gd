@@ -2,8 +2,6 @@ extends Ability
 
 @export var LIGHTNING: PackedScene
 
-@onready var cooldown = %Cooldown
-
 const DAMAGE_MULTIPLIER: float = 0.5
 
 func _on_hit(enemy: Enemy, source: Variant, damage: float):
@@ -16,4 +14,3 @@ func _on_hit(enemy: Enemy, source: Variant, damage: float):
 	lightning.player = player
 	get_tree().current_scene.add_child(lightning)
 	lightning.visible = true
-	cooldown.start()

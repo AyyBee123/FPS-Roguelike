@@ -77,6 +77,7 @@ func setup_signals(_player: Player):
 	_player.weapon_shot.connect(on_weapon_shot)
 	_player.weapon_spawned.connect(on_weapon_spawned)
 	_player.item_picked.connect(on_item_picked)
+	_player.leveled_up.connect(on_level_up)
 
 func set_detailed_desription():
 	pass
@@ -125,4 +126,7 @@ func on_weapon_spawned(_projectile: Variant, _damage: float):
 	pass
 
 func on_item_picked(_item: Item):
+	pass
+
+func on_level_up(_level: int, _source: Variant):
 	pass
