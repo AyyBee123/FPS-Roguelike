@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://crnx73g4cc4jh"]
 
-[ext_resource type="Script" uid="uid://dkmdv02ycbtcu" path="res://Scripts/Passive Items/appendage_projection.gd" id="1_pcany"]
+[ext_resource type="Script" uid="uid://dkmdv02ycbtcu" path="res://Scripts/Abilities/Misc/appendage_projection.gd" id="1_pcany"]
 [ext_resource type="PackedScene" uid="uid://4g4sp84tgd3i" path="res://Scenes/VFX/appendage_projection.tscn" id="2_pxp5o"]
 [ext_resource type="Texture2D" uid="uid://doik5gfmdthgs" path="res://Assets/Sprites/Abilities/Appendage Projection.png" id="3_jw31w"]
 [ext_resource type="Script" uid="uid://crdmjkiq4812g" path="res://Scripts/Resources/ability_upgrade_resource.gd" id="3_pxp5o"]
