@@ -1,5 +1,8 @@
 extends "res://Scripts/Projectiles/Player/projectile.gd"
 
+@onready var mesh = %Mesh
+@onready var trail = %Trail
+
 var target: Node
 var current_speed: float
 var is_returning: bool = false
@@ -13,7 +16,8 @@ func _ready():
 
 func _physics_process(delta):
 	super._physics_process(delta)
-	%Mesh.rotation.y += 5.0 * delta * rotation_direction
+	mesh.rotation.y += 5.0 * delta * rotation_direction
+	trail.global_transform.basis = mesh.global_transform.basis
 	
 	if not is_instance_valid(target):
 		queue_free()
