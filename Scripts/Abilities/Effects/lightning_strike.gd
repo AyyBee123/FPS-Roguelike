@@ -4,11 +4,10 @@ extends Ability
 
 @onready var cooldown = %Cooldown
 
-const DAMAGE_MULTIPLIER: float = 0.667
+const DAMAGE_MULTIPLIER: float = 0.5
 
 func _on_hit(enemy: Enemy, source: Variant, damage: float):
 	if not enemy or source.is_in_group("Lightning Strike"): return
-	if not cooldown.is_stopped(): return
 	var lightning = LIGHTNING.instantiate()
 	lightning.visible = false
 	lightning.position = enemy.position

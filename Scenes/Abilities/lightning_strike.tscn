@@ -74,8 +74,3 @@ icon = ExtResource("2_63a1l")
 ability_name = "Lightning Strike"
 description = "Calls down a bolt of lightning when hitting an enemy."
 ability_upgrades = Array[ExtResource("2_ckqsu")]([SubResource("Resource_63a1l"), SubResource("Resource_ckqsu"), SubResource("Resource_ui8eq"), SubResource("Resource_3ngp5"), SubResource("Resource_hseq8"), SubResource("Resource_3p1ef"), SubResource("Resource_4fi77"), SubResource("Resource_roj1p")])
-
-[node name="Cooldown" type="Timer" parent="." unique_id=177865592]
-unique_name_in_owner = true
-wait_time = 0.1
-one_shot = true
