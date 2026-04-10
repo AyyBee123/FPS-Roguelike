@@ -30,7 +30,7 @@ func _physics_process(delta):
 		queue_free()
 		return
 	
-	if global_position != target.global_position:
+	if global_position.distance_to(target.global_position) > 0.01:
 		look_at(target.global_position)
 	set_beam_length(global_position.distance_to(target.global_position))
 	

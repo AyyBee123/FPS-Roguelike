@@ -2,6 +2,11 @@ extends Node
 
 @export var enemies: Array[EnemySpawn]
 @export var bosses: Array[EndBossSpawn]
+@export var MAX_NUMBER_OF_ENEMIES: int = 20
+@export var MIN_NUMBER_OF_ENEMIES: int = 10
+# distance range the enemy can spawn away from the player
+@export var MIN_DISTANCE: float = 20
+@export var MAX_DISTANCE: float = 100
 
 @onready var level: Level = get_parent()
 
@@ -10,8 +15,6 @@ static var current_number_of_enemies: int = 0
 var player: Player
 var current_enemy_id: int = 0
 var NUMBER_OF_ENEMIES_TO_SPAWN: int = 1
-var MAX_NUMBER_OF_ENEMIES: int = 20
-var MIN_NUMBER_OF_ENEMIES: int = 10
 var SPAWNING_INTERVAL: float = 2
 var boss_spawned: bool = false
 var t: float = 0
@@ -19,9 +22,6 @@ var t: float = 0
 @onready var INITIAL_MAX_ENEMIES: int = MAX_NUMBER_OF_ENEMIES
 @onready var INITIAL_MIN_ENEMIES: int = MIN_NUMBER_OF_ENEMIES
 
-# distance range the enemy can spawn away from the player
-const MIN_DISTANCE: float = 20
-const MAX_DISTANCE: float = 100
 
 const ENEMY = preload("uid://bf7ljiiykmoi0")
 

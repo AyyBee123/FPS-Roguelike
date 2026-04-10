@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://bjjpeas4v84kk" path="res://Scripts/Simulation/compiling_simulation.gd" id="1_k1pv2"]
 [ext_resource type="PackedScene" uid="uid://bgvkkgkl4eadl" path="res://Scenes/Simulation/simulation_player.tscn" id="2_4wsqe"]
 [ext_resource type="Script" uid="uid://652066s8oj06" path="res://Scripts/Globals/arm_pool.gd" id="3_a1wvm"]
+[ext_resource type="Script" uid="uid://ddlx4tkndd0xd" path="res://Scripts/Utils/enemy_manager.gd" id="3_koj6s"]
+[ext_resource type="Script" uid="uid://px8ih8py0glr" path="res://Scripts/Utils/chest_manager.gd" id="3_oxnjm"]
 [ext_resource type="Script" uid="uid://caq32sajxn8pu" path="res://Scripts/Globals/item_pool.gd" id="4_koj6s"]
 [ext_resource type="Script" uid="uid://c3tr181aifqm8" path="res://Scripts/Globals/ability_pool.gd" id="5_oxnjm"]
 [ext_resource type="Script" uid="uid://3fq6hfdn5n35" path="res://Scripts/Globals/passive_pool.gd" id="6_g5x6p"]
@@ -21,13 +23,17 @@ background_mode = 2
 sky = SubResource("Sky_mrvoe")
 tonemap_mode = 2
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_koj6s"]
+vertices = PackedVector3Array(-499.5, 0.5, -499.5, -499.5, 0.5, -25.5, 499.5, 0.5, -25.5, 499.5, 0.5, -499.5, -499.5, 0.5, -24.25, -499.5, 0.5, 499.5, 499.5, 0.5, 499.5, 499.5, 0.5, -24.25)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5)]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5lxpq"]
 diffuse_mode = 3
 specular_mode = 1
 albedo_color = Color(0.103743516, 0.10374353, 0.103743516, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_t1e4j"]
-size = Vector2(10, 10)
+size = Vector2(100, 100)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_mrvoe"]
 data = PackedVector3Array(5, 0, 5, -5, 0, 5, 5, 0, -5, -5, 0, 5, -5, 0, -5, 5, 0, -5)
@@ -36,22 +42,58 @@ data = PackedVector3Array(5, 0, 5, -5, 0, 5, 5, 0, -5, -5, 0, 5, -5, 0, -5, 5, 0
 process_mode = 3
 script = ExtResource("1_k1pv2")
 player = NodePath("Player")
+NUMBER_OF_CHESTS = 0
+NUMBER_OF_ARMORY_BOXES = 0
+chest_cost = 0
+box_cost = 0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1342645433]
 environment = SubResource("Environment_l1536")
 
 [node name="Player" parent="." unique_id=1837682708 instance=ExtResource("2_4wsqe")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
-[node name="Floor" type="MeshInstance3D" parent="." unique_id=1164466230]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1908369035]
+unique_name_in_owner = true
+navigation_mesh = SubResource("NavigationMesh_koj6s")
+
+[node name="Floor" type="MeshInstance3D" parent="NavigationRegion3D" unique_id=1164466230]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_5lxpq")
 mesh = SubResource("PlaneMesh_t1e4j")
+skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Floor" unique_id=909023161]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Floor" unique_id=909023161]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D" unique_id=842365211]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor/StaticBody3D" unique_id=842365211]
 shape = SubResource("ConcavePolygonShape3D_mrvoe")
+
+[node name="Wall" type="MeshInstance3D" parent="NavigationRegion3D" unique_id=1295532953]
+transform = Transform3D(10, 0, 0, 0, -4.371139e-07, -10, 0, 10, -4.371139e-07, 0, 0, -25)
+material_override = SubResource("StandardMaterial3D_5lxpq")
+mesh = SubResource("PlaneMesh_t1e4j")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Wall" unique_id=1872321904]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Wall/StaticBody3D" unique_id=1638397310]
+shape = SubResource("ConcavePolygonShape3D_mrvoe")
+
+[node name="Chest Manager" type="Node" parent="." unique_id=872717624]
+unique_name_in_owner = true
+script = ExtResource("3_oxnjm")
+
+[node name="Timer" type="Timer" parent="Chest Manager" unique_id=880992327]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="Enemy Handler" type="Node" parent="." unique_id=142444667]
+unique_name_in_owner = true
+script = ExtResource("3_koj6s")
+MAX_NUMBER_OF_ENEMIES = 0
+MIN_NUMBER_OF_ENEMIES = 0
+MIN_DISTANCE = 5.0
+MAX_DISTANCE = 20.0
 
 [node name="Arm Pool" type="Node" parent="." unique_id=1511157601]
 unique_name_in_owner = true
@@ -75,11 +117,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
 
 [node name="Enemy Spawn" type="Marker3D" parent="." unique_id=2121999715]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
-
-[node name="Enemies Spawn" type="Marker3D" parent="." unique_id=1037446156]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
 
 [node name="Level Spawn" type="Marker3D" parent="." unique_id=582347273]
 unique_name_in_owner = true
@@ -149,4 +187,5 @@ text = "Loading"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[connection signal="timeout" from="Chest Manager/Timer" to="Chest Manager" method="_on_timer_timeout"]
 [connection signal="timeout" from="Scene Timer" to="." method="_on_scene_timer_timeout"]

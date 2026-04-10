@@ -1,16 +1,9 @@
-extends Node3D
-
-signal cost_increased
+extends Level
 
 @export var player: Player
 
-@onready var arm_pool = %"Arm Pool"
-@onready var item_pool = %"Item Pool"
-@onready var ability_pool = %"Ability Pool"
-@onready var passive_pool = %"Passive Pool"
 @onready var arm_pickup_spawn_point = %"Arm Pickup Spawn".global_position
 @onready var enemy_spawn_point = %"Enemy Spawn".global_position
-@onready var enemies_spawn_point = %"Enemies Spawn".global_position
 @onready var level_spawn_point = %"Level Spawn".global_position
 
 const ARM_PICKUP = preload("uid://ba7erkb81ks3u")
@@ -27,8 +20,10 @@ var levels_done: bool = false
 var final_enemy_spawned: bool = false
 
 func _ready():
+	enemy_handler.player = player
+	GameState.current_level = self
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	Engine.set_time_scale(16.0)
+	Engine.set_time_scale(12.0)
 	
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), true)
 	
@@ -93,8 +88,6 @@ func spawn_arms():
 	
 	give_abilities()
 	give_items()
-	
-	arms_done = true
 
 func give_abilities():
 	for ability in ability_pool.abilities:
@@ -112,6 +105,8 @@ func give_items():
 	for item in item_list:
 		var i = item.instantiate()
 		i.on_pick_up(player)
+	
+	arms_done = true
 
 func spawn_levels():
 	for level in level_list:
@@ -126,10 +121,8 @@ func spawn_levels():
 func spawn_enemies():
 	for enemy in enemy_list:
 		var e: Enemy = enemy.instantiate()
-		add_child(e)
-		e.global_position = enemies_spawn_point
-		await get_tree().create_timer(3.0).timeout
-		e.queue_free()
+		enemy_handler.spawn_enemy(e)
+		await get_tree().create_timer(5.0).timeout
 	
 	enemies_done = true
 
@@ -137,7 +130,6 @@ func spawn_enemy():
 	var dummy: Enemy = DUMMY.instantiate()
 	add_child(dummy)
 	dummy.global_position = enemy_spawn_point
-	
 	%"Scene Timer".start()
 
 func find_chest_spawn() -> Vector3:

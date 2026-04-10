@@ -39,6 +39,7 @@
 [ext_resource type="Texture2D" uid="uid://c22kyilgkifmv" path="res://Assets/UI/Coin.png" id="39_t480o"]
 [ext_resource type="Script" uid="uid://b173hi8wxnnrp" path="res://Scripts/UI/boss_health_bars.gd" id="40_ikk73"]
 [ext_resource type="PackedScene" uid="uid://be63qadoubjih" path="res://Scenes/UI/boss_health.tscn" id="41_5ky2c"]
+[ext_resource type="PackedScene" uid="uid://bftja31phwkj2" path="res://Scenes/UI/death_menu.tscn" id="43_8cxup"]
 [ext_resource type="Shader" uid="uid://rgkwx5g78yh4" path="res://Shaders/minimap_mask.gdshader" id="44_dimnm"]
 [ext_resource type="Script" uid="uid://1re15fa86o4d" path="res://Scripts/UI/minimap_camera.gd" id="45_kfmnc"]
 
@@ -209,6 +210,11 @@ viewport_path = NodePath("CanvasLayer/Minimap/Mask/SubViewport")
 [node name="Simulation Player" type="CharacterBody3D" unique_id=1837682708 groups=["Player"]]
 collision_layer = 2
 collision_mask = 21
+axis_lock_linear_x = true
+axis_lock_linear_y = true
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
 script = ExtResource("1_ieyue")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1132027493]
@@ -376,7 +382,7 @@ stats = {
 "Speed": {
 "+": 0,
 "base": 1.0,
-"flat": 0.0,
+"flat": -0.95,
 "x": 1
 },
 "Splash_Radius": {
@@ -806,6 +812,11 @@ offset_bottom = 95.88
 pivot_offset = Vector2(704, 0)
 script = ExtResource("40_ikk73")
 boss_health_bar = ExtResource("41_5ky2c")
+
+[node name="Death Menu" parent="CanvasLayer/HUD" unique_id=1729089376 instance=ExtResource("43_8cxup")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
 
 [node name="Upgrade" type="Node" parent="CanvasLayer" unique_id=463688370]
 unique_name_in_owner = true

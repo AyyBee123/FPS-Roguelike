@@ -7,28 +7,28 @@ signal stat_changed(stat, old_value, new_value)
 ## "x" -> the final multiplier of the base stat and the increase
 @export var stats: Dictionary = {
 	# character stats
-	"Max_Health": { "base": 100.0, "+": 0, "x": 1, "flat": 0.0 },
-	"Move_Speed": { "base": 8.0, "+": 0, "x": 1, "flat": 0.0 },
-	"Jump_Height": { "base": 5.0, "+": 0, "x": 1, "flat": 0.0 },
+	"Max_Health": { "base": 100.0, "+": 0.0, "x": 1.0, "flat": 0.0 },
+	"Move_Speed": { "base": 8.0, "+": 0.0, "x": 1.0, "flat": 0.0 },
+	"Jump_Height": { "base": 5.0, "+": 0.0, "x": 1.0, "flat": 0.0 },
 	"Extra_Jumps": { "base": 0, "+": 0, "x": 1, "flat": 0 },
-	"Fall_Speed": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
-	"Pickup_Radius": { "base": 2.0, "+": 0, "x": 1, "flat": 0.0 },
-	"Slide_Speed": { "base": 10.0, "+": 0, "x": 1, "flat": 0.0 },
-	"XP_Gained": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
-	"Luck": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
-	"Friction": { "base": 50.0, "+": 0, "x": 1, "flat": 0.0 },
-	"Dashes": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
-	"Dash_Cooldown": { "base": 2.0, "+": 0, "x": 1, "flat": 0.0 },
+	"Fall_Speed": { "base": 1.0, "+": 0.0, "x": 1.0, "flat": 0.0 },
+	"Pickup_Radius": { "base": 2.0, "+": 0.0, "x": 1.0, "flat": 0.0 },
+	"Slide_Speed": { "base": 10.0, "+": 0.0, "x": 1.0, "flat": 0.0 },
+	"XP_Gained": { "base": 1.0, "+": 0.0, "x": 1.0, "flat": 0.0 },
+	"Luck": { "base": 1.0, "+": 0.0, "x": 1.0, "flat": 0.0 },
+	"Friction": { "base": 50.0, "+": 0.0, "x": 1.0, "flat": 0.0 },
+	"Dashes": { "base": 1, "+": 0, "x": 1, "flat": 0 },
+	"Dash_Cooldown": { "base": 2.0, "+": 0.0, "x": 1, "flat": 0.0 },
 	
 	# arm stats
-	"Damage": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
-	"Fire_Rate": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
-	"Range": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
-	"Speed": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
+	"Damage": { "base": 1.0, "+": 0.0, "x": 1.0, "flat": 0.0 },
+	"Fire_Rate": { "base": 1.0, "+": 0.0, "x": 1.0, "flat": 0.0 },
+	"Range": { "base": 1.0, "+": 0.0, "x": 1.0, "flat": 0.0 },
+	"Speed": { "base": 1.0, "+": 0.0, "x": 1.0, "flat": 0.0 },
 	"Splash_Radius": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
 	"Projectile_Count": { "base": 1, "+": 0, "x": 1, "flat": 0 },
-	"Crit_Chance": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
-	"Crit_Damage": { "base": 1.0, "+": 0, "x": 1, "flat": 0.0 },
+	"Crit_Chance": { "base": 1.0, "+": 0.0, "x": 1.0, "flat": 0.0 },
+	"Crit_Damage": { "base": 1.0, "+": 0.0, "x": 1.0, "flat": 0.0 },
 }
 
 ## gets the final character stat value after calculations

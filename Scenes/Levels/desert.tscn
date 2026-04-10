@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://caq32sajxn8pu" path="res://Scripts/Globals/item_pool.gd" id="12_t1ox7"]
 [ext_resource type="Script" uid="uid://c3tr181aifqm8" path="res://Scripts/Globals/ability_pool.gd" id="13_np4fc"]
 [ext_resource type="Script" uid="uid://3fq6hfdn5n35" path="res://Scripts/Globals/passive_pool.gd" id="14_glso8"]
+[ext_resource type="PackedScene" uid="uid://cc6gwuef31wc8" path="res://Scenes/Enemies/rock_ball.tscn" id="15_1mh2y"]
 
 [sub_resource type="Resource" id="Resource_ecsxk"]
 script = ExtResource("2_4dovk")
@@ -47,6 +48,11 @@ metadata/_custom_type_script = "uid://e25j21vf5uye"
 script = ExtResource("3_4dovk")
 spawn_interval = 5.0
 enemy = ExtResource("5_xbbd1")
+metadata/_custom_type_script = "uid://e25j21vf5uye"
+
+[sub_resource type="Resource" id="Resource_1mh2y"]
+script = ExtResource("3_4dovk")
+enemy = ExtResource("15_1mh2y")
 metadata/_custom_type_script = "uid://e25j21vf5uye"
 
 [sub_resource type="Resource" id="Resource_fj2ht"]
@@ -2177,7 +2183,7 @@ directional_shadow_mode = 0
 [node name="Enemy Handler" type="Node" parent="." unique_id=10471636]
 unique_name_in_owner = true
 script = ExtResource("2_r3g2l")
-enemies = Array[ExtResource("3_4dovk")]([SubResource("Resource_7rivk"), SubResource("Resource_hyk2w")])
+enemies = Array[ExtResource("3_4dovk")]([SubResource("Resource_7rivk"), SubResource("Resource_hyk2w"), SubResource("Resource_1mh2y")])
 bosses = Array[ExtResource("9_i3lab")]([SubResource("Resource_fj2ht")])
 
 [node name="Chest Manager" type="Node" parent="." unique_id=1958972648]
