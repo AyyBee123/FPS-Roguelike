@@ -16,7 +16,13 @@ func _ready():
 	visibility_changed.connect(set_first_button_focus)
 	set_first_button_focus()
 
+func _input(_event):
+	if not visible: return
+	if Input.is_action_just_pressed("ui_cancel"):
+		_on_back_pressed()
+
 func set_first_button_focus():
+	if not visible: return
 	# set the first button as the focused one (mainly for controller)
 	var first_button: Button = levels.get_child(0)
 	first_button.initial_focus = true

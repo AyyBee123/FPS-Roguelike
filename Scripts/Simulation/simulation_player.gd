@@ -39,7 +39,9 @@ func _physics_process(delta):
 		hovered_item.unhighlight()
 	hovered_item = pickup
 	item_hovered.emit(pickup)
-	
-	# check for level ups
-	if upgrade_queue_count > 0 and upgrade.get_child_count() == 0:
-		level_up()
+
+func _input(_event):
+	pass
+
+func hit(_amount, _pos):
+	pass

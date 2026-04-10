@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://dlyd2dhcllwdh" path="res://Assets/UI/Passive Selection Press.png" id="13_q6o50"]
 [ext_resource type="Script" uid="uid://xqaqq8k4qpor" path="res://Scripts/UI/confirm_level.gd" id="14_1yfdm"]
 [ext_resource type="Script" uid="uid://bm7q7fw5yrie8" path="res://Scripts/UI/confirm_character.gd" id="15_hbsmt"]
+[ext_resource type="Texture2D" uid="uid://colbxo74rvkn" path="res://Assets/UI/Back Button Focus.png" id="16_ifxty"]
 [ext_resource type="Texture2D" uid="uid://dikin3ynxg028" path="res://Assets/UI/Back Button Hover.png" id="16_py2ge"]
 [ext_resource type="Texture2D" uid="uid://bv1kxkupgi3fd" path="res://Assets/UI/Back Button.png" id="17_ifxty"]
 [ext_resource type="Texture2D" uid="uid://cpi0k3qf4834u" path="res://Assets/UI/Back Button Press.png" id="18_wm46x"]
@@ -126,19 +127,36 @@ Button/styles/hover = SubResource("StyleBoxTexture_asjw3")
 Button/styles/normal = SubResource("StyleBoxTexture_hottw")
 Button/styles/pressed = SubResource("StyleBoxTexture_wagd0")
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_go30u"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wm46x"]
+texture = ExtResource("16_ifxty")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dji77"]
 texture = ExtResource("16_py2ge")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_keyrt"]
 texture = ExtResource("17_ifxty")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0hhrj"]
 texture = ExtResource("18_wm46x")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
 
 [sub_resource type="Theme" id="Theme_1abay"]
-Button/styles/focus = SubResource("StyleBoxEmpty_go30u")
+Button/styles/focus = SubResource("StyleBoxTexture_wm46x")
 Button/styles/hover = SubResource("StyleBoxTexture_dji77")
 Button/styles/normal = SubResource("StyleBoxTexture_keyrt")
 Button/styles/pressed = SubResource("StyleBoxTexture_0hhrj")
@@ -356,6 +374,7 @@ offset_right = 0.1279602
 offset_bottom = 3.6159668
 grow_horizontal = 2
 grow_vertical = 0
+focus_neighbor_left = NodePath("../../Back")
 theme = SubResource("Theme_oslnl")
 theme_override_constants/outline_size = 13
 theme_override_fonts/font = ExtResource("2_mrfpk")
@@ -375,7 +394,9 @@ offset_left = 0.6399994
 offset_top = -51.76007
 offset_right = 252.64
 offset_bottom = 56.23993
+focus_neighbor_right = NodePath("../Character Info/Confirm")
 theme = SubResource("Theme_1abay")
+script = ExtResource("3_4pqbp")
 
 [node name="Text" type="Label" parent="Main Menu/Character Select/Back" unique_id=773439067]
 layout_mode = 1
@@ -526,6 +547,7 @@ offset_right = 0.1279602
 offset_bottom = 3.6159668
 grow_horizontal = 2
 grow_vertical = 0
+focus_neighbor_left = NodePath("../../Back")
 theme = SubResource("Theme_oslnl")
 theme_override_constants/outline_size = 13
 theme_override_fonts/font = ExtResource("2_mrfpk")
@@ -545,7 +567,9 @@ offset_left = 0.6399994
 offset_top = -51.76007
 offset_right = 252.64
 offset_bottom = 56.23993
+focus_neighbor_right = NodePath("../Level Info/Confirm")
 theme = SubResource("Theme_1abay")
+script = ExtResource("3_4pqbp")
 
 [node name="Text" type="Label" parent="Main Menu/Level Select/Back" unique_id=1170742]
 layout_mode = 1

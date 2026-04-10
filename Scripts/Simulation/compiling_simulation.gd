@@ -10,6 +10,7 @@ signal cost_increased
 @onready var passive_pool = %"Passive Pool"
 @onready var arm_pickup_spawn_point = %"Arm Pickup Spawn".global_position
 @onready var enemy_spawn_point = %"Enemy Spawn".global_position
+@onready var enemies_spawn_point = %"Enemies Spawn".global_position
 @onready var level_spawn_point = %"Level Spawn".global_position
 
 const ARM_PICKUP = preload("uid://ba7erkb81ks3u")
@@ -17,7 +18,13 @@ const DUMMY = preload("uid://dg3j4d78oaqdx")
 
 var arm_list: Array[PackedScene]
 var level_list: Array[PackedScene]
+var enemy_list: Array[PackedScene]
 var item_list: Array[PackedScene]
+
+var arms_done: bool = false
+var enemies_done: bool = false
+var levels_done: bool = false
+var final_enemy_spawned: bool = false
 
 func _ready():
 	Engine.set_time_scale(16.0)
@@ -28,9 +35,16 @@ func _ready():
 	
 	load_from_folder("res://Scenes/Levels/", level_list)
 	spawn_levels()
+	
+	load_from_folder("res://Scenes/Enemies/", enemy_list)
+	spawn_enemies()
 
 func _physics_process(delta):
-	%Icon.rotation += delta / Engine.get_time_scale()
+	%Icon.rotation += 2.0 * delta / Engine.get_time_scale()
+	
+	if arms_done and levels_done and enemies_done and not final_enemy_spawned:
+		final_enemy_spawned = true
+		spawn_enemy()
 
 func spawn_arms():
 	for arm in arm_pool.common_pool:
@@ -71,7 +85,7 @@ func spawn_arms():
 	give_abilities()
 	give_items()
 	
-	spawn_enemy()
+	arms_done = true
 
 func give_abilities():
 	for ability in ability_pool.abilities:
@@ -95,8 +109,20 @@ func spawn_levels():
 		var lvl = level.instantiate()
 		add_child(lvl)
 		lvl.global_position = level_spawn_point
-		await get_tree().create_timer(3.0).timeout
+		await get_tree().create_timer(2.0).timeout
 		lvl.queue_free()
+	
+	levels_done = true
+
+func spawn_enemies():
+	for enemy in enemy_list:
+		var e: Enemy = enemy.instantiate()
+		add_child(e)
+		e.global_position = enemies_spawn_point
+		await get_tree().create_timer(3.0).timeout
+		e.queue_free()
+	
+	enemies_done = true
 
 func spawn_enemy():
 	var dummy: Enemy = DUMMY.instantiate()
@@ -134,6 +160,10 @@ func change_scene():
 	get_tree().change_scene_to_packed(preload("uid://bhk4jon3yjyso"))
 
 func _exit_tree():
+	set_physics_process(false)
+	
+	await get_tree().create_timer(1.0).timeout
+	
 	Engine.set_time_scale(1.0)
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), false)
 
