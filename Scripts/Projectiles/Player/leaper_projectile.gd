@@ -17,7 +17,7 @@ func _ready():
 		mesh.get_active_material(0).albedo_color = Color("ff9b63")
 		NUMBER_OF_BOUNCES = 2
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if target and is_instance_valid(target):
 		var direction = (target.global_position - global_position).normalized()
 		set_linear_velocity(direction * speed)

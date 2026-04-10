@@ -11,12 +11,12 @@ var pickup = null
 func _ready():
 	initialize()
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if is_shoot_button_held and \
 		(not animation_player.is_playing() or animation_player.current_animation == current_arm.shoot_animation):
 		shoot()
 
-func _input(event):
+func _input(_event):
 	if Input.is_action_pressed("shoot"):
 		is_shoot_button_held = true
 	if is_shoot_button_held and not Input.is_action_pressed("shoot"):
@@ -34,8 +34,11 @@ func enter(): # call when weapon has been equipped after swapping the previous w
 func swap_arm(_new_arm): # swaps out the old weapon for a new one
 	for child in arm.get_children(): # in case there are somehow multiple
 		arm.remove_child(child)
-	current_arm.queue_free()
+	if is_instance_valid(current_arm):
+		current_arm.queue_free()
 	
+	if _new_arm.get_parent():
+		_new_arm.get_parent().remove_child(_new_arm)
 	arm.add_child(_new_arm)
 	current_arm = _new_arm
 	enter()

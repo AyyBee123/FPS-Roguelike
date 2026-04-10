@@ -37,5 +37,5 @@ func launch_projectile(point: Vector3):
 	
 	proj.global_transform.origin = bullet_point.global_transform.origin
 
-func _on_animation_player_animation_finished(anim_name):
+func _on_animation_player_animation_finished(_anim_name):
 	animation_player.play("Idle")

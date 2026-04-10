@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://bekdgtbfhlrcs"]
+[gd_scene format=4 uid="uid://bekdgtbfhlrcs"]
 
 [ext_resource type="Script" uid="uid://cww6s4fh4s5gw" path="res://Scripts/Player/Arms/cactarm.gd" id="1_lagsi"]
 [ext_resource type="PackedScene" uid="uid://30aqfsvm5c6t" path="res://Scenes/Projectiles/Arm/cactarm_needle.tscn" id="2_thdwx"]
@@ -784,7 +784,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[node name="Cactarm" type="Node3D"]
+[node name="Cactarm" type="Node3D" unique_id=246609892]
 script = ExtResource("1_lagsi")
 arm_name = "Cactarm"
 rarity = 0
@@ -793,27 +793,27 @@ base_damage = 1.0
 base_fire_rate = 8.0
 base_range = 30.0
 base_speed = 200.0
-recoil = Vector2(0.125, 0.05)
+recoil = Vector2(0.1, 0.05)
 recoil_speed = 12.0
-snap = 6.0
+snap = 8.0
 
-[node name="Fire Rate Timer" type="Timer" parent="."]
+[node name="Fire Rate Timer" type="Timer" parent="." unique_id=1771005066]
 unique_name_in_owner = true
 one_shot = true
 
-[node name="Release Timer" type="Timer" parent="."]
+[node name="Release Timer" type="Timer" parent="." unique_id=1588593878]
 unique_name_in_owner = true
 one_shot = true
 
-[node name="Bullet Point" type="Marker3D" parent="."]
+[node name="Bullet Point" type="Marker3D" parent="." unique_id=479510719]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.3671512)
 
-[node name="Muzzle Flash" parent="Bullet Point" instance=ExtResource("3_qgkp4")]
+[node name="Muzzle Flash" parent="Bullet Point" unique_id=733735443 instance=ExtResource("3_qgkp4")]
 color = Color(0.34901962, 0.4862745, 0.25882354, 1)
 size = 0.75
 
-[node name="Cactarm Shot" type="AudioStreamPlayer3D" parent="."]
+[node name="Cactarm Shot" type="AudioStreamPlayer3D" parent="." unique_id=1960739006]
 unique_name_in_owner = true
 stream = ExtResource("4_lagsi")
 max_db = 0.0
@@ -822,7 +822,7 @@ panning_strength = 0.0
 bus = &"SFX"
 script = ExtResource("5_jhl53")
 
-[node name="Cactarm Shotgun" type="AudioStreamPlayer3D" parent="."]
+[node name="Cactarm Shotgun" type="AudioStreamPlayer3D" parent="." unique_id=726259042]
 unique_name_in_owner = true
 stream = ExtResource("6_jhl53")
 max_db = 0.0
@@ -831,17 +831,15 @@ panning_strength = 0.0
 bus = &"SFX"
 script = ExtResource("5_jhl53")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1995721774]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_tf165")
-}
+libraries/ = SubResource("AnimationLibrary_tf165")
 speed_scale = 1.25
 
-[node name="Armature" type="Node3D" parent="."]
+[node name="Armature" type="Node3D" parent="." unique_id=519168998]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.397346)
 
-[node name="Skeleton3D" type="Skeleton3D" parent="Armature"]
+[node name="Skeleton3D" type="Skeleton3D" parent="Armature" unique_id=1835327673]
 bones/0/name = "Bone"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
@@ -997,38 +995,38 @@ bones/21/position = Vector3(0, 0.017743004, -1.4901161e-08)
 bones/21/rotation = Quaternion(-0.04179176, -0.10151811, -0.1192209, 0.9867796)
 bones/21/scale = Vector3(1, 0.99999994, 1)
 
-[node name="Bone_016" type="BoneAttachment3D" parent="Armature/Skeleton3D"]
+[node name="Bone_016" type="BoneAttachment3D" parent="Armature/Skeleton3D" unique_id=736152461]
 transform = Transform3D(-0.25881863, -0.9659262, -2.9802326e-08, 0.96592605, -0.25881857, -2.384186e-07, 8.940697e-08, 0, 1.0000002, -0.13302588, -0.036992762, -0.6861765)
 bone_name = "Bone.016"
 bone_idx = 16
 
-[node name="Thumb" type="MeshInstance3D" parent="Armature/Skeleton3D/Bone_016"]
+[node name="Thumb" type="MeshInstance3D" parent="Armature/Skeleton3D/Bone_016" unique_id=975304146]
 transform = Transform3D(0.03235071, -1.3969839e-08, 3.328759e-09, 1.3969839e-08, 0.03235071, 2.1119538e-10, -3.328758e-09, -2.1119388e-10, 0.032350723, -4.0643755e-10, 1.3820536e-08, -1.19073405e-07)
 mesh = SubResource("ArrayMesh_jhl53")
 skeleton = NodePath("")
 
-[node name="Bone" type="BoneAttachment3D" parent="Armature/Skeleton3D"]
+[node name="Bone" type="BoneAttachment3D" parent="Armature/Skeleton3D" unique_id=405765296]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
 bone_name = "Bone"
 bone_idx = 0
 
-[node name="Cactus" type="MeshInstance3D" parent="Armature/Skeleton3D/Bone"]
+[node name="Cactus" type="MeshInstance3D" parent="Armature/Skeleton3D/Bone" unique_id=456965441]
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)
 mesh = SubResource("ArrayMesh_dsc5i")
 skeleton = NodePath("")
 
-[node name="Index Finger" type="MeshInstance3D" parent="Armature/Skeleton3D"]
+[node name="Index Finger" type="MeshInstance3D" parent="Armature/Skeleton3D" unique_id=745762988]
 mesh = SubResource("ArrayMesh_0acbj")
 skin = SubResource("Skin_y6xf5")
 
-[node name="Middle Finger" type="MeshInstance3D" parent="Armature/Skeleton3D"]
+[node name="Middle Finger" type="MeshInstance3D" parent="Armature/Skeleton3D" unique_id=859910503]
 mesh = SubResource("ArrayMesh_1x4s6")
 skin = SubResource("Skin_y6xf5")
 
-[node name="Pinky Finger" type="MeshInstance3D" parent="Armature/Skeleton3D"]
+[node name="Pinky Finger" type="MeshInstance3D" parent="Armature/Skeleton3D" unique_id=738615431]
 mesh = SubResource("ArrayMesh_qgkp4")
 skin = SubResource("Skin_y6xf5")
 
-[node name="Ring Finger" type="MeshInstance3D" parent="Armature/Skeleton3D"]
+[node name="Ring Finger" type="MeshInstance3D" parent="Armature/Skeleton3D" unique_id=1620071556]
 mesh = SubResource("ArrayMesh_d0sp8")
 skin = SubResource("Skin_y6xf5")

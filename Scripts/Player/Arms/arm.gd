@@ -182,7 +182,7 @@ func set_material_override():
 	
 	material_override_set = true
 
-func shoot_different_projectile(proj: PackedScene, ignore_fire_rate: bool = false, outside_source: Variant = self):
+func shoot_different_projectile(_proj: PackedScene, ignore_fire_rate: bool = false, outside_source: Variant = self):
 	if t < fire_rate_timer and not ignore_fire_rate: return
 	
 	if not ignore_fire_rate:

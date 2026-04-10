@@ -6,13 +6,14 @@ class_name ArmPickup extends RigidBody3D
 @onready var collision_shape = %CollisionShape
 @onready var visual_offset = %"Visual Offset"
 @onready var jingle = %Jingle
+@onready var arm_node = %"Arm Node"
 @onready var default_scale = get_scale()
-var rarity_weights
 
 const AMPLITUDE: float = 0.05
 const FREQUENCY: float = 1.0
 const HIGHLIGHT_COLOR: Color = Color(0.88, 1.0, 0.0)
 
+var rarity_weights
 var arm: Arm
 var arm_name: String
 var offset: Vector3 = Vector3.ZERO
@@ -37,6 +38,9 @@ func _ready():
 	
 	var new_arm: Arm = arm.duplicate()
 	
+	arm_node.add_child(arm)
+	arm_node.visible = false
+	
 	match rarity:
 		0: # common
 			rarity_color = Color("cccccc")
@@ -46,31 +50,14 @@ func _ready():
 			rarity_color = Color("e68b19")
 	
 	var arm_mesh_list = new_arm.find_children("", "MeshInstance3D", true)
-	for mesh in arm_mesh_list:
-		make_unique(mesh)
-		mesh_list.append(mesh)
-		
-		# add item highlight shader
-		var mat: ShaderMaterial = ShaderMaterial.new()
-		mat.shader = shader
-		mat.resource_local_to_scene = true
-		mesh.material_overlay = mat
 	
-	jingle.play_deconflicted(0.5)
-	play_tween()
-	
-	# get the mesh bounding box and create and collision box using the resulting bounding box
-	var aabb: AABB = get_visual_aabb(arm_mesh_list)
-	var box: Shape3D = BoxShape3D.new()
-	box.size = aabb.size
-	collision_shape.shape = box
-	
-	# center the arm's position
-	visual_offset.position -= aabb.position + aabb.size / 2
-	default_pos = visual_offset.position
+	setup_arm(arm_mesh_list)
 	
 	visual_offset.add_child(new_arm)
 	new_arm.animation_player.stop()
+	
+	jingle.play_deconflicted(0.5)
+	play_tween()
 	
 	unhighlight()
 
@@ -82,6 +69,27 @@ func pick_up(player):
 	player.weapons_manager.swap_arm(arm)
 	queue_free()
 
+func setup_arm(arm_mesh_list: Array):
+	for mesh in arm_mesh_list:
+		make_unique(mesh)
+		mesh_list.append(mesh)
+		
+		# add item highlight shader
+		var mat: ShaderMaterial = ShaderMaterial.new()
+		mat.shader = shader
+		mat.resource_local_to_scene = true
+		mesh.material_overlay = mat
+	
+	# get the mesh bounding box and create and collision box using the resulting bounding box
+	var aabb: AABB = get_visual_aabb(arm_mesh_list)
+	var box: Shape3D = BoxShape3D.new()
+	box.size = aabb.size
+	collision_shape.shape = box
+	
+	# center the arm's position
+	visual_offset.position -= aabb.position + aabb.size / 2
+	default_pos = visual_offset.position
+
 func get_visual_aabb(meshes: Array) -> AABB:
 	var first: bool = true
 	var combined: AABB = AABB()
@@ -92,6 +100,7 @@ func get_visual_aabb(meshes: Array) -> AABB:
 		
 		while p: # keep iterating through the parents
 			xform = p.transform * xform
+			if not p.get_parent() is Node3D: break
 			p = p.get_parent()
 		var aabb: AABB = transform_aabb(mesh.mesh.get_aabb(), xform)
 		

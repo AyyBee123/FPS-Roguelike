@@ -7,6 +7,6 @@ var height: float
 func _ready():
 	height = position.y
 
-func _process(delta):
+func _process(_delta):
 	global_position = player.global_position + Vector3(0, height, 0)
 	rotation.y = player.rotation.y

@@ -68,7 +68,7 @@ func _ready():
 				rare_upgrades.append(a)
 	get_rarity()
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if get_parent().name == "Abilities" and not player:
 		player = get_parent().get_parent()
 		player.enemy_hit.connect(_on_hit)
@@ -194,11 +194,11 @@ func remove_upgrade(list: Array, stat: String):
 		if list[i].stat == stat:
 			list.remove_at(i)
 
-func _on_hit(enemy: Enemy, source: Variant, damage: float):
+func _on_hit(_enemy: Enemy, _source: Variant, _damage: float):
 	pass
 
-func _on_shoot(projectile: Variant, damage: float):
+func _on_shoot(_projectile: Variant, _damage: float):
 	pass
 
-func _on_spawn(projectile: Variant, damage: float):
+func _on_spawn(_projectile: Variant, _damage: float):
 	pass

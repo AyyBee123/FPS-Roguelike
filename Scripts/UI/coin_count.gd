@@ -10,7 +10,7 @@ func _ready():
 	amount = player.coin_count
 	player.coin_count_changed.connect(update_coin_count)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	label.text = str(int(amount))
 
 func update_coin_count(_amount: float):

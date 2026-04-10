@@ -41,7 +41,7 @@ func _ready():
 	
 	armature.rotation.y = randf_range(0, TAU)
 
-func open(player: Player):
+func open(_player: Player):
 	if is_open: return
 	is_open = true
 	

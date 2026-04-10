@@ -31,10 +31,10 @@ func _physics_process(delta):
 		dir = -dir
 	magazine.rotation.z = -barrel.rotation.z / 2
 
-func ease_out_quad(t: float):
-	return 1.0 - (1.0 - t) * (1.0 - t)
+func ease_out_quad(_t: float):
+	return 1.0 - (1.0 - _t) * (1.0 - _t)
 
-func _input(event):
+func _input(_event):
 	if Input.is_action_pressed("shoot"):
 		if not is_shoot_button_held:
 			barrel.rotation.z = 0

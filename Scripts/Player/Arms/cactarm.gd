@@ -11,7 +11,7 @@ var released: bool = true
 @onready var original_range: float = base_range
 @onready var original_fire_rate: float = base_fire_rate
 
-func _input(event):
+func _input(_event):
 	if Input.is_action_pressed("shoot"):
 		released = false
 	if not released and not Input.is_action_pressed("shoot"):

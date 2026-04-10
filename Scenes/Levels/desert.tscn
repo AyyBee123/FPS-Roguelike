@@ -2163,6 +2163,7 @@ size = Vector3(200, 1, 200)
 [node name="Desert" type="Node3D" unique_id=721472373]
 script = ExtResource("1_r3g2l")
 NUMBER_OF_CHESTS = 40
+box_cost = 0
 boss_spawns = Array[ExtResource("2_4dovk")]([SubResource("Resource_ecsxk")])
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1429438397]

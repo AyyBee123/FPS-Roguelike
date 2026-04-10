@@ -9,7 +9,7 @@ var origin: Enemy
 func _ready():
 	set_beam_length(0.05)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if is_instance_valid(origin):
 		global_position = origin.global_position
 	
@@ -21,5 +21,5 @@ func set_beam_length(length: float):
 	beam.scale.z = length / 2
 	outer_beam.scale.z = length / 2
 
-func _on_animation_player_animation_finished(anim_name):
+func _on_animation_player_animation_finished(_anim_name):
 	queue_free()

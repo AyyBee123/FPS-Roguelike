@@ -14,7 +14,7 @@ func _ready():
 	player.hit_taken.connect(_on_taking_damage)
 	player.item_picked.connect(_on_item_pickup)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if item_queue.size() > 0 and not item_display:
 		current_item = item_queue.pop_front()
 		item_display = item_ui.instantiate()

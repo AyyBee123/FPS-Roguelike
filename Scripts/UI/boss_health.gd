@@ -9,7 +9,7 @@ var boss: Enemy
 func _ready():
 	boss_name.text = boss.boss_name
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if not boss:
 		queue_free()
 		return

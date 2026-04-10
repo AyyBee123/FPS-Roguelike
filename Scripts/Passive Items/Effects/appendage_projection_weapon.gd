@@ -44,7 +44,7 @@ func _ready():
 	if arm.muzzle:
 		arm.muzzle.queue_free()
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if not ability:
 		queue_free()
 	
@@ -66,8 +66,6 @@ func shoot(_arm: Arm, _source: Variant):
 	await get_tree().create_timer(1.0 / (arm.fire_rate * 8)).timeout
 	if arm and not _arm.is_in_group("Appendage Projection"):
 		arm.shoot(false, self)
-	if arm and _arm.is_in_group("Appendage Projection"):
-		print()
 
 func release(_arm: Arm, _source: Variant):
 	if arm and not _arm.is_in_group("Appendage Projection"):

@@ -60,7 +60,7 @@ func _physics_process(delta):
 	else:
 		sparks.emitting = false
 
-func _on_body_entered(body):
+func _on_body_entered(_body):
 	if not grounded:
 		lifetime.start(range / (speed * LAUNCH_SPEED_MULTIPLIER))
 		saw.pitch_scale = randf_range(0.75, 1.25)

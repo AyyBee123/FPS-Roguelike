@@ -19,7 +19,7 @@ func _ready():
 	lifetime.wait_time = range / speed
 	lifetime.start()
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	pass
 
 func _on_body_entered(body):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://dgwmja8id6426"]
+[gd_scene format=4 uid="uid://dgwmja8id6426"]
 
 [ext_resource type="Script" uid="uid://bn4u5rrrkf7ka" path="res://Scripts/Player/Arms/armsaw.gd" id="1_bueri"]
 [ext_resource type="PackedScene" uid="uid://b0esjsbrkftmk" path="res://Scenes/Projectiles/Arm/saw.tscn" id="2_xgomj"]
@@ -1037,7 +1037,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[node name="Armsaw" type="Node3D" node_paths=PackedStringArray("firing_audio")]
+[node name="Armsaw" type="Node3D" unique_id=543523129 node_paths=PackedStringArray("firing_audio")]
 script = ExtResource("1_bueri")
 arm_name = "Armsaw"
 rarity = 1
@@ -1046,20 +1046,20 @@ base_damage = 12.0
 base_fire_rate = 1.5
 base_range = 60.0
 base_speed = 20.0
-recoil = Vector2(0.125, 0.05)
+recoil = Vector2(0.25, 0.05)
 recoil_speed = 12.0
 snap = 6.0
 firing_audio = [NodePath("SawShot")]
 
-[node name="Fire Rate Timer" type="Timer" parent="."]
+[node name="Fire Rate Timer" type="Timer" parent="." unique_id=1514971107]
 unique_name_in_owner = true
 one_shot = true
 
-[node name="Bullet Point" type="Marker3D" parent="."]
+[node name="Bullet Point" type="Marker3D" parent="." unique_id=705385716]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.09799203)
 
-[node name="SawShot" type="AudioStreamPlayer3D" parent="."]
+[node name="SawShot" type="AudioStreamPlayer3D" parent="." unique_id=163486834]
 stream = ExtResource("3_br021")
 pitch_scale = 2.6
 panning_strength = 0.0
@@ -1067,17 +1067,15 @@ bus = &"SFX"
 script = ExtResource("5_5tnif")
 metadata/_custom_type_script = "uid://cc1romsfhth3n"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1396465230]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_maqqt")
-}
-autoplay = "Idle"
+libraries/ = SubResource("AnimationLibrary_maqqt")
+autoplay = &"Idle"
 
-[node name="Armature" type="Node3D" parent="."]
+[node name="Armature" type="Node3D" parent="." unique_id=390126880]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.4679763)
 
-[node name="Skeleton3D" type="Skeleton3D" parent="Armature"]
+[node name="Skeleton3D" type="Skeleton3D" parent="Armature" unique_id=669507307]
 bones/0/name = "Base_2"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
@@ -1338,41 +1336,41 @@ bones/36/position = Vector3(0, 0.028323054, 0)
 bones/36/rotation = Quaternion(-6.5764276e-08, 0, 0, 1)
 bones/36/scale = Vector3(1, 1, 1)
 
-[node name="Arm_l" type="BoneAttachment3D" parent="Armature/Skeleton3D"]
+[node name="Arm_l" type="BoneAttachment3D" parent="Armature/Skeleton3D" unique_id=436961295]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -0.17140609, -0.00060722977, 0.0018351078)
 bone_name = "Arm.l"
 bone_idx = 1
 
-[node name="Knob" type="MeshInstance3D" parent="Armature/Skeleton3D/Arm_l"]
+[node name="Knob" type="MeshInstance3D" parent="Armature/Skeleton3D/Arm_l" unique_id=1610643071]
 transform = Transform3D(0.049791217, 0, 0, 0, 0, -0.049791217, 0, 0.049791217, 0, -0.04256858, 1.1175871e-08, 0)
 mesh = SubResource("ArrayMesh_bueri")
 skeleton = NodePath("")
 
-[node name="Base_2" type="BoneAttachment3D" parent="Armature/Skeleton3D"]
+[node name="Base_2" type="BoneAttachment3D" parent="Armature/Skeleton3D" unique_id=1545837229]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
 bone_name = "Base_2"
 bone_idx = 0
 
-[node name="Base" type="MeshInstance3D" parent="Armature/Skeleton3D/Base_2"]
+[node name="Base" type="MeshInstance3D" parent="Armature/Skeleton3D/Base_2" unique_id=565247897]
 transform = Transform3D(0.13485256, 0, 0, 0, 0, -0.13485256, 0, 0.13485256, 0, 0, 0, 9.313226e-10)
 mesh = SubResource("ArrayMesh_xgomj")
 skeleton = NodePath("")
 
-[node name="Handle" type="MeshInstance3D" parent="Armature/Skeleton3D/Base_2/Base"]
+[node name="Handle" type="MeshInstance3D" parent="Armature/Skeleton3D/Base_2/Base" unique_id=1940837249]
 transform = Transform3D(-0.1473093, 0, 0, 0, -0.12757337, 0.07365465, 0, -0.07365452, -0.1275736, 0.738402, 0.8893432, 0.49134192)
 mesh = SubResource("ArrayMesh_br021")
 skeleton = NodePath("")
 
-[node name="Saw" type="MeshInstance3D" parent="Armature/Skeleton3D/Base_2/Base"]
+[node name="Saw" type="MeshInstance3D" parent="Armature/Skeleton3D/Base_2/Base" unique_id=159794926]
 unique_name_in_owner = true
 transform = Transform3D(1.858861, 0, 0, 0, 19.523819, 0, 0, 0, 19.523819, 0, -6.9062285e-09, -4.198087)
 mesh = SubResource("ArrayMesh_mjrl2")
 skeleton = NodePath("")
 
-[node name="Left Arm" type="MeshInstance3D" parent="Armature/Skeleton3D"]
+[node name="Left Arm" type="MeshInstance3D" parent="Armature/Skeleton3D" unique_id=1533761384]
 mesh = SubResource("ArrayMesh_tkjl0")
 skin = SubResource("Skin_1geiv")
 
-[node name="Right Arm" type="MeshInstance3D" parent="Armature/Skeleton3D"]
+[node name="Right Arm" type="MeshInstance3D" parent="Armature/Skeleton3D" unique_id=1695005328]
 mesh = SubResource("ArrayMesh_curer")
 skin = SubResource("Skin_1geiv")

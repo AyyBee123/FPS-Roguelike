@@ -62,7 +62,7 @@ func _ready():
 	spawn_tween = get_tree().create_tween()
 	spawn_tween.tween_property(self, "scale", size, 0.25).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	# detect collisions with players
 	var collision = move_and_collide(Vector3.ZERO)
 	if collision and contact_damage > 0.0:

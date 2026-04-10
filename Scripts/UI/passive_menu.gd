@@ -26,7 +26,7 @@ func _ready():
 	tween.tween_interval(0.05)
 	tween.tween_property(transition, "scale", Vector2.ONE, 0.15)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	get_tree().paused = true
 	banish_background.visible = is_banishing
 
