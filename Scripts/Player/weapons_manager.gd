@@ -34,6 +34,7 @@ func enter(): # call when weapon has been equipped after swapping the previous w
 func swap_arm(_new_arm): # swaps out the old weapon for a new one
 	for child in arm.get_children(): # in case there are somehow multiple
 		arm.remove_child(child)
+		child.queue_free()
 	if is_instance_valid(current_arm):
 		current_arm.queue_free()
 	
@@ -44,9 +45,13 @@ func swap_arm(_new_arm): # swaps out the old weapon for a new one
 	enter()
 
 func shoot():
+	if current_arm.player == null:
+		current_arm.player = player
 	if current_arm:
 		current_arm.shoot()
 
 func release():
+	if current_arm.player == null:
+		current_arm.player = player
 	if current_arm:
 		current_arm.release()
