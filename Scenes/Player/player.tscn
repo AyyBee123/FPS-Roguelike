@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dhlu65iawdxvf"]
 
-[ext_resource type="Script" uid="uid://c2cudrvyd4egp" path="res://Scripts/Player/player.gd" id="1_uvnfx"]
+[ext_resource type="Script" uid="uid://byqihs0ipdeof" path="res://Scripts/Player/player.gd" id="1_uvnfx"]
 [ext_resource type="Script" uid="uid://c4i7uubwdhgtw" path="res://Scripts/Player/weapons_manager.gd" id="2_htcer"]
 [ext_resource type="Script" uid="uid://dpoyvn3l6r8uv" path="res://Scripts/Player/camera_controller.gd" id="2_rcvs5"]
 [ext_resource type="Shader" uid="uid://c7cpnixlhnciv" path="res://Shaders/outline.tres" id="3_dd0ac"]
