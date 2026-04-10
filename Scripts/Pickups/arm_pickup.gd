@@ -41,24 +41,23 @@ func _ready():
 	arm_node.add_child(arm)
 	arm_node.visible = false
 	
+	await get_tree().physics_frame
+	
 	match rarity:
-		0: # common
-			rarity_color = Color("cccccc")
-		1: # uncommon
-			rarity_color = Color("42d042")
-		2: # legendary
-			rarity_color = Color("e68b19")
+		0: rarity_color = Color("cccccc") # common
+		1: rarity_color = Color("42d042") # uncommon
+		2: rarity_color = Color("e68b19") # legendary
 	
 	var arm_mesh_list = new_arm.find_children("", "MeshInstance3D", true)
 	
-	setup_arm(arm_mesh_list)
+	await get_tree().physics_frame
 	
-	visual_offset.add_child(new_arm)
-	new_arm.animation_player.stop()
+	setup_arm(arm_mesh_list)
 	
 	jingle.play_deconflicted(0.5)
 	play_tween()
-	
+	visual_offset.add_child(new_arm)
+	new_arm.animation_player.stop()
 	unhighlight()
 
 func _physics_process(delta):
@@ -135,7 +134,7 @@ func make_unique(node: Node) -> void:
 	if node is MeshInstance3D:
 		# make the mesh resource unique first
 		if node.mesh:
-			node.mesh = node.mesh.duplicate(true)
+			node.mesh = node.mesh.duplicate()
 		
 		for i in node.get_surface_override_material_count():
 			var mat = node.get_active_material(i)

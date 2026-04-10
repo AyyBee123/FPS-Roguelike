@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://b4qhon1j548im" path="res://Scripts/Enemies/enemy.gd" id="1_ccesc"]
 [ext_resource type="PackedScene" uid="uid://dm6474uy3ucte" path="res://Scenes/Misc/damage_number.tscn" id="2_dplh5"]
-[ext_resource type="ArrayMesh" uid="uid://cu13swck580wx" path="res://Assets/VFX/Ball.tres" id="3_tft6m"]
 [ext_resource type="Shader" uid="uid://d1oiih60d8at2" path="res://Shaders/enemy_damaged.gdshader" id="3_vpjp4"]
 [ext_resource type="Script" uid="uid://baxqpjp3mlstv" path="res://Scripts/UI/minimap_icon.gd" id="4_yvyga"]
 
@@ -10,8 +9,11 @@
 render_priority = 0
 shader = ExtResource("3_vpjp4")
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_613su"]
-radius = 1.0
+[sub_resource type="BoxMesh" id="BoxMesh_yvyga"]
+size = Vector3(15, 30, 15)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vpjp4"]
+size = Vector3(15, 30, 15)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ulhvv"]
 shading_mode = 0
@@ -25,7 +27,7 @@ radius = 1.5
 
 [node name="Dummy" type="CharacterBody3D" unique_id=293328278 node_paths=PackedStringArray("mesh")]
 collision_layer = 4
-collision_mask = 7
+collision_mask = 5
 script = ExtResource("1_ccesc")
 mesh = [NodePath("MeshInstance3D")]
 health = 100.0
@@ -33,13 +35,13 @@ coin_amount = 0
 damage_number = ExtResource("2_dplh5")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1089314229]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 0)
 material_overlay = SubResource("ShaderMaterial_yj22r")
-mesh = ExtResource("3_tft6m")
+mesh = SubResource("BoxMesh_yvyga")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=861141818]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("SphereShape3D_613su")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 0)
+shape = SubResource("BoxShape3D_vpjp4")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=565418050]
 unique_name_in_owner = true

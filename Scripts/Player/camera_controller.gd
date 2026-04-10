@@ -10,9 +10,6 @@ var land_tween: Tween
 var dash_tween: Tween
 var hit_tween: Tween
 
-@export var sensitivity: float = 1.0
-@export var joystick_sensitivity: float = 5.0
-@export var joystick_deadzone: float = 0.15
 @export var pitch_limit_degrees: float = 85.0
 
 var weapon_sway: float = 0.0025
@@ -45,8 +42,7 @@ var input: Vector2 = Vector2.ZERO
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
-		input += event.relative * sensitivity / 1000
-		player.sway_input = input
+		input += event.relative
 
 # add recoil (called when shooting)
 func add_recoil(_arm: Arm, _source: Node) -> void:
@@ -59,19 +55,19 @@ func _physics_process(delta: float) -> void:
 	var joy_x = Input.get_joy_axis(0, JOY_AXIS_RIGHT_X)
 	var joy_y = Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y)
 	
-	if abs(joy_x) < joystick_deadzone: joy_x = 0.0
-	if abs(joy_y) < joystick_deadzone: joy_y = 0.0
+	if abs(joy_x) < Settings.deadzone: joy_x = 0.0
+	if abs(joy_y) < Settings.deadzone: joy_y = 0.0
 	
 	if joy_x != 0.0 or joy_y != 0.0:
-		input += Vector2(joy_x, joy_y) * joystick_sensitivity / 100
-	
-	# mouse look
-	yaw -= input.x
-	pitch -= input.y * 1.25
+		var sway_multiplier: float = 100.0
+		input += Vector2(joy_x, joy_y) * sway_multiplier
+		yaw -= input.x * Settings.joystick_sensitivity / sway_multiplier
+		pitch -= input.y * Settings.joystick_sensitivity * 1.25 / sway_multiplier
+	else:
+		# mouse look
+		yaw -= input.x * Settings.mouse_sensitivity
+		pitch -= input.y * Settings.mouse_sensitivity * 1.25
 	pitch = clamp(pitch, -deg_to_rad(pitch_limit_degrees), deg_to_rad(pitch_limit_degrees))
-	
-	player.sway_input = input
-	input = Vector2.ZERO  # ← reset each frame
 	
 	# rotate the arm based on camera/player rotation
 	if rig:

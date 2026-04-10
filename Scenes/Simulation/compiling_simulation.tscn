@@ -33,6 +33,7 @@ size = Vector2(10, 10)
 data = PackedVector3Array(5, 0, 5, -5, 0, 5, 5, 0, -5, -5, 0, 5, -5, 0, -5, 5, 0, -5)
 
 [node name="Compiling Simulation" type="Node3D" unique_id=1614356279 node_paths=PackedStringArray("player")]
+process_mode = 3
 script = ExtResource("1_k1pv2")
 player = NodePath("Player")
 
@@ -74,7 +75,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
 
 [node name="Enemy Spawn" type="Marker3D" parent="." unique_id=2121999715]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -8)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
 
 [node name="Enemies Spawn" type="Marker3D" parent="." unique_id=1037446156]
 unique_name_in_owner = true

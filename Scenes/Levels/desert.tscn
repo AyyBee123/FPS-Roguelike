@@ -14,8 +14,6 @@
 [ext_resource type="Script" uid="uid://caq32sajxn8pu" path="res://Scripts/Globals/item_pool.gd" id="12_t1ox7"]
 [ext_resource type="Script" uid="uid://c3tr181aifqm8" path="res://Scripts/Globals/ability_pool.gd" id="13_np4fc"]
 [ext_resource type="Script" uid="uid://3fq6hfdn5n35" path="res://Scripts/Globals/passive_pool.gd" id="14_glso8"]
-[ext_resource type="PackedScene" uid="uid://ba7erkb81ks3u" path="res://Scenes/Pickups/arm_pickup.tscn" id="15_t1ox7"]
-[ext_resource type="PackedScene" uid="uid://b2u6f0casxx31" path="res://Scenes/Arms/mornstar.tscn" id="16_t1ox7"]
 
 [sub_resource type="Resource" id="Resource_ecsxk"]
 script = ExtResource("2_4dovk")
@@ -2165,6 +2163,7 @@ size = Vector3(200, 1, 200)
 [node name="Desert" type="Node3D" unique_id=721472373]
 script = ExtResource("1_r3g2l")
 NUMBER_OF_CHESTS = 40
+box_cost = 0
 boss_spawns = Array[ExtResource("2_4dovk")]([SubResource("Resource_ecsxk")])
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1429438397]
@@ -2713,9 +2712,5 @@ collision_mask = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Bounding Box/Roof" unique_id=2119035050]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 400, 0)
 shape = SubResource("BoxShape3D_1mh2y")
-
-[node name="Arm Pickup" parent="." unique_id=1411206530 instance=ExtResource("15_t1ox7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3931627, 0, 0)
-arm_scene = ExtResource("16_t1ox7")
 
 [connection signal="timeout" from="Chest Manager/Timer" to="Chest Manager" method="_on_timer_timeout"]

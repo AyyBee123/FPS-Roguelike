@@ -62,7 +62,6 @@ var friction: float = 50.0
 var dash_speed: float = 100.0
 var dash_charges: Array[float] = []
 var dash_bar_array: Array[ProgressBar] = []
-var sway_input: Vector2 # value gotten from the camera controller script
 var is_dashing: bool = false
 var is_dead: bool = false
 

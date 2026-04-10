@@ -18,7 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://bvrlxjkxyuct7" path="res://Assets/UI/Health Bar.png" id="12_aqm4k"]
 [ext_resource type="Script" uid="uid://1re15fa86o4d" path="res://Scripts/UI/minimap_camera.gd" id="12_dey5f"]
 [ext_resource type="Shader" uid="uid://rgkwx5g78yh4" path="res://Shaders/minimap_mask.gdshader" id="12_r5xpd"]
-[ext_resource type="Script" uid="uid://owhlfdboe0ob" path="res://Scripts/Utils/paused_check.gd" id="13_06tpx"]
+[ext_resource type="Script" uid="uid://owhlfdboe0ob" path="res://Scripts/Utils/mouse_check.gd" id="13_06tpx"]
 [ext_resource type="Script" uid="uid://vu1hdaiedirk" path="res://Scripts/Player/abilities.gd" id="13_7g0yx"]
 [ext_resource type="Script" uid="uid://d3g6lyxi3si3u" path="res://Scripts/UI/health_bar.gd" id="14_h8ma5"]
 [ext_resource type="Script" uid="uid://cjly24nu3klwb" path="res://Scripts/UI/pick_up_label.gd" id="16_eksi1"]
@@ -283,7 +283,7 @@ unique_name_in_owner = true
 script = ExtResource("13_7g0yx")
 player = NodePath("..")
 
-[node name="Paused Check" type="Node" parent="." unique_id=182250736]
+[node name="Mouse Check" type="Node" parent="." unique_id=182250736]
 process_mode = 3
 script = ExtResource("13_06tpx")
 

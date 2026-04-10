@@ -9,7 +9,6 @@
 [ext_resource type="Script" uid="uid://dxuyltrlql3nd" path="res://Scripts/Player/pickup_detect.gd" id="7_w81kn"]
 [ext_resource type="Script" uid="uid://d0a7frb8gvg68" path="res://Scripts/Player/stats.gd" id="8_iansr"]
 [ext_resource type="Script" uid="uid://vu1hdaiedirk" path="res://Scripts/Player/abilities.gd" id="9_ovndy"]
-[ext_resource type="Script" uid="uid://owhlfdboe0ob" path="res://Scripts/Utils/paused_check.gd" id="10_q0x2d"]
 [ext_resource type="Texture2D" uid="uid://d0ov1ksvt5flx" path="res://Assets/Textures/Blob Shadow.png" id="11_yejyg"]
 [ext_resource type="AudioStream" uid="uid://bx08sy2wixqjv" path="res://Audio/SFX/XP.mp3" id="12_k8qyi"]
 [ext_resource type="Script" uid="uid://cc1romsfhth3n" path="res://Scripts/Utils/audio_player_deconflicter.gd" id="13_82tqr"]
@@ -40,8 +39,6 @@
 [ext_resource type="Texture2D" uid="uid://c22kyilgkifmv" path="res://Assets/UI/Coin.png" id="39_t480o"]
 [ext_resource type="Script" uid="uid://b173hi8wxnnrp" path="res://Scripts/UI/boss_health_bars.gd" id="40_ikk73"]
 [ext_resource type="PackedScene" uid="uid://be63qadoubjih" path="res://Scenes/UI/boss_health.tscn" id="41_5ky2c"]
-[ext_resource type="PackedScene" uid="uid://ciwcgspt3ffn2" path="res://Scenes/UI/pause_menu.tscn" id="42_4pgka"]
-[ext_resource type="PackedScene" uid="uid://bftja31phwkj2" path="res://Scenes/UI/death_menu.tscn" id="43_8cxup"]
 [ext_resource type="Shader" uid="uid://rgkwx5g78yh4" path="res://Shaders/minimap_mask.gdshader" id="44_dimnm"]
 [ext_resource type="Script" uid="uid://1re15fa86o4d" path="res://Scripts/UI/minimap_camera.gd" id="45_kfmnc"]
 
@@ -403,10 +400,6 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 script = ExtResource("9_ovndy")
 player = NodePath("..")
-
-[node name="Paused Check" type="Node" parent="." unique_id=182250736]
-process_mode = 3
-script = ExtResource("10_q0x2d")
 
 [node name="IFrames" type="Timer" parent="." unique_id=422409080]
 unique_name_in_owner = true
@@ -813,16 +806,6 @@ offset_bottom = 95.88
 pivot_offset = Vector2(704, 0)
 script = ExtResource("40_ikk73")
 boss_health_bar = ExtResource("41_5ky2c")
-
-[node name="Pause Menu" parent="CanvasLayer/HUD" unique_id=1857909766 node_paths=PackedStringArray("player") instance=ExtResource("42_4pgka")]
-visible = false
-layout_mode = 1
-player = NodePath("../../..")
-
-[node name="Death Menu" parent="CanvasLayer/HUD" unique_id=1729089376 instance=ExtResource("43_8cxup")]
-unique_name_in_owner = true
-visible = false
-layout_mode = 1
 
 [node name="Upgrade" type="Node" parent="CanvasLayer" unique_id=463688370]
 unique_name_in_owner = true

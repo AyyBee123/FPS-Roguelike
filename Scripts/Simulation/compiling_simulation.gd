@@ -27,6 +27,7 @@ var levels_done: bool = false
 var final_enemy_spawned: bool = false
 
 func _ready():
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	Engine.set_time_scale(16.0)
 	
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), true)
@@ -38,6 +39,14 @@ func _ready():
 	
 	load_from_folder("res://Scenes/Enemies/", enemy_list)
 	spawn_enemies()
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventJoypadButton:
+		Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+	elif event is InputEventJoypadMotion and abs(event.axis_value) > Settings.deadzone:
+		Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+	elif event is InputEventMouseMotion:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _physics_process(delta):
 	%Icon.rotation += 2.0 * delta / Engine.get_time_scale()
@@ -160,12 +169,7 @@ func change_scene():
 	get_tree().change_scene_to_packed(preload("uid://bhk4jon3yjyso"))
 
 func _exit_tree():
-	set_physics_process(false)
-	
-	await get_tree().create_timer(1.0).timeout
-	
 	Engine.set_time_scale(1.0)
-	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), false)
 
 func _on_scene_timer_timeout():
 	change_scene()
