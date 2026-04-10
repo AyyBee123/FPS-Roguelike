@@ -20,8 +20,6 @@ signal cost_increased
 
 @export var boss_spawns: Array[BossSpawn]
 
-const XP = preload("uid://ukgrpto2cajc")
-
 var INITIAL_CHEST_COST: int
 var INITIAL_BOX_COST: int
 
@@ -39,8 +37,10 @@ var timeup: bool = false:
 		return time_left <= 0
 
 func _ready():
+	GameState.current_level = self
 	var player: Player = GameState.selected_character.instantiate()
-	add_child(player)
+	if player:
+		add_child(player)
 	player.global_position.x = PLAYER_SPAWN_POSITION.x
 	player.global_position.z = PLAYER_SPAWN_POSITION.y
 	

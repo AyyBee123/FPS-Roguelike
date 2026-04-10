@@ -54,7 +54,7 @@ var projectile_count: int:
 		return get_stat(base_projectile_count, "Projectile_Count")
 
 var fire_rate_timer: float = 0.0
-var t: float = 0.0
+var t: float = INF
 var material_override_set: bool = false
 
 const DEBUG_BULLET = preload("uid://btq2f4vqn8fhy")

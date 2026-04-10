@@ -54,11 +54,13 @@ func spawn_enemy(enemy: Enemy) -> void:
 	enemy.id = current_enemy_id
 	current_enemy_id += 1
 	enemy.position = level.find_spawn_point(player.global_position, MIN_DISTANCE, MAX_DISTANCE)
+	enemy.tier = level.enemy_tier
 	level.add_child.call_deferred(enemy)
 
 func spawn_boss(spawn: BossSpawn):
 	current_number_of_enemies += 1
 	var boss = spawn.boss.instantiate()
+	boss.level = level
 	boss.position = level.find_spawn_point(player.global_position, MIN_DISTANCE * 2, MAX_DISTANCE)
 	level.add_child(boss)
 
@@ -66,6 +68,7 @@ func spawn_end_boss():
 	for spawn: EndBossSpawn in bosses:
 		current_number_of_enemies += 1
 		var boss: Boss = spawn.boss.instantiate()
+		boss.level = level
 		boss.is_end_boss = true
 		if spawn.is_random_position:
 			boss.position = level.find_spawn_point(player.global_position, MIN_DISTANCE * 2, MAX_DISTANCE)

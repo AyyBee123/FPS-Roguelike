@@ -8,8 +8,6 @@ signal died(enemy)
 @onready var ray_cast: RayCast3D = %RayCast
 
 @onready var player = get_tree().get_first_node_in_group("Player")
-@onready var level: Level = get_tree().current_scene
-@onready var XP = get_tree().current_scene.XP
 @onready var INITIAL_HEALTH: float = health
 @onready var INITIAL_CONTACT_DAMAGE: float = contact_damage
 @onready var INITIAL_PROJECTILE_DAMAGE: float = projectile_damage
@@ -31,7 +29,14 @@ signal died(enemy)
 
 @export var TICK_RATE: float = 0.06
 
+const XP = preload("uid://ukgrpto2cajc")
+
+var health_multiplier: float
+var contact_damage_multiplier: float
+var projectile_damage_multiplier: float
+
 var id: int
+var tier: int
 var is_on_screen: bool = true
 var object: RID
 var tween: Tween
@@ -46,9 +51,9 @@ var dmg_num: Node3D
 var is_dead: bool = false # prevents the enemy from triggering on death effects more than once
 
 func _ready():
-	health = INITIAL_HEALTH * exp(level.enemy_tier * 0.1)
-	contact_damage = INITIAL_CONTACT_DAMAGE * (1.0 + level.enemy_tier * 0.12)
-	projectile_damage = INITIAL_PROJECTILE_DAMAGE * (1.0 + level.enemy_tier * 0.12)
+	health = INITIAL_HEALTH * exp(tier * 0.1)
+	contact_damage = INITIAL_CONTACT_DAMAGE * (1.0 + tier * 0.12)
+	projectile_damage = INITIAL_PROJECTILE_DAMAGE * (1.0 + tier * 0.12)
 	
 	ray_cast.global_transform = Transform3D(Basis(), ray_cast.global_position) # lock the ray cast's rotation
 	ray_cast.force_raycast_update() # detect the ground immediately

@@ -45,7 +45,7 @@ func shoot(ignore_fire_rate: bool = false, outside_source: Variant = self):
 		player._on_arm_fired(laser, damage)
 	else:
 		if not is_shoot_button_held:
-			animation_player.play("Charge")
+			animation_player.play("Charge", -1, fire_rate / base_fire_rate)
 		is_shoot_button_held = true
 
 func launch_projectile(point: Vector3):

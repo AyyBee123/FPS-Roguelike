@@ -24,7 +24,7 @@ var item_spawned: bool = false
 var cost: int = 0
 
 func _ready():
-	get_tree().current_scene.cost_increased.connect(cost_changed)
+	GameState.current_level.cost_increased.connect(cost_changed)
 	cost_changed()
 	
 	unhighlight()
@@ -42,8 +42,9 @@ func _ready():
 	ray_cast.force_raycast_update() # detect the ground immediately
 	position.y = ray_cast.get_collision_point().y # snap the chest to the ground (with offset)
 	
-	
 	var normal = ray_cast.get_collision_normal()
+	if normal == Vector3.ZERO:
+		normal = Vector3.UP
 	transform.basis = Basis.looking_at(-global_transform.basis.z, normal.normalized())
 	
 	armature.rotation.y = randf_range(0, TAU)
@@ -58,7 +59,7 @@ func open(_player: Player):
 	animation_player.play("Open")
 	
 	# increase the cost of all chests and armory boxes
-	get_tree().current_scene.increase_costs()
+	GameState.current_level.increase_costs()
 
 func roll_item(): # called from the animation player
 	item = ITEM.instantiate()
@@ -69,13 +70,13 @@ func roll_item(): # called from the animation player
 func check_for_chest():
 	for i in 30:
 		if chest_ray_cast.get_collider() and chest_ray_cast.get_collider() != chest_check:
-			position = get_tree().current_scene.find_chest_spawn()
+			position = GameState.current_level.find_chest_spawn()
 			chest_ray_cast.force_raycast_update()
 		else:
 			break
 
 func cost_changed():
-	cost = get_tree().current_scene.chest_cost
+	cost = GameState.current_level.chest_cost
 	cost_label.text = "%d¢" % cost
 
 func highlight():

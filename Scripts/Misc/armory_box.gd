@@ -22,7 +22,7 @@ var arm_spawned: bool = false
 var cost: int = 0
 
 func _ready():
-	get_tree().current_scene.cost_increased.connect(cost_changed)
+	GameState.current_level.cost_increased.connect(cost_changed)
 	cost_changed()
 	
 	unhighlight()
@@ -49,18 +49,18 @@ func open(_player: Player):
 	animation_player.play("Open")
 	
 	# increase the cost of all chests and armory boxes
-	get_tree().current_scene.increase_costs()
+	GameState.current_level.increase_costs()
 
 func check_for_chest():
 	for i in 30:
 		if chest_ray_cast.get_collider():
-			position = get_tree().current_scene.find_chest_spawn()
+			position = GameState.current_level.find_chest_spawn()
 			continue
 		else:
 			break
 
 func cost_changed():
-	cost = get_tree().current_scene.box_cost
+	cost = GameState.current_level.box_cost
 	cost_label.text = "%d¢" % cost
 
 func spawn_arm():

@@ -4,6 +4,7 @@ extends "res://Scripts/Projectiles/Player/projectile.gd"
 @onready var trail = %Trail
 
 var target: Node
+var target_pos: Vector3
 var current_speed: float
 var is_returning: bool = false
 var tween: Tween
@@ -19,16 +20,15 @@ func _physics_process(delta):
 	mesh.rotation.y += 5.0 * delta * rotation_direction
 	trail.global_transform.basis = mesh.global_transform.basis
 	
-	if not is_instance_valid(target):
-		queue_free()
-	
-	if is_instance_valid(target) and is_returning:
-		current_speed = lerpf(current_speed, speed, 4.0 * delta)
-		var direction = (target.global_position - global_position).normalized()
-		set_linear_velocity(direction * current_speed)
-		
-		if global_position.distance_squared_to(target.global_position) <= 0.4:
-			queue_free()
+	if is_instance_valid(target):
+		target_pos = target.global_position
+		if is_returning:
+			current_speed = lerpf(current_speed, speed, 4.0 * delta)
+			var direction = (target_pos - global_position).normalized()
+			set_linear_velocity(direction * current_speed)
+			
+			if global_position.distance_squared_to(target_pos) <= 0.4:
+				queue_free()
 
 func _on_body_entered(_body):
 	create_impact()

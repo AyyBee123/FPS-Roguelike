@@ -1,0 +1,147 @@
+[gd_scene format=3 uid="uid://djt4foxnw77jg"]
+
+[ext_resource type="Script" uid="uid://bjjpeas4v84kk" path="res://Scripts/Simulation/compiling_simulation.gd" id="1_k1pv2"]
+[ext_resource type="PackedScene" uid="uid://bgvkkgkl4eadl" path="res://Scenes/Simulation/simulation_player.tscn" id="2_4wsqe"]
+[ext_resource type="Script" uid="uid://652066s8oj06" path="res://Scripts/Globals/arm_pool.gd" id="3_a1wvm"]
+[ext_resource type="Script" uid="uid://caq32sajxn8pu" path="res://Scripts/Globals/item_pool.gd" id="4_koj6s"]
+[ext_resource type="Script" uid="uid://c3tr181aifqm8" path="res://Scripts/Globals/ability_pool.gd" id="5_oxnjm"]
+[ext_resource type="Script" uid="uid://3fq6hfdn5n35" path="res://Scripts/Globals/passive_pool.gd" id="6_g5x6p"]
+[ext_resource type="Texture2D" uid="uid://c2mla0bv3v53o" path="res://Assets/Textures/Orbit Strike Mark.png" id="7_a1wvm"]
+[ext_resource type="FontFile" uid="uid://bfhwilg3cupoh" path="res://Fonts/Name Font.ttf" id="8_koj6s"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_t1e4j"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_mrvoe"]
+sky_material = SubResource("ProceduralSkyMaterial_t1e4j")
+
+[sub_resource type="Environment" id="Environment_l1536"]
+background_mode = 2
+sky = SubResource("Sky_mrvoe")
+tonemap_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5lxpq"]
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.103743516, 0.10374353, 0.103743516, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_t1e4j"]
+size = Vector2(10, 10)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_mrvoe"]
+data = PackedVector3Array(5, 0, 5, -5, 0, 5, 5, 0, -5, -5, 0, 5, -5, 0, -5, 5, 0, -5)
+
+[node name="Compiling Simulation" type="Node3D" unique_id=1614356279 node_paths=PackedStringArray("player")]
+script = ExtResource("1_k1pv2")
+player = NodePath("Player")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1342645433]
+environment = SubResource("Environment_l1536")
+
+[node name="Player" parent="." unique_id=1837682708 instance=ExtResource("2_4wsqe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Floor" type="MeshInstance3D" parent="." unique_id=1164466230]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_5lxpq")
+mesh = SubResource("PlaneMesh_t1e4j")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor" unique_id=909023161]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D" unique_id=842365211]
+shape = SubResource("ConcavePolygonShape3D_mrvoe")
+
+[node name="Arm Pool" type="Node" parent="." unique_id=1511157601]
+unique_name_in_owner = true
+script = ExtResource("3_a1wvm")
+
+[node name="Item Pool" type="Node" parent="." unique_id=1550402381]
+unique_name_in_owner = true
+script = ExtResource("4_koj6s")
+
+[node name="Ability Pool" type="Node" parent="." unique_id=565905419]
+unique_name_in_owner = true
+script = ExtResource("5_oxnjm")
+
+[node name="Passive Pool" type="Node" parent="." unique_id=966926075]
+unique_name_in_owner = true
+script = ExtResource("6_g5x6p")
+
+[node name="Arm Pickup Spawn" type="Marker3D" parent="." unique_id=1994755661]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+
+[node name="Enemy Spawn" type="Marker3D" parent="." unique_id=2121999715]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -8)
+
+[node name="Level Spawn" type="Marker3D" parent="." unique_id=582347273]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2000, -3)
+
+[node name="Scene Timer" type="Timer" parent="." unique_id=987824648]
+unique_name_in_owner = true
+wait_time = 16.0
+one_shot = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=521294403]
+layer = 2
+
+[node name="Loading" type="Control" parent="CanvasLayer" unique_id=784343320]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Loading" unique_id=163902530]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Icon" type="TextureRect" parent="CanvasLayer/Loading" unique_id=1697406249]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.43300003
+anchor_top = 0.49600002
+anchor_right = 0.43300003
+anchor_bottom = 0.49600002
+offset_left = -47.360046
+offset_top = -47.680054
+offset_right = 48.639954
+offset_bottom = 48.319946
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("7_a1wvm")
+expand_mode = 1
+
+[node name="Loading Text" type="Label" parent="CanvasLayer/Loading" unique_id=334605734]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -116.0
+offset_right = 192.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("8_koj6s")
+theme_override_font_sizes/font_size = 64
+text = "Loading"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="timeout" from="Scene Timer" to="." method="_on_scene_timer_timeout"]
