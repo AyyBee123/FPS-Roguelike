@@ -66,6 +66,7 @@ func _physics_process(delta):
 	if player and not material_override_set:
 		set_material_override()
 	t += delta
+	var mesh_instances = find_children("", "MeshInstance3D", true)
 
 func shoot(ignore_fire_rate: bool = false, outside_source: Variant = self):
 	if t < fire_rate_timer and not ignore_fire_rate: return

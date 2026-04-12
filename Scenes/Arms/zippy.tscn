@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://cp4clof2gcb0r"]
+[gd_scene format=4 uid="uid://cp4clof2gcb0r"]
 
 [ext_resource type="Script" uid="uid://deol3c34ag8uu" path="res://Scripts/Player/Arms/zippy.gd" id="1_nny3l"]
 [ext_resource type="PackedScene" uid="uid://dxb17fqja8plv" path="res://Scenes/Projectiles/Arm/zippy_ball.tscn" id="2_nny3l"]
@@ -662,7 +662,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[node name="Zippy" type="Node3D" node_paths=PackedStringArray("firing_audio")]
+[node name="Zippy" type="Node3D" unique_id=624346374 node_paths=PackedStringArray("firing_audio")]
 script = ExtResource("1_nny3l")
 arm_name = "Zippy"
 rarity = 1
@@ -678,21 +678,19 @@ recoil_speed = 8.0
 snap = 6.0
 firing_audio = [NodePath("Plunger")]
 
-[node name="Fire Rate Timer" type="Timer" parent="."]
+[node name="Fire Rate Timer" type="Timer" parent="." unique_id=1302934660]
 unique_name_in_owner = true
 one_shot = true
 
-[node name="Bullet Point" type="Marker3D" parent="."]
+[node name="Bullet Point" type="Marker3D" parent="." unique_id=1033988333]
 unique_name_in_owner = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1071640634]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_opso0")
-}
-autoplay = "Idle"
+libraries/ = SubResource("AnimationLibrary_opso0")
+autoplay = &"Idle"
 
-[node name="Plunger" type="AudioStreamPlayer3D" parent="."]
+[node name="Plunger" type="AudioStreamPlayer3D" parent="." unique_id=355581058]
 unique_name_in_owner = true
 stream = ExtResource("3_nny3l")
 max_db = 2.0
@@ -701,9 +699,9 @@ panning_strength = 0.0
 bus = &"SFX"
 script = ExtResource("5_a8ioa")
 
-[node name="Armature" type="Node3D" parent="."]
+[node name="Armature" type="Node3D" parent="." unique_id=2129057645]
 
-[node name="Skeleton3D" type="Skeleton3D" parent="Armature"]
+[node name="Skeleton3D" type="Skeleton3D" parent="Armature" unique_id=48787925]
 bones/0/name = "Bone"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0.9236853)
@@ -831,58 +829,58 @@ bones/17/position = Vector3(-3.7252903e-09, 0.07045796, 1.7229468e-08)
 bones/17/rotation = Quaternion(0.0622558, -0.012369023, -0.19447733, 0.97885126)
 bones/17/scale = Vector3(1, 1.0000001, 1.0000001)
 
-[node name="Bone_002" type="BoneAttachment3D" parent="Armature/Skeleton3D"]
+[node name="Bone_002" type="BoneAttachment3D" parent="Armature/Skeleton3D" unique_id=538918271]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0.15732983)
 bone_name = "Bone.002"
 bone_idx = 2
 
-[node name="Ball" type="MeshInstance3D" parent="Armature/Skeleton3D/Bone_002"]
+[node name="Ball" type="MeshInstance3D" parent="Armature/Skeleton3D/Bone_002" unique_id=1421428475]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0.15732983, 0)
 mesh = SubResource("ArrayMesh_nny3l")
 skeleton = NodePath("")
 
-[node name="Bone_001" type="BoneAttachment3D" parent="Armature/Skeleton3D"]
+[node name="Bone_001" type="BoneAttachment3D" parent="Armature/Skeleton3D" unique_id=1067006124]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0.5348035)
 bone_name = "Bone.001"
 bone_idx = 1
 
-[node name="Arm_001" type="MeshInstance3D" parent="Armature/Skeleton3D/Bone_001"]
+[node name="Arm_001" type="MeshInstance3D" parent="Armature/Skeleton3D/Bone_001" unique_id=1651182369]
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0.5348035, 0)
 mesh = SubResource("ArrayMesh_i8wny")
 skeleton = NodePath("")
 
-[node name="Bone" type="BoneAttachment3D" parent="Armature/Skeleton3D"]
+[node name="Bone" type="BoneAttachment3D" parent="Armature/Skeleton3D" unique_id=1657952452]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0.9236853)
 bone_name = "Bone"
 bone_idx = 0
 
-[node name="Arm" type="MeshInstance3D" parent="Armature/Skeleton3D/Bone"]
+[node name="Arm" type="MeshInstance3D" parent="Armature/Skeleton3D/Bone" unique_id=1710956236]
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0.9236853, 0)
 mesh = SubResource("ArrayMesh_1qt3c")
 skeleton = NodePath("")
 
-[node name="Index" type="MeshInstance3D" parent="Armature/Skeleton3D"]
+[node name="Index" type="MeshInstance3D" parent="Armature/Skeleton3D" unique_id=72493315]
 unique_name_in_owner = true
 mesh = SubResource("ArrayMesh_ds7pp")
 skin = SubResource("Skin_dr0jx")
 
-[node name="Middle" type="MeshInstance3D" parent="Armature/Skeleton3D"]
+[node name="Middle" type="MeshInstance3D" parent="Armature/Skeleton3D" unique_id=1527317443]
 unique_name_in_owner = true
 mesh = SubResource("ArrayMesh_rpjwy")
 skin = SubResource("Skin_dr0jx")
 
-[node name="Pinky" type="MeshInstance3D" parent="Armature/Skeleton3D"]
+[node name="Pinky" type="MeshInstance3D" parent="Armature/Skeleton3D" unique_id=147870783]
 unique_name_in_owner = true
 mesh = SubResource("ArrayMesh_a8ioa")
 skin = SubResource("Skin_dr0jx")
 
-[node name="Ring" type="MeshInstance3D" parent="Armature/Skeleton3D"]
+[node name="Ring" type="MeshInstance3D" parent="Armature/Skeleton3D" unique_id=1110157824]
 unique_name_in_owner = true
 mesh = SubResource("ArrayMesh_7rnlc")
 skin = SubResource("Skin_dr0jx")
 
-[node name="Thumb" type="MeshInstance3D" parent="Armature/Skeleton3D"]
+[node name="Thumb" type="MeshInstance3D" parent="Armature/Skeleton3D" unique_id=834158030]
 unique_name_in_owner = true
 mesh = SubResource("ArrayMesh_7sk41")
 skin = SubResource("Skin_dr0jx")

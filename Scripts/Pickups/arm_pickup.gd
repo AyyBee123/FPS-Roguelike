@@ -36,28 +36,19 @@ func _ready():
 	arm_name = arm.arm_name
 	rarity = arm.rarity
 	
-	var new_arm: Arm = arm.duplicate()
-	
-	arm_node.add_child(arm)
-	arm_node.visible = false
-	
-	await get_tree().physics_frame
-	
 	match rarity:
 		0: rarity_color = Color("cccccc") # common
 		1: rarity_color = Color("42d042") # uncommon
 		2: rarity_color = Color("e68b19") # legendary
 	
-	var arm_mesh_list = new_arm.find_children("", "MeshInstance3D", true)
-	
-	await get_tree().physics_frame
+	var arm_mesh_list = arm.find_children("", "MeshInstance3D", true)
 	
 	setup_arm(arm_mesh_list)
 	
 	jingle.play_deconflicted(0.5)
 	play_tween()
-	visual_offset.add_child(new_arm)
-	new_arm.animation_player.stop()
+	visual_offset.add_child(arm)
+	arm.animation_player.stop()
 	unhighlight()
 
 func _physics_process(delta):
@@ -65,11 +56,14 @@ func _physics_process(delta):
 	visual_offset.set_position(default_pos + Vector3(0, sin(time) * AMPLITUDE, 0))
 
 func pick_up(player):
+	for m: MeshInstance3D in mesh_list:
+		m.material_overlay = null
 	player.weapons_manager.swap_arm(arm)
 	queue_free()
 
 func setup_arm(arm_mesh_list: Array):
 	for mesh in arm_mesh_list:
+		set_material_override(mesh)
 		make_unique(mesh)
 		mesh_list.append(mesh)
 		
@@ -134,15 +128,22 @@ func make_unique(node: Node) -> void:
 	if node is MeshInstance3D:
 		# make the mesh resource unique first
 		if node.mesh:
-			node.mesh = node.mesh.duplicate()
-		
-		for i in node.get_surface_override_material_count():
-			var mat = node.get_active_material(i)
-			if mat:
-				node.set_surface_override_material(i, mat.duplicate(true)) # deep copy
+			node.mesh = node.mesh.duplicate(true)
 		
 		if node.material_override:
 			node.material_override = node.material_override.duplicate(true)
+
+func set_material_override(mesh_instance):
+	mesh_instance.set_instance_shader_parameter("viewmodel_enabled", false)
+	
+	for i in range(mesh_instance.mesh.get_surface_count()):
+		var material: Material = mesh_instance.mesh.surface_get_material(i)
+		
+		if material == null: continue
+		
+		if material is StandardMaterial3D:
+			material.use_z_clip_scale = false
+			material.use_fov_override = false
 
 func play_tween():
 	tween = get_tree().create_tween()
@@ -153,8 +154,10 @@ func play_tween():
 
 func highlight():
 	for m: MeshInstance3D in mesh_list:
-		m.material_overlay.set_shader_parameter("edge_color", HIGHLIGHT_COLOR)
+		if m.material_overlay:
+			m.material_overlay.set_shader_parameter("edge_color", HIGHLIGHT_COLOR)
 
 func unhighlight():
 	for m in mesh_list:
-		m.material_overlay.set_shader_parameter("edge_color", rarity_color)
+		if m.material_overlay:
+			m.material_overlay.set_shader_parameter("edge_color", rarity_color)
