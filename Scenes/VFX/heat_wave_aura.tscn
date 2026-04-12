@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://2dgsr8sbptvh"]
+
+[ext_resource type="Script" uid="uid://d1oejij40qc81" path="res://Scripts/Abilities/Upgrade/heat_wave_aura.gd" id="1_abw68"]
+[ext_resource type="Shader" uid="uid://bpwrofrs8p5xy" path="res://Shaders/heat_wave_aura.tres" id="2_xrmqr"]
+[ext_resource type="Texture2D" uid="uid://7w6yqd2wdnt5" path="res://Assets/Textures/T_Noise_Wo14.png" id="3_jnlfd"]
+[ext_resource type="ArrayMesh" uid="uid://doh6lc6tx832e" path="res://Assets/VFX/thick_cylinder.tres" id="4_xrmqr"]
+
+[sub_resource type="Gradient" id="Gradient_0j55o"]
+offsets = PackedFloat32Array(0, 0.19298245, 0.71929824, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.5630501, 0, 0.035384268, 0.36078432, 1.340704, 0.562814, 0.03914963, 0.6745098, 3.5618708, 2.2546208, 0.805663, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3g1bg"]
+gradient = SubResource("Gradient_0j55o")
+use_hdr = true
+
+[sub_resource type="Gradient" id="Gradient_i5lsg"]
+offsets = PackedFloat32Array(0, 0.22807017, 0.43274853, 0.60818714, 0.8128655, 0.9298246, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.51718473, 0.5171844, 0.5171844, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_p4few"]
+gradient = SubResource("Gradient_i5lsg")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0, 1)
+
+[sub_resource type="Gradient" id="Gradient_fn67h"]
+offsets = PackedFloat32Array(0, 0.15789473, 0.39766082, 0.71929824, 0.91812867, 0.98245615)
+colors = PackedColorArray(0, 0, 0, 1, 0.5132329, 0.5132329, 0.5132329, 1, 0, 0, 0, 1, 0.427493, 0.42749307, 0.42749307, 1, 1, 1, 1, 1, 0.76240367, 0.76240367, 0.76240367, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kevgj"]
+gradient = SubResource("Gradient_fn67h")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="Gradient" id="Gradient_tn7ht"]
+offsets = PackedFloat32Array(0, 0.45614034, 0.64912283, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kdgjd"]
+gradient = SubResource("Gradient_tn7ht")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k7hxq"]
+render_priority = 0
+shader = ExtResource("2_xrmqr")
+shader_parameter/displacement_speed = Vector2(0, 2)
+shader_parameter/displacement_scale = Vector2(1, 1)
+shader_parameter/displacement_texture = SubResource("GradientTexture2D_p4few")
+shader_parameter/displacement_intensity = 0.2
+shader_parameter/color_palette = SubResource("GradientTexture1D_3g1bg")
+shader_parameter/opacity = 0.25
+shader_parameter/speed = Vector2(1, 1)
+shader_parameter/scale = Vector2(1, 1)
+shader_parameter/texture_base = ExtResource("3_jnlfd")
+shader_parameter/texture_add = SubResource("GradientTexture2D_kevgj")
+shader_parameter/texture_subtract = SubResource("GradientTexture2D_kdgjd")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8a3y7"]
+radius = 1.0
+height = 2.5
+
+[node name="Heat Wave Aura" type="Node3D" unique_id=1012917489]
+script = ExtResource("1_abw68")
+
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=2017337378]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, 0)
+material_override = SubResource("ShaderMaterial_k7hxq")
+mesh = ExtResource("4_xrmqr")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=2004181241]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1911900569]
+unique_name_in_owner = true
+shape = SubResource("CapsuleShape3D_8a3y7")
+
+[node name="Tick Rate" type="Timer" parent="." unique_id=22056153]
+wait_time = 0.05
+one_shot = true
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

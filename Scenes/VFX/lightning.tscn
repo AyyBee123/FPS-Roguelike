@@ -1,6 +1,6 @@
-[gd_scene load_steps=24 format=4 uid="uid://ion0xy4nx46o"]
+[gd_scene format=4 uid="uid://ion0xy4nx46o"]
 
-[ext_resource type="Script" uid="uid://b2w3cvrrhheiv" path="res://Scripts/Abilities/Misc/lightning.gd" id="1_6o5yw"]
+[ext_resource type="Script" uid="uid://b2w3cvrrhheiv" path="res://Scripts/Abilities/Upgrade/lightning.gd" id="1_6o5yw"]
 [ext_resource type="Shader" uid="uid://buk1o840fv5sg" path="res://Shaders/lightning.gdshader" id="1_qa3j7"]
 [ext_resource type="Texture2D" uid="uid://be3ihcugy37vd" path="res://Assets/Textures/Lightning Bolt.png" id="2_6o5yw"]
 [ext_resource type="ArrayMesh" uid="uid://b3knx0o237wi6" path="res://Assets/VFX/Blast.tres" id="2_ggp7a"]

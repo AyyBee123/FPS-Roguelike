@@ -112,7 +112,6 @@ func die(_damage: float, source_player: Player, source: Variant):
 	source_player._on_enemy_killed(self, source, _damage)
 	drop_xp()
 	give_coins(source_player)
-	died.emit(self)
 	queue_free()
 
 func drop_xp():
@@ -143,4 +142,4 @@ func _on_screen_exited():
 	is_on_screen = false
 
 func _exit_tree():
-	SignalBus.enemy_defeated.emit(self)
+	died.emit(self)

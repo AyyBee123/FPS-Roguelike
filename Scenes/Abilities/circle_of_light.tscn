@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cdthgqjlxd3jl"]
+[gd_scene format=3 uid="uid://cdthgqjlxd3jl"]
 
 [ext_resource type="Script" uid="uid://oa2d13pl0nc8" path="res://Scripts/Abilities/Effects/circle_of_light.gd" id="1_srhmp"]
 [ext_resource type="Script" uid="uid://crdmjkiq4812g" path="res://Scripts/Resources/ability_upgrade_resource.gd" id="2_3yyif"]
@@ -67,10 +67,60 @@ amount = 50.0
 type = "+"
 metadata/_custom_type_script = "uid://crdmjkiq4812g"
 
-[node name="Circle of Light" type="Node"]
+[node name="Circle of Light" type="Node" unique_id=142973740]
 script = ExtResource("1_srhmp")
 AURA = ExtResource("2_g752j")
 icon = ExtResource("2_cbq7c")
 ability_name = "Circle of Light"
 description = "Creates an aura around projectiles that damages enemies."
 ability_upgrades = Array[ExtResource("2_3yyif")]([SubResource("Resource_cbq7c"), SubResource("Resource_g752j"), SubResource("Resource_hag4h"), SubResource("Resource_3k0rq"), SubResource("Resource_kfsxn"), SubResource("Resource_4cffg"), SubResource("Resource_ulsc1"), SubResource("Resource_6cb8b")])
+stats = {
+"Crit_Chance": {
+"+": 0.0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1.0
+},
+"Crit_Damage": {
+"+": 0.0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1.0
+},
+"Damage": {
+"+": 0.0,
+"base": 1.0,
+"flat": 0.0,
+"x": 0.333
+},
+"Fire_Rate": {
+"+": 0.0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1.0
+},
+"Projectile_Count": {
+"+": 0.0,
+"base": 1,
+"flat": 0,
+"x": 1.0
+},
+"Range": {
+"+": 0.0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1.0
+},
+"Speed": {
+"+": 0.0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1.0
+},
+"Splash_Radius": {
+"+": 0.0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1.0
+}
+}

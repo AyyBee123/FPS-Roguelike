@@ -161,6 +161,9 @@ func change_scene():
 	get_tree().change_scene_to_packed(preload("uid://bhk4jon3yjyso"))
 
 func _exit_tree():
+	GameState.current_level = null
+	GameState.selected_character = null
+	GameState.selected_level = null
 	Engine.set_time_scale(1.0)
 
 func _on_scene_timer_timeout():

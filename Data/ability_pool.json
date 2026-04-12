@@ -6,6 +6,9 @@
 		"path": "res://Scenes/Abilities/circle_of_light.tscn"
 	},
 	{
+		"path": "res://Scenes/Abilities/heat_wave.tscn"
+	},
+	{
 		"path": "res://Scenes/Abilities/lightning_strike.tscn"
 	}
 ]

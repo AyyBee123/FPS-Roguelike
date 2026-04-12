@@ -74,3 +74,53 @@ icon = ExtResource("2_63a1l")
 ability_name = "Lightning Strike"
 description = "Calls down a bolt of lightning when hitting an enemy."
 ability_upgrades = Array[ExtResource("2_ckqsu")]([SubResource("Resource_63a1l"), SubResource("Resource_ckqsu"), SubResource("Resource_ui8eq"), SubResource("Resource_3ngp5"), SubResource("Resource_hseq8"), SubResource("Resource_3p1ef"), SubResource("Resource_4fi77"), SubResource("Resource_roj1p")])
+stats = {
+"Crit_Chance": {
+"+": 0.0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1.0
+},
+"Crit_Damage": {
+"+": 0.0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1.0
+},
+"Damage": {
+"+": 0.0,
+"base": 1.0,
+"flat": 0.0,
+"x": 0.5
+},
+"Fire_Rate": {
+"+": 0.0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1.0
+},
+"Projectile_Count": {
+"+": 0.0,
+"base": 1,
+"flat": 0,
+"x": 1.0
+},
+"Range": {
+"+": 0.0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1.0
+},
+"Speed": {
+"+": 0.0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1.0
+},
+"Splash_Radius": {
+"+": 0.0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1.0
+}
+}

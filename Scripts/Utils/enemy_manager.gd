@@ -18,17 +18,16 @@ var NUMBER_OF_ENEMIES_TO_SPAWN: int = 1
 var SPAWNING_INTERVAL: float = 2
 var boss_spawned: bool = false
 var t: float = 0
+var has_won: bool = false
 
 @onready var INITIAL_MAX_ENEMIES: int = MAX_NUMBER_OF_ENEMIES
 @onready var INITIAL_MIN_ENEMIES: int = MIN_NUMBER_OF_ENEMIES
-
 
 const ENEMY = preload("uid://bf7ljiiykmoi0")
 
 func _ready():
 	current_number_of_enemies = 0
-	SignalBus.enemy_defeated.connect(func(_enemy): current_number_of_enemies = max(current_number_of_enemies - 1, 0))
-	SignalBus.end_boss_defeat.connect(func(_boss): check_for_boss())
+	player = get_tree().get_first_node_in_group("Player")
 
 func _physics_process(delta):
 	if not boss_spawned: spawn_horde(delta)
@@ -53,35 +52,47 @@ func spawn_enemy(enemy: Enemy) -> void:
 	current_number_of_enemies += 1
 	enemy.id = current_enemy_id
 	current_enemy_id += 1
-	enemy.position = level.find_spawn_point(player.global_position, MIN_DISTANCE, MAX_DISTANCE)
+	var pos: Vector3
+	if player:
+		pos = player.global_position
+	enemy.position = level.find_spawn_point(pos, MIN_DISTANCE, MAX_DISTANCE)
 	enemy.tier = level.enemy_tier
+	enemy.died.connect(func(_enemy): current_number_of_enemies = current_number_of_enemies - 1)
 	level.add_child.call_deferred(enemy)
 
 func spawn_boss(spawn: BossSpawn):
 	current_number_of_enemies += 1
 	var boss = spawn.boss.instantiate()
-	boss.level = level
-	boss.position = level.find_spawn_point(player.global_position, MIN_DISTANCE * 2, MAX_DISTANCE)
+	var pos: Vector3
+	if player:
+		pos = player.global_position
+	boss.position = level.find_spawn_point(pos, MIN_DISTANCE * 2, MAX_DISTANCE)
+	boss.died.connect(func(_enemy): current_number_of_enemies = current_number_of_enemies - 1)
 	level.add_child(boss)
 
 func spawn_end_boss():
 	for spawn: EndBossSpawn in bosses:
 		current_number_of_enemies += 1
 		var boss: Boss = spawn.boss.instantiate()
-		boss.level = level
 		boss.is_end_boss = true
+		var pos: Vector3
+		if player:
+			pos = player.global_position
 		if spawn.is_random_position:
-			boss.position = level.find_spawn_point(player.global_position, MIN_DISTANCE * 2, MAX_DISTANCE)
+			boss.position = level.find_spawn_point(pos, MIN_DISTANCE * 2, MAX_DISTANCE)
 		else:
 			boss.position = spawn.spawn_position
+		boss.died.connect(func(_enemy): current_number_of_enemies = current_number_of_enemies - 1)
+		boss.end_boss_defeat.connect(func(_boss): check_for_boss())
 		level.add_child(boss)
 
 func check_for_boss():
+	await get_tree().physics_frame
 	for node in level.get_children():
 		if node is Boss:
 			return
-		kill_enemies()
-		level.set_win()
+	kill_enemies()
+	level.set_win()
 
 func kill_enemies():
 	for node in level.get_children():
