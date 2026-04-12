@@ -1,5 +1,7 @@
 extends Node
 
+signal repopulate_done
+
 var rarity_weights: Dictionary = { # 0 = COMMON, 1 = UNCOMMON, 2 = LEGENDARY
 	0: 78,
 	1: 20,
@@ -10,6 +12,10 @@ var common_pool: Array[PackedScene] = []
 var uncommon_pool: Array[PackedScene] = []
 var legendary_pool: Array[PackedScene] = []
 
+var filled_common_pool: Array[PackedScene] = []
+var filled_uncommon_pool: Array[PackedScene] = []
+var filled_legendary_pool: Array[PackedScene] = []
+
 var json_file: String = "res://Data/arm_pool.json"
 
 func _init() -> void:
@@ -17,10 +23,16 @@ func _init() -> void:
 	populate_pool(common_pool, 0)
 	populate_pool(uncommon_pool, 1)
 	populate_pool(legendary_pool, 2)
+	populate_pool(filled_common_pool, 0)
+	populate_pool(filled_uncommon_pool, 1)
+	populate_pool(filled_legendary_pool, 2)
 
-func populate_pool(pool, rarity):
+func populate_pool(pool: Array, rarity: int):
 	var loader = PoolLoader.new()
 	loader.load_pool(json_file, pool, rarity)
+
+func repopulate_pool(pool: Array, filled_pool: Array):
+	pool.assign(filled_pool)
 
 func roll(weights: Dictionary = rarity_weights) -> Arm:
 	# Convert to cumulative drop chances
@@ -47,7 +59,7 @@ func roll(weights: Dictionary = rarity_weights) -> Arm:
 		2: pool_name = "legendary_pool"
 	
 	if get(pool_name).is_empty():
-		populate_pool(get(pool_name), chosen_rarity)
+		repopulate_pool(get(pool_name), get("filled_" + pool_name))
 	
 	var packed: PackedScene = get(pool_name).pick_random()
 	var selected = packed.instantiate()

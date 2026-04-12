@@ -44,7 +44,9 @@ func move(delta):
 	else:
 		can_shoot = true
 	
-	skull.look_at(player_pos, Vector3.UP)
+	var dir = (player_pos - skull.global_position).normalized()
+	if abs(dir.dot(Vector3.UP)) < 0.999:
+		skull.look_at(player_pos, Vector3.UP)
 
 func shoot():
 	if is_on_screen:
