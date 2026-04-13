@@ -1,7 +1,5 @@
 extends Node3D
 
-@export var tick_rate: float = 0.333
-
 @onready var mesh = %Mesh
 @onready var collision_shape_3d = %CollisionShape3D
 
@@ -30,7 +28,7 @@ func _physics_process(delta):
 		collision_shape_3d.shape.radius = radius
 	
 	damage_timer += delta
-	if damage_timer >= tick_rate and enemies.size() > 0:
+	if damage_timer >= 1.0 / ability.get_stat_value("Fire_Rate") and enemies.size() > 0:
 		damage_timer = 0.0
 		for enemy in enemies:
 			enemy.hit(ability.get_stat_value("Damage") + added_damage, player, self)
