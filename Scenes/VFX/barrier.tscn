@@ -8,7 +8,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5cco0"]
 render_priority = 0
 shader = ExtResource("1_umx14")
-shader_parameter/color = Color(3.2594934, 3.2944162, 2.945188, 0.023529412)
+shader_parameter/color = Color(3.2594934, 3.2944162, 2.945188, 0.039215688)
 shader_parameter/border_color = Color(9.061582, 6.827803, 5.000166, 0.08627451)
 shader_parameter/border = ExtResource("3_5cco0")
 shader_parameter/scale = Vector2(1.6, 1)
