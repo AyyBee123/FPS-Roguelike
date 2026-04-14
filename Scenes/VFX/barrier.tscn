@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://do5i6bx7myly"]
+
+[ext_resource type="Shader" uid="uid://bxu8wa855wp02" path="res://Shaders/barrier.gdshader" id="1_umx14"]
+[ext_resource type="Texture2D" uid="uid://csxoddds86q1s" path="res://Assets/Textures/Hexagon Tile.png" id="2_s2500"]
+[ext_resource type="Texture2D" uid="uid://80lb32v5roa2" path="res://Assets/Textures/Barrier.png" id="3_5cco0"]
+[ext_resource type="ArrayMesh" uid="uid://usnmxmy8lovy" path="res://Assets/VFX/Barrier.obj" id="3_umx14"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5cco0"]
+render_priority = 0
+shader = ExtResource("1_umx14")
+shader_parameter/color = Color(3.2594934, 3.2944162, 2.945188, 0.023529412)
+shader_parameter/border_color = Color(9.061582, 6.827803, 5.000166, 0.08627451)
+shader_parameter/border = ExtResource("3_5cco0")
+shader_parameter/scale = Vector2(1.6, 1)
+shader_parameter/base_texture = ExtResource("2_s2500")
+shader_parameter/mask_strength = 4.0
+shader_parameter/emission_color = Color(0.8172912, 1.0194781, 1.1638972, 1)
+shader_parameter/pulse_speed = 0.33300001255762
+shader_parameter/pulse_width = 0.30000001192093
+shader_parameter/pulse_intensity = 3.0000001425
+shader_parameter/pulse_aspect = Vector2(1, 1)
+
+[node name="Barrier" type="Node3D" unique_id=388778361]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1084089113]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_5cco0")
+mesh = ExtResource("3_umx14")
