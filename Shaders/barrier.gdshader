@@ -24,7 +24,7 @@ void fragment() {
 	vec2 uv = UV - center;
 	
 	vec4 border_tex = texture(border, UV);
-	vec4 barrier_tex = texture(base_texture, UV * scale);
+	vec4 barrier_tex = texture(base_texture, (UV - 0.5) * scale + 0.5);
 	vec4 tex = clamp(barrier_tex - border_tex, vec4(0.0), vec4(1.0));
 	
 	float noise_alpha = texture(noise_texture, UV + TIME * noise_speed).r;
