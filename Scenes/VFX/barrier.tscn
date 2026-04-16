@@ -33,6 +33,42 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Position Node/MeshInstance3D:material_override:shader_parameter/emission_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.8392157, 0.8509804, 0.75686276, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Position Node/MeshInstance3D:material_override:shader_parameter/mask_strength")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [4.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Position Node/MeshInstance3D:material_override:shader_parameter/pulse_intensity")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
+}
 
 [sub_resource type="Animation" id="Animation_45hoc"]
 resource_name = "push"
@@ -61,6 +97,42 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0, 0, 1), Vector3(0, 0, -4), Vector3(0, 0, -5), Vector3(0, 0, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Position Node/MeshInstance3D:material_override:shader_parameter/emission_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.16666667, 0.26666668, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.8392157, 0.8509804, 0.75686276, 1), Color(0.8392157, 0.8509804, 0.75686276, 1), Color(4.993931, 5.0644526, 4.535537, 1), Color(3.7274244, 3.7802563, 3.384017, 1), Color(0.8392157, 0.8509804, 0.75686276, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Position Node/MeshInstance3D:material_override:shader_parameter/mask_strength")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.16666667, 0.26666668, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [4.0, 4.0, 0.0, 0.0, 4.0, 4.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Position Node/MeshInstance3D:material_override:shader_parameter/pulse_intensity")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.16666667, 0.26666668, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [2.0, 2.0, 0.0, 0.0, 2.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f8yxt"]
 _data = {
@@ -77,10 +149,10 @@ shader_parameter/border = ExtResource("3_5cco0")
 shader_parameter/scale = Vector2(1.6, 1.3)
 shader_parameter/base_texture = ExtResource("2_s2500")
 shader_parameter/mask_strength = 4.0
-shader_parameter/emission_color = Color(0.73070467, 0.9845844, 1.1639997, 1)
+shader_parameter/emission_color = Color(0.8392157, 0.8509804, 0.75686276, 1)
 shader_parameter/pulse_speed = 0.33300001255762
 shader_parameter/pulse_width = 0.33300001546824004
-shader_parameter/pulse_intensity = 2.000000095
+shader_parameter/pulse_intensity = 2.0
 shader_parameter/pulse_aspect = Vector2(1, 1)
 shader_parameter/noise_texture = ExtResource("3_s2500")
 shader_parameter/noise_speed = Vector2(0, -0.2)
@@ -104,6 +176,7 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Position Node" unique_id=1084089113]
+unique_name_in_owner = true
 transform = Transform3D(-3, -4.5298742e-07, 2.6400945e-14, 0, -1.3113416e-07, -4, 4.5298742e-07, -3, 1.7484555e-07, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_5cco0")
 mesh = ExtResource("3_umx14")
