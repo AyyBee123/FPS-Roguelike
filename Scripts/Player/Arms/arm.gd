@@ -34,6 +34,8 @@ var player: Player # declared in the weapons manager script
 var fov_override: float = 90.0
 var z_clip_scale: float = 0.7
 
+var picked_up: bool = false
+
 var damage: float:
 	get:
 		return get_stat(base_damage, "Damage")
@@ -65,6 +67,9 @@ func _ready():
 func _physics_process(delta):
 	if player and not material_override_set:
 		set_material_override()
+	if player and not picked_up:
+		picked_up = true
+		on_pick_up()
 	t += delta
 	var mesh_instances = find_children("", "MeshInstance3D", true)
 
@@ -90,6 +95,9 @@ func shoot(ignore_fire_rate: bool = false, outside_source: Variant = self):
 	for audio in firing_audio:
 		if audio:
 			audio.play_deconflicted()
+
+func on_pick_up():
+	pass
 
 func release(outside_source: Variant = self):
 	player._on_arm_released(self, outside_source)

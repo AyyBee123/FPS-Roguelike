@@ -48,6 +48,10 @@
 		"rarity": 2
 	},
 	{
+		"path": "res://Scenes/Arms/titanium_bulwark.tscn",
+		"rarity": 2
+	},
+	{
 		"path": "res://Scenes/Arms/undeath.tscn",
 		"rarity": 2
 	},

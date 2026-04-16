@@ -2,6 +2,8 @@ extends Node3D
 
 @export var tick_rate: float = 0.1
 
+@onready var area_3d = %Area3D
+
 var damage: float
 
 var player: Player

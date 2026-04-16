@@ -1,18 +1,80 @@
 [gd_scene format=3 uid="uid://do5i6bx7myly"]
 
+[ext_resource type="Script" uid="uid://cc4cpf4qdv5e5" path="res://Scripts/Projectiles/Player/barrier.gd" id="1_5cco0"]
 [ext_resource type="Shader" uid="uid://bxu8wa855wp02" path="res://Shaders/barrier.gdshader" id="1_umx14"]
 [ext_resource type="Texture2D" uid="uid://csxoddds86q1s" path="res://Assets/Textures/Hexagon Tile.png" id="2_s2500"]
 [ext_resource type="Texture2D" uid="uid://80lb32v5roa2" path="res://Assets/Textures/Barrier.png" id="3_5cco0"]
 [ext_resource type="Texture2D" uid="uid://dwhp6n6p8p2sf" path="res://Assets/Textures/Noise Light Grey.png" id="3_s2500"]
 [ext_resource type="ArrayMesh" uid="uid://usnmxmy8lovy" path="res://Assets/VFX/Barrier.obj" id="3_umx14"]
 
+[sub_resource type="Animation" id="Animation_5cco0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Position Node/Area3D/CollisionShape3D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_45hoc"]
+resource_name = "push"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Position Node/Area3D/CollisionShape3D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.01, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.16666669, 0.26666668, 0.5),
+"transitions": PackedFloat32Array(0.5, 2, 0.5, 0.5, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 1), Vector3(0, 0, -4), Vector3(0, 0, -5), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f8yxt"]
+_data = {
+&"RESET": SubResource("Animation_5cco0"),
+&"push": SubResource("Animation_45hoc")
+}
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5cco0"]
 render_priority = 0
 shader = ExtResource("1_umx14")
-shader_parameter/color = Color(3.2594934, 3.2944162, 2.945188, 0.0627451)
-shader_parameter/border_color = Color(9.061582, 6.827803, 5.000166, 0.08627451)
+shader_parameter/color = Color(3.2594934, 3.2944162, 2.945188, 0.015686275)
+shader_parameter/border_color = Color(9.061582, 6.827803, 5.000166, 0.007843138)
 shader_parameter/border = ExtResource("3_5cco0")
-shader_parameter/scale = Vector2(1.6, 1)
+shader_parameter/scale = Vector2(1.6, 1.3)
 shader_parameter/base_texture = ExtResource("2_s2500")
 shader_parameter/mask_strength = 4.0
 shader_parameter/emission_color = Color(0.73070467, 0.9845844, 1.1639997, 1)
@@ -22,11 +84,48 @@ shader_parameter/pulse_intensity = 2.000000095
 shader_parameter/pulse_aspect = Vector2(1, 1)
 shader_parameter/noise_texture = ExtResource("3_s2500")
 shader_parameter/noise_speed = Vector2(0, -0.2)
-shader_parameter/noise_strength = 3.0
+shader_parameter/noise_strength = 2.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5cco0"]
+size = Vector3(3.6, 2, 0.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_umx14"]
+size = Vector3(3.6, 2, 1.6331543)
 
 [node name="Barrier" type="Node3D" unique_id=388778361]
+script = ExtResource("1_5cco0")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1084089113]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1548203002]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_f8yxt")
+
+[node name="Position Node" type="Node3D" parent="." unique_id=1121955896]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Position Node" unique_id=1084089113]
+transform = Transform3D(-3, -4.5298742e-07, 2.6400945e-14, 0, -1.3113416e-07, -4, 4.5298742e-07, -3, 1.7484555e-07, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_5cco0")
 mesh = ExtResource("3_umx14")
+skeleton = NodePath("../..")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="Position Node/MeshInstance3D" unique_id=479729106]
+transform = Transform3D(-0.33333334, -1.2548636e-22, 2.9140924e-08, -2.9140924e-08, -1.4570462e-08, -0.33333334, 1.2737903e-15, -0.33333334, 1.4570462e-08, 0, 0, 0)
+collision_layer = 64
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Position Node/MeshInstance3D/CharacterBody3D" unique_id=1462353912]
+transform = Transform3D(3, 0, 0, 0, 3, 3.05e-43, 0, 3.05e-43, 3, 0, 0, -0.5)
+shape = SubResource("BoxShape3D_5cco0")
+
+[node name="Area3D" type="Area3D" parent="Position Node" unique_id=424003224]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Position Node/Area3D" unique_id=1574725624]
+unique_name_in_owner = true
+transform = Transform3D(3, 0, 0, 0, 4, 0, 0, 0, 3, 0, 0, -0.45026827)
+shape = SubResource("BoxShape3D_umx14")
+
+[connection signal="body_entered" from="Position Node/Area3D" to="." method="_on_area_3d_body_entered"]

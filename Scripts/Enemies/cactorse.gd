@@ -41,7 +41,13 @@ func move(delta):
 	
 	position.x += vel.x * delta
 	position.z += vel.z * delta
-	position.y = lerp(position.y, raycast_y, delta * gravity)
+	
+	if raycast_y > position.y:
+		# ground is above (going up)
+		position.y = lerp(position.y, raycast_y, delta * gravity * 6)
+	else:
+		# ground is below (going down/falling)
+		position.y = lerp(position.y, raycast_y, delta * gravity)
 
 func _on_move_timer_timeout():
 	move_timer.start(TICK_RATE)

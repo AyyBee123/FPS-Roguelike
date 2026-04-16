@@ -36,7 +36,13 @@ func move(delta):
 	
 	position.x += rot_dir.x * delta
 	position.z += rot_dir.z * delta
-	position.y = lerp(position.y, raycast_y, delta * gravity)
+	
+	if raycast_y > position.y:
+		# ground is above (going up)
+		position.y = lerp(position.y, raycast_y, delta * gravity * 6)
+	else:
+		# ground is below (going down/falling)
+		position.y = lerp(position.y, raycast_y, delta * gravity)
 	
 	var move_vec = Vector3(rot_dir.x, 0.0, rot_dir.z) * delta
 	var distance = move_vec.length()

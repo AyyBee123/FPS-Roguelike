@@ -6,7 +6,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_buf71"]
 render_priority = 0
 shader = ExtResource("3_opsxp")
-shader_parameter/base_color = Color(0.8862745, 0.7294118, 0.3764706, 0.015686275)
+shader_parameter/base_color = Color(0.89, 0.73513997, 0.3738, 0)
 shader_parameter/fresnel_color = Color(0.96, 0.84752, 0.6048, 0.03137255)
 shader_parameter/fresnel_amount = 4.0
 shader_parameter/fresnel_intensity = 4.5
@@ -58,7 +58,7 @@ mesh = SubResource("ArrayMesh_wkdc1")
 [node name="Area3D" type="Area3D" parent="." unique_id=2004181241]
 unique_name_in_owner = true
 collision_layer = 0
-collision_mask = 4
+collision_mask = 6
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1911900569]

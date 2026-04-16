@@ -16,7 +16,7 @@ func _ready():
 	# the random attacks are set up in the get_transition function
 	random_attack = randi_range(0, num_of_attacks - 1)
 
-func _state_logic(delta):
+func _state_logic(_delta):
 	if state == states.swim:
 		parent.swim()
 	if state == states.prepare:
@@ -24,7 +24,7 @@ func _state_logic(delta):
 	if state == states.charge:
 		parent.charge()
 
-func _get_transition(delta):
+func _get_transition(_delta):
 	match state:
 		states.swim:
 			if timer.is_stopped():
@@ -37,7 +37,7 @@ func _get_transition(delta):
 				return states.charge
 	return null
 
-func _enter_state(new_state, old_state):
+func _enter_state(new_state, _old_state):
 	match new_state:
 		states.swim:
 			parent.animation_player.play("Swim", -1, 0.5)
@@ -65,5 +65,5 @@ func create_timer():
 func set_random_attack():
 	random_attack = randi_range(0, num_of_attacks - 1)
 
-func set_random_time(min: float, max: float):
-	timer.start(randf_range(min, max))
+func set_random_time(_min: float, _max: float):
+	timer.start(randf_range(_min, _max))

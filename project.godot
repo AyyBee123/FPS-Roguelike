@@ -152,6 +152,7 @@ pause={
 3d_physics/layer_4="Pickup"
 3d_physics/layer_5="Boundary"
 3d_physics/layer_6="Chest"
+3d_physics/layer_7="Barrier"
 
 [physics]
 

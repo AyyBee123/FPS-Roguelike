@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=4 uid="uid://coqndvgnv7fvf"]
+[gd_scene format=4 uid="uid://coqndvgnv7fvf"]
 
 [ext_resource type="Script" uid="uid://wtoa66s2o53o" path="res://Scripts/Player/Arms/arm.gd" id="1_8grd8"]
 [ext_resource type="PackedScene" uid="uid://dphgx1a3xboty" path="res://Scenes/VFX/muzzle_flash.tscn" id="2_kulr0"]
