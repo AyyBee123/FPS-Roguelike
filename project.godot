@@ -29,6 +29,7 @@ Globals="*res://Scenes/Globals/globals.tscn"
 SfxDeconflicter="*res://Scripts/Utils/sfx_deconflicter.gd"
 GameState="*uid://ca54crh142u5f"
 Settings="*uid://o807jfem0tv5"
+ConsoleManager="*uid://1ieot5p0x4ft"
 
 [debug]
 

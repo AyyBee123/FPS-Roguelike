@@ -34,7 +34,7 @@ func _ready():
 		for i in range(stacks - 1):
 			on_stack()
 
-func on_pick_up(_player: Player):
+func on_pick_up(_player: Player, _stacks: int = 1):
 	player = _player
 	
 	# stack the item if it already exists
