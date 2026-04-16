@@ -71,7 +71,6 @@ func _physics_process(delta):
 		picked_up = true
 		on_pick_up()
 	t += delta
-	var mesh_instances = find_children("", "MeshInstance3D", true)
 
 func shoot(ignore_fire_rate: bool = false, outside_source: Variant = self):
 	if t < fire_rate_timer and not ignore_fire_rate: return
@@ -150,11 +149,7 @@ func launch_projectile(point: Vector3):
 	
 	direction = direction.rotated(perp, angle)
 	
-	proj.damage = damage
-	proj.speed = speed
-	proj.range = range
-	proj.radius = splash_radius
-	proj.player = player
+	set_projectile_flags(proj)
 	
 	Utils.copy_groups(self, proj)
 	
@@ -163,7 +158,15 @@ func launch_projectile(point: Vector3):
 	
 	proj.global_transform.origin = bullet_point.global_transform.origin
 	proj.look_at(proj.global_transform.origin + direction, Vector3.UP)
-	proj.set_linear_velocity(direction * speed)
+	if proj is RigidBody3D:
+		proj.set_linear_velocity(direction * speed)
+
+func set_projectile_flags(proj):
+	proj.damage = damage
+	proj.speed = speed
+	proj.range = range
+	proj.radius = splash_radius
+	proj.player = player
 
 func get_stat(stat: Variant, property: String) -> Variant:
 	return stat if not player else stat * player.stats.get_stat(property)
