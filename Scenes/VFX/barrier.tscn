@@ -141,6 +141,7 @@ _data = {
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5cco0"]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1_umx14")
 shader_parameter/color = Color(3.2594934, 3.2944162, 2.945188, 0.015686275)
