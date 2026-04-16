@@ -56,3 +56,6 @@ func select_upgrade(button):
 	else:
 		upgrade_selected.emit(button.ability)
 	queue_free()
+
+func _exit_tree():
+	get_tree().paused = false
