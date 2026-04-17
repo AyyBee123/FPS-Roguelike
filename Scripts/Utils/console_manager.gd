@@ -112,7 +112,8 @@ func register_giveitem():
 		var find_item = func(pool, item_name) -> Item:
 			for item in pool:
 				var _name = item.resource_path.get_file().get_basename()
-				if item_name.to_lower() == _name.to_lower():
+				if _name.to_lower().begins_with(item_name.to_lower()):
+					item_name = _name
 					return item.instantiate()
 			return null
 		
@@ -154,7 +155,8 @@ func register_givearm():
 		var find_arm = func(pool, arm_name) -> Arm:
 			for arm in pool:
 				var _name = arm.resource_path.get_file().get_basename()
-				if arm_name.to_lower() == _name.to_lower():
+				if _name.to_lower().begins_with(arm_name.to_lower()):
+					arm_name = _name
 					return arm.instantiate()
 			return null
 		
@@ -189,7 +191,8 @@ func register_giveability():
 		var find_ability = func(pool, ability_name) -> Ability:
 			for ability in pool:
 				var _name = ability.resource_path.get_file().get_basename()
-				if ability_name.to_lower() == _name.to_lower():
+				if _name.to_lower().begins_with(ability_name.to_lower()):
+					ability_name = _name
 					return ability.instantiate()
 			return null
 		
