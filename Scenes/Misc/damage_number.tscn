@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dm6474uy3ucte"]
+[gd_scene format=3 uid="uid://dm6474uy3ucte"]
 
 [ext_resource type="Script" uid="uid://dx4x8hbsnddra" path="res://Scripts/Misc/damage_number.gd" id="1_5qui0"]
 [ext_resource type="FontFile" uid="uid://dbs7fkri81s88" path="res://Fonts/Description Font.ttf" id="1_iwxc4"]
@@ -112,10 +112,10 @@ _data = {
 &"new_animation": SubResource("Animation_5qui0")
 }
 
-[node name="Damage Number" type="Node3D"]
+[node name="Damage Number" type="Node3D" unique_id=869755816]
 script = ExtResource("1_5qui0")
 
-[node name="Label3D" type="Label3D" parent="."]
+[node name="Label3D" type="Label3D" parent="." unique_id=1294697921]
 unique_name_in_owner = true
 billboard = 1
 no_depth_test = true
@@ -126,11 +126,9 @@ font = ExtResource("1_iwxc4")
 font_size = 24
 outline_size = 6
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=311470268]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_kvbf3")
-}
-autoplay = "new_animation"
+libraries/ = SubResource("AnimationLibrary_kvbf3")
+autoplay = &"new_animation"
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
