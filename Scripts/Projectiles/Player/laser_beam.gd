@@ -54,8 +54,9 @@ func _physics_process(delta):
 func adjust_length():
 	ray_cast.target_position.z = range
 	if ray_cast.get_collider():
-		beam.scale.z = min(ray_cast.target_position.z / 2, ray_cast.global_position.distance_to(ray_cast.get_collision_point()))
-		muzzle_end.position.z = ray_cast.global_position.distance_to(ray_cast.get_collision_point())
+		var collision_point = ray_cast.get_collision_point()
+		beam.scale.z = min(ray_cast.target_position.z / 2, ray_cast.global_position.distance_to(collision_point))
+		muzzle_end.position.z = ray_cast.global_position.distance_to(collision_point)
 	else:
 		beam.scale.z = ray_cast.target_position.z / 2
 		muzzle_end.position.z = range
