@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://gny2aux4eo4t" path="res://Scenes/VFX/ink_bloat_liquid.tscn" id="4_tystx"]
 [ext_resource type="PackedScene" uid="uid://d3pnq3jiyaa4f" path="res://Scenes/VFX/ink_laser.tscn" id="5_2xcs3"]
 [ext_resource type="AudioStream" uid="uid://d3l3pbtvqa7vj" path="res://Audio/SFX/Blot Shot.mp3" id="5_fvkrg"]
-[ext_resource type="AudioStream" uid="uid://dxdy7uuc34sm2" path="res://Audio/SFX/Blot Blast.mp3" id="6_6vcyx"]
 
 [sub_resource type="Animation" id="Animation_3npa7"]
 resource_name = "Idle"
@@ -643,11 +642,6 @@ panning_strength = 0.0
 bus = &"SFX"
 script = ExtResource("4_fvkrg")
 metadata/_custom_type_script = "uid://cc1romsfhth3n"
-
-[node name="BlotBlast" type="AudioStreamPlayer" parent="." unique_id=1354111477]
-stream = ExtResource("6_6vcyx")
-pitch_scale = 4.0
-bus = &"SFX"
 
 [node name="Armature" type="Node3D" parent="." unique_id=386712330]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.42237312)
