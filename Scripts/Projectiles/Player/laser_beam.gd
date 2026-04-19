@@ -55,14 +55,12 @@ func adjust_length():
 	ray_cast.target_position.z = range
 	if ray_cast.get_collider():
 		beam.scale.z = min(ray_cast.target_position.z / 2, ray_cast.global_position.distance_to(ray_cast.get_collision_point()))
-	else:
-		beam.scale.z = ray_cast.target_position.z / 2
-	beam.scale.z = max(beam.scale.z, 1)
-	outer_beam.scale.z = beam.scale.z
-	if ray_cast.get_collider():
 		muzzle_end.position.z = ray_cast.global_position.distance_to(ray_cast.get_collision_point())
 	else:
+		beam.scale.z = ray_cast.target_position.z / 2
 		muzzle_end.position.z = range
+	beam.scale.z = max(beam.scale.z, 1)
+	outer_beam.scale.z = beam.scale.z
 	lines.lifetime = max((beam.scale.z * 2 - 0.5) / lines.process_material.initial_velocity.length(), 0.01)
 	
 	collision_shape_3d.shape.height = beam.scale.z * 2
