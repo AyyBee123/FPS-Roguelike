@@ -78,14 +78,14 @@ func shrink():
 func _on_laser_body_entered(body):
 	if not body is Enemy:
 		return
-	if not body.has_meta("circle_of_light_overlap"):
-		body.set_meta("circle_of_light_overlap", [])
-	body.get_meta("circle_of_light_overlap").append(self)
+	if not body.has_meta("mornstar_laser_overlap"):
+		body.set_meta("mornstar_laser_overlap", [])
+	body.get_meta("mornstar_laser_overlap").append(self)
 	enemies.append(body)
 
 func _on_laser_body_exited(body):
 	if not body is Enemy:
 		return
-	if body.has_meta("circle_of_light_overlap"):
-		body.get_meta("circle_of_light_overlap", []).erase(self)
+	if body.has_meta("mornstar_laser_overlap"):
+		body.get_meta("mornstar_laser_overlap", []).erase(self)
 	enemies.erase(body)
