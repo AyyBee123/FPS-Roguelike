@@ -274,7 +274,7 @@ func spawn_shape_mesh(shape_slice: Array, polygon_2d: PackedVector2Array) -> voi
 
 	var mesh_instance: MeshInstance3D = MeshInstance3D.new()
 	mesh_instance.mesh = mesh
-	var mat: ShaderMaterial = beam.material_override.duplicate() # duplicate so each mesh has its own instance
+	var mat: ShaderMaterial = beam.material_override.duplicate()
 	mesh_instance.material_override = mat
 	get_tree().current_scene.add_child(mesh_instance)
 	mesh_instance.global_position.y -= 100
@@ -303,7 +303,7 @@ func play_sound_at_centroid(shape_slice: Array, polygon_2d: PackedVector2Array) 
 
 	# larger shape = lower pitch, smaller shape = higher pitch
 	var min_area: float = 1.0
-	var max_area: float = 50.0
+	var max_area: float = 40.0
 	var min_pitch: float = 2.0
 	var max_pitch: float = 4.0
 
