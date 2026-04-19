@@ -104,15 +104,25 @@ func get_stats(_stats: Array[AbilityUpgradeResource]):
 		if stat_to_add != null:
 			upgrades_to_add.append(stat_to_add)
 
-func add_stats(upgrade_list):
+func add_stats(upgrade_list: Array[AbilityUpgradeResource]):
 	for stat in upgrade_list:
-		match stat.type:
-			"+":
-				add_percent_stat(stat.stat, stat.amount)
-			"x":
-				multiply_stat(stat.stat, stat.amount)
-			"flat":
-				add_flat_stat(stat.stat, stat.amount)
+		if stat.upgrade_for_player:
+			var player_stat = player.stats
+			match stat.type:
+				"+":
+					player_stat.add_percent_stat(stat.stat, stat.amount)
+				"x":
+					player_stat.multiply_stat(stat.stat, stat.amount)
+				"flat":
+					player_stat.add_flat_stat(stat.stat, stat.amount)
+		else:
+			match stat.type:
+				"+":
+					add_percent_stat(stat.stat, stat.amount)
+				"x":
+					multiply_stat(stat.stat, stat.amount)
+				"flat":
+					add_flat_stat(stat.stat, stat.amount)
 
 ## adds a percent increase (e.g. +15% -> amount = 15)
 func add_percent_stat(stat_type: String, amount: float) -> void:
