@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://chn2nhp3wgox4"]
+
+[ext_resource type="Texture2D" uid="uid://babaa2pfo6hgq" path="res://Assets/Textures/Circle.png" id="1_8inbj"]
+[ext_resource type="Script" uid="uid://bq4jdpat8t5it" path="res://Scripts/Misc/ink_drawing.gd" id="2_0xrtt"]
+
+[node name="Ink Drawing" type="Decal" unique_id=826328971]
+layers = 4
+size = Vector3(0.5, 0.5, 0.5)
+texture_albedo = ExtResource("1_8inbj")
+emission_energy = 0.0
+modulate = Color(0, 0, 0, 1)
+cull_mask = 4
+script = ExtResource("2_0xrtt")

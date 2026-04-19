@@ -1,62 +1,76 @@
 shader_type spatial;
-render_mode unshaded;
+render_mode cull_disabled, depth_draw_always, blend_mix, unshaded;
 
-uniform vec4 deep_color : source_color;
-uniform vec4 shallow_color : source_color = vec4(1);
+uniform float liquid_height = 0.5;
+uniform vec4 liquid_surface_color: source_color = vec4(0.7, 0.5, 1.0, 1.0);
+uniform sampler2D liquid_rim_gradient;
+uniform float rim_emission_intensity: hint_range(0.0, 2.0) = 0.2;
+uniform float rim_exponent: hint_range(1.0, 10.0) = 3.0;
+uniform float emission_intensity: hint_range(0.0, 3.0) = 0.1;
+uniform float liquid_surface_gradient_size: hint_range(0.0, 3.0) = 0.1;
+uniform vec2 wobble = vec2(0.0, 0.0); 
+varying float y_coordinate;
 
-uniform float refraction_speed = 0.25;
-uniform float refraction_strength = 1.0;
+instance uniform bool viewmodel_enabled = false;
+instance uniform float z_clip_scale : hint_range(0.01, 1.0, 0.01) = 0.8;
+instance uniform float fov_override : hint_range(1.0, 179.0, 0.1) = 100.0;
 
-uniform float foam_amount = 1.0;
-uniform float foam_cutoff = 1.0;
-uniform vec4 foam_color : source_color = vec4(1);
+mat4 rotate_x(in float angle) {
+	return mat4(
+			vec4(1.0,0.0,0.0,0.0),
+			vec4(0.0,cos(angle),-sin(angle),0.0),
+			vec4(0.0,sin(angle),cos(angle),0.0),
+			vec4(0.0,0.0,0.0,1.0));
+}
 
-uniform float displacement_strength = 0.25;
-
-uniform float depth_distance = 1.0;
-
-uniform vec2 movement_direction = vec2(1,0);
-
-uniform sampler2D refraction_noise : hint_normal;
-uniform sampler2D foam_noise : hint_default_black;
-uniform sampler2D displacement_noise : hint_default_black;
-
-uniform sampler2D DEPTH_TEXTURE: hint_depth_texture, filter_linear_mipmap;
-uniform sampler2D SCREEN_TEXTURE: hint_screen_texture, filter_linear_mipmap;
+mat4 rotate_z(in float angle) {
+	return mat4(
+			vec4(cos(angle),-sin(angle), 0.0, 0.0),
+			vec4(sin(angle),cos(angle), 0.0, 0.0),
+			vec4(0.0,0.0,1.0,0.0),
+			vec4(0.0,0.0,0.0,1.0));
+}
 
 void vertex() {
-	float displacement = textureLod(
-			displacement_noise, 
-			UV + (TIME * movement_direction) * refraction_speed, 
-			0.0).r * 2.0 - 1.0;
+	if (viewmodel_enabled) {
+		Z_CLIP_SCALE = z_clip_scale;
+		if (!IN_SHADOW_PASS) {
+			float flip_y = sign(PROJECTION_MATRIX[1][1]);
+			float aspect = PROJECTION_MATRIX[1][1] / PROJECTION_MATRIX[0][0];
+			float f = flip_y / tan(fov_override * PI / 360.0);
+			PROJECTION_MATRIX[0][0] = f / aspect;
+			PROJECTION_MATRIX[1][1] = f;
+		}
+	}
 	
-	VERTEX.y += displacement * displacement_strength;
+	vec3 rotated_vert_z = (rotate_z(1.6) * vec4(VERTEX, 1.0)).xyz;
+	vec3 rotated_vert_x = (rotate_x(-1.6) * vec4(VERTEX, 1.0)).xyz;
+	vec3 vert = (rotated_vert_z * wobble.x + rotated_vert_x * wobble.y) + VERTEX;
+	y_coordinate = (MODEL_MATRIX * (vec4(vert, 1.0))).y - MODEL_MATRIX[3].y;
 }
 
 void fragment() {
-	vec2 uv = SCREEN_UV + refraction_strength 
-			* (texture(refraction_noise, UV + (TIME * movement_direction) * refraction_speed).rg 
-			* 2.0 - 1.0);
+	float fresnel = dot(normalize(NORMAL), normalize(VERTEX));
+	fresnel = abs(fresnel);
+	fresnel = 1.0 - fresnel;
+	float pow_fresnel = pow(fresnel, rim_exponent);
+	if (y_coordinate > liquid_height) {
+		discard;
+	}
+	if (FRONT_FACING) {
+		vec4 liquid_color = texture(liquid_rim_gradient, vec2(pow_fresnel));
+		float surface_component = smoothstep(
+				liquid_height - liquid_surface_gradient_size,
+				liquid_height,
+				y_coordinate);
+		
+		ALBEDO = mix(liquid_color.rgb, liquid_surface_color.rgb, surface_component);
 	
-	float real_depth = texture(DEPTH_TEXTURE, SCREEN_UV).r * 2.0 - 1.0;
-	real_depth = PROJECTION_MATRIX[3][2] / (real_depth + PROJECTION_MATRIX[2][2]) + VERTEX.z;
+	} else {
+		NORMAL = (INV_PROJECTION_MATRIX * vec4(0.0, 1.0, 0.0, 0.0)).xyz;
+		ALBEDO = liquid_surface_color.rgb;
+		AO_LIGHT_AFFECT = 0.0;
+	}
 	
-	// Get the raw linear depth from the depth texture into a  [-1, 1] range
-	float depth = texture(DEPTH_TEXTURE, uv).r * 2.0 - 1.0;
-	// Recreate linear depth of the intersecting geometry using projection matrix, and subtract the vertex of the sphere
-	depth = PROJECTION_MATRIX[3][2] / (depth + PROJECTION_MATRIX[2][2]) + VERTEX.z;
-	
-	depth = max(depth, real_depth);
-	
-	float intersection = clamp(depth / foam_amount, 0, 1) * foam_cutoff;
-	
-	vec4 out_color = mix(shallow_color, deep_color, clamp((depth / depth_distance), 0, 1));
-	vec4 scene_color = texture(SCREEN_TEXTURE, uv);
-	out_color = mix(scene_color, out_color, out_color.a);
-	
-	vec3 foam = step(intersection, 
-			texture(foam_noise, UV + (TIME * movement_direction) * refraction_speed).rgb) 
-			* foam_color.rgb;
-	
-	ALBEDO = out_color.rgb + foam;
+	EMISSION = ALBEDO * (pow_fresnel * rim_emission_intensity + emission_intensity);
 }

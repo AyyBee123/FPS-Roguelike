@@ -20,6 +20,10 @@
 		"rarity": 1
 	},
 	{
+		"path": "res://Scenes/Arms/ink_blot.tscn",
+		"rarity": 1
+	},
+	{
 		"path": "res://Scenes/Arms/leaper.tscn",
 		"rarity": 1
 	},

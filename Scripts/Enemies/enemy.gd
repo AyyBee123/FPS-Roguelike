@@ -31,6 +31,8 @@ signal died(enemy)
 
 const XP = preload("uid://ukgrpto2cajc")
 
+static var all: Array[Enemy] = []
+
 var health_multiplier: float
 var contact_damage_multiplier: float
 var projectile_damage_multiplier: float
@@ -51,6 +53,8 @@ var dmg_num: Node3D
 var is_dead: bool = false # prevents the enemy from triggering on death effects more than once
 
 func _ready():
+	all.append(self)
+	
 	health = INITIAL_HEALTH * exp(tier * 0.1)
 	contact_damage = INITIAL_CONTACT_DAMAGE * (1.0 + tier * 0.12)
 	projectile_damage = INITIAL_PROJECTILE_DAMAGE * (1.0 + tier * 0.12)
@@ -142,4 +146,5 @@ func _on_screen_exited():
 	is_on_screen = false
 
 func _exit_tree():
+	all.erase(self)
 	died.emit(self)

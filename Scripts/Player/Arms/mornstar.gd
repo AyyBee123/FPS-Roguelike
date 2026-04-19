@@ -91,7 +91,6 @@ func _physics_process(delta):
 	light_bulb(bulb_3, 0.825)
 	
 	if laser:
-		mornstar_laser.volume_db = linear_to_db(laser.scale.x)
 		if not mornstar_laser.playing:
 			mornstar_laser.play_deconflicted()
 	else:

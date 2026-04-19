@@ -1,17 +1,19 @@
-[gd_scene format=3 uid="uid://fugesnigenkf"]
+[gd_scene format=3 uid="uid://d3pnq3jiyaa4f"]
 
-[ext_resource type="ArrayMesh" uid="uid://3r6n8ru1mlpv" path="res://Assets/VFX/Beam Cylinder.tres" id="1_1a31g"]
-[ext_resource type="Script" uid="uid://cd8u61udo3q3a" path="res://Scripts/Projectiles/Player/laser_beam.gd" id="1_kgi74"]
-[ext_resource type="Shader" uid="uid://dc7gy3jix1b77" path="res://Shaders/laser_beam.gdshader" id="2_7hj0p"]
-[ext_resource type="Texture2D" uid="uid://babaa2pfo6hgq" path="res://Assets/Textures/Circle.png" id="3_klmes"]
-[ext_resource type="ArrayMesh" uid="uid://nup6lfpy4178" path="res://Assets/VFX/Muzzle Cone.tres" id="5_0otya"]
+[ext_resource type="Script" uid="uid://ddfccwtaa14g3" path="res://Scripts/Projectiles/Player/ink_laser.gd" id="1_56lcm"]
+[ext_resource type="ArrayMesh" uid="uid://3r6n8ru1mlpv" path="res://Assets/VFX/Beam Cylinder.tres" id="2_4oeeu"]
+[ext_resource type="PackedScene" uid="uid://chn2nhp3wgox4" path="res://Scenes/VFX/ink_drawing.tscn" id="2_biqyu"]
+[ext_resource type="AudioStream" uid="uid://dxdy7uuc34sm2" path="res://Audio/SFX/Blot Blast.mp3" id="3_3ol66"]
+[ext_resource type="Shader" uid="uid://dc7gy3jix1b77" path="res://Shaders/laser_beam.gdshader" id="3_biqyu"]
+[ext_resource type="Texture2D" uid="uid://babaa2pfo6hgq" path="res://Assets/Textures/Circle.png" id="4_3ol66"]
+[ext_resource type="ArrayMesh" uid="uid://nup6lfpy4178" path="res://Assets/VFX/Muzzle Cone.tres" id="5_jktej"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kgi74"]
 render_priority = -1
 transparency = 1
 cull_mode = 2
 shading_mode = 0
-albedo_color = Color(0.679457, 0.17187336, 0.24674976, 1)
+albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_0otya"]
 noise_type = 2
@@ -26,10 +28,11 @@ noise = SubResource("FastNoiseLite_0otya")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bybgw"]
 render_priority = 0
-shader = ExtResource("2_7hj0p")
-shader_parameter/color_1 = Color(1, 0.8039216, 0.8117647, 1)
-shader_parameter/color_2 = Color(0.9927862, 0.61883223, 0.6176955, 1)
-shader_parameter/color_3 = Color(0.95824426, 0.32677162, 0.409404, 1)
+shader = ExtResource("3_biqyu")
+shader_parameter/color_1 = Color(0.37, 0.37, 0.37, 1)
+shader_parameter/color_2 = Color(0.14, 0.14, 0.14, 1)
+shader_parameter/color_3 = Color(0.05, 0.05, 0.05, 1)
+shader_parameter/opacity = 1.0
 shader_parameter/speed = 1.5
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_7brug")
 
@@ -37,8 +40,8 @@ shader_parameter/noise_texture = SubResource("NoiseTexture2D_7brug")
 transparency = 1
 cull_mode = 2
 shading_mode = 0
-albedo_color = Color(0.97220653, 0.8167054, 0.82435185, 1)
-albedo_texture = ExtResource("3_klmes")
+albedo_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+albedo_texture = ExtResource("4_3ol66")
 
 [sub_resource type="QuadMesh" id="QuadMesh_bybgw"]
 
@@ -64,8 +67,8 @@ emission_shape_scale = Vector3(1, 1, 0)
 emission_shape = 6
 emission_ring_axis = Vector3(0, 0, 1)
 emission_ring_height = 0.0
-emission_ring_radius = 0.28
-emission_ring_inner_radius = 0.3
+emission_ring_radius = 0.16
+emission_ring_inner_radius = 0.12
 emission_ring_cone_angle = 90.0
 direction = Vector3(0, 0, 1)
 spread = 0.0
@@ -79,8 +82,8 @@ transparency = 1
 cull_mode = 2
 shading_mode = 0
 vertex_color_use_as_albedo = true
-albedo_color = Color(1, 0.8039216, 0.8117647, 1)
-albedo_texture = ExtResource("3_klmes")
+albedo_color = Color(0, 0, 0, 1)
+albedo_texture = ExtResource("4_3ol66")
 
 [sub_resource type="QuadMesh" id="QuadMesh_kegy8"]
 material = SubResource("StandardMaterial3D_m6cvw")
@@ -100,26 +103,29 @@ spread = 30.0
 initial_velocity_min = 20.0
 initial_velocity_max = 20.0
 gravity = Vector3(0, 0, 0)
-scale_min = 0.25
-scale_max = 0.25
+scale_min = 0.16
+scale_max = 0.16
 scale_curve = SubResource("CurveTexture_ms8to")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lw50q"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_56lcm"]
+load_path = "res://.godot/imported/Circle.png-82b824314a9487ab0a684b4327b30a69.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4oeeu"]
 render_priority = -1
 transparency = 1
 cull_mode = 2
 shading_mode = 0
 vertex_color_use_as_albedo = true
-albedo_color = Color(0.6784314, 0.17254902, 0.24705882, 1)
-albedo_texture = ExtResource("3_klmes")
+albedo_color = Color(0.39, 0.39, 0.39, 1)
+albedo_texture = SubResource("CompressedTexture2D_56lcm")
 billboard_mode = 3
 billboard_keep_scale = true
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[sub_resource type="QuadMesh" id="QuadMesh_b3x5d"]
-material = SubResource("StandardMaterial3D_lw50q")
+[sub_resource type="QuadMesh" id="QuadMesh_biqyu"]
+material = SubResource("StandardMaterial3D_4oeeu")
 size = Vector2(1.5, 1.5)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7brug"]
@@ -130,7 +136,7 @@ transparency = 1
 cull_mode = 2
 shading_mode = 0
 vertex_color_use_as_albedo = true
-albedo_color = Color(0.99215686, 0.61960787, 0.61960787, 1)
+albedo_color = Color(0, 0, 0, 1)
 albedo_texture = SubResource("CompressedTexture2D_7brug")
 billboard_mode = 3
 billboard_keep_scale = true
@@ -150,7 +156,7 @@ transparency = 1
 cull_mode = 2
 shading_mode = 0
 vertex_color_use_as_albedo = true
-albedo_color = Color(0.99215686, 0.61960787, 0.61960787, 1)
+albedo_color = Color(0.06469653, 0.06469653, 0.06469653, 1)
 albedo_texture = SubResource("CompressedTexture2D_klmes")
 
 [sub_resource type="Curve" id="Curve_x4e8g"]
@@ -187,66 +193,68 @@ transparency = 1
 cull_mode = 2
 shading_mode = 0
 vertex_color_use_as_albedo = true
-albedo_color = Color(0.515068, 0.116074, 0.1785622, 1)
+albedo_color = Color(0, 0, 0, 1)
 albedo_texture = SubResource("CompressedTexture2D_bybgw")
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_klmes"]
 height = 20.0
-radius = 0.2
+radius = 0.12
 
-[node name="Laser Beam" type="Node3D" unique_id=1000703920]
-script = ExtResource("1_kgi74")
+[node name="Ink Laser" type="Node3D" unique_id=789751126]
+script = ExtResource("1_56lcm")
+INK = ExtResource("2_biqyu")
+SOUND = ExtResource("3_3ol66")
 
-[node name="Laser" type="Area3D" parent="." unique_id=289670690]
+[node name="Laser" type="Area3D" parent="." unique_id=1143421230]
 unique_name_in_owner = true
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 collision_layer = 0
 collision_mask = 4
 monitorable = false
 
-[node name="VFX" type="Node3D" parent="Laser" unique_id=1618115735]
+[node name="VFX" type="Node3D" parent="Laser" unique_id=1442364739]
 unique_name_in_owner = true
 
-[node name="Outer Beam" type="MeshInstance3D" parent="Laser/VFX" unique_id=983700166]
+[node name="Outer Beam" type="MeshInstance3D" parent="Laser/VFX" unique_id=161395537]
 unique_name_in_owner = true
-transform = Transform3D(0.275, 0, 0, 0, 0.275, 0, 0, 0, 10, 0, 0, 0.025)
+transform = Transform3D(0.14, 0, 0, 0, 0.14, 0, 0, 0, 10, 0, 0, 0.025)
 material_override = SubResource("StandardMaterial3D_kgi74")
-mesh = ExtResource("1_1a31g")
+mesh = ExtResource("2_4oeeu")
 skeleton = NodePath("../../..")
 
-[node name="Beam" type="MeshInstance3D" parent="Laser/VFX" unique_id=862665013]
+[node name="Beam" type="MeshInstance3D" parent="Laser/VFX" unique_id=2049269624]
 unique_name_in_owner = true
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 10, 0, 0, 0.025)
+transform = Transform3D(0.12, 0, 0, 0, 0.12, 0, 0, 0, 10, 0, 0, 0.025)
 material_override = SubResource("ShaderMaterial_bybgw")
-mesh = ExtResource("1_1a31g")
+mesh = ExtResource("2_4oeeu")
 skeleton = NodePath("../../..")
 
-[node name="Circle" type="MeshInstance3D" parent="Laser/VFX" unique_id=1586894039]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+[node name="Circle" type="MeshInstance3D" parent="Laser/VFX" unique_id=1171322233]
+transform = Transform3D(0.12, 0, 0, 0, 0.12, 0, 0, 0, 0.12, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_7brug")
 mesh = SubResource("QuadMesh_bybgw")
 
-[node name="Lines" type="GPUParticles3D" parent="Laser/VFX" unique_id=1868861716]
+[node name="Lines" type="GPUParticles3D" parent="Laser/VFX" unique_id=1712173662]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.17401898)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.99492e-09, 0, 0.21971554)
 lifetime = 0.47
 fixed_fps = 0
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_x4e8g")
 draw_pass_1 = SubResource("QuadMesh_kegy8")
 
-[node name="Dots" type="GPUParticles3D" parent="Laser/VFX" unique_id=672955159]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.17401898)
+[node name="Dots" type="GPUParticles3D" parent="Laser/VFX" unique_id=805635154]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5760227e-08, 0, -0.0062569976)
 amount = 3
 lifetime = 0.2
 fixed_fps = 0
 process_material = SubResource("ParticleProcessMaterial_1m0hn")
 draw_passes = 2
-draw_pass_1 = SubResource("QuadMesh_b3x5d")
+draw_pass_1 = SubResource("QuadMesh_biqyu")
 draw_pass_2 = SubResource("QuadMesh_g3qr6")
 
-[node name="MuzzleCone" type="GPUParticles3D" parent="Laser/VFX" unique_id=136365532]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+[node name="MuzzleCone" type="GPUParticles3D" parent="Laser/VFX" unique_id=376925201]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_0otya")
 amount = 2
 lifetime = 0.15000000000000002
@@ -254,11 +262,11 @@ randomness = 1.0
 fixed_fps = 0
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_kegy8")
-draw_pass_1 = ExtResource("5_0otya")
+draw_pass_1 = ExtResource("5_jktej")
 
-[node name="MuzzleEnd" type="GPUParticles3D" parent="Laser/VFX" unique_id=1115187312]
+[node name="MuzzleEnd" type="GPUParticles3D" parent="Laser/VFX" unique_id=344715803]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 20)
 material_override = SubResource("StandardMaterial3D_g3qr6")
 amount = 2
 lifetime = 0.15000000000000002
@@ -266,13 +274,13 @@ randomness = 1.0
 fixed_fps = 0
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_kegy8")
-draw_pass_1 = ExtResource("5_0otya")
+draw_pass_1 = ExtResource("5_jktej")
 
-[node name="RayCast3D" type="RayCast3D" parent="Laser" unique_id=999208527]
+[node name="RayCast3D" type="RayCast3D" parent="Laser" unique_id=1680058099]
 unique_name_in_owner = true
 target_position = Vector3(0, 0, 20)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Laser" unique_id=1117112868]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Laser" unique_id=1851751535]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 10)
 shape = SubResource("CylinderShape3D_klmes")

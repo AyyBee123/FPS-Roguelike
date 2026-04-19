@@ -5,6 +5,8 @@ class_name Miniboss extends Enemy
 const MINIBOSS_SPAWN_VFX = preload("uid://3t4q01uo2ubp")
 
 func _ready():
+	all.append(self)
+	
 	ray_cast.global_transform = Transform3D(Basis(), ray_cast.global_position) # lock the ray cast's rotation
 	ray_cast.force_raycast_update() # detect the ground immediately
 	position.y = ray_cast.get_collision_point().y + raycast_offset # snap the enemy to the ground (with offset)

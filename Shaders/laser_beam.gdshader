@@ -4,6 +4,7 @@ render_mode unshaded, cull_disabled;
 uniform vec3 color_1 : source_color = vec3(1.0, 1.0, 1.0);
 uniform vec3 color_2 : source_color = vec3(1.0, 1.0, 1.0);
 uniform vec3 color_3 : source_color = vec3(1.0, 1.0, 1.0);
+uniform float opacity : hint_range(0.0, 1.0) = 1.0;
 
 uniform float speed = 1.0;
 uniform sampler2D noise_texture;
@@ -26,5 +27,5 @@ void fragment() {
 	}
 	
 	ALBEDO = color;
-	ALPHA = alpha;
+	ALPHA = alpha * opacity;
 }
