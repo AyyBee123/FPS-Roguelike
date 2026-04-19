@@ -74,6 +74,7 @@ func _physics_process(_delta):
 		player.enemy_hit.connect(_on_hit)
 		player.weapon_fired.connect(_on_shoot)
 		player.weapon_spawned.connect(_on_spawn)
+		give_initial_player_stats()
 
 func get_rarity():
 	match rarity:
@@ -203,6 +204,9 @@ func remove_upgrade(list: Array, stat: String):
 	for i in range(list.size() - 1, -1, -1):
 		if list[i].stat == stat:
 			list.remove_at(i)
+
+func give_initial_player_stats():
+	pass
 
 func _on_hit(_enemy: Enemy, _source: Variant, _damage: float):
 	pass
