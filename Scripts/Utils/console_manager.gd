@@ -18,6 +18,7 @@ func _ready():
 	register_giveitem()
 	register_givearm()
 	register_giveability()
+	register_spawnarm()
 
 func register_command(cmd: ConsoleCommand):
 	commands[cmd.name] = cmd
@@ -109,16 +110,8 @@ func register_giveitem():
 		
 		var resulting_item: Item
 		
-		var find_item = func(pool, item_name) -> Item:
-			for item in pool:
-				var _name = item.resource_path.get_file().get_basename()
-				if _name.to_lower().begins_with(item_name.to_lower()):
-					item_name = _name
-					return item.instantiate()
-			return null
-		
 		for pool in pools:
-			resulting_item = find_item.call(pool, item_name)
+			resulting_item = find_from_pool(pool, item_name)
 			if resulting_item:
 				break
 		
@@ -129,7 +122,7 @@ func register_giveitem():
 		resulting_item.stacks = amount
 		resulting_item.on_pick_up(player)
 		
-		print_to_console("Gave %d stack%s of %s" % [amount,"s" if amount > 1 else "", item_name])
+		print_to_console("Gave %d stack%s of %s" % [amount,"s" if amount > 1 else "", resulting_item.item_name])
 	
 	register_command(cmd)
 
@@ -152,16 +145,8 @@ func register_givearm():
 		
 		var resulting_arm: Arm
 		
-		var find_arm = func(pool, arm_name) -> Arm:
-			for arm in pool:
-				var _name = arm.resource_path.get_file().get_basename()
-				if _name.to_lower().begins_with(arm_name.to_lower()):
-					arm_name = _name
-					return arm.instantiate()
-			return null
-		
 		for pool in pools:
-			resulting_arm = find_arm.call(pool, arm_name)
+			resulting_arm = find_from_pool(pool, arm_name)
 			if resulting_arm:
 				break
 		
@@ -169,7 +154,7 @@ func register_givearm():
 			print_to_console("ERROR: No arm with name %s exists" % arm_name, Color.RED)
 			return
 		
-		player.weapons_manager.swap_arm(resulting_arm)
+		player.weapons_manager.swap_arm(resulting_arm.arm_name)
 		
 		print_to_console("Gave %s" % arm_name)
 	
@@ -188,15 +173,7 @@ func register_giveability():
 		
 		var resulting_ability: Ability
 		
-		var find_ability = func(pool, ability_name) -> Ability:
-			for ability in pool:
-				var _name = ability.resource_path.get_file().get_basename()
-				if _name.to_lower().begins_with(ability_name.to_lower()):
-					ability_name = _name
-					return ability.instantiate()
-			return null
-		
-		resulting_ability = find_ability.call(ability_pool.abilities, ability_name)
+		resulting_ability = find_from_pool(ability_pool.abilities, ability_name)
 		
 		if resulting_ability == null:
 			print_to_console("ERROR: No ability with name %s exists" % ability_name, Color.RED)
@@ -204,9 +181,57 @@ func register_giveability():
 		
 		player.get_upgrade(resulting_ability)
 		
-		print_to_console("Gave %s" % ability_name)
+		print_to_console("Gave %s" % resulting_ability.ability_name)
 	
 	register_command(cmd)
+
+func register_spawnarm():
+	var cmd = ConsoleCommand.new()
+	cmd.name = "spawnarm"
+	cmd.description = "Spawn an arm pickup"
+	cmd.args_schema = [
+		{name="item", type="string"},
+		{name="coord_x", type="float", default=0},
+		{name="coord_z", type="float", default=0},
+	]
+	
+	cmd.execute_callable = func(args):
+		var arm_name: String = args[0]
+		var x: float = args[1]
+		var z: float = args[2]
+		
+		var pools = [
+			arm_pool.common_pool,
+			arm_pool.uncommon_pool,
+			arm_pool.legendary_pool
+		]
+		
+		var resulting_arm: Arm
+		
+		for pool in pools:
+			resulting_arm = find_from_pool(pool, arm_name)
+			if resulting_arm:
+				break
+		
+		if resulting_arm == null:
+			print_to_console("ERROR: No arm with name %s exists" % arm_name, Color.RED)
+			return
+		
+		var pickup: ArmPickup = preload("uid://ba7erkb81ks3u").instantiate()
+		pickup.arm = resulting_arm
+		get_tree().current_scene.add_child(pickup)
+		pickup.global_position = Vector3(x, 0, z)
+		
+		print_to_console("Spawned %s at (%d, %d)" % [resulting_arm.arm_name, x, z])
+	
+	register_command(cmd)
+
+func find_from_pool(pool, _name):
+	for item in pool:
+		var n = item.resource_path.get_file().get_basename()
+		if n.to_lower().begins_with(_name.to_lower()):
+			return item.instantiate()
+	return null
 
 func print_to_console(text: String, color: Color = Color.WHITE):
 	if ui == null: return
