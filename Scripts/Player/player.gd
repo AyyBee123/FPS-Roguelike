@@ -8,6 +8,7 @@ signal weapon_released(weapon, source) # called when the fire button is no longe
 signal weapon_spawned(projectile, damage) # called mainly for weapon after-effects (e.g. oil pool, reflected bullets)
 signal on_landing(impact_speed) # called when the player lands on the ground from the air
 signal on_dash(speed, direction) # called when the player dashes
+signal on_jump(from_ground) # called when the player jumps
 signal hit_taken(pos) # called when the player takes a hit
 signal health_lost(amount)
 signal item_hovered(item) # called when an item is looked at with the crosshair and is within pickup range
@@ -172,11 +173,13 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y += JUMP_HEIGHT
 		jump.play_deconflicted()
+		on_jump.emit(true)
 	if Input.is_action_just_pressed("jump") and not is_on_floor() and current_jumps > 0:
 		velocity.y = 0
 		velocity.y += JUMP_HEIGHT
 		current_jumps -= 1
 		jump.play_deconflicted()
+		on_jump.emit(false)
 	
 	# input direction and movement/deceleration
 	var input_dir: Vector2 = Input.get_vector("left", "right", "up", "down")

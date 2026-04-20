@@ -24,6 +24,6 @@ func set_projectile_flags(proj):
 	proj.damage = damage
 	proj.speed = speed
 	proj.range = range
-	proj.radius = splash_radius
+	proj.radius = range / 100.0
 	proj.player = player
 	proj.color = ball.get_instance_shader_parameter("zippy_albedo")

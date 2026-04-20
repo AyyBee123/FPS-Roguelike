@@ -7,8 +7,7 @@ func shoot(ignore_fire_rate: bool = false, outside_source: Variant = self):
 
 func set_projectile_flags(proj):
 	proj.damage = damage
-	proj.range = range
-	proj.radius = splash_radius
+	proj.radius = range
 	proj.player = player
 	proj.color = "ffd73a"
 

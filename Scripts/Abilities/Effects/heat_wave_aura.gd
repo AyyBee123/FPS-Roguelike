@@ -11,7 +11,7 @@ var damage_timer: float = INF
 var added_damage: float = 0.0
 
 func _ready():
-	var radius = ability.get_stat_value("Splash_Radius")
+	var radius = ability.get_stat_value("Range")
 	mesh.scale = Vector3(1, 0, 1) * radius + Vector3.UP
 	collision_shape_3d.shape.radius = radius
 	collision_shape_3d.shape.height = radius * 2.5
@@ -22,7 +22,7 @@ func _physics_process(delta):
 		queue_free()
 		return
 	
-	var radius = ability.get_stat_value("Splash_Radius")
+	var radius = ability.get_stat_value("Range")
 	if player and collision_shape_3d.shape.radius != radius:
 		mesh.scale = Vector3(1, 0, 1) * radius + Vector3.UP
 		collision_shape_3d.shape.radius = radius

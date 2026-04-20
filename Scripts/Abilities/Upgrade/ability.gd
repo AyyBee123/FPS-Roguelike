@@ -74,6 +74,7 @@ func _physics_process(_delta):
 		player.enemy_hit.connect(_on_hit)
 		player.weapon_fired.connect(_on_shoot)
 		player.weapon_spawned.connect(_on_spawn)
+		player.on_jump.connect(_on_jump)
 		give_initial_player_stats()
 
 func get_rarity():
@@ -215,4 +216,7 @@ func _on_shoot(_projectile: Variant, _damage: float):
 	pass
 
 func _on_spawn(_projectile: Variant, _damage: float):
+	pass
+
+func _on_jump(_from_ground: bool):
 	pass

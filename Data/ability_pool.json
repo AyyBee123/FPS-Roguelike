@@ -3,6 +3,9 @@
 		"path": "res://Scenes/Abilities/appendage_projection.tscn"
 	},
 	{
+		"path": "res://Scenes/Abilities/bomb_drop.tscn"
+	},
+	{
 		"path": "res://Scenes/Abilities/circle_of_light.tscn"
 	},
 	{

@@ -23,7 +23,7 @@ func on_enemy_hit(_enemy: Enemy, _source: Variant, _damage: float):
 		var strike = ORBITAL_STRIKE.instantiate()
 		strike.position = _enemy.position
 		strike.damage = get_stat_value("Damage")
-		strike.radius = get_stat_value("Splash_Radius")
+		strike.radius = get_stat_value("Range")
 		strike.player = player
 		get_tree().current_scene.add_child(strike)
 		
@@ -35,16 +35,16 @@ func on_enemy_hit(_enemy: Enemy, _source: Variant, _damage: float):
 
 func on_stack():
 	add_flat_stat("Damage", damage_increase)
-	add_flat_stat("Splash_Radius", radius_increase)
+	add_flat_stat("Range", radius_increase)
 
 func on_stack_remove():
 	add_flat_stat("Damage", -damage_increase)
-	add_flat_stat("Splash_Radius", -radius_increase)
+	add_flat_stat("Range", -radius_increase)
 
 func set_detailed_desription():
 	detailed_description %= [
 		stats["Damage"]["base"],
 		damage_increase,
-		stats["Splash_Radius"]["base"],
+		stats["Range"]["base"],
 		radius_increase
 	]

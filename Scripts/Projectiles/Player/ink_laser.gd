@@ -318,6 +318,4 @@ func play_sound_at_centroid(shape_slice: Array, polygon_2d: PackedVector2Array) 
 	get_tree().current_scene.add_child(audio)
 	audio.global_position = centroid
 	audio.play_deconflicted()
-
-	# clean up when done playing
 	audio.finished.connect(audio.queue_free)

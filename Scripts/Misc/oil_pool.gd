@@ -6,6 +6,8 @@ extends Node3D
 @onready var area: Area3D = %Area3D
 @onready var splat = %Splat
 
+const BASE_RANGE: float = 1.0
+
 var tween: Tween
 
 var damage: float
@@ -19,7 +21,7 @@ var damage_timer: float = INF
 
 func _ready():
 	splat.play_deconflicted()
-	scale = Vector3.ONE * player.stats.get_stat("Splash_Radius")
+	scale = Vector3.ONE * player.stats.get_stat("Range") * BASE_RANGE
 	oil_pool.scale = Vector3(0, 1.0 / scale.y, 0)
 	tween = get_tree().create_tween()
 	tween.tween_property(oil_pool, "scale:x", 1, 0.1)

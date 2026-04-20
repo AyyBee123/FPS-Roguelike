@@ -81,7 +81,7 @@ func register_clear():
 	cmd.description = "Clear the command log"
 	cmd.args_schema = []
 	
-	cmd.execute_callable = func(args):
+	cmd.execute_callable = func(_args):
 		if ui:
 			ui.log.clear()
 	
@@ -156,7 +156,7 @@ func register_givearm():
 			print_to_console("ERROR: No arm with name %s exists" % arm_name, Color.RED)
 			return
 		
-		player.weapons_manager.swap_arm(resulting_arm.arm_name)
+		player.weapons_manager.swap_arm(resulting_arm)
 		
 		print_to_console("Gave %s" % arm_name)
 	

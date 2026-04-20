@@ -14,7 +14,7 @@ metadata/_custom_type_script = "uid://crdmjkiq4812g"
 
 [sub_resource type="Resource" id="Resource_g752j"]
 script = ExtResource("2_3yyif")
-stat = "Splash_Radius"
+stat = "Range"
 amount = 15.0
 type = "+"
 metadata/_custom_type_script = "uid://crdmjkiq4812g"
@@ -30,7 +30,7 @@ metadata/_custom_type_script = "uid://crdmjkiq4812g"
 [sub_resource type="Resource" id="Resource_3k0rq"]
 script = ExtResource("2_3yyif")
 rarity = 1
-stat = "Splash_Radius"
+stat = "Range"
 amount = 20.0
 type = "+"
 metadata/_custom_type_script = "uid://crdmjkiq4812g"
@@ -46,7 +46,7 @@ metadata/_custom_type_script = "uid://crdmjkiq4812g"
 [sub_resource type="Resource" id="Resource_4cffg"]
 script = ExtResource("2_3yyif")
 rarity = 3
-stat = "Splash_Radius"
+stat = "Range"
 amount = 30.0
 type = "+"
 metadata/_custom_type_script = "uid://crdmjkiq4812g"
@@ -62,7 +62,7 @@ metadata/_custom_type_script = "uid://crdmjkiq4812g"
 [sub_resource type="Resource" id="Resource_6cb8b"]
 script = ExtResource("2_3yyif")
 rarity = 2
-stat = "Splash_Radius"
+stat = "Range"
 amount = 50.0
 type = "+"
 metadata/_custom_type_script = "uid://crdmjkiq4812g"

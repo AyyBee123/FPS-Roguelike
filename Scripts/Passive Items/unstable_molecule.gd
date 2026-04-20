@@ -11,22 +11,22 @@ func on_enemy_killed(_enemy: Enemy, _source: Variant, _damage: float):
 	blast.add_to_group("Unstable Molecule Blast")
 	blast.player = player
 	blast.damage = get_stat_value("Damage")
-	blast.radius = get_stat_value("Splash_Radius")
+	blast.radius = get_stat_value("Range")
 	get_tree().current_scene.add_child(blast)
 	blast.global_position = _enemy.global_position
 
 func on_stack():
 	add_flat_stat("Damage", damage_increase)
-	add_flat_stat("Splash_Radius", radius_increase)
+	add_flat_stat("Range", radius_increase)
 
 func on_stack_remove():
 	add_flat_stat("Damage", -damage_increase)
-	add_flat_stat("Splash_Radius", -radius_increase)
+	add_flat_stat("Range", -radius_increase)
 
 func set_detailed_desription():
 	detailed_description %= [
 		stats["Damage"]["base"],
 		damage_increase,
-		stats["Splash_Radius"]["base"],
+		stats["Range"]["base"],
 		radius_increase
 	]

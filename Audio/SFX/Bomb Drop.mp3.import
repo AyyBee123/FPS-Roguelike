@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ctyjwhsln6bqv"
+path="res://.godot/imported/Bomb Drop.mp3-d359cb96b0d0e765f61ed5f1d2286a4f.mp3str"
+
+[deps]
+
+source_file="res://Audio/SFX/Bomb Drop.mp3"
+dest_files=["res://.godot/imported/Bomb Drop.mp3-d359cb96b0d0e765f61ed5f1d2286a4f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

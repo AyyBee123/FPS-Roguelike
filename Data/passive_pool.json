@@ -1,8 +1,5 @@
 [
 	{
-		"path": "res://Scenes/Passives/blast_radius.tscn"
-	},
-	{
 		"path": "res://Scenes/Passives/damage.tscn"
 	},
 	{

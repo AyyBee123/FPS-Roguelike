@@ -6,13 +6,12 @@ extends Node3D
 
 var player: Player
 var damage: float
-var range: float
 var radius: float
 var color: Color = Color.SANDY_BROWN
 var max_lifetime: float
 
 func _ready():
-	scale = Vector3.ONE * radius * range
+	scale = Vector3.ONE * radius
 	
 	for particle in particles:
 		particle.restart()

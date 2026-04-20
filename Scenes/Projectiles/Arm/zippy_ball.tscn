@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://dxb17fqja8plv"]
+[gd_scene format=4 uid="uid://dxb17fqja8plv"]
 
 [ext_resource type="Script" uid="uid://8t4wiirsx6ec" path="res://Scripts/Projectiles/Player/zippy_ball.gd" id="1_hhbuh"]
 [ext_resource type="PackedScene" uid="uid://dwnmehkjsekxx" path="res://Scenes/VFX/blast.tscn" id="2_hhbuh"]
@@ -51,7 +51,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_dn0ie")
 
-[node name="Ball" type="RigidBody3D"]
+[node name="Ball" type="RigidBody3D" unique_id=176274378]
 top_level = true
 collision_layer = 0
 collision_mask = 5
@@ -63,16 +63,16 @@ max_contacts_reported = 10
 script = ExtResource("1_hhbuh")
 BLAST = ExtResource("2_hhbuh")
 
-[node name="CollisionShape" type="CollisionShape3D" parent="."]
+[node name="CollisionShape" type="CollisionShape3D" parent="." unique_id=1137978279]
 unique_name_in_owner = true
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 shape = SubResource("SphereShape3D_1bece")
 
-[node name="Lifetime" type="Timer" parent="."]
+[node name="Lifetime" type="Timer" parent="." unique_id=1433514439]
 unique_name_in_owner = true
 one_shot = true
 
-[node name="Ball" type="MeshInstance3D" parent="."]
+[node name="Ball" type="MeshInstance3D" parent="." unique_id=722627522]
 unique_name_in_owner = true
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 mesh = SubResource("ArrayMesh_hhbuh")
