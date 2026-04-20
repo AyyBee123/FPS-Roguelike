@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://brrube6jjie8x"]
 
-[ext_resource type="Script" uid="uid://ckswi6f6djqc4" path="res://Scripts/Abilities/Upgrade/circle_of_light_aura.gd" id="1_kmoh4"]
+[ext_resource type="Script" uid="uid://ckswi6f6djqc4" path="res://Scripts/Abilities/Effects/circle_of_light_aura.gd" id="1_kmoh4"]
 [ext_resource type="Shader" uid="uid://dotnbussbwm01" path="res://Shaders/fresnel.gdshader" id="3_opsxp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_buf71"]

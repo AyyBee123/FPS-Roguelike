@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://2dgsr8sbptvh"]
 
-[ext_resource type="Script" uid="uid://d1oejij40qc81" path="res://Scripts/Abilities/Upgrade/heat_wave_aura.gd" id="1_abw68"]
+[ext_resource type="Script" uid="uid://d1oejij40qc81" path="res://Scripts/Abilities/Effects/heat_wave_aura.gd" id="1_abw68"]
 [ext_resource type="Shader" uid="uid://ljt1sinbdkj8" path="res://Shaders/heat_wave_aura.gdshader" id="2_xrmqr"]
 [ext_resource type="Texture2D" uid="uid://7w6yqd2wdnt5" path="res://Assets/Textures/T_Noise_Wo14.png" id="3_jnlfd"]
 [ext_resource type="ArrayMesh" uid="uid://doh6lc6tx832e" path="res://Assets/VFX/thick_cylinder.tres" id="4_xrmqr"]
