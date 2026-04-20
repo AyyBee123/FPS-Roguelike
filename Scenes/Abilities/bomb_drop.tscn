@@ -1,0 +1,188 @@
+[gd_scene format=3 uid="uid://roafk5che76a"]
+
+[ext_resource type="Script" uid="uid://2utelyapbkkw" path="res://Scripts/Abilities/Upgrade/bomb_drop.gd" id="1_q54fg"]
+[ext_resource type="PackedScene" uid="uid://dtpv1vyw4woj3" path="res://Scenes/VFX/bomb.tscn" id="2_rlwfv"]
+[ext_resource type="Texture2D" uid="uid://chqdqyo4wp5or" path="res://Assets/Sprites/Abilities/Bomb Drop.png" id="3_ahlfo"]
+[ext_resource type="Script" uid="uid://crdmjkiq4812g" path="res://Scripts/Resources/ability_upgrade_resource.gd" id="4_qe23r"]
+
+[sub_resource type="Resource" id="Resource_cbq7c"]
+script = ExtResource("4_qe23r")
+stat = "Damage"
+amount = 10.0
+type = "+"
+metadata/_custom_type_script = "uid://crdmjkiq4812g"
+
+[sub_resource type="Resource" id="Resource_hag4h"]
+script = ExtResource("4_qe23r")
+rarity = 1
+stat = "Damage"
+amount = 20.0
+type = "+"
+metadata/_custom_type_script = "uid://crdmjkiq4812g"
+
+[sub_resource type="Resource" id="Resource_kfsxn"]
+script = ExtResource("4_qe23r")
+rarity = 3
+stat = "Damage"
+amount = 35.0
+type = "+"
+metadata/_custom_type_script = "uid://crdmjkiq4812g"
+
+[sub_resource type="Resource" id="Resource_ulsc1"]
+script = ExtResource("4_qe23r")
+rarity = 2
+stat = "Damage"
+amount = 60.0
+type = "+"
+metadata/_custom_type_script = "uid://crdmjkiq4812g"
+
+[sub_resource type="Resource" id="Resource_g752j"]
+script = ExtResource("4_qe23r")
+stat = "Range"
+amount = 15.0
+type = "+"
+metadata/_custom_type_script = "uid://crdmjkiq4812g"
+
+[sub_resource type="Resource" id="Resource_3k0rq"]
+script = ExtResource("4_qe23r")
+rarity = 1
+stat = "Range"
+amount = 20.0
+type = "+"
+metadata/_custom_type_script = "uid://crdmjkiq4812g"
+
+[sub_resource type="Resource" id="Resource_4cffg"]
+script = ExtResource("4_qe23r")
+rarity = 3
+stat = "Range"
+amount = 30.0
+type = "+"
+metadata/_custom_type_script = "uid://crdmjkiq4812g"
+
+[sub_resource type="Resource" id="Resource_6cb8b"]
+script = ExtResource("4_qe23r")
+rarity = 2
+stat = "Range"
+amount = 50.0
+type = "+"
+metadata/_custom_type_script = "uid://crdmjkiq4812g"
+
+[sub_resource type="Resource" id="Resource_rlwfv"]
+script = ExtResource("4_qe23r")
+rarity = 1
+stat = "Extra_Jumps"
+amount = 1.0
+type = "flat"
+upgrade_for_player = true
+metadata/_custom_type_script = "uid://crdmjkiq4812g"
+
+[sub_resource type="Resource" id="Resource_8l6vf"]
+script = ExtResource("4_qe23r")
+rarity = 3
+stat = "Extra_Jumps"
+amount = 2.0
+type = "flat"
+upgrade_for_player = true
+metadata/_custom_type_script = "uid://crdmjkiq4812g"
+
+[sub_resource type="Resource" id="Resource_qe23r"]
+script = ExtResource("4_qe23r")
+rarity = 2
+stat = "Extra_Jumps"
+amount = 3.0
+type = "flat"
+upgrade_for_player = true
+metadata/_custom_type_script = "uid://crdmjkiq4812g"
+
+[sub_resource type="Resource" id="Resource_og7vv"]
+script = ExtResource("4_qe23r")
+stat = "Jump_Height"
+amount = 10.0
+type = "+"
+upgrade_for_player = true
+metadata/_custom_type_script = "uid://crdmjkiq4812g"
+
+[sub_resource type="Resource" id="Resource_a7kgq"]
+script = ExtResource("4_qe23r")
+rarity = 1
+stat = "Jump_Height"
+amount = 15.0
+type = "+"
+upgrade_for_player = true
+metadata/_custom_type_script = "uid://crdmjkiq4812g"
+
+[sub_resource type="Resource" id="Resource_73n23"]
+script = ExtResource("4_qe23r")
+rarity = 3
+stat = "Jump_Height"
+amount = 25.0
+type = "+"
+upgrade_for_player = true
+metadata/_custom_type_script = "uid://crdmjkiq4812g"
+
+[sub_resource type="Resource" id="Resource_2vdow"]
+script = ExtResource("4_qe23r")
+rarity = 2
+stat = "Jump_Height"
+amount = 40.0
+type = "+"
+upgrade_for_player = true
+metadata/_custom_type_script = "uid://crdmjkiq4812g"
+
+[node name="Bomb Drop" type="Node" unique_id=142973740]
+script = ExtResource("1_q54fg")
+BOMB = ExtResource("2_rlwfv")
+icon = ExtResource("3_ahlfo")
+ability_name = "Bomb Drop"
+description = "Drops a bomb when jumping in the air. Grants +2 extra jumps when first acquired."
+ability_upgrades = Array[ExtResource("4_qe23r")]([SubResource("Resource_cbq7c"), SubResource("Resource_hag4h"), SubResource("Resource_kfsxn"), SubResource("Resource_ulsc1"), SubResource("Resource_g752j"), SubResource("Resource_3k0rq"), SubResource("Resource_4cffg"), SubResource("Resource_6cb8b"), SubResource("Resource_rlwfv"), SubResource("Resource_8l6vf"), SubResource("Resource_qe23r"), SubResource("Resource_og7vv"), SubResource("Resource_a7kgq"), SubResource("Resource_73n23"), SubResource("Resource_2vdow")])
+stats = {
+"Crit_Chance": {
+"+": 0.0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1.0
+},
+"Crit_Damage": {
+"+": 0.0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1.0
+},
+"Damage": {
+"+": 0.0,
+"base": 12.0,
+"flat": 0.0,
+"x": 1.0
+},
+"Fire_Rate": {
+"+": 0.0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1.0
+},
+"Projectile_Count": {
+"+": 0.0,
+"base": 1,
+"flat": 0,
+"x": 1.0
+},
+"Range": {
+"+": 0.0,
+"base": 6.0,
+"flat": 0.0,
+"x": 1.0
+},
+"Speed": {
+"+": 0.0,
+"base": 20.0,
+"flat": 0.0,
+"x": 1.0
+},
+"Splash_Radius": {
+"+": 0.0,
+"base": 6.0,
+"flat": 0.0,
+"x": 1.0
+}
+}
