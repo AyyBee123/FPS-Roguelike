@@ -45,3 +45,6 @@ func _on_visibility_changed():
 		ConsoleManager.item_pool = item_pool
 		ConsoleManager.arm_pool = arm_pool
 		ConsoleManager.ability_pool = ability_pool
+		
+		if ConsoleManager.enemies.is_empty():
+			ConsoleManager.load_from_file("res://Scenes/Enemies/", ConsoleManager.enemies)

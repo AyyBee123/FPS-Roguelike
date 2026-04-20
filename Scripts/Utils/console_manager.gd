@@ -12,6 +12,7 @@ var ui: Control
 var item_pool
 var arm_pool
 var ability_pool
+var enemies: Array[PackedScene]
 
 func _ready():
 	register_clear()
@@ -19,6 +20,7 @@ func _ready():
 	register_givearm()
 	register_giveability()
 	register_spawnarm()
+	register_spawnenemy()
 
 func register_command(cmd: ConsoleCommand):
 	commands[cmd.name] = cmd
@@ -226,12 +228,67 @@ func register_spawnarm():
 	
 	register_command(cmd)
 
+func register_spawnenemy():
+	var cmd = ConsoleCommand.new()
+	cmd.name = "spawnenemy"
+	cmd.description = "Spawn an enemy"
+	cmd.args_schema = [
+		{name="enemy", type="string"},
+		{name="coord_x", type="float", default=0},
+		{name="coord_z", type="float", default=0},
+	]
+	
+	cmd.execute_callable = func(args):
+		var enemy_name: String = args[0]
+		var x: float = args[1]
+		var z: float = args[2]
+		
+		var enemy: Enemy
+		var _name: String
+		
+		for scene in enemies:
+			var n = scene.resource_path.get_file().get_basename()
+			if n.to_lower().begins_with(enemy_name.to_lower()):
+				enemy = scene.instantiate()
+				_name = n
+				break
+		
+		if enemy == null:
+			print_to_console("ERROR: No enemy with name %s exists" % enemy_name, Color.RED)
+			return
+		
+		get_tree().current_scene.add_child(enemy)
+		enemy.global_position = Vector3(x, 0, z)
+		
+		print_to_console("Spawned %s at (%d, %d)" % [_name, x, z])
+	
+	register_command(cmd)
+
 func find_from_pool(pool, _name):
 	for item in pool:
 		var n = item.resource_path.get_file().get_basename()
 		if n.to_lower().begins_with(_name.to_lower()):
 			return item.instantiate()
 	return null
+
+func load_from_file(path: String, list: Array):
+	var dir: DirAccess = DirAccess.open(path)
+	if dir == null:
+		push_error("Could not open directory: " + path)
+		return
+
+	dir.list_dir_begin()
+	var file_name: String = dir.get_next()
+
+	while file_name != "":
+		if not dir.current_is_dir() and file_name.ends_with(".tscn"):
+			var full_path: String = path.path_join(file_name)
+			var packed: PackedScene = load(full_path)
+			if packed:
+				list.append(packed)
+		file_name = dir.get_next()
+
+	dir.list_dir_end()
 
 func print_to_console(text: String, color: Color = Color.WHITE):
 	if ui == null: return
