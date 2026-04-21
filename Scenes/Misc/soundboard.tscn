@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://p3jtsddtuhua"]
+[gd_scene format=3 uid="uid://p3jtsddtuhua"]
 
 [ext_resource type="Script" uid="uid://dg7xhdua3fnyx" path="res://Scripts/Misc/blast_sound.gd" id="1_ct0jj"]
 [ext_resource type="AudioStream" uid="uid://cxafjf5msng0p" path="res://Audio/SFX/Lightning.mp3" id="2_4rf7h"]
@@ -8,18 +8,17 @@
 [ext_resource type="AudioStream" uid="uid://buqpajjdlljgt" path="res://Audio/SFX/Saw Hit.mp3" id="6_q3eeu"]
 [ext_resource type="AudioStream" uid="uid://ccgrbb5nouuib" path="res://Audio/SFX/Small Blast.mp3" id="7_wn1i6"]
 
-[node name="Soundboard" type="Node3D"]
+[node name="Soundboard" type="Node3D" unique_id=705661974]
 script = ExtResource("1_ct0jj")
 
-[node name="Blast" type="AudioStreamPlayer3D" parent="."]
+[node name="Blast" type="AudioStreamPlayer3D" parent="." unique_id=92804279]
 stream = ExtResource("2_ct0jj")
 attenuation_model = 1
 unit_size = 50.0
-max_db = 2.0
 bus = &"SFX"
 script = ExtResource("3_x04wh")
 
-[node name="Small Blast" type="AudioStreamPlayer3D" parent="."]
+[node name="Small Blast" type="AudioStreamPlayer3D" parent="." unique_id=57327417]
 stream = ExtResource("7_wn1i6")
 unit_size = 20.0
 max_db = -2.0
@@ -27,7 +26,7 @@ pitch_scale = 1.5
 bus = &"SFX"
 script = ExtResource("3_x04wh")
 
-[node name="EMB Blast" type="AudioStreamPlayer3D" parent="."]
+[node name="EMB Blast" type="AudioStreamPlayer3D" parent="." unique_id=1232324902]
 stream = ExtResource("4_x04wh")
 attenuation_model = 1
 max_db = -2.0
@@ -35,7 +34,7 @@ pitch_scale = 1.5
 bus = &"SFX"
 script = ExtResource("3_x04wh")
 
-[node name="Lightning" type="AudioStreamPlayer3D" parent="."]
+[node name="Lightning" type="AudioStreamPlayer3D" parent="." unique_id=1017264136]
 stream = ExtResource("2_4rf7h")
 attenuation_model = 1
 unit_size = 50.0
@@ -44,14 +43,14 @@ pitch_scale = 1.25
 bus = &"SFX"
 script = ExtResource("3_x04wh")
 
-[node name="Saw Hit" type="AudioStreamPlayer3D" parent="."]
+[node name="Saw Hit" type="AudioStreamPlayer3D" parent="." unique_id=800893231]
 stream = ExtResource("6_q3eeu")
 max_db = 0.0
 pitch_scale = 4.0
 bus = &"SFX"
 script = ExtResource("3_x04wh")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=1504875309]
 wait_time = 2.0
 one_shot = true
 autostart = true
