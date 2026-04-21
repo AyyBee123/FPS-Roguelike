@@ -15,5 +15,6 @@ func explode():
 	blast.player = player
 	blast.damage = damage
 	blast.radius = radius
+	blast.make_sound = true
 	get_tree().current_scene.add_child(blast)
 	blast.global_position = global_position
