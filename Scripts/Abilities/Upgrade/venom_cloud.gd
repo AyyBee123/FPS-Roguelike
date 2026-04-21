@@ -1,11 +1,21 @@
 extends Ability
 
 @export var CLOUD: PackedScene
+@export var BUFF: PackedScene
 
-@onready var cooldown = %Cooldown
+var cooldown: float = 2.0
+var t: float = INF
+var buff: Buff
+
+func _physics_process(delta):
+	super._physics_process(delta)
+	if t < cooldown:
+		t += delta
+		if buff:
+			buff.set_buff(t)
 
 func _on_hit(enemy: Enemy, source: Variant, damage: float):
-	if not cooldown.is_stopped(): return
+	if t < cooldown: return
 	if not enemy or source.is_in_group("Venom Cloud"): return
 	var cloud = CLOUD.instantiate()
 	cloud.visible = false
@@ -15,4 +25,10 @@ func _on_hit(enemy: Enemy, source: Variant, damage: float):
 	cloud.player = player
 	get_tree().current_scene.add_child(cloud)
 	cloud.visible = true
-	cooldown.start()
+	t = 0.0
+	
+	if t < cooldown and not buff:
+		buff = BUFF.instantiate()
+		buff.source = self
+		buff.cooldown = cooldown
+		player.buffs.add_child(buff)

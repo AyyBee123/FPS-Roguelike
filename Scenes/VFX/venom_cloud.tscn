@@ -33,12 +33,13 @@ curve = SubResource("Curve_h82tu")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fl1kq"]
 emission_shape = 1
-emission_sphere_radius = 0.5
+emission_sphere_radius = 0.25
 angle_min = -179.99998
 angle_max = 180.00002
-radial_velocity_min = 0.49997765
-radial_velocity_max = 0.99997765
+radial_velocity_min = 0.24997765
+radial_velocity_max = 0.49997765
 gravity = Vector3(0, 0, 0)
+scale_min = 0.75
 scale_max = 1.1999999
 scale_curve = SubResource("CurveTexture_pmx77")
 color_ramp = SubResource("GradientTexture1D_45y7e")
