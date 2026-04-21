@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://iqundgr30klx" path="res://Scripts/Abilities/Upgrade/venom_cloud.gd" id="1_r1l3i"]
 [ext_resource type="PackedScene" uid="uid://btujv2p52o2u" path="res://Scenes/VFX/venom_cloud.tscn" id="2_wra37"]
-[ext_resource type="Texture2D" uid="uid://bx8cdbdlyy0i8" path="res://Assets/Sprites/Abilities/Circle of Light.png" id="3_6se4u"]
+[ext_resource type="Texture2D" uid="uid://bnagr5pm2ylsd" path="res://Assets/Sprites/Abilities/Venom Cloud.png" id="3_wra37"]
 [ext_resource type="Script" uid="uid://crdmjkiq4812g" path="res://Scripts/Resources/ability_upgrade_resource.gd" id="4_owkc0"]
 
 [sub_resource type="Resource" id="Resource_cbq7c"]
@@ -70,7 +70,7 @@ metadata/_custom_type_script = "uid://crdmjkiq4812g"
 [node name="Venom Cloud" type="Node" unique_id=142973740]
 script = ExtResource("1_r1l3i")
 CLOUD = ExtResource("2_wra37")
-icon = ExtResource("3_6se4u")
+icon = ExtResource("3_wra37")
 ability_name = "Venom Cloud"
 description = "Hitting an enemy creates a cloud of venom that deals damage to surrounding enemies."
 ability_upgrades = Array[ExtResource("4_owkc0")]([SubResource("Resource_cbq7c"), SubResource("Resource_g752j"), SubResource("Resource_hag4h"), SubResource("Resource_3k0rq"), SubResource("Resource_kfsxn"), SubResource("Resource_4cffg"), SubResource("Resource_ulsc1"), SubResource("Resource_6cb8b")])
