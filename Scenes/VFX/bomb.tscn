@@ -155,7 +155,7 @@ material_override = SubResource("StandardMaterial3D_umijc")
 mesh = ExtResource("1_ndxwp")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="MeshInstance3D" unique_id=1171260061]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1.9556593, -0.21103661)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1.8985883, -0.18333979)
 material_override = SubResource("StandardMaterial3D_xm55v")
 amount = 2
 lifetime = 0.1
