@@ -1,13 +1,17 @@
 extends Node3D
 
-@export var tick_rate: float = 0.1
+@export var tick_rate: float = 0.2
 
 var damage: float
+var size: float = 1.0
 
 var player: Player
 
 var enemies: Array[Enemy]
 var damage_timer: float = INF
+
+func _ready():
+	scale = Vector3.ONE * size
 
 func _physics_process(delta):
 	damage_timer += delta
@@ -19,14 +23,17 @@ func _physics_process(delta):
 func _on_area_3d_body_entered(body):
 	if not body is Enemy:
 		return
-	if not body.has_meta("circle_of_light_overlap"):
-		body.set_meta("circle_of_light_overlap", [])
-	body.get_meta("circle_of_light_overlap").append(self)
+	if not body.has_meta("venom_cloud_overlap"):
+		body.set_meta("venom_cloud_overlap", [])
+	body.get_meta("venom_cloud_overlap").append(self)
 	enemies.append(body)
 
 func _on_area_3d_body_exited(body):
 	if not body is Enemy:
 		return
-	if body.has_meta("circle_of_light_overlap"):
-		body.get_meta("circle_of_light_overlap", []).erase(self)
+	if body.has_meta("venom_cloud_overlap"):
+		body.get_meta("venom_cloud_overlap", []).erase(self)
 	enemies.erase(body)
+
+func _on_timer_timeout():
+	queue_free()

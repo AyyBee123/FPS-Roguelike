@@ -1,0 +1,131 @@
+[gd_scene format=3 uid="uid://b3leste07h8q7"]
+
+[ext_resource type="Script" uid="uid://iqundgr30klx" path="res://Scripts/Abilities/Upgrade/venom_cloud.gd" id="1_r1l3i"]
+[ext_resource type="PackedScene" uid="uid://btujv2p52o2u" path="res://Scenes/VFX/venom_cloud.tscn" id="2_wra37"]
+[ext_resource type="Texture2D" uid="uid://bx8cdbdlyy0i8" path="res://Assets/Sprites/Abilities/Circle of Light.png" id="3_6se4u"]
+[ext_resource type="Script" uid="uid://crdmjkiq4812g" path="res://Scripts/Resources/ability_upgrade_resource.gd" id="4_owkc0"]
+
+[sub_resource type="Resource" id="Resource_cbq7c"]
+script = ExtResource("4_owkc0")
+stat = "Damage"
+amount = 10.0
+type = "+"
+metadata/_custom_type_script = "uid://crdmjkiq4812g"
+
+[sub_resource type="Resource" id="Resource_g752j"]
+script = ExtResource("4_owkc0")
+stat = "Range"
+amount = 15.0
+type = "+"
+metadata/_custom_type_script = "uid://crdmjkiq4812g"
+
+[sub_resource type="Resource" id="Resource_hag4h"]
+script = ExtResource("4_owkc0")
+rarity = 1
+stat = "Damage"
+amount = 20.0
+type = "+"
+metadata/_custom_type_script = "uid://crdmjkiq4812g"
+
+[sub_resource type="Resource" id="Resource_3k0rq"]
+script = ExtResource("4_owkc0")
+rarity = 1
+stat = "Range"
+amount = 20.0
+type = "+"
+metadata/_custom_type_script = "uid://crdmjkiq4812g"
+
+[sub_resource type="Resource" id="Resource_kfsxn"]
+script = ExtResource("4_owkc0")
+rarity = 3
+stat = "Damage"
+amount = 35.0
+type = "+"
+metadata/_custom_type_script = "uid://crdmjkiq4812g"
+
+[sub_resource type="Resource" id="Resource_4cffg"]
+script = ExtResource("4_owkc0")
+rarity = 3
+stat = "Range"
+amount = 30.0
+type = "+"
+metadata/_custom_type_script = "uid://crdmjkiq4812g"
+
+[sub_resource type="Resource" id="Resource_ulsc1"]
+script = ExtResource("4_owkc0")
+rarity = 2
+stat = "Damage"
+amount = 60.0
+type = "+"
+metadata/_custom_type_script = "uid://crdmjkiq4812g"
+
+[sub_resource type="Resource" id="Resource_6cb8b"]
+script = ExtResource("4_owkc0")
+rarity = 2
+stat = "Range"
+amount = 50.0
+type = "+"
+metadata/_custom_type_script = "uid://crdmjkiq4812g"
+
+[node name="Venom Cloud" type="Node" unique_id=142973740]
+script = ExtResource("1_r1l3i")
+CLOUD = ExtResource("2_wra37")
+icon = ExtResource("3_6se4u")
+ability_name = "Venom Cloud"
+description = "Hitting an enemy creates a cloud of venom that deals damage to surrounding enemies."
+ability_upgrades = Array[ExtResource("4_owkc0")]([SubResource("Resource_cbq7c"), SubResource("Resource_g752j"), SubResource("Resource_hag4h"), SubResource("Resource_3k0rq"), SubResource("Resource_kfsxn"), SubResource("Resource_4cffg"), SubResource("Resource_ulsc1"), SubResource("Resource_6cb8b")])
+stats = {
+"Crit_Chance": {
+"+": 0.0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1.0
+},
+"Crit_Damage": {
+"+": 0.0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1.0
+},
+"Damage": {
+"+": 0.0,
+"base": 1.0,
+"flat": 0.0,
+"x": 0.5
+},
+"Fire_Rate": {
+"+": 0.0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1.0
+},
+"Projectile_Count": {
+"+": 0.0,
+"base": 1,
+"flat": 0,
+"x": 1.0
+},
+"Range": {
+"+": 0.0,
+"base": 7.0,
+"flat": 0.0,
+"x": 1.0
+},
+"Speed": {
+"+": 0.0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1.0
+},
+"Splash_Radius": {
+"+": 0.0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1.0
+}
+}
+
+[node name="Cooldown" type="Timer" parent="." unique_id=178532225]
+unique_name_in_owner = true
+wait_time = 2.0
+one_shot = true

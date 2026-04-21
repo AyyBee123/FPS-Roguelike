@@ -13,5 +13,8 @@
 	},
 	{
 		"path": "res://Scenes/Abilities/lightning_strike.tscn"
+	},
+	{
+		"path": "res://Scenes/Abilities/venom_cloud.tscn"
 	}
 ]

@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://btujv2p52o2u"]
+
+[ext_resource type="Script" uid="uid://kc48itk1qoxc" path="res://Scripts/Abilities/Effects/venom_cloud_cloud.gd" id="1_45y7e"]
+[ext_resource type="Shader" uid="uid://bv7otjgphq1er" path="res://Shaders/cloud.gdshader" id="1_fl1kq"]
+[ext_resource type="Texture2D" uid="uid://d2p4h41otjute" path="res://Assets/Textures/T_PerlinNoise_Tiled.png" id="2_fl1kq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o3r5x"]
+render_priority = 0
+shader = ExtResource("1_fl1kq")
+shader_parameter/cloud_texture = ExtResource("2_fl1kq")
+shader_parameter/distance_fade = 0.3
+
+[sub_resource type="Curve" id="Curve_fl1kq"]
+_data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(0.5, 0.1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_45y7e"]
+curve = SubResource("Curve_fl1kq")
+
+[sub_resource type="Gradient" id="Gradient_fl1kq"]
+offsets = PackedFloat32Array(0.35849056, 0.591195, 1)
+colors = PackedColorArray(0.053439993, 0.013600001, 0.08, 1, 0.013480645, 0.02141329, 0.0035767977, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_45y7e"]
+gradient = SubResource("Gradient_fl1kq")
+
+[sub_resource type="Curve" id="Curve_h82tu"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 0.75), 0.0, 0.0, 0, 0, Vector2(1, 0.25), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_pmx77"]
+curve = SubResource("Curve_h82tu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fl1kq"]
+emission_shape = 1
+emission_sphere_radius = 0.5
+angle_min = -179.99998
+angle_max = 180.00002
+radial_velocity_min = 0.49997765
+radial_velocity_max = 0.99997765
+gravity = Vector3(0, 0, 0)
+scale_max = 1.1999999
+scale_curve = SubResource("CurveTexture_pmx77")
+color_ramp = SubResource("GradientTexture1D_45y7e")
+alpha_curve = SubResource("CurveTexture_45y7e")
+
+[sub_resource type="SphereMesh" id="SphereMesh_45y7e"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_fl1kq"]
+
+[node name="Venom Cloud Cloud" type="Node3D" unique_id=1449662935 groups=["Venom Cloud"]]
+script = ExtResource("1_45y7e")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=52992756]
+material_override = SubResource("ShaderMaterial_o3r5x")
+amount = 6
+explosiveness = 0.1
+fixed_fps = 0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_fl1kq")
+draw_pass_1 = SubResource("SphereMesh_45y7e")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=2038278229]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1390942328]
+shape = SubResource("SphereShape3D_fl1kq")
+
+[node name="Timer" type="Timer" parent="." unique_id=1406516506]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
