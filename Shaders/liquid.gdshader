@@ -1,6 +1,8 @@
 shader_type spatial;
 render_mode cull_disabled, depth_draw_always, blend_mix, unshaded;
 
+#include "res://Shaders/z_clip_fov.gdshaderinc"
+
 uniform float liquid_height = 0.5;
 uniform vec4 liquid_surface_color: source_color = vec4(0.7, 0.5, 1.0, 1.0);
 uniform sampler2D liquid_rim_gradient;
@@ -10,10 +12,6 @@ uniform float emission_intensity: hint_range(0.0, 3.0) = 0.1;
 uniform float liquid_surface_gradient_size: hint_range(0.0, 3.0) = 0.1;
 uniform vec2 wobble = vec2(0.0, 0.0); 
 varying float y_coordinate;
-
-instance uniform bool viewmodel_enabled = false;
-instance uniform float z_clip_scale : hint_range(0.01, 1.0, 0.01) = 0.8;
-instance uniform float fov_override : hint_range(1.0, 179.0, 0.1) = 100.0;
 
 mat4 rotate_x(in float angle) {
 	return mat4(
@@ -32,16 +30,7 @@ mat4 rotate_z(in float angle) {
 }
 
 void vertex() {
-	if (viewmodel_enabled) {
-		Z_CLIP_SCALE = z_clip_scale;
-		if (!IN_SHADOW_PASS) {
-			float flip_y = sign(PROJECTION_MATRIX[1][1]);
-			float aspect = PROJECTION_MATRIX[1][1] / PROJECTION_MATRIX[0][0];
-			float f = flip_y / tan(fov_override * PI / 360.0);
-			PROJECTION_MATRIX[0][0] = f / aspect;
-			PROJECTION_MATRIX[1][1] = f;
-		}
-	}
+	apply_viewmodel(Z_CLIP_SCALE, PROJECTION_MATRIX);
 	
 	vec3 rotated_vert_z = (rotate_z(1.6) * vec4(VERTEX, 1.0)).xyz;
 	vec3 rotated_vert_x = (rotate_x(-1.6) * vec4(VERTEX, 1.0)).xyz;
