@@ -53,8 +53,7 @@ script = ExtResource("1_45y7e")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=52992756]
 material_override = SubResource("ShaderMaterial_o3r5x")
-amount = 6
-explosiveness = 0.1
+lifetime = 2.0
 fixed_fps = 0
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_fl1kq")
