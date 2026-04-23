@@ -22,9 +22,7 @@ func shoot(ignore_fire_rate: bool = false, outside_source: Variant = self):
 		if not ignore_fire_rate:
 			t = 0.0
 		else:
-			base_damage *= 2
-			await get_tree().create_timer(1.0 / fire_rate).timeout
-			base_damage /= 2
+			laser.damage_timer = INF
 		fire_rate_timer = 1.0 / fire_rate
 		
 		animation_player.play("Idle to Shoot")

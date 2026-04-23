@@ -35,8 +35,12 @@ var close_threshold: float = 0.8  # minimum distance to a point to close the sha
 var min_points_threshold: int = 20 # minimum difference between indeces in trail_points
 var max_length: float = 0.2
 var is_drawing: bool = true
+var new_point_added: bool = false
+var level: Level
+var frame_count: int = 0
 
 func _ready():
+	level = GameState.current_level
 	vfx.scale.x = 0
 	vfx.scale.y = 0
 	tween = get_tree().create_tween()
@@ -62,8 +66,12 @@ func _physics_process(delta):
 		for enemy in enemies:
 			enemy.hit(damage, player, self)
 	
-	if trail_points.size() > min_points_threshold:
-		check_shape_closed(trail_points[-1].global_position, trail_points.size() - 1)
+	frame_count += 1
+	
+	if trail_points.size() > min_points_threshold and new_point_added:
+		new_point_added = false
+		if frame_count % 3 == 0:
+			check_shape_closed(trail_points[-1].global_position, trail_points.size() - 1)
 
 func adjust_length():
 	ray_cast.target_position.z = range
@@ -107,7 +115,7 @@ func add_ink(point, normal):
 	var ink = INK.instantiate()
 	ink.laser = self
 	trail_points.append(ink)
-	get_tree().current_scene.add_child(ink)
+	level.add_child(ink)
 	
 	var up: Vector3 = normal.normalized()
 	var ref: Vector3 = Vector3.FORWARD if abs(normal.dot(Vector3.FORWARD)) < 0.9 else Vector3.RIGHT
@@ -116,6 +124,8 @@ func add_ink(point, normal):
 	
 	ink.global_transform.basis = Basis(right, up, -forward)
 	ink.global_position = point
+	
+	new_point_added = true
 
 func check_shape_closed(current_pos: Vector3, current_index: int):
 	var max_check_index: float = current_index - min_points_threshold

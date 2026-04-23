@@ -39,7 +39,7 @@ colors = PackedColorArray(0.19933338, 0.52, 0, 1, 0.2124533, 0.31, 0.1271, 1, 0.
 gradient = SubResource("Gradient_45y7e")
 
 [sub_resource type="Curve" id="Curve_o3r5x"]
-_data = [Vector2(0, 0.08988774), 0.0, 1.0090541, 0, 0, Vector2(1, 0.48314613), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.4, 0, 0, Vector2(1, 0.2), 0.007873596, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_fl1kq"]
@@ -50,7 +50,7 @@ particle_flag_rotate_y = true
 angle_min = -179.99998
 angle_max = 180.00002
 direction = Vector3(0, 1, 0)
-spread = 8.0
+spread = 4.0
 initial_velocity_min = 4.0
 initial_velocity_max = 4.0
 gravity = Vector3(0, 0, 0)

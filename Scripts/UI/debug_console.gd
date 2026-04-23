@@ -29,6 +29,9 @@ func _input(event):
 func execute_command():
 	ConsoleManager.execute(command.text)
 	command.clear()
+	visible = false
+	await get_tree().physics_frame
+	visible = true
 
 func refocus():
 	command.grab_focus()

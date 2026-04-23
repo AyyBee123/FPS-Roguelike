@@ -198,7 +198,7 @@ albedo_texture = SubResource("CompressedTexture2D_bybgw")
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_klmes"]
 height = 20.0
-radius = 0.12
+radius = 0.1
 
 [node name="Ink Laser" type="Node3D" unique_id=789751126]
 script = ExtResource("1_56lcm")
