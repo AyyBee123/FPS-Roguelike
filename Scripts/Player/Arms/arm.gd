@@ -84,7 +84,7 @@ func shoot(ignore_fire_rate: bool = false, outside_source: Variant = self):
 	if muzzle:
 		muzzle.play()
 	
-	var camera_collision = get_camera_collision()
+	var camera_collision: Vector3 = get_camera_collision()
 	
 	player._on_arm_shot(self, outside_source)
 	
@@ -122,11 +122,11 @@ func get_camera_collision(_range: float = range) -> Vector3:
 
 ## get the crosshair aim point, while ignoring collisions
 func get_camera_point(_range: float = range) -> Vector3:
-	var camera := get_viewport().get_camera_3d()
-	var viewport := get_viewport().get_visible_rect().size
+	var camera: Camera3D = get_viewport().get_camera_3d()
+	var viewport: Vector2 = get_viewport().get_visible_rect().size
 
-	var origin := camera.project_ray_origin(viewport / 2)
-	var direction := camera.project_ray_normal(viewport / 2)
+	var origin: Vector3 = camera.project_ray_origin(viewport / 2)
+	var direction: Vector3= camera.project_ray_normal(viewport / 2)
 
 	return origin + direction * _range
 
@@ -134,15 +134,15 @@ func launch_projectile(point: Vector3):
 	if not projectile: return
 	
 	var spread_rad: float = deg_to_rad(spread)
-	var direction = (point - bullet_point.get_global_transform().origin).normalized()
+	var direction: Vector3 = (point - bullet_point.get_global_transform().origin).normalized()
 	var proj = projectile.instantiate()
 	
 	# get random angle in a uniform distribution
-	var cos_angle = lerp(cos(spread_rad), 1.0, randf())
-	var angle = acos(cos_angle)
+	var cos_angle: float = lerp(cos(spread_rad), 1.0, randf())
+	var angle: float = acos(cos_angle)
 	
 	# get a random perpendicular axis
-	var perp = direction.cross(Vector3.UP)
+	var perp: Vector3 = direction.cross(Vector3.UP)
 	if perp.length() < 0.001:
 		perp = direction.cross(Vector3.RIGHT)
 	perp = perp.rotated(direction, randf() * TAU).normalized()
@@ -206,7 +206,7 @@ func shoot_different_projectile(_proj: PackedScene, ignore_fire_rate: bool = fal
 	if muzzle:
 		muzzle.play()
 	
-	var camera_collision = get_camera_collision()
+	var camera_collision: Vector3 = get_camera_collision()
 	
 	player._on_arm_shot(self, outside_source)
 	
