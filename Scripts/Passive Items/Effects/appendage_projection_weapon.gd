@@ -68,6 +68,7 @@ func shoot(_arm: Arm, _source: Variant):
 		arm.shoot(false, self)
 
 func release(_arm: Arm, _source: Variant):
+	await get_tree().physics_frame
 	if arm and not _arm.is_in_group("Appendage Projection"):
 		arm.release(self)
 
