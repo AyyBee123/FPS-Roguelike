@@ -260,7 +260,7 @@ func _physics_process(delta):
 		level_up()
 
 func _input(event):
-	if event.is_action_pressed("pickup") and pickup:
+	if event.is_action_pressed("interact") and pickup:
 		if pickup is Chest or pickup is ArmoryBox:
 			if coin_count >= pickup.cost:
 				update_coins(-pickup.cost)
