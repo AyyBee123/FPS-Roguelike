@@ -6,6 +6,7 @@ extends Node3D
 
 var player: Player
 var arm: Arm
+var damage: float
 
 var knockback_data: Dictionary = {} # {Enemy: velocity}
 
@@ -42,6 +43,6 @@ func push():
 func _on_area_3d_body_entered(body):
 	if body is Enemy:
 		if arm and player:
-			body.hit(arm.damage, player, self)
+			body.hit(damage, player, self)
 			var direction = -player.camera.global_transform.basis.z
 			knockback_data[body] = direction * arm.speed / 2.0

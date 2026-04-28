@@ -23,7 +23,7 @@ func _ready():
 	enemy_handler.player = player
 	GameState.current_level = self
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	Engine.set_time_scale(12.0)
+	Engine.set_time_scale(10.0)
 	
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), true)
 	
@@ -49,6 +49,8 @@ func _physics_process(delta):
 	if arms_done and levels_done and enemies_done and not final_enemy_spawned:
 		final_enemy_spawned = true
 		spawn_enemy()
+	
+	GameState.current_level = self
 
 func spawn_arms():
 	for arm in arm_pool.common_pool:

@@ -4,6 +4,10 @@
 		"rarity": 1
 	},
 	{
+		"path": "res://Scenes/Passive Items/boxing_gloves.tscn",
+		"rarity": 0
+	},
+	{
 		"path": "res://Scenes/Passive Items/double_tap.tscn",
 		"rarity": 0
 	},

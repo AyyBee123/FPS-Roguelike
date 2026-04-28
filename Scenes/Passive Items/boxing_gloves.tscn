@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://oogintvewrh0"]
+
+[ext_resource type="Script" uid="uid://c77qlocc20ar6" path="res://Scripts/Passive Items/boxing_gloves.gd" id="1_rtwdc"]
+[ext_resource type="Texture2D" uid="uid://dxgef8v4dkrme" path="res://Assets/Sprites/Items/Boxing Gloves.png" id="2_rtwdc"]
+
+[node name="Boxing Gloves" type="Node" unique_id=2065925304]
+script = ExtResource("1_rtwdc")
+item_name = "Boxing Gloves"
+rarity = 0
+icon = ExtResource("2_rtwdc")
+description = "Chance on hit to deal double damage."
+detailed_description = "%d (+%d/stack) chance on hit to deal double damage."
+stats = {
+"Crit_Chance": {
+"+": 0.0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1.0
+},
+"Crit_Damage": {
+"+": 0.0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1.0
+},
+"Damage": {
+"+": 0.0,
+"base": 150.0,
+"flat": 0.0,
+"x": 1.0
+},
+"Fire_Rate": {
+"+": 0.0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1.0
+},
+"Pierce": {
+"+": 0.0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1.0
+},
+"Projectile_Count": {
+"+": 0.0,
+"base": 1,
+"flat": 0,
+"x": 1.0
+},
+"Range": {
+"+": 0.0,
+"base": 12.0,
+"flat": 0.0,
+"x": 1.0
+},
+"Speed": {
+"+": 0.0,
+"base": 1.0,
+"flat": 0.0,
+"x": 1.0
+},
+"Splash_Radius": {
+"+": 0.0,
+"base": 12.0,
+"flat": 0.0,
+"x": 1.0
+}
+}

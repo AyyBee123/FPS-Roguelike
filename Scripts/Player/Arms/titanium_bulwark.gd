@@ -36,15 +36,8 @@ func shoot(ignore_fire_rate: bool = false, outside_source: Variant = self):
 			audio.play_deconflicted()
 
 func launch_projectile(_point: Vector3):
-	if barrier:
-		barrier.queue_free()
-	create_barrier()
+	if not barrier: return
 	Utils.copy_groups(self, barrier)
+	barrier.damage = damage
 	barrier.push()
 	player._on_arm_fired(barrier, damage)
-
-func create_barrier():
-	barrier = projectile.instantiate()
-	barrier.arm = self
-	barrier.player = player
-	player.camera.add_child(barrier)
