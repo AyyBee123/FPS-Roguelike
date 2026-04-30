@@ -284,7 +284,7 @@ func _input(event):
 			pick_up.play_deconflicted()
 			pickup.pick_up(self)
 	
-	if event.is_action_pressed("alt_pickup") and pickup:
+	if event.is_action_pressed("alt_interact") and pickup:
 		if pickup is ItemPickup and banish_amount > 0: # banishing items
 			pickup.banish()
 			banish_audio.play_deconflicted()
