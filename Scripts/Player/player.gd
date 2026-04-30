@@ -57,6 +57,8 @@ var current_xp: float = 0
 var current_level: int = 1
 var upgrade_queue_count: int = 0 # the amount of level up choices that are in queue
 
+var jump_buffer_time: float = 0.15
+var coyote_time: float = 0.12
 var was_on_floor: bool = false
 var speed_before_landing: float = 0.0
 var friction: float = 50.0
@@ -69,6 +71,9 @@ var is_dead: bool = false
 var reroll_amount: int = 0
 var banish_amount: int = 0
 var skip_amount: int = 0
+
+var _coyote_timer: float = 0.0
+var _jump_buffer: float = 0.0
 
 var kill_count: int = 0:
 	set(value):
@@ -158,22 +163,29 @@ func _ready():
 	update_ability_slots()
 
 func _physics_process(delta):
-	# add gravity
-	if not is_on_floor():
-		velocity += get_gravity() * delta * FALL_SPEED
+	var on_floor: bool = is_on_floor()
 	
 	# get previous velocity
 	var previous_velocity = velocity
 	
-	# recharge extra jumps
-	if is_on_floor():
-		current_jumps = NUMBER_OF_EXTRA_JUMPS
+	# check if the player is on the floor
+	if on_floor:
+		_coyote_timer = coyote_time # coyote time
+		current_jumps = NUMBER_OF_EXTRA_JUMPS # recharge extra jumps
+	else:
+		_coyote_timer = maxf(_coyote_timer - delta, 0.0) # increase coyote timer
+		velocity += get_gravity() * delta * FALL_SPEED # gravity
 	
 	# jumping
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	_jump_buffer = maxf(_jump_buffer - delta, 0.0)
+	if _jump_buffer > 0.0 and _coyote_timer > 0.0:
 		velocity.y += JUMP_HEIGHT
 		jump.play_deconflicted()
 		on_jump.emit(true)
+		_jump_buffer = 0.0
+		_coyote_timer = 0.0
+	
+	# extra jumps
 	if Input.is_action_just_pressed("jump") and not is_on_floor() and current_jumps > 0:
 		velocity.y = 0
 		velocity.y += JUMP_HEIGHT
@@ -260,6 +272,9 @@ func _physics_process(delta):
 		level_up()
 
 func _input(event):
+	if event.is_action_pressed("jump"):
+		_jump_buffer = jump_buffer_time
+	
 	if event.is_action_pressed("interact") and pickup:
 		if pickup is Chest or pickup is ArmoryBox:
 			if coin_count >= pickup.cost:
@@ -268,11 +283,14 @@ func _input(event):
 		else:
 			pick_up.play_deconflicted()
 			pickup.pick_up(self)
+	
 	if event.is_action_pressed("alt_pickup") and pickup:
 		if pickup is ItemPickup and banish_amount > 0: # banishing items
 			pickup.banish()
 			banish_audio.play_deconflicted()
 			banish_amount -= 1
+	
+	# developer inputs
 	if event is InputEventKey and event.pressed and OS.has_feature("editor"):
 		if event.keycode == KEY_K:
 			hit(current_health, Vector3.ZERO)

@@ -24,6 +24,7 @@ signal send_buff(buff)
 var player: Player
 var existing_item: Item
 var signals_connected: bool = false
+var picked_up: bool = false
 
 func _ready():
 	set_detailed_desription()
@@ -35,6 +36,7 @@ func _ready():
 			on_stack()
 
 func on_pick_up(_player: Player, _stacks: int = 1):
+	if signals_connected: return # prevents picking up the same time more than once
 	player = _player
 	
 	# stack the item if it already exists
