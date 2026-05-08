@@ -145,10 +145,10 @@ func on_shape_closed(loop_start_index: int):
 		polygon_2d.append(Vector2(decal.global_position.x, decal.global_position.z))
 
 	# Damage enemies inside
-	for enemy in Enemy.all:
-		var ep: Vector2 = Vector2(enemy.global_position.x, enemy.global_position.z)
-		if Geometry2D.is_point_in_polygon(ep, polygon_2d):
-			enemy.hit(damage * DRAW_DAMAGE_MULTIPLIER, player, self)
+	#for enemy in Enemy.all:
+		#var ep: Vector2 = Vector2(enemy.global_position.x, enemy.global_position.z)
+		#if Geometry2D.is_point_in_polygon(ep, polygon_2d):
+			#enemy.hit(damage * DRAW_DAMAGE_MULTIPLIER, player, self)
 	spawn_shape_mesh(shape_slice, polygon_2d)
 	
 	for i in trail_points:
@@ -168,7 +168,6 @@ func shrink():
 	tween.tween_property(vfx, "scale:x", 0, 0.25)
 	tween.parallel().tween_property(vfx, "scale:y", 0, 0.25)
 	tween.tween_callback(queue_free)
-	
 
 func _on_laser_body_entered(body):
 	if not body is Enemy:
@@ -226,62 +225,62 @@ func spawn_shape_mesh(shape_slice: Array, polygon_2d: PackedVector2Array) -> voi
 	var extrude_height: float = 200.0  # how tall in Y
 	
 	var verts: PackedVector3Array = PackedVector3Array()
-	var normals: PackedVector3Array= PackedVector3Array()
-	var uvs: PackedVector2Array= PackedVector2Array()
-
-	# --- TOP and BOTTOM faces ---
+	var normals: PackedVector3Array = PackedVector3Array()
+	var uvs: PackedVector2Array = PackedVector2Array()
+	
+	# top and bottom faces
 	for i in range(0, indices.size(), 3):
 		var a: Vector3 = shape_slice[indices[i]].global_position
 		var b: Vector3 = shape_slice[indices[i + 1]].global_position
 		var c: Vector3 = shape_slice[indices[i + 2]].global_position
-
-		# Bottom face (winding flipped)
+		
+		# bottom face
 		verts.append_array([a, c, b])
 		normals.append_array([Vector3.DOWN, Vector3.DOWN, Vector3.DOWN])
 		uvs.append_array([Vector2(a.x, a.z), Vector2(c.x, c.z), Vector2(b.x, b.z)])
-
-		# Top face (offset up)
+		
+		# top face
 		var at: Vector3 = a + Vector3.UP * extrude_height
 		var bt: Vector3 = b + Vector3.UP * extrude_height
 		var ct: Vector3 = c + Vector3.UP * extrude_height
 		verts.append_array([at, bt, ct])
 		normals.append_array([Vector3.UP, Vector3.UP, Vector3.UP])
 		uvs.append_array([Vector2(at.x, at.z), Vector2(bt.x, bt.z), Vector2(ct.x, ct.z)])
-
+	
 	var count: int = shape_slice.size()
 	for i in range(count):
 		var curr: Vector3 = shape_slice[i].global_position
 		var next: Vector3 = shape_slice[(i + 1) % count].global_position
-
+		
 		var curr_top: Vector3 = curr + Vector3.UP * extrude_height
 		var next_top: Vector3 = next + Vector3.UP * extrude_height
-
-		# Outward normal for this wall segment
+		
+		# outward normal for wall segment
 		var edge: Vector3 = (next - curr).normalized()
 		var wall_normal: Vector3 = edge.cross(Vector3.UP).normalized()
-
-		# Two triangles per side quad
+		
+		# two triangles per side quad
 		verts.append_array([curr, next, curr_top])
 		verts.append_array([next, next_top, curr_top])
 		normals.append_array([wall_normal, wall_normal, wall_normal,
 							   wall_normal, wall_normal, wall_normal])
-
+		
 		var u_curr: float = float(i) / count
 		var u_next: float = float(i + 1) / count
 		uvs.append_array([
 			Vector2(u_curr, 1), Vector2(u_next, 1), Vector2(u_curr, 0),
 			Vector2(u_next, 1), Vector2(u_next, 0), Vector2(u_curr, 0)
 		])
-
+	
 	var arr: Array = Array()
 	arr.resize(Mesh.ARRAY_MAX)
 	arr[Mesh.ARRAY_VERTEX] = verts
 	arr[Mesh.ARRAY_NORMAL] = normals
 	arr[Mesh.ARRAY_TEX_UV] = uvs
-
+	
 	var mesh: ArrayMesh = ArrayMesh.new()
 	mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, arr)
-
+	
 	var mesh_instance: MeshInstance3D = MeshInstance3D.new()
 	mesh_instance.mesh = mesh
 	var mat: ShaderMaterial = beam.material_override.duplicate()
@@ -294,7 +293,32 @@ func spawn_shape_mesh(shape_slice: Array, polygon_2d: PackedVector2Array) -> voi
 	tw.tween_method(func(v: float): mat.set_shader_parameter("opacity", v), 1.0, 0.0, 0.3)
 	tw.tween_callback(mesh_instance.queue_free)
 	
+	# damaging area
+	var area: Area3D = Area3D.new()
+	var col: CollisionShape3D = CollisionShape3D.new()
+	
+	var shape: ConvexPolygonShape3D = ConvexPolygonShape3D.new()
+	shape.points = verts
+	
+	col.shape = shape
+	area.add_child(col)
+	get_tree().current_scene.add_child(area)
+	area.global_position.y -= 100
+	
+	area.collision_layer = laser.collision_layer
+	area.collision_mask = laser.collision_mask
+	
+	area.monitoring = true
+	area.monitorable = false
+	
 	play_sound_at_centroid(shape_slice, polygon_2d)
+	
+	await get_tree().physics_frame
+	for body: Node3D in area.get_overlapping_bodies():
+		if body is Enemy:
+			body.hit(damage * DRAW_DAMAGE_MULTIPLIER, player, self)
+	
+	get_tree().create_timer(0.55).timeout.connect(area.queue_free)
 
 func play_sound_at_centroid(shape_slice: Array, polygon_2d: PackedVector2Array) -> void:
 	# average all points to get the center

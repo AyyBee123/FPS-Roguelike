@@ -2,7 +2,7 @@ extends Node3D
 
 static var render_count: int = 0
 
-@export var reference_distance := 1.0
+@export var reference_distance: float = 1.0
 
 @onready var label: Label3D = %Label3D
 @onready var animation_player = %AnimationPlayer
