@@ -122,7 +122,8 @@ func register_giveitem():
 			return
 		
 		resulting_item.stacks = amount
-		resulting_item.on_pick_up(player)
+		for i in amount:
+			resulting_item.on_pick_up(player)
 		
 		print_to_console("Gave %d stack%s of %s" % [amount,"s" if amount > 1 else "", resulting_item.item_name])
 	

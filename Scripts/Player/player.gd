@@ -161,6 +161,12 @@ func _ready():
 	stats.stat_changed.connect(get_stat)
 	enemy_killed.connect(func(_enemy, _source, _damage): kill_count += 1)
 	update_ability_slots()
+	
+	# checks for items in the player passives nodes on start up
+	for item: Item in passives.get_children():
+		passives.remove_child(item)
+		for i in item.stacks:
+			item.on_pick_up(self)
 
 func _physics_process(delta):
 	var on_floor: bool = is_on_floor()
@@ -348,10 +354,10 @@ func hit(amount, pos):
 		die()
 
 func try_dash():
-	var idx = get_available_charge()
-	if idx == -1:
+	var index = get_available_charge()
+	if index == -1:
 		return false
-	dash_charges[idx] = DASH_COOLDOWN
+	dash_charges[index] = DASH_COOLDOWN
 	return true
 
 func get_available_charge() -> int:

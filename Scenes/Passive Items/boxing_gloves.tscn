@@ -9,7 +9,7 @@ item_name = "Boxing Gloves"
 rarity = 0
 icon = ExtResource("2_rtwdc")
 description = "Chance on hit to deal double damage."
-detailed_description = "%d (+%d/stack) chance on hit to deal double damage."
+detailed_description = "%d%% (+%d%%/stack) chance on hit to deal double damage."
 stats = {
 "Crit_Chance": {
 "+": 0.0,

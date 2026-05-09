@@ -19,8 +19,8 @@ signal send_buff(buff)
 	"Crit_Chance": { "base": 1.0, "+": 0.0, "x": 1.0, "flat": 0.0 },
 	"Crit_Damage": { "base": 1.0, "+": 0.0, "x": 1.0, "flat": 0.0 },
 }
-
 @export var stacks: int = 1
+
 var player: Player
 var existing_item: Item
 var signals_connected: bool = false
@@ -28,34 +28,32 @@ var picked_up: bool = false
 
 func _ready():
 	set_detailed_desription()
-	if get_parent().get_parent() is Player:
-		player = get_parent().get_parent()
-		setup_signals(player)
-		on_pick_up(player)
-		for i in range(stacks - 1):
-			on_stack()
 
-func on_pick_up(_player: Player, _stacks: int = 1):
-	if signals_connected: return # prevents picking up the same time more than once
+func on_pick_up(_player: Player):
 	player = _player
 	
 	# stack the item if it already exists
-	if player.get_node_or_null("%Passives/" + name) and player.get_node_or_null("%Passives/" + name) != self:
-		existing_item = player.get_node("%Passives/" + name)
-		existing_item.stacks += 1
-		existing_item.on_stack()
-		player.item_picked.emit(self)
-		queue_free()
+	existing_item = player.get_node_or_null("%Passives/" + name)
+	if existing_item: # stacks after the first item was picked up
+		if existing_item != self:
+			existing_item.stacks += 1
+			existing_item.on_stack()
+			player.item_picked.emit(self)
+			queue_free()
+		else: # stack alongside of first item (ex: getting 3 stacks and the first stack is the first item)
+			stacks += 1
+			on_stack()
+			player.item_picked.emit(self)
 		return
 	
+	# first item pickup
 	if get_parent() and get_parent() != player.get_node("%Passives"):
 		get_parent().remove_child(self)
-	if get_parent() != player.get_node("%Passives"):
-		player.passives.add_child(self)
+	player.passives.add_child(self)
+	stacks = 1
 	on_first_stack()
-	
-	player.item_picked.emit(self)
 	setup_signals(player)
+	player.item_picked.emit(self)
 
 func on_first_stack():
 	pass
@@ -69,9 +67,11 @@ func on_remove():
 func on_stack_remove():
 	pass
 
+func set_detailed_desription():
+	pass
+
 func setup_signals(_player: Player):
 	if signals_connected: return
-	signals_connected = true
 	
 	_player.enemy_killed.connect(on_enemy_killed)
 	_player.enemy_hit.connect(on_enemy_hit)
@@ -80,9 +80,8 @@ func setup_signals(_player: Player):
 	_player.weapon_spawned.connect(on_weapon_spawned)
 	_player.item_picked.connect(on_item_picked)
 	_player.leveled_up.connect(on_level_up)
-
-func set_detailed_desription():
-	pass
+	
+	signals_connected = true
 
 ## gets the final stat value, after calculating player and item stats
 func get_stat_value(stat_type: String, value: Variant = null):

@@ -1,11 +1,8 @@
 extends Item
 
 var fire_rate: float = 30
-
 var speed: float = 25
-
 var fire_rate_increase: float = 20
-
 var speed_increase: float = 15
 
 func on_first_stack():

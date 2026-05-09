@@ -7,7 +7,6 @@ extends ColorRect
 
 func _ready():
 	player.item_picked.connect(update_items)
-	update_items(null)
 
 func update_items(_pickup):
 	for i in items_container.get_children():
