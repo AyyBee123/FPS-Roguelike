@@ -31,7 +31,7 @@ var damage_timer: float = INF
 var TICK_MULTIPLIER: float
 
 var trail_points: Array[Decal]
-var close_threshold: float = 0.8  # minimum distance to a point to close the shape
+var close_threshold: float = 0.8 # minimum distance to a point to close the shape
 var min_points_threshold: int = 20 # minimum difference between indeces in trail_points
 var max_length: float = 0.2
 var is_drawing: bool = true
@@ -138,17 +138,12 @@ func check_shape_closed(current_pos: Vector3, current_index: int):
 			return
 
 func on_shape_closed(loop_start_index: int):
-	# Build polygon from the closed loop slice only
+	# build polygon from the drawn shape
 	var shape_slice: Array[Decal] = trail_points.slice(loop_start_index)
 	var polygon_2d: PackedVector2Array = PackedVector2Array()
 	for decal in shape_slice:
 		polygon_2d.append(Vector2(decal.global_position.x, decal.global_position.z))
-
-	# Damage enemies inside
-	#for enemy in Enemy.all:
-		#var ep: Vector2 = Vector2(enemy.global_position.x, enemy.global_position.z)
-		#if Geometry2D.is_point_in_polygon(ep, polygon_2d):
-			#enemy.hit(damage * DRAW_DAMAGE_MULTIPLIER, player, self)
+	
 	spawn_shape_mesh(shape_slice, polygon_2d)
 	
 	for i in trail_points:
@@ -202,7 +197,7 @@ func spawn_shape_mesh(shape_slice: Array, polygon_2d: PackedVector2Array) -> voi
 	polygon_2d = ensure_counter_clockwise(polygon_2d)
 	var indices: PackedInt32Array = Geometry2D.triangulate_polygon(polygon_2d)
 	
-	# fallback to convex hull if triangulation fails
+	# use convex hull if triangulation fails
 	if indices.is_empty() or indices.size() != (polygon_2d.size() - 2) * 3:
 		polygon_2d = Geometry2D.convex_hull(polygon_2d)
 		polygon_2d = ensure_counter_clockwise(polygon_2d)
