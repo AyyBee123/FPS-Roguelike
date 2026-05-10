@@ -46,7 +46,7 @@ func shoot(ignore_fire_rate: bool = false, outside_source: Variant = self):
 			animation_player.play("Charge", -1, fire_rate / base_fire_rate)
 		is_shoot_button_held = true
 
-func launch_projectile(point: Vector3):
+func launch_projectile(point: Vector3, _different_proj: PackedScene = null):
 	var direction = (point - bullet_point.get_global_transform().origin).normalized()
 	var proj = projectile.instantiate()
 	

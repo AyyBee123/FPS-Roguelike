@@ -7,6 +7,10 @@ var is_big_shot: bool = false
 
 func shoot(ignore_fire_rate: bool = false, outside_source: Variant = self):
 	if t < fire_rate_timer and not ignore_fire_rate: return
+	
+	if not ignore_fire_rate:
+		t = 0.0
+	
 	if current_shot < NUMBER_TO_BIG_SHOT - 1:
 		current_shot += 1
 		shoot_animation = "Shoot"

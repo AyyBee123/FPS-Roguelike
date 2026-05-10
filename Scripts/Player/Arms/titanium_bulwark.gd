@@ -35,7 +35,7 @@ func shoot(ignore_fire_rate: bool = false, outside_source: Variant = self):
 		if audio:
 			audio.play_deconflicted()
 
-func launch_projectile(_point: Vector3):
+func launch_projectile(_point: Vector3, _different_proj: PackedScene = null):
 	if not barrier: return
 	Utils.copy_groups(self, barrier)
 	barrier.damage = damage

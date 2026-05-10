@@ -133,7 +133,7 @@ func make_unique(node: Node) -> void:
 		if node.material_override:
 			node.material_override = node.material_override.duplicate(true)
 
-func set_material_override(mesh_instance):
+func set_material_override(mesh_instance: MeshInstance3D):
 	mesh_instance.set_instance_shader_parameter("viewmodel_enabled", false)
 	
 	for i in range(mesh_instance.mesh.get_surface_count()):
@@ -144,6 +144,12 @@ func set_material_override(mesh_instance):
 		if material is StandardMaterial3D:
 			material.use_z_clip_scale = false
 			material.use_fov_override = false
+	
+	var override: Material = mesh_instance.material_override
+	
+	if override and override is StandardMaterial3D:
+		override.use_z_clip_scale = false
+		override.use_fov_override = false
 
 func play_tween():
 	tween = get_tree().create_tween()

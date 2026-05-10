@@ -13,6 +13,11 @@ func _run():
 		if mesh_node.mesh == null:
 			continue
 		
+		var override: Material = mesh_node.material_override
+		if override and override is StandardMaterial3D:
+			override.diffuse_mode = BaseMaterial3D.DIFFUSE_TOON
+			override.specular_mode = BaseMaterial3D.SPECULAR_TOON
+		
 		for i in range(mesh_node.mesh.get_surface_count()):
 			var material = mesh_node.mesh.surface_get_material(i)
 			

@@ -2,9 +2,6 @@ extends Arm
 
 @onready var hitbox: Area3D = %Hitbox
 
-func launch_projectile(_point: Vector3):
-	pass
-
 func shoot(ignore_fire_rate: bool = false, _outside_source: Variant = self):
 	if (t < fire_rate_timer or animation_player.current_animation == "Swing") and not ignore_fire_rate:
 		return

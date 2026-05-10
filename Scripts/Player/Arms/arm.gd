@@ -130,12 +130,12 @@ func get_camera_point(_range: float = range) -> Vector3:
 
 	return origin + direction * _range
 
-func launch_projectile(point: Vector3):
+func launch_projectile(point: Vector3, different_proj: PackedScene = null):
 	if not projectile: return
 	
 	var spread_rad: float = deg_to_rad(spread)
 	var direction: Vector3 = (point - bullet_point.get_global_transform().origin).normalized()
-	var proj = projectile.instantiate()
+	var proj = projectile.instantiate() if different_proj == null else different_proj.instantiate()
 	
 	# get random angle in a uniform distribution
 	var cos_angle: float = lerp(cos(spread_rad), 1.0, randf())
@@ -191,10 +191,18 @@ func set_material_override():
 				material.z_clip_scale = z_clip_scale
 				material.use_fov_override = true
 				material.fov_override = fov_override
+		
+		var override: Material = mesh_node.material_override
+		
+		if override and override is StandardMaterial3D:
+			override.use_z_clip_scale = true
+			override.z_clip_scale = z_clip_scale
+			override.use_fov_override = true
+			override.fov_override = fov_override
 	
 	material_override_set = true
 
-func shoot_different_projectile(_proj: PackedScene, ignore_fire_rate: bool = false, outside_source: Variant = self):
+func shoot_different_projectile(proj: PackedScene, ignore_fire_rate: bool = false, outside_source: Variant = self):
 	if t < fire_rate_timer and not ignore_fire_rate: return
 	
 	if not ignore_fire_rate:
@@ -211,7 +219,7 @@ func shoot_different_projectile(_proj: PackedScene, ignore_fire_rate: bool = fal
 	player._on_arm_shot(self, outside_source)
 	
 	for i in range(projectile_count):
-		launch_projectile(camera_collision)
+		launch_projectile(camera_collision, proj)
 	
 	for audio in firing_audio:
 		if audio:
