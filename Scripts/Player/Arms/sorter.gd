@@ -1,11 +1,6 @@
 extends Arm
 
 @onready var sorter: MeshInstance3D = %Sorter
-@onready var cube_node: Node3D = %CubeNode
-@onready var cylinder_node: Node3D = %CylinderNode
-@onready var pentagon_node: Node3D = %PentagonNode
-@onready var prism_node: Node3D = %PrismNode
-@onready var shapes_node: Node3D = %ShapesNode
 
 var sorter_rotation: float
 var rot_tween: Tween
@@ -17,16 +12,6 @@ const SORTER_CYLINDER = preload("uid://bstpwsbja6kj7")
 const SORTER_PENTAGON = preload("uid://21s0f1jtyytq")
 const SORTER_PRISM = preload("uid://broogkqybtijb")
 
-func _physics_process(delta):
-	super._physics_process(delta)
-	
-	for shape: Node3D in shapes_node.get_children():
-		shape.position.z = lerpf(shape.position.z, 0, 0.5)
-	
-	if player:
-		shapes_node.position.x = -min(player.camera_controller.rig.rotation.y, max_sway) * sway_amount
-		shapes_node.position.z = min(player.camera_controller.rig.rotation.x, max_sway) * sway_amount
-
 func shoot(ignore_fire_rate: bool = false, outside_source: Variant = self):
 	if t < fire_rate_timer and not ignore_fire_rate: return
 	
@@ -34,22 +19,17 @@ func shoot(ignore_fire_rate: bool = false, outside_source: Variant = self):
 		0: # cube
 			muzzle.color = "687ae7"
 			super.shoot(ignore_fire_rate, outside_source)
-			cube_node.position.z = 3.0
 		1: # prism
 			muzzle.color = "54e74d"
 			shoot_different_projectile(SORTER_PRISM, ignore_fire_rate, outside_source)
-			prism_node.position.z = 3.0
 		2: # cylinder
 			muzzle.color = "e73d4d"
 			shoot_different_projectile(SORTER_CYLINDER, ignore_fire_rate, outside_source)
-			cylinder_node.position.z = 3.0
 		3: # pentagon
 			muzzle.color = "e7864c"
 			shoot_different_projectile(SORTER_PENTAGON, ignore_fire_rate, outside_source)
-			pentagon_node.position.z = 3.0
 	
 	shape_num = (shape_num + 1) % 4
-	
 	rotate_sorter()
 
 func rotate_sorter():

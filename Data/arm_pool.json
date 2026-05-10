@@ -44,6 +44,10 @@
 		"rarity": 1
 	},
 	{
+		"path": "res://Scenes/Arms/sorter.tscn",
+		"rarity": 0
+	},
+	{
 		"path": "res://Scenes/Arms/spark_plug.tscn",
 		"rarity": 0
 	},

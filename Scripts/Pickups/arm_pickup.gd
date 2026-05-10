@@ -64,7 +64,7 @@ func pick_up(player):
 func setup_arm(arm_mesh_list: Array):
 	for mesh in arm_mesh_list:
 		set_material_override(mesh)
-		make_unique(mesh)
+		#make_unique(mesh)
 		mesh_list.append(mesh)
 		
 		# add item highlight shader
