@@ -5,11 +5,12 @@ extends Arm
 @onready var cylinder_node: Node3D = %CylinderNode
 @onready var pentagon_node: Node3D = %PentagonNode
 @onready var prism_node: Node3D = %PrismNode
-@onready var arm: MeshInstance3D = %Arm
+@onready var shapes_node: Node3D = %ShapesNode
 
 var sorter_rotation: float
 var rot_tween: Tween
-
+var sway_amount: float = 0.5
+var max_sway: float = 10.0
 var shape_num: int = 0
 
 const SORTER_CYLINDER = preload("uid://bstpwsbja6kj7")
@@ -19,8 +20,12 @@ const SORTER_PRISM = preload("uid://broogkqybtijb")
 func _physics_process(delta):
 	super._physics_process(delta)
 	
-	for shape: Node3D in arm.get_children():
+	for shape: Node3D in shapes_node.get_children():
 		shape.position.z = lerpf(shape.position.z, 0, 0.5)
+	
+	if player:
+		shapes_node.position.x = -min(player.camera_controller.rig.rotation.y, max_sway) * sway_amount
+		shapes_node.position.z = min(player.camera_controller.rig.rotation.x, max_sway) * sway_amount
 
 func shoot(ignore_fire_rate: bool = false, outside_source: Variant = self):
 	if t < fire_rate_timer and not ignore_fire_rate: return

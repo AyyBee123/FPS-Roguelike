@@ -2018,46 +2018,45 @@ bone_name = "Arm_2"
 bone_idx = 0
 
 [node name="Arm" type="MeshInstance3D" parent="Armature/Skeleton3D/Arm_2" unique_id=778995405]
-unique_name_in_owner = true
 transform = Transform3D(0.12311828, 0, 0, 0, 0, -0.1231183, 0, 0.12311828, 0, 0, 0, 0)
 mesh = SubResource("ArrayMesh_gtyhw")
 skeleton = NodePath("")
 
-[node name="CubeNode" type="Node3D" parent="Armature/Skeleton3D/Arm_2/Arm" unique_id=7698534]
+[node name="ShapesNode" type="Node3D" parent="Armature/Skeleton3D/Arm_2/Arm" unique_id=755166400]
 unique_name_in_owner = true
-transform = Transform3D(0.9999995, 0, 0, 0, 0.9999995, 0, 0, 0, 0.9999995, 0, 0, 0)
 
-[node name="Cube" type="MeshInstance3D" parent="Armature/Skeleton3D/Arm_2/Arm/CubeNode" unique_id=1099332528]
+[node name="CubeNode" type="Node3D" parent="Armature/Skeleton3D/Arm_2/Arm/ShapesNode" unique_id=7698534]
+unique_name_in_owner = true
+transform = Transform3D(0.99999964, 0, 0, 0, 0.99999964, 0, 0, 0, 0.99999964, 0, 0, 0)
+
+[node name="Cube" type="MeshInstance3D" parent="Armature/Skeleton3D/Arm_2/Arm/ShapesNode/CubeNode" unique_id=1099332528]
 transform = Transform3D(0.6497817, 0, 0, 0, 0.6497817, 0, 0, 0, 0.6497817, 0, 0, -3.2562761)
 material_override = SubResource("StandardMaterial3D_tjdup")
 mesh = SubResource("ArrayMesh_0i6bw")
 skeleton = NodePath("")
 
-[node name="CylinderNode" type="Node3D" parent="Armature/Skeleton3D/Arm_2/Arm" unique_id=626764339]
+[node name="CylinderNode" type="Node3D" parent="Armature/Skeleton3D/Arm_2/Arm/ShapesNode" unique_id=626764339]
 unique_name_in_owner = true
-transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0)
 
-[node name="Cylinder" type="MeshInstance3D" parent="Armature/Skeleton3D/Arm_2/Arm/CylinderNode" unique_id=2067554246]
+[node name="Cylinder" type="MeshInstance3D" parent="Armature/Skeleton3D/Arm_2/Arm/ShapesNode/CylinderNode" unique_id=2067554246]
 transform = Transform3D(0.6497817, 0, 0, 0, 0, -0.6497817, 0, 0.6497817, 0, 0, 0, -3.2562761)
 material_override = SubResource("StandardMaterial3D_cgebg")
 mesh = SubResource("ArrayMesh_folw1")
 skeleton = NodePath("")
 
-[node name="PentagonNode" type="Node3D" parent="Armature/Skeleton3D/Arm_2/Arm" unique_id=783928493]
+[node name="PentagonNode" type="Node3D" parent="Armature/Skeleton3D/Arm_2/Arm/ShapesNode" unique_id=783928493]
 unique_name_in_owner = true
-transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0)
 
-[node name="Pentagon" type="MeshInstance3D" parent="Armature/Skeleton3D/Arm_2/Arm/PentagonNode" unique_id=79444042]
+[node name="Pentagon" type="MeshInstance3D" parent="Armature/Skeleton3D/Arm_2/Arm/ShapesNode/PentagonNode" unique_id=79444042]
 transform = Transform3D(0.6832209, 0, 0, 0, 0, -0.71838105, 0, 0.6497817, 0, 0, 0, -3.2562761)
 material_override = SubResource("StandardMaterial3D_h6p4u")
 mesh = SubResource("ArrayMesh_5ju0m")
 skeleton = NodePath("")
 
-[node name="PrismNode" type="Node3D" parent="Armature/Skeleton3D/Arm_2/Arm" unique_id=1355159193]
+[node name="PrismNode" type="Node3D" parent="Armature/Skeleton3D/Arm_2/Arm/ShapesNode" unique_id=1355159193]
 unique_name_in_owner = true
-transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0)
 
-[node name="Prism" type="MeshInstance3D" parent="Armature/Skeleton3D/Arm_2/Arm/PrismNode" unique_id=1335351084]
+[node name="Prism" type="MeshInstance3D" parent="Armature/Skeleton3D/Arm_2/Arm/ShapesNode/PrismNode" unique_id=1335351084]
 transform = Transform3D(0.6497817, 0, 0, 0, 0.6497817, 0, 0, 0, 0.6497817, 0, 0, -3.2562761)
 material_override = SubResource("StandardMaterial3D_be22v")
 mesh = SubResource("ArrayMesh_l8vcj")
