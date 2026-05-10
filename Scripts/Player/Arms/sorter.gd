@@ -20,22 +20,26 @@ func _physics_process(delta):
 	super._physics_process(delta)
 	
 	for shape: Node3D in arm.get_children():
-		shape.position.z = lerpf(shape.position.z, 0, 0.2)
+		shape.position.z = lerpf(shape.position.z, 0, 0.5)
 
 func shoot(ignore_fire_rate: bool = false, outside_source: Variant = self):
 	if t < fire_rate_timer and not ignore_fire_rate: return
 	
 	match shape_num % 4:
 		0: # cube
+			muzzle.color = "687ae7"
 			super.shoot(ignore_fire_rate, outside_source)
 			cube_node.position.z = 3.0
 		1: # prism
+			muzzle.color = "54e74d"
 			shoot_different_projectile(SORTER_PRISM, ignore_fire_rate, outside_source)
 			prism_node.position.z = 3.0
 		2: # cylinder
+			muzzle.color = "e73d4d"
 			shoot_different_projectile(SORTER_CYLINDER, ignore_fire_rate, outside_source)
 			cylinder_node.position.z = 3.0
 		3: # pentagon
+			muzzle.color = "e7864c"
 			shoot_different_projectile(SORTER_PENTAGON, ignore_fire_rate, outside_source)
 			pentagon_node.position.z = 3.0
 	

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cst1h1b6qpbje"
+path="res://.godot/imported/Sorter Shoot.mp3-537cc91827d94032a2b9851e0eb126d5.mp3str"
+
+[deps]
+
+source_file="res://Audio/SFX/Sorter Shoot.mp3"
+dest_files=["res://.godot/imported/Sorter Shoot.mp3-537cc91827d94032a2b9851e0eb126d5.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

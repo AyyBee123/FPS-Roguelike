@@ -7,15 +7,10 @@ var point: Node3D
 
 func _ready():
 	scale = Vector3.ONE * size
-	set_color()
-
-func set_color():
-	for particle in get_children():
-		if particle is GPUParticles3D:
-			particle.process_material.color = color
 
 func play():
 	rotate_z(randf_range(0, TAU))
 	for particle in get_children():
 		if particle is GPUParticles3D:
+			particle.process_material.color = color
 			particle.restart()

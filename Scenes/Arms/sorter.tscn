@@ -2,7 +2,10 @@
 
 [ext_resource type="Script" uid="uid://c6iof01isrhfp" path="res://Scripts/Player/Arms/sorter.gd" id="1_hs8p1"]
 [ext_resource type="PackedScene" uid="uid://bp1jygh0et0jk" path="res://Scenes/Projectiles/Arm/sorter_cube.tscn" id="2_7e3ng"]
+[ext_resource type="PackedScene" uid="uid://dphgx1a3xboty" path="res://Scenes/VFX/muzzle_flash.tscn" id="3_7oc82"]
+[ext_resource type="AudioStream" uid="uid://cst1h1b6qpbje" path="res://Audio/SFX/Sorter Shoot.mp3" id="3_tjdup"]
 [ext_resource type="Texture2D" uid="uid://c65lhchunc3ml" path="res://Assets/Textures/Wood.jpg" id="4_hs8p1"]
+[ext_resource type="Script" uid="uid://cc1romsfhth3n" path="res://Scripts/Utils/audio_player_deconflicter.gd" id="5_cje4t"]
 
 [sub_resource type="Animation" id="Animation_hqivd"]
 resource_name = "Idle"
@@ -1716,7 +1719,7 @@ base_speed = 30.0
 recoil = Vector2(0.333, 0)
 recoil_speed = 10.0
 snap = 4.0
-firing_audio = [NodePath("")]
+firing_audio = [NodePath("SorterShoot")]
 
 [node name="Fire Rate Timer" type="Timer" parent="." unique_id=2033937163]
 unique_name_in_owner = true
@@ -1726,10 +1729,21 @@ one_shot = true
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.34316576)
 
+[node name="Muzzle Flash" parent="Bullet Point" unique_id=1443304289 instance=ExtResource("3_7oc82")]
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1433583562]
 unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_hs8p1")
 autoplay = &"Idle"
+
+[node name="SorterShoot" type="AudioStreamPlayer3D" parent="." unique_id=880766784]
+stream = ExtResource("3_tjdup")
+max_db = 0.0
+pitch_scale = 1.2
+panning_strength = 0.0
+bus = &"SFX"
+script = ExtResource("5_cje4t")
+metadata/_custom_type_script = "uid://cc1romsfhth3n"
 
 [node name="Armature" type="Node3D" parent="." unique_id=187571259]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.4070908)
