@@ -18,13 +18,19 @@ func _process(_delta):
 func _input(event):
 	if event is InputEventKey and event.pressed and OS.has_feature("editor") and \
 			GameState.current_level == get_tree().current_scene:
-		if event.keycode == KEY_F1:
+		if event.keycode == KEY_QUOTELEFT:
 			visible = not visible
 			if visible:
 				command.grab_focus()
+			accept_event()
 		if event.keycode == KEY_ENTER:
 			if visible:
 				execute_command()
+			accept_event()
+		if event.keycode == KEY_ESCAPE:
+			if visible:
+				visible = false
+				accept_event()
 
 func execute_command():
 	ConsoleManager.execute(command.text)
