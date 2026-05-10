@@ -8,9 +8,6 @@ uniform vec4 fresnel_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
 uniform float fresnel_amount = 4.0;
 uniform float fresnel_intensity = 4.5;
 
-uniform float speed : hint_range(0.0, 100.0) = 2.0;
-uniform float amplitude : hint_range(0.0, 1.0) = 1.0;
-
 void vertex() {
 	apply_viewmodel(Z_CLIP_SCALE, PROJECTION_MATRIX);
 }
@@ -24,6 +21,5 @@ void fragment()
 {
 	vec4 fresnel = fresnel_glow(fresnel_amount, fresnel_intensity, fresnel_color, NORMAL, VIEW);
 	ALBEDO = base_color.rgb + fresnel.rgb;
-	ALPHA = base_color.a + fresnel.a;
+	ALPHA = base_color.a;
 }
-
