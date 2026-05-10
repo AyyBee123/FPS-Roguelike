@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bp1jygh0et0jk" path="res://Scenes/Projectiles/Arm/sorter_cube.tscn" id="2_7e3ng"]
 [ext_resource type="PackedScene" uid="uid://dphgx1a3xboty" path="res://Scenes/VFX/muzzle_flash.tscn" id="3_7oc82"]
 [ext_resource type="AudioStream" uid="uid://cst1h1b6qpbje" path="res://Audio/SFX/Sorter Shoot.mp3" id="3_tjdup"]
+[ext_resource type="Texture2D" uid="uid://c65lhchunc3ml" path="res://Assets/Textures/Wood.jpg" id="4_hs8p1"]
 [ext_resource type="Script" uid="uid://cc1romsfhth3n" path="res://Scripts/Utils/audio_player_deconflicter.gd" id="5_cje4t"]
 
 [sub_resource type="Animation" id="Animation_hqivd"]
@@ -343,12 +344,16 @@ _data = {
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bmn3w"]
 resource_name = "Orange"
 cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
 albedo_color = Color(0.9063355, 0.5238429, 0.29915398, 1)
 roughness = 0.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8hl8v"]
 resource_name = "Plastic"
 cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
 albedo_color = Color(0.75315225, 0.6931115, 0.4356653, 1)
 roughness = 0.5
 
@@ -413,6 +418,8 @@ shadow_mesh = SubResource("ArrayMesh_q3sdv")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xwd26"]
 resource_name = "Green"
 cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
 albedo_color = Color(0.33064842, 0.9063355, 0.30089054, 1)
 roughness = 0.5
 
@@ -475,6 +482,8 @@ shadow_mesh = SubResource("ArrayMesh_ij5wd")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w73ci"]
 resource_name = "Blue"
 cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
 albedo_color = Color(0.40823895, 0.4784162, 0.90633965, 1)
 roughness = 0.5
 
@@ -515,6 +524,8 @@ shadow_mesh = SubResource("ArrayMesh_ev653")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pthj5"]
 resource_name = "Red"
 cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
 albedo_color = Color(0.9063355, 0.23737185, 0.30322254, 1)
 roughness = 0.5
 
@@ -1115,7 +1126,9 @@ shadow_mesh = SubResource("ArrayMesh_rrnnb")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uqtwj"]
 resource_name = "Wood"
 cull_mode = 2
-albedo_color = Color(0.84178084, 0.69572055, 0.5796916, 1)
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("4_hs8p1")
 roughness = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_vkf20"]
@@ -1408,9 +1421,9 @@ base_damage = 6.0
 base_fire_rate = 5.0
 base_range = 70.0
 base_speed = 30.0
-recoil = Vector2(0.333, 0)
+recoil = Vector2(0.333, 0.033)
 recoil_speed = 10.0
-snap = 4.0
+snap = 5.0
 firing_audio = [NodePath("SorterShoot")]
 
 [node name="Fire Rate Timer" type="Timer" parent="." unique_id=2033937163]
