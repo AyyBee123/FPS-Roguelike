@@ -466,7 +466,7 @@ shader = ExtResource("7_nkat2")
 shader_parameter/color_1 = Color(1, 1, 1, 1)
 shader_parameter/color_2 = Color(0.65173304, 0.9712197, 0.9739533, 1)
 shader_parameter/color_3 = Color(0.2627451, 0.89411765, 0.90588236, 1)
-shader_parameter/speed = 1.0
+shader_parameter/speed = 0.667
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_2adyw")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sppo7"]
