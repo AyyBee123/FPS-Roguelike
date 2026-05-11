@@ -7,5 +7,6 @@ func _ready():
 		set_bus("SFX")
 
 func play_deconflicted(from_position = 0.0) -> void:
+	if volume_db <= -40: return
 	if SfxDeconflicter.should_play(self):
 		self.play(from_position)

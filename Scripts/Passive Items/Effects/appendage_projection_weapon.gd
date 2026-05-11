@@ -36,13 +36,13 @@ func _ready():
 	set_base_stats()
 	arm.add_to_group("Appendage Projection")
 	for audio: DeconflictedAudioPlayer in arm.find_children("", "DeconflictedAudioPlayer", true):
-		audio.volume_db = -28
+		audio.volume_db = -40
 		audio.max_db = 0
 	player.weapon_shot.connect(shoot)
 	player.weapon_released.connect(release)
 	pos = arm_node.position
 	if arm.muzzle:
-		arm.muzzle.queue_free()
+		arm.muzzle.visible = false
 
 func _physics_process(_delta):
 	if not ability:
