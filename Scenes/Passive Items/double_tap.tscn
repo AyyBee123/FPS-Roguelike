@@ -8,8 +8,8 @@ script = ExtResource("1_k6hb4")
 item_name = "Double Tap"
 rarity = 0
 icon = ExtResource("2_eskhf")
-description = "Chance to shoot twice."
-detailed_description = "%d%% (+%d%%/stack) chance to shoot twice."
+description = "Chance to shoot an extra projectile."
+detailed_description = "%d%% (+%d%%/stack) chance to shoot an extra projectile."
 stats = {
 "Crit_Chance": {
 "+": 0,
