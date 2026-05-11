@@ -15,50 +15,48 @@ var sway_amount: float = 0.5
 var max_sway: float = 10.0
 var shape_num: int = 0
 
-func shoot(ignore_fire_rate: bool = false, outside_source: Variant = self):
-	if t < fire_rate_timer and not ignore_fire_rate: return
+func shoot():
+	if t < fire_rate_timer: return
 	
 	var camera_collision: Vector3 = get_camera_collision()
+	t = 0.0
 	
-	if not ignore_fire_rate:
-		t = 0.0
+	for i in SHOTS_PER_BURST:
+		player._on_arm_shot(self)
 		
-		for i in SHOTS_PER_BURST:
-			player._on_arm_shot(self, outside_source)
-			
-			match shape_num % 4:
-				0: # cube
-					muzzle.color = "687ae7"
-					projectile = SORTER_CUBE
-				1: # prism
-					muzzle.color = "54e74d"
-					projectile = SORTER_PRISM
-				2: # cylinder
-					muzzle.color = "e73d4d"
-					projectile = SORTER_CYLINDER
-				3: # pentagon
-					muzzle.color = "e7864c"
-					projectile = SORTER_PENTAGON
-			
-			for j in range(projectile_count):
-				launch_projectile(camera_collision)
-			
-			for audio in firing_audio:
-				if audio:
-					audio.play_deconflicted()
-			
-			animation_player.stop()
-			if shoot_animation != "":
-				animation_player.play(shoot_animation)
-			if muzzle:
-				muzzle.play()
-			
-			shape_num = (shape_num + 1) % 4
-			rotate_sorter()
-			
-			await get_tree().create_timer(1.0 / (fire_rate * 8)).timeout
+		match shape_num % 4:
+			0: # cube
+				muzzle.color = "687ae7"
+				projectile = SORTER_CUBE
+			1: # prism
+				muzzle.color = "54e74d"
+				projectile = SORTER_PRISM
+			2: # cylinder
+				muzzle.color = "e73d4d"
+				projectile = SORTER_CYLINDER
+			3: # pentagon
+				muzzle.color = "e7864c"
+				projectile = SORTER_PENTAGON
 		
-		fire_rate_timer = 1.0 / fire_rate
+		for j in range(projectile_count):
+			launch_projectile(camera_collision)
+		
+		for audio in firing_audio:
+			if audio:
+				audio.play_deconflicted()
+		
+		animation_player.stop()
+		if shoot_animation != "":
+			animation_player.play(shoot_animation)
+		if muzzle:
+			muzzle.play()
+		
+		shape_num = (shape_num + 1) % 4
+		rotate_sorter()
+		
+		await get_tree().create_timer(1.0 / (fire_rate * 8)).timeout
+	
+	fire_rate_timer = 1.0 / fire_rate
 
 func rotate_sorter():
 	rot_tween = get_tree().create_tween()

@@ -41,7 +41,7 @@ var recoil_target: Vector2 = Vector2.ZERO
 var input: Vector2 = Vector2.ZERO
 
 # add recoil (called when shooting)
-func add_recoil(_arm: Arm, _source: Node) -> void:
+func add_recoil(_arm: Arm) -> void:
 	arm = _arm
 	recoil_target.x += _arm.recoil.x * _arm.recoil_multiplier
 	recoil_target.y += _arm.recoil.y * _arm.recoil_multiplier * randf_range(-1, 1)

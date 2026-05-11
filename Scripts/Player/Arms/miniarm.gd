@@ -48,12 +48,12 @@ func _input(_event):
 		buzz.play_deconflicted(0.125)
 		current_rotation = max(round(TAU * fire_rate_multiplier / STEP) * STEP, STEP)
 
-func shoot(ignore_fire_rate: bool = false, outside_source: Variant = self):
-	if t < fire_rate_timer and not ignore_fire_rate: return
+func shoot():
+	if t < fire_rate_timer: return
 	
-	if not ignore_fire_rate:
-		t = 0.0
+	t = 0.0
 	fire_rate_timer = 1.0 / (fire_rate * fire_rate_multiplier)
+	
 	animation_player.stop()
 	animation_player.play(shoot_animation)
 	if muzzle:
@@ -61,7 +61,7 @@ func shoot(ignore_fire_rate: bool = false, outside_source: Variant = self):
 	
 	var camera_collision = get_camera_collision()
 	
-	player._on_arm_shot(self, outside_source)
+	player._on_arm_shot(self)
 	
 	for i in range(projectile_count):
 		launch_projectile(camera_collision)

@@ -120,7 +120,7 @@ func on_enemy_hit(_enemy: Enemy, _source: Variant, _damage: float):
 func on_weapon_fired(_projectile: Variant, _damage: float):
 	pass
 
-func on_weapon_shot(_arm: Arm, _source: Variant):
+func on_weapon_shot(_arm: Arm):
 	pass
 
 func on_weapon_spawned(_projectile: Variant, _damage: float):

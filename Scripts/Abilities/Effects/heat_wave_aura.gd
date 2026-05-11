@@ -35,8 +35,7 @@ func _physics_process(delta):
 	
 	added_damage = max(added_damage * (1 - (delta * 2)), 0)
 
-func add_damage(arm: Arm, source: Variant):
-	if source != arm: return
+func add_damage(arm: Arm):
 	if arm == null: return
 	
 	added_damage += (arm.damage * arm.projectile_count) / 2.0

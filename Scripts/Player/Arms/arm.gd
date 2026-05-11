@@ -72,12 +72,12 @@ func _physics_process(delta):
 		on_pick_up()
 	t += delta
 
-func shoot(ignore_fire_rate: bool = false, outside_source: Variant = self):
-	if t < fire_rate_timer and not ignore_fire_rate: return
+func shoot():
+	if t < fire_rate_timer: return
 	
-	if not ignore_fire_rate:
-		t = 0.0
+	t = 0.0
 	fire_rate_timer = 1.0 / fire_rate
+	
 	animation_player.stop()
 	if shoot_animation != "":
 		animation_player.play(shoot_animation)
@@ -86,7 +86,7 @@ func shoot(ignore_fire_rate: bool = false, outside_source: Variant = self):
 	
 	var camera_collision: Vector3 = get_camera_collision()
 	
-	player._on_arm_shot(self, outside_source)
+	player._on_arm_shot(self)
 	
 	for i in range(projectile_count):
 		launch_projectile(camera_collision)
@@ -98,8 +98,8 @@ func shoot(ignore_fire_rate: bool = false, outside_source: Variant = self):
 func on_pick_up():
 	pass
 
-func release(outside_source: Variant = self):
-	player._on_arm_released(self, outside_source)
+func release():
+	player._on_arm_released(self)
 
 ## get the crosshair aim point, where it collides with an object
 func get_camera_collision(_range: float = range) -> Vector3:
@@ -201,43 +201,3 @@ func set_material_override():
 			override.fov_override = fov_override
 	
 	material_override_set = true
-
-func shoot_different_projectile(proj: PackedScene, ignore_fire_rate: bool = false, outside_source: Variant = self):
-	if t < fire_rate_timer and not ignore_fire_rate: return
-	
-	if not ignore_fire_rate:
-		t = 0.0
-	fire_rate_timer = 1.0 / fire_rate
-	animation_player.stop()
-	if shoot_animation != "":
-		animation_player.play(shoot_animation)
-	if muzzle:
-		muzzle.play()
-	
-	var camera_collision: Vector3 = get_camera_collision()
-	
-	player._on_arm_shot(self, outside_source)
-	
-	for i in range(projectile_count):
-		launch_projectile(camera_collision, proj)
-	
-	for audio in firing_audio:
-		if audio:
-			audio.play_deconflicted()
-
-#func hit_scan_collision(collision_point):
-	#var bullet_direction = (collision_point - bullet_point.get_global_transform().origin).normalized()
-	#var new_int = PhysicsRayQueryParameters3D.create(bullet_point.get_global_transform().origin, \
-			#collision_point + bullet_direction * 2, CollisionLayers.get_layer(["Pickup"]))
-	#
-	#var bullet_collision = get_world_3d().direct_space_state.intersect_ray(new_int)
-	#
-	#if bullet_collision:
-		#var hit_indicator = DEBUG_BULLET.instantiate()
-		#var world = get_tree().current_scene
-		#world.add_child(hit_indicator)
-		#hit_indicator.global_translate(bullet_collision.position)
-		#
-		#var collider = bullet_collision.collider
-		#if collider is Enemy:
-			#collider.hit(damage)

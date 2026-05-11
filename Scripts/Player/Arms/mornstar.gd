@@ -29,18 +29,16 @@ func _ready():
 	
 	fill_amount = 0.0
 
-func shoot(ignore_fire_rate: bool = false, outside_source: Variant = self):
+func shoot():
 	if laser:
-		if t < fire_rate_timer and not ignore_fire_rate: return
+		if t < fire_rate_timer: return
 		
-		if not ignore_fire_rate:
-			t = 0.0
-		else:
-			laser.damage_timer = INF
+		t = 0.0
 		fire_rate_timer = 1.0 / fire_rate
 		
-		player._on_arm_shot(self, outside_source)
+		player._on_arm_shot(self)
 		player._on_arm_fired(laser, damage)
+	
 	else:
 		if not is_shoot_button_held:
 			animation_player.play("Charge", -1, fire_rate / base_fire_rate)
@@ -66,8 +64,8 @@ func launch_projectile(point: Vector3, _different_proj: PackedScene = null):
 	
 	laser = proj
 
-func release(outside_source: Variant = self):
-	super.release(outside_source)
+func release():
+	super.release()
 	if is_shoot_button_held:
 		animation_player.play("Shoot to Idle")
 	is_shoot_button_held = false

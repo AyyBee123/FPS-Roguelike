@@ -15,19 +15,19 @@ func on_pick_up():
 	barrier.player = player
 	player.camera.add_child(barrier)
 
-func shoot(ignore_fire_rate: bool = false, outside_source: Variant = self):
-	if t < fire_rate_timer and not ignore_fire_rate: return
+func shoot():
+	if t < fire_rate_timer: return
 	
-	if not ignore_fire_rate:
-		t = 0.0
+	t = 0.0
 	fire_rate_timer = 1.0 / fire_rate
+	
 	animation_player.stop()
 	if shoot_animation != "":
 		animation_player.play(shoot_animation, -1, fire_rate)
 	
 	var camera_collision = get_camera_collision()
 	
-	player._on_arm_shot(self, outside_source)
+	player._on_arm_shot(self)
 	
 	launch_projectile(camera_collision)
 	

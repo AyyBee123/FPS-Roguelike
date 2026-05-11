@@ -5,11 +5,8 @@ const NUMBER_TO_BIG_SHOT: int = 5 # number of shots to reach big shot
 var current_shot: int = 0
 var is_big_shot: bool = false
 
-func shoot(ignore_fire_rate: bool = false, outside_source: Variant = self):
-	if t < fire_rate_timer and not ignore_fire_rate: return
-	
-	if not ignore_fire_rate:
-		t = 0.0
+func shoot():
+	if t < fire_rate_timer: return
 	
 	if current_shot < NUMBER_TO_BIG_SHOT - 1:
 		current_shot += 1
@@ -18,7 +15,7 @@ func shoot(ignore_fire_rate: bool = false, outside_source: Variant = self):
 		is_big_shot = false
 		if firing_audio.has(%"Leaper Big Laser"):
 			firing_audio.erase(%"Leaper Big Laser")
-		super.shoot(ignore_fire_rate, outside_source)
+		super.shoot()
 	else:
 		current_shot = 0
 		shoot_animation = "Big Shoot"
@@ -26,7 +23,7 @@ func shoot(ignore_fire_rate: bool = false, outside_source: Variant = self):
 		is_big_shot = true
 		if not firing_audio.has(%"Leaper Big Laser"):
 			firing_audio.append(%"Leaper Big Laser")
-		super.shoot(ignore_fire_rate, outside_source)
+		super.shoot()
 
 func set_projectile_flags(proj):
 	proj.damage = damage

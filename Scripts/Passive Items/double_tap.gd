@@ -6,11 +6,9 @@ var chance: float = 0.1
 var chance_increase: float = 0.1
 var base_chance: float = chance
 
-func on_weapon_shot(_arm: Arm, _source: Variant):
-	if _source == self: return
+func on_weapon_shot(_arm: Arm):
 	if randf() <= chance:
-		await get_tree().create_timer(1.0 / (_arm.fire_rate * FIRE_DELAY_MULTIPLIER)).timeout
-		_arm.shoot(true, self)
+		pass
 
 func on_stack():
 	chance += chance_increase

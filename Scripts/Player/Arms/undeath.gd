@@ -1,9 +1,9 @@
 extends Arm
 
-func shoot(ignore_fire_rate: bool = false, outside_source: Variant = self):
-	if t >= fire_rate_timer or ignore_fire_rate:
+func shoot():
+	if t >= fire_rate_timer:
 		%AtomicBlast.pitch_scale = randf_range(1.25, 1.5)
-	super.shoot(ignore_fire_rate, outside_source)
+	super.shoot()
 
 func set_projectile_flags(proj):
 	proj.damage = damage

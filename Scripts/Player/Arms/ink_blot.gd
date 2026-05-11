@@ -16,13 +16,10 @@ func _physics_process(delta):
 	else:
 		spray.stop()
 
-func shoot(ignore_fire_rate: bool = false, outside_source: Variant = self):
-		if (t < fire_rate_timer and not ignore_fire_rate) or is_shoot_button_held: return
+func shoot():
+		if t < fire_rate_timer or is_shoot_button_held: return
 		
-		if not ignore_fire_rate:
-			t = 0.0
-		else:
-			laser.damage_timer = INF
+		t = 0.0
 		fire_rate_timer = 1.0 / fire_rate
 		
 		animation_player.play("Idle to Shoot")
@@ -36,7 +33,7 @@ func shoot(ignore_fire_rate: bool = false, outside_source: Variant = self):
 			if audio:
 				audio.play_deconflicted()
 		
-		player._on_arm_shot(self, outside_source)
+		player._on_arm_shot(self)
 		player._on_arm_fired(laser, damage)
 		is_shoot_button_held = true
 
@@ -60,8 +57,8 @@ func launch_projectile(point: Vector3, _different_proj: PackedScene = null):
 	
 	laser = proj
 
-func release(outside_source: Variant = self):
-	super.release(outside_source)
+func release():
+	super.release()
 	if is_shoot_button_held and laser:
 		animation_player.play("Shoot to Idle")
 	is_shoot_button_held = false

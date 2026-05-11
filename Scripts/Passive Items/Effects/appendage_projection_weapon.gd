@@ -62,15 +62,15 @@ func set_base_stats():
 	base_range = arm.base_range
 	base_speed = arm.base_speed
 
-func shoot(_arm: Arm, _source: Variant):
+func shoot(_arm: Arm):
 	await get_tree().create_timer(1.0 / (arm.fire_rate * 8)).timeout
 	if arm and not _arm.is_in_group("Appendage Projection"):
-		arm.shoot(false, self)
+		arm.shoot()
 
-func release(_arm: Arm, _source: Variant):
+func release(_arm: Arm):
 	await get_tree().physics_frame
 	if arm and not _arm.is_in_group("Appendage Projection"):
-		arm.release(self)
+		arm.release()
 
 func set_material_override():
 	var mesh_instances: Array = arm.find_children("", "MeshInstance3D", true)
