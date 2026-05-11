@@ -126,16 +126,16 @@ func get_camera_point(_range: float = range) -> Vector3:
 	var viewport: Vector2 = get_viewport().get_visible_rect().size
 
 	var origin: Vector3 = camera.project_ray_origin(viewport / 2)
-	var direction: Vector3= camera.project_ray_normal(viewport / 2)
+	var direction: Vector3 = camera.project_ray_normal(viewport / 2)
 
 	return origin + direction * _range
 
-func launch_projectile(point: Vector3, different_proj: PackedScene = null):
+func launch_projectile(point: Vector3):
 	if not projectile: return
 	
 	var spread_rad: float = deg_to_rad(spread)
 	var direction: Vector3 = (point - bullet_point.get_global_transform().origin).normalized()
-	var proj = projectile.instantiate() if different_proj == null else different_proj.instantiate()
+	var proj = projectile.instantiate()
 	
 	# get random angle in a uniform distribution
 	var cos_angle: float = lerp(cos(spread_rad), 1.0, randf())

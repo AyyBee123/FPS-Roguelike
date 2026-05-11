@@ -72,8 +72,4 @@ func _physics_process(delta):
 
 func set_projectile_flags(proj):
 	proj.target = bullet_point
-	proj.damage = damage
-	proj.speed = speed
-	proj.range = range
-	proj.radius = splash_radius
-	proj.player = player
+	super.set_projectile_flags(proj)

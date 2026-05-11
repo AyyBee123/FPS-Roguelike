@@ -88,3 +88,6 @@ func _on_laser_body_exited(body):
 	if body.has_meta("mornstar_laser_overlap"):
 		body.get_meta("mornstar_laser_overlap", []).erase(self)
 	enemies.erase(body)
+
+func laser_check():
+	pass

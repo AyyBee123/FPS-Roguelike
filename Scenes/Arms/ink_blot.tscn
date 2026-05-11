@@ -602,14 +602,21 @@ bind/16/pose = Transform3D(-0.0023601616, 0.002377565, -0.9999944, -0.7071071, -
 script = ExtResource("1_tystx")
 arm_name = "Ink Blot"
 rarity = 1
+unlocked_by_default = null
+description = null
 projectile = ExtResource("5_2xcs3")
 base_damage = 1.0
 base_fire_rate = 2.0
 base_range = 40.0
 base_speed = 20.0
+base_splash_radius = null
+base_projectile_count = null
+spread = null
 recoil = Vector2(0.25, 0.025)
 recoil_speed = 8.0
 snap = 8.0
+shoot_animation = null
+equip_animation = null
 firing_audio = [NodePath("Shoot")]
 
 [node name="Fire Rate Timer" type="Timer" parent="." unique_id=1505243839]

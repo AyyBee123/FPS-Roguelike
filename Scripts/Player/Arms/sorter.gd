@@ -18,7 +18,6 @@ var shape_num: int = 0
 func shoot():
 	if t < fire_rate_timer: return
 	
-	var camera_collision: Vector3 = get_camera_collision()
 	t = 0.0
 	
 	for i in SHOTS_PER_BURST:
@@ -37,6 +36,8 @@ func shoot():
 			3: # pentagon
 				muzzle.color = "e7864c"
 				projectile = SORTER_PENTAGON
+		
+		var camera_collision: Vector3 = get_camera_collision()
 		
 		for j in range(projectile_count):
 			launch_projectile(camera_collision)

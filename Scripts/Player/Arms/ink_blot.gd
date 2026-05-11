@@ -37,7 +37,7 @@ func shoot():
 		player._on_arm_fired(laser, damage)
 		is_shoot_button_held = true
 
-func launch_projectile(point: Vector3, _different_proj: PackedScene = null):
+func launch_projectile(point: Vector3):
 	var direction = (point - bullet_point.get_global_transform().origin).normalized()
 	var proj = projectile.instantiate()
 	
@@ -62,12 +62,12 @@ func release():
 	if is_shoot_button_held and laser:
 		animation_player.play("Shoot to Idle")
 	is_shoot_button_held = false
-	if laser:
-		laser.shrink()
+	for node: Node3D in bullet_point.get_children(): # delete all lasers
+		if node.has_method("draw_ink"):
+			node.shrink()
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "Idle to Shoot":
 		animation_player.play("Shoot")
 	if anim_name == "Shoot to Idle":
 		animation_player.play("Idle")
-	
