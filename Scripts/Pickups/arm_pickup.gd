@@ -83,8 +83,8 @@ func setup_arm(arm_mesh_list: Array):
 	visual_offset.position -= aabb.position + aabb.size / 2
 	default_pos = visual_offset.position
 	
+	# create unique materials (do it in a separate thread to prevent lag spikes)
 	Thread.new().start(func():
-		# duplicate() off main thread
 		var results = []
 		for mesh in arm_mesh_list:
 			results.append({
@@ -92,8 +92,6 @@ func setup_arm(arm_mesh_list: Array):
 				"new_mesh": mesh.mesh.duplicate(true) if mesh.mesh else null,
 				"new_mat": mesh.material_override.duplicate(true) if mesh.material_override else null,
 			})
-		
-		# assign back on main thread
 		apply_unique_materials.call_deferred(results)
 	)
 
@@ -147,15 +145,6 @@ func transform_aabb(aabb: AABB, xform: Transform3D) -> AABB:
 	for i in range(1, points.size()):
 		result = result.expand(xform * points[i])
 	return result
-
-func make_unique(node: Node) -> void:
-	if node is MeshInstance3D:
-		# make the mesh resource unique first
-		if node.mesh:
-			node.mesh = node.mesh.duplicate(true)
-		
-		if node.material_override:
-			node.material_override = node.material_override.duplicate(true)
 
 func set_material_override(mesh_instance: MeshInstance3D):
 	mesh_instance.set_instance_shader_parameter("viewmodel_enabled", false)
