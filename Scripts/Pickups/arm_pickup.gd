@@ -26,6 +26,7 @@ var rarity: int
 var rarity_color: Color
 
 func _ready():
+	collision_shape.disabled = true
 	rarity_weights = get_tree().current_scene.get_node("%Arm Pool").rarity_weights
 	
 	if not arm_scene:
@@ -104,6 +105,7 @@ func apply_unique_materials(results: Array) -> void:
 			mesh.mesh = r.new_mesh
 		if r.new_mat:
 			mesh.material_override = r.new_mat
+	collision_shape.disabled = false
 
 func get_visual_aabb(meshes: Array) -> AABB:
 	var first: bool = true
