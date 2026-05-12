@@ -67,8 +67,7 @@ func spawn_arms():
 		add_child(pickup)
 		pickup.global_position = arm_pickup_spawn_point
 		
-		await get_tree().physics_frame
-		await get_tree().physics_frame
+		await get_tree().create_timer(1.0).timeout
 		
 		# make the simulation player pick up the arm
 		pickup.pick_up(player)

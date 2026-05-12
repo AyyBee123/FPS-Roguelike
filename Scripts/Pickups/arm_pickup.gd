@@ -64,7 +64,6 @@ func pick_up(player):
 func setup_arm(arm_mesh_list: Array):
 	for mesh in arm_mesh_list:
 		set_material_override(mesh)
-		#make_unique(mesh)
 		mesh_list.append(mesh)
 		
 		# add item highlight shader
@@ -82,6 +81,29 @@ func setup_arm(arm_mesh_list: Array):
 	# center the arm's position
 	visual_offset.position -= aabb.position + aabb.size / 2
 	default_pos = visual_offset.position
+	
+	Thread.new().start(func():
+		# duplicate() off main thread
+		var results = []
+		for mesh in arm_mesh_list:
+			results.append({
+				"mesh": mesh,
+				"new_mesh": mesh.mesh.duplicate(true) if mesh.mesh else null,
+				"new_mat": mesh.material_override.duplicate(true) if mesh.material_override else null,
+			})
+		
+		# assign back on main thread
+		apply_unique_materials.call_deferred(results)
+	)
+
+func apply_unique_materials(results: Array) -> void:
+	if not is_instance_valid(self): return
+	for r in results:
+		var mesh: MeshInstance3D = r.mesh
+		if r.new_mesh:
+			mesh.mesh = r.new_mesh
+		if r.new_mat:
+			mesh.material_override = r.new_mat
 
 func get_visual_aabb(meshes: Array) -> AABB:
 	var first: bool = true

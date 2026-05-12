@@ -54,7 +54,7 @@ func get_closest_enemy(origin: Enemy, ignore: Array, max_range: float = INF) -> 
 	var closest: Enemy = null
 	var closest_dist = max_range
 	
-	var space_state = origin.get_world_3d().direct_space_state  # use get_world_3d() if 3D
+	var space_state = origin.get_world_3d().direct_space_state
 	
 	for enemy in get_tree().current_scene.get_children():
 		if not enemy is Enemy: continue
