@@ -13,7 +13,6 @@ script = ExtResource("1_ct0jj")
 
 [node name="Blast" type="AudioStreamPlayer3D" parent="." unique_id=92804279]
 stream = ExtResource("2_ct0jj")
-attenuation_model = 1
 unit_size = 50.0
 bus = &"SFX"
 script = ExtResource("3_x04wh")
@@ -28,7 +27,6 @@ script = ExtResource("3_x04wh")
 
 [node name="EMB Blast" type="AudioStreamPlayer3D" parent="." unique_id=1232324902]
 stream = ExtResource("4_x04wh")
-attenuation_model = 1
 max_db = -2.0
 pitch_scale = 1.5
 bus = &"SFX"
@@ -36,7 +34,6 @@ script = ExtResource("3_x04wh")
 
 [node name="Lightning" type="AudioStreamPlayer3D" parent="." unique_id=1017264136]
 stream = ExtResource("2_4rf7h")
-attenuation_model = 1
 unit_size = 50.0
 max_db = 1.0
 pitch_scale = 1.25
