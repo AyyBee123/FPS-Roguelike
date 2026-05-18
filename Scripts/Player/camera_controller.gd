@@ -29,15 +29,15 @@ func _ready():
 	rig_origin = rig.position
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
-# Current rotation state
+# current rotation state
 var pitch: float = 0.0
 var yaw: float = 0.0
 
-# Recoil state
+# recoil state
 var recoil_current: Vector2 = Vector2.ZERO
 var recoil_target: Vector2 = Vector2.ZERO
 
-# Stores mouse delta each frame
+# stores mouse delta each frame
 var input: Vector2 = Vector2.ZERO
 
 func _unhandled_input(event: InputEvent) -> void:
