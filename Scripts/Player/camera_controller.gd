@@ -51,7 +51,7 @@ func add_recoil(_arm: Arm) -> void:
 	recoil_target.y += _arm.recoil.y * _arm.recoil_multiplier * randf_range(-1, 1)
 
 func _physics_process(delta: float) -> void:
-	# Feed joystick into input
+	# joystick input
 	var joy_x = Input.get_joy_axis(0, JOY_AXIS_RIGHT_X)
 	var joy_y = Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y)
 	
@@ -80,14 +80,14 @@ func _physics_process(delta: float) -> void:
 		recoil_target = recoil_target.lerp(Vector2.ZERO, 1.0 - exp(-arm.recoil_speed * delta))
 		recoil_current = recoil_current.lerp(recoil_target, 1.0 - exp(-arm.recoil_speed * delta))
 	
-	# horizontal rotation (yaw + recoil) to the player’s position
+	# horizontal rotation (yaw + recoil) to the player
 	player.rotation.y = yaw + recoil_current.y
 	
-	# interpolate position for jitter-free camera
+	# interpolate position to remove jitter from camera
 	var interp: Transform3D = player.get_global_transform_interpolated()
 	global_transform.origin = interp.origin
 	
-	# vertical rotation (pitch + recoil) to pivot
+	# vertical rotation (pitch + recoil) to the camera controller
 	rotation.x = clamp(-deg_to_rad(pitch_limit_degrees), pitch + recoil_current.x, deg_to_rad(pitch_limit_degrees))
 	
 	bob(player.velocity.length(), delta)
