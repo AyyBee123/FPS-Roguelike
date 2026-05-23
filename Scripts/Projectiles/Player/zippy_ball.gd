@@ -20,7 +20,6 @@ func _physics_process(delta):
 	super._physics_process(delta)
 	if zippy_balls.size() > MAX_AMOUNT:
 		if self == zippy_balls[0]:
-			print("hi")
 			queue_free()
 
 func _on_body_entered(body):
