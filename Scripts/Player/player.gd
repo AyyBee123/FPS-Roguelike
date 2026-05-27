@@ -274,7 +274,7 @@ func _physics_process(delta):
 	item_hovered.emit(pickup)
 	
 	# check for level ups
-	if upgrade_queue_count > 0 and upgrade.get_child_count() == 0:
+	if upgrade_queue_count > 0:
 		level_up()
 
 func _input(event):
@@ -433,10 +433,7 @@ func gain_xp(amount: int, source: Variant = null):
 
 func level_up():
 	upgrade_queue_count -= 1
-	var passive_menu = PASSIVE_MENU.instantiate()
-	passive_menu.upgrade_selected.connect(get_upgrade)
-	passive_menu.player = self
-	upgrade.add_child(passive_menu)
+	print("level up")
 	current_level += 1
 
 func get_upgrade(_upgrade):

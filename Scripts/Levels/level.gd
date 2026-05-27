@@ -61,6 +61,7 @@ func _physics_process(delta):
 		if spawn.time <= elapsed_time + 1:
 			boss_spawns.erase(spawn)
 			enemy_handler.spawn_boss(spawn)
+			Color.CRIMSON
 
 func get_time_left() -> float:
 	return time_left
