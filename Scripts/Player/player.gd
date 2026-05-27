@@ -263,7 +263,7 @@ func _physics_process(delta):
 	
 	pickup = get_pickup_collision()
 	if pickup and pickup.has_method("highlight"):
-		if pickup is Chest or pickup is ArmoryBox:
+		if pickup is Chest:
 			if coin_count >= pickup.cost:
 				pickup.highlight()
 		else:
@@ -282,10 +282,12 @@ func _input(event):
 		_jump_buffer = jump_buffer_time
 	
 	if event.is_action_pressed("interact") and pickup:
-		if pickup is Chest or pickup is ArmoryBox:
+		if pickup is Chest:
 			if coin_count >= pickup.cost:
 				update_coins(-pickup.cost)
 				pickup.open(self)
+		elif pickup is ArmoryBox:
+			pickup.open(self)
 		else:
 			pick_up.play_deconflicted()
 			pickup.pick_up(self)

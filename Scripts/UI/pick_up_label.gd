@@ -15,10 +15,7 @@ func on_item_hovered(item):
 		else:
 			text = ""
 	elif item is ArmoryBox:
-		if player.coin_count >= item.cost:
-			text = "Open Armory Box"
-		else:
-			text = ""
+		text = "Open Armory Box"
 	elif item is ArmPickup:
 		text = "Pick up %s" % item.arm_name
 	elif item is ItemPickup:

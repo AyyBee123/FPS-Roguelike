@@ -10,7 +10,6 @@ class_name ArmoryBox extends RigidBody3D
 @onready var chest_ray_cast = %"Chest RayCast"
 @onready var chest_check = %"Chest Check"
 @onready var arm_marker = %"Arm Marker"
-@onready var cost_label = %"Cost Label"
 
 var is_open: bool = false:
 	set(value):
@@ -19,12 +18,8 @@ var is_open: bool = false:
 
 var arm_pickup: ArmPickup
 var arm_spawned: bool = false
-var cost: int = 0
 
 func _ready():
-	GameState.current_level.cost_increased.connect(cost_changed)
-	cost_changed()
-	
 	unhighlight()
 	
 	armature.scale = Vector3.ZERO
@@ -44,12 +39,7 @@ func _ready():
 func open(_player: Player):
 	if is_open: return
 	is_open = true
-	
-	cost_label.visible = false
 	animation_player.play("Open")
-	
-	# increase the cost of all chests and armory boxes
-	GameState.current_level.increase_costs()
 
 func check_for_chest():
 	for i in 30:
@@ -58,10 +48,6 @@ func check_for_chest():
 			continue
 		else:
 			break
-
-func cost_changed():
-	cost = GameState.current_level.box_cost
-	cost_label.text = "%d¢" % cost
 
 func spawn_arm():
 	arm_pickup = arm.instantiate()
