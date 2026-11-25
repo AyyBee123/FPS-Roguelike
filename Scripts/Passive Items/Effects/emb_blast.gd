@@ -17,7 +17,7 @@ func _ready():
 		var sb = soundboard.instantiate()
 		get_tree().current_scene.add_child(sb)
 		sb.global_position = global_position
-		sb.emb_blast.play_deconflicted()
+		sb.emb_blast.play()
 	
 	scale = Vector3.ONE * radius
 	

@@ -19,7 +19,7 @@ func _on_jump(_from_ground: bool):
 	audio.max_db = 0
 	audio.panning_strength = 0
 	get_tree().current_scene.add_child(audio)
-	audio.play_deconflicted()
+	audio.play()
 	audio.global_position = player.global_position
 	audio.finished.connect(audio.queue_free)
 

@@ -20,7 +20,7 @@ var enemies: Array[Enemy]
 var damage_timer: float = INF
 
 func _ready():
-	splat.play_deconflicted()
+	splat.play()
 	scale = Vector3.ONE * player.stats.get_stat("Range") * BASE_RANGE
 	oil_pool.scale = Vector3(0, 1.0 / scale.y, 0)
 	tween = get_tree().create_tween()

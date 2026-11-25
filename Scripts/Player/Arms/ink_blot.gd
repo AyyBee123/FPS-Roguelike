@@ -12,7 +12,7 @@ func _physics_process(delta):
 	
 	if laser and laser.is_drawing:
 		if not spray.playing:
-			spray.play_deconflicted()
+			spray.play()
 	else:
 		spray.stop()
 
@@ -31,7 +31,7 @@ func shoot():
 		
 		for audio in firing_audio:
 			if audio:
-				audio.play_deconflicted()
+				audio.play()
 		
 		player._on_arm_shot(self)
 		player._on_arm_fired(laser, damage)

@@ -93,7 +93,7 @@ func shoot():
 	
 	for audio in firing_audio:
 		if audio:
-			audio.play_deconflicted()
+			audio.play()
 
 func on_pick_up():
 	pass

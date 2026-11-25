@@ -17,7 +17,7 @@ func _physics_process(delta):
 	
 	# check for landing
 	if not was_on_floor and is_on_floor():
-		land.play_deconflicted()
+		land.play()
 		speed_before_landing = previous_velocity.y
 		on_landing.emit(speed_before_landing)
 	was_on_floor = is_on_floor()

@@ -63,7 +63,7 @@ func create_impact():
 	var sb = SOUNDBOARD.instantiate()
 	get_tree().current_scene.add_child(sb)
 	sb.global_position = global_position
-	sb.small_blast.play_deconflicted()
+	sb.small_blast.play()
 
 func _on_homing_buffer_timeout():
 	can_home = true

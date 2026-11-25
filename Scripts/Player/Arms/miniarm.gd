@@ -45,7 +45,7 @@ func _input(_event):
 		barrel.rotation.z = 0
 		if fire_rate_multiplier >= 0.98:
 			buzz.pitch_scale = max(1 - fire_rate_multiplier, 0.25)
-		buzz.play_deconflicted(0.125)
+		buzz.play(0.125)
 		current_rotation = max(round(TAU * fire_rate_multiplier / STEP) * STEP, STEP)
 
 func shoot():
@@ -69,6 +69,6 @@ func shoot():
 	for audio in firing_audio:
 		if audio:
 			audio.pitch_scale = fire_rate_multiplier / 2 + 1
-			audio.play_deconflicted()
+			audio.play()
 	
 	current_rotation += STEP

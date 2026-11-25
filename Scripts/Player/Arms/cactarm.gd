@@ -61,7 +61,7 @@ func release():
 	
 	for audio in firing_audio:
 		if audio:
-			audio.play_deconflicted()
+			audio.play()
 	
 	release_timer.start(1.0 / fire_rate * 4)
 

@@ -13,11 +13,11 @@ func _ready():
 	
 	match rarity:
 		0:
-			common_item.play_deconflicted()
+			common_item.play()
 		1:
-			uncommon_item.play_deconflicted()
+			uncommon_item.play()
 		2:
-			legendary_item.play_deconflicted()
+			legendary_item.play()
 
 func _on_sound_finished():
 	queue_free()

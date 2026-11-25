@@ -186,7 +186,7 @@ func _physics_process(delta):
 	_jump_buffer = maxf(_jump_buffer - delta, 0.0)
 	if _jump_buffer > 0.0 and _coyote_timer > 0.0:
 		velocity.y += JUMP_HEIGHT
-		jump.play_deconflicted()
+		jump.play()
 		on_jump.emit(true)
 		_jump_buffer = 0.0
 		_coyote_timer = 0.0
@@ -196,7 +196,7 @@ func _physics_process(delta):
 		velocity.y = 0
 		velocity.y += JUMP_HEIGHT
 		current_jumps -= 1
-		jump.play_deconflicted()
+		jump.play()
 		on_jump.emit(false)
 	
 	# input direction and movement/deceleration
@@ -216,7 +216,7 @@ func _physics_process(delta):
 	
 	# dashing
 	if Input.is_action_just_pressed("dash") and try_dash():
-		dash.play_deconflicted()
+		dash.play()
 		
 		if input_dir.length() < 0.01:
 			var cam_forward = -camera.global_transform.basis.z  # -z is forward
@@ -256,7 +256,7 @@ func _physics_process(delta):
 	
 	# check for landing
 	if not was_on_floor and is_on_floor():
-		land.play_deconflicted()
+		land.play()
 		speed_before_landing = previous_velocity.y
 		on_landing.emit(speed_before_landing)
 	was_on_floor = is_on_floor()
@@ -289,13 +289,13 @@ func _input(event):
 		elif pickup is ArmoryBox:
 			pickup.open(self)
 		else:
-			pick_up.play_deconflicted()
+			pick_up.play()
 			pickup.pick_up(self)
 	
 	if event.is_action_pressed("alt_interact") and pickup:
 		if pickup is ItemPickup and banish_amount > 0: # banishing items
 			pickup.banish()
-			banish_audio.play_deconflicted()
+			banish_audio.play()
 			banish_amount -= 1
 	
 	# developer inputs
@@ -336,7 +336,7 @@ func hit(amount, pos):
 	if not i_frames.is_stopped():
 		return
 	
-	damage_taken_audio.play_deconflicted()
+	damage_taken_audio.play()
 	
 	if amount > 0.0:
 		i_frames.start()

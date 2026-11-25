@@ -17,7 +17,7 @@ func _ready():
 	var sb = soundboard.instantiate()
 	get_tree().current_scene.add_child(sb)
 	sb.global_position = global_position
-	sb.lightning.play_deconflicted()
+	sb.lightning.play()
 	
 	for particle in particles:
 		particle.restart()

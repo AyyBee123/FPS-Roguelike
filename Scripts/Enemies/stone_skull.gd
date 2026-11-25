@@ -53,7 +53,7 @@ func shoot():
 		muzzle.play()
 		var direction = (player_pos - shoot_marker.global_position).normalized()
 		fire_projectile(STONE_SKULL_PROJECTILE, shoot_marker.global_position, direction)
-		shoot_SFX.play_deconflicted()
+		shoot_SFX.play()
 	shoot_time.start()
 
 func fire_projectile(proj: PackedScene, pos: Vector3, direction: Vector3):

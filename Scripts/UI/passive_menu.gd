@@ -16,7 +16,7 @@ var is_banishing: bool = false
 func _ready():
 	get_tree().paused = true
 	
-	Globals.sfx.level_up.play_deconflicted()
+	Globals.sfx.level_up.play()
 	
 	set_buttons()
 	

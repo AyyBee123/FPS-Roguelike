@@ -49,7 +49,7 @@ func _physics_process(delta):
 			var sound = SOUNDBOARD.instantiate()
 			sound.position = position
 			get_tree().current_scene.add_child(sound)
-			sound.saw_hit.play_deconflicted()
+			sound.saw_hit.play()
 			
 			create_impact()
 			queue_free()
@@ -64,7 +64,7 @@ func _on_body_entered(_body):
 	if not grounded:
 		lifetime.start(range / (speed * LAUNCH_SPEED_MULTIPLIER))
 		saw.pitch_scale = randf_range(0.75, 1.25)
-		saw.play_deconflicted()
+		saw.play()
 	grounded = true
 
 func _on_area_3d_body_entered(body):

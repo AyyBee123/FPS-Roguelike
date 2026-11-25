@@ -41,7 +41,7 @@ func _ready():
 		queue_free()
 		return
 	
-	rolling_jingle.play_deconflicted()
+	rolling_jingle.play()
 	
 	sprite_3d.scale = default_scale * 0.5
 	collision_shape.disabled = true

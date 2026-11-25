@@ -71,7 +71,7 @@ func release():
 	for node: Node3D in bullet_point.get_children():
 		if node.has_method("laser_check"):
 			node.shrink()
-		beam_shrink.play_deconflicted()
+		beam_shrink.play()
 
 func _physics_process(delta):
 	super._physics_process(delta)
@@ -88,7 +88,7 @@ func _physics_process(delta):
 	
 	if laser:
 		if not mornstar_laser.playing:
-			mornstar_laser.play_deconflicted()
+			mornstar_laser.play()
 	else:
 		mornstar_laser.stop()
 
@@ -104,7 +104,7 @@ func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "Charge":
 		animation_player.play("Charge to Shoot")
 		launch_projectile(get_camera_point())
-		heavy_beam.play_deconflicted()
+		heavy_beam.play()
 	if anim_name == "Charge to Shoot":
 		fill_amount = 1.0
 		animation_player.play("Shoot")
@@ -115,6 +115,6 @@ func _on_animation_player_animation_finished(anim_name):
 
 func _on_animation_player_animation_started(anim_name):
 	if anim_name == "Charge":
-		charging.play_deconflicted(1)
+		charging.play(1)
 	if anim_name != "Charge" and %Charging.playing:
 		charging.stop()

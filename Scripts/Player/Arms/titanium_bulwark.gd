@@ -33,7 +33,7 @@ func shoot():
 	
 	for audio in firing_audio:
 		if audio:
-			audio.play_deconflicted()
+			audio.play()
 
 func launch_projectile(_point: Vector3):
 	if not barrier: return

@@ -7,7 +7,7 @@ extends RigidBody3D
 var player: Player
 
 func _ready():
-	death.play_deconflicted()
+	death.play()
 	camera.current = true
 	camera.fov = player.camera.fov
 	

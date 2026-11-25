@@ -21,7 +21,7 @@ func _physics_process(_delta):
 	amount.text = "x%d" % player.skip_amount
 
 func _on_pressed():
-	Globals.sfx.confirm.play_deconflicted()
+	Globals.sfx.confirm.play()
 	menu.is_banishing = false
 	player.skip_amount -= 1
 	player.coin_count += COIN_AMOUNT # * player.coin_multiplier, add later

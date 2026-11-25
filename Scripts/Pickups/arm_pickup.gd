@@ -46,7 +46,7 @@ func _ready():
 	
 	setup_arm(arm_mesh_list)
 	
-	jingle.play_deconflicted(0.5)
+	jingle.play(0.5)
 	play_tween()
 	visual_offset.add_child(arm)
 	arm.animation_player.stop()

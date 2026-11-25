@@ -19,7 +19,7 @@ func _physics_process(_delta):
 	amount.text = "x%d" % player.banish_amount
 
 func _on_pressed():
-	Globals.sfx.confirm.play_deconflicted()
+	Globals.sfx.confirm.play()
 	menu.is_banishing = not menu.is_banishing
 
 func banish(button):

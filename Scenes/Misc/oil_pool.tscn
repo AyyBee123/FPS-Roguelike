@@ -47,13 +47,6 @@ height = 3.0
 radius = 4.5
 
 [sub_resource type="GDScript" id="GDScript_snjs3"]
-script/source = "class_name DeconflictedAudioPlayer3D extends AudioStreamPlayer3D
-## AudioStreamPlayer which ensures multiple copies of the same sound don't play simultaneously.
-
-func play_deconflicted(from_position = 0.0) -> void:
-	if SfxDeconflicter.should_play(self):
-		self.play(from_position)
-"
 
 [node name="Oil Pool" type="Node3D" unique_id=1253599071]
 script = ExtResource("1_2oasf")

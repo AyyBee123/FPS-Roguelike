@@ -44,7 +44,7 @@ func shoot():
 		
 		for audio in firing_audio:
 			if audio:
-				audio.play_deconflicted()
+				audio.play()
 		
 		animation_player.stop()
 		if shoot_animation != "":

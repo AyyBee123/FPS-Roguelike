@@ -12,7 +12,7 @@ func set_bulb(value):
 	lit = value
 	if value:
 		set_instance_shader_parameter("albedo_color", lit_color)
-		ding.play_deconflicted()
-		light_switch.play_deconflicted()
+		ding.play()
+		light_switch.play()
 	else:
 		set_instance_shader_parameter("albedo_color", unlit_color)

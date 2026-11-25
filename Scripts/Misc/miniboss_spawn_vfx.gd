@@ -7,7 +7,7 @@ func _ready():
 		if not particle is GPUParticles3D: continue
 		particle.restart()
 		max_lifetime = max(particle.lifetime, max_lifetime)
-	%MinibossSpawn.play_deconflicted()
+	%MinibossSpawn.play()
 	
 	await get_tree().create_timer(max_lifetime).timeout
 	queue_free()

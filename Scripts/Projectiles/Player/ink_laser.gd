@@ -346,5 +346,5 @@ func play_sound_at_centroid(shape_slice: Array, polygon_2d: PackedVector2Array) 
 	audio.bus = &"SFX"
 	get_tree().current_scene.add_child(audio)
 	audio.global_position = centroid
-	audio.play_deconflicted()
+	audio.play()
 	audio.finished.connect(audio.queue_free)

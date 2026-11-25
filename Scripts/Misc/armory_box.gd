@@ -57,7 +57,7 @@ func spawn_arm():
 	arm_spawned = true
 
 func play_sound(audio: String, pos: float = 0.0): # called from animation player
-	get_node("%" + audio).play_deconflicted(pos)
+	get_node("%" + audio).play(pos)
 
 func highlight():
 	for m in meshes:

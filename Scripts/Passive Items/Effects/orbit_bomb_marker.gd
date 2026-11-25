@@ -26,7 +26,7 @@ func _ready():
 	ba.lifetime = lifetime
 	add_child(ba)
 	
-	sheep_falling.play_deconflicted()
+	sheep_falling.play()
 	
 	var size = beam.scale
 	var pos = beam.position

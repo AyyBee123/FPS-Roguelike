@@ -53,7 +53,7 @@ func open(_player: Player):
 	if is_open: return
 	is_open = true
 	
-	chest_open.play_deconflicted()
+	chest_open.play()
 	
 	cost_label.visible = false
 	animation_player.play("Open")
